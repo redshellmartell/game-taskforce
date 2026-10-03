@@ -513,6 +513,105 @@
       "mean_abs_error": 0.38,
       "trusted": true,
       "confidence": "low"
+    },
+    "barraiser": {
+      "games": [
+        {
+          "game": "Twilight Imperium (4th edition)",
+          "predicted": 3,
+          "predicted_reason": "Bloat is the pet peeve here: a huge rulebook and a long runtime that partly disguise kingmaking and swingy politics, though the strong faction asymmetry keeps it from a 2.",
+          "actual": 4,
+          "actual_reason": "Reviewers say 4th edition trimmed the third edition's excess weight and works as a grand strategy design, though length and downtime remain standing complaints.",
+          "sources": [
+            "https://opinionatedgamers.com/2019/01/25/twilight-imperium-4th-edition/",
+            "https://www.tabletopgaming.co.uk/?p=2061"
+          ]
+        },
+        {
+          "game": "Gloomhaven",
+          "predicted": 4,
+          "predicted_reason": "The card-hand-as-resource core is a genuinely fresh decision and good play is visibly rewarded, but the bloat and fiddly setup keep it a step below a classic.",
+          "actual": 4,
+          "actual_reason": "Acclaimed as a landmark campaign design (BGG about 8.8 in one summary), tempered by expert notes on fiddliness and late-campaign slog.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Gloomhaven",
+            "https://boardgamequest.com/quick-hits-gloomhaven-review"
+          ]
+        },
+        {
+          "game": "Terraforming Mars",
+          "predicted": 3,
+          "predicted_reason": "Competent engine builder with real route choices, but it is familiar parts, some corporations and cards are dead picks, and the card-draw luck swings results.",
+          "actual": 3,
+          "actual_reason": "Praised for card variety and theme but criticised for length, multiplayer-solitaire interaction and component or rulebook weaknesses.",
+          "sources": [
+            "https://boardgamequest.com/terraforming-mars-review",
+            "https://en.wikipedia.org/wiki/Terraforming_Mars_(board_game)"
+          ]
+        },
+        {
+          "game": "Catan",
+          "predicted": 4,
+          "predicted_reason": "A modern classic with elegant rules and a clear shelf pitch, but I will not give it a 5 because of the trade-driven kingmaking and the dice swing.",
+          "actual": 3,
+          "actual_reason": "Credited as a milestone with an exemplary short teach, while a minority of critics call the underlying design flawed (Monopoly/Risk family issues).",
+          "sources": [
+            "https://gamesradar.com/tabletop-gaming/catan-review",
+            "https://brandonthegamedev.com/5-lessons-from-catan-for-aspiring-board-game-designers/"
+          ]
+        },
+        {
+          "game": "Codenames",
+          "predicted": 5,
+          "predicted_reason": "One fresh, elegant decision in a rulebook that fits on a postcard, easy to pitch in one sentence, and I would defend it in any shop.",
+          "actual": 5,
+          "actual_reason": "Described by reviewers as stunningly elegant and a perfect ten, with a Spiel des Jahres win and only minor spymaster-downtime gripes.",
+          "sources": [
+            "https://opinionatedgamers.com/2015/08/20/dale-yu-review-of-codenames/",
+            "https://www.geeksundergrace.com/tabletop/review-codenames/"
+          ]
+        },
+        {
+          "game": "Dixit",
+          "predicted": 3,
+          "predicted_reason": "Distinctive hook and clear teach, but the core decision is thin and not skill-driven, so it is a fine filler for the right audience.",
+          "actual": 4,
+          "actual_reason": "Spiel des Jahres winner praised for simple rules and imaginative play, but I found little critical expert analysis beyond the award.",
+          "sources": [
+            "https://godisageek.com/2013/11/dixit-review/",
+            "https://opinionatedgamers.com/2015/12/20/sdj-re-reviews-32-dixit/"
+          ]
+        },
+        {
+          "game": "Exploding Kittens",
+          "predicted": 2,
+          "predicted_reason": "Thin core hidden behind art and humour with swingy luck and many dead cards; it is a known shape of Russian-roulette-with-a-deck rather than new design.",
+          "actual": 2,
+          "actual_reason": "Critics call it luck-driven and shallow, a triumph of branding over design, though it is accepted as a fast party filler.",
+          "sources": [
+            "https://rolltoreview.com/?p=726",
+            "https://hexagamers.com/exploding-kittens-review/"
+          ]
+        },
+        {
+          "game": "Ticket to Ride",
+          "predicted": 4,
+          "predicted_reason": "Elegant, clean rules and a clear audience with a real tension between claiming and blocking routes, only lightly solved by longest-route greed, so polish is all that is left.",
+          "actual": 4,
+          "actual_reason": "Held up as an elegant gateway design with one action per turn, brisk play and low downtime, though not a deep expert favourite.",
+          "sources": [
+            "https://techraptor.net/tabletop/reviews/ticket-to-ride-review",
+            "https://www.digitallydownloaded.net/?p=42755"
+          ]
+        }
+      ],
+      "evidence_basis": "Thin: search-result summaries only; all full-article fetches were blocked by the network proxy, and BGG/Reddit were not reached. Ratings are cautious readings of expert and designer-leaning reviews.",
+      "attempts": 1,
+      "notes": "First calibration (2026-10-03): evidence from search-result summaries only; every page read was blocked. Treat trust as provisional.",
+      "rated_games": 8,
+      "mean_abs_error": 0.38,
+      "trusted": true,
+      "confidence": "low"
     }
   },
   "baseline_quality": "low",

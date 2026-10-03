@@ -6,3 +6,5 @@
 {"time": "2026-10-03T12:35:00Z", "agent": "game-designer", "game": "panel", "event": "done", "message": "Five persona profiles written from the evidence (no calibration games mentioned)"}
 {"time": "2026-10-03T12:40:00Z", "agent": "playtester", "game": "panel", "event": "done", "message": "Blind predictions made from profiles alone; calibration errors 0.36 to 0.64, all five trusted (low-confidence baseline)"}
 {"time": "2026-10-03T12:45:00Z", "agent": "manager", "game": "panel", "event": "done", "message": "Task 005 complete"}
+{"time":"2026-10-03T17:10:00Z","agent":"market-researcher","game":"panel","event":"done","message":"Bar Raiser evidence written (12 themes, 8 games, search summaries only)"}
+{"time":"2026-10-03T17:12:00Z","agent":"manager","game":"panel","event":"done","message":"Bar Raiser calibrated against 8 games (blind predictions vs expert reception)"}
