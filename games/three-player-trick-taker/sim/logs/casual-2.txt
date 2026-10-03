@@ -1,0 +1,47 @@
+Split the Take: seats 0,1,2 = casual, competitor, family; table 'worst' for casual. Cards: Co/Ge/Ke/Ma + rank. Scores after each round in header.
+R1 P=2 S=0 D=1 trump=Ke target=5 heat=None scores=[0, 0, 0]
+  P hand: Co5 Ge9 Ke1 Ke4 Ke6 Ke9 Ma7 | S hand after swap: Co1 Co7 Ge5 Ge8 Ke3 Ma4 Ma5
+  T1 1:Ma9 2:Ma7 0:Ma4 -> 1
+  T2 1:Ke7 2:Ke9 0:Ke3 -> 2
+  T3 2:Ge9 0:Ge8 1:Ge2 -> 2
+  T4 2:Ke6 0:Ge5 1:Ke5 -> 2
+  T5 2:Co5 0:Co7 1:Co2 -> 0
+  T6 0:Co1 1:Co3 2:Ke1 -> 2
+  T7 2:Ke4 0:Ma5 1:Co4 -> 2
+  crew=6 target=5 DOUBLE-CROSS; tricks=[1, 1, 5] bonus=[0, 4, 0] -> scores [1, 5, 5]
+R2 P=1 S=2 D=0 trump=Ke target=7 heat=None scores=[1, 5, 5]
+  P hand: Co4 Ge2 Ge3 Ge9 Ke6 Ma8 Ma9 | S hand after swap: Co8 Ge5 Ge7 Ke2 Ke3 Ke4 Ma2
+  T1 0:Ke8 1:Ke6 2:Ke2 -> 0
+  T2 0:Co7 1:Co4 2:Co8 -> 2
+  T3 2:Ge7 0:Ge1 1:Ge9 -> 1
+  T4 1:Ma9 2:Ma2 0:Ma3 -> 1
+  T5 1:Ma8 2:Ke3 0:Ma6 -> 2
+  T6 2:Ge5 0:Ge4 1:Ge2 -> 2
+  T7 2:Ke4 0:Ke5 1:Ge3 -> 0
+  crew=5 target=7 DOUBLE-CROSS; tricks=[2, 2, 3] bonus=[4, 0, 0] -> scores [7, 7, 8]
+R3 P=0 S=1 D=2 trump=Ke target=3 heat=2 scores=[7, 7, 8]
+  P hand: Co2 Ge3 Ge4 Ge8 Ke1 Ke7 Ma2 | S hand after swap: Co1 Co5 Co8 Ge1 Ge5 Ke9 Ma6
+  T1 2:Co9 0:Co2 1:Co1 -> 2
+  T2 2:Ge9 0:Ge3 1:Ge1 -> 2
+  T3 2:Ge7 0:Ge4 1:Ge5 -> 2
+  T4 2:Co7 0:Ke1 1:Co5 -> 0
+  T5 0:Ge8 1:Ma6 2:Ke2 -> 2
+  T6 2:Co4 0:Ke7 1:Co8 -> 0
+  T7 0:Ma2 1:Ke9 2:Co3 -> 1
+  crew=3 target=3 JOB; tricks=[2, 1, 4] bonus=[3, 3, 0] -> scores [12, 11, 12]
+R4 P=2 S=0 D=1 trump=Ma target=5 heat=None scores=[12, 11, 12]
+  P hand: Co7 Co9 Ge5 Ke2 Ma2 Ma7 Ma8 | S hand after swap: Co8 Ge4 Ge6 Ge8 Ke9 Ma1 Ma3
+  T1 1:Co1 2:Co7 0:Co8 -> 0
+  T2 0:Ke9 1:Ke6 2:Ke2 -> 0
+  T3 0:Ma1 1:Ma6 2:Ma7 -> 2
+  T4 2:Co9 0:Ge6 1:Co3 -> 2
+  T5 2:Ma8 0:Ma3 1:Ge3 -> 2
+  T6 2:Ma2 0:Ge4 1:Co4 -> 2
+  T7 2:Ge5 0:Ge8 1:Ge7 -> 0
+  crew=7 target=5 DOUBLE-CROSS; tricks=[3, 0, 4] bonus=[0, 4, 0] -> scores [15, 15, 16]
+R5 P=1 S=2 D=0 trump=Ke target=5 heat=2 scores=[15, 15, 16]
+  P hand: Co2 Co6 Co9 Ke1 Ke5 Ke8 Ma6 | S hand after swap: Co5 Ge5 Ge6 Ke7 Ke9 Ma3 Ma7
+  T1 0:Ma1 1:Ma6 2:Ma7 -> 2
+  T2 2:Ke9 0:Ge2 1:Ke1 -> 2
+  T3 2:Ke7 0:Co3 1:Ke5 -> 2
+Final [22, 20, 25] winners [2]

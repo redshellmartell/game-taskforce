@@ -1,0 +1,47 @@
+Split the Take: seats 0,1,2 = casual, story, strategist; table 'best' for casual. Cards: Co/Ge/Ke/Ma + rank. Scores after each round in header.
+R1 P=0 S=1 D=2 trump=Ke target=6 heat=None scores=[0, 0, 0]
+  P hand: Co5 Ge3 Ge8 Ke7 Ke8 Ma3 Ma9 | S hand after swap: Ge6 Ge9 Ke4 Ma1 Ma2 Ma7 Ma8
+  T1 2:Ke1 0:Ke7 1:Ke4 -> 0
+  T2 0:Ma9 1:Ma1 2:Ma6 -> 0
+  T3 0:Ge3 1:Ge6 2:Ge4 -> 1
+  T4 1:Ge9 2:Co2 0:Ge8 -> 1
+  T5 1:Ma8 2:Co3 0:Ma3 -> 1
+  T6 1:Ma7 2:Co4 0:Co5 -> 1
+  T7 1:Ma2 2:Co8 0:Ke8 -> 0
+  crew=7 target=6 DOUBLE-CROSS; tricks=[3, 4, 0] bonus=[0, 0, 4] -> scores [3, 4, 4]
+R2 P=2 S=0 D=1 trump=Ke target=6 heat=None scores=[3, 4, 4]
+  P hand: Ge5 Ke5 Ke6 Ke7 Ma3 Ma6 Ma9 | S hand after swap: Ge1 Ge6 Ke2 Ke3 Ke9 Ma1 Ma7
+  T1 1:Ke8 2:Ke5 0:Ke9 -> 0
+  T2 0:Ma1 1:Ma4 2:Ma6 -> 2
+  T3 2:Ma9 0:Ma7 1:Ma5 -> 2
+  T4 2:Ke7 0:Ke2 1:Co5 -> 2
+  T5 2:Ke6 0:Ke3 1:Co6 -> 2
+  T6 2:Ma3 0:Ge6 1:Co7 -> 2
+  T7 2:Ge5 0:Ge1 1:Ge8 -> 1
+  crew=6 target=6 JOB; tricks=[1, 1, 5] bonus=[3, 0, 3] -> scores [7, 5, 12]
+R3 P=1 S=2 D=0 trump=NT target=7 heat=2 scores=[7, 5, 12]
+  P hand: Co9 Ge1 Ge8 Ge9 Ke4 Ke6 Ma1 | S hand after swap: Co3 Ke5 Ke8 Ma5 Ma6 Ma7 Ma8
+  T1 0:Ma9 1:Ma1 2:Ma5 -> 0
+  T2 0:Co1 1:Co9 2:Co3 -> 1
+  T3 1:Ge9 2:Ke5 0:Ge2 -> 1
+  T4 1:Ge8 2:Ma6 0:Ge5 -> 1
+  T5 1:Ge1 2:Ma7 0:Co2 -> 1
+  T6 1:Ke4 2:Ke8 0:Ke7 -> 2
+  T7 2:Ma8 0:Co5 1:Ke6 -> 2
+  crew=6 target=7 DOUBLE-CROSS; tricks=[1, 4, 2] bonus=[4, 0, 0] -> scores [12, 9, 14]
+R4 P=0 S=1 D=2 trump=Co target=7 heat=2 scores=[12, 9, 14]
+  P hand: Co5 Co9 Ge8 Ge9 Ke4 Ma2 Ma3 | S hand after swap: Co1 Co3 Co8 Ge2 Ge5 Ma4 Ma6
+  T1 2:Ke9 0:Ke4 1:Co1 -> 1
+  T2 1:Ge2 2:Ge3 0:Ge8 -> 0
+  T3 0:Ge9 1:Ge5 2:Co2 -> 2
+  T4 2:Ke8 0:Ma3 1:Co3 -> 1
+  T5 1:Ma4 2:Co4 0:Ma2 -> 2
+  T6 2:Ke6 0:Co9 1:Ma6 -> 0
+  T7 0:Co5 1:Co8 2:Ke3 -> 1
+  crew=5 target=7 DOUBLE-CROSS; tricks=[2, 3, 2] bonus=[0, 0, 3] -> scores [14, 12, 19]
+R5 P=2 S=0 D=1 trump=Ge target=7 heat=2 scores=[14, 12, 19]
+  P hand: Ge1 Ge3 Ge6 Ge7 Ge8 Ke5 Ma3 | S hand after swap: Co4 Co5 Ge9 Ke3 Ma1 Ma6 Ma8
+  T1 1:Ke9 2:Ke5 0:Ke3 -> 1
+  T2 1:Co6 2:Ge1 0:Co4 -> 2
+  T3 2:Ge3 0:Ge9 1:Ge2 -> 0
+Final [17, 24, 27] winners [2]

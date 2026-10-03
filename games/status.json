@@ -76,7 +76,7 @@
     {
       "slug": "three-player-trick-taker",
       "title": "Three-Hand Trick-Taker",
-      "stage": "playtest",
+      "stage": "critique",
       "revision": 0,
       "history": [
         {
@@ -102,10 +102,16 @@
           "time": "2026-10-03T16:00:34Z",
           "verdict": null,
           "note": "rules.md written (Split the Take); playtest started"
+        },
+        {
+          "stage": "critique",
+          "time": "2026-10-03T16:08:01Z",
+          "verdict": "NEEDS-FIXES",
+          "note": "playtest NEEDS-FIXES (target hit 19.7%, greedy beats strategic); critique started"
         }
       ],
       "verdicts": {
-        "playtest": null,
+        "playtest": "NEEDS-FIXES",
         "critic": null
       },
       "kill_reason": null
