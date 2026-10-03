@@ -2,9 +2,7 @@
 
 Written by Claude Code after each task, newest first. See `WORKFLOW.md` for the format.
 
-## 2026-10-03 — Task 005: Test panel part 1 (personas) — PAUSED, nearly done
-
-**Paused at the owner's request.** The work is built and committed; what is left is closing the task. Task 005 is still `status: in-progress` in its brief, so "Check for new tasks" will skip it. To resume, say: **"Finish task 005."**
+## 2026-10-03 — Task 005: Test panel part 1 (personas) — done
 
 ### What is built
 - `panel/personas/`: five profiles (strategist, casual, competitor, story, family) with complete frontmatter (weights add up to 1) and all the sections the brief asks for. Each links to its evidence file. None mention the eight calibration games.
@@ -20,11 +18,11 @@ Written by Claude Code after each task, newest first. See `WORKFLOW.md` for the 
 - Two ratings are null because nothing could be supported: Terraforming Mars for the competitor, and Ticket to Ride for the family player.
 - Profiles and evidence were done in two separate rounds, and the "actual" ratings were not read until after the blind predictions, so the check is fairer than a profile written with the answers in view.
 
-### Where to pick up
-1. **Finish 005** (small): add the final entry here in the normal format (replace this paused one), set `status: done` in `docs/tasks/005-test-panel-personas.md`, commit and push. Everything it needs is already in `panel/`.
-2. **Then the queue the owner asked for:** 006 (persona bots, free fun scoring, AI reviews for finalists, talking to personas), then 007 (personas in the dashboard). Read their briefs first. They depend on 005 being `done`. Neither is started.
-3. **To make the panel's evidence solid** (optional, but it is what makes "trusted" mean something): see the questions below, then ask for "Refresh the panel research".
-4. Next `git fetch` and merge `origin/main` before starting, as the workflow says. At the time of writing `main` has everything up to task 001 (pull request 1); this branch is ahead with tasks 002 and 005.
+### How the owner can see it
+Open `panel/README.md`, then any file in `panel/personas/` (profile) and `panel/evidence/` (research). `panel/calibration.json` has each persona's predicted and actual ratings and error.
+
+### Next
+Tasks 006 (persona bots, free fun scoring, AI reviews, talking to personas) and 007 (personas in the dashboard) are unblocked and not started. Read their briefs first. To make the panel's evidence solid, see the questions below, then ask for "Refresh the panel research".
 
 ### Smaller notes
 - Largest calibration miss: the story persona on Dixit (predicted 3.5, actual 5). Its profile has no example of an imaginative storytelling game. Worth adding at the next refresh, not before, so the test stays honest.
@@ -33,7 +31,6 @@ Written by Claude Code after each task, newest first. See `WORKFLOW.md` for the 
 
 ### Questions for the owner
 - **Do you want the evidence rebuilt properly?** In the cloud environment's settings, allow `boardgamegeek.com`, `reddit.com` and the review sites under *Network access* (https://code.claude.com/docs/en/cloud-environments#network-access) and raise the web-search limit (the environment variable is `CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION`). Then a fresh session can run the refresh with real forum voices and persona-specific ratings.
-- **Is "task 005 done" what you meant by "pause after step 5"?** I read it that way and stopped before 006. Tell me if you meant something else.
 
 ## 2026-10-03 — Task 002: Backfill Duel Flip's dashboard data — done
 - Created `games/duelflip/brief.json`, `critique.json`, `pitch.json`, `playtest.json` and `activity.jsonl`, plus `games/status.json` (Duel Flip only: stage `owner-review`, revision 1, verdicts NEEDS-FIXES and REVISE-MINOR).
