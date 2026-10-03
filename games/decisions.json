@@ -5,6 +5,12 @@
       "time": "2026-10-03T13:26:33Z",
       "decision": "approve",
       "notes": "panel-reviews gate (duelflip-panel-reviews-1): owner replied proceed"
+    },
+    {
+      "slug": null,
+      "time": "2026-10-03T14:48:55Z",
+      "decision": "decline",
+      "notes": "free-model-experiment-api: local Ollama on the owner's Mac only"
     }
   ]
 }

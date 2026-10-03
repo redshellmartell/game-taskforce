@@ -31,7 +31,7 @@
       "game": null,
       "agent": "playtester",
       "time": "2026-10-03T13:58:31Z",
-      "status": "pending",
+      "status": "declined",
       "summary": "Task 009 wants to test one free API (OpenRouter free models or Google AI Studio) for persona reviews. That means sending Duel Flip's rules and persona material to a third party.",
       "why_needed": "Local Ollama on your Mac needs no approval, but a free API could be faster on a small Mac. Free tiers may use prompts for training, so unpublished designs should only go there with your agreement. I could not read the providers' terms from this cloud session, so I cannot summarise them yet.",
       "expected_outcome": "A blind quality comparison against Haiku and a recommendation per job. If you decline, the experiment uses local Ollama only.",
@@ -47,9 +47,9 @@
           "label": "Local Ollama only; send nothing to third parties"
         }
       ],
-      "decision": null,
-      "decided_at": null,
-      "owner_notes": null
+      "decision": "decline",
+      "decided_at": "2026-10-03T14:48:55Z",
+      "owner_notes": "Owner: test on my Mac (local Ollama only)"
     }
   ]
 }
