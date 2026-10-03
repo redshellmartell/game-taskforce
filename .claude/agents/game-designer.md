@@ -34,4 +34,4 @@ Use exactly these sections, so the playtester can code the game without guessing
 
 Every rule must be precise enough that two people (or a program) would play it the same way. If something is randomised, say exactly how.
 
-Return a 3-line summary to the manager.
+Append `start`, `step` and `done` lines to `games/<slug>/activity.jsonl` as described in `CLAUDE.md` (for example "Drafting components", "Revision 2: fixing runaway leader"). Return a 3-line summary to the manager.
