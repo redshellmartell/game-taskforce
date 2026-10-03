@@ -10,9 +10,9 @@ const dashboardDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), 
 const repoRoot = path.resolve(dashboardDir, '..');
 const state = buildState({ repoRoot, dashboardDir, sample: true });
 
-test('sample data has three games and five agents', () => {
+test('sample data has three games and six agents', () => {
   assert.equal(state.games.length, 3);
-  assert.equal(state.agents.length, 5);
+  assert.equal(state.agents.length, 6);
 });
 test('concepts in development: only ember-market is still in progress', () => {
   const k = conceptsInDevelopment(state.games);
@@ -32,7 +32,7 @@ test('review queue: one pitch waiting', () => {
 });
 test('agents active: the designer is working on ember-market', () => {
   const k = agentsActive(state.agents);
-  assert.equal(k.value, 1); assert.equal(k.total, 5);
+  assert.equal(k.value, 2); assert.equal(k.total, 6);
   assert.equal(state.agents.find((a) => a.id === 'game-designer').currentGame, 'ember-market');
 });
 test('no data gives status "none", not a crash', () => {
@@ -148,7 +148,7 @@ test('portfolio: mechanics, brief count, comparables and unexplored mechanics', 
 });
 test('ops: runs per agent, no failures, simulated games', () => {
   const o = state.ops;
-  assert.equal(o.perAgent.length, 5);
+  assert.equal(o.perAgent.length, 6);
   assert.equal(o.perAgent.find((a) => a.id === 'game-designer').runs, 2);
   assert.equal(o.perAgent.reduce((a, x) => a + x.runs, 0), 8);
   assert.ok(o.perAgent.every((x) => x.errors === 0));
@@ -250,4 +250,44 @@ test('approval stats: revision loops proposed, approved, declined and the usage 
 });
 test('the approval mode is read from studio-settings.json and defaults to normal', () => {
   assert.ok(['strict', 'normal', 'relaxed'].includes(state.settings.approval_mode));
+});
+
+// ---- Test panel (task 007)
+import { panelStats, gamePanelSummary } from './kpis.js';
+test('panel: sample games give each persona stats, a heatmap and an agreement flag', () => {
+  const state = buildState({ repoRoot, dashboardDir, sample: true, now: Date.now() });
+  const ps = state.panel.stats;
+  assert.equal(Object.keys(ps.personas).length, 5);
+  assert.equal(ps.gamesWithPanel, 2);
+  assert.equal(ps.grid.length, 2);
+  const lh = state.games.find((g) => g.slug === 'lantern-heist');
+  const s = gamePanelSummary(lh);
+  assert.equal(s.reviewed, 5); assert.ok(['agrees', 'split'].includes(s.agreement));
+  assert.ok(s.spread >= 0 && s.averageFun > 1 && s.averageFun < 5);
+  assert.equal(s.hasReport, true);
+});
+test('panel: a persona\'s written rating wins over the predicted one, and harshness is against the panel average', () => {
+  const games = [{ slug: 'a', title: 'A', files: [], critique: null, humanPlaytests: [{ player_type: 'casual', fun: 4 }],
+    panel: { personas: { casual: { fun: 4, replay: 4, review: { fun: 3, replay: 3 } }, family: { fun: 3, replay: 3, review: null } }, matchups: [{ a: 'casual', b: 'family', games: 100, a_win_rate: 0.7, a_fun: 3.5, b_fun: 2.5 }] } }];
+  const panel = { personas: [{ id: 'casual', calibration: { meanAbsError: 0.5 } }, { id: 'family', calibration: { meanAbsError: 1.5 } }] };
+  const ps = panelStats(panel, games, []);
+  assert.equal(ps.personas.casual.averageFun, 3);                 // written 3, not predicted 4
+  assert.equal(ps.personas.family.averageFun, 3);
+  assert.equal(ps.personas.casual.harshness, 0);                  // panel average is 3
+  assert.equal(ps.personas.casual.predictedVsWritten[0].predicted, 4);
+  assert.equal(ps.personas.casual.matchups[0].winRate, 0.7); assert.equal(ps.personas.family.matchups[0].winRate, 0.3);
+  assert.equal(ps.personas.casual.human.gap, -1);                 // persona says 3, the real player said 4
+  assert.equal(ps.kpis.calibrationError, 1); assert.equal(ps.kpis.humanGap.casual, -1);
+});
+test('panel: no panel data is not a crash', () => {
+  assert.equal(panelStats(null, [], []), null);
+  assert.equal(gamePanelSummary({ panel: null }), null);
+  const ps = panelStats({ personas: [{ id: 'x' }] }, [{ slug: 'g', title: 'G', files: [] }], []);
+  assert.equal(ps.personas.x.games, 0); assert.equal(ps.personas.x.averageFun, null);
+});
+test('panel: a persona with a panel: activity line shows as playing', () => {
+  const state = buildState({ repoRoot, dashboardDir, sample: true, now: Date.now() });
+  assert.equal(state.panel.stats.personas.casual.state, 'playing');
+  assert.equal(state.agents.find((a) => a.id === 'test-panel').state, 'working');
+  assert.equal(state.agents.find((a) => a.id === 'test-panel').reportsTo, 'playtester');
 });

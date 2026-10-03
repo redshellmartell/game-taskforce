@@ -197,7 +197,7 @@ export function stuckGames(games, activity, now = Date.now()) {
 }
 
 // Two key numbers for each agent's room card on the Studio Floor.
-export function roomStats(games, agents, stuck, bank = null) {
+export function roomStats(games, agents, stuck, bank = null, panel = null) {
   const all = (fn) => games.map(fn).filter((v) => v !== null && v !== undefined);
   const avg = (xs) => (xs.length ? Math.round((xs.reduce((a, b) => a + b, 0) / xs.length) * 10) / 10 : null);
   const designer = agents.find((a) => a.id === 'game-designer');
@@ -212,6 +212,7 @@ export function roomStats(games, agents, stuck, bank = null) {
     'game-designer': [{ label: 'Current game', value: designing?.title || dash }, { label: 'Revision', value: designing ? `${designing.revision || 0} of 3` : dash }],
     playtester: [{ label: 'Games simulated', value: sims.toLocaleString('en-US') }, { label: 'First-pass rate', value: first.value === null ? dash : first.value, unit: first.value === null ? '' : '%' }],
     critic: [{ label: 'Avg critic score', value: avg(critiqued) ?? dash, unit: avg(critiqued) === null ? '' : '/5' }, { label: 'Kills', value: kills }],
+    'test-panel': [{ label: 'Playing now', value: panel ? `${panel.room.playing} of ${Object.keys(panel.personas).length}` : dash }, { label: 'Avg fun given', value: panel?.room.averageFun ?? dash, unit: panel?.room.averageFun == null ? '' : '/5' }],
     manager: [{ label: 'Pitches for you', value: games.filter((g) => g.stage === 'owner-review').length }, { label: 'Stuck games', value: stuck.length }],
   };
 }
@@ -448,5 +449,94 @@ export function approvalStats(requests) {
     savedTokens: declined.reduce((a, r) => a + (SIZE_TOKENS[r.usage_estimate] || 0), 0),
     savedBasis: 'size estimates (S 0.1M, M 0.5M, L 2M, XL 5M usage tokens), not measured',
     total: (requests || []).length, pending: (requests || []).filter((r) => r.state === 'pending').length,
+  };
+}
+
+// ---------------------------------------------------------------------------
+// Test panel (task 007): per-persona and per-game numbers from games/<slug>/panel.json,
+// the written reviews inside it, the critic's scores and the human playtests.
+// ---------------------------------------------------------------------------
+const r1 = (x) => (x === null || x === undefined || Number.isNaN(x) ? null : Math.round(x * 10) / 10);
+const r2 = (x) => (x === null || x === undefined || Number.isNaN(x) ? null : Math.round(x * 100) / 100);
+const mean = (xs) => { const v = xs.filter((x) => typeof x === 'number'); return v.length ? v.reduce((a, b) => a + b, 0) / v.length : null; };
+
+// The fun a persona gave a game: the written (AI) review if there is one, else the score predicted by code.
+export function personaGameRows(games, personaId) {
+  return games.filter((g) => g.panel?.personas?.[personaId]).map((g) => {
+    const e = g.panel.personas[personaId], rv = e.review || null;
+    return { slug: g.slug, title: g.title, predicted: e.fun ?? null, written: rv?.fun ?? null, fun: rv?.fun ?? e.fun ?? null, replay: rv?.replay ?? e.replay ?? null,
+      wouldBuy: rv?.would_buy ?? e.would_buy ?? null, price: rv?.price_usd ?? e.price_usd ?? null, review: rv, metrics: e.metrics || null, petPeeves: rv?.pet_peeves_hit || e.pet_peeves_hit || [],
+      criticAvg: criticAverage(g.critique), bot: e.bot || null, bestTable: e.best_table || null, worstTable: e.worst_table || null,
+      hasReviewFile: (g.files || []).length >= 0 && !!rv };
+  });
+}
+
+// Spread of fun across the personas of one game, and who it suits.
+export function gamePanelSummary(g) {
+  const p = g.panel; if (!p?.personas) return null;
+  const rows = Object.entries(p.personas).map(([id, e]) => ({ id, fun: e.review?.fun ?? e.fun, predicted: e.fun, written: e.review?.fun ?? null, replay: e.review?.replay ?? e.replay, wouldBuy: e.review?.would_buy ?? e.would_buy, price: e.review?.price_usd ?? e.price_usd, verdict: e.review?.first_impression || null, oneChange: e.review?.one_change || null }));
+  const funs = rows.map((r) => r.fun).filter((x) => typeof x === 'number');
+  if (!funs.length) return null;
+  const spread = Math.max(...funs) - Math.min(...funs);
+  const best = rows.reduce((a, b) => (b.fun > a.fun ? b : a)), worst = rows.reduce((a, b) => (b.fun < a.fun ? b : a));
+  return { rows, averageFun: r2(mean(funs)), spread: r2(spread), agreement: spread <= 1 ? 'agrees' : 'split', bestFit: best.id, worstFit: worst.id,
+    reviewed: rows.filter((r) => r.written !== null).length, rotation: p.rotation || null, matchups: p.matchups || [], hasReport: (g.files || []).some((f) => f.name === 'panel-report.md') };
+}
+
+// Everything the Panel page, persona pages, Studio Floor and KPIs need. `personas` come from loadPanel().
+export function panelStats(panel, games, activity = []) {
+  if (!panel?.personas) return null;
+  const ids = panel.personas.map((p) => p.id);
+  const per = {};
+  for (const id of ids) per[id] = personaGameRows(games, id);
+  const panelAvgByGame = {};
+  for (const g of games) { const s = gamePanelSummary(g); if (s) panelAvgByGame[g.slug] = s.averageFun; }
+  const personas = {};
+  for (const id of ids) {
+    const rows = per[id], funs = rows.map((r) => r.fun).filter((x) => typeof x === 'number');
+    const diffs = rows.map((r) => (typeof r.fun === 'number' && panelAvgByGame[r.slug] != null ? r.fun - panelAvgByGame[r.slug] : null)).filter((x) => x !== null);
+    const harsh = mean(diffs);
+    const dist = [1, 2, 3, 4, 5].map((n) => ({ rating: n, count: funs.filter((f) => Math.round(f) === n).length }));
+    const vsCritic = rows.filter((r) => typeof r.fun === 'number' && r.criticAvg !== null).map((r) => ({ title: r.title, persona: r.fun, critic: r.criticAvg }));
+    const pw = rows.filter((r) => r.predicted !== null && r.written !== null).map((r) => ({ title: r.title, predicted: r.predicted, written: r.written }));
+    // record against each other persona (win rate of this persona's bot at the shared tables, and the fun it got)
+    const against = {};
+    for (const g of games) for (const m of g.panel?.matchups || []) {
+      if (m.a !== id && m.b !== id) continue;
+      const other = m.a === id ? m.b : m.a;
+      const win = m.a === id ? m.a_win_rate : 1 - m.a_win_rate, fun = m.a === id ? m.a_fun : m.b_fun;
+      (against[other] ||= []).push({ win, fun, games: m.games });
+    }
+    const matchups = Object.entries(against).map(([other, xs]) => ({ other, winRate: r2(mean(xs.map((x) => x.win))), fun: r2(mean(xs.map((x) => x.fun))), games: xs.reduce((a, x) => a + (x.games || 0), 0) }));
+    const withFun = matchups.filter((m) => m.fun !== null);
+    const botRows = rows.map((r) => r.bot).filter(Boolean);
+    const bot = botRows.length ? { winRate: r2(mean(botRows.map((b) => b.win_rate))), fellBehind: r2(mean(botRows.map((b) => b.fell_behind_rate))), seatWinRates: Object.fromEntries(['1', '2', '3', '4', '5'].map((s) => [s, r2(mean(botRows.map((b) => b.seat_win_rates?.[s])))]).filter(([, v]) => v !== null)), games: botRows.reduce((a, b) => a + (b.games || 0), 0) } : null;
+    // activity: panel:<id> lines
+    const mine = activity.filter((e) => e.agent === `panel:${id}`);
+    const last = mine[0] || null;
+    const playing = last && (last.event === 'start' || last.event === 'step');
+    const reviewed = rows.filter((r) => r.review);
+    const latest = reviewed.length ? reviewed[reviewed.length - 1] : null;
+    // persona versus real players of this type
+    const human = games.flatMap((g) => (g.humanPlaytests || []).filter((s) => s.player_type === id).map((s) => ({ game: g.title, slug: g.slug, fun: s.fun, replay: s.replay, persona: g.panel?.personas?.[id]?.review?.fun ?? g.panel?.personas?.[id]?.fun ?? null })));
+    const gapRows = human.filter((h) => typeof h.fun === 'number' && typeof h.persona === 'number');
+    personas[id] = {
+      id, games: rows.length, reviewed: reviewed.length, averageFun: r2(mean(funs)), harshness: r2(harsh), distribution: dist, vsCritic, predictedVsWritten: pw,
+      bot, matchups: matchups.sort((a, b) => (b.fun ?? 0) - (a.fun ?? 0)), mostEnjoys: withFun[0]?.other ? [...withFun].sort((a, b) => b.fun - a.fun)[0].other : null, leastEnjoys: withFun.length ? [...withFun].sort((a, b) => a.fun - b.fun)[0].other : null,
+      state: playing ? 'playing' : last?.event === 'error' ? 'error' : 'idle', currentGame: playing ? last.game : null, lastEvent: last,
+      lastReviewed: latest ? { slug: latest.slug, title: latest.title } : (rows.length ? { slug: rows[rows.length - 1].slug, title: rows[rows.length - 1].title } : null),
+      verdict: latest?.review?.first_impression || latest?.review?.one_change || null,
+      human: { sessions: human, gap: gapRows.length ? r2(mean(gapRows.map((h) => h.persona - h.fun))) : null },
+      rows,
+    };
+  }
+  const allFun = ids.flatMap((id) => per[id].map((r) => r.fun)).filter((x) => typeof x === 'number');
+  const grid = games.filter((g) => g.panel?.personas).map((g) => ({ slug: g.slug, title: g.title, summary: gamePanelSummary(g), cells: Object.fromEntries(ids.map((id) => [id, g.panel.personas[id]?.review?.fun ?? g.panel.personas[id]?.fun ?? null])) }));
+  const errors = panel.personas.map((p) => p.calibration?.meanAbsError).filter((x) => typeof x === 'number');
+  const gaps = Object.fromEntries(ids.map((id) => [id, personas[id].human.gap]).filter(([, v]) => v !== null));
+  return {
+    personas, grid, averageFun: r2(mean(allFun)), gamesWithPanel: grid.length,
+    kpis: { averageFunPerGame: Object.fromEntries(grid.map((x) => [x.slug, x.summary?.averageFun ?? null])), spreadPerGame: Object.fromEntries(grid.map((x) => [x.slug, x.summary?.spread ?? null])), calibrationError: r2(mean(errors)), humanGap: gaps },
+    room: { playing: ids.filter((id) => personas[id].state === 'playing').length, averageFun: r2(mean(allFun)), lastGame: grid.length ? grid[grid.length - 1].title : null },
   };
 }

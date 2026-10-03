@@ -4,3 +4,4 @@
 {"time":"2026-09-27T11:00:00Z","agent":"playtester","game":"ember-market","event":"done","message":"NEEDS-FIXES: runaway leader 78%"}
 {"time":"2026-09-27T11:30:00Z","agent":"game-designer","game":"ember-market","event":"start","message":"Revision 1: adding catch-up mechanic"}
 {"time":"2026-09-27T11:40:00Z","agent":"game-designer","game":"ember-market","event":"step","message":"Drafting a catch-up bonus"}
+{"time":"2026-09-27T11:41:00Z","agent":"panel:casual","game":"ember-market","event":"step","message":"Playing the panel rotation"}

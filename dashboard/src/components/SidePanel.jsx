@@ -49,7 +49,7 @@ function TalkTab({ agent, state }) {
 }
 
 // Click a node -> tabs: what it's doing, how it works, its work, talk to it.
-export function AgentPanel({ agent, state, onClose, initialTab }) {
+export function AgentPanel({ agent, state, onClose, initialTab, onPersona }) {
   const [tab, setTab] = useState(initialTab || 'doing');
   const [viewing, setViewing] = useState(null);
   const [personaId, setPersonaId] = useState(null);   // kept here so "Back" from a file returns to the same persona
@@ -96,13 +96,13 @@ export function AgentPanel({ agent, state, onClose, initialTab }) {
       ))}
     </>
   );
-  else if (tab === 'panel') content = <PanelTab state={state} onOpen={setViewing} id={personaId} setId={setPersonaId} />;
+  else if (tab === 'panel') content = <PanelTab state={state} onOpen={setViewing} id={personaId} setId={setPersonaId} onPersona={onPersona} />;
   else content = <TalkTab agent={agent} state={state} />;
 
   return (
     <Shell title={`${agent.room} · ${STATE_LABEL[agent.state]}`} color={agent.color} onClose={onClose}
-      help={<><Help topic="agent" />{agent.id !== 'manager' && <Help topic="subagent" />}</>}
-      tabs={[['doing', "What it's doing"], ['how', 'How it works'], ['work', 'Its work'], ...(agent.id === 'playtester' ? [['panel', 'Test panel']] : []), ['talk', 'Talk to it']]} tab={tab} setTab={(t) => { setViewing(null); setTab(t); }}>
+      help={<><Help topic="agent" />{agent.id !== 'manager' && agent.id !== 'test-panel' && <Help topic="subagent" />}</>}
+      tabs={[['doing', "What it's doing"], ['how', 'How it works'], ['work', 'Its work'], ...(agent.id === 'playtester' || agent.id === 'test-panel' ? [['panel', 'Test panel']] : []), ['talk', 'Talk to it']]} tab={tab} setTab={(t) => { setViewing(null); setTab(t); }}>
       {content}
     </Shell>
   );

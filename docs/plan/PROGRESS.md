@@ -2,6 +2,14 @@
 
 Written by Claude Code after each task, newest first. See `WORKFLOW.md` for the format.
 
+## 2026-10-03 — Task 007: Test panel in the dashboard — done
+- **Org chart:** Test Panel department (`reportsTo: playtester`) under the Playtest Lab; collapsed by default, "show personas" reveals five small nodes that open the persona's page; personas pulse while a `panel:<id>` line is running. Studio Floor has a Test Panel room card (playing now, average fun given). The agent is built in code (like the Director) and `agents.json` has its colour; `panel-player` stays out of the chart.
+- **Panel page:** persona cards, heatmap (persona × game fun), who each game is for, calibration error tile. **Persona page** with the six tabs from the brief; "Talk to them" copies "Ask <persona> about <game>: ..." and lists past `conversations.jsonl`. **Game page:** Test panel section (rows, matchup grid, rotation, agreement flag) and the panel report as a document tab.
+- **KPIs and Learn:** `panelStats`/`gamePanelSummary` in `server/kpis.js` with 4 new tests (58 pass); Learn "?" entries for persona, test panel, calibration, predicted versus written.
+- **Checked in a real browser** (scripted): sample mode and real mode with Duel Flip's actual panel data (all tabs fill, 5 cards, grid, no console errors). Real Duel Flip numbers: panel average 3.4, calibration error 0.49.
+- **Differences from the brief:** persona-versus-human gap and the "Track record" human table stay empty ("no data yet") until a human playtest has a `player_type`. "Harshness" is a persona's average fun minus the panel average on the same games, so with one game it only reflects that game. The Evidence tab shows the research file (sources inside it); a separate refresh date is the calibration date.
+- Not done: no screenshots reviewed beyond the Agent Network; Panel page is not Learn-annotated beyond the four topics.
+
 ## 2026-10-03 — Task 006: Test panel part 2 (personas play and judge) — done
 - **Done (free code, no agents run):** `panel/scoring.py` (+ 7 tests in `panel/test_scoring.py`) turns persona-bot results into predicted fun / replay / would-buy + price / pet peeves hit; `panel-player` agent (Haiku; Read, Write, Glob only; review mode and conversation mode; honesty rules); playtester gets "Part 3: persona bots and panel rotation"; `CLAUDE.md` has stage 3b, "Asking a persona" and the human-playtest `player_type` rule.
 - **Duel Flip rotation:** `games/duelflip/sim/bots.py` has five persona bots, `sim/panel_run.py` plays all **10 two-player pairings, both seats, 200 games per seating: every persona played exactly 1,600 games**. Outputs: `sim/panel-results.json`, `games/duelflip/panel.json`, and two sample logs per persona from its best and worst table (`sim/logs/`). Free-code run takes seconds.

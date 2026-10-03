@@ -33,5 +33,6 @@ export function replayFrame(events, index, gameTitle, slug) {
   if (!e) return null;
   const prev = index > 0 ? events[index - 1] : null;
   const hop = prev && prev.agent !== e.agent ? edgeBetween(prev.agent, e.agent) : null;
-  return { event: e, agent: e.agent, dot: hop ? { ...hop, key: `${slug}-${index}`, label: gameTitle } : null };
+  const agent = String(e.agent).startsWith('panel:') ? 'test-panel' : e.agent;
+  return { event: e, agent, dot: hop ? { ...hop, key: `${slug}-${index}`, label: gameTitle } : null };
 }

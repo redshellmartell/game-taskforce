@@ -11,3 +11,8 @@
 {"time":"2026-09-20T14:00:00Z","agent":"critic","game":"lantern-heist","event":"start","message":"Reviewing originality and fun"}
 {"time":"2026-09-20T14:30:00Z","agent":"critic","game":"lantern-heist","event":"done","message":"PASS, average 4.2/5"}
 {"time":"2026-09-20T14:40:00Z","agent":"manager","game":"lantern-heist","event":"done","message":"Pitch ready for owner review"}
+{"time": "2026-09-20T14:20:00Z", "agent": "panel:strategist", "game": "lantern-heist", "event": "done", "message": "review written"}
+{"time": "2026-09-20T14:20:00Z", "agent": "panel:casual", "game": "lantern-heist", "event": "done", "message": "review written"}
+{"time": "2026-09-20T14:20:00Z", "agent": "panel:competitor", "game": "lantern-heist", "event": "done", "message": "review written"}
+{"time": "2026-09-20T14:20:00Z", "agent": "panel:story", "game": "lantern-heist", "event": "done", "message": "review written"}
+{"time": "2026-09-20T14:20:00Z", "agent": "panel:family", "game": "lantern-heist", "event": "done", "message": "review written"}

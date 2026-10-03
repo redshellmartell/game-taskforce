@@ -2,11 +2,11 @@
 // JSON object the front end needs. Missing or half-written files are skipped.
 import fs from 'node:fs';
 import path from 'node:path';
-import { computeKpis, gameScorecard, stageFunnel, killRateByStage, cycleTimes, avgRevisionLoops, firstPassRate, stuckGames, roomStats, milestones, ownerStats, reviewQueueItems, qualityLab, portfolio, opsStats, ideaBankStats, usageStats, approvalStats } from './kpis.js';
+import { computeKpis, gameScorecard, stageFunnel, killRateByStage, cycleTimes, avgRevisionLoops, firstPassRate, stuckGames, roomStats, panelStats, milestones, ownerStats, reviewQueueItems, qualityLab, portfolio, opsStats, ideaBankStats, usageStats, approvalStats } from './kpis.js';
 import { listInbox } from './ideas.js';
 import { loadPanel } from './panel.js';
 
-const AGENT_ORDER = ['market-researcher', 'game-designer', 'playtester', 'critic', 'manager'];
+const AGENT_ORDER = ['market-researcher', 'game-designer', 'playtester', 'critic', 'test-panel', 'manager'];
 // Which report each agent writes (used for "Its work" and for the handoff lines).
 export const AGENT_FILES = {
   'market-researcher': 'brief.md',
@@ -69,8 +69,9 @@ function loadAgents(repoRoot, agentsJson) {
     }
   } catch { warn('no .claude/agents folder found'); }
   found.manager = { id: 'manager', description: 'The main Claude Code session. Runs the pipeline, decides what moves forward and reports to the owner.', tools: [], file: null };
+  found['test-panel'] = { id: 'test-panel', description: 'The player test panel: five persona bots and reviewers that give each game a public test. Part of the Playtest Lab.', tools: [], file: 'panel/README.md' };
   const ids = [...AGENT_ORDER.filter((id) => found[id]), ...Object.keys(found).filter((id) => !AGENT_ORDER.includes(id))];
-  return ids.map((id) => ({ ...found[id], room: agentsJson[id]?.room || id, color: agentsJson[id]?.color || '#888', reportsTo: agentsJson[id]?.reportsTo || (id === 'manager' ? 'owner' : 'manager') }));
+  return ids.map((id) => ({ ...found[id], room: agentsJson[id]?.room || id, color: agentsJson[id]?.color || '#888', reportsTo: agentsJson[id]?.reportsTo || (id === 'manager' ? 'owner' : id === 'test-panel' ? 'playtester' : 'manager') }));
 }
 
 function listGameFiles(dir, slug) {
@@ -156,7 +157,7 @@ export function buildState({ repoRoot, dashboardDir, sample, now = Date.now() })
   for (const slug of slugs) {
     const dir = path.join(gamesDir, slug);
     const jsons = { brief: readJson(path.join(dir, 'brief.json')), playtest: readJson(path.join(dir, 'playtest.json')), critique: readJson(path.join(dir, 'critique.json')), pitch: readJson(path.join(dir, 'pitch.json')) };
-    const files = listGameFiles(dir, slug);
+    const files = listGameFiles(dir, slug).concat(listGameFiles(path.join(dir, 'panel'), `${slug}/panel`).map((f) => ({ ...f, name: `panel/${f.name}`, agent: null })));
     const st = statusBySlug[slug];
     let events = readJsonl(path.join(dir, 'activity.jsonl')).map((e) => ({ ...e, time: shiftTime(e.time), game: e.game || slug }));
     if (events.length === 0) {
@@ -174,6 +175,7 @@ export function buildState({ repoRoot, dashboardDir, sample, now = Date.now() })
       kill_reason: st?.kill_reason ?? null,
       brief: jsons.brief, playtest: jsons.playtest, critique: jsons.critique, pitch: jsons.pitch,
       humanPlaytests: readJson(path.join(dir, 'human-playtests.json'))?.sessions || [],
+      panel: readJson(path.join(dir, 'panel.json')), conversations: readJsonl(path.join(dir, 'panel', 'conversations.jsonl')).map((c) => ({ ...c, time: shiftTime(c.time) })),
       files, howItPlays: extractSection(readText(path.join(dir, 'pitch.md')), 'How it plays'),
       derived: !st,
     });
@@ -183,7 +185,7 @@ export function buildState({ repoRoot, dashboardDir, sample, now = Date.now() })
 
   // Agent states from the newest activity line of each agent.
   for (const a of agents) {
-    const mine = activity.filter((e) => e.agent === a.id);
+    const mine = activity.filter((e) => (a.id === 'test-panel' ? String(e.agent).startsWith('panel:') : e.agent === a.id));
     const last = mine[0] || null;
     a.lastEvent = last;
     a.recent = mine.slice(0, 8);
@@ -211,13 +213,15 @@ export function buildState({ repoRoot, dashboardDir, sample, now = Date.now() })
   const usageDir = path.join(sample ? path.join(dashboardDir, 'sample-data') : repoRoot, 'usage');
   const usageSessions = readJsonl(path.join(usageDir, 'sessions.jsonl'), false).map((x) => ({ ...x, by_day: (x.by_day || []).map((b) => ({ ...b, name: sample ? shiftTime(`${b.name}T12:00:00Z`).slice(0, 10) : b.name })) }));
   const guard = readJson(path.join(usageDir, 'guard.json'));
+  const panel = loadPanel(repoRoot);
+  const panelData = panelStats(panel, games, activity);
   const stuck = stuckGames(games, activity, now);
   const pipeline = {
     funnel: stageFunnel(games), killRate: killRateByStage(games), cycleTimes: cycleTimes(games),
     avgRevisions: avgRevisionLoops(games), firstPass: firstPassRate(games), stuck,
-    rooms: roomStats(games, agents, stuck, bankStats), milestones: milestones(games, decisions),
+    rooms: roomStats(games, agents, stuck, bankStats, panelData), milestones: milestones(games, decisions),
   };
   const review = { ...ownerStats(games, decisions), queue: reviewQueueItems(games, now) };
 
-  return { sample, generatedAt: new Date(now).toISOString(), agents, games, activity: activity.slice(0, 500), decisions, approvals, settings, inbox: listInbox(gamesDir), panel: loadPanel(repoRoot), kpis, pipeline, review, quality: qualityLab(games), market: { ...portfolio(games), ideaBank: bankFile && bankStats ? { ...bankStats, updated: bankFile.updated || null, ideas: bankFile.ideas } : null }, ops: { ...opsStats(games, agents, activity, now), usage: usageStats(usageSessions, games, now), guard, approvals: approvalStats(approvals.requests) }, waitingPitches: waitingPitches.map((g) => g.slug) };
+  return { sample, generatedAt: new Date(now).toISOString(), agents, games, activity: activity.slice(0, 500), decisions, approvals, settings, inbox: listInbox(gamesDir), panel: panel && { ...panel, stats: panelData }, kpis, pipeline, review, quality: qualityLab(games), market: { ...portfolio(games), ideaBank: bankFile && bankStats ? { ...bankStats, updated: bankFile.updated || null, ideas: bankFile.ideas } : null }, ops: { ...opsStats(games, agents, activity, now), usage: usageStats(usageSessions, games, now), guard, approvals: approvalStats(approvals.requests) }, waitingPitches: waitingPitches.map((g) => g.slug) };
 }

@@ -1,0 +1,334 @@
+{
+ "revision": 1,
+ "stage": "reviews",
+ "personas": {
+  "strategist": {
+   "fun": 4.11,
+   "replay": 3.86,
+   "would_buy": "yes",
+   "price_usd": 20,
+   "metrics": {
+    "skill_expression": 0.73,
+    "length_fit": 0.44,
+    "rules_simplicity": 0.67
+   },
+   "pet_peeves_hit": [],
+   "bot": {
+    "win_rate": 0.468,
+    "fell_behind_rate": 0.114,
+    "decisions_per_turn": 1.36,
+    "downtime": 1.07,
+    "games": 1600,
+    "seat_win_rates": {
+     "1": 0.493,
+     "2": 0.457
+    }
+   },
+   "best_table": [
+    "casual",
+    "strategist"
+   ],
+   "worst_table": [
+    "competitor",
+    "strategist"
+   ],
+   "review": {
+    "first_impression": "Deep and fair; I'd play it again for the planning alone.",
+    "best_moment": "The final round when the guard card flipped.",
+    "worst_moment": "Too many tied scores decide on a coin-flip tiebreak.",
+    "confusing_rules": [],
+    "pet_peeves_hit": [],
+    "fun": 4,
+    "replay": 4,
+    "would_buy": "yes",
+    "price_usd": 20,
+    "one_change": "Make the tiebreak a real decision.",
+    "recommend_to": "Players who like tense, short games."
+   }
+  },
+  "casual": {
+   "fun": 3.4,
+   "replay": 3.37,
+   "would_buy": "maybe",
+   "price_usd": 25,
+   "metrics": {
+    "skill_expression": 0.81,
+    "length_fit": 0.47,
+    "rules_simplicity": 0.51
+   },
+   "pet_peeves_hit": [],
+   "bot": {
+    "win_rate": 0.531,
+    "fell_behind_rate": 0.337,
+    "decisions_per_turn": 1.48,
+    "downtime": 1.79,
+    "games": 1600,
+    "seat_win_rates": {
+     "1": 0.548,
+     "2": 0.455
+    }
+   },
+   "best_table": [
+    "casual",
+    "competitor"
+   ],
+   "worst_table": [
+    "casual",
+    "story"
+   ],
+   "review": {
+    "first_impression": "Easy to teach and the table was laughing by round two.",
+    "best_moment": "The final round when the guard card flipped.",
+    "worst_moment": "The scoring sheet needed a second look.",
+    "confusing_rules": [],
+    "pet_peeves_hit": [],
+    "fun": 4,
+    "replay": 4,
+    "would_buy": "yes",
+    "price_usd": 25,
+    "one_change": "Make the tiebreak a real decision.",
+    "recommend_to": "Players who like tense, short games."
+   }
+  },
+  "competitor": {
+   "fun": 4.18,
+   "replay": 3.72,
+   "would_buy": "yes",
+   "price_usd": 30,
+   "metrics": {
+    "skill_expression": 0.47,
+    "length_fit": 0.47,
+    "rules_simplicity": 0.55
+   },
+   "pet_peeves_hit": [],
+   "bot": {
+    "win_rate": 0.576,
+    "fell_behind_rate": 0.145,
+    "decisions_per_turn": 1.49,
+    "downtime": 2.28,
+    "games": 1600,
+    "seat_win_rates": {
+     "1": 0.487,
+     "2": 0.505
+    }
+   },
+   "best_table": [
+    "competitor",
+    "story"
+   ],
+   "worst_table": [
+    "competitor",
+    "family"
+   ],
+   "review": {
+    "first_impression": "Tight rules and real tension, but I found the best line quickly.",
+    "best_moment": "The final round when the guard card flipped.",
+    "worst_moment": "One opening card is clearly better.",
+    "confusing_rules": [],
+    "pet_peeves_hit": [],
+    "fun": 4,
+    "replay": 3,
+    "would_buy": "yes",
+    "price_usd": 30,
+    "one_change": "Make the tiebreak a real decision.",
+    "recommend_to": "Players who like tense, short games."
+   }
+  },
+  "story": {
+   "fun": 4.18,
+   "replay": 4.02,
+   "would_buy": "yes",
+   "price_usd": 35,
+   "metrics": {
+    "skill_expression": 0.5,
+    "length_fit": 0.81,
+    "rules_simplicity": 0.61
+   },
+   "pet_peeves_hit": [],
+   "bot": {
+    "win_rate": 0.455,
+    "fell_behind_rate": 0.246,
+    "decisions_per_turn": 1.27,
+    "downtime": 1.6,
+    "games": 1600,
+    "seat_win_rates": {
+     "1": 0.529,
+     "2": 0.52
+    }
+   },
+   "best_table": [
+    "family",
+    "story"
+   ],
+   "worst_table": [
+    "story",
+    "strategist"
+   ],
+   "review": {
+    "first_impression": "The heist feels like a story; every round has a moment.",
+    "best_moment": "The final round when the guard card flipped.",
+    "worst_moment": "The ending arrives before the plot does.",
+    "confusing_rules": [],
+    "pet_peeves_hit": [],
+    "fun": 4,
+    "replay": 5,
+    "would_buy": "yes",
+    "price_usd": 35,
+    "one_change": "Make the tiebreak a real decision.",
+    "recommend_to": "Players who like tense, short games."
+   }
+  },
+  "family": {
+   "fun": 3.07,
+   "replay": 3.03,
+   "would_buy": "maybe",
+   "price_usd": 40,
+   "metrics": {
+    "skill_expression": 0.66,
+    "length_fit": 0.93,
+    "rules_simplicity": 0.76
+   },
+   "pet_peeves_hit": [
+    "Falling behind early is hard to come bac"
+   ],
+   "bot": {
+    "win_rate": 0.449,
+    "fell_behind_rate": 0.345,
+    "decisions_per_turn": 0.7,
+    "downtime": 1.84,
+    "games": 1600,
+    "seat_win_rates": {
+     "1": 0.526,
+     "2": 0.465
+    }
+   },
+   "best_table": [
+    "family",
+    "strategist"
+   ],
+   "worst_table": [
+    "casual",
+    "family"
+   ],
+   "review": {
+    "first_impression": "A bit much for the little ones, but the safe route is fun.",
+    "best_moment": "The final round when the guard card flipped.",
+    "worst_moment": "Falling behind early is hard to come back from.",
+    "confusing_rules": [],
+    "pet_peeves_hit": [],
+    "fun": 3,
+    "replay": 2,
+    "would_buy": "maybe",
+    "price_usd": 40,
+    "one_change": "Add a gentler starter variant.",
+    "recommend_to": "Players who like tense, short games."
+   }
+  }
+ },
+ "rotation": {
+  "player_counts": [
+   2,
+   3
+  ],
+  "tables": 20,
+  "seatings_per_table": 2,
+  "games_per_seating": 200,
+  "filler_bots": []
+ },
+ "matchups": [
+  {
+   "a": "strategist",
+   "b": "casual",
+   "games": 400,
+   "a_win_rate": 0.529,
+   "a_fun": 3.83,
+   "b_fun": 3.73,
+   "note": ""
+  },
+  {
+   "a": "strategist",
+   "b": "competitor",
+   "games": 400,
+   "a_win_rate": 0.531,
+   "a_fun": 4.26,
+   "b_fun": 4.3,
+   "note": ""
+  },
+  {
+   "a": "strategist",
+   "b": "story",
+   "games": 400,
+   "a_win_rate": 0.475,
+   "a_fun": 4.36,
+   "b_fun": 4.48,
+   "note": ""
+  },
+  {
+   "a": "strategist",
+   "b": "family",
+   "games": 400,
+   "a_win_rate": 0.556,
+   "a_fun": 4.16,
+   "b_fun": 3.47,
+   "note": ""
+  },
+  {
+   "a": "casual",
+   "b": "competitor",
+   "games": 400,
+   "a_win_rate": 0.516,
+   "a_fun": 3.58,
+   "b_fun": 4.13,
+   "note": ""
+  },
+  {
+   "a": "casual",
+   "b": "story",
+   "games": 400,
+   "a_win_rate": 0.425,
+   "a_fun": 3.76,
+   "b_fun": 4.52,
+   "note": ""
+  },
+  {
+   "a": "casual",
+   "b": "family",
+   "games": 400,
+   "a_win_rate": 0.559,
+   "a_fun": 3.86,
+   "b_fun": 3.03,
+   "note": ""
+  },
+  {
+   "a": "competitor",
+   "b": "story",
+   "games": 400,
+   "a_win_rate": 0.471,
+   "a_fun": 4.13,
+   "b_fun": 4.02,
+   "note": ""
+  },
+  {
+   "a": "competitor",
+   "b": "family",
+   "games": 400,
+   "a_win_rate": 0.537,
+   "a_fun": 3.73,
+   "b_fun": 2.89,
+   "note": ""
+  },
+  {
+   "a": "story",
+   "b": "family",
+   "games": 400,
+   "a_win_rate": 0.525,
+   "a_fun": 4.61,
+   "b_fun": 2.9,
+   "note": ""
+  }
+ ],
+ "summary": {
+  "average_fun": 3.79,
+  "spread": 1.11
+ }
+}

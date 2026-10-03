@@ -1,16 +1,16 @@
-const METRIC = { skill_expression: 'skill over luck', decisions_per_turn: 'meaningful decisions', lead_changes: 'lead changes', length_fit: 'fitting their time', rules_simplicity: 'simple rules', catch_up: 'nobody left behind', interaction: 'interaction', dominant_strategy_absent: 'no dominant strategy' };
+export const METRIC = { skill_expression: 'skill over luck', decisions_per_turn: 'meaningful decisions', lead_changes: 'lead changes', length_fit: 'fitting their time', rules_simplicity: 'simple rules', catch_up: 'nobody left behind', interaction: 'interaction', dominant_strategy_absent: 'no dominant strategy' };
 
-function Avatar({ p, size = 38 }) {
+export function Avatar({ p, size = 38 }) {
   return <span className="avatar" style={{ background: p.color, width: size, height: size, fontSize: size * 0.38 }} aria-hidden>{p.initials}</span>;
 }
 
-function TrustChip({ cal, limit }) {
+export function TrustChip({ cal, limit }) {
   if (!cal) return <span className="chip">not calibrated</span>;
   return <span className={`chip ${cal.trusted ? 'v-good' : 'v-warn'}`} title={`mean error ${cal.meanAbsError} over ${cal.ratedGames} games (limit ${limit})`}>{cal.trusted ? 'trusted' : 'not trusted'} · error {cal.meanAbsError}</span>;
 }
 
 // One persona: who they are, what drives their fun, how well they matched real receptions, and links to the files.
-function PersonaDetail({ p, panel, onBack, onOpen }) {
+function PersonaDetail({ p, panel, onBack, onOpen, onPersona }) {
   const c = p.calibration;
   return (
     <>
@@ -29,17 +29,17 @@ function PersonaDetail({ p, panel, onBack, onOpen }) {
         </>
       ) : <p className="empty">Not calibrated yet.</p>}
       <h4>Read more</h4>
-      <div><button className="link" onClick={() => onOpen(p.profile)}>Full profile</button> · <button className="link" onClick={() => onOpen(p.evidence)}>Research evidence</button></div>
+      <div>{onPersona && <><button className="link" onClick={() => onPersona(p.id)}>Open their full page</button> · </>}<button className="link" onClick={() => onOpen(p.profile)}>Full profile</button> · <button className="link" onClick={() => onOpen(p.evidence)}>Research evidence</button></div>
     </>
   );
 }
 
 // The Playtest Lab's "Test panel" tab: the player personas that give games a public test.
-export function PanelTab({ state, onOpen, id, setId }) {
+export function PanelTab({ state, onOpen, id, setId, onPersona }) {
   const panel = state.panel;
   if (!panel || panel.personas.length === 0) return <p className="empty">No personas yet. They live in panel/personas/ (see panel/README.md).</p>;
   const p = panel.personas.find((x) => x.id === id);
-  if (p) return <PersonaDetail p={p} panel={panel} onBack={() => setId(null)} onOpen={onOpen} />;
+  if (p) return <PersonaDetail p={p} panel={panel} onBack={() => setId(null)} onOpen={onOpen} onPersona={onPersona} />;
   return (
     <>
       <p style={{ marginTop: 0 }}>A panel of {panel.personas.length} player types gives each game a public test on top of the bot playtest. Click one to see who they are and how well they match real players.</p>

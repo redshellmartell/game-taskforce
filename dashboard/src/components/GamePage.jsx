@@ -1,3 +1,4 @@
+import { GamePanel } from './PanelView.jsx';
 import { useState } from 'react';
 import { FileView } from './Markdown.jsx';
 import { CopyBox } from './IdeaForm.jsx';
@@ -7,7 +8,7 @@ import { STAGE_LABEL, verdictClass } from './ProjectsView.jsx';
 import { ago, clock } from '../util.js';
 import { CriticRadar, RateBars, CardCorrelation, LengthHistogram, colorOf } from './charts.jsx';
 
-const DOCS = [['brief.md', 'Brief'], ['rules.md', 'Rules'], ['playtest-report.md', 'Playtest report'], ['critique.md', 'Critique'], ['pitch.md', 'Pitch']];
+const DOCS = [['brief.md', 'Brief'], ['rules.md', 'Rules'], ['playtest-report.md', 'Playtest report'], ['panel-report.md', 'Panel report'], ['critique.md', 'Critique'], ['pitch.md', 'Pitch']];
 
 // What the owner can do next, as a prompt to paste into Claude Code.
 function nextStep(g) {
@@ -19,7 +20,7 @@ function nextStep(g) {
   }
 }
 
-export function GamePage({ game: g, state, onBack }) {
+export function GamePage({ game: g, state, onBack, onPersona }) {
   const [doc, setDoc] = useState(() => (DOCS.find(([f]) => g.files.some((x) => x.name === f)) || DOCS[0])[0]);
   const cr = g.critique, pt = g.playtest, step = nextStep(g);
   const events = state.activity.filter((e) => e.game === g.slug).slice().reverse();
@@ -96,6 +97,8 @@ export function GamePage({ game: g, state, onBack }) {
             ? <ol className="timeline">{events.map((e, i) => <li key={i}><span className="mono muted">{clock(e.time)}</span> <b>{state.agents.find((a) => a.id === e.agent)?.room || e.agent}</b> <span className="muted">{e.message}{e.synthetic ? ' (inferred from file)' : ''}{e.reconstructed ? ' (reconstructed from commits)' : ''}</span></li>)}</ol>
             : <p className="empty">No history yet.</p>}
       </section>
+
+      <GamePanel game={g} state={state} onPersona={onPersona} />
 
       <section className="card">
         <h3>Documents</h3>

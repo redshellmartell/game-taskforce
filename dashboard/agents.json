@@ -23,5 +23,10 @@
     "room": "Review Board",
     "color": "#4a9bb0",
     "reportsTo": "manager"
+  },
+  "test-panel": {
+    "room": "Test Panel",
+    "color": "#b9a3e3",
+    "reportsTo": "playtester"
   }
 }
