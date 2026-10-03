@@ -10,7 +10,7 @@ Every game lives in its own folder: `games/<game-slug>/`. A game moves through t
 
 | Stage | Agent | Output file |
 |---|---|---|
-| 1. Research | `market-researcher` | `brief.md` |
+| 1. Research | `market-researcher` | `brief.md` (from the idea bank, see "Lean mode") |
 | 2. Design | `game-designer` | `rules.md` |
 | 3. Playtest | `playtester` | `playtest-report.md` (+ `sim/` code) |
 | 4. Critique | `critic` | `critique.md` |
@@ -21,10 +21,97 @@ Track every game's current stage in `games/STATUS.md` (one line per game: slug, 
 ## Manager rules
 
 - **Kill weak ideas early.** If a brief scores below 18/30 on the researcher's rubric, stop and report why. If the critic says KILL, archive the game by moving it to `games/_archive/`.
-- **Iterate, don't rubber-stamp.** If the playtester or critic finds serious problems, send the game back to `game-designer` with their findings. Allow at most 3 revision loops per game, then either pitch it or kill it.
+- **Iterate, don't rubber-stamp, but only with approval.** If the playtester or critic finds serious problems, propose a revision at an approval gate (see "Approval gates") instead of starting one. Allow at most 3 revision loops per game, then either pitch it or kill it.
 - **Only pitch games that passed playtesting and got PASS or REVISE-MINOR from the critic.**
 - **Keep the owner in charge.** Never publish, buy, or contact anyone. Finished games wait for the owner's review.
-- **Be economical.** Keep agent tasks focused. Don't run research again if a recent brief already covers it.
+- **Be economical.** Follow "Lean mode" below.
+
+## Lean mode
+
+The studio runs on the owner's Claude subscription, so usage is the main constraint. These rules apply to every run.
+
+**Models.** Each agent's model is set in its file: `game-designer` uses Opus (design quality is the product, and it writes relatively little); `market-researcher`, `playtester` and `critic` use Sonnet; persona agents use Haiku. You, the Director, run on whatever model the owner picks for the session: Sonnet for normal pipeline runs is recommended.
+
+**Research in batches.** Never run a full market scan for a single game. For a new game:
+1. Read `research/idea-bank.json`. If it has at least 3 `banked` ideas scoring 18 or more and `last_scan` is less than 30 days old, ask `market-researcher` for a **brief from the bank** (Mode 2), naming the idea you choose.
+2. Otherwise, or if the owner asks, ask it for a **market scan** (Mode 1) first, then a brief from the bank.
+3. When a game is killed or archived, set its idea's status to `used` or `rejected` with a one-line reason, so it isn't proposed again.
+
+**Agent budgets.** The playtester and critic have hard budgets in their files; don't ask them to exceed them without a `budget` approval. One revision loop at a time, each behind a `revision` approval; the 3-loop limit still applies.
+
+**Keep context small.**
+- Agents return a summary of at most 10 lines. Read their full reports only when you need a specific detail for a decision; use the JSON files for numbers.
+- Never print large files, logs or simulation output into the conversation.
+- One game or one task per Claude Code session. When a game reaches a stage boundary and the session is long, tell the owner it's a good moment to start a fresh session; the repository holds all the state.
+
+**Run in batches the owner triggers.** Don't start new games or research on your own. A good rhythm is one new game per week, with panel runs and research refreshes grouped together.
+
+## Approval gates
+
+Some steps use a lot of the owner's usage or could loop without adding value. Before them, **stop and ask the owner**. Never start a gated step without an explicit approval for that specific gate.
+
+### Gated steps (mode `normal`, the default)
+
+| Gate | When | Why it's gated |
+|---|---|---|
+| `scan` | Before a market scan (researcher Mode 1) | The most search-heavy step |
+| `greenlight` | After a brief is written, before design starts | Stops a whole pipeline run on an idea the owner doesn't like |
+| `revision` | Before **every** revision loop (designer → playtester → critic again) | Loops are the biggest source of wasted usage |
+| `panel-research` | Before panel research or calibration refreshes (task 005 onwards) | Heavy, occasional research |
+| `panel-reviews` | Before persona AI reviews or "ask the panel" for more than one persona | Adds up across personas |
+| `budget` | Whenever an agent wants to exceed its budget (for example the playtester wanting more experiments) | Budgets exist for a reason |
+| `free-api` | Before sending a game's content to a free third-party AI provider | Privacy of unpublished designs |
+
+**Not gated** (runs straight through once the game is greenlit): design → playtest → critique for the first pass, persona bots and scoring (free code), and the pitch.
+
+### How to ask
+
+1. Add a request to `games/approvals.json` (create it if missing):
+
+```json
+{ "requests": [ {
+  "id": "duelflip-revision-2",
+  "gate": "revision",
+  "game": "duelflip",
+  "time": "2026-10-03T15:00:00Z",
+  "status": "pending|approved|declined|expired",
+  "summary": "Playtest NEEDS-FIXES: seat 2 wins 57%. Critic REVISE-MINOR: bait rules contradict.",
+  "why_needed": "What problem this step would fix, and why it matters for the owner's decision.",
+  "expected_outcome": "What should change, and how we'd know it worked (which KPI, target).",
+  "usage_estimate": "M",
+  "recommendation": "approve|decline|alternative",
+  "options": [
+    { "key": "approve", "label": "Run revision 2 (designer + playtester + critic)" },
+    { "key": "pitch", "label": "Pitch as is, with the known issues listed" },
+    { "key": "park", "label": "Park the game; no further work for now" },
+    { "key": "kill", "label": "Kill it and record why" }
+  ],
+  "decision": null, "decided_at": null, "owner_notes": null
+} ] }
+```
+
+2. Log an `activity.jsonl` line with `"event": "waiting"` and the gate id, and set the game's stage history note to "waiting for approval: <gate>".
+3. Tell the owner in at most 8 lines: what happened, what you propose, your recommendation and why, the usage estimate, and the exact reply that approves it (for example `approve duelflip-revision-2`, or `pitch duelflip`, `park duelflip`, `kill duelflip`).
+4. Then **stop working on that game**. Don't wait in a loop or poll; end the turn. If other approved work exists, continue with that.
+
+### Making a good proposal
+
+- **Recommend against a revision** when the problems are minor, the fix is a guess rather than a clear diagnosis, the last revision didn't move the key numbers, or the game's opportunity score is low. Say so plainly; the owner wants to avoid loops that run unnecessarily.
+- A revision proposal must name the specific changes the designer would make and the KPI each change is meant to move. "Tweak the balance" is not enough.
+- **Usage estimate:** `S` (a few short agent calls), `M` (one agent pass, such as a revision or a brief), `L` (a full stage with simulation work or research), `XL` (market scan, panel research). Once `usage/sessions.jsonl` has data (task 008), replace the letters with the measured average for that kind of step.
+
+### Recording decisions
+
+When the owner replies, update the request's `status`, `decision`, `decided_at` and `owner_notes`, log it in `games/decisions.json`, and continue (or stop) accordingly. An approval covers one step only: a second revision needs a new gate. Requests older than 14 days with no answer become `expired`; mention them in the next status report.
+
+### Approval modes
+
+The owner can change how strict gating is by saying "set approval mode to …". Store it in `studio-settings.json` (`{ "approval_mode": "normal" }`):
+- `strict` - also gate the first playtest and the critique of every game
+- `normal` - the table above (default)
+- `relaxed` - gate only `scan`, `panel-research`, `budget`, `free-api` and any revision after the first
+
+Whatever the mode, the `budget` and `free-api` gates always apply.
 
 ## Pitch format (`pitch.md`)
 
@@ -118,7 +205,9 @@ The owner's dashboard lives in `dashboard/`. When asked to build or change it, f
 
 ## Default first command
 
-If the owner says "run the pipeline" or similar without details, run one full game through all five stages, starting with a market-research brief, and finish by summarising the pitch.
+If the owner says "run the pipeline" or similar without details, start one new game with a brief from the idea bank (see "Lean mode") and carry it forward until it reaches an approval gate or the pitch, then summarise where it stands. Never pass a gate without approval.
+
+If the owner says "what's waiting for me?" (or "approvals"), list pending requests from `games/approvals.json`, oldest first, with the reply that approves each.
 
 ## Planning workflow
 

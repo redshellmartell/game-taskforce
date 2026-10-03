@@ -1,7 +1,7 @@
 ---
 status: done
 priority: high
-depends_on: [001]
+depends_on: [001, 008, 010]
 ---
 # 005: Test panel, part 1: player personas grounded in real reviews
 
@@ -99,4 +99,5 @@ A persona is `trusted` when its mean error is 1.0 or less. If not, adjust its pr
 
 ## Notes for the builder
 - Copyright: summarise reviews in your own words, never copy them.
+- **Budget (lean mode):** at most 10 searches and 10 page reads per persona, reusing sources across personas where one thread covers several player types. Calibration uses the evidence you already gathered, not new searches.
 - If BoardGameGeek pages can't be fetched directly, try its public XML API (`boardgamegeek.com/xmlapi2/`) and note what worked in `PROGRESS.md`; thin originality research was a problem in the first run.
