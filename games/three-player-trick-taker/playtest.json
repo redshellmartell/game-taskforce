@@ -1,0 +1,150 @@
+{
+  "verdict": "NEEDS-FIXES",
+  "revision": 0,
+  "games_simulated": 16005,
+  "seat_win_rates": {
+    "1": 0.349,
+    "2": 0.345,
+    "3": 0.306
+  },
+  "seat_balance_gap": 4.3,
+  "bot_win_rates": {
+    "random": 0.053,
+    "greedy": 0.675,
+    "strategic": 0.272
+  },
+  "skill_expression": 53.1,
+  "length": {
+    "mean_turns": 42,
+    "stdev": 0.0,
+    "estimated_minutes": 18,
+    "target_minutes": 20
+  },
+  "length_histogram": [
+    {
+      "turns": 42,
+      "games": 2000
+    }
+  ],
+  "ties": 0.036,
+  "turn_cap_hits": 0,
+  "lead_changes_mean": 1.27,
+  "runaway_leader_rate": 0.644,
+  "contract_success_rate": 0.197,
+  "cards": [
+    {
+      "name": "Planner role",
+      "played_rate": 1.0,
+      "win_correlation": -0.03,
+      "flag": null
+    },
+    {
+      "name": "Safecracker role",
+      "played_rate": 1.0,
+      "win_correlation": -0.52,
+      "flag": "dominated: earns far below average per round"
+    },
+    {
+      "name": "Double-Crosser role",
+      "played_rate": 1.0,
+      "win_correlation": 0.55,
+      "flag": "overpowered: earns far above average per round"
+    },
+    {
+      "name": "Target 3",
+      "played_rate": 0.34,
+      "win_correlation": -0.1,
+      "flag": "dominated: crew hits it only 10% of the time"
+    },
+    {
+      "name": "Target 4",
+      "played_rate": 0.19,
+      "win_correlation": -0.04,
+      "flag": null
+    },
+    {
+      "name": "Target 5",
+      "played_rate": 0.14,
+      "win_correlation": 0.06,
+      "flag": null
+    },
+    {
+      "name": "Target 6",
+      "played_rate": 0.14,
+      "win_correlation": 0.15,
+      "flag": null
+    },
+    {
+      "name": "Target 7",
+      "played_rate": 0.19,
+      "win_correlation": 0.06,
+      "flag": null
+    },
+    {
+      "name": "No Trump",
+      "played_rate": 0.0,
+      "win_correlation": 0.0,
+      "flag": null
+    },
+    {
+      "name": "Heat",
+      "played_rate": 0.73,
+      "win_correlation": null,
+      "flag": null
+    },
+    {
+      "name": "The Swap",
+      "played_rate": 1.0,
+      "win_correlation": null,
+      "flag": null
+    }
+  ],
+  "ambiguities": [
+    "Heat when the leader is the Double-Crosser who also failed to score a bonus: Heat just does nothing (reduces a 0 bonus by 0). Simulated as no effect; rules say 'reduces your bonus by 1' which is unclear when no bonus is earned.",
+    "Rules say the Planner 'starts' by random draw but also that the DC deals starting with the Planner; dealing order has no effect in the sim.",
+    "Heat in round 1 and on ties is never held (as written); a 3-way tie at the top gives no Heat.",
+    "Revoke rule text ('trick count taken as played' vs 'scored as 0 tricks') is internally contradictory; revokes are impossible in the sim.",
+    "Role passing direction: 'pass each card one seat left' was implemented as the planner seat moving one seat to the right each round (P card goes left to become S). Because rotation is cyclic the choice is symmetric.",
+    "Tiebreaker 1 counts double-crosses only when the crew missed; Heat-reduced successes still count.",
+    "Rules.md section 4 phase 6: 'more or less than Target' - a Target the crew cannot reach (e.g. 7 with 0 tricks possible) is legal; no minimum-hand check.",
+    "Safecracker swap draws before the Planner's Plan is known to the DC? No: Plan announced first. Safecracker's hand is therefore adapted to a public Target and trump, giving the crew a 2-player information edge over the DC (a design property, not an ambiguity)."
+  ],
+  "problems": [
+    {
+      "severity": "high",
+      "problem": "The exact-contract twist almost never succeeds, so the Double-Crosser bonus is nearly free.",
+      "evidence": "Crew hits the Target 20% of rounds (design aim 40-60%); random bots 17%, greedy 19%, strategic 20%. Double-Crosser earns 4.8 pts/round vs Safecracker 2.7 and Planner 3.7.",
+      "fix": "Make hitting the target far likelier: accept Target +/-1 for a smaller bonus, or let the crew hit if tricks fall in a band; or cut the Double-Crosser bonus to +2 and raise the crew bonus."
+    },
+    {
+      "severity": "high",
+      "problem": "Intended strategy (hit the exact Target, duck to avoid overshoot) loses to plain trick-grabbing.",
+      "evidence": "Mixed table: greedy 67.5%, strategic 27.2%, random 5.3%. Greedy beats two randoms 85% of games vs strategic 69%. Four tuned variants of strategic (greedy swap/plan/lead, no-duck) stayed at 13-17% vs two greedy bots (fair is 33%).",
+      "fix": "Same as above: exactness must be achievable. Caveat: my strategic heuristic is a simple one and a smarter bot (card tracking, partner signalling) might do better."
+    },
+    {
+      "severity": "medium",
+      "problem": "Role imbalance within a round: Safecracker is the worst role, Double-Crosser the best.",
+      "evidence": "Points per round 2.71 (Safecracker) vs 4.80 (Double-Crosser); roles rotate so seats stay fair, but every player spends a third of the game in a role with little chance.",
+      "fix": "Rebalance bonuses; consider giving the Safecracker a keep-3 swap or a loot bonus."
+    },
+    {
+      "severity": "medium",
+      "problem": "Too few lead changes and a borderline runaway rate.",
+      "evidence": "1.27 lead changes per game (KPI >= 2); sole leader after round 3 wins 64.4% (KPI <= 65%). Removing Heat changes it little (lead changes 1.15, early leader 68.1%): Heat does almost nothing, it is held in 73% of rounds and costs the holder ~0.45 pts.",
+      "fix": "Make Heat bite harder (-2, or also -1 loot) or drop it to simplify; more volatile bonuses would also help."
+    },
+    {
+      "severity": "low",
+      "problem": "Seat gap close to the limit and game length is fixed.",
+      "evidence": "Seat win rates [0.349, 0.345, 0.306] (gap 4.3 pts, standard error about 1.1 pts per seat at 2,000 games). All games last exactly 42 tricks; length is not variable, estimated 18 min vs target 20 (inside +/-20%).",
+      "fix": "Re-check seat gap on a larger run after the next revision; no change needed now."
+    },
+    {
+      "severity": "low",
+      "problem": "Target choice: low targets dominate bot choices but are mostly misses.",
+      "evidence": "Strategic planners pick Target 3 in 34% of rounds with a 10% hit rate; best hit rate is Target 6 (35%). A fixed Target 5 planner wins 37.0% vs two adaptive bots (fair 33%), so fixed targets are not dominant.",
+      "fix": "Improve the bot's target estimate when revising; the real fix is the exactness issue above."
+    }
+  ]
+}

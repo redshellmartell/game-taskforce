@@ -117,3 +117,4 @@ def summarise(out, N):
 if __name__ == "__main__":
     N = int(sys.argv[1]) if len(sys.argv) > 1 else 2000
     out = main(N); summarise(out, N)
+    import finalize; finalize.build(out, N)
