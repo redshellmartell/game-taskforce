@@ -4,3 +4,7 @@
 {"time": "2026-10-03T15:47:00Z", "agent": "market-researcher", "game": "three-player-trick-taker", "event": "done", "message": "Brief complete, opportunity score 26/30; idea set to in-pipeline"}
 {"time": "2026-10-03T15:46:15Z", "agent": "manager", "game": "three-player-trick-taker", "event": "waiting", "message": "waiting for approval: greenlight (three-player-trick-taker-greenlight)"}
 {"time": "2026-10-03T15:57:36Z", "agent": "manager", "game": "three-player-trick-taker", "event": "step", "message": "greenlight approved by owner; design started"}
+{"time": "2026-10-03T15:58:00Z", "agent": "game-designer", "game": "three-player-trick-taker", "event": "start", "message": "Designing rules from the brief (3 players, 20 min, 40 cards max, 3 special rules max)"}
+{"time": "2026-10-03T16:01:00Z", "agent": "game-designer", "game": "three-player-trick-taker", "event": "step", "message": "Core loop chosen: shared exact crew contract vs spoiler, loot per trick, 7-card hands, 6 rounds"}
+{"time": "2026-10-03T16:04:00Z", "agent": "game-designer", "game": "three-player-trick-taker", "event": "done", "message": "rules.md v1 written: Split the Take, 40 cards, 3 special rules (exact job, swap, heat)"}
+{"time": "2026-10-03T16:00:34Z", "agent": "manager", "game": "three-player-trick-taker", "event": "step", "message": "rules.md written (Split the Take); playtest started"}
