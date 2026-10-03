@@ -1,0 +1,15 @@
+{
+  "note": "Which provider and model each job uses. Baseline is Claude Haiku. Free options are an experiment (task 009); do not switch without the owner's approval. Keys come from environment variables only.",
+  "ollama_url": "http://localhost:11434",
+  "jobs": {
+    "persona_review":   { "provider": "anthropic", "model": "claude-haiku-4-5-20251001" },
+    "persona_chat":     { "provider": "anthropic", "model": "claude-haiku-4-5-20251001" },
+    "research_summary": { "provider": "anthropic", "model": "claude-haiku-4-5-20251001" }
+  },
+  "candidates": [
+    { "name": "haiku-baseline", "provider": "anthropic", "model": "claude-haiku-4-5-20251001" },
+    { "name": "ollama-small",   "provider": "ollama",     "model": "llama3.1:8b" },
+    { "name": "ollama-mid",     "provider": "ollama",     "model": "qwen2.5:14b" },
+    { "name": "openrouter-free", "provider": "openrouter", "model": "meta-llama/llama-3.3-70b-instruct:free" }
+  ]
+}

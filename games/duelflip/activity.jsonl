@@ -1,0 +1,17 @@
+{"time": "2026-10-03T10:20:14Z", "agent": "market-researcher", "game": "duelflip", "event": "done", "message": "Brief written, opportunity score 26/30", "reconstructed": true}
+{"time": "2026-10-03T10:20:15Z", "agent": "game-designer", "game": "duelflip", "event": "done", "message": "rules.md v1 written", "reconstructed": true}
+{"time": "2026-10-03T10:22:04Z", "agent": "playtester", "game": "duelflip", "event": "done", "message": "v1 playtest: NEEDS-FIXES (second seat won about 57%, dead first-flip busts, bait collapses to leave-lowest)", "reconstructed": true}
+{"time": "2026-10-03T10:22:05Z", "agent": "game-designer", "game": "duelflip", "event": "step", "message": "Revision 1: equalising Lifebuoys, safe scout flip, mandatory second flip, refund rule", "reconstructed": true}
+{"time": "2026-10-03T10:23:11Z", "agent": "game-designer", "game": "duelflip", "event": "done", "message": "rules.md v2 written", "reconstructed": true}
+{"time": "2026-10-03T10:27:40Z", "agent": "playtester", "game": "duelflip", "event": "done", "message": "v2 playtest: NEEDS-FIXES (minor): seat balance fixed, bait, species bonus and refund still inert", "reconstructed": true}
+{"time": "2026-10-03T10:29:41Z", "agent": "critic", "game": "duelflip", "event": "done", "message": "REVISE-MINOR, average 3.4/5", "reconstructed": true}
+{"time": "2026-10-03T10:29:42Z", "agent": "manager", "game": "duelflip", "event": "done", "message": "Pitch written for owner review (feasibility test, one revision loop)", "reconstructed": true}
+{"time": "2026-10-03T13:21:24Z", "agent": "manager", "game": "duelflip", "event": "waiting", "message": "waiting for approval: panel-reviews (duelflip-panel-reviews-1)"}
+{"time": "2026-10-03T13:21:24Z", "agent": "playtester", "game": "duelflip", "event": "done", "message": "Panel rotation (10 tables, 1,600 games per persona) and free scores written to panel.json"}
+{"time": "2026-10-03T13:26:33Z", "agent": "manager", "game": "duelflip", "event": "step", "message": "panel-reviews approved; running five persona reviews"}
+{"time": "2026-10-03T13:36:57Z", "agent": "panel:strategist", "game": "duelflip", "event": "done", "message": "review written"}
+{"time": "2026-10-03T13:36:57Z", "agent": "panel:casual", "game": "duelflip", "event": "done", "message": "review written"}
+{"time": "2026-10-03T13:36:57Z", "agent": "panel:competitor", "game": "duelflip", "event": "done", "message": "review written"}
+{"time": "2026-10-03T13:36:57Z", "agent": "panel:story", "game": "duelflip", "event": "done", "message": "review written"}
+{"time": "2026-10-03T13:36:57Z", "agent": "panel:family", "game": "duelflip", "event": "done", "message": "review written"}
+{"time": "2026-10-03T13:36:57Z", "agent": "manager", "game": "duelflip", "event": "done", "message": "panel-report.md written"}

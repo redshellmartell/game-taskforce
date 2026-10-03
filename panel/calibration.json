@@ -1,0 +1,526 @@
+{
+  "updated": "2026-10-03",
+  "trust_limit": 1.0,
+  "personas": {
+    "casual": {
+      "games": [
+        {
+          "game": "Twilight Imperium (4th edition)",
+          "predicted": 1,
+          "predicted_reason": "Eight-hour evening with a huge rulebook and ages of downtime, so my long playtime and heavy rulebook peeves make it a 1, like Brass.",
+          "actual": 2,
+          "actual_reason": "The all-day playtime (5.5 to 7 hours even for groups needing rules reminders) is a major time commitment that a quick-game casual player would be unlikely to want to repeat, although downtime is reported as low.",
+          "sources": [
+            "https://bumblingthroughdungeons.com/twilight-imperium-4th-edition-board-game-review/",
+            "https://opinionatedgamers.com/2019/01/25/twilight-imperium-4th-edition/"
+          ]
+        },
+        {
+          "game": "Gloomhaven",
+          "predicted": 1.5,
+          "predicted_reason": "Giant rulebook, long setup and cleanup, and a bossy player running the co-op, so my heavy rulebook and setup peeves sink it.",
+          "actual": 2,
+          "actual_reason": "Reviewers say outright that it is not a game for casual gamers because of the heavy setup, rulebook and 2-3 hour scenarios.",
+          "sources": [
+            "https://frontlinegaming.org/2024/11/14/board-game-review-gloomhaven/",
+            "https://cephalofair.com/blogs/blog/so-i-should-probably-talk-about-the-new-thing"
+          ]
+        },
+        {
+          "game": "Terraforming Mars",
+          "predicted": 2,
+          "predicted_reason": "A long engine builder with fiddly card icons and slow turns, which is exactly my 2 anchor and my downtime peeve.",
+          "actual": 2,
+          "actual_reason": "Described as a mid-weight Euro that is not a casual affair, with a dense rulebook, long playtime and some idle time between turns, so a light social player would probably find it too heavy.",
+          "sources": [
+            "https://boardgamequest.com/quick-hits-terraforming-mars-review",
+            "https://www.cardboardherald.com/reviews/2017/6/28/terraforming-mars",
+            "https://www.boardseyeview.net/post/terraforming-mars"
+          ]
+        },
+        {
+          "game": "Catan",
+          "predicted": 3.5,
+          "predicted_reason": "Easy enough to teach and the trading is chatty and social, but it runs long and has some downtime and dice-luck frustration, so it stops short of a 4.",
+          "actual": 3,
+          "actual_reason": "Easy to learn and sociable thanks to the trading, but the dice luck can make an unlucky night unfun and the game is middling for players wanting quick laughs.",
+          "sources": [
+            "https://hexagamers.com/?p=65",
+            "https://scorpiobooks.co.nz/?p=415357"
+          ]
+        },
+        {
+          "game": "Codenames",
+          "predicted": 4,
+          "predicted_reason": "Taught in a minute, scales to a crowd and everyone is laughing at the clues, which hits my love of quick teaching and noise.",
+          "actual": 5,
+          "actual_reason": "Learnable in minutes, scales to big groups, nobody is left out, and it produces laugh-out-loud moments, which is close to ideal for a light social player.",
+          "sources": [
+            "https://hexagamers.com/codenames-review/",
+            "https://miniaturemarket.com/reviewcorner/codenames-review"
+          ]
+        },
+        {
+          "game": "Dixit",
+          "predicted": 4,
+          "predicted_reason": "Simple rules, gorgeous art and lots of chatter and laughs over the guesses, which fits my love of beautiful art and a social night.",
+          "actual": 4,
+          "actual_reason": "Short rules, gorgeous art and a friendly storytelling hook make it a relaxed, social pick, though it works best with people who know each other well.",
+          "sources": [
+            "https://therewillbe.games/articles-boardgame-reviews/3566-can-you-imagine-dixit-review",
+            "https://whatsgoodtodo.com/dixit-board-game-review/"
+          ]
+        },
+        {
+          "game": "Exploding Kittens",
+          "predicted": 4.5,
+          "predicted_reason": "Taught in a minute, loud, silly and tense with stick-or-twist gasps, though player elimination is a small peeve, so just under a 5.",
+          "actual": 4,
+          "actual_reason": "Two-sided rules, a 15-minute length and silly humor make it a hit for casual family and friend nights, with only mild skill depth.",
+          "sources": [
+            "https://casualgamerevolution.com/node/3190",
+            "https://www.trustedreviews.com/reviews/exploding-kittens"
+          ]
+        },
+        {
+          "game": "Ticket to Ride",
+          "predicted": 4,
+          "predicted_reason": "Learned in a couple of minutes with short turns and pretty trains, so my low rules patience is happy, though it is a bit calm and multiplayer-solitaire.",
+          "actual": 4,
+          "actual_reason": "Widely called a top gateway game that is learned in a few turns, plays in under 45 minutes, and is not stressful or confrontational.",
+          "sources": [
+            "https://www.wargamer.com/ticket-to-ride/review",
+            "https://www.therewillbe.games/boardgames/508-ticket-to-ride"
+          ]
+        }
+      ],
+      "evidence_basis": "Only WebSearch summaries were used (one search per game, no pages opened, BGG/Reddit blocked), so ratings rest on reviewer commentary about casual suitability rather than on confirmed casual-player posts.",
+      "attempts": 1,
+      "notes": "",
+      "rated_games": 8,
+      "mean_abs_error": 0.44,
+      "trusted": true,
+      "confidence": "low"
+    },
+    "competitor": {
+      "games": [
+        {
+          "game": "Twilight Imperium (4th edition)",
+          "predicted": 3,
+          "predicted_reason": "Deep, interactive and rewards mastery, but the bloated 6-8 hour endgame, kingmaking and analysis paralysis from other people hit my peeves hard.",
+          "actual": 3,
+          "actual_reason": "Optimisers praise the tight strategy-card and point-track structure, but object to swingy objective draws, wildly uneven action cards, and alliance and leader-bashing politics deciding games.",
+          "sources": [
+            "https://opinionatedgamers.com/2019/01/25/twilight-imperium-4th-edition/",
+            "https://www.tabletopgaming.co.uk/?p=2061",
+            "https://www.shutupandsitdown.com/videos/review-twilight-imperium-fourth-edition"
+          ]
+        },
+        {
+          "game": "Gloomhaven",
+          "predicted": 3,
+          "predicted_reason": "Tight tactical depth, but co-op means no real contest to win, and the long setup and rules upkeep plus fiddly rulings annoy me.",
+          "actual": 4,
+          "actual_reason": "The tightly tuned tactical combat and card-economy puzzle suit optimisers, though they dislike the large class power gaps and the way solo or coordinated play makes it easier.",
+          "sources": [
+            "https://forum.quartertothree.com/t/gloomhaven-tactical-combat-in-a-persistent-world/133841?page=14",
+            "https://cephalofair.com/blogs/blog/solo-gaming",
+            "https://www.theouterhaven.net/gloomhaven-review-the-dungeon-crawler-that-redefined-the-genre/"
+          ]
+        },
+        {
+          "game": "Terraforming Mars",
+          "predicted": 3,
+          "predicted_reason": "Multiple routes and real skill, but it is close to multiplayer solitaire with card-draw luck and a few dominant corporations and engines.",
+          "actual": null,
+          "actual_reason": "The search summaries only gave generic praise of the engine-building and the race for finite global parameters, with nothing specific to how win-focused optimisers received it, so I can't support a rating.",
+          "sources": []
+        },
+        {
+          "game": "Catan",
+          "predicted": 2,
+          "predicted_reason": "Dice and robber luck decide too many games, and kingmaking trades and runaway leaders mean a win says little about skill.",
+          "actual": 2,
+          "actual_reason": "Competitive players complain that starting placement and dice luck decide too much, that trading collapses into kingmaking, and that the endgame drags into rote die rolling.",
+          "sources": [
+            "https://www.miniaturemarket.com/reviewcorner/catan-review",
+            "https://boardgameanalysis.com/what-is-a-balanced-catan-board",
+            "https://hexagamers.com/catan-review/"
+          ]
+        },
+        {
+          "game": "Codenames",
+          "predicted": 3,
+          "predicted_reason": "Tense and fun, but the result rides on word-association luck and who is in the group, so skill credit is thin and it is not much of a duel.",
+          "actual": 3,
+          "actual_reason": "The extra-word handicap and the risk-versus-reward clue tension read as fair and well balanced, but individual rounds swing on how easy one team's words are to clue.",
+          "sources": [
+            "https://mechanicsofmagic.com/?p=10878",
+            "https://www.geekyhobbies.com/?p=46872",
+            "https://hexagamers.com/?p=766"
+          ]
+        },
+        {
+          "game": "Dixit",
+          "predicted": 1.5,
+          "predicted_reason": "No optimal line to find and the winner is mostly subjective luck, so the result says nothing about who played better.",
+          "actual": 2,
+          "actual_reason": "Reviews say competitive players find the subjective scoring too casual and the strategic depth too thin, and explicitly steer people who just want to win elsewhere.",
+          "sources": [
+            "https://frontlinegaming.org/2024/01/24/board-game-review-dixit/",
+            "https://opinionatedgamers.com/2015/12/20/sdj-re-reviews-32-dixit/",
+            "https://zatu.com/en-au/blogs/reviews/dixit-gamers-saying"
+          ]
+        },
+        {
+          "game": "Exploding Kittens",
+          "predicted": 1,
+          "predicted_reason": "Nearly all luck and a take-that coin flip, so a win cannot be credited to skill, which is the Flip 7 problem.",
+          "actual": 2,
+          "actual_reason": "Hobbyist reviewers dismiss it as luck-driven with early player elimination and little meaningful decision-making, so an optimiser has little to work with.",
+          "sources": [
+            "https://rolltoreview.com/?p=726",
+            "https://boardgaming.com/games/exploding-kittens",
+            "https://cannibalhalflinggaming.com/2018/02/23/a-glimpse-into-the-vault-exploding-and-imploding-kittens/"
+          ]
+        },
+        {
+          "game": "Ticket to Ride",
+          "predicted": 3,
+          "predicted_reason": "Clean rules and a tight race with real blocking, but a dominant long-route strategy and card luck keep it below my 4 anchors.",
+          "actual": 3,
+          "actual_reason": "There is real route-planning and ticket-keeping strategy to optimise, but the summaries note that ticket luck and an unavoidable luck element often outweigh skill.",
+          "sources": [
+            "https://pevans.co.uk/Reviews/Tickettoride.html",
+            "https://www.matchstickeyes.com/2013/01/22/all-aboard-ticket-to-ride-the-verdict/",
+            "https://mechanicsofmagic.com/?p=10461"
+          ]
+        }
+      ],
+      "evidence_basis": "Only WebSearch summaries were used (one search per game, no pages opened, BGG/Reddit blocked), so ratings rest on review-site and forum summaries that mention competitive or balance concerns rather than on direct competitive-player discussion threads.",
+      "attempts": 1,
+      "notes": "Terraforming Mars rating is null (no competitor-specific evidence found), so the error is over 7 games.",
+      "rated_games": 7,
+      "mean_abs_error": 0.36,
+      "trusted": true,
+      "confidence": "low"
+    },
+    "family": {
+      "games": [
+        {
+          "game": "Twilight Imperium (4th edition)",
+          "predicted": 1,
+          "predicted_reason": "Six-plus hours and a huge rulebook the parent must master first, so it breaks my rules-simplicity and length peeves and can never be played with the kids.",
+          "actual": 2,
+          "actual_reason": "Reviewers say it takes an all-day sitting with a 40-page rulebook and is aimed at 13+, so it is not realistic for casual family play unless spread over weeks.",
+          "sources": [
+            "https://bumblingthroughdungeons.com/twilight-imperium-4th-edition-board-game-review/",
+            "https://www.tabletopgaming.co.uk/?p=2061",
+            "https://zatu.com/blogs/reviews/playing-twilight-imperium-for-the-first-time-fourth-edition"
+          ]
+        },
+        {
+          "game": "Gloomhaven",
+          "predicted": 1.5,
+          "predicted_reason": "A thick rulebook, icon-heavy cards and campaign-length commitment make it far too hard to teach and long for a mixed-age table, though it is cooperative.",
+          "actual": 2,
+          "actual_reason": "Family-oriented reviews call it overwhelming for casual families, with long setup, 2-3 hour scenarios and a campaign commitment, only working for dedicated teen-and-parent groups.",
+          "sources": [
+            "https://frontlinegaming.org/2024/11/14/board-game-review-gloomhaven/",
+            "https://screenwiseapp.com/media/gloomhaven-boardgame"
+          ]
+        },
+        {
+          "game": "Terraforming Mars",
+          "predicted": 2,
+          "predicted_reason": "Icon-heavy cards needing constant look-ups and a 2-hour length hit my peeves, though the theme is appealing, so it sits near Root.",
+          "actual": 3,
+          "actual_reason": "One family got the basic rules after a single game, but 2-4 hour length and complexity make it a poor fit for younger kids and best for teens.",
+          "sources": [
+            "https://www.commonsensemedia.org/game-reviews/terraforming-mars"
+          ]
+        },
+        {
+          "game": "Catan",
+          "predicted": 3.5,
+          "predicted_reason": "Easy to teach in about five minutes and luck lets a child beat an adult, but trading can be harsh, a kid can fall hopelessly behind and it runs past an hour.",
+          "actual": 4,
+          "actual_reason": "Families report that kids as young as nine get absorbed in the trading and luck gives younger players a chance, though it can get cutthroat.",
+          "sources": [
+            "https://whatsgoodtodo.com/?p=117380",
+            "https://findingdulcinea.com/best-board-games-for-families/"
+          ]
+        },
+        {
+          "game": "Codenames",
+          "predicted": 3.5,
+          "predicted_reason": "Rules learned in two minutes and gentle team play suit mixed ages, but a young child may struggle with the word clues and it needs enough players.",
+          "actual": 4,
+          "actual_reason": "Family bloggers praise the quick rules and team play that keeps everyone in, though the spymaster role suits older kids and adults.",
+          "sources": [
+            "https://www.theboardgamefamily.com/2016/01/codenames-party-game-review/",
+            "https://oneboardfamily.com/review-codenames/",
+            "https://boardgamequest.com/codenames-disney-review"
+          ]
+        },
+        {
+          "game": "Dixit",
+          "predicted": 4.5,
+          "predicted_reason": "Lovely art, rules taught in a minute, no take-that and a child can win, which hits nearly all my loves.",
+          "actual": 4,
+          "actual_reason": "Family reviewers consistently highlight the gorgeous art, easy rules and fun across ages, with a kids version available for 6+.",
+          "sources": [
+            "https://whatsgoodtodo.com/dixit-board-game-review/",
+            "https://thebrickcastle.com/2018/10/dixit-family-game-review-age-6-for.html",
+            "https://www.geeksundergrace.com/tabletop/review-dixit-kids/"
+          ]
+        },
+        {
+          "game": "Exploding Kittens",
+          "predicted": 3.5,
+          "predicted_reason": "Quick rounds and trivially easy to teach with silly art, but the knock-out elimination means a child sits out, which is a peeve.",
+          "actual": 4,
+          "actual_reason": "Parent reviewers like the 10-20 minute playtime, simple rules and silly cartoon tone that even a five-year-old picked up, though it is a light luck-driven elimination game.",
+          "sources": [
+            "https://www.mumsnet.com/reviews/exploding-kittens-review",
+            "https://thebrickcastle.com/2018/06/exploding-kittens-family-card-game.html",
+            "https://whatsgoodtodo.com/exploding-kittens-you-lying-sack-review/"
+          ]
+        },
+        {
+          "game": "Ticket to Ride",
+          "predicted": 4.5,
+          "predicted_reason": "Learned in a round, chunky trains and a map that looks inviting, fits about 45 minutes and the luck keeps kids in the game, a true family gateway.",
+          "actual": null,
+          "actual_reason": "Searches returned only pages about the junior spin-off, Ticket to Ride First Journey, not family reception of the base game, so no supported rating.",
+          "sources": []
+        }
+      ],
+      "evidence_basis": "BoardGameGeek, reddit, wikipedia and similar were blocked and I did not open any page with WebFetch; ratings rest on WebSearch summaries of family-oriented review sites, so evidence is thin and Ticket to Ride is null because results only covered the junior spin-off.",
+      "attempts": 1,
+      "notes": "Ticket to Ride rating is null (only the junior spin-off was found), so the error is over 7 games.",
+      "rated_games": 7,
+      "mean_abs_error": 0.64,
+      "trusted": true,
+      "confidence": "low"
+    },
+    "story": {
+      "games": [
+        {
+          "game": "Twilight Imperium (4th edition)",
+          "predicted": 4,
+          "predicted_reason": "Factions that each tell a different story, plus table talk, betrayals and a board that collapses in memorable ways, outweigh the long rules and downtime I tolerate only at medium patience.",
+          "actual": 5,
+          "actual_reason": "Reviewers describe it as a space opera where the players create a sweeping, epic narrative together, which is exactly what a story lover wants.",
+          "sources": [
+            "https://bumblingthroughdungeons.com/twilight-imperium-4th-edition-board-game-review/",
+            "https://opinionatedgamers.com/2019/01/25/twilight-imperium-4th-edition/",
+            "https://www.tabletopgaming.co.uk/?p=2061"
+          ]
+        },
+        {
+          "game": "Gloomhaven",
+          "predicted": 4.5,
+          "predicted_reason": "A campaign where a story grows and characters change permanently is exactly what I love, though the bookkeeping and quarterbacking in co-op keep it just short of Pandemic Legacy.",
+          "actual": 4,
+          "actual_reason": "Branching scenarios, story decisions with consequences and character retirement give an RPG-like campaign feel, though some reviewers call the written story a little thin.",
+          "sources": [
+            "https://nerdist.com/article/we-played-gloomhaven-for-30-hours-and-still-want-more/",
+            "https://www.boardgamequest.com/quick-hits-gloomhaven-review/",
+            "https://frontlinegaming.org/2024/11/14/board-game-review-gloomhaven/"
+          ]
+        },
+        {
+          "game": "Terraforming Mars",
+          "predicted": 3,
+          "predicted_reason": "The theme is in the cards and the project names, but it plays like an engine-building spreadsheet with multiplayer-solitaire tendencies and heavy bookkeeping.",
+          "actual": 3,
+          "actual_reason": "The theme is described as reasonably integrated and not fully pasted on, but the dated graphic design and heavy card-engine play keep immersion modest.",
+          "sources": [
+            "https://boardgamequest.com/terraforming-mars-review",
+            "https://thethoughtfulgamer.com/2020/04/21/why-is-terraforming-mars-so-popular-a-pseudo-review/",
+            "https://frontlinegaming.org/2024/05/08/board-game-review-terraforming-mars/"
+          ]
+        },
+        {
+          "game": "Catan",
+          "predicted": 2.5,
+          "predicted_reason": "Trading and the robber create some interaction and retellable moments, but the setting could be swapped for any resource game, which is my pasted-on theme peeve.",
+          "actual": 2,
+          "actual_reason": "Reviewers note the theme is light and only loosely tied to the mechanics, so atmosphere-seekers find it hard to get into despite its gateway quality.",
+          "sources": [
+            "https://www.wargamer.com/catan/review",
+            "https://zatu.com/blogs/reviews/catan-review"
+          ]
+        },
+        {
+          "game": "Codenames",
+          "predicted": 2,
+          "predicted_reason": "Fun and talkative, but almost no world at all, like Flip 7, so the pasted-on spy theme earns little.",
+          "actual": 3,
+          "actual_reason": "The spy theme is called pasted on and players forget it, but the social, chatty party atmosphere is still enjoyable, so a story lover finds it fine rather than loved.",
+          "sources": [
+            "https://www.geeksundergrace.com/tabletop/review-codenames/",
+            "https://mechanicsofmagic.com/?p=346",
+            "https://www.wargamer.com/codenames/review"
+          ]
+        },
+        {
+          "game": "Dixit",
+          "predicted": 3.5,
+          "predicted_reason": "The dreamy art and the stories players tell about each card fit my love of art and retelling, though it has little rules-driven world.",
+          "actual": 5,
+          "actual_reason": "Its dreamlike Marie Cardouat art and the storyteller-clue structure reward imagination and narrative creativity, a natural favourite for this type.",
+          "sources": [
+            "https://frontlinegaming.org/2024/01/24/board-game-review-dixit/",
+            "https://gamingtrend.com/reviews/dream-within-dream-dixit-origins-review/",
+            "https://sheep.horse/2013/7/game_review_-_dixit.html"
+          ]
+        },
+        {
+          "game": "Exploding Kittens",
+          "predicted": 2,
+          "predicted_reason": "Quick and silly with betrayal moments, but the cat theme is a skin and there is no world to care about, so it lands at my Flip 7 anchor.",
+          "actual": 2,
+          "actual_reason": "The humorous art is charming, but reviewers call the play luck-driven and soulless, with no story or atmosphere to hold a thematic player.",
+          "sources": [
+            "https://rolltoreview.com/?p=726",
+            "https://hexagamers.com/exploding-kittens-review/",
+            "https://mechanicsofmagic.com/2022/04/13/critical-play-exploding-kittens/"
+          ]
+        },
+        {
+          "game": "Ticket to Ride",
+          "predicted": 2.5,
+          "predicted_reason": "The map and train components are charming, but it is close to multiplayer solitaire where the theme could be swapped without changing play.",
+          "actual": 3,
+          "actual_reason": "The nostalgic train-travel theme and chunky plastic trains charm, but reviewers say the real pull is elegant simplicity rather than story, so it is pleasant but not immersive.",
+          "sources": [
+            "https://techraptor.net/tabletop/reviews/ticket-to-ride-review",
+            "https://boardgamereview.co.uk/game-reviews/ticket-to-ride/",
+            "https://www.polyhedroncollider.com/2012/11/ticket-to-ride-review.html"
+          ]
+        }
+      ],
+      "evidence_basis": "Only WebSearch summaries were used (one search per game, no pages opened, BGG/Reddit blocked), so ratings rest on review commentary about theme and story rather than on posts by self-identified thematic players.",
+      "attempts": 1,
+      "notes": "Largest miss: Dixit (predicted 3.5, actual 5). The profile's loves mention art and storytelling in general but give no example of an imaginative storytelling game; consider adding one at the next refresh.",
+      "rated_games": 8,
+      "mean_abs_error": 0.62,
+      "trusted": true,
+      "confidence": "low"
+    },
+    "strategist": {
+      "games": [
+        {
+          "game": "Twilight Imperium (4th edition)",
+          "predicted": 4,
+          "predicted_reason": "Deep multi-route planning and real interaction suit me, but the downtime, rules density and kingmaking risk (rulebook-and-AP peeves) keep it from a 5.",
+          "actual": 4,
+          "actual_reason": "Heavy-strategy reviewers praise its multiple paths to victory, politics and low downtime, though the 6-8 hour length and table commitment limit how often it gets played.",
+          "sources": [
+            "https://opinionatedgamers.com/2019/01/25/twilight-imperium-4th-edition/",
+            "https://bumblingthroughdungeons.com/twilight-imperium-4th-edition-board-game-review/",
+            "https://brain-games.com/blogs/board-game-explorer/twilight-imperium-v4-sci-fi-strategy-review"
+          ]
+        },
+        {
+          "game": "Gloomhaven",
+          "predicted": 4,
+          "predicted_reason": "Planning card use several turns ahead is exactly the tactical depth I love, though the rulebook ambiguity, quarterbacking in co-op and some luck from modifier decks cost a point.",
+          "actual": 4,
+          "actual_reason": "Reviewers highlight the card-as-health tactical puzzle and campaign decisions as deeply rewarding, which suits planners, though it is a long, heavy-setup commitment.",
+          "sources": [
+            "https://frontlinegaming.org/2024/11/14/board-game-review-gloomhaven/",
+            "https://opinionatedgamers.com/2020/11/28/gloomhaven-does-it-live-up-to-the-hype-review-by-rj-garrison/",
+            "https://www.theouterhaven.net/gloomhaven-review-the-dungeon-crawler-that-redefined-the-genre/"
+          ]
+        },
+        {
+          "game": "Terraforming Mars",
+          "predicted": 3.5,
+          "predicted_reason": "I enjoy the visible engine growth and card synergies, but it leans toward multiplayer solitaire and card-draw luck decides which engines are even possible.",
+          "actual": 4,
+          "actual_reason": "Its engine-building and long-term-versus-short-term planning are widely praised as strategic depth, with complaints mostly about length, card luck and component quality.",
+          "sources": [
+            "https://frontlinegaming.org/2024/05/08/board-game-review-terraforming-mars/",
+            "https://www.boardgamequest.com/quick-hits-terraforming-mars-review/"
+          ]
+        },
+        {
+          "game": "Catan",
+          "predicted": 2.5,
+          "predicted_reason": "Dice rolls undo my decisions after the fact and trading invites kingmaking and runaway leaders, which is the luck-overrides-skill peeve.",
+          "actual": 2,
+          "actual_reason": "Enthusiast critics say it leans on dice luck, is simple and can outstay its welcome, and has been overtaken by less luck-driven designs, even if its trading interaction is still credited.",
+          "sources": [
+            "https://gamesradar.com/tabletop-gaming/catan-review",
+            "https://www.miniaturemarket.com/reviewcorner/catan-review"
+          ]
+        },
+        {
+          "game": "Codenames",
+          "predicted": 2.5,
+          "predicted_reason": "Clever but a party game with little to plan, and the quarterbacking and luck of the board draw leave few decisions of my own.",
+          "actual": 3,
+          "actual_reason": "Gamers say it is a smart party game that demands careful clue-giving, but it remains a light word game rather than a deep strategy one.",
+          "sources": [
+            "https://www.wargamer.com/codenames/review",
+            "https://www.theologyofgames.com/blog/2016/3/1/tinker-tailor-soldier-assassin-a-single-take-review-of-codenames",
+            "https://www.cardboardrepublic.com/podcast/vox-republica-114-the-staying-power-of-codenames/amp"
+          ]
+        },
+        {
+          "game": "Dixit",
+          "predicted": 1.5,
+          "predicted_reason": "There is almost nothing to plan and the winner is hard to attribute to skill, so I'm just watching the cards and votes.",
+          "actual": 2,
+          "actual_reason": "Reviewers say it has little appeal to strategy fans because scoring rests on subjective interpretation rather than calculable decisions.",
+          "sources": [
+            "https://opinionatedgamers.com/2015/12/20/sdj-re-reviews-32-dixit/",
+            "https://zatu.com/blogs/reviews/dixit-gamers-saying"
+          ]
+        },
+        {
+          "game": "Exploding Kittens",
+          "predicted": 1,
+          "predicted_reason": "Pure chance as the main event: I can't tell if I played well, which is the lowest anchor.",
+          "actual": 2,
+          "actual_reason": "Hardcore-leaning reviewers call it shallow and luck-heavy, a quick funny filler with little cleverness to stand out.",
+          "sources": [
+            "https://rolltoreview.com/?p=726",
+            "https://hexagamers.com/exploding-kittens-review/",
+            "https://boardgaming.com/games/exploding-kittens"
+          ]
+        },
+        {
+          "game": "Ticket to Ride",
+          "predicted": 3,
+          "predicted_reason": "Route planning is satisfying and blocking gives some interaction, but draw luck and a mostly solved line of play make it a pleasant puzzle rather than a contest.",
+          "actual": 3,
+          "actual_reason": "Seen as an excellent gateway with real route-blocking tension, but players wanting strategic depth and less luck are advised to look elsewhere.",
+          "sources": [
+            "https://gamesradar.com/ticket-to-ride-review",
+            "https://islaythedragon.com/game-reviews/ive-got-a-ticket-a-review-of-ticket-to-ride/",
+            "https://www.matchstickeyes.com/2013/01/22/all-aboard-ticket-to-ride-the-verdict/"
+          ]
+        }
+      ],
+      "evidence_basis": "WebSearch summaries only (one search per game, not 2-3); BGG, reddit and meeplemountain are blocked and I did not open any page with WebFetch, so ratings rest on reviewer-site summaries that only partly match the heavy-gamer persona.",
+      "attempts": 1,
+      "notes": "",
+      "rated_games": 8,
+      "mean_abs_error": 0.38,
+      "trusted": true,
+      "confidence": "low"
+    }
+  },
+  "baseline_quality": "low",
+  "baseline_notes": [
+    "The 'actual' ratings come from a first research pass that ran about one web search per game and read only search-result summaries (BoardGameGeek, Reddit, Wikipedia, Meeple Mountain and Dice Tower were blocked). Many are general reviews, not posts by players of that type.",
+    "A stricter second pass could not run: the session's 200-call web-search budget was already used up. Re-run it (ask for 'refresh the panel research') after raising the limit and allowing the blocked sites.",
+    "Two ratings are null because nothing could be supported: Terraforming Mars for the competitor, and Ticket to Ride for the family player (searches only found the junior spin-off).",
+    "The predictions were made by fresh agents shown only the persona profile, but both the predictions and the actuals draw on the same language-model knowledge of these games. Agreement shows the profiles are consistent with how a model reads the reviews; it is not independent ground truth.",
+    "The profiles were written before the actual ratings were read, and no profile was tuned after calibration (all five were within 1.0 on the first attempt)."
+  ]
+}

@@ -97,3 +97,23 @@ Also write `games/<game-slug>/brief.json` for the studio dashboard:
 ```
 
 In `candidates`, list the 2-3 best banked ideas you considered. Use `null` for anything you couldn't find. Append `start`, `step` and `done` lines to `games/<game-slug>/activity.jsonl` as described in `CLAUDE.md` (for a market scan, use `"game": "_research"` and write to `research/activity.jsonl`). Return a 3-line summary to the manager.
+
+## Panel research mode
+
+Used when the Director asks you to "refresh the panel research" or to research a player persona. Instead of looking for a game gap, you gather evidence of what one **type of player** really says about games. The persona profiles in `panel/personas/` and their calibration depend on it.
+
+You are given a persona (its archetype and what they care about) and a list of games. For that persona:
+
+1. **Find what real players of this type say.** Search review sites, blogs, podcasts' show notes, forums and communities (BoardGameGeek, Reddit, review sites). Look for recurring praise and complaints, not single opinions.
+2. **Write `panel/evidence/<persona-id>.md`**, in your own words, with:
+   - `Last refreshed: YYYY-MM-DD` and an `Evidence basis` line that says honestly how you read the sources (opened the page, or only a search-result summary).
+   - **Recurring themes**: each theme as a short statement, whether it is praise or a complaint, how often it comes up (`often`, `sometimes`, `rarely`, with the rough count of sources you saw), and the source URLs. Aim for 8-12 themes.
+   - **Reactions to well-known games**: one short paragraph per game you were given (8-12 games), saying how this type of player received it and why, with sources.
+   - **Gaps**: anything you looked for and could not find. Say so rather than filling it in.
+3. **Never copy review text.** Summarise in your own words. At most one short quote (under 15 words) per source.
+4. **Never invent a source, a rating or a count.** If you could not find a rating, write `null`. If a site is blocked by the network (it may be; BoardGameGeek, Reddit and others sometimes are), say so in `Evidence basis` and use what search results do show.
+5. You do not write activity lines in this mode; the Director logs panel research in `panel/activity.jsonl`.
+
+**Calibration ratings.** When asked for the "actual reception" of games by a player type, give for each game a rating from 1 to 5 that reflects how players *of that type* received it (not the overall average), a one-sentence reason, and the sources that support it. Return it exactly as JSON, as requested in the task, and do not guess: if you cannot support a rating from sources, use `null`.
+
+Return a short summary to the Director: how many themes and games, how many sources, and what you could not reach.

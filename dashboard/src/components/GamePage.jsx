@@ -1,12 +1,14 @@
+import { GamePanel } from './PanelView.jsx';
 import { useState } from 'react';
 import { FileView } from './Markdown.jsx';
 import { CopyBox } from './IdeaForm.jsx';
 import { Help } from './Help.jsx';
+import { GATE_LABEL } from './ApprovalsView.jsx';
 import { STAGE_LABEL, verdictClass } from './ProjectsView.jsx';
 import { ago, clock } from '../util.js';
 import { CriticRadar, RateBars, CardCorrelation, LengthHistogram, colorOf } from './charts.jsx';
 
-const DOCS = [['brief.md', 'Brief'], ['rules.md', 'Rules'], ['playtest-report.md', 'Playtest report'], ['critique.md', 'Critique'], ['pitch.md', 'Pitch']];
+const DOCS = [['brief.md', 'Brief'], ['rules.md', 'Rules'], ['playtest-report.md', 'Playtest report'], ['panel-report.md', 'Panel report'], ['critique.md', 'Critique'], ['pitch.md', 'Pitch']];
 
 // What the owner can do next, as a prompt to paste into Claude Code.
 function nextStep(g) {
@@ -18,7 +20,7 @@ function nextStep(g) {
   }
 }
 
-export function GamePage({ game: g, state, onBack }) {
+export function GamePage({ game: g, state, onBack, onPersona }) {
   const [doc, setDoc] = useState(() => (DOCS.find(([f]) => g.files.some((x) => x.name === f)) || DOCS[0])[0]);
   const cr = g.critique, pt = g.playtest, step = nextStep(g);
   const events = state.activity.filter((e) => e.game === g.slug).slice().reverse();
@@ -69,6 +71,7 @@ export function GamePage({ game: g, state, onBack }) {
           <LengthHistogram length={pt?.length} histogram={pt?.length_histogram} color={colorOf(state, 'playtester')} />
           <h4>Card win correlation</h4>
           <CardCorrelation cards={pt?.cards} />
+          {pt?.cards?.some((c) => c.flag) && <><h4>Flagged by the playtester</h4>{pt.cards.filter((c) => c.flag).map((c) => <div className="item" key={c.name}><b>{c.name}</b>: {c.flag}{typeof c.played_rate === 'number' && <div className="meta">comes into play in {Math.round(c.played_rate * 100)}% of games</div>}</div>)}</>}
           {pt?.problems?.length > 0 && <><h4>Problems found</h4>{pt.problems.map((p, i) => <div className="item" key={i}><span className={`chip sev-${p.severity}`}>{p.severity}</span> {p.problem}<div className="meta">{p.fix}</div></div>)}</>}
         </section>
         <section className="card">
@@ -79,14 +82,23 @@ export function GamePage({ game: g, state, onBack }) {
         </section>
       </div>
 
+      {state.approvals.requests.some((r) => r.game === g.slug) && (
+        <section className="card">
+          <h3>Approvals <Help topic="approval-gate" /></h3>
+          <ol className="timeline">{state.approvals.requests.filter((r) => r.game === g.slug).sort((a, b) => Date.parse(a.time) - Date.parse(b.time)).map((r) => (
+            <li key={r.id}><b>{GATE_LABEL[r.gate] || r.gate}</b> <span className={`chip ${r.state === 'approved' ? 'v-good' : r.state === 'pending' ? 'v-warn' : r.state === 'expired' ? 'v-bad' : 'v-warn'}`}>{r.state}{r.decision && r.state !== 'expired' ? `: ${r.decision}` : ''}</span>{' '}
+              <span className="muted">asked {ago(r.time)}{r.decided_at ? `, decided ${ago(r.decided_at)}` : ''} · estimated usage {r.usage_estimate || '—'}, actual not measured per step yet{r.owner_notes ? ` · your note: ${r.owner_notes}` : ''}</span></li>))}</ol>
+        </section>)}
       <section className="card">
         <h3>History</h3>
         {g.history.length > 0
           ? <ol className="timeline">{g.history.map((h, i) => <li key={i}><b>{STAGE_LABEL[h.stage] || h.stage}</b>{h.verdict && <span className={`chip v-${verdictClass(h.verdict)}`}>{h.verdict}</span>} <span className="muted">{h.note} · {ago(h.time)}</span></li>)}</ol>
           : events.length > 0
-            ? <ol className="timeline">{events.map((e, i) => <li key={i}><span className="mono muted">{clock(e.time)}</span> <b>{state.agents.find((a) => a.id === e.agent)?.room || e.agent}</b> <span className="muted">{e.message}{e.synthetic ? ' (inferred from file)' : ''}</span></li>)}</ol>
+            ? <ol className="timeline">{events.map((e, i) => <li key={i}><span className="mono muted">{clock(e.time)}</span> <b>{state.agents.find((a) => a.id === e.agent)?.room || e.agent}</b> <span className="muted">{e.message}{e.synthetic ? ' (inferred from file)' : ''}{e.reconstructed ? ' (reconstructed from commits)' : ''}</span></li>)}</ol>
             : <p className="empty">No history yet.</p>}
       </section>
+
+      <GamePanel game={g} state={state} onPersona={onPersona} />
 
       <section className="card">
         <h3>Documents</h3>

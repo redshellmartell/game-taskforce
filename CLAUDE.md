@@ -13,6 +13,7 @@ Every game lives in its own folder: `games/<game-slug>/`. A game moves through t
 | 1. Research | `market-researcher` | `brief.md` (from the idea bank, see "Lean mode") |
 | 2. Design | `game-designer` | `rules.md` |
 | 3. Playtest | `playtester` | `playtest-report.md` (+ `sim/` code) |
+| 3b. Test panel | bots + `panel/scoring.py` (free), `panel-player` x5 (AI, gated) | `panel.json`, `panel-report.md` |
 | 4. Critique | `critic` | `critique.md` |
 | 5. Pitch | Manager (you) | `pitch.md` |
 
@@ -102,6 +103,9 @@ Some steps use a lot of the owner's usage or could loop without adding value. Be
 
 ### Recording decisions
 
+The owner can answer in the dashboard (Approvals page, which sets the request's `status` to `approved` or `declined`, and writes `decision`, `decided_at` and `owner_notes`) or by replying to you in chat. When the owner says **"continue with approved work"**, read `games/approvals.json`, act on every request decided since the last run (one that is `approved` or `declined` and not yet recorded in `games/decisions.json`), record each in `games/decisions.json` (`slug` is `null` for requests that are not about a game), and continue or stop accordingly. A decision whose key is anything other than `approve` (for example `pitch`, `park`, `kill`) means the gated step is not run; do what that option says instead.
+
+
 When the owner replies, update the request's `status`, `decision`, `decided_at` and `owner_notes`, log it in `games/decisions.json`, and continue (or stop) accordingly. An approval covers one step only: a second revision needs a new gate. Requests older than 14 days with no answer become `expired`; mention them in the next status report.
 
 ### Approval modes
@@ -175,9 +179,37 @@ Add a history entry every time a game changes stage or completes a revision. Pit
 
 **Owner data.** When the owner tells you a decision ("approve ember-market", "I built a prototype", "we played it, fun 4/5"), record it:
 - `games/decisions.json`: `{ "decisions": [ { "slug", "time", "decision": "approve|reject|send-back|prototyped", "notes" } ] }`, and update the game's stage.
-- `games/<slug>/human-playtests.json`: `{ "sessions": [ { "date", "players", "fun", "replay", "clarity", "notes" } ] }` (scores 1-5).
+- `games/<slug>/human-playtests.json`: `{ "sessions": [ { "date", "players", "fun", "replay", "clarity", "player_type", "notes" } ] }` (scores 1-5).
 
 **KPI targets** (used by the critic, playtester and you when judging): seat balance gap ≤ 5 points; strategic-vs-random win gap ≥ 20 points; simulated length within ±20% of the brief's target; runaway leader rate ≤ 65%; at least 2 lead changes per game on average; zero dead cards and zero rule ambiguities at pitch; critic average ≥ 3.5 at pitch.
+
+## Player test panel
+
+A panel of player personas (`panel/personas/`) gives games a "public test" on top of the bot playtest. Each persona is modelled on a real type of player, backed by research evidence in `panel/evidence/`, and checked against real receptions of well-known games in `panel/calibration.json`. Details are in `panel/README.md`.
+
+**Stage 3b (every game).** After every playtest the playtester's persona bots and `panel/scoring.py` run automatically (free): `games/<slug>/panel.json` gets each persona's predicted fun, replay, would-buy and pet peeves hit. Only when the playtest verdict is PASS (or the owner asks) and the owner has approved the `panel-reviews` gate, run `panel-player` once per trusted persona (one at a time), then write `games/<slug>/panel-report.md`: who the game is for, where the personas agree and disagree, recurring complaints, suggested changes. The critic reads `panel-report.md` for its Fun and Market fit scores. Log `start`/`done` lines in `activity.jsonl` with `"agent": "panel:<persona>"` and add a `panel` entry to the game's `status.json` history.
+
+**Asking a persona.** When the owner says "Ask <persona> about <game>: <question>", run `panel-player` for that persona in conversation mode (give it the current UTC time); it answers in character and appends to `games/<slug>/panel/conversations.jsonl`. "Ask the panel ..." means every trusted persona, one short answer each; this needs the `panel-reviews` approval when more than one persona is asked.
+
+**Human calibration.** When recording a real playtest in `human-playtests.json`, ask the owner which kind of player they were (a persona id: strategist, casual, competitor, story or family) and store it as the session's optional `player_type`, so predictions can be compared with real players of that type.
+
+When the owner asks you to:
+- **"Refresh the panel research"**: run the `market-researcher` in Panel research mode for each persona (or the ones named), updating `panel/evidence/<id>.md`, then re-run calibration for those personas and update `panel/calibration.json`.
+- **"Add a persona: ..."**: create `panel/personas/<id>.md` from the owner's description (copy the structure of an existing persona), run Panel research for it, then calibrate it. A persona is `trusted` only when its mean calibration error is 1.0 or less.
+
+Log panel work in `panel/activity.jsonl` (same line format as the activity log, with `"game": "panel"`). The panel's opinions are advisory: the owner's own human playtests remain the final check.
+
+## Cost discipline
+
+The owner pays for sessions from a limited credit balance, so work economically:
+- **One task per session.** When a task is done, commit, push, summarise and stop; the next task goes in a fresh session (a long session makes every step more expensive).
+- **Do the free work first.** Prefer plain code and scripts over agent calls. Use agents only where the task needs one, one at a time, never as a parallel fan-out unless the owner asks.
+- **No web searches unless the task is about research.** Do not re-run research that already exists (`panel/evidence/`, briefs). A "refresh" is only run when the owner asks.
+- **Check with tests, not screenshots.** Run `npm test` and short scripted checks; look at a screenshot only when something looks wrong.
+- **Ask before anything large**, such as a task that needs many agents or a long research run, and say roughly what it involves.
+- After each task, tell the owner what was done so they can check their credit balance.
+- **At the end of every task or game stage** run `python3 tools/usage/usage.py --record` and commit `usage/sessions.jsonl`.
+- **Usage guard for scheduled or batch runs.** Before starting any scheduled run or a batch of agent work, run `python3 tools/usage/usage.py --check` (usage is counted in tokens against the owner's plan windows; the stop percentage is in `studio-settings.json` under `usage_guard`, default 80%). Exit code `0` = go; `1` = close to the limit, run only what is needed and tell the owner; `2` = **stop**, do not start anything, report instead; `3` = not calibrated, ask the owner for their plan's usage percentages from the app. When the owner says "calibrate usage: 5-hour 63%, weekly 41%", run `python3 tools/usage/usage.py --calibrate 5h=63 7d=41`. Recalibrate now and then; the token-to-percent link is an estimate. The owner can change the stop percentage by saying "set the usage stop to 70%" (edit `usage_guard.stop_at_percent`).
 
 ## Dashboard project
 

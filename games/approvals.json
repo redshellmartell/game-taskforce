@@ -1,0 +1,55 @@
+{
+  "requests": [
+    {
+      "id": "duelflip-panel-reviews-1",
+      "gate": "panel-reviews",
+      "game": "duelflip",
+      "time": "2026-10-03T13:21:24Z",
+      "status": "approved",
+      "summary": "Duel Flip's free panel scores are done (10 tables, 1,600 games per persona). Predicted fun: casual 4.05, competitor 4.02, strategist 3.85, family 3.62, story 3.56. Next step is five in-character AI reviews (Haiku, one per persona).",
+      "why_needed": "The scores are numbers only. The reviews add the 'why': best and worst moments, real frustrations, who each persona enjoyed playing with. Task 006 asks for them as the first full test of the panel.",
+      "expected_outcome": "Five review files in games/duelflip/panel/, a panel-report.md, and reviews that read like five different people, each naming a real frustration.",
+      "usage_estimate": "S",
+      "recommendation": "approve",
+      "options": [
+        {
+          "key": "approve",
+          "label": "Run the five persona reviews (Haiku, one at a time) and write the panel report"
+        },
+        {
+          "key": "skip",
+          "label": "Skip the reviews; keep only the free scores"
+        }
+      ],
+      "decision": "approve",
+      "decided_at": "2026-10-03T13:26:33Z",
+      "owner_notes": "Owner replied \"proceed\" in chat"
+    },
+    {
+      "id": "free-model-experiment-api",
+      "gate": "free-api",
+      "game": null,
+      "agent": "playtester",
+      "time": "2026-10-03T13:58:31Z",
+      "status": "pending",
+      "summary": "Task 009 wants to test one free API (OpenRouter free models or Google AI Studio) for persona reviews. That means sending Duel Flip's rules and persona material to a third party.",
+      "why_needed": "Local Ollama on your Mac needs no approval, but a free API could be faster on a small Mac. Free tiers may use prompts for training, so unpublished designs should only go there with your agreement. I could not read the providers' terms from this cloud session, so I cannot summarise them yet.",
+      "expected_outcome": "A blind quality comparison against Haiku and a recommendation per job. If you decline, the experiment uses local Ollama only.",
+      "usage_estimate": "S",
+      "recommendation": "decline",
+      "options": [
+        {
+          "key": "approve",
+          "label": "Allow one free API for the experiment (after I summarise its data-use terms)"
+        },
+        {
+          "key": "decline",
+          "label": "Local Ollama only; send nothing to third parties"
+        }
+      ],
+      "decision": null,
+      "decided_at": null,
+      "owner_notes": null
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "verdict": "REVISE-MINOR",
+  "revision": 1,
+  "scores": {
+    "originality": 2.5,
+    "clarity": 3.5,
+    "fun": 3,
+    "balance": 3.5,
+    "market_fit": 3,
+    "production": 5
+  },
+  "average": 3.4,
+  "strength": "A clean, fast, fair 2-player push-your-luck loop with one real decision per turn, and tiny production cost.",
+  "weakness": "The three advertised twists (bait, species majority, Lifebuoy refund) are close to inert in the data, so it plays as a generic shared-row duplicate-bust game that sits very near Port Royal.",
+  "closest_existing_game": {
+    "name": "Port Royal",
+    "similarity": "medium"
+  },
+  "required_changes": [
+    "Fix the bait wording contradiction between the Overview, section 4 and section 5.",
+    "Add the 1-card river sentence, delete the dead 'other leftovers' text, and state what counts toward the refund.",
+    "Remove or clearly flag the untested 3-4 player variant.",
+    "Make bait worth leaving (for example a bust against bait lets the bait owner take a card from the opponent's pile) and re-run the simulation; target: leave-lowest under 60% against a smart leaver.",
+    "Species bonus: score per card of margin or raise to 12, and re-run (target: swings 10%+ of games), or drop species.",
+    "Refund: drop it, or move it to 3 cards with +4 for seat 2.",
+    "Check BGG for an existing 'leave one card' shared-row game, and do not call the river novel in the pitch."
+  ]
+}

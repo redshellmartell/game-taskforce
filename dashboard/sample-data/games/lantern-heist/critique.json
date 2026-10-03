@@ -16,5 +16,7 @@
     "name": "Sheriff of Nottingham",
     "similarity": "low"
   },
-  "required_changes": []
+  "required_changes": [],
+  "revision_worth_it": false,
+  "revision_reason": "No: the remaining issues are minor and a revision is unlikely to change the verdict."
 }

@@ -10,9 +10,9 @@ const dashboardDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), 
 const repoRoot = path.resolve(dashboardDir, '..');
 const state = buildState({ repoRoot, dashboardDir, sample: true });
 
-test('sample data has three games and five agents', () => {
+test('sample data has three games and six agents', () => {
   assert.equal(state.games.length, 3);
-  assert.equal(state.agents.length, 5);
+  assert.equal(state.agents.length, 6);
 });
 test('concepts in development: only ember-market is still in progress', () => {
   const k = conceptsInDevelopment(state.games);
@@ -32,7 +32,7 @@ test('review queue: one pitch waiting', () => {
 });
 test('agents active: the designer is working on ember-market', () => {
   const k = agentsActive(state.agents);
-  assert.equal(k.value, 1); assert.equal(k.total, 5);
+  assert.equal(k.value, 2); assert.equal(k.total, 6);
   assert.equal(state.agents.find((a) => a.id === 'game-designer').currentGame, 'ember-market');
 });
 test('no data gives status "none", not a crash', () => {
@@ -148,7 +148,7 @@ test('portfolio: mechanics, brief count, comparables and unexplored mechanics', 
 });
 test('ops: runs per agent, no failures, simulated games', () => {
   const o = state.ops;
-  assert.equal(o.perAgent.length, 5);
+  assert.equal(o.perAgent.length, 6);
   assert.equal(o.perAgent.find((a) => a.id === 'game-designer').runs, 2);
   assert.equal(o.perAgent.reduce((a, x) => a + x.runs, 0), 8);
   assert.ok(o.perAgent.every((x) => x.errors === 0));
@@ -168,4 +168,126 @@ test('portfolio of no games does not crash', () => {
   const m = portfolio([]);
   assert.equal(m.briefs, 0); assert.equal(m.topMechanic, null);
 });
-import { ownerStats, portfolio, opsStats } from './kpis.js';
+import { ownerStats, portfolio, opsStats, ideaBankStats, usageStats, approvalStats } from './kpis.js';
+
+// ---- Idea bank ----
+test('idea bank (sample): counts by status and a scan is needed (only 3 strong banked ideas, scan 21+ days old but under 30 is fine)', () => {
+  const b = state.market.ideaBank;
+  assert.equal(b.total, 8); assert.equal(b.inPipeline, 2); assert.equal(b.rejected, 2); assert.equal(b.banked, 4);
+  assert.equal(b.strongBanked, 4);
+  assert.equal(b.needsScan, false);
+});
+test('idea bank rule: fewer than 3 strong banked ideas, or a scan over 30 days old, means a scan is needed', () => {
+  const now = Date.parse('2026-10-03T00:00:00Z');
+  const few = ideaBankStats({ last_scan: '2026-10-01', ideas: [{ status: 'banked', score: 22 }, { status: 'banked', score: 17 }] }, now);
+  assert.equal(few.needsScan, true); assert.match(few.scanReasons[0], /only 1 banked idea/);
+  const old = ideaBankStats({ last_scan: '2026-08-01', ideas: [1, 2, 3].map(() => ({ status: 'banked', score: 20 })) }, now);
+  assert.equal(old.needsScan, true); assert.equal(old.scanAgeDays, 63);
+  const fine = ideaBankStats({ last_scan: '2026-09-20', ideas: [1, 2, 3].map(() => ({ status: 'banked', score: 18 })) }, now);
+  assert.equal(fine.needsScan, false);
+});
+test('idea bank: missing or broken file gives null, not a crash', () => {
+  assert.equal(ideaBankStats(null), null); assert.equal(ideaBankStats({}), null);
+});
+test('Market Intel room card shows briefs written and ideas banked', () => {
+  const r = state.pipeline.rooms['market-researcher'];
+  assert.equal(r[0].label, 'Briefs written'); assert.equal(r[1].label, 'Ideas banked'); assert.equal(r[1].value, 4);
+});
+
+// ---- Usage ----
+test('usage (sample): totals by agent, game and week, and usage per pitched game in tokens', () => {
+  const u = state.ops.usage;
+  assert.equal(u.total, 5060000 + 3400000);
+  assert.equal(u.byAgent[0].name, 'director'); assert.equal(u.byAgent[0].tokens, 5600000);
+  assert.equal(u.byGame.find((g) => g.name === 'lantern-heist').tokens, 2900000);
+  assert.equal(u.perPitched.pitched, 1); assert.equal(u.perPitched.value, u.total);   // one pitched game (lantern-heist)
+  assert.ok(u.byWeek.length >= 2);
+});
+test('usage: nothing recorded gives null, and a game count of zero gives no per-pitch number', () => {
+  assert.equal(usageStats([], []), null); assert.equal(usageStats(null, []), null);
+  const u = usageStats([{ by_day: [{ name: '2026-10-01', weighted_tokens: 100 }] }], [], Date.parse('2026-10-03T00:00:00Z'));
+  assert.equal(u.perPitched.value, null); assert.equal(u.total, 100); assert.equal(u.last7days, 100);
+});
+test('usage guard status from guard.json reaches the Ops data', () => {
+  assert.equal(state.ops.guard.status, 'warn'); assert.equal(state.ops.guard.windows[0].percent, 68);
+});
+
+// ---- Approvals ----
+test('approvals (sample): 3 pending oldest first, the old budget request has expired, others are decided', () => {
+  const a = state.approvals;
+  assert.equal(a.pending, 3);
+  const times = a.requests.slice(0, 3).map((r) => Date.parse(r.time));
+  assert.deepEqual(times, [...times].sort((x, y) => x - y));          // oldest first
+  assert.ok(a.requests.slice(0, 3).every((r) => r.state === 'pending'));
+  const by = Object.fromEntries(a.requests.map((r) => [r.id, r]));
+  assert.equal(by['tide-lords-budget-1'].state, 'expired');
+  assert.equal(by['panel-research-1'].state, 'approved'); assert.equal(by['lantern-heist-panel-reviews-1'].state, 'declined');
+  assert.equal(new Set(a.requests.map((r) => r.gate)).size, 7);          // every gate type is covered by the sample data
+});
+test('approvals: a revision request carries the game scorecard and the critic answer when there is one', () => {
+  const r = state.approvals.requests.find((x) => x.id === 'ember-market-revision-1');
+  assert.ok(r.revision.scorecard.length >= 5); assert.equal(r.revision.worthIt, null);   // ember-market has no critique yet
+  assert.equal(r.gameTitle, 'Ember Market');
+});
+test('approvals: a missing or odd file gives an empty inbox, not a crash', () => {
+  assert.ok(Array.isArray(state.approvals.requests));
+});
+
+// ---- Approval gates across the dashboard ----
+test('an agent waiting at a gate shows as waiting, unless it is busy working', () => {
+  const by = Object.fromEntries(state.agents.map((a) => [a.id, a]));
+  assert.equal(by['market-researcher'].state, 'waiting'); assert.equal(by['market-researcher'].waitingGate.gate, 'scan');   // market scan request is pending
+  assert.equal(by['game-designer'].state, 'working');                    // busy on ember-market, so it keeps its working state ...
+  assert.equal(by['game-designer'].waitingGate.gate, 'revision');        // ... but the oldest request waiting on it is still known
+  assert.equal(by['playtester'].waitingGate, undefined);                 // its budget request expired, so nothing is waiting on it
+});
+test('approval stats: revision loops proposed, approved, declined and the usage saved (a size estimate)', () => {
+  const s = state.ops.approvals;
+  assert.equal(s.revision.proposed, 1); assert.equal(s.revision.pending, 1); assert.equal(s.revision.declined, 0); assert.equal(s.savedTokens, 0);
+  const t = approvalStats([{ gate: 'revision', state: 'declined', usage_estimate: 'M' }, { gate: 'revision', state: 'approved', usage_estimate: 'M' }, { gate: 'scan', state: 'declined', usage_estimate: 'XL' }]);
+  assert.equal(t.revision.proposed, 2); assert.equal(t.revision.declined, 1); assert.equal(t.savedTokens, 500000);   // only declined revision loops count
+  assert.deepEqual(approvalStats([]).revision, { proposed: 0, approved: 0, declined: 0, pending: 0, expired: 0 });
+});
+test('the approval mode is read from studio-settings.json and defaults to normal', () => {
+  assert.ok(['strict', 'normal', 'relaxed'].includes(state.settings.approval_mode));
+});
+
+// ---- Test panel (task 007)
+import { panelStats, gamePanelSummary } from './kpis.js';
+test('panel: sample games give each persona stats, a heatmap and an agreement flag', () => {
+  const state = buildState({ repoRoot, dashboardDir, sample: true, now: Date.now() });
+  const ps = state.panel.stats;
+  assert.equal(Object.keys(ps.personas).length, 5);
+  assert.equal(ps.gamesWithPanel, 2);
+  assert.equal(ps.grid.length, 2);
+  const lh = state.games.find((g) => g.slug === 'lantern-heist');
+  const s = gamePanelSummary(lh);
+  assert.equal(s.reviewed, 5); assert.ok(['agrees', 'split'].includes(s.agreement));
+  assert.ok(s.spread >= 0 && s.averageFun > 1 && s.averageFun < 5);
+  assert.equal(s.hasReport, true);
+});
+test('panel: a persona\'s written rating wins over the predicted one, and harshness is against the panel average', () => {
+  const games = [{ slug: 'a', title: 'A', files: [], critique: null, humanPlaytests: [{ player_type: 'casual', fun: 4 }],
+    panel: { personas: { casual: { fun: 4, replay: 4, review: { fun: 3, replay: 3 } }, family: { fun: 3, replay: 3, review: null } }, matchups: [{ a: 'casual', b: 'family', games: 100, a_win_rate: 0.7, a_fun: 3.5, b_fun: 2.5 }] } }];
+  const panel = { personas: [{ id: 'casual', calibration: { meanAbsError: 0.5 } }, { id: 'family', calibration: { meanAbsError: 1.5 } }] };
+  const ps = panelStats(panel, games, []);
+  assert.equal(ps.personas.casual.averageFun, 3);                 // written 3, not predicted 4
+  assert.equal(ps.personas.family.averageFun, 3);
+  assert.equal(ps.personas.casual.harshness, 0);                  // panel average is 3
+  assert.equal(ps.personas.casual.predictedVsWritten[0].predicted, 4);
+  assert.equal(ps.personas.casual.matchups[0].winRate, 0.7); assert.equal(ps.personas.family.matchups[0].winRate, 0.3);
+  assert.equal(ps.personas.casual.human.gap, -1);                 // persona says 3, the real player said 4
+  assert.equal(ps.kpis.calibrationError, 1); assert.equal(ps.kpis.humanGap.casual, -1);
+});
+test('panel: no panel data is not a crash', () => {
+  assert.equal(panelStats(null, [], []), null);
+  assert.equal(gamePanelSummary({ panel: null }), null);
+  const ps = panelStats({ personas: [{ id: 'x' }] }, [{ slug: 'g', title: 'G', files: [] }], []);
+  assert.equal(ps.personas.x.games, 0); assert.equal(ps.personas.x.averageFun, null);
+});
+test('panel: a persona with a panel: activity line shows as playing', () => {
+  const state = buildState({ repoRoot, dashboardDir, sample: true, now: Date.now() });
+  assert.equal(state.panel.stats.personas.casual.state, 'playing');
+  assert.equal(state.agents.find((a) => a.id === 'test-panel').state, 'working');
+  assert.equal(state.agents.find((a) => a.id === 'test-panel').reportsTo, 'playtester');
+});

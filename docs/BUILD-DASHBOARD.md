@@ -104,6 +104,8 @@ Check: everything works with sample data, and with `games/` containing a single 
 - Review Queue "How it plays" is read from a "How it plays" heading in `pitch.md`; a pitch without that heading shows "Not in the pitch file yet".
 - No buttons that run agents or record decisions (that is stage 3 in the spec).
 
+**Added with task 008:** idea bank on Market & Portfolio (with a "scan due" indicator and the Market Intel room card), usage on the Ops page (token-based: guard windows, usage per pitched game, by agent, game and week; read from `usage/sessions.jsonl` and `usage/guard.json`), and a "Test panel" tab on the Playtest Lab (personas from `panel/`, calibration, profile and evidence; the file endpoint also serves `panel/personas/` and `panel/evidence/` Markdown).
+
 Known quirk: the four reporting lines share one horizontal trunk, so clicking the trunk selects the last specialist; click a line's own vertical drop (or the node) to pick a specific one.
 
 Notes on what differs from the plan:
@@ -113,3 +115,5 @@ Notes on what differs from the plan:
 - The revision lines use a small custom edge because React Flow's built-in curve goes flat when both ends point down.
 - A first design put dotted lines from "You" to every agent; it looked cluttered, so "You" now has one line (pitch.md from the Director) and the step-in actions are the "+ New idea" button and each agent's "Talk to it" tab.
 - Real-game KPIs show "no data yet" until agents write the JSON files described in `docs/dashboard-notes.md` section 4.
+
+**Task 007 (test panel in the dashboard): done.** A Test Panel department sits under the Playtest Lab in the Agent Network (personas hidden until you click "show personas", then small nodes in their colours, pulsing while a `panel:<id>` activity line is running) and has a room card on the Studio Floor. New **Panel** page: one card per persona (status, games, average fun, harsh or generous, trust, latest verdict), a persona × game heatmap and "who is each game for". Clicking a persona (anywhere) opens its page with tabs Who they are, What they've played, Stats, Track record, Evidence and Talk to them (copy-a-prompt plus past conversations). The Game page has a Test panel section (rows per persona, matchup grid, rotation summary, agreement flag) and a "Panel report" document tab. KPIs (`panelStats` in `server/kpis.js`, tested): average fun and spread per game, calibration error, persona-versus-human gap per `player_type`. Sample data has panel scores for Lantern Heist and Tide Lords, reviews and conversations for Lantern Heist, and Casual "playing" on Ember Market.

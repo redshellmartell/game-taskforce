@@ -1,5 +1,5 @@
 ---
-status: open
+status: done
 priority: high
 depends_on: [008]
 ---

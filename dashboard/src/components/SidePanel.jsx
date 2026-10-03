@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { FileView, Markdown } from './Markdown.jsx';
 import { Help } from './Help.jsx';
 import { IdeaForm, CopyBox, stageForAgent } from './IdeaForm.jsx';
+import { PanelTab } from './PanelTab.jsx';
+import { GATE_LABEL } from './ApprovalsView.jsx';
 import { ago, STATE_LABEL } from '../util.js';
 
 const summaries = import.meta.glob('../content/agents/*.md', { query: '?raw', import: 'default', eager: true });
@@ -47,10 +49,11 @@ function TalkTab({ agent, state }) {
 }
 
 // Click a node -> tabs: what it's doing, how it works, its work, talk to it.
-export function AgentPanel({ agent, state, onClose, initialTab }) {
+export function AgentPanel({ agent, state, onClose, initialTab, onPersona }) {
   const [tab, setTab] = useState(initialTab || 'doing');
   const [viewing, setViewing] = useState(null);
-  useEffect(() => { setTab(initialTab || 'doing'); setViewing(null); }, [agent.id, initialTab]);
+  const [personaId, setPersonaId] = useState(null);   // kept here so "Back" from a file returns to the same persona
+  useEffect(() => { setTab(initialTab || 'doing'); setViewing(null); setPersonaId(null); }, [agent.id, initialTab]);
   const version = state.generatedAt;
   const last = agent.lastEvent;
   const gameTitle = (slug) => state.games.find((g) => g.slug === slug)?.title || slug;
@@ -62,13 +65,14 @@ export function AgentPanel({ agent, state, onClose, initialTab }) {
       <p style={{ marginTop: 0 }}>
         {agent.state === 'working' && <>Working on <b>{gameTitle(agent.currentGame)}</b>: {last.message}</>}
         {agent.state === 'idle' && (last ? <>Idle. Last finished: {last.message} ({gameTitle(last.game)}, {ago(last.time)}).</> : <>Idle. This agent has not logged any activity yet.</>)}
-        {agent.state === 'waiting' && <>Waiting for you to review {state.waitingPitches.length} pitch{state.waitingPitches.length === 1 ? '' : 'es'}.</>}
+        {agent.waitingGate && <>Waiting for your approval: <b>{GATE_LABEL[agent.waitingGate.gate] || agent.waitingGate.gate}</b>{agent.waitingGate.gameTitle ? <> for {agent.waitingGate.gameTitle}</> : null}. Open the Approvals page to decide. </>}
+        {agent.state === 'waiting' && !agent.waitingGate && <>Waiting for you to review {state.waitingPitches.length} pitch{state.waitingPitches.length === 1 ? '' : 'es'}.</>}
         {agent.state === 'error' && <>Something went wrong: {last.message}</>}
       </p>
       <h4>Recent steps</h4>
       {agent.recent.length === 0 && <p className="empty">No steps logged yet.</p>}
       {agent.recent.map((e, i) => (
-        <div className="item" key={i}>{e.message}<div className="meta">{gameTitle(e.game)} · {e.event} · {ago(e.time)}{e.synthetic ? ' · inferred from file' : ''}</div></div>
+        <div className="item" key={i}>{e.message}<div className="meta">{gameTitle(e.game)} · {e.event} · {ago(e.time)}{e.synthetic ? ' · inferred from file' : ''}{e.reconstructed ? ' · reconstructed from commits' : ''}</div></div>
       ))}
     </>
   );
@@ -92,12 +96,13 @@ export function AgentPanel({ agent, state, onClose, initialTab }) {
       ))}
     </>
   );
+  else if (tab === 'panel') content = <PanelTab state={state} onOpen={setViewing} id={personaId} setId={setPersonaId} onPersona={onPersona} />;
   else content = <TalkTab agent={agent} state={state} />;
 
   return (
     <Shell title={`${agent.room} · ${STATE_LABEL[agent.state]}`} color={agent.color} onClose={onClose}
-      help={<><Help topic="agent" />{agent.id !== 'manager' && <Help topic="subagent" />}</>}
-      tabs={[['doing', "What it's doing"], ['how', 'How it works'], ['work', 'Its work'], ['talk', 'Talk to it']]} tab={tab} setTab={(t) => { setViewing(null); setTab(t); }}>
+      help={<><Help topic="agent" />{agent.id !== 'manager' && agent.id !== 'test-panel' && <Help topic="subagent" />}</>}
+      tabs={[['doing', "What it's doing"], ['how', 'How it works'], ['work', 'Its work'], ...(agent.id === 'playtester' || agent.id === 'test-panel' ? [['panel', 'Test panel']] : []), ['talk', 'Talk to it']]} tab={tab} setTab={(t) => { setViewing(null); setTab(t); }}>
       {content}
     </Shell>
   );

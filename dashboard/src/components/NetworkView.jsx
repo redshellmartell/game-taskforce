@@ -1,8 +1,9 @@
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { ReactFlow, Handle, Position, MarkerType, BaseEdge, getBezierPath, getSmoothStepPath } from '@xyflow/react';
 import { ago } from '../util.js';
 import { FORWARD, REVISIONS, PITCH } from '../replay.js';
 import { Help } from './Help.jsx';
+import { GATE_LABEL } from './ApprovalsView.jsx';
 
 const STEP = 320; // distance between the four specialists
 const GREY = '#8a8f9b';
@@ -10,10 +11,11 @@ const ORG = '#4a4f5c';
 const HELP_TOPIC = { playtester: 'simulation', critic: 'verdict' }; // every other node explains "agent"
 
 // Org-chart layout: You at the top, the Director's Office below, the specialists in a row under it.
-const Y = { owner: 0, manager: 150, row: 320 };
+const Y = { owner: 0, manager: 150, row: 320, panel: 520, personas: 700 };
+const PSTEP = 150;
 
 function AgentNode({ data }) {
-  const { id, label, sub, color, state, selected, active, isOwner } = data;
+  const { id, label, sub, color, state, selected, active, isOwner, expandable, expanded, onToggle } = data;
   const mid = { left: '50%' };
   return (
     <div className={`node ${state} ${selected ? 'selected' : ''} ${active ? 'active' : ''} ${isOwner ? 'owner' : ''}`} style={{ '--accent': color }}>
@@ -28,6 +30,18 @@ function AgentNode({ data }) {
       <div className="room" style={{ color }}>{label}{!isOwner && <Help topic={HELP_TOPIC[id] || 'agent'} />}</div>
       <div className="sub">{sub}</div>
       <div className="state"><span className="dot" />{state === 'waiting' ? 'waiting for owner' : state}</div>
+      {expandable && <button className="expander nodrag nopan" onClick={(e) => { e.stopPropagation(); onToggle(); }} onMouseDown={(e) => e.stopPropagation()}>{expanded ? '▾ hide personas' : '▸ show personas'}</button>}
+    </div>
+  );
+}
+
+function PersonaNode({ data }) {
+  return (
+    <div className={`pnode ${data.state}`} style={{ '--accent': data.color }}>
+      <Handle type="target" position={Position.Top} />
+      <span className="avatar" style={{ background: data.color, width: 36, height: 36, fontSize: 14 }}>{data.initials}</span>
+      <div className="pname">{data.name}</div>
+      <div className="pstate"><span className="dot" />{data.state}</div>
     </div>
   );
 }
@@ -68,30 +82,38 @@ function RevisionEdge({ id, sourceX, sourceY, targetX, targetY, markerEnd, style
 
 // An invisible node under the chart so "fit to screen" leaves room for the revision loops.
 function GhostNode() { return <div style={{ width: 1, height: 1 }} />; }
-const nodeTypes = { agent: AgentNode, ghost: GhostNode };
+const nodeTypes = { agent: AgentNode, persona: PersonaNode, ghost: GhostNode };
 const edgeTypes = { handoff: HandoffEdge, revision: RevisionEdge, org: OrgEdge };
 
-export function NetworkView({ state, selection, onSelect, compact, frame }) {
+export function NetworkView({ state, selection, onSelect, compact, frame, onPersona }) {
+  const [expanded, setExpanded] = useState(false);   // the Test Panel's personas are hidden until you ask
   const { nodes, edges } = useMemo(() => {
     const byId = Object.fromEntries(state.agents.map((a) => [a.id, a]));
     const ownerWaiting = state.waitingPitches.length > 0;
     const ideas = state.inbox?.length || 0;
     const inReplay = !!frame;
 
-    const specialists = state.agents.filter((a) => a.id !== 'manager');
+    const children = state.agents.filter((a) => a.reportsTo && a.reportsTo !== 'manager' && a.reportsTo !== 'owner');   // departments under a specialist (the Test Panel)
+    const specialists = state.agents.filter((a) => a.id !== 'manager' && !children.includes(a));
     const centre = ((specialists.length - 1) * STEP) / 2;
-    const place = (a) => (a.id === 'manager' ? { x: centre, y: Y.manager } : { x: specialists.indexOf(a) * STEP, y: Y.row });
+    const place = (a) => {
+      if (a.id === 'manager') return { x: centre, y: Y.manager };
+      if (children.includes(a)) return { x: specialists.findIndex((s) => s.id === a.reportsTo) * STEP, y: Y.panel };
+      return { x: specialists.indexOf(a) * STEP, y: Y.row };
+    };
 
     const agentNodes = state.agents.map((a) => {
       const active = inReplay && frame.agent === a.id;
       let sub;
       if (inReplay) sub = active ? frame.event.message : '';
+      else if (a.state === 'waiting' && a.waitingGate) sub = `waiting: ${GATE_LABEL[a.waitingGate.gate] || a.waitingGate.gate}`;
       else if (a.state === 'working') sub = state.games.find((g) => g.slug === a.currentGame)?.title || a.currentGame;
       else sub = a.lastEvent ? `last: ${ago(a.lastEvent.time)}` : 'no activity yet';
-      const live = a.state === 'waiting' ? 'idle' : a.state; // the amber ring belongs to the owner node
+      const live = a.state === 'waiting' && !a.waitingGate ? 'idle' : a.state;   // the Director's "waiting" for pitches is shown on the owner node; a waiting gate gets the amber ring here
       return {
         id: a.id, type: 'agent', position: place(a), draggable: false,
-        data: { id: a.id, label: a.room, sub, color: a.color, state: inReplay ? (active ? 'working' : 'idle') : live, selected: selection?.id === a.id, active },
+        data: { id: a.id, label: a.room, sub, color: a.color, state: inReplay ? (active ? 'working' : 'idle') : live, selected: selection?.id === a.id, active,
+          expandable: a.id === 'test-panel' && (state.panel?.personas?.length || 0) > 0, expanded, onToggle: () => setExpanded((v) => !v) },
       };
     });
     const ownerSub = [ownerWaiting && `${state.waitingPitches.length} pitch${state.waitingPitches.length > 1 ? 'es' : ''} to review`, ideas && `${ideas} idea${ideas > 1 ? 's' : ''} in inbox`].filter(Boolean).join(' · ') || 'decides what gets built';
@@ -112,8 +134,8 @@ export function NetworkView({ state, selection, onSelect, compact, frame }) {
       data: { file: pfile, targetLabel: 'You', dot: dotFor(`${ps}>${pt}`) }, selected: selection?.id === `${ps}>${pt}`,
     }] : [];
     // Reporting lines: every specialist reports to the Director's Office.
-    const reporting = specialists.filter((a) => (a.reportsTo || 'manager') === 'manager' && present.has('manager')).map((a) => ({
-      id: `org:${a.id}`, source: 'manager', sourceHandle: 'bs', target: a.id, targetHandle: 'tt', type: 'org',
+    const reporting = state.agents.filter((a) => a.id !== 'manager' && present.has(a.reportsTo || 'manager')).map((a) => ({
+      id: `org:${a.id}`, source: a.reportsTo || 'manager', sourceHandle: 'bs', target: a.id, targetHandle: 'tt', type: 'org',
       style: { stroke: ORG, strokeWidth: 1.5 }, data: { org: true, agent: a.id, dot: dotFor(`org:${a.id}`) }, selected: false,
     }));
     // Handoff arrows between the specialists.
@@ -127,9 +149,18 @@ export function NetworkView({ state, selection, onSelect, compact, frame }) {
       data: { file, targetLabel: label(t), revision: true, dip: handle === 'bt' ? 45 : 75, dot: dotFor(`rev:${s}>${t}`) }, selected: selection?.id === `rev:${s}>${t}`,
     }));
 
-    const pad = { id: '__pad', type: 'ghost', position: { x: centre, y: Y.row + 190 }, draggable: false, selectable: false, focusable: false, data: {} };
-    return { nodes: [ownerNode, ...agentNodes, pad], edges: [...reporting, ...forward, ...revisions, ...pitch] };
-  }, [state, selection, frame]);
+    // The Test Panel's personas: small nodes under it, shown only when expanded.
+    const parent = children.find((c) => c.id === 'test-panel');
+    const personas = expanded && parent && state.panel ? state.panel.personas : [];
+    const px = place(parent || { id: '' }).x;
+    const personaNodes = personas.map((p, i) => ({
+      id: `persona:${p.id}`, type: 'persona', position: { x: px + (i - (personas.length - 1) / 2) * PSTEP - 55, y: Y.personas }, draggable: false,
+      data: { name: p.name.replace('The ', ''), color: p.color, initials: p.initials, state: state.panel.stats?.personas[p.id]?.state || 'idle' },
+    }));
+    const personaEdges = personaNodes.map((n) => ({ id: `org:${n.id}`, source: 'test-panel', sourceHandle: 'bs', target: n.id, type: 'org', style: { stroke: ORG, strokeWidth: 1.5 }, data: { org: true, agent: 'test-panel' }, selected: false }));
+    const pad = { id: '__pad', type: 'ghost', position: { x: centre, y: (parent ? (expanded ? Y.personas + 110 : Y.panel + 130) : Y.row + 190) }, draggable: false, selectable: false, focusable: false, data: {} };
+    return { nodes: [ownerNode, ...agentNodes, ...personaNodes, pad], edges: [...reporting, ...personaEdges, ...forward, ...revisions, ...pitch] };
+  }, [state, selection, frame, expanded]);
 
   return (
     <div className="net">
@@ -137,10 +168,10 @@ export function NetworkView({ state, selection, onSelect, compact, frame }) {
         Click an agent to inspect it or leave it a note. Grey org lines show who reports to whom; arrows show the files handed over.
         <span className="legend"><span>handoff file <Help topic="handoff" /></span><span>revision loop <Help topic="revision-loop" /></span></span>
       </div>
-      <ReactFlow key={compact ? 'compact' : 'full'} nodes={nodes} edges={edges} nodeTypes={nodeTypes} edgeTypes={edgeTypes}
+      <ReactFlow key={`${compact ? 'compact' : 'full'}-${expanded ? 'open' : 'closed'}`} nodes={nodes} edges={edges} nodeTypes={nodeTypes} edgeTypes={edgeTypes}
         fitView fitViewOptions={{ padding: 0.12 }} nodesDraggable={false} nodesConnectable={false} elementsSelectable
         panOnDrag zoomOnScroll={false} minZoom={0.4}
-        onNodeClick={(_, n) => onSelect({ type: n.id === 'owner' ? 'owner' : 'agent', id: n.id })}
+        onNodeClick={(_, n) => (n.id.startsWith('persona:') ? onPersona?.(n.id.slice(8)) : onSelect({ type: n.id === 'owner' ? 'owner' : 'agent', id: n.id }))}
         onEdgeClick={(_, e) => onSelect(e.data?.org ? { type: 'agent', id: e.data.agent } : { type: 'edge', id: e.id, edge: e.data })}
         onPaneClick={() => onSelect(null)} proOptions={{ hideAttribution: true }} />
     </div>

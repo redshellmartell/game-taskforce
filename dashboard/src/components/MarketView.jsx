@@ -1,6 +1,7 @@
 import { Gate } from './Gate.jsx';
 import { Help } from './Help.jsx';
 import { ValueBars, colorOf } from './charts.jsx';
+import { IdeaBank } from './IdeaBank.jsx';
 
 const mixData = (rows) => rows.map((r) => ({ name: r.name, count: r.count }));
 
@@ -19,6 +20,7 @@ export function MarketView({ state, onOpen }) {
           <span className="tgt">{m.topMechanic ? `${m.topMechanic.name} · ${m.topMechanic.target}` : 'no data yet'}</span>
         </div>
       </div>
+      <IdeaBank bank={m.ideaBank} />
       <section className="card"><h3>Opportunity score for every brief</h3>
         <Gate games={n} what="This chart"><ValueBars data={m.opportunity} xKey="title" yKey="score" domain={[0, 30]} ticks={[0, 6, 12, 18, 24, 30]} refLine={18} refText="18 of 30 is the cut-off to proceed" color={c} label="score out of 30" /></Gate>
       </section>

@@ -10,6 +10,8 @@ import { ReviewQueueView } from './components/ReviewQueueView.jsx';
 import { QualityLabView } from './components/QualityLabView.jsx';
 import { MarketView } from './components/MarketView.jsx';
 import { OpsView } from './components/OpsView.jsx';
+import { ApprovalsView } from './components/ApprovalsView.jsx';
+import { PanelView } from './components/PanelView.jsx';
 import { GamePage } from './components/GamePage.jsx';
 import { LearnContext } from './components/Help.jsx';
 import { IdeaForm } from './components/IdeaForm.jsx';
@@ -26,10 +28,13 @@ export default function App() {
   const [selection, setSelection] = useState(null);
   const [view, setView] = useState('network'); // network | floor | pipeline | review | quality | market | ops
   const [game, setGame] = useState(null); // slug of the open Game page
+  const [persona, setPersona] = useState(null); // id of the open persona on the Panel page
+  const [ptab, setPtab] = useState('who');
   const [learn, setLearnState] = useState(() => store.get('learn') === '1');
   const [replay, setReplay] = useState(null);
   const [ideaOpen, setIdeaOpen] = useState(false);
   const go = (v) => { setView(v); setGame(null); };
+  const openPersona = (id) => { setPtab('who'); setPersona(id); setView('panel'); setGame(null); };
   const setLearn = (v) => { setLearnState(v); store.set('learn', v ? '1' : '0'); };
   useEffect(() => { if (view !== 'network') setReplay(null); }, [view]);
 
@@ -47,12 +52,14 @@ export default function App() {
     <LearnContext.Provider value={learn}>
       <div className="app">
         <div>
-          <TopBar state={state} learn={learn} setLearn={setLearn} />
+          <TopBar state={state} learn={learn} setLearn={setLearn} onWaiting={() => go('approvals')} />
           <nav className="nav">
             <button className={view === 'network' ? 'on' : ''} onClick={() => go('network')}>Agent Network</button>
             <button className={view === 'floor' ? 'on' : ''} onClick={() => go('floor')}>Studio Floor</button>
             <button className={view === 'pipeline' ? 'on' : ''} onClick={() => go('pipeline')}>Pipeline <span className="count">{state.games.length}</span></button>
+            <button className={view === 'approvals' ? 'on' : ''} onClick={() => go('approvals')}>Approvals {state.approvals.pending > 0 && <span className="count amber">{state.approvals.pending}</span>}</button>
             <button className={view === 'review' ? 'on' : ''} onClick={() => go('review')}>Review Queue {state.waitingPitches.length > 0 && <span className="count amber">{state.waitingPitches.length}</span>}</button>
+            <button className={view === 'panel' ? 'on' : ''} onClick={() => { setPersona(null); go('panel'); }}>Panel</button>
             <button className={view === 'quality' ? 'on' : ''} onClick={() => go('quality')}>Quality Lab</button>
             <button className={view === 'market' ? 'on' : ''} onClick={() => go('market')}>Market &amp; Portfolio</button>
             <button className={view === 'ops' ? 'on' : ''} onClick={() => go('ops')}>Ops</button>
@@ -63,15 +70,19 @@ export default function App() {
         </div>
         {view === 'network' ? (
           <div className={`main ${selection ? 'open' : ''}`}>
-            <NetworkView compact={!!selection} state={state} selection={selection} onSelect={setSelection} frame={frame} />
-            {agent && <AgentPanel agent={agent} state={state} initialTab={selection.tab} onClose={() => setSelection(null)} />}
+            <NetworkView compact={!!selection} state={state} selection={selection} onSelect={setSelection} frame={frame} onPersona={openPersona} />
+            {agent && <AgentPanel agent={agent} state={state} initialTab={selection.tab} onClose={() => setSelection(null)} onPersona={openPersona} />}
             {selection?.type === 'owner' && <OwnerPanel state={state} onClose={() => setSelection(null)} />}
             {selection?.type === 'edge' && <EdgePanel edge={selection.edge} state={state} onClose={() => setSelection(null)} />}
           </div>
         ) : openGame ? (
-          <div className="page"><GamePage game={openGame} state={state} onBack={() => setGame(null)} /></div>
+          <div className="page"><GamePage game={openGame} state={state} onBack={() => setGame(null)} onPersona={openPersona} /></div>
+        ) : view === 'panel' ? (
+          <div className="page"><PanelView state={state} personaId={persona} setPersonaId={setPersona} tab={ptab} setTab={setPtab} onGame={setGame} /></div>
         ) : view === 'floor' ? (
           <div className="page"><StudioFloor state={state} /></div>
+        ) : view === 'approvals' ? (
+          <div className="page"><ApprovalsView state={state} onOpen={setGame} /></div>
         ) : view === 'review' ? (
           <div className="page"><ReviewQueueView state={state} onOpen={setGame} /></div>
         ) : view === 'quality' ? (

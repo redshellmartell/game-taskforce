@@ -1,0 +1,41 @@
+Duel Flip: competitor (seat 1) vs family (seat 2), table 'worst' for competitor. Cards are species+value (Cr St Ur An Sn Ke).
+T0 P0 first An7
+T0 P0 flips An5
+T0 P0 flips Ke2
+T0 P0 flips Ke6
+T0 P0 banks ['An7', 'An5', 'Ke6'] leaves Ke2
+T1 P1 first Ur6
+T1 P1 flips An3
+T1 P1 banks ['Ke2', 'Ur6'] leaves An3
+T2 P0 first St5
+T2 P0 flips St9
+T2 P0 flips Ke1
+T2 P0 flips Ke7
+T2 P0 banks ['An3', 'St5', 'St9', 'Ke7'] leaves Ke1
+T3 P1 first An2
+T3 P1 flips St8
+T3 P1 banks ['Ke1', 'St8'] leaves An2
+T4 P0 first Ur10
+T4 P0 flips An10 CLASH -> buoy
+T4 P0 banks ['An2'] leaves Ur10
+T5 P1 first Sn2
+T5 P1 flips St4
+T5 P1 banks ['Ur10', 'St4'] leaves Sn2
+T6 P0 first An8
+T6 P0 flips Sn5
+T6 P0 banks ['Sn2', 'Sn5'] leaves An8
+T7 P1 first Cr10
+T7 P1 flips An6
+T7 P1 banks ['An8', 'An6'] leaves Cr10
+T8 P0 first Sn7
+T8 P0 flips Ke3
+T8 P0 banks ['Cr10', 'Ke3'] leaves Sn7
+T9 P1 first Cr6
+T9 P1 flips Sn3
+T9 P1 banks ['Sn7', 'Cr6'] leaves Sn3
+T10 P0 first Ur5
+T10 P0 flips St1
+T10 P0 banks ['Sn3', 'Ur5'] leaves St1
+T11 P1 first St7
+T11 P1 flips Ke5
+T11 P1 banks ['St1', 'St7'] leaves Ke5

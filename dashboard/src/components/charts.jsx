@@ -39,7 +39,7 @@ export function RateBars({ rates, color, fair, height = 150, prefix = '' }) {
     <Frame height={height} empty={data.length === 0}>
       <BarChart data={data} margin={{ top: 14, right: 8, bottom: 0, left: -18 }}>
         <CartesianGrid stroke={GRID} vertical={false} />
-        <XAxis dataKey="name" {...axis} />
+        <XAxis dataKey="name" interval={0} {...axis} {...(data.length > 5 ? { angle: -30, textAnchor: 'end', height: 46, fontSize: 10 } : {})} />
         <YAxis domain={[0, 100]} unit="%" {...axis} />
         <Tooltip {...tip} formatter={(v) => [`${v}%`, 'win rate']} />
         {fair != null && <ReferenceLine y={fair} stroke={AXIS} strokeDasharray="4 4" label={{ value: 'fair', fill: AXIS, fontSize: 10, position: 'insideTopRight' }} />}
@@ -51,7 +51,8 @@ export function RateBars({ rates, color, fair, height = 150, prefix = '' }) {
 
 // Card/action win correlation. Flagged cards are drawn in red.
 export function CardCorrelation({ cards }) {
-  const data = (cards || []).map((c) => ({ name: c.name, corr: c.win_correlation, flag: c.flag, played: c.played_rate }));
+  // Only cards with a measured correlation are drawn (null means "not measured").
+  const data = (cards || []).filter((c) => typeof c.win_correlation === 'number').map((c) => ({ name: c.name, corr: c.win_correlation, flag: c.flag, played: c.played_rate }));
   return (
     <Frame height={Math.max(120, data.length * 34 + 30)} empty={data.length === 0}>
       <BarChart data={data} layout="vertical" margin={{ top: 4, right: 24, bottom: 0, left: 10 }}>

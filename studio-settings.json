@@ -1,0 +1,18 @@
+{
+  "usage_guard": {
+    "windows": {
+      "5h": {
+        "hours": 5,
+        "token_budget": 10185725
+      },
+      "7d": {
+        "hours": 168,
+        "token_budget": 71300077
+      }
+    },
+    "stop_at_percent": 70,
+    "warn_at_percent": 50,
+    "cache_read_weight": 0.1
+  },
+  "approval_mode": "normal"
+}

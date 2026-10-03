@@ -1,0 +1,65 @@
+{
+  "slug": "duelflip",
+  "title": "Duel Flip",
+  "players": "2",
+  "minutes": 12.5,
+  "complexity": 1.5,
+  "mechanics": [
+    "push-your-luck",
+    "shared draw row"
+  ],
+  "theme": "tide-pool scavengers",
+  "opportunity_score": 26,
+  "rubric": {
+    "demand": 5,
+    "gap": 3,
+    "originality": 3,
+    "producibility": 5,
+    "simulatability": 5,
+    "owner_fit": 5
+  },
+  "candidates": [
+    {
+      "idea": "Duel Flip: 2P shared-river push-your-luck",
+      "score": 26,
+      "chosen": true
+    },
+    {
+      "idea": "Solo/co-op micro deck-builder",
+      "score": 22,
+      "chosen": false
+    },
+    {
+      "idea": "4-6P party trick-taker",
+      "score": 20,
+      "chosen": false
+    }
+  ],
+  "comparables": [
+    {
+      "name": "Flip 7",
+      "bgg_rating": null,
+      "crowdfunding": null,
+      "difference": "Makes 2P the primary mode, uses shared information and cuts random take-that."
+    },
+    {
+      "name": "Sea Salt & Paper",
+      "bgg_rating": null,
+      "crowdfunding": null,
+      "difference": "Faster and push-your-luck rather than drafting."
+    },
+    {
+      "name": "Skull / Cacti-style bluffers",
+      "bgg_rating": null,
+      "crowdfunding": null,
+      "difference": "No hidden bluffing; skill is in risk management."
+    }
+  ],
+  "sources": [
+    "hexagamers.com (Flip 7 review)",
+    "whatsericplaying.com (Flip 7 review)",
+    "Gamefound case study (Invincible: The Card Game)",
+    "Kickstarter and BoardGameWire coverage (Cyberpunk TCG)",
+    "Rain City Games (page blocked; search summary only)"
+  ]
+}

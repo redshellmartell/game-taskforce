@@ -9,6 +9,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { buildState } from './state.js';
 import { saveIdea } from './ideas.js';
+import { decideApproval } from './approvals.js';
 
 const dashboardDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const repoRoot = path.resolve(dashboardDir, '..');
@@ -38,15 +39,25 @@ app.get('/api/state', (req, res) => {
   catch (e) { console.warn('[dashboard] state error:', e.message); res.status(500).json({ error: 'Could not build state' }); }
 });
 
+// Record the owner's decision on one approval request (the dashboard's second write; it never starts an agent).
+app.post('/api/approvals/:id', (req, res) => {
+  const origin = req.get('origin');
+  if (origin && new URL(origin).host !== req.get('host')) return res.status(403).json({ error: 'Not allowed' });
+  if (useSample()) return res.status(409).json({ error: 'The dashboard is showing sample data, so decisions are not saved. Run npm start in a copy of the repository that has real games.' });
+  try { res.json(decideApproval(path.join(repoRoot, 'games', 'approvals.json'), req.params.id, (req.body || {}).decision, (req.body || {}).notes)); }
+  catch (e) { res.status(e.status || 500).json({ error: e.status ? e.message : 'Could not record the decision.' }); }
+});
+
 // Only Markdown files inside games/ (or sample-data/games/) and .claude/agents/ may be read.
 app.get('/api/file', (req, res) => {
   const rel = String(req.query.path || '').replace(/\\/g, '/');
   const isAgent = rel.startsWith('.claude/agents/');
+  const isPanel = /^panel\/(personas|evidence)\//.test(rel);   // persona profiles and their research evidence (not game data, so never sample)
   const isGame = rel.startsWith('games/');
-  if ((!isAgent && !isGame) || !rel.endsWith('.md') || rel.includes('..')) return res.status(400).json({ error: 'Not allowed' });
-  const base = isAgent || !useSample() ? repoRoot : path.join(dashboardDir, 'sample-data');
+  if ((!isAgent && !isGame && !isPanel) || !rel.endsWith('.md') || rel.includes('..')) return res.status(400).json({ error: 'Not allowed' });
+  const base = isAgent || isPanel || !useSample() ? repoRoot : path.join(dashboardDir, 'sample-data');
   const full = path.resolve(base, rel);
-  const allowedRoot = path.resolve(base, isAgent ? '.claude/agents' : 'games');
+  const allowedRoot = path.resolve(base, isAgent ? '.claude/agents' : isPanel ? rel.split('/').slice(0, 2).join('/') : 'games');
   if (!full.startsWith(allowedRoot + path.sep)) return res.status(400).json({ error: 'Not allowed' });
   try { res.json({ path: rel, text: fs.readFileSync(full, 'utf8') }); }
   catch { res.status(404).json({ error: 'No such file yet' }); }
@@ -65,7 +76,7 @@ function notifyChanged() {
   clearTimeout(timer);
   timer = setTimeout(() => { for (const c of clients) c.write('event: changed\ndata: {}\n\n'); }, 300);
 }
-const watchPaths = [path.join(repoRoot, 'games'), path.join(repoRoot, '.claude', 'agents'), path.join(dashboardDir, 'agents.json'), path.join(dashboardDir, 'sample-data')];
+const watchPaths = [path.join(repoRoot, 'games'), path.join(repoRoot, '.claude', 'agents'), path.join(dashboardDir, 'agents.json'), path.join(dashboardDir, 'sample-data'), path.join(repoRoot, 'research'), path.join(repoRoot, 'usage'), path.join(repoRoot, 'panel')];
 chokidar.watch(watchPaths, { ignoreInitial: true, ignored: /(__pycache__|\.pyc$|\/sim\/)/, awaitWriteFinish: { stabilityThreshold: 150, pollInterval: 50 } })
   .on('all', notifyChanged).on('error', (e) => console.warn('[dashboard] watcher:', e.message));
 setInterval(() => { for (const c of clients) c.write(': ping\n\n'); }, 25000); // keep connections open
