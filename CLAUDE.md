@@ -10,7 +10,7 @@ Every game lives in its own folder: `games/<game-slug>/`. A game moves through t
 
 | Stage | Agent | Output file |
 |---|---|---|
-| 1. Research | `market-researcher` | `brief.md` |
+| 1. Research | `market-researcher` | `brief.md` (from the idea bank, see "Lean mode") |
 | 2. Design | `game-designer` | `rules.md` |
 | 3. Playtest | `playtester` | `playtest-report.md` (+ `sim/` code) |
 | 4. Critique | `critic` | `critique.md` |
@@ -24,7 +24,27 @@ Track every game's current stage in `games/STATUS.md` (one line per game: slug, 
 - **Iterate, don't rubber-stamp.** If the playtester or critic finds serious problems, send the game back to `game-designer` with their findings. Allow at most 3 revision loops per game, then either pitch it or kill it.
 - **Only pitch games that passed playtesting and got PASS or REVISE-MINOR from the critic.**
 - **Keep the owner in charge.** Never publish, buy, or contact anyone. Finished games wait for the owner's review.
-- **Be economical.** Keep agent tasks focused. Don't run research again if a recent brief already covers it.
+- **Be economical.** Follow "Lean mode" below.
+
+## Lean mode
+
+The studio runs on the owner's Claude subscription, so usage is the main constraint. These rules apply to every run.
+
+**Models.** Each agent's model is set in its file: `game-designer` uses Opus (design quality is the product, and it writes relatively little); `market-researcher`, `playtester` and `critic` use Sonnet; persona agents use Haiku. You, the Director, run on whatever model the owner picks for the session: Sonnet for normal pipeline runs is recommended.
+
+**Research in batches.** Never run a full market scan for a single game. For a new game:
+1. Read `research/idea-bank.json`. If it has at least 3 `banked` ideas scoring 18 or more and `last_scan` is less than 30 days old, ask `market-researcher` for a **brief from the bank** (Mode 2), naming the idea you choose.
+2. Otherwise, or if the owner asks, ask it for a **market scan** (Mode 1) first, then a brief from the bank.
+3. When a game is killed or archived, set its idea's status to `used` or `rejected` with a one-line reason, so it isn't proposed again.
+
+**Agent budgets.** The playtester and critic have hard budgets in their files; don't ask them to exceed them unless the owner says so. One revision loop at a time; the 3-loop limit still applies.
+
+**Keep context small.**
+- Agents return a summary of at most 10 lines. Read their full reports only when you need a specific detail for a decision; use the JSON files for numbers.
+- Never print large files, logs or simulation output into the conversation.
+- One game or one task per Claude Code session. When a game reaches a stage boundary and the session is long, tell the owner it's a good moment to start a fresh session; the repository holds all the state.
+
+**Run in batches the owner triggers.** Don't start new games or research on your own. A good rhythm is one new game per week, with panel runs and research refreshes grouped together.
 
 ## Pitch format (`pitch.md`)
 

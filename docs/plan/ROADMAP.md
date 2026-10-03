@@ -6,19 +6,23 @@ _Last updated: 2026-10-03 by the planning chat._
 
 - **Agent team:** five agents working (Director, market researcher, game designer, playtester, critic). First full pipeline run done.
 - **First game:** Duel Flip, a 2-player push-your-luck card game. Pitched early as a feasibility test after one revision. Critic: REVISE-MINOR (fair and playable, but its three twists don't change how it plays, it's close to Port Royal, and the bait rules contradict themselves).
-- **Dashboard v1: complete** (milestones 1-4) on the Claude Code branch `claude/nice-allen-b9i0vi`, not yet merged into `main`. Org-chart Agent Network, Studio Floor, Pipeline, Game pages, Review Queue, Quality Lab, Market & Portfolio, Ops, Learn mode, replay, "+ New idea" and "Talk to it".
+- **Dashboard v1: complete** (milestones 1-4), merged into `main`. Org-chart Agent Network, Studio Floor, Pipeline, Game pages, Review Queue, Quality Lab, Market & Portfolio, Ops, Learn mode, replay, "+ New idea" and "Talk to it".
 
 ## Now (Claude Code task queue)
 
 | Task | What | Status |
 |---|---|---|
-| [001](../tasks/001-merge-and-housekeeping.md) | Merge the dashboard branch into `main`, clean up cache files | open |
+| [001](../tasks/001-merge-and-housekeeping.md) | Merge the dashboard branch into `main`, clean up cache files | done |
 | [002](../tasks/002-backfill-duelflip-data.md) | Create Duel Flip's dashboard data files so its KPIs show real numbers | open |
-| [005](../tasks/005-test-panel-personas.md) | Test panel 1: five player personas grounded in real reviews, with calibration | open |
-| [006](../tasks/006-test-panel-playtests.md) | Test panel 2: persona bots, free fun scoring, AI reviews for finalists, talking to personas | open |
-| [007](../tasks/007-test-panel-dashboard.md) | Test panel 3: personas as characters in the dashboard, with pages, stats and chat | open |
+| [008](../tasks/008-lean-mode-and-usage-meter.md) | Lean mode setup: idea bank, tidy simulations, usage meter per agent and game | open |
+| [005](../tasks/005-test-panel-personas.md) | Test panel 1: five player personas grounded in real reviews, with calibration | open (after 008) |
+| [006](../tasks/006-test-panel-playtests.md) | Test panel 2: persona bots in rotation, free fun scoring, Haiku reviews, talking to personas | open |
+| [007](../tasks/007-test-panel-dashboard.md) | Test panel 3: personas as characters in the dashboard | open |
+| [009](../tasks/009-free-model-experiment.md) | Experiment: persona work on free models (local Ollama on the Mac or a free API) vs Haiku | open |
 
 Tasks 003 and 004 (dashboard milestones 3-4) were finished before their briefs were picked up.
+
+**Lean mode is on** (2026-10-03): models set per agent, playtester and critic budgets, batched research into `research/idea-bank.json`. See "Lean mode" in `CLAUDE.md`.
 
 ## Next (to plan here)
 
