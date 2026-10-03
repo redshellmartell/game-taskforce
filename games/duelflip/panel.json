@@ -37,7 +37,19 @@
         "casual",
         "strategist"
       ],
-      "review": null
+      "review": {
+        "first_impression": "Rules teach in under five minutes. The 10-15 minute play time is my exact sweet spot for casual nights.",
+        "best_moment": "Turn 6 vs Story: I banked three cards while leaving my lowest as bait, setting a trap that created real tension.",
+        "worst_moment": "Turn 10 vs Strategist: I clashed against their bait and busted my pile—bad luck, but it proved the game has stakes.",
+        "confusing_rules": [],
+        "pet_peeves_hit": [],
+        "fun": 4,
+        "replay": 4,
+        "would_buy": "yes",
+        "price_usd": 20,
+        "one_change": "Let players choose which pile card to leave as bait instead of always leaving the lowest, creating real bluffing opportunities.",
+        "recommend_to": "Two-player game lovers, Port Royal and Flip 7 fans. Perfect for casual nights; not for strategists seeking hidden depths."
+      }
     },
     "competitor": {
       "fun": 4.02,
@@ -191,7 +203,21 @@
         "competitor",
         "strategist"
       ],
-      "review": null
+      "review": {
+        "first_impression": "The rules are clean and teach in under five minutes. The hook is strong: shared river, mandatory second flip, bait you reclaim if an opponent crashes into it. But 10-15 minutes is opposite my preferred range, and the 'leave lowest own card' strategy looks dominant.",
+        "best_moment": "Turn 4 against Story (best table): I had Cr1 clashing and chose to spend my Lifebuoy rather than bust. That was a real decision—weighing the cost against the pile I'd already flipped.",
+        "worst_moment": "Turn 0 and Turn 2 in that same game: Safe first flip, then I flip Ur3 (clash immediately) and the opponent takes my haul. Two turns later, Ke4 (clash again). Early variance hit hard, and there was nothing clever to do.",
+        "confusing_rules": [],
+        "pet_peeves_hit": [
+          "Dominant strategy (pet peeve #4): 'Leave lowest own card' is nearly always optimal. The design notes admit they're watching for this. In both logs, the left card is almost always the lowest. That is not a decision; it is following the rulebook."
+        ],
+        "fun": 3,
+        "replay": 4,
+        "would_buy": "yes",
+        "price_usd": 25,
+        "one_change": "Break the 'leave lowest' dominant strategy. Either let players choose to leave a leftover from the river, or add a scoring track where you sometimes want to leave something with upside to deny the opponent. The current rule forces routine play.",
+        "recommend_to": "Two-player specialists looking for a quick dueler; people who like push-your-luck games. NOT strategists wanting a full evening or a deeply solved game."
+      }
     }
   },
   "rotation": {

@@ -8,3 +8,4 @@
 {"time": "2026-10-03T10:29:42Z", "agent": "manager", "game": "duelflip", "event": "done", "message": "Pitch written for owner review (feasibility test, one revision loop)", "reconstructed": true}
 {"time": "2026-10-03T13:21:24Z", "agent": "manager", "game": "duelflip", "event": "waiting", "message": "waiting for approval: panel-reviews (duelflip-panel-reviews-1)"}
 {"time": "2026-10-03T13:21:24Z", "agent": "playtester", "game": "duelflip", "event": "done", "message": "Panel rotation (10 tables, 1,600 games per persona) and free scores written to panel.json"}
+{"time": "2026-10-03T13:26:33Z", "agent": "manager", "game": "duelflip", "event": "step", "message": "panel-reviews approved; running five persona reviews"}
