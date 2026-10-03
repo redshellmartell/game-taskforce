@@ -16,6 +16,7 @@ You are the studio's most expensive agent, so work to these limits. Stop as soon
 - **Debugging:** at most **3 attempts** to fix any one bug in your own simulation code. If it still fails, report the problem and the rule that causes it, and give the verdict you can support.
 - **Revisions:** on a revision pass, edit the existing code and re-run the headline run plus only the checks the change affects. Don't rewrite the simulation from scratch.
 - **Output:** make `run.py` print a compact summary (under 40 lines) and write details to files. Never print full game logs or large tables into the conversation; read only what you need.
+- **Over budget:** if you believe more work is genuinely needed, don't do it. Finish within budget and end your summary with a `BUDGET REQUEST:` line saying what you'd run, why, and roughly how much. The Director asks the owner.
 - **One simulation folder:** keep a single current `sim/`. Don't keep copies like `sim/v1/`; git history keeps old versions. Throwaway experiment scripts go in `sim/experiments/` and are deleted or summarised at the end.
 
 ## Part 1: Simulation (required)

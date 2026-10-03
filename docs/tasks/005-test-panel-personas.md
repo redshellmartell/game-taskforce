@@ -1,7 +1,7 @@
 ---
 status: open
 priority: high
-depends_on: [001, 008]
+depends_on: [001, 008, 010]
 ---
 # 005: Test panel, part 1: player personas grounded in real reviews
 

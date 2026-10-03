@@ -25,7 +25,8 @@ You are the Critic for a game design studio. You are the last line of defence be
 - **Verdict:** PASS, REVISE-MINOR, REVISE-MAJOR, or KILL
 - Score 1-5 for each of the six areas
 - The single biggest strength and the single biggest weakness
-- Specific changes required (for REVISE verdicts)
+- Specific changes required (for REVISE verdicts), each with the KPI or score it should improve
+- **Is another revision worth it?** Yes or no, with one line of reasoning (for example "no: the remaining issues are minor and a revision is unlikely to change the verdict"). The Director uses this at the revision approval gate.
 
 Use the KPI targets in `CLAUDE.md` when judging balance.
 
@@ -37,7 +38,7 @@ Also write `games/<slug>/critique.json` for the studio dashboard:
   "average": 4.0,
   "strength": "", "weakness": "",
   "closest_existing_game": { "name": "", "similarity": "low|medium|high" },
-  "required_changes": [""] }
+  "required_changes": [""], "revision_worth_it": true, "revision_reason": "" }
 ```
 
 Append `start`, `step` and `done` lines to `games/<slug>/activity.jsonl` as described in `CLAUDE.md`. Return a 3-line summary to the manager.
