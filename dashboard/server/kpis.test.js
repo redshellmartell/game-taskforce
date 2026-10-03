@@ -168,7 +168,7 @@ test('portfolio of no games does not crash', () => {
   const m = portfolio([]);
   assert.equal(m.briefs, 0); assert.equal(m.topMechanic, null);
 });
-import { ownerStats, portfolio, opsStats, ideaBankStats, usageStats } from './kpis.js';
+import { ownerStats, portfolio, opsStats, ideaBankStats, usageStats, approvalStats } from './kpis.js';
 
 // ---- Idea bank ----
 test('idea bank (sample): counts by status and a scan is needed (only 3 strong banked ideas, scan 21+ days old but under 30 is fine)', () => {
@@ -231,4 +231,23 @@ test('approvals: a revision request carries the game scorecard and the critic an
 });
 test('approvals: a missing or odd file gives an empty inbox, not a crash', () => {
   assert.ok(Array.isArray(state.approvals.requests));
+});
+
+// ---- Approval gates across the dashboard ----
+test('an agent waiting at a gate shows as waiting, unless it is busy working', () => {
+  const by = Object.fromEntries(state.agents.map((a) => [a.id, a]));
+  assert.equal(by['market-researcher'].state, 'waiting'); assert.equal(by['market-researcher'].waitingGate.gate, 'scan');   // market scan request is pending
+  assert.equal(by['game-designer'].state, 'working');                    // busy on ember-market, so it keeps its working state ...
+  assert.equal(by['game-designer'].waitingGate.gate, 'revision');        // ... but the oldest request waiting on it is still known
+  assert.equal(by['playtester'].waitingGate, undefined);                 // its budget request expired, so nothing is waiting on it
+});
+test('approval stats: revision loops proposed, approved, declined and the usage saved (a size estimate)', () => {
+  const s = state.ops.approvals;
+  assert.equal(s.revision.proposed, 1); assert.equal(s.revision.pending, 1); assert.equal(s.revision.declined, 0); assert.equal(s.savedTokens, 0);
+  const t = approvalStats([{ gate: 'revision', state: 'declined', usage_estimate: 'M' }, { gate: 'revision', state: 'approved', usage_estimate: 'M' }, { gate: 'scan', state: 'declined', usage_estimate: 'XL' }]);
+  assert.equal(t.revision.proposed, 2); assert.equal(t.revision.declined, 1); assert.equal(t.savedTokens, 500000);   // only declined revision loops count
+  assert.deepEqual(approvalStats([]).revision, { proposed: 0, approved: 0, declined: 0, pending: 0, expired: 0 });
+});
+test('the approval mode is read from studio-settings.json and defaults to normal', () => {
+  assert.ok(['strict', 'normal', 'relaxed'].includes(state.settings.approval_mode));
 });

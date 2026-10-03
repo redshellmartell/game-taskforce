@@ -3,6 +3,7 @@ import { ReactFlow, Handle, Position, MarkerType, BaseEdge, getBezierPath, getSm
 import { ago } from '../util.js';
 import { FORWARD, REVISIONS, PITCH } from '../replay.js';
 import { Help } from './Help.jsx';
+import { GATE_LABEL } from './ApprovalsView.jsx';
 
 const STEP = 320; // distance between the four specialists
 const GREY = '#8a8f9b';
@@ -86,9 +87,10 @@ export function NetworkView({ state, selection, onSelect, compact, frame }) {
       const active = inReplay && frame.agent === a.id;
       let sub;
       if (inReplay) sub = active ? frame.event.message : '';
+      else if (a.state === 'waiting' && a.waitingGate) sub = `waiting: ${GATE_LABEL[a.waitingGate.gate] || a.waitingGate.gate}`;
       else if (a.state === 'working') sub = state.games.find((g) => g.slug === a.currentGame)?.title || a.currentGame;
       else sub = a.lastEvent ? `last: ${ago(a.lastEvent.time)}` : 'no activity yet';
-      const live = a.state === 'waiting' ? 'idle' : a.state; // the amber ring belongs to the owner node
+      const live = a.state === 'waiting' && !a.waitingGate ? 'idle' : a.state;   // the Director's "waiting" for pitches is shown on the owner node; a waiting gate gets the amber ring here
       return {
         id: a.id, type: 'agent', position: place(a), draggable: false,
         data: { id: a.id, label: a.room, sub, color: a.color, state: inReplay ? (active ? 'working' : 'idle') : live, selected: selection?.id === a.id, active },

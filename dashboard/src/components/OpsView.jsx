@@ -30,6 +30,8 @@ export function OpsView({ state }) {
             <span className="lbl">{w.name === '5h' ? '5-hour' : w.name === '7d' ? 'Weekly' : w.name} usage window <Help topic="kpi" /></span>
             <span className="tgt">{w.percent == null ? 'calibrate to see a percentage' : `stop at ${o.guard.stop_at_percent}% \u00b7 ${w.status.toUpperCase()}`}</span>
           </div>))}
+        <div className="kpi tile none"><span className="num">{o.approvals.revision.proposed}</span><span className="lbl">Revision loops proposed <Help topic="approval-gate" /></span><span className="tgt">{o.approvals.revision.approved} approved \u00b7 {o.approvals.revision.declined} declined \u00b7 {o.approvals.revision.pending} waiting</span></div>
+        <div className="kpi tile none" title={o.approvals.savedBasis}><span className="num">{tok(o.approvals.savedTokens)}</span><span className="lbl">Usage saved by declined loops <Help topic="usage-estimate" /></span><span className="tgt">estimate from request sizes</span></div>
         <div className="kpi tile none"><span className="num">{tok(u?.perPitched?.value)}</span><span className="lbl">Usage per pitched game <Help topic="kpi" /></span><span className="tgt">{u?.perPitched?.pitched ? `${u.perPitched.pitched} pitched \u00b7 usage tokens` : 'no pitched game yet'}</span></div>
       </div>
       {!u && !o.guard && <p className="notice info">No usage recorded yet. At the end of a task, run <span className="mono">python3 tools/usage/usage.py --record</span>; to set the stop percentage, run <span className="mono">--calibrate 5h=&lt;percent&gt; 7d=&lt;percent&gt;</span> with the usage percentages shown in the Claude app (see CLAUDE.md, "Cost discipline").</p>}

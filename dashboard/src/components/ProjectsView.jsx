@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Help } from './Help.jsx';
 import { PipelineHealth } from './PipelineHealth.jsx';
+import { GATE_LABEL } from './ApprovalsView.jsx';
 
 // One column per stage. A game sits in the column of its current stage.
 const COLUMNS = [
@@ -24,7 +25,7 @@ export function verdictClass(v) {
   return 'warn';
 }
 
-function Card({ g, onOpen }) {
+function Card({ g, onOpen, waiting }) {
   const info = [g.pitch?.players || g.brief?.players, (g.pitch?.minutes || g.brief?.minutes) && `${g.pitch?.minutes || g.brief?.minutes} min`].filter(Boolean).join(' · ');
   const opp = g.brief?.opportunity_score;
   return (
@@ -36,6 +37,7 @@ function Card({ g, onOpen }) {
         {g.verdicts?.playtest && <span className={`chip v-${verdictClass(g.verdicts.playtest)}`}>test: {g.verdicts.playtest}</span>}
         {g.verdicts?.critic && <span className={`chip v-${verdictClass(g.verdicts.critic)}`}>critic: {g.verdicts.critic}</span>}
         {g.revision > 0 && <span className="chip">rev {g.revision}</span>}
+        {waiting && <span className="chip v-warn" title="The Director is waiting for your approval">waiting: {GATE_LABEL[waiting.gate] || waiting.gate}</span>}
       </span>
     </button>
   );
@@ -43,6 +45,8 @@ function Card({ g, onOpen }) {
 
 export function ProjectsView({ state, onOpen, onOpenIdea }) {
   const [showDead, setShowDead] = useState(false);
+  const waitingBy = {};
+  for (const r of state.approvals.requests) if (r.state === 'pending' && r.game && !waitingBy[r.game]) waitingBy[r.game] = r;   // oldest request per game
   const dead = state.games.filter((g) => DEAD.includes(g.stage));
   return (
     <div className="projects">
@@ -59,7 +63,7 @@ export function ProjectsView({ state, onOpen, onOpenIdea }) {
           return (
             <section className="col" key={c.id}>
               <h3>{c.label} <span className="count">{games.length + ideas.length}</span></h3>
-              {games.map((g) => <Card key={g.slug} g={g} onOpen={onOpen} />)}
+              {games.map((g) => <Card key={g.slug} g={g} onOpen={onOpen} waiting={waitingBy[g.slug]} />)}
               {ideas.map((i) => (
                 <button className="pcard idea" key={i.slug} onClick={onOpenIdea}>
                   <b>{i.title}</b><span className="muted">starts at {IDEA_STAGE[i.stage]}</span>

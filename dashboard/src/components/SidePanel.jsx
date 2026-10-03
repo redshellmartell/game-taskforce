@@ -3,6 +3,7 @@ import { FileView, Markdown } from './Markdown.jsx';
 import { Help } from './Help.jsx';
 import { IdeaForm, CopyBox, stageForAgent } from './IdeaForm.jsx';
 import { PanelTab } from './PanelTab.jsx';
+import { GATE_LABEL } from './ApprovalsView.jsx';
 import { ago, STATE_LABEL } from '../util.js';
 
 const summaries = import.meta.glob('../content/agents/*.md', { query: '?raw', import: 'default', eager: true });
@@ -64,7 +65,8 @@ export function AgentPanel({ agent, state, onClose, initialTab }) {
       <p style={{ marginTop: 0 }}>
         {agent.state === 'working' && <>Working on <b>{gameTitle(agent.currentGame)}</b>: {last.message}</>}
         {agent.state === 'idle' && (last ? <>Idle. Last finished: {last.message} ({gameTitle(last.game)}, {ago(last.time)}).</> : <>Idle. This agent has not logged any activity yet.</>)}
-        {agent.state === 'waiting' && <>Waiting for you to review {state.waitingPitches.length} pitch{state.waitingPitches.length === 1 ? '' : 'es'}.</>}
+        {agent.waitingGate && <>Waiting for your approval: <b>{GATE_LABEL[agent.waitingGate.gate] || agent.waitingGate.gate}</b>{agent.waitingGate.gameTitle ? <> for {agent.waitingGate.gameTitle}</> : null}. Open the Approvals page to decide. </>}
+        {agent.state === 'waiting' && !agent.waitingGate && <>Waiting for you to review {state.waitingPitches.length} pitch{state.waitingPitches.length === 1 ? '' : 'es'}.</>}
         {agent.state === 'error' && <>Something went wrong: {last.message}</>}
       </p>
       <h4>Recent steps</h4>

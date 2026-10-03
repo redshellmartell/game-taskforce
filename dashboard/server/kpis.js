@@ -434,3 +434,19 @@ export function usageStats(sessions, games, now = Date.now()) {
     perPitched: pitched ? { value: Math.round(total / pitched), target: 'falling over time', status: 'none', pitched } : none(null, 'falling over time'),
   };
 }
+
+// ---------------------------------------------------------------------------
+// Approval gates (games/approvals.json). Sizes are rough guides until enough runs are recorded in usage/sessions.jsonl.
+// ---------------------------------------------------------------------------
+export const SIZE_TOKENS = { S: 100000, M: 500000, L: 2000000, XL: 5000000 };   // usage tokens, rough guide per request size
+export function approvalStats(requests) {
+  const rev = (requests || []).filter((r) => r.gate === 'revision');
+  const count = (st) => rev.filter((r) => r.state === st).length;
+  const declined = rev.filter((r) => r.state === 'declined');
+  return {
+    revision: { proposed: rev.length, approved: count('approved'), declined: declined.length, pending: count('pending'), expired: count('expired') },
+    savedTokens: declined.reduce((a, r) => a + (SIZE_TOKENS[r.usage_estimate] || 0), 0),
+    savedBasis: 'size estimates (S 0.1M, M 0.5M, L 2M, XL 5M usage tokens), not measured',
+    total: (requests || []).length, pending: (requests || []).filter((r) => r.state === 'pending').length,
+  };
+}

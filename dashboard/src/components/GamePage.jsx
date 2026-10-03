@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { FileView } from './Markdown.jsx';
 import { CopyBox } from './IdeaForm.jsx';
 import { Help } from './Help.jsx';
+import { GATE_LABEL } from './ApprovalsView.jsx';
 import { STAGE_LABEL, verdictClass } from './ProjectsView.jsx';
 import { ago, clock } from '../util.js';
 import { CriticRadar, RateBars, CardCorrelation, LengthHistogram, colorOf } from './charts.jsx';
@@ -80,6 +81,13 @@ export function GamePage({ game: g, state, onBack }) {
         </section>
       </div>
 
+      {state.approvals.requests.some((r) => r.game === g.slug) && (
+        <section className="card">
+          <h3>Approvals <Help topic="approval-gate" /></h3>
+          <ol className="timeline">{state.approvals.requests.filter((r) => r.game === g.slug).sort((a, b) => Date.parse(a.time) - Date.parse(b.time)).map((r) => (
+            <li key={r.id}><b>{GATE_LABEL[r.gate] || r.gate}</b> <span className={`chip ${r.state === 'approved' ? 'v-good' : r.state === 'pending' ? 'v-warn' : r.state === 'expired' ? 'v-bad' : 'v-warn'}`}>{r.state}{r.decision && r.state !== 'expired' ? `: ${r.decision}` : ''}</span>{' '}
+              <span className="muted">asked {ago(r.time)}{r.decided_at ? `, decided ${ago(r.decided_at)}` : ''} · estimated usage {r.usage_estimate || '—'}, actual not measured per step yet{r.owner_notes ? ` · your note: ${r.owner_notes}` : ''}</span></li>))}</ol>
+        </section>)}
       <section className="card">
         <h3>History</h3>
         {g.history.length > 0

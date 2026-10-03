@@ -2,7 +2,7 @@
 // JSON object the front end needs. Missing or half-written files are skipped.
 import fs from 'node:fs';
 import path from 'node:path';
-import { computeKpis, gameScorecard, stageFunnel, killRateByStage, cycleTimes, avgRevisionLoops, firstPassRate, stuckGames, roomStats, milestones, ownerStats, reviewQueueItems, qualityLab, portfolio, opsStats, ideaBankStats, usageStats } from './kpis.js';
+import { computeKpis, gameScorecard, stageFunnel, killRateByStage, cycleTimes, avgRevisionLoops, firstPassRate, stuckGames, roomStats, milestones, ownerStats, reviewQueueItems, qualityLab, portfolio, opsStats, ideaBankStats, usageStats, approvalStats } from './kpis.js';
 import { listInbox } from './ideas.js';
 import { loadPanel } from './panel.js';
 
@@ -105,6 +105,8 @@ function extractSection(text, name) {
 
 function titleFromSlug(slug) { return slug.split('-').map((w) => w[0]?.toUpperCase() + w.slice(1)).join(' '); }
 
+// Which agent would run the gated step (a request may name one in an optional `agent` field).
+const GATE_AGENT = { scan: 'market-researcher', greenlight: 'game-designer', revision: 'game-designer', 'panel-research': 'market-researcher', 'panel-reviews': 'playtester', budget: 'playtester', 'free-api': 'playtester' };
 const EXPIRE_DAYS = 14;
 const DAY_MS = 24 * 3600 * 1000;
 // Requests the Director wrote to games/approvals.json (see "Approval gates" in CLAUDE.md), with what the owner needs to decide.
@@ -194,6 +196,12 @@ export function buildState({ repoRoot, dashboardDir, sample, now = Date.now() })
 
   const decisions = (readJson(path.join(gamesDir, 'decisions.json'))?.decisions || []).map((d) => ({ ...d, time: shiftTime(d.time) }));
   const approvals = buildApprovals(readJson(path.join(gamesDir, 'approvals.json'))?.requests, games, shiftTime, now);
+  for (const r of approvals.requests.filter((x) => x.state === 'pending')) {       // an agent waiting at a gate shows "waiting for you"
+    const a = agents.find((x) => x.id === (r.agent || GATE_AGENT[r.gate]));
+    if (a && !a.waitingGate) { a.waitingGate = { id: r.id, gate: r.gate, game: r.game, gameTitle: r.gameTitle }; if (a.state === 'idle' || a.state === 'waiting') a.state = 'waiting'; }
+  }
+  const settingsFile = readJson(path.join(repoRoot, 'studio-settings.json')) || {};
+  const settings = { approval_mode: settingsFile.approval_mode || 'normal' };
   const kpis = computeKpis(games, agents, now);
   const bankFile = readJson(path.join(sample ? path.join(dashboardDir, 'sample-data') : repoRoot, 'research', 'idea-bank.json'));
   const bankStats = ideaBankStats(bankFile, now);
@@ -208,5 +216,5 @@ export function buildState({ repoRoot, dashboardDir, sample, now = Date.now() })
   };
   const review = { ...ownerStats(games, decisions), queue: reviewQueueItems(games, now) };
 
-  return { sample, generatedAt: new Date(now).toISOString(), agents, games, activity: activity.slice(0, 500), decisions, approvals, inbox: listInbox(gamesDir), panel: loadPanel(repoRoot), kpis, pipeline, review, quality: qualityLab(games), market: { ...portfolio(games), ideaBank: bankFile && bankStats ? { ...bankStats, updated: bankFile.updated || null, ideas: bankFile.ideas } : null }, ops: { ...opsStats(games, agents, activity, now), usage: usageStats(usageSessions, games, now), guard }, waitingPitches: waitingPitches.map((g) => g.slug) };
+  return { sample, generatedAt: new Date(now).toISOString(), agents, games, activity: activity.slice(0, 500), decisions, approvals, settings, inbox: listInbox(gamesDir), panel: loadPanel(repoRoot), kpis, pipeline, review, quality: qualityLab(games), market: { ...portfolio(games), ideaBank: bankFile && bankStats ? { ...bankStats, updated: bankFile.updated || null, ideas: bankFile.ideas } : null }, ops: { ...opsStats(games, agents, activity, now), usage: usageStats(usageSessions, games, now), guard, approvals: approvalStats(approvals.requests) }, waitingPitches: waitingPitches.map((g) => g.slug) };
 }

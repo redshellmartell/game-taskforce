@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import { AgentPanel } from './SidePanel.jsx';
 import { ActivityFeed } from './ActivityFeed.jsx';
+import { GATE_LABEL } from './ApprovalsView.jsx';
 import { ago, STATE_LABEL } from '../util.js';
 
 // A room card: who is in it, what they are doing, and the department's two key numbers.
 function RoomCard({ a, stats, state, selected, onSelect }) {
   const game = state.games.find((g) => g.slug === a.currentGame);
   const line = a.state === 'working' ? `${game?.title || a.currentGame}: ${a.lastEvent.message}`
+    : a.waitingGate ? `Waiting for you: ${GATE_LABEL[a.waitingGate.gate] || a.waitingGate.gate}${a.waitingGate.gameTitle ? ` (${a.waitingGate.gameTitle})` : ''}`
     : a.state === 'waiting' ? `${state.waitingPitches.length} pitch${state.waitingPitches.length === 1 ? '' : 'es'} for your review`
     : a.lastEvent ? `Last: ${a.lastEvent.message} (${ago(a.lastEvent.time)})` : 'No activity yet';
   return (

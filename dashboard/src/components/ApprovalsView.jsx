@@ -49,7 +49,7 @@ function Card({ r, onOpen, decided, sample, onDecided }) {
         </div>
         <div className="gp-chips">
           {r.state !== 'pending' && <span className={`chip big ${STATE_CLASS[r.state]}`}>{r.state}{r.decision && r.state !== 'expired' ? `: ${r.decision}` : ''}</span>}
-          {u && <span className="chip big" title={`Usage estimate ${u[0]}: ${u[1]}`}>usage {u[0]}</span>}
+          {u && <span className="chip big" title={`Usage estimate ${u[0]}: ${u[1]}`}>usage {u[0]} <Help topic="usage-estimate" /></span>}
           {r.recommendation && <span className="chip big v-good">Director recommends: {r.recommendation}</span>}
         </div>
       </div>
@@ -96,7 +96,8 @@ export function ApprovalsView({ state, onOpen }) {
   const pending = all.filter((r) => r.state === 'pending'), done = all.filter((r) => r.state !== 'pending');
   return (
     <div className="view">
-      <div className="plist-head"><h2>Waiting for you <Help topic="kpi" /></h2><span className="muted">{pending.length} request{pending.length === 1 ? '' : 's'}, oldest first.</span></div>
+      <div className="plist-head"><h2>Waiting for you <Help topic="approval-gate" /></h2><span className="muted">{pending.length} request{pending.length === 1 ? '' : 's'}, oldest first.</span></div>
+      <p className="muted small" style={{ margin: '0 0 8px' }}>Approval mode: <b>{state.settings.approval_mode}</b> <Help topic="approval-mode" /> \u00b7 to change it, tell Claude Code: <span className="mono">set approval mode to strict</span>, <span className="mono">normal</span> or <span className="mono">relaxed</span>.</p>
       <p className="notice info">The Director stops before steps that use a lot of usage or could loop (see "Approval gates" in CLAUDE.md). Nothing here runs until you answer.</p>
       {last && (
         <div className="card saved-decision">
