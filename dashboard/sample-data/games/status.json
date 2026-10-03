@@ -1,0 +1,145 @@
+{
+  "games": [
+    {
+      "slug": "lantern-heist",
+      "title": "Lantern Heist",
+      "stage": "owner-review",
+      "revision": 1,
+      "history": [
+        {
+          "stage": "brief",
+          "time": "2026-09-20T09:00:00Z",
+          "verdict": null,
+          "note": "Brief 24/30"
+        },
+        {
+          "stage": "design",
+          "time": "2026-09-20T09:40:00Z",
+          "verdict": null,
+          "note": "Rules v1"
+        },
+        {
+          "stage": "playtest",
+          "time": "2026-09-20T11:00:00Z",
+          "verdict": "NEEDS-FIXES",
+          "note": "Seat 1 wins 58%"
+        },
+        {
+          "stage": "design",
+          "time": "2026-09-20T12:00:00Z",
+          "verdict": null,
+          "note": "Revision 1"
+        },
+        {
+          "stage": "playtest",
+          "time": "2026-09-20T13:00:00Z",
+          "verdict": "PASS",
+          "note": "Seat 1 wins 51%"
+        },
+        {
+          "stage": "critique",
+          "time": "2026-09-20T13:50:00Z",
+          "verdict": "PASS",
+          "note": "Average 4.2"
+        },
+        {
+          "stage": "pitch",
+          "time": "2026-09-20T14:30:00Z",
+          "verdict": null,
+          "note": "Pitch written"
+        },
+        {
+          "stage": "owner-review",
+          "time": "2026-09-20T14:40:00Z",
+          "verdict": null,
+          "note": "Waiting for owner"
+        }
+      ],
+      "verdicts": {
+        "playtest": "PASS",
+        "critic": "PASS"
+      },
+      "kill_reason": null
+    },
+    {
+      "slug": "ember-market",
+      "title": "Ember Market",
+      "stage": "design",
+      "revision": 1,
+      "history": [
+        {
+          "stage": "brief",
+          "time": "2026-09-27T09:00:00Z",
+          "verdict": null,
+          "note": "Brief 21/30"
+        },
+        {
+          "stage": "design",
+          "time": "2026-09-27T09:45:00Z",
+          "verdict": null,
+          "note": "Rules v1"
+        },
+        {
+          "stage": "playtest",
+          "time": "2026-09-27T10:00:00Z",
+          "verdict": "NEEDS-FIXES",
+          "note": "Runaway leader 78%"
+        },
+        {
+          "stage": "design",
+          "time": "2026-09-27T11:30:00Z",
+          "verdict": null,
+          "note": "Revision 1"
+        }
+      ],
+      "verdicts": {
+        "playtest": "NEEDS-FIXES",
+        "critic": null
+      },
+      "kill_reason": null
+    },
+    {
+      "slug": "tide-lords",
+      "title": "Tide Lords",
+      "stage": "killed",
+      "revision": 0,
+      "history": [
+        {
+          "stage": "brief",
+          "time": "2026-09-14T09:00:00Z",
+          "verdict": null,
+          "note": "Brief 19/30"
+        },
+        {
+          "stage": "design",
+          "time": "2026-09-14T09:30:00Z",
+          "verdict": null,
+          "note": "Rules v1"
+        },
+        {
+          "stage": "playtest",
+          "time": "2026-09-14T10:30:00Z",
+          "verdict": "PASS",
+          "note": "Balanced"
+        },
+        {
+          "stage": "critique",
+          "time": "2026-09-14T11:30:00Z",
+          "verdict": "KILL",
+          "note": "Too close to Flip 7"
+        },
+        {
+          "stage": "killed",
+          "time": "2026-09-14T12:05:00Z",
+          "verdict": null,
+          "note": "Killed by critic"
+        }
+      ],
+      "verdicts": {
+        "playtest": "PASS",
+        "critic": "KILL"
+      },
+      "kill_reason": "Too close to an existing game (Flip 7)"
+    }
+  ]
+}

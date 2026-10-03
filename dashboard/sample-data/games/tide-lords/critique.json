@@ -1,0 +1,20 @@
+{
+  "verdict": "KILL",
+  "revision": 0,
+  "scores": {
+    "originality": 1.5,
+    "clarity": 4,
+    "fun": 3,
+    "balance": 4,
+    "market_fit": 2,
+    "production": 5
+  },
+  "average": 3.25,
+  "strength": "Clean and balanced",
+  "weakness": "Near copy of Flip 7",
+  "closest_existing_game": {
+    "name": "Flip 7",
+    "similarity": "high"
+  },
+  "required_changes": []
+}

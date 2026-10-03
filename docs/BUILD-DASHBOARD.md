@@ -82,4 +82,34 @@ Check: everything works with sample data, and with `games/` containing a single 
 
 ## Status
 
-_Not started._
+**Milestone 1: done.** Server (`/api/state`, `/api/file`, `/api/events`), sample data, KPI maths with tests (`npm test`), the Agent Network with side panels, the top bar with five KPIs and the activity feed.
+
+**Milestone 2: done.** Learn mode ("?" markers, texts in `dashboard/src/content/learn/`) and Replay.
+
+**Milestone 3: done.**
+- **Studio Floor:** agent sidebar with a mini funnel, a room card per agent (status, current game and step, two key numbers), the activity feed with filters by agent and game, the selected-agent panel beside the cards, and the milestone ticker.
+- **Pipeline:** one column per stage (plus a "Your ideas" column and a collapsed Killed list), the stage funnel, kill rate by stage, cycle time per game, average revision loops, first-pass playtest rate and stuck games. The numbers are computed in `server/kpis.js` and tested.
+- **Game page:** header, scorecard with targets, critic radar, win rate by seat and by bot, game-length distribution, card win correlation (all Recharts), history timeline and document tabs. The game-length distribution needs an optional `length_histogram` in `playtest.json`; I added it to the playtester's instructions, and without it the chart says so and shows the mean.
+- **Navigation:** Agent Network, Studio Floor, Pipeline. The Review Queue page belongs to Milestone 4.
+- **Org-chart layout (owner request):** You at the top, the Director's Office below, the four specialists in a row under it with their handoff arrows and revision loops. `reportsTo` in `agents.json` says who reports to whom, so a specialist can later grow into a department.
+
+**Added at the owner's request:** "+ New idea" (inject your own idea at any stage) and a "Talk to it" tab on every agent. The dashboard's only write is saving an idea file to `games/_inbox/` (`POST /api/ideas`, refused in sample mode). It never starts agents; the owner tells the Director to process the idea, and `CLAUDE.md` has the instructions for that.
+
+**Milestone 4: done.** Review Queue (waiting pitches with how it plays, components, cost and KPI status; past decisions; human playtests and the agent-vs-human gap; read-only with a note on recording decisions through Claude Code), Quality Lab, Market & Portfolio and Ops. Charts that compare games are hidden behind a message until there are at least two games. The maths is in `server/kpis.js` and covered by `npm test` (34 tests).
+
+**Dashboard v1 is complete.** Left out or simplified:
+- Usage per pitch is a placeholder ("tracked once runs are automated"), as the spec says.
+- "Simulated games in the last 24 hours" uses the time of each game's last playtester run, because the playtest file has no timestamp of its own.
+- Problem types in the Quality Lab are found by matching keywords in the playtester's problem text, so unusual wording can land in no category.
+- Review Queue "How it plays" is read from a "How it plays" heading in `pitch.md`; a pitch without that heading shows "Not in the pitch file yet".
+- No buttons that run agents or record decisions (that is stage 3 in the spec).
+
+Known quirk: the four reporting lines share one horizontal trunk, so clicking the trunk selects the last specialist; click a line's own vertical drop (or the node) to pick a specific one.
+
+Notes on what differs from the plan:
+- Added `remark-gfm` so tables in reports render properly.
+- Agents that have no `activity.jsonl` yet (for example the first real game, `duelflip`, which predates the data files) get their activity inferred from the report files that exist, and the stage is worked out from those files. The panel marks such lines "inferred from file".
+- The side panel sits beside the diagram instead of over it, so every node stays clickable.
+- The revision lines use a small custom edge because React Flow's built-in curve goes flat when both ends point down.
+- A first design put dotted lines from "You" to every agent; it looked cluttered, so "You" now has one line (pitch.md from the Director) and the step-in actions are the "+ New idea" button and each agent's "Talk to it" tab.
+- Real-game KPIs show "no data yet" until agents write the JSON files described in `docs/dashboard-notes.md` section 4.

@@ -1,0 +1,87 @@
+{
+  "verdict": "PASS",
+  "revision": 1,
+  "games_simulated": 4000,
+  "seat_win_rates": {
+    "1": 0.51,
+    "2": 0.49
+  },
+  "seat_balance_gap": 1,
+  "bot_win_rates": {
+    "random": 0.18,
+    "greedy": 0.32,
+    "strategic": 0.49
+  },
+  "skill_expression": 31,
+  "length": {
+    "mean_turns": 12.4,
+    "stdev": 2.2,
+    "estimated_minutes": 19,
+    "target_minutes": 20
+  },
+  "ties": 0.01,
+  "turn_cap_hits": 0,
+  "lead_changes_mean": 2.8,
+  "runaway_leader_rate": 0.58,
+  "cards": [
+    {
+      "name": "Smoke Bomb",
+      "played_rate": 0.41,
+      "win_correlation": 0.05,
+      "flag": null
+    },
+    {
+      "name": "Brass Key",
+      "played_rate": 0.12,
+      "win_correlation": 0.19,
+      "flag": "outsized win correlation"
+    }
+  ],
+  "ambiguities": [],
+  "problems": [
+    {
+      "severity": "low",
+      "problem": "Brass Key slightly strong",
+      "evidence": "win corr 0.19",
+      "fix": "cost +1"
+    }
+  ],
+  "length_histogram": [
+    {
+      "turns": 8,
+      "games": 40
+    },
+    {
+      "turns": 9,
+      "games": 150
+    },
+    {
+      "turns": 10,
+      "games": 420
+    },
+    {
+      "turns": 11,
+      "games": 760
+    },
+    {
+      "turns": 12,
+      "games": 1010
+    },
+    {
+      "turns": 13,
+      "games": 780
+    },
+    {
+      "turns": 14,
+      "games": 500
+    },
+    {
+      "turns": 15,
+      "games": 240
+    },
+    {
+      "turns": 16,
+      "games": 100
+    }
+  ]
+}

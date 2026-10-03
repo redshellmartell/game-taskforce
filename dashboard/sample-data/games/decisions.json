@@ -1,0 +1,10 @@
+{
+  "decisions": [
+    {
+      "slug": "moth-market",
+      "time": "2026-09-05T10:00:00Z",
+      "decision": "reject",
+      "notes": "Sample: not a fit for the owner"
+    }
+  ]
+}

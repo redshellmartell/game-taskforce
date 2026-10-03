@@ -37,6 +37,8 @@ Track every game's current stage in `games/STATUS.md` (one line per game: slug, 
 7. Component list with rough counts
 8. Suggested next step for a physical prototype
 
+Use a Markdown heading for each section (for example `## How it plays`); the dashboard's Review Queue reads that paragraph from `pitch.md`.
+
 Also write `games/<slug>/pitch.json`:
 
 ```json
@@ -44,6 +46,18 @@ Also write `games/<slug>/pitch.json`:
   "components": [{ "item": "cards", "count": 60 }], "estimated_prototype_cost_usd": 15,
   "prototype_ready": true }
 ```
+
+## Owner ideas inbox
+
+The owner can bring their own ideas into the pipeline from the dashboard ("+ New idea") or by telling you. The dashboard only saves the idea as `games/_inbox/<slug>.md`; nothing runs until the owner asks you ("process my idea ...", "run the inbox").
+
+File format: a header with `title`, `enter_at` (`research`, `design`, `playtest`, `critique` or `pitch`) and `submitted`, then the owner's notes, brief or rules.
+
+When asked to process one:
+1. Create `games/<slug>/`, add the game to `status.json` and `STATUS.md`, and move the inbox file to `games/<slug>/idea.md`.
+2. Stages before `enter_at` are skipped. Turn the owner's material into the file that stage would have produced (for example `brief.md` or `rules.md`, headed "Owner-supplied") and log it in `activity.jsonl`. Do not invent details the owner did not give; ask them if something essential is missing.
+3. Run the pipeline from `enter_at` onwards with the normal agents. Owner ideas get no shortcuts through the gates: playtest, critique, the revision limit and the KILL rule all still apply.
+4. Skipped stages count in the dashboard as "owner-supplied", not as agent runs.
 
 ## Dashboard data
 

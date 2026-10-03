@@ -1,0 +1,29 @@
+{
+  "verdict": "PASS",
+  "revision": 0,
+  "games_simulated": 2000,
+  "seat_win_rates": {
+    "1": 0.5,
+    "2": 0.5
+  },
+  "seat_balance_gap": 0,
+  "bot_win_rates": {
+    "random": 0.2,
+    "greedy": 0.3,
+    "strategic": 0.5
+  },
+  "skill_expression": 30,
+  "length": {
+    "mean_turns": 10,
+    "stdev": 2,
+    "estimated_minutes": 14,
+    "target_minutes": 15
+  },
+  "ties": 0,
+  "turn_cap_hits": 0,
+  "lead_changes_mean": 2.2,
+  "runaway_leader_rate": 0.6,
+  "cards": [],
+  "ambiguities": [],
+  "problems": []
+}

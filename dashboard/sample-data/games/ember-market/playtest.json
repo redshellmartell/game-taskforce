@@ -1,0 +1,74 @@
+{
+  "verdict": "NEEDS-FIXES",
+  "revision": 0,
+  "games_simulated": 2000,
+  "seat_win_rates": {
+    "1": 0.31,
+    "2": 0.26,
+    "3": 0.24,
+    "4": 0.19
+  },
+  "seat_balance_gap": 6,
+  "bot_win_rates": {
+    "random": 0.12,
+    "greedy": 0.29,
+    "strategic": 0.38
+  },
+  "skill_expression": 26,
+  "length": {
+    "mean_turns": 15.1,
+    "stdev": 3.4,
+    "estimated_minutes": 34,
+    "target_minutes": 30
+  },
+  "ties": 0.02,
+  "turn_cap_hits": 0,
+  "lead_changes_mean": 1.1,
+  "runaway_leader_rate": 0.78,
+  "cards": [],
+  "ambiguities": [
+    "What happens when the market is empty?"
+  ],
+  "problems": [
+    {
+      "severity": "high",
+      "problem": "Runaway leader",
+      "evidence": "78% of games won by halfway leader",
+      "fix": "Add catch-up bonus"
+    }
+  ],
+  "length_histogram": [
+    {
+      "turns": 10,
+      "games": 60
+    },
+    {
+      "turns": 12,
+      "games": 190
+    },
+    {
+      "turns": 14,
+      "games": 380
+    },
+    {
+      "turns": 15,
+      "games": 420
+    },
+    {
+      "turns": 16,
+      "games": 380
+    },
+    {
+      "turns": 18,
+      "games": 260
+    },
+    {
+      "turns": 20,
+      "games": 200
+    },
+    {
+      "turns": 22,
+      "games": 110
+    }
+  ]
+}

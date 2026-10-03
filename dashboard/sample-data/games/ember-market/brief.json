@@ -1,0 +1,39 @@
+{
+  "slug": "ember-market",
+  "title": "Ember Market",
+  "players": "3-4",
+  "minutes": 30,
+  "complexity": 2.5,
+  "mechanics": [
+    "engine building",
+    "market drafting"
+  ],
+  "theme": "desert bazaar",
+  "opportunity_score": 21,
+  "rubric": {
+    "demand": 4,
+    "gap": 3,
+    "originality": 3,
+    "producibility": 4,
+    "simulatability": 4,
+    "owner_fit": 3
+  },
+  "candidates": [
+    {
+      "idea": "Ember Market",
+      "score": 21,
+      "chosen": true
+    }
+  ],
+  "comparables": [
+    {
+      "name": "Splendor",
+      "bgg_rating": 7.4,
+      "crowdfunding": null,
+      "difference": "Shared market, no gems"
+    }
+  ],
+  "sources": [
+    "sample"
+  ]
+}

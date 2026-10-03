@@ -1,0 +1,20 @@
+{
+  "title": "Lantern Heist",
+  "hook": "Outbid your rivals in the dark and steal the brightest lanterns.",
+  "players": "2-4",
+  "minutes": 20,
+  "age": "10+",
+  "complexity": 2,
+  "components": [
+    {
+      "item": "cards",
+      "count": 54
+    },
+    {
+      "item": "lantern tokens",
+      "count": 12
+    }
+  ],
+  "estimated_prototype_cost_usd": 18,
+  "prototype_ready": true
+}

@@ -1,0 +1,6 @@
+{"time":"2026-09-27T09:00:00Z","agent":"market-researcher","game":"ember-market","event":"start","message":"Scanning engine builders"}
+{"time":"2026-09-27T09:45:00Z","agent":"market-researcher","game":"ember-market","event":"done","message":"Brief written, opportunity score 21/30"}
+{"time":"2026-09-27T10:00:00Z","agent":"game-designer","game":"ember-market","event":"done","message":"rules.md v1 written"}
+{"time":"2026-09-27T11:00:00Z","agent":"playtester","game":"ember-market","event":"done","message":"NEEDS-FIXES: runaway leader 78%"}
+{"time":"2026-09-27T11:30:00Z","agent":"game-designer","game":"ember-market","event":"start","message":"Revision 1: adding catch-up mechanic"}
+{"time":"2026-09-27T11:40:00Z","agent":"game-designer","game":"ember-market","event":"step","message":"Drafting a catch-up bonus"}

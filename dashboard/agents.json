@@ -1,0 +1,27 @@
+{
+  "manager": {
+    "room": "Director's Office",
+    "color": "#d9d4c7",
+    "reportsTo": "owner"
+  },
+  "market-researcher": {
+    "room": "Market Intel",
+    "color": "#c9a227",
+    "reportsTo": "manager"
+  },
+  "game-designer": {
+    "room": "Design Studio",
+    "color": "#8f6fc4",
+    "reportsTo": "manager"
+  },
+  "playtester": {
+    "room": "Playtest Lab",
+    "color": "#d0603f",
+    "reportsTo": "manager"
+  },
+  "critic": {
+    "room": "Review Board",
+    "color": "#4a9bb0",
+    "reportsTo": "manager"
+  }
+}

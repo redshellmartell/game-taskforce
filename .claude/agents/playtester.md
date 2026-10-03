@@ -43,6 +43,7 @@ Have `run.py` also write `games/<slug>/playtest.json` for the studio dashboard:
   "seat_win_rates": { "1": 0.52, "2": 0.48 }, "seat_balance_gap": 2.0,
   "bot_win_rates": { "random": 0.20, "greedy": 0.35, "strategic": 0.45 }, "skill_expression": 25.0,
   "length": { "mean_turns": 14.2, "stdev": 3.1, "estimated_minutes": 18, "target_minutes": 20 },
+  "length_histogram": [{ "turns": 10, "games": 120 }],
   "ties": 0.01, "turn_cap_hits": 0,
   "lead_changes_mean": 2.4, "runaway_leader_rate": 0.58,
   "cards": [ { "name": "", "played_rate": 0.4, "win_correlation": 0.05, "flag": null } ],

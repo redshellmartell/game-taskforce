@@ -1,0 +1,5 @@
+{"time":"2026-09-14T09:00:00Z","agent":"market-researcher","game":"tide-lords","event":"done","message":"Brief written, opportunity score 19/30"}
+{"time":"2026-09-14T10:00:00Z","agent":"game-designer","game":"tide-lords","event":"done","message":"rules.md v1 written"}
+{"time":"2026-09-14T11:00:00Z","agent":"playtester","game":"tide-lords","event":"done","message":"PASS: balanced"}
+{"time":"2026-09-14T12:00:00Z","agent":"critic","game":"tide-lords","event":"done","message":"KILL: too close to an existing game"}
+{"time":"2026-09-14T12:05:00Z","agent":"manager","game":"tide-lords","event":"step","message":"Archiving game"}
