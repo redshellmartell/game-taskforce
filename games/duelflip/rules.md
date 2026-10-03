@@ -2,7 +2,7 @@
 
 ## 1. Overview
 - **Title:** Duel Flip
-- **Hook:** Two tide-pool scavengers flip cards into one shared, visible river. Push for a bigger haul, but flip a value already in the river and the whole pile you flipped washes over to your rival. Every time you bank, you must leave one card behind as bait for the other player.
+- **Hook:** Two tide-pool scavengers flip cards into one shared, visible river. Push for a bigger haul, but flip a value already in the river and the pile you flipped washes over to your rival. Every time you bank, you leave one card behind as bait, and if your rival crashes into it, you take it back with their pile.
 - **Players:** 2 (designed for 2). An optional 3-4 player variant is in section 5.
 - **Play time:** 10-15 minutes. One game, no rounds.
 - **Age:** 8+
@@ -20,52 +20,62 @@
 | Snail | 1,2,3,4,5,6,7,8,9,10 |
 | Kelp | 1,2,3,4,5,6,7,8,9,10 |
 
-Each card shows its species (colour + icon) and its value. There are therefore 6 cards of each value in the deck.
-- **3 Lifebuoy tokens** (any small tokens).
+Each card shows its species (colour + icon) and its value. There are 6 cards of each value in the deck.
+- **2 Lifebuoy tokens** (any small tokens), one per player.
 - Nothing else. No board, dice or custom pieces.
 
 ## 3. Setup
 1. Shuffle the 60 cards into a face-down **deck**.
-2. Leave space for the **river** (a shared face-up row, empty at start), a face-up **discard pile**, and a **haul** area in front of each player (cards in hauls are always face up and sorted by species).
-3. Choose the first player at random. The first player takes 1 Lifebuoy; the second player takes 2 Lifebuoys.
-4. The first player begins. No cards are dealt to hands. There are no hands.
+2. Leave space for the **river** (a shared face-up row, empty at start), a face-up **discard pile**, and a **haul** area in front of each player (hauls are face up, sorted by species).
+3. Each player takes 1 Lifebuoy (held "ready"). Choose the first player at random. The second player will receive a +3 score bonus at the end (section 6).
+4. The first player begins. There are no hands.
 
 ## 4. Turn structure
-A turn has three phases. All information (river, hauls, discard pile, tokens) is public.
+All information (river, hauls, discard pile, Lifebuoys) is public. Cards you flip during your turn are your **pile** (they sit in the river; remember which are yours). Cards already in the river when your turn starts are **leftovers**.
 
-1. **Flip phase (push).** Flip the top card of the deck face up onto the end of the river. You must flip at least 1 card. After each flip you may flip another or stop flipping and go to Bank phase. Cards flipped by you this turn are your **pile** (they stay in the river, but remember which are yours; older cards in the river are **leftovers**).
-   - **Clash:** if a flipped card has the same **value** as ANY other card already in the river (leftover or your own pile; species is irrelevant), you clash.
-     - Resolve a clash immediately: either **spend a Lifebuoy** (return it to the box) or **bust**.
-     - *Lifebuoy:* discard the clashing card to the discard pile, your flipping ends at once and you go to Bank phase normally.
-     - *Bust:* discard the clashing card. The opponent adds every card in your pile (not leftovers) to their haul. Leftovers stay in the river. Your turn ends (skip Bank phase).
-   - If you have a Lifebuoy you may choose to bust instead of spending it (you are never forced to spend it).
-2. **Bank phase.** (Only if you did not bust.) The river now has at least 1 card.
-   - If the river has exactly 1 card, take it into your haul. River is now empty.
-   - If the river has 2 or more cards, **choose exactly one card to leave** in the river and take all the others into your haul. You may leave any card, including a leftover or one you flipped.
-3. **End of turn.** Play passes to the opponent. If the deck is empty at the start of this step, the game ends (see section 6); otherwise continue.
+1. **Flip phase.**
+   - **First flip (safe scout):** flip the top card of the deck. If its value equals the value of any card in the river, discard it and flip again; repeat until a card with a new value lands (it joins the river and your pile). The first flip can never clash or bust.
+   - **Second flip (mandatory):** you must flip a second card.
+   - **Further flips:** after your second flip (and after each later flip) you may flip another card or stop and go to the Bank phase.
+   - **Clash:** if any flip after the first has the same **value** as any other card in the river (leftover or your pile; species is irrelevant), you clash. Resolve immediately by choosing one:
+     - *Spend your Lifebuoy* (turn it face down; you must have it ready): discard the clashing card. Flipping ends at once; go to the Bank phase.
+     - *Bust:* discard the clashing card. If it clashed with a **leftover**, the opponent takes that leftover (the bait) into their haul. In all cases the opponent also adds your entire pile to their haul. Other leftovers stay in the river. Your turn ends (skip Bank phase).
+     - You may choose to bust even if you hold a ready Lifebuoy.
+   - **Lifebuoy refund:** see Bank phase.
+2. **Bank phase** (only if you did not bust). The river has at least 2 cards.
+   - **Leave exactly one card** in the river and take all the others into your haul. You may NOT leave a leftover (a card that was in the river when your turn started); you must take every leftover. You therefore choose which of your own pile cards to leave.
+   - **Refund:** if your pile (cards you flipped and that stayed in the river; not discarded cards) contains 4 or more cards at banking, flip your Lifebuoy back to ready if it is spent.
+3. **End of turn.** Play passes to the opponent. If the deck is empty, the game ends (section 6).
 
 ## 5. Special rules and timing
-- **Empty deck during Flip phase:** if you have flipped at least 1 card and the deck runs out, you must stop flipping and bank normally (a no-clash state). If the deck is empty when you would have to flip your first card, the game ends at once without you taking a turn. The game ends after the current turn finishes (end of turn check, step 3).
-- **Busting with only the clash card:** if your first flip clashes with a leftover and you bust, your pile is empty, so the opponent gains nothing; the clash card is discarded.
-- **Lifebuoy and bust on a clash:** the clash card is never added to any haul or the river; it is always discarded.
-- **Leftover rule on bust:** leftover cards remain in the river for the opponent's turn. They count for clashes against the opponent's flips.
+- **Empty deck (single rule):** if the deck is empty when you must flip and your pile is empty, the game ends immediately (no banking). If your pile is not empty, you stop flipping and go to the Bank phase. After any turn that leaves the deck empty, the game ends at step 3. Discards from the safe first flip are not part of your pile.
+- **Bait:** the leftover you leave is bait. If the opponent busts by clashing with it, you get it back (plus their pile). If they bank, they must take it. A bust against your own pile card does not give you any leftover.
+- **Clash card:** never added to a haul or the river; always discarded.
+- **Leftovers after a bust:** leftovers (except a bait taken as above) remain in the river for the next player, count for clashes, and must be taken when that player banks.
 - **Cards left in the river at game end** are discarded and score nothing.
-- **Ties in choosing what to leave:** the player banking chooses freely; there is no hidden information, and nothing is randomised after setup other than the shuffle and the first-player choice.
-- **Optional 3-4 player variant:** play clockwise; each player takes 1 Lifebuoy; the last seat in turn order gets +1 Lifebuoy for 3 players only. A bust gives your pile to the player on your left. All other rules are unchanged. This variant is untested.
+- **Randomness:** only the shuffle and the first-player choice. No hidden information.
+- **Optional 3-4 player variant (untested):** play clockwise; each player has 1 Lifebuoy; a bust gives your pile (and clashed bait) to the player on your left, who is also the one whose bait is claimed. The +3 bonus goes to the last seat in turn order.
 
 ## 6. End of game and scoring
-- **Trigger:** at the end of any turn (step 3), if the deck is empty, the game ends.
-- **Score:** each player's score = (sum of the values of all cards in their haul) + **5 points for each species in which they hold strictly more cards than the opponent** (ties in a species give nobody the bonus). Unused Lifebuoys are worth 2 points each.
+- **Trigger:** see section 5 (empty deck at the end of a turn, or when a player must flip with an empty pile).
+- **Score:** sum of values of all cards in your haul, plus **8 points for each species in which you hold strictly more cards than the opponent** (a tie in a species gives nobody the bonus), plus **3 points to the second player**. Lifebuoys are worth nothing at the end.
 - **Winner:** highest score.
 - **Tiebreakers:** (1) more cards in haul, (2) the second player wins.
 
 ## 7. Design notes
-- **Twist:** a shared river with a forced "leave one behind" bank. Your bank decides the opponent's next turn: leaving a high card is a lure they will take but it also raises their clash risk; leaving a low card denies them value but leaves a clash-value that is cheap for them. Clash is value-based and the 6-copies-per-value deck is fully visible in the discard pile, hauls and river, so risk is calculable.
-- **Strategies:** (a) greedy pusher: flip until the pile is large, risking giving it all away; (b) denial banker: bank early and leave a nasty card; (c) species majority: chase a species to claim its +5 bonus, which makes small cards worth taking; (d) Lifebuoy timing: hold it for a big pile, or cash it out for 2 points at the end.
-- **Tension / catch-up:** the second player has an extra Lifebuoy to offset first-move advantage. A bust only transfers your pile, never the leftovers, so a swing is limited to what you pushed. Species majority bonuses keep lagging players in the race.
-- **Not take-that:** every swing is caused by your own choice to push. No special action cards.
-- **Distinct from Flip 7:** no 7-card win condition, clashes are against a shared river, banking leaves bait.
-- **Balance knobs for playtesting:** Lifebuoy count (2nd player 2 vs 3), species bonus (3-7), unused Lifebuoy value (0-3), number of values (8-10).
+- **Twist:** the shared river with a forced "leave one behind" bank, where bait is claimed back if the rival crashes into it. A leftover must be taken by the next banker, so there is no permanent lock card. Leaving a high card hands the rival a gift unless they bust; leaving a low card is cheap but offers little reward. The left value also poisons that number for the opponent, and the species you leave feeds or starves their majority race.
+- **Strategies:** (a) greedy pusher: flip to a big pile, aiming for 4 cards to refund the Lifebuoy; (b) cautious banker: take the guaranteed two-flip turn and leave a nasty bait; (c) species majority: at +8 per species, small cards of the right species are worth chasing and denying; (d) Lifebuoy timing: spend it on a big pile, and push to 4 cards to get it back.
+- **Fixes from playtest:** seats are equalised (1 Lifebuoy each, +3 to seat 2); the first flip is safe so there are no dead first-flip busts; the minimum of 2 flips ends the no-interaction bank-early grind; Lifebuoys are refundable so holding is a real decision; species bonus raised to 8.
+- **Not take-that:** every swing comes from your own choice to push.
+- **Distinct from Flip 7:** shared river, bait, forced leftover taking.
+- **Balance knobs for re-testing:** second-seat bonus (+2 to +4), refund threshold (3-5 cards), species bonus (5-10), whether leaving a leftover is forbidden. Watch whether "leave lowest own card" is still dominant.
 
 ## 8. Changelog
-Initial version (no prior feedback).
+Revision 1 (from playtest-report.md):
+- **Seat imbalance:** Lifebuoys now 1 each (was 1 vs 2, which gave seat 2 about 57%); seat 2 gets +3 points (report: this gave about 50-52%).
+- **Bait collapsing to "leave lowest":** a leftover must be taken by the next banker (no permanent 1-lock); a bust clashing with a leftover returns it to the leaver, so a high bait is a real gamble; species bonus raised to 8 so which species you leave matters. Needs sim re-test.
+- **Dead first-flip busts (9-12% of turns):** first flip is a safe scout (matching cards are discarded and redrawn); the first flip cannot bust.
+- **Dead unused-Lifebuoy points:** removed; instead a Lifebuoy is refunded when you bank a pile of 4+ cards.
+- **Species bonus rarely mattering:** raised from 5 to 8.
+- **Bank-early grind:** a second flip is now mandatory, so every turn carries clash risk.
+- **Wording:** empty-deck rules consolidated in section 5; section 4 no longer repeats them.
