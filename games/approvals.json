@@ -50,6 +50,31 @@
       "decision": "decline",
       "decided_at": "2026-10-03T14:48:55Z",
       "owner_notes": "Owner: test on my Mac (local Ollama only)"
+    },
+    {
+      "id": "market-scan-1",
+      "gate": "scan",
+      "game": null,
+      "time": "2026-10-03T14:53:02Z",
+      "status": "pending",
+      "summary": "The idea bank has only 2 banked ideas scoring 18 or more (needs 3) and the last scan was 2026-10-03 on a single game, so starting a new game needs a market scan first.",
+      "why_needed": "A batched scan fills the bank with several scored ideas at once, so each later game only needs a cheap brief from the bank instead of its own research.",
+      "expected_outcome": "At least 5 new scored ideas in research/idea-bank.json, so the next game can start from a brief (target: 3 or more banked ideas scoring 18+).",
+      "usage_estimate": "XL",
+      "recommendation": "approve",
+      "options": [
+        {
+          "key": "approve",
+          "label": "Run one market scan (search limit 10, batch of ideas into the bank)"
+        },
+        {
+          "key": "decline",
+          "label": "No scan; I'll add an idea to the bank myself"
+        }
+      ],
+      "decision": null,
+      "decided_at": null,
+      "owner_notes": null
     }
   ]
 }
