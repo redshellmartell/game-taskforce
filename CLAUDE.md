@@ -92,6 +92,16 @@ Add a history entry every time a game changes stage or completes a revision. Pit
 
 **KPI targets** (used by the critic, playtester and you when judging): seat balance gap ≤ 5 points; strategic-vs-random win gap ≥ 20 points; simulated length within ±20% of the brief's target; runaway leader rate ≤ 65%; at least 2 lead changes per game on average; zero dead cards and zero rule ambiguities at pitch; critic average ≥ 3.5 at pitch.
 
+## Player test panel
+
+A panel of player personas (`panel/personas/`) gives games a "public test" on top of the bot playtest. Each persona is modelled on a real type of player, backed by research evidence in `panel/evidence/`, and checked against real receptions of well-known games in `panel/calibration.json`. Details are in `panel/README.md`.
+
+When the owner asks you to:
+- **"Refresh the panel research"**: run the `market-researcher` in Panel research mode for each persona (or the ones named), updating `panel/evidence/<id>.md`, then re-run calibration for those personas and update `panel/calibration.json`.
+- **"Add a persona: ..."**: create `panel/personas/<id>.md` from the owner's description (copy the structure of an existing persona), run Panel research for it, then calibrate it. A persona is `trusted` only when its mean calibration error is 1.0 or less.
+
+Log panel work in `panel/activity.jsonl` (same line format as the activity log, with `"game": "panel"`). The panel's opinions are advisory: the owner's own human playtests remain the final check.
+
 ## Dashboard project
 
 The owner's dashboard lives in `dashboard/`. When asked to build or change it, follow `docs/BUILD-DASHBOARD.md` (build steps) and `docs/dashboard-notes.md` (product spec), working one milestone at a time. The dashboard is read-only in v1 and must never start agents or change files in `games/`. The owner is new to coding: explain steps in plain language and keep setup minimal.

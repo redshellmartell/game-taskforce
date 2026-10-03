@@ -1,0 +1,21 @@
+---
+id: competitor
+name: The Competitor
+archetype: Win-focused optimiser
+tagline: "Show me the best line, then let's see who finds it first."
+color: "#4caf7d"
+initials: CO
+bot_style: optimiser          # how their simulation bot plays (see task 006)
+evidence: panel/evidence/competitor.md
+weights:                    # how much each simulation metric drives their fun (sum to 1); tuned by calibration
+  skill_expression: 0.25
+  decisions_per_turn: 0.10
+  lead_changes: 0.10
+  length_fit: 0.05
+  rules_simplicity: 0.00
+  catch_up: 0.00
+  interaction: 0.15
+  dominant_strategy_absent: 0.35
+preferred_minutes: [30, 90]
+price_tolerance_usd: [20, 60]
+---

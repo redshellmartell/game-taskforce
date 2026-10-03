@@ -1,0 +1,21 @@
+---
+id: strategist
+name: The Strategist
+archetype: Heavy, thinky gamer
+tagline: "If luck decides it, why are we playing?"
+color: "#4a6fa5"
+initials: ST
+bot_style: planner          # how their simulation bot plays (see task 006)
+evidence: panel/evidence/strategist.md
+weights:                    # how much each simulation metric drives their fun (sum to 1); tuned by calibration
+  skill_expression: 0.35
+  decisions_per_turn: 0.25
+  lead_changes: 0.10
+  length_fit: 0.05
+  rules_simplicity: 0.00
+  catch_up: 0.05
+  interaction: 0.10
+  dominant_strategy_absent: 0.10
+preferred_minutes: [45, 120]
+price_tolerance_usd: [25, 60]
+---

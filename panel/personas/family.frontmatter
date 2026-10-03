@@ -1,0 +1,21 @@
+---
+id: family
+name: The Family Player
+archetype: New or occasional player, plays with kids
+tagline: "Can a seven-year-old and Grandma both enjoy it?"
+color: "#a5c05a"
+initials: FA
+bot_style: gentle          # how their simulation bot plays (see task 006)
+evidence: panel/evidence/family.md
+weights:                    # how much each simulation metric drives their fun (sum to 1); tuned by calibration
+  skill_expression: 0.00
+  decisions_per_turn: 0.05
+  lead_changes: 0.10
+  length_fit: 0.20
+  rules_simplicity: 0.30
+  catch_up: 0.25
+  interaction: 0.05
+  dominant_strategy_absent: 0.05
+preferred_minutes: [15, 45]
+price_tolerance_usd: [15, 40]
+---

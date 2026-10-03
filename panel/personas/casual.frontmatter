@@ -1,0 +1,21 @@
+---
+id: casual
+name: The Casual Social
+archetype: Light, social player
+tagline: "Is everyone laughing? Then it's a good game."
+color: "#e07aa5"
+initials: CA
+bot_style: social          # how their simulation bot plays (see task 006)
+evidence: panel/evidence/casual.md
+weights:                    # how much each simulation metric drives their fun (sum to 1); tuned by calibration
+  skill_expression: 0.00
+  decisions_per_turn: 0.05
+  lead_changes: 0.10
+  length_fit: 0.25
+  rules_simplicity: 0.30
+  catch_up: 0.10
+  interaction: 0.15
+  dominant_strategy_absent: 0.05
+preferred_minutes: [10, 30]
+price_tolerance_usd: [10, 30]
+---

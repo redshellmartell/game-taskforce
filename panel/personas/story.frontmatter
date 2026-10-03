@@ -1,0 +1,21 @@
+---
+id: story
+name: The Story Lover
+archetype: Thematic player
+tagline: "Tell me a story, and let the rules get out of its way."
+color: "#d98a4a"
+initials: SL
+bot_style: thematic          # how their simulation bot plays (see task 006)
+evidence: panel/evidence/story.md
+weights:                    # how much each simulation metric drives their fun (sum to 1); tuned by calibration
+  skill_expression: 0.05
+  decisions_per_turn: 0.10
+  lead_changes: 0.20
+  length_fit: 0.15
+  rules_simplicity: 0.10
+  catch_up: 0.10
+  interaction: 0.20
+  dominant_strategy_absent: 0.10
+preferred_minutes: [45, 120]
+price_tolerance_usd: [30, 80]
+---
