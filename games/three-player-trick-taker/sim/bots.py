@@ -7,9 +7,9 @@ def strength(hand, trump, played):
     for (s, r) in hand:
         u = sum(1 for rr in range(r + 1, 10) if (s, rr) not in hs and (s, rr) not in played)
         if trump is not None and s == trump:
-            n += 1 if u <= 3 else 0
+            n += 1 if u <= 1 else (0.6 if u <= 3 else 0)
         else:
-            n += 1 if u <= 1 else 0
+            n += 1 if u == 0 else (0.5 if u == 1 else 0)
     return n
 
 def cur_winner(trick, trump):
