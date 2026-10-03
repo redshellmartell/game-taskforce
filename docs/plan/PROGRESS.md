@@ -2,6 +2,13 @@
 
 Written by Claude Code after each task, newest first. See `WORKFLOW.md` for the format.
 
+## 2026-10-03 — Task 009: Free-model experiment — BLOCKED (tooling done; the comparison needs your Mac)
+- **Why blocked:** this ran in a cloud session. There is no Ollama, no Mac to check (brief step 1), no free-API key, and I could not read any provider's data-use terms, so I ran no comparison and have no results or recommendation. Nothing was sent to any third party.
+- **Built (free, tested):** `tools/llm/llm.py` (Claude, Ollama, OpenRouter, Google AI Studio; keys only from environment variables; refuses free APIs for game content unless `FREE_API_APPROVED=1`), `config.json` (all three jobs on Haiku for now), `compare.py` (builds the same inputs as task 006, runs candidates, saves timings, writes a blind bundle with the key kept separate), 7 unit tests, `tools/llm/README.md` (exact Mac steps), and `docs/plan/free-model-experiment.md` (skeleton, marked not run). Dry run confirmed prompts of about 27-32k characters (roughly 8k tokens); Ollama is set to a 16k context so they are not truncated.
+- **Approval request:** `free-model-experiment-api` (gate `free-api`) is in `games/approvals.json`; I recommend declining and testing local Ollama only. No key patterns are in the repository (checked with `git grep`).
+- **Honest note on value:** a Haiku persona review costs about 34-42k tokens, so moving all persona work to a free model would save a small share of your plan. It is worth running only if you want to avoid usage entirely or keep designs off Anthropic's servers, which is not the case here.
+- Questions for the owner: (1) Run the experiment on the Mac (README steps), or drop it? (2) Approve or decline the free-API request?
+
 ## 2026-10-03 — Task 007: Test panel in the dashboard — done
 - **Org chart:** Test Panel department (`reportsTo: playtester`) under the Playtest Lab; collapsed by default, "show personas" reveals five small nodes that open the persona's page; personas pulse while a `panel:<id>` line is running. Studio Floor has a Test Panel room card (playing now, average fun given). The agent is built in code (like the Director) and `agents.json` has its colour; `panel-player` stays out of the chart.
 - **Panel page:** persona cards, heatmap (persona × game fun), who each game is for, calibration error tile. **Persona page** with the six tabs from the brief; "Talk to them" copies "Ask <persona> about <game>: ..." and lists past `conversations.jsonl`. **Game page:** Test panel section (rows, matchup grid, rotation, agreement flag) and the panel report as a document tab.
