@@ -11,7 +11,9 @@ import scoring as S
 
 ROOT = os.path.abspath(os.path.join(HERE, "..", "..", ".."))
 PERSONAS = S.load_personas(ROOT)
-IDS = sorted(PERSONAS)
+FIRST = ["casual", "competitor", "family", "story", "strategist"]   # fixed order keeps the seeds of the original five tables unchanged
+IDS = FIRST + sorted(set(PERSONAS) - set(FIRST))
+BRIEF = json.load(open(os.path.join(ROOT, "games", "duelflip", "brief.json")))
 
 class Count:
     """Wraps a bot and counts the decisions it was asked to make."""
@@ -63,8 +65,8 @@ def main(per_seating=200):
             out, _ = one_game(first, second, seed + k)
             for seat, who in enumerate((first, second)):
                 rows[who].append(out[seat]); by_p[who].append(out[seat]); by_seat[who][seat].append(out[seat])
-        tables[(a, b)] = rows
-    metrics_of = lambda who, rows: {**S.game_metrics(playtest, words, PERSONAS[who]["preferred_minutes"]), **S.bot_metrics(agg(rows))}
+        tables[tuple(sorted((a, b)))] = rows
+    metrics_of = lambda who, rows: {**S.game_metrics(playtest, words, PERSONAS[who]["preferred_minutes"], BRIEF), **S.bot_metrics(agg(rows))}
     fun_at = lambda who, rows: S.fun_from_metrics(metrics_of(who, rows), PERSONAS[who]["weights"])
     personas, matchups = {}, []
     for (a, b), rows in tables.items():

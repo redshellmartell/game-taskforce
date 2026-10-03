@@ -13,7 +13,7 @@ Every game lives in its own folder: `games/<game-slug>/`. A game moves through t
 | 1. Research | `market-researcher` | `brief.md` (from the idea bank, see "Lean mode") |
 | 2. Design | `game-designer` | `rules.md` |
 | 3. Playtest | `playtester` | `playtest-report.md` (+ `sim/` code) |
-| 3b. Test panel | bots + `panel/scoring.py` (free), `panel-player` x5 (AI, gated) | `panel.json`, `panel-report.md` |
+| 3b. Test panel | bots + `panel/scoring.py` (free), `panel-player` per persona (AI, gated) | `panel.json`, `panel-report.md` |
 | 4. Critique | `critic` | `critique.md` |
 | 5. Pitch | Manager (you) | `pitch.md` |
 
@@ -188,6 +188,8 @@ Add a history entry every time a game changes stage or completes a revision. Pit
 A panel of player personas (`panel/personas/`) gives games a "public test" on top of the bot playtest. Each persona is modelled on a real type of player, backed by research evidence in `panel/evidence/`, and checked against real receptions of well-known games in `panel/calibration.json`. Details are in `panel/README.md`.
 
 **Stage 3b (every game).** After every playtest the playtester's persona bots and `panel/scoring.py` run automatically (free): `games/<slug>/panel.json` gets each persona's predicted fun, replay, would-buy and pet peeves hit. Only when the playtest verdict is PASS (or the owner asks) and the owner has approved the `panel-reviews` gate, run `panel-player` once per trusted persona (one at a time), then write `games/<slug>/panel-report.md`: who the game is for, where the personas agree and disagree, recurring complaints, suggested changes. The critic reads `panel-report.md` for its Fun and Market fit scores. Log `start`/`done` lines in `activity.jsonl` with `"agent": "panel:<persona>"` and add a `panel` entry to the game's `status.json` history.
+
+**The Bar Raiser (veto).** The sixth persona, `barraiser`, acts as a professional veteran designer who joins the playtest and is the panel's hardest judge. It is the only persona that can **veto**: `panel/scoring.py` sets `veto.active` in its `panel.json` entry when the numbers cross the limits in its profile (`panel/personas/barraiser.md`, the `veto` block: predicted fun below 2.5, a dominant strategy, a seat advantage over 6 points, low originality), and its written review may veto on expert grounds (derivative, would not be signed). A veto never kills a game by itself, but the Director must put it first in `panel-report.md` and in any pitch's "Remaining risks", and must not pitch a vetoed game without the owner's explicit decision (revise, pitch anyway, or park). Treat the Bar Raiser as untrusted until its panel research and calibration have run.
 
 **Asking a persona.** When the owner says "Ask <persona> about <game>: <question>", run `panel-player` for that persona in conversation mode (give it the current UTC time); it answers in character and appends to `games/<slug>/panel/conversations.jsonl`. "Ask the panel ..." means every trusted persona, one short answer each; this needs the `panel-reviews` approval when more than one persona is asked.
 

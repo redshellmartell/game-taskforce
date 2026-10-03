@@ -139,6 +139,48 @@
       "decision": null,
       "decided_at": null,
       "owner_notes": null
+    },
+    {
+      "id": "market-scan-2",
+      "gate": "scan",
+      "game": null,
+      "time": "2026-10-03T16:12:01Z",
+      "status": "approved",
+      "summary": "Extended market scan: at least 10 new ideas, up to 20 if usage allows (budget raised above the usual 25 searches).",
+      "why_needed": "Owner request to widen the idea bank.",
+      "expected_outcome": "10-20 new scored ideas in research/idea-bank.json and an updated research/market-scan.md.",
+      "usage_estimate": "XL",
+      "recommendation": "approve",
+      "options": [
+        {
+          "key": "approve",
+          "label": "Run the extended scan"
+        }
+      ],
+      "decision": "approve",
+      "decided_at": "2026-10-03T16:12:01Z",
+      "owner_notes": "Owner asked for this in chat (\"I want to run an extensive market research agent ... improve the persona agents ... sixth persona\")"
+    },
+    {
+      "id": "panel-research-2",
+      "gate": "panel-research",
+      "game": null,
+      "time": "2026-10-03T16:12:01Z",
+      "status": "approved",
+      "summary": "Panel research: new sixth persona (Bar Raiser) and a refresh of the evidence for the five existing personas, then calibration.",
+      "why_needed": "Owner request to improve the persona agents and add a veto-capable expert persona.",
+      "expected_outcome": "panel/evidence/barraiser.md plus refreshed evidence files, and a calibration entry for the Bar Raiser (trusted only if mean error is 1.0 or less).",
+      "usage_estimate": "XL",
+      "recommendation": "approve",
+      "options": [
+        {
+          "key": "approve",
+          "label": "Run panel research and calibration"
+        }
+      ],
+      "decision": "approve",
+      "decided_at": "2026-10-03T16:12:01Z",
+      "owner_notes": "Owner asked for this in chat (\"I want to run an extensive market research agent ... improve the persona agents ... sixth persona\")"
     }
   ]
 }

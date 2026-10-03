@@ -13,7 +13,7 @@ class T(unittest.TestCase):
         self.assertEqual(fm["weights"], {"a": 0.5, "b": 0.5}); self.assertEqual(fm["preferred_minutes"], [45, 120]); self.assertEqual(fm["tagline"], "hi: there")
     def test_real_personas_weights_sum_to_one(self):
         ps = S.load_personas()
-        self.assertEqual(len(ps), 5)
+        self.assertEqual(len(ps), 6)
         for p in ps.values():
             self.assertAlmostEqual(sum(p["weights"].values()), 1.0, places=6); self.assertTrue(p["peeves"])
     def test_simple_metrics(self):
@@ -45,5 +45,28 @@ class T(unittest.TestCase):
         self.assertEqual(set(out["personas"]), {"strategist", "casual"}); self.assertIsNone(out["personas"]["casual"]["review"])
         self.assertIn("a_fun", out["matchups"][0]); self.assertNotIn("a_raw", out["matchups"][0])
         self.assertEqual(out["summary"]["best_fit"] in ("casual", "strategist"), True)
+
+    def test_missing_metric_is_left_out_not_counted_as_zero(self):
+        w = {"skill_expression": 0.5, "originality": 0.5}
+        self.assertEqual(S.weighted({"skill_expression": 1.0}, w), 1.0)          # originality unavailable: scaled up, not 0.5
+        self.assertEqual(S.weighted({"skill_expression": 1.0, "originality": 0.0}, w), 0.5)
+    def test_originality_from_brief(self):
+        self.assertEqual(S.originality({"rubric": {"originality": 5}}), 1.0); self.assertEqual(S.originality({"rubric": {"originality": 1}}), 0.0)
+        self.assertIsNone(S.originality({})); self.assertIsNone(S.originality(None))
+        self.assertIn("originality", S.game_metrics(PT, 1400, [30, 90], {"rubric": {"originality": 3}}))
+        self.assertNotIn("originality", S.game_metrics(PT, 1400, [30, 90]))
+    def test_bar_raiser_veto(self):
+        ps = S.load_personas(only={"barraiser"}); br = ps["barraiser"]
+        self.assertIn("min_fun", br["veto"]); self.assertAlmostEqual(sum(br["weights"].values()), 1.0, places=6)
+        ok = S.check_veto(br["veto"], 3.9, {"dominant_strategy_absent": 0.9, "originality": 0.8}, 2.0)
+        self.assertEqual(ok, {"active": False, "reasons": []})
+        bad = S.check_veto(br["veto"], 2.0, {"dominant_strategy_absent": 0.2, "originality": 0.1}, 9.0)
+        self.assertTrue(bad["active"]); self.assertEqual(len(bad["reasons"]), 4)
+    def test_veto_in_panel_json_only_for_personas_that_have_one(self):
+        ps = S.load_personas(only={"casual", "barraiser"})
+        res = {"personas": {k: {"raw": RAW, "bot": {"win_rate": .5}} for k in ps}, "matchups": [], "rotation": {"tables": 1}}
+        out = S.build_panel({**PT, "seat_balance_gap": 9.0}, 1400, res, ps, 1)
+        self.assertNotIn("veto", out["personas"]["casual"]); self.assertTrue(out["personas"]["barraiser"]["veto"]["active"])
+        self.assertIn("barraiser", out["summary"]["veto"])
 
 if __name__ == "__main__": unittest.main()

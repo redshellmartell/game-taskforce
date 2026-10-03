@@ -257,7 +257,7 @@ import { panelStats, gamePanelSummary } from './kpis.js';
 test('panel: sample games give each persona stats, a heatmap and an agreement flag', () => {
   const state = buildState({ repoRoot, dashboardDir, sample: true, now: Date.now() });
   const ps = state.panel.stats;
-  assert.equal(Object.keys(ps.personas).length, 5);
+  assert.equal(Object.keys(ps.personas).length, 6);
   assert.equal(ps.gamesWithPanel, 2);
   assert.equal(ps.grid.length, 2);
   const lh = state.games.find((g) => g.slug === 'lantern-heist');

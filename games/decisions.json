@@ -23,6 +23,18 @@
       "time": "2026-10-03T15:57:30Z",
       "decision": "approve",
       "notes": "greenlight gate (three-player-trick-taker-greenlight): owner approved in chat"
+    },
+    {
+      "slug": null,
+      "time": "2026-10-03T16:12:01Z",
+      "decision": "approve",
+      "notes": "market-scan-2: owner requested it in chat"
+    },
+    {
+      "slug": null,
+      "time": "2026-10-03T16:12:01Z",
+      "decision": "approve",
+      "notes": "panel-research-2: owner requested it in chat"
     }
   ]
 }

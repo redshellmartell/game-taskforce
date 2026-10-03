@@ -146,4 +146,10 @@ class Cautious(Base):
         r = st.river
         return self.rng.choice(cands) if self.rng.random() < 0.3 else min(cands, key=lambda i: r[i][1])
 
-PERSONA = {"strategist": Planner, "casual": Instinct, "competitor": Optimiser, "story": Flavour, "family": Cautious}
+class Expert(Strategic):
+    """Bar Raiser: the strongest line, but probes early: a slightly riskier EV rule and always the smart leave."""
+    name = "expert"
+    def __init__(self, seed=0, leave_mode=None):
+        super().__init__(seed, risk=0.9, buoy_min=8, leave_mode=leave_mode)
+
+PERSONA = {"strategist": Planner, "casual": Instinct, "competitor": Optimiser, "story": Flavour, "family": Cautious, "barraiser": Expert}
