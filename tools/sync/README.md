@@ -10,3 +10,5 @@ It only commits `games/approvals.json`, `games/decisions.json`, `studio-settings
 ## Run it automatically (Mac)
 
 `bash tools/sync/install-mac.sh` installs two background jobs (macOS LaunchAgents) that start when you log in and restart if they stop: the sync script and the dashboard at http://localhost:4173. `status`, `restart` and `uninstall` are the other commands. Logs are in `~/Library/Logs/game-taskforce/`. Written without access to a Mac, so the first run is its test.
+
+The sync job also restarts the dashboard by itself when a pull brings new dashboard code, so after the one-time install nothing needs running by hand. (To pick up this change, run `bash tools/sync/install-mac.sh` once more.)

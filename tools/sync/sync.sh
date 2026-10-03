@@ -21,10 +21,16 @@ while true; do
   fi
   # 2. cloud work -> your folder (rebase keeps your commit on top; other uncommitted files are set aside and put back)
   if git fetch -q origin "$BRANCH" 2>/dev/null; then
+    BEFORE="$(git rev-parse HEAD)"
     if ! git pull -q --rebase --autostash origin "$BRANCH" 2>/tmp/sync-error.txt; then
       git rebase --abort 2>/dev/null
       echo "$(date +%H:%M:%S) could not combine your changes with the cloud's (same file changed in both). Nothing was lost. Tell Claude: sync conflict."
       cat /tmp/sync-error.txt | tail -3
+    fi
+    # if the dashboard's own code changed in what we just pulled, restart it so it rebuilds (the job runs npm install + build on start)
+    AFTER="$(git rev-parse HEAD)"
+    if [ "$BEFORE" != "$AFTER" ] && ! git diff --quiet "$BEFORE" "$AFTER" -- dashboard/src dashboard/server dashboard/package.json dashboard/index.html dashboard/agents.json 2>/dev/null; then
+      launchctl kickstart -k "gui/$(id -u)/com.gametaskforce.dashboard" 2>/dev/null && echo "$(date +%H:%M:%S) dashboard code changed: restarted the dashboard"
     fi
     if [ -n "$(git log '@{u}..HEAD' --oneline 2>/dev/null)" ]; then
       git push -q origin "$BRANCH" 2>/dev/null && echo "$(date +%H:%M:%S) sent your changes to GitHub"

@@ -39,7 +39,7 @@ case "${1:-install}" in
     mkdir -p "$AGENTS" "$LOGS"
     ( cd "$ROOT/dashboard" && npm install --no-audit --no-fund >/dev/null )
     plist $SYNC "$ROOT" "bash tools/sync/sync.sh 20"
-    plist $DASH "$ROOT/dashboard" "npm start"
+    plist $DASH "$ROOT/dashboard" "npm install --no-audit --no-fund && npm start"
     load $SYNC; load $DASH
     echo "Installed. Open http://localhost:4173 in about 30 seconds (the dashboard builds first)."
     echo "Check any time with:  bash tools/sync/install-mac.sh status" ;;
