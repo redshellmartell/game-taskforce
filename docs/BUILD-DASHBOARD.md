@@ -104,6 +104,8 @@ Check: everything works with sample data, and with `games/` containing a single 
 - Review Queue "How it plays" is read from a "How it plays" heading in `pitch.md`; a pitch without that heading shows "Not in the pitch file yet".
 - No buttons that run agents or record decisions (that is stage 3 in the spec).
 
+**Added with task 008:** idea bank on Market & Portfolio (with a "scan due" indicator and the Market Intel room card), usage on the Ops page (token-based: guard windows, usage per pitched game, by agent, game and week; read from `usage/sessions.jsonl` and `usage/guard.json`), and a "Test panel" tab on the Playtest Lab (personas from `panel/`, calibration, profile and evidence; the file endpoint also serves `panel/personas/` and `panel/evidence/` Markdown).
+
 Known quirk: the four reporting lines share one horizontal trunk, so clicking the trunk selects the last specialist; click a line's own vertical drop (or the node) to pick a specific one.
 
 Notes on what differs from the plan:
