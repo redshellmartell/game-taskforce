@@ -4,6 +4,7 @@ Short log of decisions and why, newest first, so nobody re-argues them.
 
 ## 2026-10-03
 
+- **The test panel plays in rotation.** When a game seats fewer players than there are personas, every combination of personas plays, with every persona in every seat equally often, so each persona gives feedback on every game and we see who dominates or enjoys playing with whom. Spare seats in bigger games are filled with standard bots.
 - **A test panel of player personas** sits under the Playtest Lab: a strategist, a casual social player, a competitor, a story lover and a family player. Their opinions are grounded in research on what real players of each type say in reviews and forums, and each persona is calibrated against real receptions of well-known games before it's trusted. Real human playtests remain the final check, compared per player type.
 - **Panel cost is kept low by doing most of the work in free code.** Each persona has a simulation bot and a scoring formula, so every game gets a free "fun profile" per persona. The AI only writes in-character reviews, only for games that passed the bot playtest (or on request), using the smaller Haiku model. Running everything off the subscription is possible later but costs money or quality.
 - **Personas are personified in the dashboard** with their own pages, track record, statistics and a way to talk to them.

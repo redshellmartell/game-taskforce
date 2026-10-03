@@ -31,13 +31,15 @@ Plus a panel-wide comparison: a persona × game heatmap of fun scores, and a "wh
 Tabs:
 - **Who they are** - the profile: sketch, loves, pet peeves, how they play, rating anchors (rendered from their persona file)
 - **What they've played** - every game they reviewed: scores, would-buy and price, best and worst moment, the change they'd make, a link to the full review
-- **Stats** - their rating distribution; their scores compared with the panel average and the critic; predicted (code) versus written (AI) ratings; how their bot performed (win rate, how often it fell behind)
+- **Stats** - their rating distribution; their scores compared with the panel average and the critic; predicted (code) versus written (AI) ratings; how their bot performed (win rate, how often it fell behind, win rate by seat); their record against each other persona, and who they most and least enjoy playing with
 - **Track record** - calibration games (predicted versus real reception) and, once human playtests with a matching `player_type` exist, their predictions versus real players of their type
 - **Evidence** - the research behind them, with sources and last-refreshed date
 - **Talk to them** - pick a game, type a question, copy the prompt ("Ask the Strategist about duelflip: …") to paste into Claude Code; below it, their past conversations from `conversations.jsonl`
 
 ### 4. Game page: Panel section
 - A row per persona: avatar, fun, replay, would-buy, one-line verdict
+- **Matchup grid:** persona × persona, showing win rate (and fun on hover) for each pairing from the rotation, so the owner can see who dominates whom and which tables are fun
+- Rotation summary: player counts tested, tables, games per persona, and any filler bots used
 - Agreement indicator (spread of fun scores): "the panel agrees" or "the panel is split"
 - Best fit and worst fit audience
 - Link to `panel-report.md`
