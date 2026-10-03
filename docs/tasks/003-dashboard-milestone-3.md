@@ -1,9 +1,11 @@
 ---
-status: open
+status: done
 priority: normal
 depends_on: [001]
 ---
 # 003: Finish dashboard milestone 3
+
+> Done before this brief was picked up: completed on branch `claude/nice-allen-b9i0vi` (see the Status section of `docs/BUILD-DASHBOARD.md`). Merged into `main` by task 001.
 
 ## Goal
 Complete the parts of milestone 3 still missing according to the Status section of `docs/BUILD-DASHBOARD.md`, so the owner can run the studio from the KPI screens and not only the Agent Network.

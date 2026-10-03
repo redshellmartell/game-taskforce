@@ -1,9 +1,11 @@
 ---
-status: open
+status: done
 priority: normal
 depends_on: [003]
 ---
 # 004: Dashboard milestone 4
+
+> Done before this brief was picked up: completed on branch `claude/nice-allen-b9i0vi` (see the Status section of `docs/BUILD-DASHBOARD.md`). Merged into `main` by task 001.
 
 ## Goal
 Add the remaining views so the dashboard covers every KPI area in the spec.
