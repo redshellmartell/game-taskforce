@@ -78,6 +78,10 @@ Add a history entry every time a game changes stage or completes a revision. Pit
 
 **KPI targets** (used by the critic, playtester and you when judging): seat balance gap ≤ 5 points; strategic-vs-random win gap ≥ 20 points; simulated length within ±20% of the brief's target; runaway leader rate ≤ 65%; at least 2 lead changes per game on average; zero dead cards and zero rule ambiguities at pitch; critic average ≥ 3.5 at pitch.
 
+## Dashboard project
+
+The owner's dashboard lives in `dashboard/`. When asked to build or change it, follow `docs/BUILD-DASHBOARD.md` (build steps) and `docs/dashboard-notes.md` (product spec), working one milestone at a time. The dashboard is read-only in v1 and must never start agents or change files in `games/`. The owner is new to coding: explain steps in plain language and keep setup minimal.
+
 ## Default first command
 
 If the owner says "run the pipeline" or similar without details, run one full game through all five stages, starting with a market-research brief, and finish by summarising the pitch.
