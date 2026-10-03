@@ -256,3 +256,11 @@ table.matrix td { padding: 4px 14px 4px 0; white-space: nowrap; }
 .approval .opt { display: grid; grid-template-columns: minmax(180px, 1fr) minmax(220px, 1fr); gap: 10px; align-items: center; margin: 4px 0; }
 .rev-context { border-top: 1px solid var(--border); margin-top: 8px; padding-top: 4px; }
 @media (max-width: 700px) { .approval .opt { grid-template-columns: 1fr; } }
+.opt-buttons { display: flex; flex-wrap: wrap; gap: 8px; }
+button.optbtn { background: var(--panel); border: 1px solid var(--border); border-radius: 4px; padding: 6px 14px; }
+button.optbtn:hover:not(:disabled) { border-color: var(--muted); }
+button.primary.rec { border-color: var(--good); }
+button:disabled { opacity: .45; }
+.confirm { border: 1px solid var(--border); border-radius: 6px; padding: 10px 12px; background: var(--bg); }
+.confirm textarea { background: var(--panel); color: var(--text); border: 1px solid var(--border); border-radius: 4px; padding: 6px 8px; font: inherit; }
+.saved-decision { border-color: var(--good); }

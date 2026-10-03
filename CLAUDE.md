@@ -102,6 +102,9 @@ Some steps use a lot of the owner's usage or could loop without adding value. Be
 
 ### Recording decisions
 
+The owner can answer in the dashboard (Approvals page, which sets the request's `status` to `approved` or `declined`, and writes `decision`, `decided_at` and `owner_notes`) or by replying to you in chat. When the owner says **"continue with approved work"**, read `games/approvals.json`, act on every request decided since the last run (one that is `approved` or `declined` and not yet recorded in `games/decisions.json`), record each in `games/decisions.json` (`slug` is `null` for requests that are not about a game), and continue or stop accordingly. A decision whose key is anything other than `approve` (for example `pitch`, `park`, `kill`) means the gated step is not run; do what that option says instead.
+
+
 When the owner replies, update the request's `status`, `decision`, `decided_at` and `owner_notes`, log it in `games/decisions.json`, and continue (or stop) accordingly. An approval covers one step only: a second revision needs a new gate. Requests older than 14 days with no answer become `expired`; mention them in the next status report.
 
 ### Approval modes

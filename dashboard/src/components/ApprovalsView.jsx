@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { CopyBox } from './IdeaForm.jsx';
 import { Help } from './Help.jsx';
 import { ago } from '../util.js';
@@ -22,8 +23,22 @@ function RevisionContext({ rev }) {
   );
 }
 
-function Card({ r, onOpen, decided }) {
+function Card({ r, onOpen, decided, sample, onDecided }) {
   const u = USAGE[r.usage_estimate];
+  const [choice, setChoice] = useState(null);      // the option the owner clicked, awaiting confirmation
+  const [notes, setNotes] = useState('');
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState(null);
+  const confirm = async () => {
+    setBusy(true); setError(null);
+    try {
+      const res = await fetch(`/api/approvals/${encodeURIComponent(r.id)}`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ decision: choice.key, notes }) });
+      const body = await res.json();
+      if (!res.ok) throw new Error(body.error || 'Could not record the decision');
+      onDecided({ ...body, label: choice.label, gate: r.gate, game: r.gameTitle });
+    } catch (e) { setError(e.message); }
+    setBusy(false);
+  };
   return (
     <section className={`card approval ${decided ? 'decided' : ''}`}>
       <div className="pitch-head">
@@ -47,8 +62,25 @@ function Card({ r, onOpen, decided }) {
           </div>
           {r.revision && <RevisionContext rev={r.revision} />}
           <div className="pitch-actions">
-            <div className="muted small">Your options. For now, reply to Claude Code with the line next to the one you choose:</div>
-            {r.options.map((o) => <div key={o.key} className="opt"><span>{o.label}</span><CopyBox text={replyFor(r, o)} /></div>)}
+            {sample && <p className="notice info" style={{ marginTop: 0 }}>Sample data: decisions can not be saved here. With real games, these buttons record your decision.</p>}
+            {!choice && (
+              <div className="opt-buttons">{r.options.map((o) => (
+                <button key={o.key} className={o.key === r.recommendation ? 'primary rec' : 'optbtn'} disabled={sample} onClick={() => { setChoice(o); setError(null); }}>{o.label}{o.key === r.recommendation ? ' (recommended)' : ''}</button>))}</div>
+            )}
+            {choice && (
+              <div className="confirm">
+                <p style={{ margin: '0 0 6px' }}>Record this decision? <b>{choice.label}</b></p>
+                <textarea rows={2} value={notes} onChange={(e) => setNotes(e.target.value)} placeholder="Optional note for the Director" style={{ width: '100%' }} />
+                <div style={{ marginTop: 6, display: 'flex', gap: 8 }}>
+                  <button className="primary" disabled={busy} onClick={confirm}>{busy ? 'Saving\u2026' : 'Confirm'}</button>
+                  <button className="optbtn" disabled={busy} onClick={() => { setChoice(null); setNotes(''); setError(null); }}>Cancel</button>
+                </div>
+                {error && <p className="err">{error}</p>}
+              </div>
+            )}
+            <details style={{ marginTop: 8 }}><summary className="muted small">Or reply in Claude Code instead</summary>
+              {r.options.map((o) => <div key={o.key} className="opt"><span>{o.label}</span><CopyBox text={replyFor(r, o)} /></div>)}
+            </details>
           </div>
         </>
       )}
@@ -59,14 +91,21 @@ function Card({ r, onOpen, decided }) {
 
 // Requests the Director has stopped on, waiting for the owner. Decided and expired ones are listed below.
 export function ApprovalsView({ state, onOpen }) {
+  const [last, setLast] = useState(null);     // the decision just recorded, with the prompt to carry it out
   const all = state.approvals.requests;
   const pending = all.filter((r) => r.state === 'pending'), done = all.filter((r) => r.state !== 'pending');
   return (
     <div className="view">
       <div className="plist-head"><h2>Waiting for you <Help topic="kpi" /></h2><span className="muted">{pending.length} request{pending.length === 1 ? '' : 's'}, oldest first.</span></div>
       <p className="notice info">The Director stops before steps that use a lot of usage or could loop (see "Approval gates" in CLAUDE.md). Nothing here runs until you answer.</p>
+      {last && (
+        <div className="card saved-decision">
+          <p style={{ margin: '0 0 6px' }}><b>Recorded:</b> {last.label}{last.game ? ` (${last.game})` : ''}. Nothing has run yet. To carry it out, tell Claude Code:</p>
+          <CopyBox text="Continue with approved work" />
+          <button className="link" onClick={() => setLast(null)}>Dismiss</button>
+        </div>)}
       {pending.length === 0 && <div className="card"><p className="empty" style={{ margin: 0 }}>Nothing is waiting for you.</p></div>}
-      {pending.map((r) => <Card key={r.id} r={r} onOpen={onOpen} />)}
+      {pending.map((r) => <Card key={r.id} r={r} onOpen={onOpen} sample={state.sample} onDecided={setLast} />)}
       {done.length > 0 && <h3 className="sect">Decided and expired</h3>}
       {done.map((r) => <Card key={r.id} r={r} onOpen={onOpen} decided />)}
     </div>
