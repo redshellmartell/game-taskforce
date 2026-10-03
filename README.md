@@ -45,3 +45,26 @@ Open this repository in Claude Code and paste one of these.
 | `docs/dashboard-notes.md` | Dashboard spec: KPIs, screens, data files |
 | `docs/BUILD-DASHBOARD.md` | Step-by-step build instructions for the dashboard |
 | `docs/reference/` | Screenshots of the UI that inspired the dashboard |
+
+## Dashboard
+
+A read-only, live control room for the agents. It shows who is working, how work flows between agents, and what they produced. It never starts agents, edits game files or calls an AI model.
+
+**Start it** (needs Node.js 18 or newer):
+
+```
+cd dashboard
+npm install     # first time only
+npm start
+```
+
+Then open <http://localhost:4173>. It updates by itself within a couple of seconds when files in `games/` change.
+
+**Sample vs real data:** if `games/` has no game folders yet, the dashboard shows clearly labelled sample data (a "Sample data" badge appears in the top bar). Run `npm run demo` to force sample data even when real games exist. `npm test` checks the KPI calculations.
+
+**Customise:**
+- Agent room names and colours: `dashboard/agents.json`
+- Plain-English agent summaries (the "How it works" tab): `dashboard/src/content/agents/`
+- Sample data: `dashboard/sample-data/games/`
+
+Build progress is tracked in `docs/BUILD-DASHBOARD.md` under "Status".

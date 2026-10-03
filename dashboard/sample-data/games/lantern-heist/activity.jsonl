@@ -1,0 +1,13 @@
+{"time":"2026-09-20T09:00:00Z","agent":"market-researcher","game":"lantern-heist","event":"start","message":"Scanning 2-player and light heist games"}
+{"time":"2026-09-20T09:40:00Z","agent":"market-researcher","game":"lantern-heist","event":"done","message":"Brief written, opportunity score 24/30"}
+{"time":"2026-09-20T10:05:00Z","agent":"game-designer","game":"lantern-heist","event":"start","message":"Drafting rules"}
+{"time":"2026-09-20T11:00:00Z","agent":"game-designer","game":"lantern-heist","event":"done","message":"rules.md v1 written"}
+{"time":"2026-09-20T11:10:00Z","agent":"playtester","game":"lantern-heist","event":"start","message":"Coding the simulation"}
+{"time":"2026-09-20T12:00:00Z","agent":"playtester","game":"lantern-heist","event":"done","message":"NEEDS-FIXES: seat 1 wins 58%"}
+{"time":"2026-09-20T12:20:00Z","agent":"game-designer","game":"lantern-heist","event":"start","message":"Revision 1: fixing seat imbalance"}
+{"time":"2026-09-20T13:00:00Z","agent":"game-designer","game":"lantern-heist","event":"done","message":"rules.md v2 written"}
+{"time":"2026-09-20T13:10:00Z","agent":"playtester","game":"lantern-heist","event":"step","message":"Running 4,000 simulated games"}
+{"time":"2026-09-20T13:50:00Z","agent":"playtester","game":"lantern-heist","event":"done","message":"PASS: seat 1 wins 51%"}
+{"time":"2026-09-20T14:00:00Z","agent":"critic","game":"lantern-heist","event":"start","message":"Reviewing originality and fun"}
+{"time":"2026-09-20T14:30:00Z","agent":"critic","game":"lantern-heist","event":"done","message":"PASS, average 4.2/5"}
+{"time":"2026-09-20T14:40:00Z","agent":"manager","game":"lantern-heist","event":"done","message":"Pitch ready for owner review"}

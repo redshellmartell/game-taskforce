@@ -1,0 +1,38 @@
+{
+  "slug": "tide-lords",
+  "title": "Tide Lords",
+  "players": "2",
+  "minutes": 15,
+  "complexity": 2,
+  "mechanics": [
+    "push-your-luck"
+  ],
+  "theme": "sea gods",
+  "opportunity_score": 19,
+  "rubric": {
+    "demand": 4,
+    "gap": 2,
+    "originality": 2,
+    "producibility": 4,
+    "simulatability": 4,
+    "owner_fit": 3
+  },
+  "candidates": [
+    {
+      "idea": "Tide Lords",
+      "score": 19,
+      "chosen": true
+    }
+  ],
+  "comparables": [
+    {
+      "name": "Flip 7",
+      "bgg_rating": null,
+      "crowdfunding": null,
+      "difference": "Two players only"
+    }
+  ],
+  "sources": [
+    "sample"
+  ]
+}

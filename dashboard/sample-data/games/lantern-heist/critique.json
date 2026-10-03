@@ -1,0 +1,20 @@
+{
+  "verdict": "PASS",
+  "revision": 1,
+  "scores": {
+    "originality": 4,
+    "clarity": 4,
+    "fun": 4,
+    "balance": 4,
+    "market_fit": 4,
+    "production": 5
+  },
+  "average": 4.2,
+  "strength": "Tense hidden bidding in 20 minutes",
+  "weakness": "Theme is generic",
+  "closest_existing_game": {
+    "name": "Sheriff of Nottingham",
+    "similarity": "low"
+  },
+  "required_changes": []
+}

@@ -1,0 +1,50 @@
+{
+  "slug": "lantern-heist",
+  "title": "Lantern Heist",
+  "players": "2-4",
+  "minutes": 20,
+  "complexity": 2,
+  "mechanics": [
+    "set collection",
+    "hidden bidding"
+  ],
+  "theme": "night-market thieves",
+  "opportunity_score": 24,
+  "rubric": {
+    "demand": 4,
+    "gap": 4,
+    "originality": 4,
+    "producibility": 4,
+    "simulatability": 4,
+    "owner_fit": 4
+  },
+  "candidates": [
+    {
+      "idea": "Lantern Heist",
+      "score": 24,
+      "chosen": true
+    },
+    {
+      "idea": "Moth Market",
+      "score": 19,
+      "chosen": false
+    }
+  ],
+  "comparables": [
+    {
+      "name": "Sheriff of Nottingham",
+      "bgg_rating": 7.2,
+      "crowdfunding": null,
+      "difference": "No bluffing, more set play"
+    },
+    {
+      "name": "Sushi Go",
+      "bgg_rating": 7,
+      "crowdfunding": null,
+      "difference": "Heist theme and bidding"
+    }
+  ],
+  "sources": [
+    "sample"
+  ]
+}

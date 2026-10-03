@@ -82,4 +82,13 @@ Check: everything works with sample data, and with `games/` containing a single 
 
 ## Status
 
-_Not started._
+**Milestone 1: done.** Server (`/api/state`, `/api/file`, `/api/events`), sample data, KPI maths with tests (`npm test`), the Agent Network with side panels, the top bar with five KPIs and the activity feed.
+
+Milestones 2 to 4 (Learn mode, replay, Studio Floor, Pipeline, Game page, Review Queue and the remaining views): not started.
+
+Notes on what differs from the plan:
+- Added `remark-gfm` so tables in reports render properly.
+- Agents that have no `activity.jsonl` yet (for example the first real game, `duelflip`, which predates the data files) get their activity inferred from the report files that exist, and the stage is worked out from those files. The panel marks such lines "inferred from file".
+- The side panel sits beside the diagram instead of over it, so every node stays clickable.
+- The revision lines use a small custom edge because React Flow's built-in curve goes flat when both ends point down.
+- Real-game KPIs show "no data yet" until agents write the JSON files described in `docs/dashboard-notes.md` section 4.
