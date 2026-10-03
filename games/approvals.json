@@ -102,8 +102,8 @@
         }
       ],
       "decision": "approve",
-      "decided_at": "2026-10-03T16:13:34Z",
-      "owner_notes": "Owner said in chat they approved it in the dashboard; recorded here (dashboard file lives on their Mac)"
+      "decided_at": "2026-10-03T15:57:30Z",
+      "owner_notes": "Owner replied \"I approved it\" in chat (dashboard change not visible in cloud session)"
     },
     {
       "id": "three-player-trick-taker-revision-1",
