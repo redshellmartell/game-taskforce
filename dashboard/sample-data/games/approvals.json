@@ -1,0 +1,191 @@
+{
+  "requests": [
+    {
+      "id": "ember-market-revision-1",
+      "gate": "revision",
+      "game": "ember-market",
+      "time": "2026-09-27T11:05:00Z",
+      "status": "pending",
+      "summary": "Playtest NEEDS-FIXES: the leader after the halfway point wins 78% of games (target 65% or less). The critic has not reviewed it yet.",
+      "why_needed": "A runaway leader makes the second half of every game decided; it is the main reason the game scores poorly.",
+      "expected_outcome": "A catch-up bonus for the player behind should bring the runaway-leader rate under 65% without raising the seat gap above 5 points. We would see it in the next simulation.",
+      "usage_estimate": "M",
+      "recommendation": "approve",
+      "options": [
+        {
+          "key": "approve",
+          "label": "Run revision 1 (designer + playtester + critic)"
+        },
+        {
+          "key": "pitch",
+          "label": "Pitch as is, with the known issues listed"
+        },
+        {
+          "key": "park",
+          "label": "Park the game; no further work for now"
+        },
+        {
+          "key": "kill",
+          "label": "Kill it and record why"
+        }
+      ],
+      "decision": null,
+      "decided_at": null,
+      "owner_notes": null
+    },
+    {
+      "id": "market-scan-1",
+      "gate": "scan",
+      "game": null,
+      "time": "2026-09-28T09:00:00Z",
+      "status": "pending",
+      "summary": "The idea bank has only 2 banked ideas scoring 18 or more (needs 3).",
+      "why_needed": "A new game needs a strong idea, and the bank is thin.",
+      "expected_outcome": "8 to 12 newly scored ideas in research/idea-bank.json and a short market scan.",
+      "usage_estimate": "XL",
+      "recommendation": "alternative",
+      "options": [
+        {
+          "key": "approve",
+          "label": "Run a market scan (25 searches, 25 page reads)"
+        },
+        {
+          "key": "add",
+          "label": "Add an idea of my own instead (no research)"
+        },
+        {
+          "key": "decline",
+          "label": "Not now"
+        }
+      ],
+      "decision": null,
+      "decided_at": null,
+      "owner_notes": null
+    },
+    {
+      "id": "moth-market-greenlight",
+      "gate": "greenlight",
+      "game": "moth-market",
+      "time": "2026-09-28T14:30:00Z",
+      "status": "pending",
+      "summary": "Brief written for Moth Market: opportunity score 20/30, 2-5 players, 25 minutes.",
+      "why_needed": "Design is the next step and uses the most usage.",
+      "expected_outcome": "A full rule set and a first playtest, if you like the idea.",
+      "usage_estimate": "M",
+      "recommendation": "approve",
+      "options": [
+        {
+          "key": "approve",
+          "label": "Start design"
+        },
+        {
+          "key": "decline",
+          "label": "Do not start; keep the idea in the bank"
+        }
+      ],
+      "decision": null,
+      "decided_at": null,
+      "owner_notes": null
+    },
+    {
+      "id": "panel-research-1",
+      "gate": "panel-research",
+      "game": null,
+      "time": "2026-09-20T08:00:00Z",
+      "status": "approved",
+      "summary": "Evidence for five personas and a calibration baseline.",
+      "why_needed": "The panel needs evidence before it can be trusted.",
+      "expected_outcome": "Five persona evidence files and calibration scores.",
+      "usage_estimate": "XL",
+      "recommendation": "approve",
+      "options": [
+        {
+          "key": "approve",
+          "label": "Run panel research"
+        },
+        {
+          "key": "decline",
+          "label": "Skip"
+        }
+      ],
+      "decision": "approve",
+      "decided_at": "2026-09-20T08:30:00Z",
+      "owner_notes": "Go ahead, keep it to 10 searches each."
+    },
+    {
+      "id": "lantern-heist-panel-reviews-1",
+      "gate": "panel-reviews",
+      "game": "lantern-heist",
+      "time": "2026-09-21T15:00:00Z",
+      "status": "declined",
+      "summary": "Persona reviews for Lantern Heist (5 personas).",
+      "why_needed": "Gives a public-test view before the pitch.",
+      "expected_outcome": "Five in-character reviews and a panel report.",
+      "usage_estimate": "L",
+      "recommendation": "decline",
+      "options": [
+        {
+          "key": "approve",
+          "label": "Run all five reviews"
+        },
+        {
+          "key": "decline",
+          "label": "Skip the reviews"
+        }
+      ],
+      "decision": "decline",
+      "decided_at": "2026-09-21T16:00:00Z",
+      "owner_notes": "The bot playtest is enough for this one."
+    },
+    {
+      "id": "tide-lords-budget-1",
+      "gate": "budget",
+      "game": "tide-lords",
+      "time": "2026-09-08T09:00:00Z",
+      "status": "pending",
+      "summary": "The playtester wants 4 more experiments than its budget allows.",
+      "why_needed": "To find out whether the seat gap is real.",
+      "expected_outcome": "A clearer seat-balance number.",
+      "usage_estimate": "M",
+      "recommendation": "decline",
+      "options": [
+        {
+          "key": "approve",
+          "label": "Allow 4 extra experiments"
+        },
+        {
+          "key": "decline",
+          "label": "Stay within budget"
+        }
+      ],
+      "decision": null,
+      "decided_at": null,
+      "owner_notes": null
+    },
+    {
+      "id": "lantern-heist-free-api-1",
+      "gate": "free-api",
+      "game": "lantern-heist",
+      "time": "2026-09-22T10:00:00Z",
+      "status": "approved",
+      "summary": "Send Lantern Heist's rules to a free third-party model for persona chat.",
+      "why_needed": "Free models could make persona chat cheaper.",
+      "expected_outcome": "A comparison of persona answers against the cheaper model.",
+      "usage_estimate": "S",
+      "recommendation": "alternative",
+      "options": [
+        {
+          "key": "approve",
+          "label": "Send the rules"
+        },
+        {
+          "key": "decline",
+          "label": "Keep unpublished designs private"
+        }
+      ],
+      "decision": "approve",
+      "decided_at": "2026-09-22T11:00:00Z",
+      "owner_notes": "Fine for this test game only."
+    }
+  ]
+}

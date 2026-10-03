@@ -105,6 +105,28 @@ function extractSection(text, name) {
 
 function titleFromSlug(slug) { return slug.split('-').map((w) => w[0]?.toUpperCase() + w.slice(1)).join(' '); }
 
+const EXPIRE_DAYS = 14;
+const DAY_MS = 24 * 3600 * 1000;
+// Requests the Director wrote to games/approvals.json (see "Approval gates" in CLAUDE.md), with what the owner needs to decide.
+function buildApprovals(requests, games, shiftTime, now) {
+  if (!Array.isArray(requests)) return { requests: [], pending: 0 };
+  const bySlug = Object.fromEntries(games.map((g) => [g.slug, g]));
+  const list = requests.filter((r) => r && r.id && r.gate).map((r) => {
+    const time = r.time ? shiftTime(r.time) : null;
+    const age = time ? Math.max(0, Math.floor((now - Date.parse(time)) / DAY_MS)) : null;
+    const state = r.status === 'pending' && age !== null && age > EXPIRE_DAYS ? 'expired' : r.status;
+    const g = r.game ? bySlug[r.game] : null;
+    const rows = g ? g.scorecard.filter((x) => x.status !== 'none') : [];
+    return {
+      ...r, time, decided_at: r.decided_at ? shiftTime(r.decided_at) : null, state, ageDays: age, gameTitle: g?.title || r.game || null,
+      revision: r.gate === 'revision' && g ? { worthIt: g.critique?.revision_worth_it ?? null, reason: g.critique?.revision_reason || null, scorecard: rows, revisionsDone: g.revision || 0 } : null,
+    };
+  });
+  const pending = list.filter((r) => r.state === 'pending').sort((a, b) => Date.parse(a.time) - Date.parse(b.time));
+  const decided = list.filter((r) => r.state !== 'pending').sort((a, b) => Date.parse(b.decided_at || b.time) - Date.parse(a.decided_at || a.time));
+  return { requests: [...pending, ...decided], pending: pending.length };
+}
+
 export function buildState({ repoRoot, dashboardDir, sample, now = Date.now() }) {
   const gamesDir = sample ? path.join(dashboardDir, 'sample-data', 'games') : path.join(repoRoot, 'games');
   const agentsJson = readJson(path.join(dashboardDir, 'agents.json')) || {};
@@ -171,6 +193,7 @@ export function buildState({ repoRoot, dashboardDir, sample, now = Date.now() })
   if (manager && waitingPitches.length && manager.state === 'idle') manager.state = 'waiting';
 
   const decisions = (readJson(path.join(gamesDir, 'decisions.json'))?.decisions || []).map((d) => ({ ...d, time: shiftTime(d.time) }));
+  const approvals = buildApprovals(readJson(path.join(gamesDir, 'approvals.json'))?.requests, games, shiftTime, now);
   const kpis = computeKpis(games, agents, now);
   const bankFile = readJson(path.join(sample ? path.join(dashboardDir, 'sample-data') : repoRoot, 'research', 'idea-bank.json'));
   const bankStats = ideaBankStats(bankFile, now);
@@ -185,5 +208,5 @@ export function buildState({ repoRoot, dashboardDir, sample, now = Date.now() })
   };
   const review = { ...ownerStats(games, decisions), queue: reviewQueueItems(games, now) };
 
-  return { sample, generatedAt: new Date(now).toISOString(), agents, games, activity: activity.slice(0, 500), decisions, inbox: listInbox(gamesDir), panel: loadPanel(repoRoot), kpis, pipeline, review, quality: qualityLab(games), market: { ...portfolio(games), ideaBank: bankFile && bankStats ? { ...bankStats, updated: bankFile.updated || null, ideas: bankFile.ideas } : null }, ops: { ...opsStats(games, agents, activity, now), usage: usageStats(usageSessions, games, now), guard }, waitingPitches: waitingPitches.map((g) => g.slug) };
+  return { sample, generatedAt: new Date(now).toISOString(), agents, games, activity: activity.slice(0, 500), decisions, approvals, inbox: listInbox(gamesDir), panel: loadPanel(repoRoot), kpis, pipeline, review, quality: qualityLab(games), market: { ...portfolio(games), ideaBank: bankFile && bankStats ? { ...bankStats, updated: bankFile.updated || null, ideas: bankFile.ideas } : null }, ops: { ...opsStats(games, agents, activity, now), usage: usageStats(usageSessions, games, now), guard }, waitingPitches: waitingPitches.map((g) => g.slug) };
 }

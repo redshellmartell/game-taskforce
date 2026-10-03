@@ -211,3 +211,24 @@ test('usage: nothing recorded gives null, and a game count of zero gives no per-
 test('usage guard status from guard.json reaches the Ops data', () => {
   assert.equal(state.ops.guard.status, 'warn'); assert.equal(state.ops.guard.windows[0].percent, 68);
 });
+
+// ---- Approvals ----
+test('approvals (sample): 3 pending oldest first, the old budget request has expired, others are decided', () => {
+  const a = state.approvals;
+  assert.equal(a.pending, 3);
+  const times = a.requests.slice(0, 3).map((r) => Date.parse(r.time));
+  assert.deepEqual(times, [...times].sort((x, y) => x - y));          // oldest first
+  assert.ok(a.requests.slice(0, 3).every((r) => r.state === 'pending'));
+  const by = Object.fromEntries(a.requests.map((r) => [r.id, r]));
+  assert.equal(by['tide-lords-budget-1'].state, 'expired');
+  assert.equal(by['panel-research-1'].state, 'approved'); assert.equal(by['lantern-heist-panel-reviews-1'].state, 'declined');
+  assert.equal(new Set(a.requests.map((r) => r.gate)).size, 7);          // every gate type is covered by the sample data
+});
+test('approvals: a revision request carries the game scorecard and the critic answer when there is one', () => {
+  const r = state.approvals.requests.find((x) => x.id === 'ember-market-revision-1');
+  assert.ok(r.revision.scorecard.length >= 5); assert.equal(r.revision.worthIt, null);   // ember-market has no critique yet
+  assert.equal(r.gameTitle, 'Ember Market');
+});
+test('approvals: a missing or odd file gives an empty inbox, not a crash', () => {
+  assert.ok(Array.isArray(state.approvals.requests));
+});

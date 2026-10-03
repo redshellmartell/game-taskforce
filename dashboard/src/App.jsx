@@ -10,6 +10,7 @@ import { ReviewQueueView } from './components/ReviewQueueView.jsx';
 import { QualityLabView } from './components/QualityLabView.jsx';
 import { MarketView } from './components/MarketView.jsx';
 import { OpsView } from './components/OpsView.jsx';
+import { ApprovalsView } from './components/ApprovalsView.jsx';
 import { GamePage } from './components/GamePage.jsx';
 import { LearnContext } from './components/Help.jsx';
 import { IdeaForm } from './components/IdeaForm.jsx';
@@ -47,11 +48,12 @@ export default function App() {
     <LearnContext.Provider value={learn}>
       <div className="app">
         <div>
-          <TopBar state={state} learn={learn} setLearn={setLearn} />
+          <TopBar state={state} learn={learn} setLearn={setLearn} onWaiting={() => go('approvals')} />
           <nav className="nav">
             <button className={view === 'network' ? 'on' : ''} onClick={() => go('network')}>Agent Network</button>
             <button className={view === 'floor' ? 'on' : ''} onClick={() => go('floor')}>Studio Floor</button>
             <button className={view === 'pipeline' ? 'on' : ''} onClick={() => go('pipeline')}>Pipeline <span className="count">{state.games.length}</span></button>
+            <button className={view === 'approvals' ? 'on' : ''} onClick={() => go('approvals')}>Approvals {state.approvals.pending > 0 && <span className="count amber">{state.approvals.pending}</span>}</button>
             <button className={view === 'review' ? 'on' : ''} onClick={() => go('review')}>Review Queue {state.waitingPitches.length > 0 && <span className="count amber">{state.waitingPitches.length}</span>}</button>
             <button className={view === 'quality' ? 'on' : ''} onClick={() => go('quality')}>Quality Lab</button>
             <button className={view === 'market' ? 'on' : ''} onClick={() => go('market')}>Market &amp; Portfolio</button>
@@ -72,6 +74,8 @@ export default function App() {
           <div className="page"><GamePage game={openGame} state={state} onBack={() => setGame(null)} /></div>
         ) : view === 'floor' ? (
           <div className="page"><StudioFloor state={state} /></div>
+        ) : view === 'approvals' ? (
+          <div className="page"><ApprovalsView state={state} onOpen={setGame} /></div>
         ) : view === 'review' ? (
           <div className="page"><ReviewQueueView state={state} onOpen={setGame} /></div>
         ) : view === 'quality' ? (

@@ -247,3 +247,12 @@ table.matrix td { padding: 4px 14px 4px 0; white-space: nowrap; }
 .persona-chips { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
 .persona-chips .chip { margin: 0; }
 .persona-head { display: flex; align-items: center; gap: 12px; margin-top: 4px; }
+
+/* approvals */
+.waiting-badge { background: none; border: 1px solid var(--warn); color: var(--warn); border-radius: 14px; padding: 3px 12px; font-size: 12px; }
+.waiting-badge b { margin-left: 4px; }
+.waiting-badge:hover { background: rgba(224, 164, 58, .12); }
+.approval.decided { opacity: .85; }
+.approval .opt { display: grid; grid-template-columns: minmax(180px, 1fr) minmax(220px, 1fr); gap: 10px; align-items: center; margin: 4px 0; }
+.rev-context { border-top: 1px solid var(--border); margin-top: 8px; padding-top: 4px; }
+@media (max-width: 700px) { .approval .opt { grid-template-columns: 1fr; } }

@@ -1,5 +1,5 @@
 ---
-status: open
+status: in-progress
 priority: high
 depends_on: [008]
 ---
