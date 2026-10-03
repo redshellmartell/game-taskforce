@@ -72,6 +72,25 @@
         "critic": "REVISE-MINOR"
       },
       "kill_reason": null
+    },
+    {
+      "slug": "three-player-trick-taker",
+      "title": "Three-Player Trick-Taker",
+      "stage": "brief",
+      "revision": 0,
+      "history": [
+        {
+          "stage": "brief",
+          "time": "2026-10-03T15:44:49Z",
+          "verdict": null,
+          "note": "started from idea bank (market scan 1)"
+        }
+      ],
+      "verdicts": {
+        "playtest": null,
+        "critic": null
+      },
+      "kill_reason": null
     }
   ]
 }
