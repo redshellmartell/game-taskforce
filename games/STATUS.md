@@ -2,4 +2,4 @@
 
 | Game | Stage | Verdict | Note |
 |---|---|---|---|
-| duelflip | 2. Redesign (loop 1) | - | rules v2 written (1 Lifebuoy each, safe scout flip, refund rule); needs re-playtest |
+| duelflip | 3. Playtest v2 done | NEEDS-FIXES (minor) | Seat balance, dead turns, length fixed; bait still leave-lowest, species bonus + refund inert; loop 2 next |
