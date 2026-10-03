@@ -100,7 +100,7 @@ class Strategic(Base):
         if win:
             return win_cheap(legal, trick, R.trump) or lowest(legal)
         losers = [c for c in legal if not beats(c, trick, R.trump)]
-        return highest(losers) if losers else lowest(legal)
+        return lowest(losers) if losers else lowest(legal)
     def master(self, R, seat, c):
         hs = set(R.hands[seat]); s, r = c
         if R.trump is not None and s != R.trump:

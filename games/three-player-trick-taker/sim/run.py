@@ -65,6 +65,11 @@ def main(N=2000):
         r = sim(mk, per, 50000 + 7000 * j); sr["strategic"] += r["seatwin"][j] * per
         sr["random_each"] += (sum(r["seatwin"]) - r["seatwin"][j]) / 2 * per; tot += per
     out["skill"] = {k: v / tot for k, v in sr.items()}; out["skill_games"] = tot
+    gr = 0.0
+    for j in range(3):
+        mk = [B.Random] * 3; mk[j] = B.Greedy
+        gr += sim(mk, per, 60000 + 7000 * j)["seatwin"][j] * per
+    out["skill"]["greedy"] = gr / tot
     # 3. mirror: strategic x3 -> seats, length, lead changes, contract stats
     base = sim([B.Strategic] * 3, N, 100000); out["mirror"] = base
     # 4. extra configurations (max 5)
@@ -99,6 +104,7 @@ def summarise(out, N):
     print("seat win rates (S,S,S): %s gap %.1f pts" % ([round(x, 3) for x in b["seatwin"]], gap_seat))
     print("bot win rates (R/G/S table): %s" % {k: round(v, 3) for k, v in mixed.items()})
     print("skill: strategic %.3f vs each random %.3f  gap %.1f pts" % (sk["strategic"], sk["random_each"], skill))
+    print("greedy vs two random: %.3f" % sk["greedy"])
     print("length: fixed 42 tricks / 6 rounds, est %.1f min" % est)
     print("ties %.4f  lead changes %.2f  early leader (after R3) wins %.3f (after R2 %.3f)" % (b["ties"], b["lc"], b["early3"], b["early2"]))
     print("contract success %.3f  DC success %.3f; by target: %s" % (b["success"], b["dcrate"], {t: (round(u, 2), round(s, 2)) for t, (u, s) in b["targ"].items()}))
