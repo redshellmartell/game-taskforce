@@ -81,3 +81,10 @@ Then open <http://localhost:4173>. It updates by itself within a couple of secon
 - Sample data: `dashboard/sample-data/games/`
 
 Build progress is tracked in `docs/BUILD-DASHBOARD.md` under "Status".
+
+## Planning and building in parallel
+
+Plan in a claude.ai chat, build in Claude Code. They share this repository: plans and task briefs live in `docs/plan/` and `docs/tasks/`, and Claude Code logs what it built in `docs/plan/PROGRESS.md`. See `docs/plan/WORKFLOW.md`.
+
+- In Claude Code: **"Check for new tasks."**
+- In the planning chat: **"Check the repo."**
