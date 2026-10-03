@@ -2,6 +2,11 @@
 
 Written by Claude Code after each task, newest first. See `WORKFLOW.md` for the format.
 
+## 2026-10-03 — For the review session: where cloud sessions are billed (owner note)
+- The owner's usage panel shows plan **session limit 0%** while this cloud session has been working (and the owner knows they have used the window), and **cloud session credits fell from $99 to $79**. So cloud sessions appear to bill the credits, not the Pro plan; the usage guard (which counts tokens) has therefore been reading usage that never touched the plan.
+- To settle in the review: (1) a controlled test (credits and plan % before and after one small step in a fresh cloud session, and in a local session); (2) whether to run the taskforce locally on the Mac so it uses the plan; (3) recalibrate `tools/usage` from plan percentages after a local run, or change what the guard measures when running in the cloud.
+- Test started: baseline before the test step is credits **$79 of $100**, plan session limit **0%**, weekly **14%** (owner screenshot).
+
 ## 2026-10-03 — Task 009: Free-model experiment — BLOCKED (tooling done; the comparison needs your Mac)
 - **Why blocked:** this ran in a cloud session. There is no Ollama, no Mac to check (brief step 1), no free-API key, and I could not read any provider's data-use terms, so I ran no comparison and have no results or recommendation. Nothing was sent to any third party.
 - **Built (free, tested):** `tools/llm/llm.py` (Claude, Ollama, OpenRouter, Google AI Studio; keys only from environment variables; refuses free APIs for game content unless `FREE_API_APPROVED=1`), `config.json` (all three jobs on Haiku for now), `compare.py` (builds the same inputs as task 006, runs candidates, saves timings, writes a blind bundle with the key kept separate), 7 unit tests, `tools/llm/README.md` (exact Mac steps), and `docs/plan/free-model-experiment.md` (skeleton, marked not run). Dry run confirmed prompts of about 27-32k characters (roughly 8k tokens); Ollama is set to a 16k context so they are not truncated.
