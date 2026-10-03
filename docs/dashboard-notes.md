@@ -2,11 +2,81 @@
 
 Planning notes for the taskforce dashboard: a gamified UI where you watch the agents work and talk to them, similar in spirit to the "Tonka's Dungeon" system by Trevs Agents.
 
-> **Reference status:** The reference video ("AI Agent ecosystem for autonomous businesses!", youtube.com/shorts/34F3calq358) couldn't be viewed from the build environment, only its title. The Gumroad listing describes the reference UI only as a custom, gamified dashboard with a theme you choose. Add screenshots to `docs/reference/` and update the "Reference UI" section below.
+**Decision:** start with a **minimalist theme**: same layout and interactions as the reference, none of the pixel art. Get it working smoothly first; the themed look is a later layer.
 
 ## Reference UI
 
-_To fill in from screenshots:_ layout, how agents are drawn, how status and activity are shown, how you talk to agents, theme and art style, what we want to copy and what to skip.
+Screenshots: `docs/reference/reference-map-view.png` and `docs/reference/reference-room-grid.png` (photos of a monitor, so text is mostly unreadable; notes describe the structure).
+
+### What's on screen
+
+| Area | What it does in the reference |
+|---|---|
+| **Top bar** | A simulated day and clock, speed buttons (like a game's 1x/2x/pause), and headline stats: revenue, orders, products, and agents active out of total. |
+| **Left sidebar: agent list** | Every agent with its name, a coloured marker, a one-line status ("idle", or what it's doing now) and a small badge. Click one to select it. |
+| **Selected agent panel** | Opens at the top of the sidebar: name, tag, a few key fields (role, model, status, tasks done) and tabs for more detail. |
+| **Main area: rooms** | Each agent or department has its own room, with a coloured border and a name label with a level (e.g. "LV.1"). Agents are pixel-art characters at desks; status bubbles and small progress bars sit above them. One view is a map of connected rooms; the other is a 3x3 grid of rooms. |
+| **Chat / activity panel** | Bottom left: a feed of messages from and between agents ("upload done", "prioritised X") with a message box to talk to them. |
+| **Ticker** | A scrolling strip along the bottom showing recent events (sales, in their case) with amounts. |
+| **Bottom toolbar** | Icons for other views (reports, products, settings and so on), with notification badges and alert toasts. |
+
+### What makes it work
+
+- **One room per agent** makes it obvious at a glance who is busy, who is idle and who is stuck.
+- **Click-to-inspect** keeps the main view calm; detail lives in a side panel.
+- **A single shared activity feed** shows agents "working together" without needing animation.
+- **Headline numbers** at the top give a sense of progress.
+
+### What we adapt for the game taskforce
+
+| Reference | Ours |
+|---|---|
+| Revenue, orders, products | Games in pipeline, games pitched, games killed, playtest games simulated today |
+| Agents x/y active | Same |
+| Day clock and speed buttons | Skip for now (only useful when agents run autonomously) |
+| Rooms per business area | Rooms per agent: Research, Design Studio, Playtest Lab, Critic's Chamber, Manager's Office |
+| Room levels | Skip for now; later could be "games handled" counts |
+| Sales ticker | Event ticker: "Playtest finished: seat 1 wins 58%", "Critic: KILL", "New pitch ready" |
+| Bottom toolbar views | Pipeline board, Review queue (pitches), Agents settings |
+
+## Minimalist v1 spec
+
+**Look:** dark background, flat panels with thin borders, one accent colour per agent (borders and status dots only), a clean sans-serif font plus a monospace font for numbers and logs. No images, no animation except a soft pulse on a working agent's status dot. Light mode can wait.
+
+**Layout (desktop first):**
+
+```
+┌───────────────────────────────────────────────────────────────┐
+│ Game Taskforce   In pipeline 3 · Pitched 1 · Killed 2 · 2/5 ● │  top bar
+├────────────┬──────────────────────────────────────────────────┤
+│ Agents     │  ┌──────────┐ ┌──────────┐ ┌──────────┐          │
+│ ● Manager  │  │ Research │ │ Design   │ │ Playtest │          │  room grid
+│ ● Research │  │ ● idle   │ │ ● working│ │ ● idle   │          │  (one card
+│ ● Designer │  └──────────┘ └──────────┘ └──────────┘          │   per agent)
+│ ● Tester   │  ┌──────────┐ ┌──────────┐                       │
+│ ● Critic   │  │ Critic   │ │ Manager  │                       │
+│            │  └──────────┘ └──────────┘                       │
+├────────────┴───────────────────────┬──────────────────────────┤
+│ Activity feed                      │ Selected agent panel     │
+│ 13:02 Tester  2,000 games done     │ (opens on click: tabs    │
+│ 13:05 Critic  REVISE-MINOR         │  Now · Reports · Log ·   │
+├────────────────────────────────────┴──────────────────────────┤
+│ ▸ Playtest done: seat 1 wins 58%  ▸ New pitch: "Ember Market" │  ticker
+└───────────────────────────────────────────────────────────────┘
+```
+
+**Room card shows:** agent name and role, status dot (idle / working / waiting for you / error), current task and game, time since last update, and the last result in one line.
+
+**Agent panel tabs:**
+- **Now** - current task, game, start time, progress steps from the activity log
+- **Reports** - links to every file this agent wrote, newest first, rendered in place
+- **Log** - this agent's full activity history
+- **Settings** - its description, tools and model, read from the agent file (read-only in v1)
+- **Chat** - added in stage 3, when the dashboard can start agent runs
+
+**Other views (toolbar):** Pipeline board (games as cards in five columns, click for the game detail page with all reports and playtest charts) and Review queue (pitches waiting for your approve / reject / send back).
+
+**v1 is read-only:** it watches the repository's files and updates live. No buttons that run agents yet.
 
 ## Build order
 
