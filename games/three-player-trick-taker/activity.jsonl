@@ -17,3 +17,5 @@
 {"time": "2026-10-03T16:12:00Z", "agent": "critic", "game": "three-player-trick-taker", "event": "done", "message": "critique.md and critique.json written: REVISE-MAJOR, average 3.0"}
 {"time": "2026-10-03T16:08:46Z", "agent": "manager", "game": "three-player-trick-taker", "event": "step", "message": "critic REVISE-MAJOR avg 3.0; waiting for approval: revision (three-player-trick-taker-revision-1)"}
 {"time":"2026-10-03T16:08:46Z","agent":"manager","game":"three-player-trick-taker","event":"waiting","message":"waiting for approval: revision (three-player-trick-taker-revision-1)"}
+{"time": "2026-10-03T16:13:34Z", "agent": "manager", "game": "three-player-trick-taker", "event": "step", "message": "Greenlight approved; design started"}
+{"time": "2026-10-03T16:13:34Z", "agent": "game-designer", "game": "three-player-trick-taker", "event": "start", "message": "Designing from the brief"}

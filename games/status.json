@@ -76,7 +76,7 @@
     {
       "slug": "three-player-trick-taker",
       "title": "Three-Hand Trick-Taker",
-      "stage": "critique",
+      "stage": "design",
       "revision": 0,
       "history": [
         {
@@ -114,11 +114,74 @@
           "time": "2026-10-03T16:08:46Z",
           "verdict": "REVISE-MAJOR",
           "note": "critic REVISE-MAJOR avg 3.0; waiting for approval: revision (three-player-trick-taker-revision-1)"
+        },
+        {
+          "stage": "design",
+          "time": "2026-10-03T16:13:34Z",
+          "verdict": null,
+          "note": "greenlit by owner; design started"
         }
       ],
       "verdicts": {
         "playtest": "NEEDS-FIXES",
         "critic": "REVISE-MAJOR"
+      },
+      "kill_reason": null
+    },
+    {
+      "slug": "silent-duo-deduction-coop",
+      "title": "Silent Duo",
+      "stage": "brief",
+      "revision": 0,
+      "history": [
+        {
+          "stage": "brief",
+          "time": "2026-10-03T16:13:48Z",
+          "verdict": null,
+          "note": "started from the idea bank (market scan 1)"
+        }
+      ],
+      "verdicts": {
+        "playtest": null,
+        "critic": null
+      },
+      "kill_reason": null
+    },
+    {
+      "slug": "asymmetric-duel-tug-of-war",
+      "title": "Tug of Crowns",
+      "stage": "brief",
+      "revision": 0,
+      "history": [
+        {
+          "stage": "brief",
+          "time": "2026-10-03T16:13:48Z",
+          "verdict": null,
+          "note": "started from the idea bank (market scan 1)"
+        }
+      ],
+      "verdicts": {
+        "playtest": null,
+        "critic": null
+      },
+      "kill_reason": null
+    },
+    {
+      "slug": "grid-of-cards-area-control",
+      "title": "Nine Fields",
+      "stage": "brief",
+      "revision": 0,
+      "history": [
+        {
+          "stage": "brief",
+          "time": "2026-10-03T16:13:48Z",
+          "verdict": null,
+          "note": "started from the idea bank (market scan 1)"
+        }
+      ],
+      "verdicts": {
+        "playtest": null,
+        "critic": null
       },
       "kill_reason": null
     }
