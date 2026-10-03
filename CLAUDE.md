@@ -85,3 +85,11 @@ The owner's dashboard lives in `dashboard/`. When asked to build or change it, f
 ## Default first command
 
 If the owner says "run the pipeline" or similar without details, run one full game through all five stages, starting with a market-research brief, and finish by summarising the pitch.
+
+## Planning workflow
+
+Planning happens in a separate claude.ai chat; you build. The repository is the shared memory. Full rules: `docs/plan/WORKFLOW.md`.
+
+- When the owner says "check for new tasks" (or similar): fetch and merge `origin/main` into your branch, then take the lowest-numbered task in `docs/tasks/` with `status: open` whose `depends_on` tasks are done.
+- Set the task's `status:` line to `in-progress`, build it, check its "Done when" list, then set it to `done` (or `blocked` with the reason) and add an entry at the top of `docs/plan/PROGRESS.md`. Commit and push.
+- Never edit `docs/plan/ROADMAP.md`, `DECISIONS.md` or `IDEAS.md`, or the body of a task brief. Put questions for the owner in `PROGRESS.md`.

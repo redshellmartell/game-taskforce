@@ -45,3 +45,10 @@ Open this repository in Claude Code and paste one of these.
 | `docs/dashboard-notes.md` | Dashboard spec: KPIs, screens, data files |
 | `docs/BUILD-DASHBOARD.md` | Step-by-step build instructions for the dashboard |
 | `docs/reference/` | Screenshots of the UI that inspired the dashboard |
+
+## Planning and building in parallel
+
+Plan in a claude.ai chat, build in Claude Code. They share this repository: plans and task briefs live in `docs/plan/` and `docs/tasks/`, and Claude Code logs what it built in `docs/plan/PROGRESS.md`. See `docs/plan/WORKFLOW.md`.
+
+- In Claude Code: **"Check for new tasks."**
+- In the planning chat: **"Check the repo."**
