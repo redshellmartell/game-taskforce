@@ -5,7 +5,8 @@ SPECIES = 6
 VALUES = 10
 
 class Config:
-    def __init__(self, buoys=(1, 2), bonus=5, buoy_value=2, nvalues=10, cap=500):
+    def __init__(self, buoys=(1, 2), bonus=5, buoy_value=2, nvalues=10, cap=500, second_pts=0):
+        self.second_pts = second_pts
         self.buoys = buoys          # (first player, second player)
         self.bonus = bonus
         self.buoy_value = buoy_value
@@ -45,6 +46,7 @@ class State:
             if a > b:
                 sc += self.cfg.bonus
         sc += self.cfg.buoy_value * self.buoys[p]
+        if p == 1: sc += self.cfg.second_pts
         return sc
 
 def play(cfg, bots, seed):
@@ -75,6 +77,7 @@ def play(cfg, bots, seed):
                     break
                 busted = True
                 st.stats["busts"] += 1
+                if not st.pile: st.stats["dead"] = st.stats.get("dead", 0) + 1
                 for c in st.pile:
                     st.river.remove(c)
                     st.haul[1 - p].append(c)

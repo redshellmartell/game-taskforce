@@ -2,4 +2,4 @@
 
 | Game | Stage | Verdict | Note |
 |---|---|---|---|
-| duelflip | 2. Design done | - | rules.md v1 written; needs playtest (first-player edge, early-bank grind) |
+| duelflip | 3. Playtest done | NEEDS-FIXES | Seat 2 wins 57%; bait mechanic collapses (always leave lowest); 9-12% dead turns; revision loop 1 next |
