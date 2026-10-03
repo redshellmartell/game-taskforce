@@ -36,5 +36,39 @@
       "evidence": "78% of games won by halfway leader",
       "fix": "Add catch-up bonus"
     }
+  ],
+  "length_histogram": [
+    {
+      "turns": 10,
+      "games": 60
+    },
+    {
+      "turns": 12,
+      "games": 190
+    },
+    {
+      "turns": 14,
+      "games": 380
+    },
+    {
+      "turns": 15,
+      "games": 420
+    },
+    {
+      "turns": 16,
+      "games": 380
+    },
+    {
+      "turns": 18,
+      "games": 260
+    },
+    {
+      "turns": 20,
+      "games": 200
+    },
+    {
+      "turns": 22,
+      "games": 110
+    }
   ]
 }

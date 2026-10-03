@@ -116,3 +116,121 @@ export function gameScorecard(game) {
     row('dead', 'Flagged cards', flagged, '0', flagged !== null && (flagged === 0 ? 'good' : 'warn')),
   ];
 }
+
+// ---------------------------------------------------------------------------
+// Pipeline KPIs (Pipeline screen, Studio Floor). See docs/dashboard-notes.md section 1.
+// ---------------------------------------------------------------------------
+export const FUNNEL_STAGES = [
+  { id: 'brief', label: 'Brief' }, { id: 'design', label: 'Design' }, { id: 'playtest', label: 'Playtest' },
+  { id: 'critique', label: 'Critique' }, { id: 'pitch', label: 'Pitch' },
+  { id: 'approved', label: 'Owner-approved' }, { id: 'prototyped', label: 'Prototyped' },
+];
+const STAGE_INDEX = { brief: 0, design: 1, playtest: 2, critique: 3, pitch: 4, 'owner-review': 4, approved: 5, prototyped: 6 };
+
+// How far a game got (index into FUNNEL_STAGES), from its stage history and current stage.
+export function reachedIndex(g) {
+  let m = -1;
+  for (const h of g.history || []) if (h.stage in STAGE_INDEX) m = Math.max(m, STAGE_INDEX[h.stage]);
+  if (g.stage in STAGE_INDEX) m = Math.max(m, STAGE_INDEX[g.stage]);
+  if (m < 0 && (g.stage === 'killed' || g.stage === 'archived')) m = g.verdicts?.critic === 'KILL' ? 3 : g.playtest ? 2 : 0;
+  return Math.max(m, 0);
+}
+
+// KPI: "Stage funnel" (count of games that reached each stage).
+export function stageFunnel(games) {
+  return FUNNEL_STAGES.map((s, i) => ({ ...s, count: games.filter((g) => reachedIndex(g) >= i).length }));
+}
+
+// KPI: "Kill rate by stage" (killed at a stage, as a % of games entering it). Target: most kills early.
+export function killRateByStage(games) {
+  return FUNNEL_STAGES.slice(0, 5).map((s, i) => {
+    const entered = games.filter((g) => reachedIndex(g) >= i).length;
+    const killed = games.filter((g) => (g.stage === 'killed' || g.stage === 'archived') && reachedIndex(g) === i).length;
+    return { ...s, entered, killed, pct: entered ? Math.round((killed / entered) * 100) : null };
+  });
+}
+
+// KPI: "Cycle time" (hours from brief to pitch), one row per pitched game.
+export function cycleTimes(games) {
+  const out = [];
+  for (const g of games) {
+    const h = g.history || [];
+    const start = h.find((e) => e.stage === 'brief') || h[0];
+    const end = h.find((e) => e.stage === 'pitch' || e.stage === 'owner-review');
+    const a = start ? Date.parse(start.time) : NaN, b = end ? Date.parse(end.time) : NaN;
+    if (!Number.isNaN(a) && !Number.isNaN(b) && b >= a) out.push({ slug: g.slug, title: g.title, hours: Math.round(((b - a) / 3600000) * 10) / 10 });
+  }
+  return out;
+}
+
+// KPI: "Average revision loops" (per pitched game). Target <= 2.
+export function avgRevisionLoops(games) {
+  const pitched = games.filter(wasPitched);
+  if (pitched.length === 0) return none();
+  const avg = Math.round((pitched.reduce((a, g) => a + (g.revision || 0), 0) / pitched.length) * 10) / 10;
+  return { value: avg, target: '2 or fewer', status: avg <= 2 ? 'good' : avg <= 3 ? 'warn' : 'bad' };
+}
+
+// KPI: "First-pass playtest rate" (% of new designs that get PASS on their first playtest).
+export function firstPassRate(games) {
+  const firsts = games.map((g) => {
+    const entry = (g.history || []).find((h) => h.stage === 'playtest' && h.verdict);
+    if (entry) return entry.verdict;
+    return !(g.history || []).length || g.revision === 0 ? g.playtest?.verdict ?? null : null;
+  }).filter(Boolean);
+  if (firsts.length === 0) return none();
+  return { value: Math.round((firsts.filter((v) => v === 'PASS').length / firsts.length) * 100), target: 'rising over time', status: 'none' };
+}
+
+// KPI: "Stuck games" (no activity for over 24h, or waiting for the owner). Target 0.
+export function stuckGames(games, activity, now = Date.now()) {
+  const out = [];
+  for (const g of games) {
+    if (!IN_DEVELOPMENT.includes(g.stage) && g.stage !== 'owner-review') continue;
+    const times = activity.filter((e) => e.game === g.slug).map((e) => Date.parse(e.time)).filter((n) => !Number.isNaN(n));
+    const last = times.length ? Math.max(...times) : NaN;
+    const hours = Number.isNaN(last) ? null : Math.round(((now - last) / 3600000) * 10) / 10;
+    if (g.stage === 'owner-review') out.push({ slug: g.slug, title: g.title, reason: 'waiting for the owner', hours });
+    else if (hours !== null && hours > 24) out.push({ slug: g.slug, title: g.title, reason: 'no activity for over 24h', hours });
+  }
+  return out;
+}
+
+// Two key numbers for each agent's room card on the Studio Floor.
+export function roomStats(games, agents, stuck) {
+  const all = (fn) => games.map(fn).filter((v) => v !== null && v !== undefined);
+  const avg = (xs) => (xs.length ? Math.round((xs.reduce((a, b) => a + b, 0) / xs.length) * 10) / 10 : null);
+  const designer = agents.find((a) => a.id === 'game-designer');
+  const designing = games.find((g) => g.slug === designer?.currentGame) || games.filter((g) => g.stage === 'design').sort((a, b) => (b.revision || 0) - (a.revision || 0))[0];
+  const critiqued = all((g) => criticAverage(g.critique));
+  const kills = games.filter((g) => g.verdicts?.critic === 'KILL' || g.critique?.verdict === 'KILL').length;
+  const first = firstPassRate(games);
+  const sims = games.reduce((a, g) => a + (g.playtest?.games_simulated || 0), 0);
+  const dash = '—';
+  return {
+    'market-researcher': [{ label: 'Briefs written', value: all((g) => g.brief).length }, { label: 'Avg opportunity', value: avg(all((g) => g.brief?.opportunity_score)) ?? dash, unit: avg(all((g) => g.brief?.opportunity_score)) === null ? '' : '/30' }],
+    'game-designer': [{ label: 'Current game', value: designing?.title || dash }, { label: 'Revision', value: designing ? `${designing.revision || 0} of 3` : dash }],
+    playtester: [{ label: 'Games simulated', value: sims.toLocaleString('en-US') }, { label: 'First-pass rate', value: first.value === null ? dash : first.value, unit: first.value === null ? '' : '%' }],
+    critic: [{ label: 'Avg critic score', value: avg(critiqued) ?? dash, unit: avg(critiqued) === null ? '' : '/5' }, { label: 'Kills', value: kills }],
+    manager: [{ label: 'Pitches for you', value: games.filter((g) => g.stage === 'owner-review').length }, { label: 'Stuck games', value: stuck.length }],
+  };
+}
+
+// Milestone ticker: pitch ready, game killed, balance problem found, owner decision recorded.
+export function milestones(games, decisions) {
+  const t = (iso) => { const n = Date.parse(iso); return Number.isNaN(n) ? 0 : n; };
+  const items = [];
+  for (const g of games) {
+    const pitchEntry = (g.history || []).find((h) => h.stage === 'owner-review') || (g.history || []).find((h) => h.stage === 'pitch');
+    if (pitchEntry) items.push({ time: t(pitchEntry.time), kind: 'pitch', text: `PITCH READY: ${g.title}` });
+    const killEntry = (g.history || []).find((h) => h.stage === 'killed' || h.stage === 'archived');
+    if (killEntry || g.stage === 'killed') items.push({ time: t(killEntry?.time), kind: 'kill', text: `KILLED: ${g.title}${g.kill_reason ? ` (${g.kill_reason})` : ''}` });
+    const big = (g.playtest?.problems || []).find((p) => p.severity === 'high');
+    if (big) {
+      const e = [...(g.history || [])].reverse().find((h) => h.stage === 'playtest');
+      items.push({ time: t(e?.time), kind: 'balance', text: `BALANCE PROBLEM: ${g.title}: ${big.problem}` });
+    }
+  }
+  for (const d of decisions || []) items.push({ time: t(d.time), kind: 'decision', text: `OWNER DECISION: ${d.decision} ${d.slug}` });
+  return items.sort((a, b) => b.time - a.time).slice(0, 20);
+}

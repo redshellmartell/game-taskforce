@@ -86,11 +86,18 @@ Check: everything works with sample data, and with `games/` containing a single 
 
 **Milestone 2: done.** Learn mode ("?" markers, texts in `dashboard/src/content/learn/`) and Replay.
 
-**Started early from Milestone 3 (owner request):** a Projects board (one column per stage, plus a "Your ideas" column) and a Game page with scorecard, critic scores, balance bars, history and document tabs. Not yet done from Milestone 3: Studio Floor, the funnel/kill-rate/cycle-time charts, Recharts charts on the Game page (balance uses simple bars for now).
+**Milestone 3: done.**
+- **Studio Floor:** agent sidebar with a mini funnel, a room card per agent (status, current game and step, two key numbers), the activity feed with filters by agent and game, the selected-agent panel beside the cards, and the milestone ticker.
+- **Pipeline:** one column per stage (plus a "Your ideas" column and a collapsed Killed list), the stage funnel, kill rate by stage, cycle time per game, average revision loops, first-pass playtest rate and stuck games. The numbers are computed in `server/kpis.js` and tested.
+- **Game page:** header, scorecard with targets, critic radar, win rate by seat and by bot, game-length distribution, card win correlation (all Recharts), history timeline and document tabs. The game-length distribution needs an optional `length_histogram` in `playtest.json`; I added it to the playtester's instructions, and without it the chart says so and shows the mean.
+- **Navigation:** Agent Network, Studio Floor, Pipeline. The Review Queue page belongs to Milestone 4.
+- **Org-chart layout (owner request):** You at the top, the Director's Office below, the four specialists in a row under it with their handoff arrows and revision loops. `reportsTo` in `agents.json` says who reports to whom, so a specialist can later grow into a department.
 
 **Added at the owner's request:** "+ New idea" (inject your own idea at any stage) and a "Talk to it" tab on every agent. The dashboard's only write is saving an idea file to `games/_inbox/` (`POST /api/ideas`, refused in sample mode). It never starts agents; the owner tells the Director to process the idea, and `CLAUDE.md` has the instructions for that.
 
 Milestone 4 (Review Queue page, Quality Lab, Market & Portfolio, Ops): not started.
+
+Known quirk: the four reporting lines share one horizontal trunk, so clicking the trunk selects the last specialist; click a line's own vertical drop (or the node) to pick a specific one.
 
 Notes on what differs from the plan:
 - Added `remark-gfm` so tables in reports render properly.

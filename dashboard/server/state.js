@@ -2,7 +2,7 @@
 // JSON object the front end needs. Missing or half-written files are skipped.
 import fs from 'node:fs';
 import path from 'node:path';
-import { computeKpis, gameScorecard } from './kpis.js';
+import { computeKpis, gameScorecard, stageFunnel, killRateByStage, cycleTimes, avgRevisionLoops, firstPassRate, stuckGames, roomStats, milestones } from './kpis.js';
 import { listInbox } from './ideas.js';
 
 const AGENT_ORDER = ['market-researcher', 'game-designer', 'playtester', 'critic', 'manager'];
@@ -62,7 +62,7 @@ function loadAgents(repoRoot, agentsJson) {
   } catch { warn('no .claude/agents folder found'); }
   found.manager = { id: 'manager', description: 'The main Claude Code session. Runs the pipeline, decides what moves forward and reports to the owner.', tools: [], file: null };
   const ids = [...AGENT_ORDER.filter((id) => found[id]), ...Object.keys(found).filter((id) => !AGENT_ORDER.includes(id))];
-  return ids.map((id) => ({ ...found[id], room: agentsJson[id]?.room || id, color: agentsJson[id]?.color || '#888' }));
+  return ids.map((id) => ({ ...found[id], room: agentsJson[id]?.room || id, color: agentsJson[id]?.color || '#888', reportsTo: agentsJson[id]?.reportsTo || (id === 'manager' ? 'owner' : 'manager') }));
 }
 
 function listGameFiles(dir, slug) {
@@ -157,8 +157,14 @@ export function buildState({ repoRoot, dashboardDir, sample, now = Date.now() })
   const manager = agents.find((a) => a.id === 'manager');
   if (manager && waitingPitches.length && manager.state === 'idle') manager.state = 'waiting';
 
-  const decisions = readJson(path.join(gamesDir, 'decisions.json'))?.decisions || [];
+  const decisions = (readJson(path.join(gamesDir, 'decisions.json'))?.decisions || []).map((d) => ({ ...d, time: shiftTime(d.time) }));
   const kpis = computeKpis(games, agents, now);
+  const stuck = stuckGames(games, activity, now);
+  const pipeline = {
+    funnel: stageFunnel(games), killRate: killRateByStage(games), cycleTimes: cycleTimes(games),
+    avgRevisions: avgRevisionLoops(games), firstPass: firstPassRate(games), stuck,
+    rooms: roomStats(games, agents, stuck), milestones: milestones(games, decisions),
+  };
 
-  return { sample, generatedAt: new Date(now).toISOString(), agents, games, activity: activity.slice(0, 500), decisions, inbox: listInbox(gamesDir), kpis, waitingPitches: waitingPitches.map((g) => g.slug) };
+  return { sample, generatedAt: new Date(now).toISOString(), agents, games, activity: activity.slice(0, 500), decisions, inbox: listInbox(gamesDir), kpis, pipeline, waitingPitches: waitingPitches.map((g) => g.slug) };
 }

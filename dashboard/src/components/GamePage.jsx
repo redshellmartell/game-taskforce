@@ -4,9 +4,9 @@ import { CopyBox } from './IdeaForm.jsx';
 import { Help } from './Help.jsx';
 import { STAGE_LABEL, verdictClass } from './ProjectsView.jsx';
 import { ago, clock } from '../util.js';
+import { CriticRadar, RateBars, CardCorrelation, LengthHistogram, colorOf } from './charts.jsx';
 
 const DOCS = [['brief.md', 'Brief'], ['rules.md', 'Rules'], ['playtest-report.md', 'Playtest report'], ['critique.md', 'Critique'], ['pitch.md', 'Pitch']];
-const SCORES = ['originality', 'clarity', 'fun', 'balance', 'market_fit', 'production'];
 
 // What the owner can do next, as a prompt to paste into Claude Code.
 function nextStep(g) {
@@ -16,16 +16,6 @@ function nextStep(g) {
     case 'approved': return { text: 'Approved. Build a prototype, then tell Claude Code how it went.', prompt: `I built a prototype of ${g.slug}` };
     default: return { text: `In progress at ${STAGE_LABEL[g.stage] || g.stage}.`, prompt: `Show me the status of ${g.slug}` };
   }
-}
-
-function Bars({ title, data, fmt = (v) => `${Math.round(v * 100)}%` }) {
-  const entries = Object.entries(data || {});
-  if (entries.length === 0) return null;
-  return (
-    <div className="bars"><h4>{title}</h4>
-      {entries.map(([k, v]) => <div className="bar" key={k}><span>{k}</span><i style={{ width: `${Math.min(100, v * 100)}%` }} /><b className="mono">{fmt(v)}</b></div>)}
-    </div>
-  );
 }
 
 export function GamePage({ game: g, state, onBack }) {
@@ -64,14 +54,21 @@ export function GamePage({ game: g, state, onBack }) {
         </section>
         <section className="card">
           <h3>Critic scores</h3>
-          {cr?.scores ? SCORES.map((k) => <div className="bar" key={k}><span>{k.replace('_', ' ')}</span><i style={{ width: `${(cr.scores[k] / 5) * 100}%` }} /><b className="mono">{cr.scores[k]}</b></div>) : <p className="empty">No critique data yet.</p>}
+          <CriticRadar scores={cr?.scores} color={colorOf(state, 'critic')} />
           {cr?.strength && <p><b>Strength:</b> {cr.strength}</p>}
           {cr?.weakness && <p><b>Weakness:</b> {cr.weakness}</p>}
           {cr?.closest_existing_game?.name && <p className="muted">Closest existing game: {cr.closest_existing_game.name} ({cr.closest_existing_game.similarity} similarity)</p>}
         </section>
         <section className="card">
           <h3>Balance <span className="muted" style={{ fontWeight: 400 }}>{pt?.games_simulated ? `${pt.games_simulated.toLocaleString()} simulated games` : ''}</span></h3>
-          {pt ? <><Bars title="Win rate by seat" data={pt.seat_win_rates} /><Bars title="Win rate by bot" data={pt.bot_win_rates} /></> : <p className="empty">No playtest data yet.</p>}
+          <h4>Win rate by seat</h4>
+          <RateBars rates={pt?.seat_win_rates} color={colorOf(state, 'playtester')} fair={pt ? 100 / Math.max(1, Object.keys(pt.seat_win_rates || {}).length) : null} prefix="seat " />
+          <h4>Win rate by bot</h4>
+          <RateBars rates={pt?.bot_win_rates} color={colorOf(state, 'playtester')} />
+          <h4>Game length (turns)</h4>
+          <LengthHistogram length={pt?.length} histogram={pt?.length_histogram} color={colorOf(state, 'playtester')} />
+          <h4>Card win correlation</h4>
+          <CardCorrelation cards={pt?.cards} />
           {pt?.problems?.length > 0 && <><h4>Problems found</h4>{pt.problems.map((p, i) => <div className="item" key={i}><span className={`chip sev-${p.severity}`}>{p.severity}</span> {p.problem}<div className="meta">{p.fix}</div></div>)}</>}
         </section>
         <section className="card">

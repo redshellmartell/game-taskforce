@@ -68,3 +68,40 @@ test('scorecard: a game with no data gives all "none" rows, not a crash', () => 
   assert.ok(rows.length > 5);
   assert.ok(rows.every((r) => r.status === 'none' && r.value === null));
 });
+
+// ---- Pipeline KPIs ----
+test('stage funnel: 3 briefs, 2 reached critique, 1 reached pitch, none approved', () => {
+  assert.deepEqual(state.pipeline.funnel.map((f) => f.count), [3, 3, 3, 2, 1, 0, 0]);
+});
+test('kill rate by stage: tide-lords was killed at critique, 1 of 2 = 50%', () => {
+  const k = state.pipeline.killRate.find((s) => s.id === 'critique');
+  assert.equal(k.entered, 2); assert.equal(k.killed, 1); assert.equal(k.pct, 50);
+  assert.equal(state.pipeline.killRate.find((s) => s.id === 'brief').killed, 0);
+});
+test('cycle time: lantern-heist took 5.5 hours from brief to pitch', () => {
+  const c = state.pipeline.cycleTimes.find((x) => x.slug === 'lantern-heist');
+  assert.equal(c.hours, 5.5);
+});
+test('average revision loops: lantern-heist had 1', () => {
+  assert.equal(state.pipeline.avgRevisions.value, 1); assert.equal(state.pipeline.avgRevisions.status, 'good');
+});
+test('first-pass playtest rate: only tide-lords passed first time = 33%', () => {
+  assert.equal(state.pipeline.firstPass.value, 33);
+});
+test('stuck games: lantern-heist is waiting for the owner; ember-market is not stuck', () => {
+  assert.deepEqual(state.pipeline.stuck.map((s) => s.slug), ['lantern-heist']);
+});
+test('room cards have two numbers each', () => {
+  for (const a of state.agents) assert.equal(state.pipeline.rooms[a.id].length, 2, a.id);
+  assert.equal(state.pipeline.rooms.playtester[0].value, '8,000');
+  assert.equal(state.pipeline.rooms.critic[1].value, 1);
+});
+test('milestone ticker lists pitch, kill, balance problem and decision', () => {
+  const kinds = new Set(state.pipeline.milestones.map((m) => m.kind));
+  for (const k of ['pitch', 'kill', 'balance', 'decision']) assert.ok(kinds.has(k), k);
+});
+test('pipeline numbers with no games do not crash', () => {
+  assert.equal(avgRevisionLoops([]).status, 'none');
+  assert.equal(stageFunnel([]).every((f) => f.count === 0), true);
+});
+import { avgRevisionLoops, stageFunnel } from './kpis.js';

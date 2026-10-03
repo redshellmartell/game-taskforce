@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Help } from './Help.jsx';
+import { PipelineHealth } from './PipelineHealth.jsx';
 
 // One column per stage. A game sits in the column of its current stage.
 const COLUMNS = [
@@ -46,9 +47,11 @@ export function ProjectsView({ state, onOpen, onOpenIdea }) {
   return (
     <div className="projects">
       <div className="plist-head">
-        <h2>Projects <Help topic="revision-loop" /></h2>
+        <h2>Pipeline <Help topic="revision-loop" /></h2>
         <span className="muted">{state.games.length} game{state.games.length === 1 ? '' : 's'}. Click one for its full overview.</span>
       </div>
+      <PipelineHealth state={state} onOpen={onOpen} />
+      <h3 className="sect">Games by stage</h3>
       <div className="board">
         {COLUMNS.map((c) => {
           const games = c.stages ? state.games.filter((g) => c.stages.includes(g.stage)) : [];

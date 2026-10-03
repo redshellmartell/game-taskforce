@@ -63,14 +63,15 @@ Then open <http://localhost:4173>. It updates by itself within a couple of secon
 **Sample vs real data:** if `games/` has no game folders yet, the dashboard shows clearly labelled sample data (a "Sample data" badge appears in the top bar). Run `npm run demo` to force sample data even when real games exist. `npm test` checks the KPI calculations.
 
 **What it does:**
-- **Agent Network:** who is working, and the files handed between agents. Click an agent to see what it is doing, how it works, its reports, and to leave it a note.
+- **Agent Network:** an org chart. You are at the top, the Director's Office below you, and the four specialists under the Director. Grey org lines show who reports to whom; arrows show the files handed between the specialists. Click an agent to see what it is doing, how it works, its reports, and to leave it a note.
+- **Studio Floor:** a room card per agent with status and two key numbers, the shared activity feed (filter by agent or game), a mini funnel and a milestone ticker.
 - **Learn mode:** switch it on in the top bar for "?" markers that explain the concepts on screen.
 - **Replay:** pick a game and step through how the team worked on it.
-- **Projects:** every game by stage, with a full overview page for each (scorecard, critic scores, balance, history and all its documents).
+- **Pipeline:** pipeline health (funnel, kill rate by stage, cycle time, stuck games) and every game by stage. Click a game for its full overview page: scorecard, critic radar, balance charts, history and all its documents.
 - **+ New idea:** push an idea of your own into the pipeline at any stage. The dashboard saves it to `games/_inbox/`; then tell the Director "process my idea ..." and it runs the agents (see `CLAUDE.md`).
 
 **Customise:**
-- Agent room names and colours: `dashboard/agents.json`
+- Agent room names, colours and who reports to whom: `dashboard/agents.json` (`reportsTo`)
 - Plain-English agent summaries (the "How it works" tab): `dashboard/src/content/agents/`
 - Sample data: `dashboard/sample-data/games/`
 
