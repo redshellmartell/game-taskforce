@@ -37,6 +37,8 @@ Track every game's current stage in `games/STATUS.md` (one line per game: slug, 
 7. Component list with rough counts
 8. Suggested next step for a physical prototype
 
+Use a Markdown heading for each section (for example `## How it plays`); the dashboard's Review Queue reads that paragraph from `pitch.md`.
+
 Also write `games/<slug>/pitch.json`:
 
 ```json

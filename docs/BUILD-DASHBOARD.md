@@ -95,7 +95,14 @@ Check: everything works with sample data, and with `games/` containing a single 
 
 **Added at the owner's request:** "+ New idea" (inject your own idea at any stage) and a "Talk to it" tab on every agent. The dashboard's only write is saving an idea file to `games/_inbox/` (`POST /api/ideas`, refused in sample mode). It never starts agents; the owner tells the Director to process the idea, and `CLAUDE.md` has the instructions for that.
 
-Milestone 4 (Review Queue page, Quality Lab, Market & Portfolio, Ops): not started.
+**Milestone 4: done.** Review Queue (waiting pitches with how it plays, components, cost and KPI status; past decisions; human playtests and the agent-vs-human gap; read-only with a note on recording decisions through Claude Code), Quality Lab, Market & Portfolio and Ops. Charts that compare games are hidden behind a message until there are at least two games. The maths is in `server/kpis.js` and covered by `npm test` (34 tests).
+
+**Dashboard v1 is complete.** Left out or simplified:
+- Usage per pitch is a placeholder ("tracked once runs are automated"), as the spec says.
+- "Simulated games in the last 24 hours" uses the time of each game's last playtester run, because the playtest file has no timestamp of its own.
+- Problem types in the Quality Lab are found by matching keywords in the playtester's problem text, so unusual wording can land in no category.
+- Review Queue "How it plays" is read from a "How it plays" heading in `pitch.md`; a pitch without that heading shows "Not in the pitch file yet".
+- No buttons that run agents or record decisions (that is stage 3 in the spec).
 
 Known quirk: the four reporting lines share one horizontal trunk, so clicking the trunk selects the last specialist; click a line's own vertical drop (or the node) to pick a specific one.
 

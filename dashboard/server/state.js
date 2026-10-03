@@ -2,7 +2,7 @@
 // JSON object the front end needs. Missing or half-written files are skipped.
 import fs from 'node:fs';
 import path from 'node:path';
-import { computeKpis, gameScorecard, stageFunnel, killRateByStage, cycleTimes, avgRevisionLoops, firstPassRate, stuckGames, roomStats, milestones } from './kpis.js';
+import { computeKpis, gameScorecard, stageFunnel, killRateByStage, cycleTimes, avgRevisionLoops, firstPassRate, stuckGames, roomStats, milestones, ownerStats, reviewQueueItems, qualityLab, portfolio, opsStats } from './kpis.js';
 import { listInbox } from './ideas.js';
 
 const AGENT_ORDER = ['market-researcher', 'game-designer', 'playtester', 'critic', 'manager'];
@@ -23,6 +23,10 @@ function warn(msg) { console.warn(`[dashboard] ${msg}`); }
 function readJson(file) {
   try { return JSON.parse(fs.readFileSync(file, 'utf8')); }
   catch (e) { if (e.code !== 'ENOENT') warn(`could not read ${file}: ${e.message}`); return null; }
+}
+
+function readText(file) {
+  try { return fs.readFileSync(file, 'utf8'); } catch { return null; }
 }
 
 function readJsonl(file) {
@@ -90,6 +94,14 @@ function deriveStage(files, jsons) {
   return 'brief';
 }
 
+// The "How it plays" paragraph of a pitch.md, whichever heading style it uses (e.g. "## 4. How it plays").
+function extractSection(text, name) {
+  if (!text) return null;
+  const m = text.match(new RegExp('^#{1,6}\\s*(?:\\d+\\.\\s*)?' + name + '[^\\n]*\\n+([\\s\\S]*?)(?=^#{1,6}\\s|$(?![\\s\\S]))', 'im'));
+  const t = m ? m[1].trim() : '';
+  return t || null;
+}
+
 function titleFromSlug(slug) { return slug.split('-').map((w) => w[0]?.toUpperCase() + w.slice(1)).join(' '); }
 
 export function buildState({ repoRoot, dashboardDir, sample, now = Date.now() }) {
@@ -134,7 +146,7 @@ export function buildState({ repoRoot, dashboardDir, sample, now = Date.now() })
       kill_reason: st?.kill_reason ?? null,
       brief: jsons.brief, playtest: jsons.playtest, critique: jsons.critique, pitch: jsons.pitch,
       humanPlaytests: readJson(path.join(dir, 'human-playtests.json'))?.sessions || [],
-      files,
+      files, howItPlays: extractSection(readText(path.join(dir, 'pitch.md')), 'How it plays'),
       derived: !st,
     });
   }
@@ -165,6 +177,7 @@ export function buildState({ repoRoot, dashboardDir, sample, now = Date.now() })
     avgRevisions: avgRevisionLoops(games), firstPass: firstPassRate(games), stuck,
     rooms: roomStats(games, agents, stuck), milestones: milestones(games, decisions),
   };
+  const review = { ...ownerStats(games, decisions), queue: reviewQueueItems(games, now) };
 
-  return { sample, generatedAt: new Date(now).toISOString(), agents, games, activity: activity.slice(0, 500), decisions, inbox: listInbox(gamesDir), kpis, pipeline, waitingPitches: waitingPitches.map((g) => g.slug) };
+  return { sample, generatedAt: new Date(now).toISOString(), agents, games, activity: activity.slice(0, 500), decisions, inbox: listInbox(gamesDir), kpis, pipeline, review, quality: qualityLab(games), market: portfolio(games), ops: opsStats(games, agents, activity, now), waitingPitches: waitingPitches.map((g) => g.slug) };
 }

@@ -68,6 +68,11 @@ Then open <http://localhost:4173>. It updates by itself within a couple of secon
 - **Learn mode:** switch it on in the top bar for "?" markers that explain the concepts on screen.
 - **Replay:** pick a game and step through how the team worked on it.
 - **Pipeline:** pipeline health (funnel, kill rate by stage, cycle time, stuck games) and every game by stage. Click a game for its full overview page: scorecard, critic radar, balance charts, history and all its documents.
+- **Review Queue:** pitches waiting for you, oldest first, each with how it plays, components, estimated cost and KPI status, plus your past decisions, real playtests and the agent-vs-human gap. Read-only: tell Claude Code "approve <game>" and it updates the files.
+- **Quality Lab:** first-pass playtest rate over time, critic scores by revision, every game against its targets, and problem types that keep recurring.
+- **Market & Portfolio:** opportunity scores, the mix by players, time, complexity, mechanic and theme, comparable titles, and common mechanics you have not tried yet.
+- **Ops:** runs and failures per agent, simulated games, and each agent's recent events.
+- Charts that compare games stay hidden behind a short message until there are at least two games.
 - **+ New idea:** push an idea of your own into the pipeline at any stage. The dashboard saves it to `games/_inbox/`; then tell the Director "process my idea ..." and it runs the agents (see `CLAUDE.md`).
 
 **Customise:**

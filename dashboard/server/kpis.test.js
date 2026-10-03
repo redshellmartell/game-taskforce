@@ -105,3 +105,67 @@ test('pipeline numbers with no games do not crash', () => {
   assert.equal(stageFunnel([]).every((f) => f.count === 0), true);
 });
 import { avgRevisionLoops, stageFunnel } from './kpis.js';
+
+// ---- Milestone 4 ----
+test('how-it-plays paragraph is pulled out of pitch.md', () => {
+  const g = state.games.find((x) => x.slug === 'lantern-heist');
+  assert.match(g.howItPlays, /secretly bids one card/);
+  assert.doesNotMatch(g.howItPlays, /Components/);
+});
+test('review queue: one pitch with cost, components and passing KPIs', () => {
+  const q = state.review.queue;
+  assert.equal(q.length, 1); assert.equal(q[0].slug, 'lantern-heist');
+  assert.equal(q[0].cost, 18); assert.equal(q[0].components.length, 2);
+  assert.ok(q[0].days >= 6); assert.ok(q[0].passing >= 8);
+});
+test('owner stats: 0% approval (one rejection), human score 3.7, no gap between critic and human fun', () => {
+  const r = state.review;
+  assert.equal(r.approvalRate.value, 0);
+  assert.equal(r.humanScore.value, 3.7); assert.equal(r.humanScore.sessions, 1);
+  assert.equal(r.gap.value, 0); assert.equal(r.gap.status, 'good');
+  assert.equal(r.prototypes.value, 0);
+});
+test('owner stats with no decisions or playtests are "none", not a crash', () => {
+  const r = ownerStats([], []);
+  assert.equal(r.approvalRate.status, 'none'); assert.equal(r.gap.status, 'none'); assert.equal(r.humanScore.value, null);
+});
+test('quality lab: recurring problem types and first-pass trend', () => {
+  const q = state.quality;
+  const types = Object.fromEntries(q.recurring.map((r) => [r.type, r.games]));
+  assert.equal(types['Runaway leader'], 1); assert.equal(types['Rules ambiguity'], 1); assert.equal(types['Overpowered content'], 1);
+  assert.equal(q.firstPass.length, 3); assert.equal(q.firstPass[q.firstPass.length - 1].rate, 33);
+  assert.equal(q.criticByRevision.length >= 1, true);
+});
+test('portfolio: mechanics, brief count, comparables and unexplored mechanics', () => {
+  const m = state.market;
+  assert.equal(m.briefs, 3);
+  assert.equal(m.opportunity[0].title, 'Lantern Heist');
+  assert.ok(m.mechanics.some((x) => x.name === 'push-your-luck'));
+  assert.ok(m.unexplored.includes('worker placement') && !m.unexplored.includes('push-your-luck'));
+  assert.equal(m.comparables.find((c) => c.slug === 'lantern-heist').status, 'good');
+  assert.equal(m.comparables.find((c) => c.slug === 'ember-market').status, 'warn'); // only 1 comparable
+  assert.equal(m.topMechanic.status, 'good'); // 1 of 3 = 33%
+});
+test('ops: runs per agent, no failures, simulated games', () => {
+  const o = state.ops;
+  assert.equal(o.perAgent.length, 5);
+  assert.equal(o.perAgent.find((a) => a.id === 'game-designer').runs, 2);
+  assert.equal(o.perAgent.reduce((a, x) => a + x.runs, 0), 8);
+  assert.ok(o.perAgent.every((x) => x.errors === 0));
+  assert.equal(o.simulated.total, 8000);
+  assert.equal(o.daily.length, 7);
+  assert.equal(o.failureRate.status === 'good' || o.failureRate.status === 'none', true);
+  assert.equal(o.usagePerPitch, null);
+});
+test('ops: a failed run shows up in the failure rate', () => {
+  const now = Date.now();
+  const iso = (m) => new Date(now - m * 60000).toISOString();
+  const act = [{ time: iso(5), agent: 'critic', game: 'x', event: 'error', message: 'boom' }, { time: iso(10), agent: 'critic', game: 'x', event: 'done', message: 'ok' }];
+  const o = opsStats([], [{ id: 'critic', room: 'Review Board', color: '#000', state: 'error' }], act, now);
+  assert.equal(o.perAgent[0].failureRate, 50); assert.equal(o.failureRate.status, 'bad');
+});
+test('portfolio of no games does not crash', () => {
+  const m = portfolio([]);
+  assert.equal(m.briefs, 0); assert.equal(m.topMechanic, null);
+});
+import { ownerStats, portfolio, opsStats } from './kpis.js';

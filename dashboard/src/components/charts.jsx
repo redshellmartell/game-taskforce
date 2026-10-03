@@ -134,3 +134,60 @@ export function CycleChart({ times, color }) {
     </Frame>
   );
 }
+
+// ---- Milestone 4 charts ----
+import { LineChart, Line, Legend } from 'recharts';
+
+// Generic bars: one value per category, optional reference line (e.g. a target).
+export function ValueBars({ data, xKey, yKey, color, height = 180, domain, ticks, unit = '', refLine, refText, horizontal = false, label = '', labelWidth = 130 }) {
+  const rows = data || [];
+  const common = { stroke: AXIS, fontSize: 11, tickLine: false };
+  return (
+    <>
+    <Frame height={horizontal ? Math.max(120, rows.length * 30 + 30) : height} empty={rows.length === 0}>
+      <BarChart data={rows} layout={horizontal ? 'vertical' : 'horizontal'} margin={horizontal ? { top: 4, right: 30, bottom: 0, left: 10 } : { top: 16, right: 8, bottom: 0, left: -12 }}>
+        <CartesianGrid stroke={GRID} vertical={horizontal} horizontal={!horizontal} />
+        {horizontal
+          ? <><XAxis type="number" allowDecimals={false} {...common} /><YAxis type="category" dataKey={xKey} width={labelWidth} {...common} /></>
+          : <><XAxis dataKey={xKey} {...common} /><YAxis domain={domain} ticks={ticks} unit={unit} allowDecimals={false} {...common} /></>}
+        <Tooltip {...tip} formatter={(v) => [`${v}${unit}`, label || yKey]} />
+        {refLine != null && <ReferenceLine {...(horizontal ? { x: refLine } : { y: refLine })} stroke="#fff" strokeDasharray="4 4" />}
+        <Bar dataKey={yKey} fill={color} radius={horizontal ? 3 : [3, 3, 0, 0]}><LabelList dataKey={yKey} position={horizontal ? 'right' : 'top'} fill={AXIS} fontSize={11} /></Bar>
+      </BarChart>
+    </Frame>
+    {refLine != null && rows.length > 0 && <div className="muted small">Dashed line: {refText || 'target'}.</div>}
+    </>
+  );
+}
+
+// A line over time (for example the running first-pass playtest rate).
+export function TrendLine({ data, xKey, yKey, color, domain, unit = '', height = 180 }) {
+  return (
+    <Frame height={height} empty={!data || data.length === 0}>
+      <LineChart data={data} margin={{ top: 16, right: 12, bottom: 0, left: -12 }}>
+        <CartesianGrid stroke={GRID} vertical={false} />
+        <XAxis dataKey={xKey} {...axis} />
+        <YAxis domain={domain} unit={unit} {...axis} />
+        <Tooltip {...tip} formatter={(v) => [`${v}${unit}`, 'rate so far']} />
+        <Line type="monotone" dataKey={yKey} stroke={color} strokeWidth={2} dot={{ r: 4, fill: color }} />
+      </LineChart>
+    </Frame>
+  );
+}
+
+// Agent activity per day, stacked by agent, in each agent's own colour.
+export function DailyStack({ daily, agents }) {
+  const empty = !daily || daily.every((d) => agents.every((a) => !d[a.id]));
+  return (
+    <Frame height={220} empty={empty}>
+      <BarChart data={daily} margin={{ top: 8, right: 8, bottom: 0, left: -18 }}>
+        <CartesianGrid stroke={GRID} vertical={false} />
+        <XAxis dataKey="day" {...axis} />
+        <YAxis allowDecimals={false} {...axis} />
+        <Tooltip {...tip} />
+        <Legend wrapperStyle={{ fontSize: 11 }} />
+        {agents.map((a) => <Bar key={a.id} dataKey={a.id} name={a.room} stackId="d" fill={a.color} />)}
+      </BarChart>
+    </Frame>
+  );
+}

@@ -234,3 +234,150 @@ export function milestones(games, decisions) {
   for (const d of decisions || []) items.push({ time: t(d.time), kind: 'decision', text: `OWNER DECISION: ${d.decision} ${d.slug}` });
   return items.sort((a, b) => b.time - a.time).slice(0, 20);
 }
+
+// ---------------------------------------------------------------------------
+// Milestone 4: Review Queue, Quality Lab, Market & Portfolio, Ops.
+// ---------------------------------------------------------------------------
+const isNum = (v) => typeof v === 'number' && !Number.isNaN(v);
+const round1 = (n) => Math.round(n * 10) / 10;
+const avgOf = (xs) => { const v = xs.filter(isNum); return v.length ? round1(v.reduce((a, b) => a + b, 0) / v.length) : null; };
+
+// KPIs: "Owner approval rate", "Prototypes built", "Human playtest score", "Agent-vs-human gap".
+export function ownerStats(games, decisions) {
+  const count = (d) => decisions.filter((x) => x.decision === d).length;
+  const approved = count('approve');
+  const decided = approved + count('reject') + count('send-back');
+  const sessions = games.flatMap((g) => g.humanPlaytests || []);
+  const human = avgOf(sessions.map((s) => avgOf([s.fun, s.replay, s.clarity])));
+  const gapRows = games.map((g) => {
+    const criticFun = isNum(g.critique?.scores?.fun) ? g.critique.scores.fun : null;
+    const humanFun = avgOf((g.humanPlaytests || []).map((s) => s.fun));
+    return criticFun !== null && humanFun !== null ? { slug: g.slug, title: g.title, criticFun, humanFun, gap: round1(criticFun - humanFun) } : null;
+  }).filter(Boolean);
+  const gap = gapRows.length ? round1(gapRows.reduce((a, r) => a + r.gap, 0) / gapRows.length) : null;
+  return {
+    approvalRate: decided ? { value: Math.round((approved / decided) * 100), target: 'rising over time', status: 'none' } : none(),
+    prototypes: { value: count('prototyped'), target: null, status: 'none' },
+    humanScore: { value: human, target: null, status: 'none', sessions: sessions.length },
+    gap: gap === null ? none(null, 'close to 0') : { value: gap, target: 'close to 0', status: Math.abs(gap) <= 0.5 ? 'good' : Math.abs(gap) <= 1 ? 'warn' : 'bad' },
+    gapRows,
+  };
+}
+
+// Pitches waiting for the owner, oldest first.
+export function reviewQueueItems(games, now = Date.now()) {
+  return games.filter((g) => g.stage === 'owner-review').map((g) => {
+    const h = [...(g.history || [])].reverse().find((e) => e.stage === 'owner-review');
+    const since = h ? Date.parse(h.time) : NaN;
+    const passing = g.scorecard.filter((r) => r.status === 'good').length;
+    const scored = g.scorecard.filter((r) => r.status !== 'none').length;
+    return { slug: g.slug, title: g.title, hook: g.pitch?.hook || null, howItPlays: g.howItPlays || null, components: g.pitch?.components || [], cost: g.pitch?.estimated_prototype_cost_usd ?? null,
+      players: g.pitch?.players || g.brief?.players || null, minutes: g.pitch?.minutes || g.brief?.minutes || null, since: Number.isNaN(since) ? null : new Date(since).toISOString(),
+      days: Number.isNaN(since) ? null : Math.floor((now - since) / DAY), passing, scored, critic: criticAverage(g.critique) };
+  }).sort((a, b) => (a.since || '').localeCompare(b.since || ''));
+}
+
+// What kind of problem is this? (for "recurring problem types" in the Quality Lab)
+const PROBLEM_TYPES = [
+  ['Runaway leader', /runaway|snowball|halfway leader/],
+  ['Seat imbalance', /seat|first.?player|second.?player|turn order/],
+  ['Dead or useless content', /dead|useless|never (worth|played)|unused/],
+  ['Overpowered content', /outsized|overpowered|too strong|slightly strong|dominant/],
+  ['Wrong game length', /game length|too long|too short|length vs/],
+  ['Too few real decisions', /no (real )?decisions|automatic|same every turn|skill expression/],
+  ['Rules ambiguity', /ambigu|unclear rule/],
+];
+export function problemTypes(g) {
+  const found = new Set();
+  const pt = g.playtest;
+  if (!pt) return found;
+  const texts = (pt.problems || []).map((p) => `${p.problem} ${p.evidence || ''}`.toLowerCase());
+  if ((pt.ambiguities || []).length) found.add('Rules ambiguity');
+  if ((pt.cards || []).some((c) => c.flag)) found.add('Overpowered content');
+  for (const t of texts) { for (const [name, re] of PROBLEM_TYPES) if (re.test(t)) found.add(name); }
+  return found;
+}
+
+// Quality Lab: trends across all games.
+export function qualityLab(games) {
+  const ordered = [...games].sort((a, b) => Date.parse(a.history?.[0]?.time || 0) - Date.parse(b.history?.[0]?.time || 0));
+  let pass = 0, seen = 0;
+  const firstPass = [];
+  for (const g of ordered) {
+    const v = firstPass_verdict(g);
+    if (!v) continue;
+    seen += 1; if (v === 'PASS') pass += 1;
+    firstPass.push({ slug: g.slug, title: g.title, passed: v === 'PASS', rate: Math.round((pass / seen) * 100) });
+  }
+  const byRev = {};
+  for (const g of games) { const a = criticAverage(g.critique); if (a !== null) (byRev[g.critique.revision ?? g.revision ?? 0] ||= []).push(a); }
+  const criticByRevision = Object.entries(byRev).map(([rev, xs]) => ({ revision: Number(rev), label: `Revision ${rev}`, avg: avgOf(xs), games: xs.length })).sort((a, b) => a.revision - b.revision);
+  const tested = games.filter((g) => g.playtest);
+  const counts = {};
+  for (const g of tested) for (const t of problemTypes(g)) counts[t] = (counts[t] || 0) + 1;
+  const recurring = Object.entries(counts).map(([type, n]) => ({ type, games: n, of: tested.length })).sort((a, b) => b.games - a.games);
+  return { firstPass, criticByRevision, recurring };
+}
+function firstPass_verdict(g) {
+  const entry = (g.history || []).find((h) => h.stage === 'playtest' && h.verdict);
+  if (entry) return entry.verdict;
+  return !(g.history || []).length || g.revision === 0 ? g.playtest?.verdict ?? null : null;
+}
+
+// Market & Portfolio: what are we making, and is it varied?
+const COMMON_MECHANICS = ['push-your-luck', 'set collection', 'hidden bidding', 'engine building', 'market drafting', 'deck building', 'worker placement', 'area control', 'trick-taking', 'co-operative', 'deduction', 'tile placement', 'dice rolling', 'roll and write', 'negotiation', 'solo play', 'bluffing', 'real-time'];
+export function portfolio(games) {
+  const briefs = games.filter((g) => g.brief);
+  const tally = (keyFn) => {
+    const m = {};
+    for (const g of briefs) for (const k of [].concat(keyFn(g.brief) ?? [])) if (k !== null && k !== undefined && k !== '') m[k] = (m[k] || 0) + 1;
+    return Object.entries(m).map(([name, count]) => ({ name, count })).sort((a, b) => b.count - a.count);
+  };
+  const minutes = (b) => (!isNum(b.minutes) ? null : b.minutes <= 15 ? '15 min or less' : b.minutes <= 30 ? '16-30 min' : b.minutes <= 60 ? '31-60 min' : 'over 60 min');
+  const complexity = (b) => (!isNum(b.complexity) ? null : b.complexity <= 2 ? 'light (up to 2)' : b.complexity <= 3 ? 'medium (2.5-3)' : 'heavy (3.5+)');
+  const mechanics = tally((b) => (b.mechanics || []).map((m) => String(m).toLowerCase()));
+  const top = mechanics[0];
+  const share = top && briefs.length ? Math.round((top.count / briefs.length) * 100) : null;
+  const used = new Set(mechanics.map((m) => m.name));
+  return {
+    briefs: briefs.length,
+    players: tally((b) => (b.players == null ? null : String(b.players))), minutes: tally(minutes), complexity: tally(complexity),
+    mechanics, themes: tally((b) => (b.theme ? String(b.theme).toLowerCase() : null)),
+    topMechanic: top ? { name: top.name, share, status: briefs.length < 3 ? 'none' : share > 40 ? 'warn' : 'good', target: 'no mechanic over 40%' } : null,
+    opportunity: briefs.map((g) => ({ slug: g.slug, title: g.title, score: g.brief.opportunity_score ?? null, rubric: g.brief.rubric || null })).filter((o) => o.score !== null).sort((a, b) => b.score - a.score),
+    comparables: briefs.map((g) => ({ slug: g.slug, title: g.title, items: g.brief.comparables || [], status: (g.brief.comparables || []).length >= 2 ? 'good' : 'warn' })),
+    unexplored: COMMON_MECHANICS.filter((m) => ![...used].some((u) => u.includes(m) || m.includes(u))),
+  };
+}
+
+// Ops: runs, failures, simulated games and each agent's recent activity.
+export function opsStats(games, agents, activity, now = Date.now()) {
+  const week = now - 7 * DAY, day = now - DAY;
+  const inWeek = activity.filter((e) => Date.parse(e.time) >= week);
+  const perAgent = agents.map((a) => {
+    const mine = inWeek.filter((e) => e.agent === a.id);
+    const runs = mine.filter((e) => e.event === 'done').length, errors = mine.filter((e) => e.event === 'error').length;
+    const all = activity.filter((e) => e.agent === a.id);
+    return { id: a.id, room: a.room, color: a.color, state: a.state, runs, errors, failureRate: runs + errors ? Math.round((errors / (runs + errors)) * 100) : null,
+      last: all[0]?.time || null, history: all.slice(0, 14).reverse().map((e) => ({ time: e.time, event: e.event, game: e.game, message: e.message })) };
+  });
+  const totalRuns = perAgent.reduce((a, x) => a + x.runs, 0), totalErrors = perAgent.reduce((a, x) => a + x.errors, 0);
+  const failure = totalRuns + totalErrors ? Math.round((totalErrors / (totalRuns + totalErrors)) * 100) : null;
+  const days = [];
+  for (let i = 6; i >= 0; i--) {
+    const start = new Date(now - i * DAY); start.setUTCHours(0, 0, 0, 0);
+    const row = { day: start.toISOString().slice(5, 10) };
+    for (const a of agents) row[a.id] = activity.filter((e) => e.agent === a.id && e.time.slice(0, 10) === start.toISOString().slice(0, 10)).length;
+    days.push(row);
+  }
+  const simsTotal = games.reduce((a, g) => a + (g.playtest?.games_simulated || 0), 0);
+  const simsDay = games.reduce((a, g) => {
+    const last = activity.find((e) => e.game === g.slug && e.agent === 'playtester' && e.event === 'done');
+    return a + (g.playtest?.games_simulated && last && Date.parse(last.time) >= day ? g.playtest.games_simulated : 0);
+  }, 0);
+  return {
+    perAgent, daily: days,
+    failureRate: failure === null ? none(null, 'under 10%') : { value: failure, target: 'under 10%', status: failure < 10 ? 'good' : 'bad' },
+    simulated: { total: simsTotal, last24h: simsDay }, usagePerPitch: null,
+  };
+}

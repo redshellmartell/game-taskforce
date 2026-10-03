@@ -222,3 +222,18 @@ table.score { width: 100%; border-collapse: collapse; font-size: 13px; } table.s
 .ticker b { color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: .08em; font-size: 11px; }
 .tick.k-pitch { color: var(--good); } .tick.k-kill { color: var(--bad); } .tick.k-balance { color: var(--warn); } .tick.k-decision { color: #7aa2f7; }
 @media (max-width: 900px) { .floor, .floor.open { grid-template-columns: minmax(0, 1fr); } .sidebar { border-right: none; border-bottom: 1px solid var(--border); } .floor .panel { position: static; max-height: none; } }
+
+/* milestone 4 views */
+.view { padding: 18px; max-width: 1280px; }
+.notice.info { border-color: var(--border); color: var(--muted); }
+.count.amber { color: var(--warn); border-color: var(--warn); }
+.pitch .pitch-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
+.pitch-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 18px; }
+.pitch-actions { border-top: 1px solid var(--border); margin-top: 8px; padding-top: 10px; }
+table.matrix td { padding: 4px 14px 4px 0; white-space: nowrap; }
+.cell.good { color: var(--good); } .cell.warn { color: var(--warn); } .cell.bad, td.bad { color: var(--bad); }
+.strip { display: inline-flex; gap: 3px; align-items: center; }
+.strip i { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+.nodata.gate { padding: 14px; text-align: center; }
+.nav { overflow-x: auto; }
+.nav button { white-space: nowrap; }
