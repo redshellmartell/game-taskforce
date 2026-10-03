@@ -69,6 +69,7 @@ export function GamePage({ game: g, state, onBack }) {
           <LengthHistogram length={pt?.length} histogram={pt?.length_histogram} color={colorOf(state, 'playtester')} />
           <h4>Card win correlation</h4>
           <CardCorrelation cards={pt?.cards} />
+          {pt?.cards?.some((c) => c.flag) && <><h4>Flagged by the playtester</h4>{pt.cards.filter((c) => c.flag).map((c) => <div className="item" key={c.name}><b>{c.name}</b>: {c.flag}{typeof c.played_rate === 'number' && <div className="meta">comes into play in {Math.round(c.played_rate * 100)}% of games</div>}</div>)}</>}
           {pt?.problems?.length > 0 && <><h4>Problems found</h4>{pt.problems.map((p, i) => <div className="item" key={i}><span className={`chip sev-${p.severity}`}>{p.severity}</span> {p.problem}<div className="meta">{p.fix}</div></div>)}</>}
         </section>
         <section className="card">
@@ -84,7 +85,7 @@ export function GamePage({ game: g, state, onBack }) {
         {g.history.length > 0
           ? <ol className="timeline">{g.history.map((h, i) => <li key={i}><b>{STAGE_LABEL[h.stage] || h.stage}</b>{h.verdict && <span className={`chip v-${verdictClass(h.verdict)}`}>{h.verdict}</span>} <span className="muted">{h.note} · {ago(h.time)}</span></li>)}</ol>
           : events.length > 0
-            ? <ol className="timeline">{events.map((e, i) => <li key={i}><span className="mono muted">{clock(e.time)}</span> <b>{state.agents.find((a) => a.id === e.agent)?.room || e.agent}</b> <span className="muted">{e.message}{e.synthetic ? ' (inferred from file)' : ''}</span></li>)}</ol>
+            ? <ol className="timeline">{events.map((e, i) => <li key={i}><span className="mono muted">{clock(e.time)}</span> <b>{state.agents.find((a) => a.id === e.agent)?.room || e.agent}</b> <span className="muted">{e.message}{e.synthetic ? ' (inferred from file)' : ''}{e.reconstructed ? ' (reconstructed from commits)' : ''}</span></li>)}</ol>
             : <p className="empty">No history yet.</p>}
       </section>
 

@@ -1,0 +1,24 @@
+{
+  "title": "Duel Flip",
+  "hook": "Two tide-pool scavengers flip cards into one shared, visible river. Push for a bigger haul, but flip a value already in the river and the pile you flipped washes over to your rival.",
+  "players": "2",
+  "minutes": 12.5,
+  "age": "8+",
+  "complexity": 1.5,
+  "components": [
+    {
+      "item": "species cards (6 species x values 1-10)",
+      "count": 60
+    },
+    {
+      "item": "Lifebuoy tokens",
+      "count": 2
+    },
+    {
+      "item": "rules sheet",
+      "count": 1
+    }
+  ],
+  "estimated_prototype_cost_usd": null,
+  "prototype_ready": false
+}

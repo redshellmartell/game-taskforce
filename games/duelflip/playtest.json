@@ -1,0 +1,151 @@
+{
+  "verdict": "NEEDS-FIXES",
+  "revision": 1,
+  "games_simulated": 128000,
+  "seat_win_rates": {
+    "1": 0.533,
+    "2": 0.467
+  },
+  "seat_balance_gap": 3.4,
+  "bot_win_rates": {
+    "random": 0.286,
+    "greedy": 0.547,
+    "bank_early": 0.548,
+    "pusher": 0.503,
+    "refund_pusher": 0.543,
+    "hoarder": 0.394,
+    "collector": 0.513,
+    "strategic": 0.672
+  },
+  "skill_expression": 38.6,
+  "length": {
+    "mean_turns": 23.4,
+    "stdev": 2.1,
+    "estimated_minutes": 12,
+    "target_minutes": 12.5
+  },
+  "length_histogram": [
+    {
+      "turns": 17,
+      "games": 4
+    },
+    {
+      "turns": 18,
+      "games": 26
+    },
+    {
+      "turns": 19,
+      "games": 62
+    },
+    {
+      "turns": 20,
+      "games": 115
+    },
+    {
+      "turns": 21,
+      "games": 155
+    },
+    {
+      "turns": 22,
+      "games": 266
+    },
+    {
+      "turns": 23,
+      "games": 336
+    },
+    {
+      "turns": 24,
+      "games": 376
+    },
+    {
+      "turns": 25,
+      "games": 311
+    },
+    {
+      "turns": 26,
+      "games": 229
+    },
+    {
+      "turns": 27,
+      "games": 104
+    },
+    {
+      "turns": 28,
+      "games": 14
+    },
+    {
+      "turns": 29,
+      "games": 2
+    }
+  ],
+  "ties": 0.005,
+  "turn_cap_hits": 0,
+  "lead_changes_mean": 3.1,
+  "runaway_leader_rate": 0.763,
+  "cards": [
+    {
+      "name": "Species majority bonus",
+      "played_rate": 0.957,
+      "win_correlation": null,
+      "flag": "inert: changes the winner in only about 5% of games at bonus 8"
+    },
+    {
+      "name": "Lifebuoy refund",
+      "played_rate": 0.265,
+      "win_correlation": null,
+      "flag": "inert: refunded about 0.56 times per game and changes no measurable outcome"
+    },
+    {
+      "name": "Bait (leave one card)",
+      "played_rate": 0.982,
+      "win_correlation": null,
+      "flag": "dominated: leaving the lowest card is the right choice about 3 turns in 4"
+    }
+  ],
+  "ambiguities": [
+    "River with only 1 card at banking: section 4 says at least 2, but it can be 1 (deck runs out after the first flip, or a Lifebuoy is spent on a second-flip clash). Interpreted: you take the single card.",
+    "Safe scout when the deck runs dry: if every remaining card matches the river the scout redraws until the deck is empty with an empty pile, and the game ends (consistent with section 5).",
+    "Refund counting: the card you leave counts toward the 4 cards, and the refund only applies if the Lifebuoy was spent. Interpreted by the playtester; not stated in the rules.",
+    "Multiple leftovers: only 0 or 1 leftover can exist, so the 'other leftovers stay in the river' wording in section 4 is dead text.",
+    "Lifebuoy on a bait clash: spending it keeps your pile and you must bank the bait. Allowed, but not stated.",
+    "Tiebreaker: equal score, then more cards, then the second player. Assumed."
+  ],
+  "problems": [
+    {
+      "severity": "medium",
+      "problem": "Bait/leave decision is solved by 'leave your lowest card'",
+      "evidence": "Leaving high wins 17-24% and random 31-36% against leave-lowest; the best clever leave rule gains only +2 to +3 points. The answer is 'lowest' about 3 turns in 4.",
+      "fix": "Make a bait hit pay more (bait owner also takes a card from the opponent's pile, or the pile counts double), then re-run experiments.py section A. Target: leave-lowest under 60% against a smart leaver."
+    },
+    {
+      "severity": "medium",
+      "problem": "Species bonus decides only about 5% of games",
+      "evidence": "Flips the winner in 4.8% of games at bonus 8 (v1: about 4% at 5). The species-aware leave rule scores 45-47% against plain lowest, so chasing species costs more than it gains.",
+      "fix": "Score the bonus per card of margin (for example +3 per card ahead) or raise it to 12-15, then re-run section E. Target: swings 10%+ of games."
+    },
+    {
+      "severity": "low",
+      "problem": "Pushing deep is not rewarded and the Lifebuoy refund is rarely used",
+      "evidence": "Pusher targets 4 to 20 all win 35-40% against strategic. Refund happens 0.56 times per game. Refund at 3 re-tilts seat 1 to 55.5%.",
+      "fix": "Move the refund to 3 cards with seat 2 +4, or drop the refund and keep a one-shot Lifebuoy."
+    },
+    {
+      "severity": "low",
+      "problem": "1-card busts feel like small taxes",
+      "evidence": "10-17% of turns; average bust pile 5.6 points, none reach 15.",
+      "fix": "Optionally make the Lifebuoy free when the pile is one card."
+    },
+    {
+      "severity": "low",
+      "problem": "Mild snowball",
+      "evidence": "The leader after one third of the game wins 66-70%. Unchanged from v1.",
+      "fix": "None needed; acceptable."
+    },
+    {
+      "severity": "low",
+      "problem": "Random bots give seat 1 only 48%",
+      "evidence": "Small over-correction from the +3 compensation; no bot is further than 2 points from fair.",
+      "fix": "Keep +3 (+2 is an alternative)."
+    }
+  ]
+}

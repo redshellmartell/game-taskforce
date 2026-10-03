@@ -281,10 +281,10 @@ export function reviewQueueItems(games, now = Date.now()) {
 const PROBLEM_TYPES = [
   ['Runaway leader', /runaway|snowball|halfway leader/],
   ['Seat imbalance', /seat|first.?player|second.?player|turn order/],
-  ['Dead or useless content', /dead|useless|never (worth|played)|unused/],
+  ['Dead or useless content', /dead|useless|inert|decides only|never (worth|played)|unused/],
   ['Overpowered content', /outsized|overpowered|too strong|slightly strong|dominant/],
   ['Wrong game length', /game length|too long|too short|length vs/],
-  ['Too few real decisions', /no (real )?decisions|automatic|same every turn|skill expression/],
+  ['Too few real decisions', /no (real )?decisions|automatic|same every turn|skill expression|dominated|solved/],
   ['Rules ambiguity', /ambigu|unclear rule/],
 ];
 export function problemTypes(g) {
@@ -293,7 +293,14 @@ export function problemTypes(g) {
   if (!pt) return found;
   const texts = (pt.problems || []).map((p) => `${p.problem} ${p.evidence || ''}`.toLowerCase());
   if ((pt.ambiguities || []).length) found.add('Rules ambiguity');
-  if ((pt.cards || []).some((c) => c.flag)) found.add('Overpowered content');
+  // A flagged card or design element is filed by what its flag says ("outsized" = overpowered, "inert" = dead, ...).
+  for (const c of pt.cards || []) {
+    if (!c.flag) continue;
+    const t = String(c.flag).toLowerCase();
+    let hit = false;
+    for (const [name, re] of PROBLEM_TYPES) if (re.test(t)) { found.add(name); hit = true; }
+    if (!hit) found.add('Dead or useless content');
+  }
   for (const t of texts) { for (const [name, re] of PROBLEM_TYPES) if (re.test(t)) found.add(name); }
   return found;
 }

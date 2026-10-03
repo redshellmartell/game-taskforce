@@ -68,7 +68,7 @@ export function AgentPanel({ agent, state, onClose, initialTab }) {
       <h4>Recent steps</h4>
       {agent.recent.length === 0 && <p className="empty">No steps logged yet.</p>}
       {agent.recent.map((e, i) => (
-        <div className="item" key={i}>{e.message}<div className="meta">{gameTitle(e.game)} · {e.event} · {ago(e.time)}{e.synthetic ? ' · inferred from file' : ''}</div></div>
+        <div className="item" key={i}>{e.message}<div className="meta">{gameTitle(e.game)} · {e.event} · {ago(e.time)}{e.synthetic ? ' · inferred from file' : ''}{e.reconstructed ? ' · reconstructed from commits' : ''}</div></div>
       ))}
     </>
   );

@@ -1,0 +1,65 @@
+{
+  "games": [
+    {
+      "slug": "duelflip",
+      "title": "Duel Flip",
+      "stage": "owner-review",
+      "revision": 1,
+      "history": [
+        {
+          "stage": "brief",
+          "time": "2026-10-03T10:20:14Z",
+          "verdict": null,
+          "note": "Brief scored 26/30"
+        },
+        {
+          "stage": "design",
+          "time": "2026-10-03T10:20:15Z",
+          "verdict": null,
+          "note": "rules.md v1"
+        },
+        {
+          "stage": "playtest",
+          "time": "2026-10-03T10:22:04Z",
+          "verdict": "NEEDS-FIXES",
+          "note": "Second seat won about 57%; bait collapses to leave-lowest"
+        },
+        {
+          "stage": "design",
+          "time": "2026-10-03T10:23:11Z",
+          "verdict": null,
+          "note": "Revision 1: rules.md v2"
+        },
+        {
+          "stage": "playtest",
+          "time": "2026-10-03T10:27:40Z",
+          "verdict": "NEEDS-FIXES",
+          "note": "Seat balance fixed; bait, species bonus and refund still inert"
+        },
+        {
+          "stage": "critique",
+          "time": "2026-10-03T10:29:41Z",
+          "verdict": "REVISE-MINOR",
+          "note": "Average 3.4/5"
+        },
+        {
+          "stage": "pitch",
+          "time": "2026-10-03T10:29:42Z",
+          "verdict": null,
+          "note": "Pitched as a feasibility test after one revision loop"
+        },
+        {
+          "stage": "owner-review",
+          "time": "2026-10-03T10:29:42Z",
+          "verdict": null,
+          "note": "Waiting for the owner"
+        }
+      ],
+      "verdicts": {
+        "playtest": "NEEDS-FIXES",
+        "critic": "REVISE-MINOR"
+      },
+      "kill_reason": null
+    }
+  ]
+}
