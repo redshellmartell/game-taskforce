@@ -76,7 +76,7 @@
     {
       "slug": "three-player-trick-taker",
       "title": "Three-Hand Trick-Taker",
-      "stage": "brief",
+      "stage": "design",
       "revision": 0,
       "history": [
         {
@@ -90,6 +90,12 @@
           "time": "2026-10-03T15:46:15Z",
           "verdict": "26/30",
           "note": "brief written; waiting for approval: greenlight"
+        },
+        {
+          "stage": "design",
+          "time": "2026-10-03T15:57:36Z",
+          "verdict": null,
+          "note": "greenlight approved by owner; design started"
         }
       ],
       "verdicts": {

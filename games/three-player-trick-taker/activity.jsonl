@@ -3,3 +3,4 @@
 {"time": "2026-10-03T15:46:30Z", "agent": "market-researcher", "game": "three-player-trick-taker", "event": "step", "message": "2 searches done: BGG ratings for The Crew (7.8), Skull King (7.5), Fox in the Forest (7.1); brief files written"}
 {"time": "2026-10-03T15:47:00Z", "agent": "market-researcher", "game": "three-player-trick-taker", "event": "done", "message": "Brief complete, opportunity score 26/30; idea set to in-pipeline"}
 {"time": "2026-10-03T15:46:15Z", "agent": "manager", "game": "three-player-trick-taker", "event": "waiting", "message": "waiting for approval: greenlight (three-player-trick-taker-greenlight)"}
+{"time": "2026-10-03T15:57:36Z", "agent": "manager", "game": "three-player-trick-taker", "event": "step", "message": "greenlight approved by owner; design started"}

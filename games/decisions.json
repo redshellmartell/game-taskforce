@@ -17,6 +17,12 @@
       "time": "2026-10-03T15:16:31Z",
       "decision": "approve",
       "notes": "market-scan-1 (scan gate): owner approved"
+    },
+    {
+      "slug": "three-player-trick-taker",
+      "time": "2026-10-03T15:57:30Z",
+      "decision": "approve",
+      "notes": "greenlight gate (three-player-trick-taker-greenlight): owner approved in chat"
     }
   ]
 }

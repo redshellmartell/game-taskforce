@@ -81,7 +81,7 @@
       "gate": "greenlight",
       "game": "three-player-trick-taker",
       "time": "2026-10-03T15:46:15Z",
-      "status": "pending",
+      "status": "approved",
       "summary": "Brief written: Three-Hand Trick-Taker, 3 players, 20 minutes, complexity 2, opportunity score 26/30. A competitive trick-taker built only for 3, with leader, chaser and spoiler roles rotating each round and a heist theme.",
       "why_needed": "Design, playtest and critique run through without further gates once started, so this is the point to say whether this idea is worth the usage.",
       "expected_outcome": "A complete rulebook, then a simulation with seat balance gap 5 points or less and a strategic-vs-random win gap of 20 points or more. Main risk to watch: the spoiler role kingmaking, and 2-vs-1 gang-ups.",
@@ -101,9 +101,9 @@
           "label": "Reject the idea and record why"
         }
       ],
-      "decision": null,
-      "decided_at": null,
-      "owner_notes": null
+      "decision": "approve",
+      "decided_at": "2026-10-03T15:57:30Z",
+      "owner_notes": "Owner replied \"I approved it\" in chat (dashboard change not visible in cloud session)"
     }
   ]
 }
