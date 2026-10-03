@@ -52,6 +52,8 @@ function parseFrontmatter(text) {
   return fm;
 }
 
+const PANEL_AGENTS = new Set(['panel-player']);
+
 function loadAgents(repoRoot, agentsJson) {
   const dir = path.join(repoRoot, '.claude', 'agents');
   const found = {};
@@ -61,6 +63,7 @@ function loadAgents(repoRoot, agentsJson) {
       try {
         const fm = parseFrontmatter(fs.readFileSync(path.join(dir, f), 'utf8'));
         const id = fm.name || f.replace(/\.md$/, '');
+        if (PANEL_AGENTS.has(id)) continue;   // persona agents live inside the Playtest Lab's Test panel, not as org-chart boxes
         found[id] = { id, description: fm.description || '', tools: (fm.tools || '').split(',').map((s) => s.trim()).filter(Boolean), file: `.claude/agents/${f}` };
       } catch (e) { warn(`bad agent file ${f}: ${e.message}`); }
     }
