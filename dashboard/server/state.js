@@ -2,7 +2,7 @@
 // JSON object the front end needs. Missing or half-written files are skipped.
 import fs from 'node:fs';
 import path from 'node:path';
-import { computeKpis, gameScorecard, stageFunnel, killRateByStage, cycleTimes, avgRevisionLoops, firstPassRate, stuckGames, roomStats, milestones, ownerStats, reviewQueueItems, qualityLab, portfolio, opsStats } from './kpis.js';
+import { computeKpis, gameScorecard, stageFunnel, killRateByStage, cycleTimes, avgRevisionLoops, firstPassRate, stuckGames, roomStats, milestones, ownerStats, reviewQueueItems, qualityLab, portfolio, opsStats, ideaBankStats } from './kpis.js';
 import { listInbox } from './ideas.js';
 
 const AGENT_ORDER = ['market-researcher', 'game-designer', 'playtester', 'critic', 'manager'];
@@ -171,13 +171,15 @@ export function buildState({ repoRoot, dashboardDir, sample, now = Date.now() })
 
   const decisions = (readJson(path.join(gamesDir, 'decisions.json'))?.decisions || []).map((d) => ({ ...d, time: shiftTime(d.time) }));
   const kpis = computeKpis(games, agents, now);
+  const bankFile = readJson(path.join(sample ? path.join(dashboardDir, 'sample-data') : repoRoot, 'research', 'idea-bank.json'));
+  const bankStats = ideaBankStats(bankFile, now);
   const stuck = stuckGames(games, activity, now);
   const pipeline = {
     funnel: stageFunnel(games), killRate: killRateByStage(games), cycleTimes: cycleTimes(games),
     avgRevisions: avgRevisionLoops(games), firstPass: firstPassRate(games), stuck,
-    rooms: roomStats(games, agents, stuck), milestones: milestones(games, decisions),
+    rooms: roomStats(games, agents, stuck, bankStats), milestones: milestones(games, decisions),
   };
   const review = { ...ownerStats(games, decisions), queue: reviewQueueItems(games, now) };
 
-  return { sample, generatedAt: new Date(now).toISOString(), agents, games, activity: activity.slice(0, 500), decisions, inbox: listInbox(gamesDir), kpis, pipeline, review, quality: qualityLab(games), market: portfolio(games), ops: opsStats(games, agents, activity, now), waitingPitches: waitingPitches.map((g) => g.slug) };
+  return { sample, generatedAt: new Date(now).toISOString(), agents, games, activity: activity.slice(0, 500), decisions, inbox: listInbox(gamesDir), kpis, pipeline, review, quality: qualityLab(games), market: { ...portfolio(games), ideaBank: bankFile && bankStats ? { ...bankStats, updated: bankFile.updated || null, ideas: bankFile.ideas } : null }, ops: opsStats(games, agents, activity, now), waitingPitches: waitingPitches.map((g) => g.slug) };
 }

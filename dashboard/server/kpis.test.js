@@ -168,4 +168,28 @@ test('portfolio of no games does not crash', () => {
   const m = portfolio([]);
   assert.equal(m.briefs, 0); assert.equal(m.topMechanic, null);
 });
-import { ownerStats, portfolio, opsStats } from './kpis.js';
+import { ownerStats, portfolio, opsStats, ideaBankStats } from './kpis.js';
+
+// ---- Idea bank ----
+test('idea bank (sample): counts by status and a scan is needed (only 3 strong banked ideas, scan 21+ days old but under 30 is fine)', () => {
+  const b = state.market.ideaBank;
+  assert.equal(b.total, 8); assert.equal(b.inPipeline, 2); assert.equal(b.rejected, 2); assert.equal(b.banked, 4);
+  assert.equal(b.strongBanked, 4);
+  assert.equal(b.needsScan, false);
+});
+test('idea bank rule: fewer than 3 strong banked ideas, or a scan over 30 days old, means a scan is needed', () => {
+  const now = Date.parse('2026-10-03T00:00:00Z');
+  const few = ideaBankStats({ last_scan: '2026-10-01', ideas: [{ status: 'banked', score: 22 }, { status: 'banked', score: 17 }] }, now);
+  assert.equal(few.needsScan, true); assert.match(few.scanReasons[0], /only 1 banked idea/);
+  const old = ideaBankStats({ last_scan: '2026-08-01', ideas: [1, 2, 3].map(() => ({ status: 'banked', score: 20 })) }, now);
+  assert.equal(old.needsScan, true); assert.equal(old.scanAgeDays, 63);
+  const fine = ideaBankStats({ last_scan: '2026-09-20', ideas: [1, 2, 3].map(() => ({ status: 'banked', score: 18 })) }, now);
+  assert.equal(fine.needsScan, false);
+});
+test('idea bank: missing or broken file gives null, not a crash', () => {
+  assert.equal(ideaBankStats(null), null); assert.equal(ideaBankStats({}), null);
+});
+test('Market Intel room card shows briefs written and ideas banked', () => {
+  const r = state.pipeline.rooms['market-researcher'];
+  assert.equal(r[0].label, 'Briefs written'); assert.equal(r[1].label, 'Ideas banked'); assert.equal(r[1].value, 4);
+});

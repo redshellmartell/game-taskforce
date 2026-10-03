@@ -1,0 +1,253 @@
+{
+  "updated": "2026-09-20",
+  "last_scan": "2026-09-12",
+  "ideas": [
+    {
+      "id": "lantern-heist-idea",
+      "title": "Lantern Heist",
+      "pitch": "Night-market thieves bid in secret for lanterns.",
+      "players": "2-4",
+      "minutes": 20,
+      "complexity": 2,
+      "mechanics": [
+        "set collection",
+        "hidden bidding"
+      ],
+      "theme": "night-market thieves",
+      "score": 24,
+      "rubric": {
+        "demand": 4,
+        "gap": 4,
+        "originality": 4,
+        "producibility": 4,
+        "simulatability": 4,
+        "owner_fit": 4
+      },
+      "comparables": [],
+      "evidence": "Sample idea.",
+      "sources": [],
+      "status": "in-pipeline",
+      "game_slug": "lantern-heist",
+      "added": "2026-09-12",
+      "scan": "2026-09-12",
+      "source": "scan",
+      "notes": ""
+    },
+    {
+      "id": "ember-market-idea",
+      "title": "Ember Market",
+      "pitch": "A desert bazaar engine builder.",
+      "players": "3-4",
+      "minutes": 30,
+      "complexity": 2.5,
+      "mechanics": [
+        "engine building",
+        "market drafting"
+      ],
+      "theme": "desert bazaar",
+      "score": 21,
+      "rubric": {
+        "demand": 4,
+        "gap": 3,
+        "originality": 3,
+        "producibility": 4,
+        "simulatability": 4,
+        "owner_fit": 3
+      },
+      "comparables": [],
+      "evidence": "Sample idea.",
+      "sources": [],
+      "status": "in-pipeline",
+      "game_slug": "ember-market",
+      "added": "2026-09-12",
+      "scan": "2026-09-12",
+      "source": "scan",
+      "notes": ""
+    },
+    {
+      "id": "tide-lords-idea",
+      "title": "Tide Lords",
+      "pitch": "Two sea gods flip for the tide.",
+      "players": "2",
+      "minutes": 15,
+      "complexity": 2,
+      "mechanics": [
+        "push-your-luck"
+      ],
+      "theme": "sea gods",
+      "score": 19,
+      "rubric": {
+        "demand": 4,
+        "gap": 2,
+        "originality": 2,
+        "producibility": 4,
+        "simulatability": 4,
+        "owner_fit": 3
+      },
+      "comparables": [],
+      "evidence": "Sample idea.",
+      "sources": [],
+      "status": "rejected",
+      "game_slug": "tide-lords",
+      "added": "2026-09-12",
+      "scan": "2026-09-12",
+      "source": "scan",
+      "notes": "Killed: too close to Flip 7."
+    },
+    {
+      "id": "moth-market-idea",
+      "title": "Moth Market",
+      "pitch": "Bluff and bid for moths at a night market.",
+      "players": "2-5",
+      "minutes": 25,
+      "complexity": 2,
+      "mechanics": [
+        "bluffing",
+        "hidden bidding"
+      ],
+      "theme": "moths",
+      "score": 21,
+      "rubric": {
+        "demand": 4,
+        "gap": 3,
+        "originality": 3,
+        "producibility": 4,
+        "simulatability": 3,
+        "owner_fit": 4
+      },
+      "comparables": [],
+      "evidence": "Sample idea.",
+      "sources": [],
+      "status": "banked",
+      "game_slug": null,
+      "added": "2026-09-12",
+      "scan": "2026-09-12",
+      "source": "scan",
+      "notes": ""
+    },
+    {
+      "id": "tower-of-keys",
+      "title": "Tower of Keys",
+      "pitch": "Climb a tower by trading keys.",
+      "players": "2-4",
+      "minutes": 20,
+      "complexity": 2,
+      "mechanics": [
+        "set collection",
+        "area control"
+      ],
+      "theme": "wizard tower",
+      "score": 22,
+      "rubric": {
+        "demand": 3,
+        "gap": 4,
+        "originality": 4,
+        "producibility": 3,
+        "simulatability": 4,
+        "owner_fit": 4
+      },
+      "comparables": [],
+      "evidence": "Sample idea.",
+      "sources": [],
+      "status": "banked",
+      "game_slug": null,
+      "added": "2026-09-12",
+      "scan": "2026-09-12",
+      "source": "scan",
+      "notes": ""
+    },
+    {
+      "id": "river-relay",
+      "title": "River Relay",
+      "pitch": "A fast, simultaneous drafting game.",
+      "players": "3-6",
+      "minutes": 15,
+      "complexity": 1.5,
+      "mechanics": [
+        "drafting",
+        "real-time"
+      ],
+      "theme": "river racers",
+      "score": 23,
+      "rubric": {
+        "demand": 4,
+        "gap": 3,
+        "originality": 3,
+        "producibility": 5,
+        "simulatability": 4,
+        "owner_fit": 4
+      },
+      "comparables": [],
+      "evidence": "Sample idea.",
+      "sources": [],
+      "status": "banked",
+      "game_slug": null,
+      "added": "2026-09-12",
+      "scan": "2026-09-12",
+      "source": "scan",
+      "notes": ""
+    },
+    {
+      "id": "owner-pocket-dungeon",
+      "title": "Pocket Dungeon",
+      "pitch": "A one-deck dungeon crawl you can play on a train.",
+      "players": "1",
+      "minutes": 20,
+      "complexity": 2,
+      "mechanics": [
+        "deck-building",
+        "solo play"
+      ],
+      "theme": "dungeon",
+      "score": 21,
+      "rubric": {
+        "demand": 3,
+        "gap": 3,
+        "originality": 3,
+        "producibility": 4,
+        "simulatability": 3,
+        "owner_fit": 5
+      },
+      "comparables": [],
+      "evidence": "Sample idea.",
+      "sources": [],
+      "status": "banked",
+      "game_slug": null,
+      "added": "2026-09-18",
+      "scan": "2026-09-12",
+      "source": "owner",
+      "notes": "Added by the owner."
+    },
+    {
+      "id": "paper-boats",
+      "title": "Paper Boats",
+      "pitch": "Cooperative boat folding race.",
+      "players": "2-4",
+      "minutes": 10,
+      "complexity": 1,
+      "mechanics": [
+        "co-operative",
+        "dexterity"
+      ],
+      "theme": "paper boats",
+      "score": 16,
+      "rubric": {
+        "demand": 2,
+        "gap": 3,
+        "originality": 3,
+        "producibility": 3,
+        "simulatability": 2,
+        "owner_fit": 3
+      },
+      "comparables": [],
+      "evidence": "Sample idea.",
+      "sources": [],
+      "status": "rejected",
+      "game_slug": null,
+      "added": "2026-09-12",
+      "scan": "2026-09-12",
+      "source": "scan",
+      "notes": "Score under 18; simulation would be hard."
+    }
+  ]
+}

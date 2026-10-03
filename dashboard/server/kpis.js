@@ -197,7 +197,7 @@ export function stuckGames(games, activity, now = Date.now()) {
 }
 
 // Two key numbers for each agent's room card on the Studio Floor.
-export function roomStats(games, agents, stuck) {
+export function roomStats(games, agents, stuck, bank = null) {
   const all = (fn) => games.map(fn).filter((v) => v !== null && v !== undefined);
   const avg = (xs) => (xs.length ? Math.round((xs.reduce((a, b) => a + b, 0) / xs.length) * 10) / 10 : null);
   const designer = agents.find((a) => a.id === 'game-designer');
@@ -208,7 +208,7 @@ export function roomStats(games, agents, stuck) {
   const sims = games.reduce((a, g) => a + (g.playtest?.games_simulated || 0), 0);
   const dash = '—';
   return {
-    'market-researcher': [{ label: 'Briefs written', value: all((g) => g.brief).length }, { label: 'Avg opportunity', value: avg(all((g) => g.brief?.opportunity_score)) ?? dash, unit: avg(all((g) => g.brief?.opportunity_score)) === null ? '' : '/30' }],
+    'market-researcher': [{ label: 'Briefs written', value: all((g) => g.brief).length }, { label: 'Ideas banked', value: bank ? bank.banked : dash }],
     'game-designer': [{ label: 'Current game', value: designing?.title || dash }, { label: 'Revision', value: designing ? `${designing.revision || 0} of 3` : dash }],
     playtester: [{ label: 'Games simulated', value: sims.toLocaleString('en-US') }, { label: 'First-pass rate', value: first.value === null ? dash : first.value, unit: first.value === null ? '' : '%' }],
     critic: [{ label: 'Avg critic score', value: avg(critiqued) ?? dash, unit: avg(critiqued) === null ? '' : '/5' }, { label: 'Kills', value: kills }],
@@ -387,4 +387,23 @@ export function opsStats(games, agents, activity, now = Date.now()) {
     failureRate: failure === null ? none(null, 'under 10%') : { value: failure, target: 'under 10%', status: failure < 10 ? 'good' : 'bad' },
     simulated: { total: simsTotal, last24h: simsDay }, usagePerPitch: null,
   };
+}
+
+// ---------------------------------------------------------------------------
+// Idea bank (research/idea-bank.json). Lean-mode rule from CLAUDE.md: a market scan is only
+// needed when fewer than 3 banked ideas score 18 or more, or the last scan is over 30 days old.
+// ---------------------------------------------------------------------------
+export function ideaBankStats(bank, now = Date.now()) {
+  if (!bank || !Array.isArray(bank.ideas)) return null;
+  const ideas = bank.ideas;
+  const count = (s) => ideas.filter((i) => i.status === s).length;
+  const strong = ideas.filter((i) => i.status === 'banked' && isNum(i.score) && i.score >= 18).length;
+  const scan = Date.parse(bank.last_scan);
+  const scanAgeDays = Number.isNaN(scan) ? null : Math.floor((now - scan) / DAY);
+  const reasons = [];
+  if (strong < 3) reasons.push(`only ${strong} banked idea${strong === 1 ? '' : 's'} scoring 18 or more (need 3)`);
+  if (scanAgeDays === null) reasons.push('no scan date recorded');
+  else if (scanAgeDays > 30) reasons.push(`last scan was ${scanAgeDays} days ago (limit 30)`);
+  return { total: ideas.length, banked: count('banked'), inPipeline: count('in-pipeline'), used: count('used'), rejected: count('rejected'),
+    strongBanked: strong, lastScan: bank.last_scan || null, scanAgeDays, needsScan: reasons.length > 0, scanReasons: reasons };
 }

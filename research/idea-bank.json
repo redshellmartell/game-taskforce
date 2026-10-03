@@ -1,0 +1,119 @@
+{
+  "updated": "2026-10-03",
+  "last_scan": "2026-10-03",
+  "ideas": [
+    {
+      "id": "shared-river-push-your-luck",
+      "title": "Duel Flip",
+      "pitch": "A 2-player-first push-your-luck card game where both players flip into one shared, visible river.",
+      "players": "2",
+      "minutes": 12.5,
+      "complexity": 1.5,
+      "mechanics": [
+        "push-your-luck",
+        "shared draw row"
+      ],
+      "theme": "tide-pool scavengers",
+      "score": 26,
+      "rubric": {
+        "demand": 5,
+        "gap": 3,
+        "originality": 3,
+        "producibility": 5,
+        "simulatability": 5,
+        "owner_fit": 5
+      },
+      "comparables": [
+        {
+          "name": "Flip 7",
+          "bgg_rating": null,
+          "difference": "Makes 2P the primary mode, uses shared information and cuts random take-that."
+        },
+        {
+          "name": "Sea Salt & Paper",
+          "bgg_rating": null,
+          "difference": "Faster and push-your-luck rather than drafting."
+        },
+        {
+          "name": "Skull / Cacti-style bluffers",
+          "bgg_rating": null,
+          "difference": "No hidden bluffing; skill is in risk management."
+        }
+      ],
+      "evidence": "Push-your-luck card games are at peak demand (Flip 7 is described as the most popular game of the past year). Flip 7 reviewers dislike its lack of a dedicated 2-player mode and its heavy luck. Gap evidence is thin: BGG and some pages could not be opened.",
+      "sources": [
+        "hexagamers.com (Flip 7 review)",
+        "whatsericplaying.com (Flip 7 review)",
+        "Gamefound case study (Invincible: The Card Game)",
+        "Kickstarter and BoardGameWire coverage (Cyberpunk TCG)"
+      ],
+      "status": "in-pipeline",
+      "game_slug": "duelflip",
+      "added": "2026-10-03",
+      "scan": "2026-10-03",
+      "source": "scan",
+      "notes": "Pitched early as a feasibility test after one revision (critic: REVISE-MINOR). Seeded from games/duelflip/brief.md."
+    },
+    {
+      "id": "solo-coop-micro-deckbuilder",
+      "title": "Solo/co-op micro deck-builder",
+      "pitch": "A very small deck-building game that works solo and co-operatively.",
+      "players": null,
+      "minutes": null,
+      "complexity": null,
+      "mechanics": [
+        "deck-building",
+        "co-operative"
+      ],
+      "theme": null,
+      "score": 22,
+      "rubric": {
+        "demand": 4,
+        "gap": 3,
+        "originality": 3,
+        "producibility": 4,
+        "simulatability": 4,
+        "owner_fit": 4
+      },
+      "comparables": [],
+      "evidence": "Scored 22/30 as candidate B in Duel Flip's brief. The brief records only the name and scores, so player count, length and evidence were not kept.",
+      "sources": [],
+      "status": "banked",
+      "game_slug": null,
+      "added": "2026-10-03",
+      "scan": "2026-10-03",
+      "source": "scan",
+      "notes": "Seeded from the candidates table in games/duelflip/brief.md. Details are null because the brief did not record them."
+    },
+    {
+      "id": "party-trick-taker-4-6",
+      "title": "4-6 player party trick-taker",
+      "pitch": "A party-sized trick-taking card game for four to six players.",
+      "players": "4-6",
+      "minutes": null,
+      "complexity": null,
+      "mechanics": [
+        "trick-taking"
+      ],
+      "theme": null,
+      "score": 20,
+      "rubric": {
+        "demand": 3,
+        "gap": 2,
+        "originality": 3,
+        "producibility": 4,
+        "simulatability": 4,
+        "owner_fit": 4
+      },
+      "comparables": [],
+      "evidence": "Scored 20/30 as candidate C in Duel Flip's brief. The brief records only the name and scores.",
+      "sources": [],
+      "status": "banked",
+      "game_slug": null,
+      "added": "2026-10-03",
+      "scan": "2026-10-03",
+      "source": "scan",
+      "notes": "Seeded from the candidates table in games/duelflip/brief.md. Gap scored low (2), so research it more before choosing it."
+    }
+  ]
+}
