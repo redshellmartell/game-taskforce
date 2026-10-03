@@ -108,11 +108,17 @@
           "time": "2026-10-03T16:08:01Z",
           "verdict": "NEEDS-FIXES",
           "note": "playtest NEEDS-FIXES (target hit 19.7%, greedy beats strategic); critique started"
+        },
+        {
+          "stage": "critique",
+          "time": "2026-10-03T16:08:46Z",
+          "verdict": "REVISE-MAJOR",
+          "note": "critic REVISE-MAJOR avg 3.0; waiting for approval: revision (three-player-trick-taker-revision-1)"
         }
       ],
       "verdicts": {
         "playtest": "NEEDS-FIXES",
-        "critic": null
+        "critic": "REVISE-MAJOR"
       },
       "kill_reason": null
     }

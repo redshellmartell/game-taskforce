@@ -104,6 +104,41 @@
       "decision": "approve",
       "decided_at": "2026-10-03T15:57:30Z",
       "owner_notes": "Owner replied \"I approved it\" in chat (dashboard change not visible in cloud session)"
+    },
+    {
+      "id": "three-player-trick-taker-revision-1",
+      "gate": "revision",
+      "game": "three-player-trick-taker",
+      "time": "2026-10-03T16:08:46Z",
+      "status": "pending",
+      "summary": "Playtest NEEDS-FIXES: crew hits the exact Target in only 19.7% of rounds (aim 40-60%), so the Double-Crosser's +4 is nearly free; greedy bots beat the strategic bot 68% to 27%; lead changes 1.27 (aim 2+). Critic REVISE-MAJOR, average 3.0 (needs 3.5).",
+      "why_needed": "The core twist (exact Target) almost never succeeds, so the game collapses into grabbing tricks. The fixes are cheap scoring changes, but without them the game cannot be pitched.",
+      "expected_outcome": "Contract success 35-60% (critic kills the game if it stays under 35%); strategic beats greedy; lead changes 2 or more; seat gap stays 5 or less, checked on 4,000+ games.",
+      "usage_estimate": "M",
+      "recommendation": "approve",
+      "options": [
+        {
+          "key": "approve",
+          "label": "Run revision 1 (designer + playtester + critic)"
+        },
+        {
+          "key": "park",
+          "label": "Park the game; no further work for now"
+        },
+        {
+          "key": "kill",
+          "label": "Kill it and record why"
+        }
+      ],
+      "planned_changes": [
+        "Add a +/-1 tolerance band on the Target (KPI: contract success rate)",
+        "Strengthen the Safecracker, e.g. draw 3 (KPI: strategic vs greedy win gap)",
+        "Make Heat bite or cut it (KPI: lead changes, leader win rate)",
+        "Drop or fix No Trump; fix 4 rule ambiguities (KPI: zero ambiguities)"
+      ],
+      "decision": null,
+      "decided_at": null,
+      "owner_notes": null
     }
   ]
 }

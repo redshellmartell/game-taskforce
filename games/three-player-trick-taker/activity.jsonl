@@ -12,3 +12,8 @@
 {"time": "2026-10-03T16:07:51Z", "agent": "playtester", "game": "three-player-trick-taker", "event": "step", "message": "Headline sims, 5 experiments and panel rotation done; verdict NEEDS-FIXES"}
 {"time": "2026-10-03T16:07:51Z", "agent": "playtester", "game": "three-player-trick-taker", "event": "done", "message": "playtest-report.md, playtest.json, panel.json written. Verdict NEEDS-FIXES"}
 {"time": "2026-10-03T16:08:01Z", "agent": "manager", "game": "three-player-trick-taker", "event": "step", "message": "playtest NEEDS-FIXES (target hit 19.7%, greedy beats strategic); critique started"}
+{"time": "2026-10-03T16:09:00Z", "agent": "critic", "game": "three-player-trick-taker", "event": "start", "message": "Critique started: reading brief, rules, playtest report, playtest.json, panel.json"}
+{"time": "2026-10-03T16:11:00Z", "agent": "critic", "game": "three-player-trick-taker", "event": "step", "message": "Scored six areas; originality judged from brief comparables (closest: Oh Hell/Wizard, medium); no searches used"}
+{"time": "2026-10-03T16:12:00Z", "agent": "critic", "game": "three-player-trick-taker", "event": "done", "message": "critique.md and critique.json written: REVISE-MAJOR, average 3.0"}
+{"time": "2026-10-03T16:08:46Z", "agent": "manager", "game": "three-player-trick-taker", "event": "step", "message": "critic REVISE-MAJOR avg 3.0; waiting for approval: revision (three-player-trick-taker-revision-1)"}
+{"time":"2026-10-03T16:08:46Z","agent":"manager","game":"three-player-trick-taker","event":"waiting","message":"waiting for approval: revision (three-player-trick-taker-revision-1)"}
