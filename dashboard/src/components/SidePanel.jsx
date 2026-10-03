@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { FileView, Markdown } from './Markdown.jsx';
 import { Help } from './Help.jsx';
 import { IdeaForm, CopyBox, stageForAgent } from './IdeaForm.jsx';
+import { PanelTab } from './PanelTab.jsx';
 import { ago, STATE_LABEL } from '../util.js';
 
 const summaries = import.meta.glob('../content/agents/*.md', { query: '?raw', import: 'default', eager: true });
@@ -50,7 +51,8 @@ function TalkTab({ agent, state }) {
 export function AgentPanel({ agent, state, onClose, initialTab }) {
   const [tab, setTab] = useState(initialTab || 'doing');
   const [viewing, setViewing] = useState(null);
-  useEffect(() => { setTab(initialTab || 'doing'); setViewing(null); }, [agent.id, initialTab]);
+  const [personaId, setPersonaId] = useState(null);   // kept here so "Back" from a file returns to the same persona
+  useEffect(() => { setTab(initialTab || 'doing'); setViewing(null); setPersonaId(null); }, [agent.id, initialTab]);
   const version = state.generatedAt;
   const last = agent.lastEvent;
   const gameTitle = (slug) => state.games.find((g) => g.slug === slug)?.title || slug;
@@ -92,12 +94,13 @@ export function AgentPanel({ agent, state, onClose, initialTab }) {
       ))}
     </>
   );
+  else if (tab === 'panel') content = <PanelTab state={state} onOpen={setViewing} id={personaId} setId={setPersonaId} />;
   else content = <TalkTab agent={agent} state={state} />;
 
   return (
     <Shell title={`${agent.room} · ${STATE_LABEL[agent.state]}`} color={agent.color} onClose={onClose}
       help={<><Help topic="agent" />{agent.id !== 'manager' && <Help topic="subagent" />}</>}
-      tabs={[['doing', "What it's doing"], ['how', 'How it works'], ['work', 'Its work'], ['talk', 'Talk to it']]} tab={tab} setTab={(t) => { setViewing(null); setTab(t); }}>
+      tabs={[['doing', "What it's doing"], ['how', 'How it works'], ['work', 'Its work'], ...(agent.id === 'playtester' ? [['panel', 'Test panel']] : []), ['talk', 'Talk to it']]} tab={tab} setTab={(t) => { setViewing(null); setTab(t); }}>
       {content}
     </Shell>
   );

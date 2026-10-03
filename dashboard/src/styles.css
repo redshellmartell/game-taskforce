@@ -237,3 +237,13 @@ table.matrix td { padding: 4px 14px 4px 0; white-space: nowrap; }
 .nodata.gate { padding: 14px; text-align: center; }
 .nav { overflow-x: auto; }
 .nav button { white-space: nowrap; }
+
+/* test panel (personas) */
+.avatar { display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; color: #0e0f12; font-weight: 700; flex: none; letter-spacing: .02em; }
+.persona-list { display: flex; flex-direction: column; gap: 8px; }
+.persona-card { display: flex; gap: 12px; align-items: flex-start; text-align: left; width: 100%; background: var(--bg); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: 6px; padding: 10px 12px; }
+.persona-card:hover { background: #1b1e25; }
+.persona-main { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.persona-chips { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
+.persona-chips .chip { margin: 0; }
+.persona-head { display: flex; align-items: center; gap: 12px; margin-top: 4px; }

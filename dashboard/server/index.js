@@ -42,11 +42,12 @@ app.get('/api/state', (req, res) => {
 app.get('/api/file', (req, res) => {
   const rel = String(req.query.path || '').replace(/\\/g, '/');
   const isAgent = rel.startsWith('.claude/agents/');
+  const isPanel = /^panel\/(personas|evidence)\//.test(rel);   // persona profiles and their research evidence (not game data, so never sample)
   const isGame = rel.startsWith('games/');
-  if ((!isAgent && !isGame) || !rel.endsWith('.md') || rel.includes('..')) return res.status(400).json({ error: 'Not allowed' });
-  const base = isAgent || !useSample() ? repoRoot : path.join(dashboardDir, 'sample-data');
+  if ((!isAgent && !isGame && !isPanel) || !rel.endsWith('.md') || rel.includes('..')) return res.status(400).json({ error: 'Not allowed' });
+  const base = isAgent || isPanel || !useSample() ? repoRoot : path.join(dashboardDir, 'sample-data');
   const full = path.resolve(base, rel);
-  const allowedRoot = path.resolve(base, isAgent ? '.claude/agents' : 'games');
+  const allowedRoot = path.resolve(base, isAgent ? '.claude/agents' : isPanel ? rel.split('/').slice(0, 2).join('/') : 'games');
   if (!full.startsWith(allowedRoot + path.sep)) return res.status(400).json({ error: 'Not allowed' });
   try { res.json({ path: rel, text: fs.readFileSync(full, 'utf8') }); }
   catch { res.status(404).json({ error: 'No such file yet' }); }
@@ -65,7 +66,7 @@ function notifyChanged() {
   clearTimeout(timer);
   timer = setTimeout(() => { for (const c of clients) c.write('event: changed\ndata: {}\n\n'); }, 300);
 }
-const watchPaths = [path.join(repoRoot, 'games'), path.join(repoRoot, '.claude', 'agents'), path.join(dashboardDir, 'agents.json'), path.join(dashboardDir, 'sample-data'), path.join(repoRoot, 'research'), path.join(repoRoot, 'usage')];
+const watchPaths = [path.join(repoRoot, 'games'), path.join(repoRoot, '.claude', 'agents'), path.join(dashboardDir, 'agents.json'), path.join(dashboardDir, 'sample-data'), path.join(repoRoot, 'research'), path.join(repoRoot, 'usage'), path.join(repoRoot, 'panel')];
 chokidar.watch(watchPaths, { ignoreInitial: true, ignored: /(__pycache__|\.pyc$|\/sim\/)/, awaitWriteFinish: { stabilityThreshold: 150, pollInterval: 50 } })
   .on('all', notifyChanged).on('error', (e) => console.warn('[dashboard] watcher:', e.message));
 setInterval(() => { for (const c of clients) c.write(': ping\n\n'); }, 25000); // keep connections open

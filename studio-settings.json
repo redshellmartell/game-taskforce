@@ -10,8 +10,8 @@
         "token_budget": 71300077
       }
     },
-    "stop_at_percent": 80,
-    "warn_at_percent": 60,
+    "stop_at_percent": 70,
+    "warn_at_percent": 50,
     "cache_read_weight": 0.1
   },
   "approval_mode": "normal"
