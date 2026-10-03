@@ -9,3 +9,9 @@
 {"time": "2026-10-03T13:21:24Z", "agent": "manager", "game": "duelflip", "event": "waiting", "message": "waiting for approval: panel-reviews (duelflip-panel-reviews-1)"}
 {"time": "2026-10-03T13:21:24Z", "agent": "playtester", "game": "duelflip", "event": "done", "message": "Panel rotation (10 tables, 1,600 games per persona) and free scores written to panel.json"}
 {"time": "2026-10-03T13:26:33Z", "agent": "manager", "game": "duelflip", "event": "step", "message": "panel-reviews approved; running five persona reviews"}
+{"time": "2026-10-03T13:36:57Z", "agent": "panel:strategist", "game": "duelflip", "event": "done", "message": "review written"}
+{"time": "2026-10-03T13:36:57Z", "agent": "panel:casual", "game": "duelflip", "event": "done", "message": "review written"}
+{"time": "2026-10-03T13:36:57Z", "agent": "panel:competitor", "game": "duelflip", "event": "done", "message": "review written"}
+{"time": "2026-10-03T13:36:57Z", "agent": "panel:story", "game": "duelflip", "event": "done", "message": "review written"}
+{"time": "2026-10-03T13:36:57Z", "agent": "panel:family", "game": "duelflip", "event": "done", "message": "review written"}
+{"time": "2026-10-03T13:36:57Z", "agent": "manager", "game": "duelflip", "event": "done", "message": "panel-report.md written"}

@@ -59,6 +59,12 @@
           "time": "2026-10-03T13:21:24Z",
           "verdict": null,
           "note": "free scores done; waiting for approval: panel-reviews"
+        },
+        {
+          "stage": "panel",
+          "time": "2026-10-03T13:36:57Z",
+          "verdict": null,
+          "note": "panel reviews done (approved); panel-report.md written"
         }
       ],
       "verdicts": {

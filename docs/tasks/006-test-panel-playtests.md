@@ -1,5 +1,5 @@
 ---
-status: blocked
+status: done
 priority: high
 depends_on: [005]
 ---

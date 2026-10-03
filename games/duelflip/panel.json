@@ -141,7 +141,21 @@
         "competitor",
         "family"
       ],
-      "review": null
+      "review": {
+        "first_impression": "Rules teach in under five minutes and play in 10–15 minutes, perfect for family game nights. Tide-pool theme is thin.",
+        "best_moment": "Turn 6 (best table): I banked my cards and left Anemone as bait, creating real tension.",
+        "worst_moment": "Turns 0, 2, 4 (best table): three clashes and busts before I banked once, leaving me hopelessly behind.",
+        "confusing_rules": [],
+        "pet_peeves_hit": [
+          "A child getting hopelessly behind with no way back, or busting round after round: early clash variance left me unable to bank until Turn 6, hitting pet peeve #4 hard."
+        ],
+        "fun": 3,
+        "replay": 4,
+        "would_buy": "maybe",
+        "price_usd": 20,
+        "one_change": "Let players choose which card to leave as bait instead of always the lowest, turning math into real bluffing decisions.",
+        "recommend_to": "Two-player duel lovers and push-your-luck fans. Not for families wanting a catch-up mechanic or kids who tilt easily."
+      }
     },
     "story": {
       "fun": 3.56,
