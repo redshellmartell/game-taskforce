@@ -44,3 +44,27 @@ test('real games folder (no JSON files yet) still builds', () => {
   const real = buildState({ repoRoot, dashboardDir, sample: false });
   assert.ok(Array.isArray(real.games));
 });
+
+// ---- Game page scorecard ----
+import { gameScorecard } from './kpis.js';
+const byId = (rows) => Object.fromEntries(rows.map((r) => [r.id, r]));
+
+test('scorecard: lantern-heist (a good game) is green with one flagged card', () => {
+  const s = byId(state.games.find((g) => g.slug === 'lantern-heist').scorecard);
+  assert.equal(s.opportunity.value, 24); assert.equal(s.opportunity.status, 'good');
+  assert.equal(s.critic.value, 4.2); assert.equal(s.seat.status, 'good');
+  assert.equal(s.length.value, -5); assert.equal(s.length.status, 'good');
+  assert.equal(s.runaway.value, 58);
+  assert.equal(s.dead.value, 1); assert.equal(s.dead.status, 'warn');
+});
+test('scorecard: ember-market shows its runaway-leader problem in red', () => {
+  const s = byId(state.games.find((g) => g.slug === 'ember-market').scorecard);
+  assert.equal(s.runaway.value, 78); assert.equal(s.runaway.status, 'bad');
+  assert.equal(s.seat.status, 'warn');
+  assert.equal(s.critic.status, 'none'); // no critique yet
+});
+test('scorecard: a game with no data gives all "none" rows, not a crash', () => {
+  const rows = gameScorecard({});
+  assert.ok(rows.length > 5);
+  assert.ok(rows.every((r) => r.status === 'none' && r.value === null));
+});

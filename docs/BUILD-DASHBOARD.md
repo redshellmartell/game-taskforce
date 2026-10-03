@@ -84,11 +84,18 @@ Check: everything works with sample data, and with `games/` containing a single 
 
 **Milestone 1: done.** Server (`/api/state`, `/api/file`, `/api/events`), sample data, KPI maths with tests (`npm test`), the Agent Network with side panels, the top bar with five KPIs and the activity feed.
 
-Milestones 2 to 4 (Learn mode, replay, Studio Floor, Pipeline, Game page, Review Queue and the remaining views): not started.
+**Milestone 2: done.** Learn mode ("?" markers, texts in `dashboard/src/content/learn/`) and Replay.
+
+**Started early from Milestone 3 (owner request):** a Projects board (one column per stage, plus a "Your ideas" column) and a Game page with scorecard, critic scores, balance bars, history and document tabs. Not yet done from Milestone 3: Studio Floor, the funnel/kill-rate/cycle-time charts, Recharts charts on the Game page (balance uses simple bars for now).
+
+**Added at the owner's request:** "+ New idea" (inject your own idea at any stage) and a "Talk to it" tab on every agent. The dashboard's only write is saving an idea file to `games/_inbox/` (`POST /api/ideas`, refused in sample mode). It never starts agents; the owner tells the Director to process the idea, and `CLAUDE.md` has the instructions for that.
+
+Milestone 4 (Review Queue page, Quality Lab, Market & Portfolio, Ops): not started.
 
 Notes on what differs from the plan:
 - Added `remark-gfm` so tables in reports render properly.
 - Agents that have no `activity.jsonl` yet (for example the first real game, `duelflip`, which predates the data files) get their activity inferred from the report files that exist, and the stage is worked out from those files. The panel marks such lines "inferred from file".
 - The side panel sits beside the diagram instead of over it, so every node stays clickable.
 - The revision lines use a small custom edge because React Flow's built-in curve goes flat when both ends point down.
+- A first design put dotted lines from "You" to every agent; it looked cluttered, so "You" now has one line (pitch.md from the Director) and the step-in actions are the "+ New idea" button and each agent's "Talk to it" tab.
 - Real-game KPIs show "no data yet" until agents write the JSON files described in `docs/dashboard-notes.md` section 4.

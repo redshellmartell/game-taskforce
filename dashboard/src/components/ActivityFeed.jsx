@@ -1,4 +1,5 @@
 import { clock } from '../util.js';
+import { Help } from './Help.jsx';
 
 // One stream of every agent's updates, newest first.
 export function ActivityFeed({ state }) {
@@ -6,7 +7,7 @@ export function ActivityFeed({ state }) {
   const rows = state.activity.slice(0, 40);
   return (
     <div className="feed">
-      <h3>Activity feed</h3>
+      <h3>Activity feed <Help topic="activity-log" /></h3>
       {rows.length === 0 && <div className="empty">No activity yet. Agents add lines to games/&lt;game&gt;/activity.jsonl as they work.</div>}
       {rows.map((e, i) => {
         const a = byId[e.agent];

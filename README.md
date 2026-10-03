@@ -62,6 +62,13 @@ Then open <http://localhost:4173>. It updates by itself within a couple of secon
 
 **Sample vs real data:** if `games/` has no game folders yet, the dashboard shows clearly labelled sample data (a "Sample data" badge appears in the top bar). Run `npm run demo` to force sample data even when real games exist. `npm test` checks the KPI calculations.
 
+**What it does:**
+- **Agent Network:** who is working, and the files handed between agents. Click an agent to see what it is doing, how it works, its reports, and to leave it a note.
+- **Learn mode:** switch it on in the top bar for "?" markers that explain the concepts on screen.
+- **Replay:** pick a game and step through how the team worked on it.
+- **Projects:** every game by stage, with a full overview page for each (scorecard, critic scores, balance, history and all its documents).
+- **+ New idea:** push an idea of your own into the pipeline at any stage. The dashboard saves it to `games/_inbox/`; then tell the Director "process my idea ..." and it runs the agents (see `CLAUDE.md`).
+
 **Customise:**
 - Agent room names and colours: `dashboard/agents.json`
 - Plain-English agent summaries (the "How it works" tab): `dashboard/src/content/agents/`

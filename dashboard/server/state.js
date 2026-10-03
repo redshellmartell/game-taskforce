@@ -2,7 +2,8 @@
 // JSON object the front end needs. Missing or half-written files are skipped.
 import fs from 'node:fs';
 import path from 'node:path';
-import { computeKpis } from './kpis.js';
+import { computeKpis, gameScorecard } from './kpis.js';
+import { listInbox } from './ideas.js';
 
 const AGENT_ORDER = ['market-researcher', 'game-designer', 'playtester', 'critic', 'manager'];
 // Which report each agent writes (used for "Its work" and for the handoff lines).
@@ -137,6 +138,7 @@ export function buildState({ repoRoot, dashboardDir, sample, now = Date.now() })
       derived: !st,
     });
   }
+  for (const g of games) g.scorecard = gameScorecard(g);
   activity.sort((a, b) => Date.parse(b.time) - Date.parse(a.time));
 
   // Agent states from the newest activity line of each agent.
@@ -158,5 +160,5 @@ export function buildState({ repoRoot, dashboardDir, sample, now = Date.now() })
   const decisions = readJson(path.join(gamesDir, 'decisions.json'))?.decisions || [];
   const kpis = computeKpis(games, agents, now);
 
-  return { sample, generatedAt: new Date(now).toISOString(), agents, games, activity: activity.slice(0, 200), decisions, kpis, waitingPitches: waitingPitches.map((g) => g.slug) };
+  return { sample, generatedAt: new Date(now).toISOString(), agents, games, activity: activity.slice(0, 500), decisions, inbox: listInbox(gamesDir), kpis, waitingPitches: waitingPitches.map((g) => g.slug) };
 }

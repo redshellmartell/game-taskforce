@@ -8,6 +8,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { buildState } from './state.js';
+import { saveIdea } from './ideas.js';
 
 const dashboardDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const repoRoot = path.resolve(dashboardDir, '..');
@@ -21,6 +22,16 @@ function hasRealGames() {
 const useSample = () => demoFlag || !hasRealGames();
 
 const app = express();
+app.use(express.json({ limit: '200kb' }));
+
+// Save one of the owner's own ideas into games/_inbox/ (the dashboard's only write; it never starts an agent).
+app.post('/api/ideas', (req, res) => {
+  const origin = req.get('origin');
+  if (origin && new URL(origin).host !== req.get('host')) return res.status(403).json({ error: 'Not allowed' }); // only this page may save ideas
+  if (useSample()) return res.status(409).json({ error: 'The dashboard is showing sample data, so ideas are not saved. Run npm start (not npm run demo) in a copy of the repository that has a games/ folder.' });
+  try { res.json(saveIdea(path.join(repoRoot, 'games'), req.body || {})); }
+  catch (e) { res.status(e.status || 500).json({ error: e.status ? e.message : 'Could not save the idea.' }); }
+});
 
 app.get('/api/state', (req, res) => {
   try { res.json(buildState({ repoRoot, dashboardDir, sample: useSample() })); }
