@@ -183,6 +183,12 @@
           "time": "2026-10-03T16:13:48Z",
           "verdict": null,
           "note": "started from the idea bank (market scan 1)"
+        },
+        {
+          "stage": "brief",
+          "time": "2026-10-03T16:17:49Z",
+          "verdict": "24/30",
+          "note": "brief written; waiting for approval: greenlight"
         }
       ],
       "verdicts": {

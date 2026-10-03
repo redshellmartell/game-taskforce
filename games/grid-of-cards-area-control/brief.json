@@ -1,0 +1,29 @@
+{
+  "slug": "grid-of-cards-area-control",
+  "title": "Nine Fields",
+  "idea_id": "grid-of-cards-area-control",
+  "hook": "A 20-minute area-control game on a 3x3 grid of island cards that flip and shift as you place pawns.",
+  "players": "2-4",
+  "minutes": 20,
+  "complexity": 2.5,
+  "mechanics": ["area control", "modular board", "tile/card flipping"],
+  "theme": "shifting islands",
+  "opportunity_score": 24,
+  "rubric": { "demand": 3, "gap": 3, "originality": 4, "producibility": 5, "simulatability": 4, "owner_fit": 5 },
+  "candidates": [
+    { "idea": "grid-of-cards-area-control", "score": 24, "chosen": true },
+    { "idea": "simultaneous-reveal-micro-draft", "score": 23, "chosen": false },
+    { "idea": "pad-and-pencil-cozy-solo", "score": 23, "chosen": false }
+  ],
+  "comparables": [
+    { "name": "Shifting Stones", "bgg_rating": null, "crowdfunding": null, "difference": "3x3 manipulated grid but secret-pattern scoring; Nine Fields uses open majority control." },
+    { "name": "Onitama", "bgg_rating": null, "crowdfunding": null, "difference": "2 players only; Nine Fields adds multiplayer area scoring." },
+    { "name": "Contactics", "bgg_rating": null, "crowdfunding": null, "difference": "Static 3x3 area control; Nine Fields shifts and flips the grid." }
+  ],
+  "sources": [
+    "https://csr.hdsupply.com/best-board-games-2026/",
+    "https://www.geekyhobbies.com/shifting-stones-rules/",
+    "https://gr9yfox.itch.io/contactics",
+    "https://itch.io/devlog/989628/collapsi-shift-video-available-now.amp"
+  ]
+}

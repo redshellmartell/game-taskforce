@@ -1,1 +1,4 @@
 {"time": "2026-10-03T16:13:48Z", "agent": "manager", "game": "grid-of-cards-area-control", "event": "start", "message": "Idea picked from the bank (score 24); brief requested"}
+{"time":"2026-10-03T16:30:00Z","agent":"market-researcher","game":"grid-of-cards-area-control","event":"start","message":"Writing a brief from the bank (Mode 2)"}
+{"time":"2026-10-03T16:32:00Z","agent":"market-researcher","game":"grid-of-cards-area-control","event":"done","message":"Brief complete, opportunity score 24/30"}
+{"time": "2026-10-03T16:17:49Z", "agent": "manager", "game": "grid-of-cards-area-control", "event": "waiting", "message": "waiting for approval: greenlight (grid-of-cards-area-control-greenlight)"}
