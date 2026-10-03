@@ -102,6 +102,16 @@ When the owner asks you to:
 
 Log panel work in `panel/activity.jsonl` (same line format as the activity log, with `"game": "panel"`). The panel's opinions are advisory: the owner's own human playtests remain the final check.
 
+## Cost discipline
+
+The owner pays for sessions from a limited credit balance, so work economically:
+- **One task per session.** When a task is done, commit, push, summarise and stop; the next task goes in a fresh session (a long session makes every step more expensive).
+- **Do the free work first.** Prefer plain code and scripts over agent calls. Use agents only where the task needs one, one at a time, never as a parallel fan-out unless the owner asks.
+- **No web searches unless the task is about research.** Do not re-run research that already exists (`panel/evidence/`, briefs). A "refresh" is only run when the owner asks.
+- **Check with tests, not screenshots.** Run `npm test` and short scripted checks; look at a screenshot only when something looks wrong.
+- **Ask before anything large**, such as a task that needs many agents or a long research run, and say roughly what it involves.
+- After each task, tell the owner what was done so they can check their credit balance.
+
 ## Dashboard project
 
 The owner's dashboard lives in `dashboard/`. When asked to build or change it, follow `docs/BUILD-DASHBOARD.md` (build steps) and `docs/dashboard-notes.md` (product spec), working one milestone at a time. The dashboard is read-only in v1 and must never start agents or change files in `games/`. The owner is new to coding: explain steps in plain language and keep setup minimal.
