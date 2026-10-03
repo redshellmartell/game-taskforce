@@ -158,7 +158,9 @@
         "catch_up": 0.274,
         "interaction": 1.0
       },
-      "pet_peeves_hit": [],
+      "pet_peeves_hit": [
+        "Pasted-on or interchangeable theme"
+      ],
       "bot": {
         "win_rate": 0.297,
         "fell_behind_rate": 0.566,
@@ -178,7 +180,21 @@
         "competitor",
         "story"
       ],
-      "review": null
+      "review": {
+        "first_impression": "The rules teach quickly and the shared river with bait mechanic is clever. But the tide-pool creatures feel like a skin—you could swap them for abstract symbols and nothing would change.",
+        "best_moment": "Turn 8 vs casual: I clashed into your bait card and my pile tumbled over to you. That moment of tension felt like drama we were telling together.",
+        "worst_moment": "Turns 0, 2, and 6 in the casual game: three consecutive clashes and busts before I could build anything. Clash variance dealt me out before the game started.",
+        "confusing_rules": [],
+        "pet_peeves_hit": [
+          "Pasted-on or interchangeable theme: creatures are symbolic values, not characters. The river is a clever metaphor but carries no narrative weight."
+        ],
+        "fun": 3,
+        "replay": 3,
+        "would_buy": "maybe",
+        "price_usd": 22,
+        "one_change": "Let players choose which of their own cards to leave as bait instead of always the lowest. That turns a solved move into a bluffing decision.",
+        "recommend_to": "Two-player duel lovers and push-your-luck fans. Not for story lovers seeking immersion or a 45+ minute game."
+      }
     },
     "strategist": {
       "fun": 3.85,
