@@ -34,4 +34,22 @@ Play 2 games yourself, move by move, reasoning as a real player would. Note mome
 - Rule ambiguities found
 - How it felt (from narrated play)
 
+Judge against the KPI targets in `CLAUDE.md`.
+
+Have `run.py` also write `games/<slug>/playtest.json` for the studio dashboard:
+
+```json
+{ "verdict": "PASS|NEEDS-FIXES|BROKEN", "revision": 0, "games_simulated": 2000,
+  "seat_win_rates": { "1": 0.52, "2": 0.48 }, "seat_balance_gap": 2.0,
+  "bot_win_rates": { "random": 0.20, "greedy": 0.35, "strategic": 0.45 }, "skill_expression": 25.0,
+  "length": { "mean_turns": 14.2, "stdev": 3.1, "estimated_minutes": 18, "target_minutes": 20 },
+  "ties": 0.01, "turn_cap_hits": 0,
+  "lead_changes_mean": 2.4, "runaway_leader_rate": 0.58,
+  "cards": [ { "name": "", "played_rate": 0.4, "win_correlation": 0.05, "flag": null } ],
+  "ambiguities": [""],
+  "problems": [ { "severity": "high|medium|low", "problem": "", "evidence": "", "fix": "" } ] }
+```
+
+Gaps are in percentage points; rates are 0-1. Fill in `verdict` and `problems` yourself after reviewing the numbers. Append `start`, `step` and `done` lines to `games/<slug>/activity.jsonl` as described in `CLAUDE.md`.
+
 Be blunt. A design that looks fine on paper but fails in simulation is exactly what you're here to catch. Return a 3-line summary to the manager.

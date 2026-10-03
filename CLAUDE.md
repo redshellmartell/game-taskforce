@@ -37,6 +37,47 @@ Track every game's current stage in `games/STATUS.md` (one line per game: slug, 
 7. Component list with rough counts
 8. Suggested next step for a physical prototype
 
+Also write `games/<slug>/pitch.json`:
+
+```json
+{ "title": "", "hook": "", "players": "2-4", "minutes": 20, "age": "10+", "complexity": 2,
+  "components": [{ "item": "cards", "count": 60 }], "estimated_prototype_cost_usd": 15,
+  "prototype_ready": true }
+```
+
+## Dashboard data
+
+This studio is run like a game company think tank, and a dashboard tracks its KPIs (see `docs/dashboard-notes.md`). Every agent writes machine-readable data alongside its report, from the first run.
+
+**Activity log (every agent, including you).** Append one JSON line to `games/<slug>/activity.jsonl` when starting a task, after each major step, and when finishing or failing:
+
+```json
+{"time": "2026-10-03T13:02:00Z", "agent": "playtester", "game": "<slug>", "event": "start|step|done|error", "message": "Running 2,000 simulated games"}
+```
+
+Use the real current time (`date -u +%Y-%m-%dT%H:%M:%SZ`). When delegating to an agent, remind it of its slug and that it must write its activity lines and JSON file.
+
+**Studio status (you).** Keep `games/status.json` up to date alongside `STATUS.md`:
+
+```json
+{ "games": [ {
+  "slug": "", "title": "",
+  "stage": "brief|design|playtest|critique|pitch|owner-review|approved|prototyped|killed|archived",
+  "revision": 0,
+  "history": [ { "stage": "brief", "time": "", "verdict": null, "note": "" } ],
+  "verdicts": { "playtest": null, "critic": null },
+  "kill_reason": null
+} ] }
+```
+
+Add a history entry every time a game changes stage or completes a revision. Pitched games go to `owner-review`.
+
+**Owner data.** When the owner tells you a decision ("approve ember-market", "I built a prototype", "we played it, fun 4/5"), record it:
+- `games/decisions.json`: `{ "decisions": [ { "slug", "time", "decision": "approve|reject|send-back|prototyped", "notes" } ] }`, and update the game's stage.
+- `games/<slug>/human-playtests.json`: `{ "sessions": [ { "date", "players", "fun", "replay", "clarity", "notes" } ] }` (scores 1-5).
+
+**KPI targets** (used by the critic, playtester and you when judging): seat balance gap ≤ 5 points; strategic-vs-random win gap ≥ 20 points; simulated length within ±20% of the brief's target; runaway leader rate ≤ 65%; at least 2 lead changes per game on average; zero dead cards and zero rule ambiguities at pitch; critic average ≥ 3.5 at pitch.
+
 ## Default first command
 
 If the owner says "run the pipeline" or similar without details, run one full game through all five stages, starting with a market-research brief, and finish by summarising the pitch.

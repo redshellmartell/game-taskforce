@@ -40,4 +40,18 @@ Write `games/<game-slug>/brief.md` with:
 - Rubric scores for all candidates, with the winner marked
 - Constraints for the designer (component budget, play time cap, etc.)
 
-Keep it under 600 words. Return a 3-line summary to the manager.
+Keep it under 600 words.
+
+Also write `games/<game-slug>/brief.json` for the studio dashboard:
+
+```json
+{ "slug": "", "title": "", "players": "2-4", "minutes": 20, "complexity": 2,
+  "mechanics": ["push-your-luck"], "theme": "",
+  "opportunity_score": 22,
+  "rubric": { "demand": 4, "gap": 4, "originality": 4, "producibility": 4, "simulatability": 3, "owner_fit": 3 },
+  "candidates": [ { "idea": "", "score": 22, "chosen": true } ],
+  "comparables": [ { "name": "", "bgg_rating": 7.1, "crowdfunding": null, "difference": "" } ],
+  "sources": [""] }
+```
+
+Use `null` for anything you couldn't find. Append `start`, `step` and `done` lines to `games/<game-slug>/activity.jsonl` as described in `CLAUDE.md`. Return a 3-line summary to the manager.
