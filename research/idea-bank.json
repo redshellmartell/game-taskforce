@@ -86,18 +86,18 @@
       "score": 26,
       "rubric": { "demand": 3, "gap": 4, "originality": 4, "producibility": 5, "simulatability": 5, "owner_fit": 5 },
       "comparables": [
-        { "name": "The Crew", "bgg_rating": null, "difference": "Competitive, not co-op, and tuned for 3 rather than scaling 2-5." },
-        { "name": "LOTR: Fellowship (trick-taking)", "bgg_rating": null, "difference": "No licence; 3-player balance is the core, not an add-on." },
+        { "name": "The Crew", "bgg_rating": 7.8, "difference": "Competitive, not co-op, and tuned for 3 rather than scaling 2-5." },
+        { "name": "Skull King", "bgg_rating": 7.5, "difference": "No bidding; rotating roles instead of chaotic scoring." },
         { "name": "Hearts (3-player variant)", "bgg_rating": null, "difference": "Needs card removal house rules; this is designed for 3 from the start." }
       ],
-      "evidence": "Search summaries confirm 3 is the awkward player count for card games (destructoid and others). Trick-taking is hot (LOTR: Fellowship about 12,900 plays; Gamefound trick-taking bundle funded).",
-      "sources": ["https://www.destructoid.com/best-3-player-card-games/", "https://www.boardgameoftheyear.org/2025/sites/Tabletop%20Express", "https://www.boardgamequest.com/crowdfunding-campaigns-of-the-week-8-10-26/"],
-      "status": "banked",
-      "game_slug": null,
+      "evidence": "Search summaries confirm 3 is the awkward player count for card games (destructoid and others). Trick-taking is hot (LOTR: Fellowship about 12,900 plays; Gamefound trick-taking bundle funded). Brief check: The Crew is BGG 7.8 but best at 4; Fox in the Forest (7.1) is 2-player only.",
+      "sources": ["https://www.destructoid.com/best-3-player-card-games/", "https://www.boardgameoftheyear.org/2025/sites/Tabletop%20Express", "https://www.boardgamequest.com/crowdfunding-campaigns-of-the-week-8-10-26/", "https://whatsericplaying.com/the-crew", "https://boardgamematcher.com/game/skull-king"],
+      "status": "in-pipeline",
+      "game_slug": "three-player-trick-taker",
       "added": "2026-10-03",
       "scan": "2026-10-03",
       "source": "scan",
-      "notes": "Strongest gap evidence in this scan. Check seat balance carefully in simulation."
+      "notes": "Strongest gap evidence in this scan. Check seat balance carefully in simulation. Brief written 2026-10-03 from scan 2026-10-03."
     },
     {
       "id": "silent-duo-deduction-coop",

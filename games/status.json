@@ -75,7 +75,7 @@
     },
     {
       "slug": "three-player-trick-taker",
-      "title": "Three-Player Trick-Taker",
+      "title": "Three-Hand Trick-Taker",
       "stage": "brief",
       "revision": 0,
       "history": [
@@ -84,6 +84,12 @@
           "time": "2026-10-03T15:44:49Z",
           "verdict": null,
           "note": "started from idea bank (market scan 1)"
+        },
+        {
+          "stage": "brief",
+          "time": "2026-10-03T15:46:15Z",
+          "verdict": "26/30",
+          "note": "brief written; waiting for approval: greenlight"
         }
       ],
       "verdicts": {
