@@ -8,3 +8,4 @@
 {"time": "2026-10-03T16:01:00Z", "agent": "game-designer", "game": "three-player-trick-taker", "event": "step", "message": "Core loop chosen: shared exact crew contract vs spoiler, loot per trick, 7-card hands, 6 rounds"}
 {"time": "2026-10-03T16:04:00Z", "agent": "game-designer", "game": "three-player-trick-taker", "event": "done", "message": "rules.md v1 written: Split the Take, 40 cards, 3 special rules (exact job, swap, heat)"}
 {"time": "2026-10-03T16:00:34Z", "agent": "manager", "game": "three-player-trick-taker", "event": "step", "message": "rules.md written (Split the Take); playtest started"}
+{"time": "2026-10-03T16:00:44Z", "agent": "playtester", "game": "three-player-trick-taker", "event": "start", "message": "Playtest started: building sim"}
