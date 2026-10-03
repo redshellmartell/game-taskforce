@@ -1,0 +1,29 @@
+{
+  "slug": "asymmetric-duel-tug-of-war",
+  "title": "Tug of Crowns",
+  "idea_id": "asymmetric-duel-tug-of-war",
+  "hook": "Two rival court advisors with different 20-card decks haul one shared crown track toward their side in a 15-minute duel.",
+  "players": "2",
+  "minutes": 15,
+  "complexity": 2,
+  "mechanics": ["asymmetric decks", "tug-of-war track", "hand management"],
+  "theme": "rival court advisors",
+  "opportunity_score": 24,
+  "rubric": { "demand": 4, "gap": 3, "originality": 4, "producibility": 4, "simulatability": 4, "owner_fit": 5 },
+  "candidates": [
+    { "idea": "asymmetric-duel-tug-of-war", "score": 24, "chosen": true },
+    { "idea": "grid-of-cards-area-control", "score": 24, "chosen": false },
+    { "idea": "simultaneous-reveal-micro-draft", "score": 23, "chosen": false }
+  ],
+  "comparables": [
+    { "name": "Ironwood", "bgg_rating": 7.8, "crowdfunding": null, "difference": "Card-only, one track, 15 minutes instead of a map." },
+    { "name": "Star Realms", "bgg_rating": null, "crowdfunding": null, "difference": "Fixed asymmetric decks, no deck-building or purchasing." },
+    { "name": "Tug of Roar", "bgg_rating": null, "crowdfunding": null, "difference": "No auctions or area control; asymmetry lives in the decks." }
+  ],
+  "sources": [
+    "https://www.boardgamequest.com/the-best-board-games-of-2026-so-far/",
+    "https://boardgamewire.com/?p=7030",
+    "https://petersengames.com/blogs/news/best-two-player-asymmetric-strategy-board-games",
+    "https://frogames.it/en/collections/frogworld-selections/products/tug-of-roar"
+  ]
+}

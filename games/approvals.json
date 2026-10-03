@@ -210,6 +210,35 @@
       "decision": null,
       "decided_at": null,
       "owner_notes": null
+    },
+    {
+      "id": "asymmetric-duel-tug-of-war-greenlight",
+      "gate": "greenlight",
+      "game": "asymmetric-duel-tug-of-war",
+      "time": "2026-10-03T16:16:36Z",
+      "status": "pending",
+      "summary": "Brief written: Tug of Crowns, 2 players, 15 minutes, complexity 2, opportunity score 24/30. Two rival court advisors with different 20-card decks haul one shared crown track toward their side in a 15-minute duel.",
+      "why_needed": "Design, playtest and critique run through without further gates once started, so this is the point to say whether this idea is worth the usage.",
+      "expected_outcome": "A complete rulebook, then a simulation with seat balance gap 5 points or less and a strategic-vs-random win gap of 20 points or more.",
+      "usage_estimate": "L",
+      "recommendation": "approve",
+      "options": [
+        {
+          "key": "approve",
+          "label": "Greenlight: start design, playtest and critique"
+        },
+        {
+          "key": "park",
+          "label": "Park it; no further work for now"
+        },
+        {
+          "key": "kill",
+          "label": "Reject the idea and record why"
+        }
+      ],
+      "decision": null,
+      "decided_at": null,
+      "owner_notes": null
     }
   ]
 }

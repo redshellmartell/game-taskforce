@@ -1,1 +1,4 @@
 {"time": "2026-10-03T16:13:48Z", "agent": "manager", "game": "asymmetric-duel-tug-of-war", "event": "start", "message": "Idea picked from the bank (score 24); brief requested"}
+{"time":"2026-10-03T16:25:00Z","agent":"market-researcher","game":"asymmetric-duel-tug-of-war","event":"start","message":"Writing a brief from the bank (Mode 2)"}
+{"time":"2026-10-03T16:27:00Z","agent":"market-researcher","game":"asymmetric-duel-tug-of-war","event":"done","message":"Brief complete, opportunity score 24/30"}
+{"time": "2026-10-03T16:16:36Z", "agent": "manager", "game": "asymmetric-duel-tug-of-war", "event": "waiting", "message": "waiting for approval: greenlight (asymmetric-duel-tug-of-war-greenlight)"}

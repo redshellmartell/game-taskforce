@@ -190,12 +190,12 @@
       ],
       "evidence": "Two-player focus is an identified trend (search summary of 2026 trends); under-two-hour games draw the strongest reactions. Asymmetry raises originality but makes balance the main risk (KPI: seat gap 5 points or less).",
       "sources": ["https://www.boardgamequest.com/the-best-board-games-of-2026-so-far/", "https://boardgamewire.com/?p=7030"],
-      "status": "banked",
-      "game_slug": null,
+      "status": "in-pipeline",
+      "game_slug": "asymmetric-duel-tug-of-war",
       "added": "2026-10-03",
       "scan": "2026-10-03",
       "source": "scan",
-      "notes": "Differs from Duel Flip: no shared river, no push-your-luck."
+      "notes": "Differs from Duel Flip: no shared river, no push-your-luck. Brief written 2026-10-03 from scan 2026-10-03."
     },
     {
       "id": "grid-of-cards-area-control",
