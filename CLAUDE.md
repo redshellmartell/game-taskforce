@@ -198,6 +198,8 @@ The owner pays for sessions from a limited credit balance, so work economically:
 - **Check with tests, not screenshots.** Run `npm test` and short scripted checks; look at a screenshot only when something looks wrong.
 - **Ask before anything large**, such as a task that needs many agents or a long research run, and say roughly what it involves.
 - After each task, tell the owner what was done so they can check their credit balance.
+- **At the end of every task or game stage** run `python3 tools/usage/usage.py --record` and commit `usage/sessions.jsonl`.
+- **Usage guard for scheduled or batch runs.** Before starting any scheduled run or a batch of agent work, run `python3 tools/usage/usage.py --check` (usage is counted in tokens against the owner's plan windows; the stop percentage is in `studio-settings.json` under `usage_guard`, default 80%). Exit code `0` = go; `1` = close to the limit, run only what is needed and tell the owner; `2` = **stop**, do not start anything, report instead; `3` = not calibrated, ask the owner for their plan's usage percentages from the app. When the owner says "calibrate usage: 5-hour 63%, weekly 41%", run `python3 tools/usage/usage.py --calibrate 5h=63 7d=41`. Recalibrate now and then; the token-to-percent link is an estimate. The owner can change the stop percentage by saying "set the usage stop to 70%" (edit `usage_guard.stop_at_percent`).
 
 ## Dashboard project
 

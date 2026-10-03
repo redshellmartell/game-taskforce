@@ -2,7 +2,7 @@
 // JSON object the front end needs. Missing or half-written files are skipped.
 import fs from 'node:fs';
 import path from 'node:path';
-import { computeKpis, gameScorecard, stageFunnel, killRateByStage, cycleTimes, avgRevisionLoops, firstPassRate, stuckGames, roomStats, milestones, ownerStats, reviewQueueItems, qualityLab, portfolio, opsStats, ideaBankStats } from './kpis.js';
+import { computeKpis, gameScorecard, stageFunnel, killRateByStage, cycleTimes, avgRevisionLoops, firstPassRate, stuckGames, roomStats, milestones, ownerStats, reviewQueueItems, qualityLab, portfolio, opsStats, ideaBankStats, usageStats } from './kpis.js';
 import { listInbox } from './ideas.js';
 
 const AGENT_ORDER = ['market-researcher', 'game-designer', 'playtester', 'critic', 'manager'];
@@ -29,13 +29,13 @@ function readText(file) {
   try { return fs.readFileSync(file, 'utf8'); } catch { return null; }
 }
 
-function readJsonl(file) {
+function readJsonl(file, needsTime = true) {
   let text;
   try { text = fs.readFileSync(file, 'utf8'); } catch (e) { if (e.code !== 'ENOENT') warn(`could not read ${file}`); return []; }
   const out = [];
   for (const line of text.split('\n')) {
     if (!line.trim()) continue;
-    try { const o = JSON.parse(line); if (o && o.time) out.push(o); } catch { /* half-written line: skip */ }
+    try { const o = JSON.parse(line); if (o && (!needsTime || o.time)) out.push(o); } catch { /* half-written line: skip */ }
   }
   return out;
 }
@@ -173,6 +173,9 @@ export function buildState({ repoRoot, dashboardDir, sample, now = Date.now() })
   const kpis = computeKpis(games, agents, now);
   const bankFile = readJson(path.join(sample ? path.join(dashboardDir, 'sample-data') : repoRoot, 'research', 'idea-bank.json'));
   const bankStats = ideaBankStats(bankFile, now);
+  const usageDir = path.join(sample ? path.join(dashboardDir, 'sample-data') : repoRoot, 'usage');
+  const usageSessions = readJsonl(path.join(usageDir, 'sessions.jsonl'), false).map((x) => ({ ...x, by_day: (x.by_day || []).map((b) => ({ ...b, name: sample ? shiftTime(`${b.name}T12:00:00Z`).slice(0, 10) : b.name })) }));
+  const guard = readJson(path.join(usageDir, 'guard.json'));
   const stuck = stuckGames(games, activity, now);
   const pipeline = {
     funnel: stageFunnel(games), killRate: killRateByStage(games), cycleTimes: cycleTimes(games),
@@ -181,5 +184,5 @@ export function buildState({ repoRoot, dashboardDir, sample, now = Date.now() })
   };
   const review = { ...ownerStats(games, decisions), queue: reviewQueueItems(games, now) };
 
-  return { sample, generatedAt: new Date(now).toISOString(), agents, games, activity: activity.slice(0, 500), decisions, inbox: listInbox(gamesDir), kpis, pipeline, review, quality: qualityLab(games), market: { ...portfolio(games), ideaBank: bankFile && bankStats ? { ...bankStats, updated: bankFile.updated || null, ideas: bankFile.ideas } : null }, ops: opsStats(games, agents, activity, now), waitingPitches: waitingPitches.map((g) => g.slug) };
+  return { sample, generatedAt: new Date(now).toISOString(), agents, games, activity: activity.slice(0, 500), decisions, inbox: listInbox(gamesDir), kpis, pipeline, review, quality: qualityLab(games), market: { ...portfolio(games), ideaBank: bankFile && bankStats ? { ...bankStats, updated: bankFile.updated || null, ideas: bankFile.ideas } : null }, ops: { ...opsStats(games, agents, activity, now), usage: usageStats(usageSessions, games, now), guard }, waitingPitches: waitingPitches.map((g) => g.slug) };
 }

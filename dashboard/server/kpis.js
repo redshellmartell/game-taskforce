@@ -407,3 +407,30 @@ export function ideaBankStats(bank, now = Date.now()) {
   return { total: ideas.length, banked: count('banked'), inPipeline: count('in-pipeline'), used: count('used'), rejected: count('rejected'),
     strongBanked: strong, lastScan: bank.last_scan || null, scanAgeDays, needsScan: reasons.length > 0, scanReasons: reasons };
 }
+
+// ---------------------------------------------------------------------------
+// Usage (from usage/sessions.jsonl, written by tools/usage/usage.py). Everything is in "usage tokens":
+// input + output + cache writes + cache reads at a reduced weight, so it follows the owner's subscription, not dollars.
+// ---------------------------------------------------------------------------
+const weekStart = (day) => { const d = new Date(`${day}T00:00:00Z`); if (Number.isNaN(d.getTime())) return null; d.setUTCDate(d.getUTCDate() - ((d.getUTCDay() + 6) % 7)); return d.toISOString().slice(0, 10); };
+export function usageStats(sessions, games, now = Date.now()) {
+  if (!Array.isArray(sessions) || sessions.length === 0) return null;
+  const sum = (key) => {
+    const m = {};
+    for (const s of sessions) for (const b of s[key] || []) m[b.name] = (m[b.name] || 0) + (b.weighted_tokens || 0);
+    return Object.entries(m).map(([name, tokens]) => ({ name, tokens })).sort((a, b) => b.tokens - a.tokens);
+  };
+  const byDay = sum('by_day');
+  const weeks = {};
+  for (const d of byDay) { const w = weekStart(d.name); if (w) weeks[w] = (weeks[w] || 0) + d.tokens; }
+  const total = byDay.reduce((a, d) => a + d.tokens, 0);
+  const cut = new Date(now - 7 * DAY).toISOString().slice(0, 10);
+  const last7 = byDay.filter((d) => d.name >= cut).reduce((a, d) => a + d.tokens, 0);
+  const pitched = games.filter(wasPitched).length;
+  return {
+    total, last7days: last7, sessions: sessions.length,
+    byAgent: sum('by_agent'), byGame: sum('by_category'),
+    byWeek: Object.entries(weeks).sort().slice(-8).map(([week, tokens]) => ({ week, tokens })),
+    perPitched: pitched ? { value: Math.round(total / pitched), target: 'falling over time', status: 'none', pitched } : none(null, 'falling over time'),
+  };
+}

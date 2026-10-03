@@ -1,0 +1,24 @@
+{
+  "checked_at": "2026-09-27T12:00:00Z",
+  "status": "warn",
+  "stop_at_percent": 80,
+  "warn_at_percent": 60,
+  "windows": [
+    {
+      "name": "5h",
+      "hours": 5,
+      "used_tokens": 3400000,
+      "token_budget": 5000000,
+      "percent": 68.0,
+      "status": "warn"
+    },
+    {
+      "name": "7d",
+      "hours": 168,
+      "used_tokens": 9000000,
+      "token_budget": 40000000,
+      "percent": 22.5,
+      "status": "ok"
+    }
+  ]
+}

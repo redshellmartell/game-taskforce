@@ -168,7 +168,7 @@ test('portfolio of no games does not crash', () => {
   const m = portfolio([]);
   assert.equal(m.briefs, 0); assert.equal(m.topMechanic, null);
 });
-import { ownerStats, portfolio, opsStats, ideaBankStats } from './kpis.js';
+import { ownerStats, portfolio, opsStats, ideaBankStats, usageStats } from './kpis.js';
 
 // ---- Idea bank ----
 test('idea bank (sample): counts by status and a scan is needed (only 3 strong banked ideas, scan 21+ days old but under 30 is fine)', () => {
@@ -192,4 +192,22 @@ test('idea bank: missing or broken file gives null, not a crash', () => {
 test('Market Intel room card shows briefs written and ideas banked', () => {
   const r = state.pipeline.rooms['market-researcher'];
   assert.equal(r[0].label, 'Briefs written'); assert.equal(r[1].label, 'Ideas banked'); assert.equal(r[1].value, 4);
+});
+
+// ---- Usage ----
+test('usage (sample): totals by agent, game and week, and usage per pitched game in tokens', () => {
+  const u = state.ops.usage;
+  assert.equal(u.total, 5060000 + 3400000);
+  assert.equal(u.byAgent[0].name, 'director'); assert.equal(u.byAgent[0].tokens, 5600000);
+  assert.equal(u.byGame.find((g) => g.name === 'lantern-heist').tokens, 2900000);
+  assert.equal(u.perPitched.pitched, 1); assert.equal(u.perPitched.value, u.total);   // one pitched game (lantern-heist)
+  assert.ok(u.byWeek.length >= 2);
+});
+test('usage: nothing recorded gives null, and a game count of zero gives no per-pitch number', () => {
+  assert.equal(usageStats([], []), null); assert.equal(usageStats(null, []), null);
+  const u = usageStats([{ by_day: [{ name: '2026-10-01', weighted_tokens: 100 }] }], [], Date.parse('2026-10-03T00:00:00Z'));
+  assert.equal(u.perPitched.value, null); assert.equal(u.total, 100); assert.equal(u.last7days, 100);
+});
+test('usage guard status from guard.json reaches the Ops data', () => {
+  assert.equal(state.ops.guard.status, 'warn'); assert.equal(state.ops.guard.windows[0].percent, 68);
 });
