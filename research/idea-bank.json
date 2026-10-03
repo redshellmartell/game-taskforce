@@ -111,18 +111,18 @@
       "score": 25,
       "rubric": { "demand": 4, "gap": 3, "originality": 4, "producibility": 5, "simulatability": 4, "owner_fit": 5 },
       "comparables": [
-        { "name": "Bomb Busters", "bgg_rating": null, "difference": "Fewer components, no talking at all, ends in 20 minutes." },
-        { "name": "The Crew", "bgg_rating": null, "difference": "Deduction of a shared sequence, not trick-taking." },
-        { "name": "Sky Team", "bgg_rating": null, "difference": "Cards only, no dice or board." }
+        { "name": "Bomb Busters", "bgg_rating": 7.4, "difference": "Fewer components, no talking at all, ends in 20 minutes." },
+        { "name": "The Crew", "bgg_rating": 7.8, "difference": "Deduction of a shared sequence, not trick-taking." },
+        { "name": "Sky Team", "bgg_rating": 7.9, "difference": "Cards only, no dice or board." }
       ],
-      "evidence": "Bomb Busters had about 13,900 plays by March 2026; co-op articles stress games that avoid the quarterback problem through restricted talk (hexagamers 2026 co-op list, Sky Team recommended).",
-      "sources": ["https://www.boardgameoftheyear.org/2025/sites/Tabletop%20Express", "https://hexagamers.com/best-cooperative-board-games-2026/"],
-      "status": "banked",
-      "game_slug": null,
+      "evidence": "Bomb Busters had about 13,900 plays by March 2026 and a BGG geek rating of 7.4 (about 7,750 ratings); co-op articles stress games that avoid the quarterback problem through restricted talk (hexagamers 2026 co-op list, Sky Team recommended).",
+      "sources": ["https://www.boardgameoftheyear.org/2025/sites/Tabletop%20Express", "https://hexagamers.com/best-cooperative-board-games-2026/", "https://boardgamematcher.com/game/bomb-busters"],
+      "status": "in-pipeline",
+      "game_slug": "silent-duo-deduction-coop",
       "added": "2026-10-03",
       "scan": "2026-10-03",
       "source": "scan",
-      "notes": "Bot simulation needs a communication model; simulatability reduced to 4."
+      "notes": "Bot simulation needs a communication model; simulatability reduced to 4. Brief written 2026-10-03 from scan 2026-10-03."
     },
     {
       "id": "pocket-solo-engine-tableau",

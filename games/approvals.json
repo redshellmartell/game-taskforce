@@ -181,6 +181,35 @@
       "decision": "approve",
       "decided_at": "2026-10-03T16:12:01Z",
       "owner_notes": "Owner asked for this in chat (\"I want to run an extensive market research agent ... improve the persona agents ... sixth persona\")"
+    },
+    {
+      "id": "silent-duo-deduction-coop-greenlight",
+      "gate": "greenlight",
+      "game": "silent-duo-deduction-coop",
+      "time": "2026-10-03T16:15:15Z",
+      "status": "pending",
+      "summary": "Brief written: Silent Duo, 2-3 players, 20 minutes, complexity 2.5, opportunity score 25/30. ",
+      "why_needed": "Design, playtest and critique run through without further gates once started, so this is the point to say whether this idea is worth the usage.",
+      "expected_outcome": "A complete rulebook, then a simulation with seat balance gap 5 points or less and a strategic-vs-random win gap of 20 points or more.",
+      "usage_estimate": "L",
+      "recommendation": "approve",
+      "options": [
+        {
+          "key": "approve",
+          "label": "Greenlight: start design, playtest and critique"
+        },
+        {
+          "key": "park",
+          "label": "Park it; no further work for now"
+        },
+        {
+          "key": "kill",
+          "label": "Reject the idea and record why"
+        }
+      ],
+      "decision": null,
+      "decided_at": null,
+      "owner_notes": null
     }
   ]
 }
