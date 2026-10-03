@@ -52,3 +52,7 @@ You can also do step 1 yourself: copy a file in `personas/`, change the settings
 
 - This panel was built in a cloud session where **BoardGameGeek, Reddit, Wikipedia, Meeple Mountain and Dice Tower were blocked** and web searches were capped at 200 for the whole session. Every evidence file says it rests on search-result summaries, and the calibration baseline is thin. To improve it, allow those sites under the environment's *Network access* settings and raise the web-search limit, then ask for a refresh.
 - The personas are language-model roleplay anchored on that evidence. They can be consistent and useful, but they are not real people.
+
+## Scoring and rotation (task 006)
+
+After each playtest the game's `sim/panel_run.py` plays every pair of personas' bots in both seats (200 games per seating) and `python3 panel/scoring.py <slug>` turns the results into `games/<slug>/panel.json`: each persona's predicted fun, replay, would-buy (with a price) and pet peeves hit, plus every matchup. This is free (no AI). The AI part, `panel-player` reviews in `games/<slug>/panel/<persona>.md`, sits behind the `panel-reviews` approval gate. Tests: `python3 -m unittest panel/test_scoring.py`.

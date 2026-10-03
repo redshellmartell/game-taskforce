@@ -108,3 +108,42 @@ class Strategic(Base):
 
 ALL = {"random": Random, "greedy": Greedy, "bank_early": BankEarly, "pusher": Pusher,
        "refund_pusher": RefundPusher, "hoarder": Hoarder, "collector": Collector, "strategic": Strategic}
+
+
+# ---- Persona bots (test panel, see panel/personas/*.md "How they play") ----
+class Planner(Strategic):
+    """Strategist: plays the long game. Careful flips, leaves the card that helps the opponent's species least."""
+    name = "planner"; leave_mode = "species"
+    def __init__(self, seed=0, leave_mode=None):
+        super().__init__(seed, risk=1.2, buoy_min=9, leave_mode=leave_mode)
+
+class Optimiser(Strategic):
+    """Competitor: the strongest line the studio has found (EV flips, smart bait and species leave)."""
+    name = "optimiser"
+
+class Instinct(Greedy):
+    """Casual: gut feel. A decent rule of thumb, but one choice in four is a coin flip."""
+    name = "instinct"; leave_mode = "rand"
+    def keep_flipping(self, st, p):
+        return self.rng.random() < 0.5 if self.rng.random() < 0.25 else pv(st) < 12
+    def on_clash(self, st, p, card, hit_bait):
+        return ("buoy" if self.rng.random() < 0.5 else "bust") if self.rng.random() < 0.25 else "buoy"
+
+class Flavour(Base):
+    """Story lover: presses on for the dramatic big pile, spends the Lifebuoy only on a big pile, often leaves a high card."""
+    name = "flavour"
+    def keep_flipping(self, st, p): return pv(st) < 18
+    def on_clash(self, st, p, card, hit_bait): return "buoy" if pv(st) >= 12 else "bust"
+    def leave(self, st, p, cands):
+        r = st.river
+        return max(cands, key=lambda i: r[i][1]) if self.rng.random() < 0.5 else min(cands, key=lambda i: r[i][1])
+
+class Cautious(Base):
+    """Family: banks early, always takes the safe Lifebuoy, sometimes leaves a random card."""
+    name = "cautious"
+    def keep_flipping(self, st, p): return len(st.pile) < 2 and self.rng.random() < 0.2
+    def leave(self, st, p, cands):
+        r = st.river
+        return self.rng.choice(cands) if self.rng.random() < 0.3 else min(cands, key=lambda i: r[i][1])
+
+PERSONA = {"strategist": Planner, "casual": Instinct, "competitor": Optimiser, "story": Flavour, "family": Cautious}

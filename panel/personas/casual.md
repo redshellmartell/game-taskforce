@@ -5,7 +5,7 @@ archetype: Light, social player
 tagline: "Is everyone laughing? Then it's a good game."
 color: "#e07aa5"
 initials: CA
-bot_style: social          # how their simulation bot plays (see task 006)
+bot_style: instinct          # how their simulation bot plays (see task 006)
 evidence: panel/evidence/casual.md
 weights:                    # how much each simulation metric drives their fun (sum to 1); tuned by calibration
   skill_expression: 0.00

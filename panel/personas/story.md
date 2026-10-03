@@ -5,7 +5,7 @@ archetype: Thematic player
 tagline: "Tell me a story, and let the rules get out of its way."
 color: "#d98a4a"
 initials: SL
-bot_style: thematic          # how their simulation bot plays (see task 006)
+bot_style: flavour          # how their simulation bot plays (see task 006)
 evidence: panel/evidence/story.md
 weights:                    # how much each simulation metric drives their fun (sum to 1); tuned by calibration
   skill_expression: 0.05

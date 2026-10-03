@@ -13,6 +13,7 @@ Every game lives in its own folder: `games/<game-slug>/`. A game moves through t
 | 1. Research | `market-researcher` | `brief.md` (from the idea bank, see "Lean mode") |
 | 2. Design | `game-designer` | `rules.md` |
 | 3. Playtest | `playtester` | `playtest-report.md` (+ `sim/` code) |
+| 3b. Test panel | bots + `panel/scoring.py` (free), `panel-player` x5 (AI, gated) | `panel.json`, `panel-report.md` |
 | 4. Critique | `critic` | `critique.md` |
 | 5. Pitch | Manager (you) | `pitch.md` |
 
@@ -178,13 +179,19 @@ Add a history entry every time a game changes stage or completes a revision. Pit
 
 **Owner data.** When the owner tells you a decision ("approve ember-market", "I built a prototype", "we played it, fun 4/5"), record it:
 - `games/decisions.json`: `{ "decisions": [ { "slug", "time", "decision": "approve|reject|send-back|prototyped", "notes" } ] }`, and update the game's stage.
-- `games/<slug>/human-playtests.json`: `{ "sessions": [ { "date", "players", "fun", "replay", "clarity", "notes" } ] }` (scores 1-5).
+- `games/<slug>/human-playtests.json`: `{ "sessions": [ { "date", "players", "fun", "replay", "clarity", "player_type", "notes" } ] }` (scores 1-5).
 
 **KPI targets** (used by the critic, playtester and you when judging): seat balance gap ≤ 5 points; strategic-vs-random win gap ≥ 20 points; simulated length within ±20% of the brief's target; runaway leader rate ≤ 65%; at least 2 lead changes per game on average; zero dead cards and zero rule ambiguities at pitch; critic average ≥ 3.5 at pitch.
 
 ## Player test panel
 
 A panel of player personas (`panel/personas/`) gives games a "public test" on top of the bot playtest. Each persona is modelled on a real type of player, backed by research evidence in `panel/evidence/`, and checked against real receptions of well-known games in `panel/calibration.json`. Details are in `panel/README.md`.
+
+**Stage 3b (every game).** After every playtest the playtester's persona bots and `panel/scoring.py` run automatically (free): `games/<slug>/panel.json` gets each persona's predicted fun, replay, would-buy and pet peeves hit. Only when the playtest verdict is PASS (or the owner asks) and the owner has approved the `panel-reviews` gate, run `panel-player` once per trusted persona (one at a time), then write `games/<slug>/panel-report.md`: who the game is for, where the personas agree and disagree, recurring complaints, suggested changes. The critic reads `panel-report.md` for its Fun and Market fit scores. Log `start`/`done` lines in `activity.jsonl` with `"agent": "panel:<persona>"` and add a `panel` entry to the game's `status.json` history.
+
+**Asking a persona.** When the owner says "Ask <persona> about <game>: <question>", run `panel-player` for that persona in conversation mode (give it the current UTC time); it answers in character and appends to `games/<slug>/panel/conversations.jsonl`. "Ask the panel ..." means every trusted persona, one short answer each; this needs the `panel-reviews` approval when more than one persona is asked.
+
+**Human calibration.** When recording a real playtest in `human-playtests.json`, ask the owner which kind of player they were (a persona id: strategist, casual, competitor, story or family) and store it as the session's optional `player_type`, so predictions can be compared with real players of that type.
 
 When the owner asks you to:
 - **"Refresh the panel research"**: run the `market-researcher` in Panel research mode for each persona (or the ones named), updating `panel/evidence/<id>.md`, then re-run calibration for those personas and update `panel/calibration.json`.

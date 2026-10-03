@@ -1,5 +1,5 @@
 ---
-status: open
+status: blocked
 priority: high
 depends_on: [005]
 ---

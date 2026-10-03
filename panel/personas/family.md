@@ -5,7 +5,7 @@ archetype: New or occasional player, plays with kids
 tagline: "Can a seven-year-old and Grandma both enjoy it?"
 color: "#a5c05a"
 initials: FA
-bot_style: gentle          # how their simulation bot plays (see task 006)
+bot_style: cautious          # how their simulation bot plays (see task 006)
 evidence: panel/evidence/family.md
 weights:                    # how much each simulation metric drives their fun (sum to 1); tuned by calibration
   skill_expression: 0.00

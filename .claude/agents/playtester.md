@@ -39,6 +39,20 @@ You are the studio's most expensive agent, so work to these limits. Stop as soon
 
 Play **1 game** yourself, reasoning as a real player would, but record only the key decision moments (at most 300 words). Note moments that are fun, boring, confusing or frustrating, and any downtime. Play a second game only if the first was confusing or the result surprised you. On revision passes, skip narrated play unless the change affects how a turn feels.
 
+## Part 3: Persona bots and panel rotation (required, free)
+
+For every game also write one bot per test-panel persona in `sim/bots.py`, following the persona's "How they play" section in `panel/personas/<id>.md`. The `bot_style` values are: `planner` (strategist: looks ahead, plays the long game), `instinct` (casual: gut feel, decent but noisy), `optimiser` (competitor: strongest line, probes for exploits), `flavour` (story: dramatic or thematic moves even if slightly worse), `cautious` (family: simple, safe, sometimes suboptimal). Expose them as `PERSONA = {persona_id: BotClass}`.
+
+Then write `sim/panel_run.py` (copy the shape of `games/duelflip/sim/panel_run.py`) that runs the **panel rotation** and writes `sim/panel-results.json` and sample logs:
+- **Tables:** every combination of N personas for the brief's main player count, and for each other supported count up to 5. With 5 personas: 10 tables at 2 players, 10 at 3, 5 at 4, 1 at 5.
+- **Seats:** rotate seating so each persona sits in every seat equally often. 200 games per seating, fixed seeds, so every persona plays the same number of games against every other persona in every seat.
+- **More seats than personas:** fill with the standard bots (random, greedy, strategic), rotated the same way, and say so in `rotation.filler_bots`.
+- **Per persona:** win rate, decisions per turn, comeback rate, fell-behind rate, interaction rate, downtime, seat win rates. **Per pairing:** win rate and the same numbers, so matchups can be compared.
+- **Logs:** save two short sample logs per persona from different tables: `sim/logs/<persona>-1.txt` (the table where its predicted fun was highest) and `-2.txt` (lowest).
+- Finish by running `python3 panel/scoring.py <slug>`, which writes `games/<slug>/panel.json`. Don't print the results; give a 2-line summary (best-fit and worst-fit persona, average fun).
+
+This is plain code and costs no extra agent calls. If the game's sim already exists on a revision pass, just re-run it.
+
 ## Output: `games/<slug>/playtest-report.md`
 
 - **Verdict:** PASS, NEEDS-FIXES, or BROKEN
