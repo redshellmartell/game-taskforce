@@ -88,7 +88,21 @@
         "competitor",
         "family"
       ],
-      "review": null
+      "review": {
+        "first_impression": "Clean teaching, solid hook with shared river and bait mechanics. But you always leave your lowest card—that isn't a decision, it's following the math.",
+        "best_moment": "T9 vs casual: I clashed my opponent's bait and took their pile back. Direct, punishing, and entirely my choice to push into it.",
+        "worst_moment": "T0-T2 vs casual: three clashes in two turns, two busts. Just unlucky, with no clever play to prevent it. Clash variance can overshadow skill early.",
+        "confusing_rules": [],
+        "pet_peeves_hit": [
+          "A dominant or solved strategy: leaving your lowest card is nearly always optimal, making the bank choice routine once the math is known."
+        ],
+        "fun": 4,
+        "replay": 3,
+        "would_buy": "maybe",
+        "price_usd": 25,
+        "one_change": "Let players choose which pile card to leave as bait instead of forcing lowest. That turns a routine choice into a real bluff decision.",
+        "recommend_to": "Two-player duel fanatics and push-your-luck fans. Not for strategists wanting multiple routes or hidden depth."
+      }
     },
     "family": {
       "fun": 3.62,
