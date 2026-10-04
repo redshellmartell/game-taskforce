@@ -360,7 +360,7 @@
     {
       "slug": "standard-deck-engine-workshop",
       "title": "Fifty-Two Workshop",
-      "stage": "design",
+      "stage": "playtest",
       "revision": 0,
       "history": [
         {
@@ -374,6 +374,12 @@
           "time": "2026-10-04T17:28:41Z",
           "verdict": null,
           "note": "Brief written, 27/30; design starts"
+        },
+        {
+          "stage": "playtest",
+          "time": "2026-10-04T17:37:58Z",
+          "verdict": null,
+          "note": "rules.md written (gear trains, Bench, Apprentice); playtest next"
         }
       ],
       "verdicts": {
