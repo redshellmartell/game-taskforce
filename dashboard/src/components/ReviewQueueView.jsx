@@ -1,4 +1,5 @@
-import { CopyBox } from './IdeaForm.jsx';
+import { useState } from 'react';
+import { SyncBox } from './SyncBox.jsx';
 import { Help } from './Help.jsx';
 import { ago } from '../util.js';
 
@@ -13,14 +14,48 @@ function Tile({ label, k, suffix = '', note }) {
   );
 }
 
-// Pitches waiting for the owner, past decisions and your real-world playtests. Read-only.
+const VERDICTS = [['approve', 'Approve'], ['send-back', 'Send back for revision'], ['reject', 'Reject']];
+
+// Approve, reject or send back one pitch; saved to games/decisions.json.
+function Verdict({ q, sample, onSaved }) {
+  const [choice, setChoice] = useState(null);
+  const [notes, setNotes] = useState('');
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState(null);
+  const save = async () => {
+    setBusy(true); setError(null);
+    try {
+      const res = await fetch(`/api/decisions/${encodeURIComponent(q.slug)}`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ decision: choice, notes }) });
+      const body = await res.json();
+      if (!res.ok) throw new Error(body.error || 'Could not record the decision');
+      onSaved(`${choice} ${q.title}.`); setChoice(null); setNotes('');
+    } catch (e) { setError(e.message); }
+    setBusy(false);
+  };
+  if (sample) return <p className="notice info" style={{ marginTop: 0 }}>Sample data: decisions can not be saved here.</p>;
+  if (!choice) return <div className="opt-buttons">{VERDICTS.map(([k, l]) => <button key={k} className="optbtn" onClick={() => setChoice(k)}>{l}</button>)}</div>;
+  return (
+    <div className="confirm">
+      <p style={{ margin: '0 0 6px' }}>Record <b>{choice}</b> for {q.title}?</p>
+      <textarea rows={2} value={notes} onChange={(e) => setNotes(e.target.value)} placeholder={choice === 'send-back' ? 'What should change? (optional)' : 'Optional note'} style={{ width: '100%' }} />
+      <div style={{ marginTop: 6, display: 'flex', gap: 8 }}>
+        <button className="primary" disabled={busy} onClick={save}>{busy ? 'Saving\u2026' : 'Confirm'}</button>
+        <button className="optbtn" disabled={busy} onClick={() => { setChoice(null); setError(null); }}>Cancel</button>
+      </div>
+      {error && <p className="err">{error}</p>}
+    </div>
+  );
+}
+
+// Pitches waiting for the owner, past decisions and your real-world playtests.
 export function ReviewQueueView({ state, onOpen }) {
+  const [saved, setSaved] = useState(null);
   const r = state.review;
   const sessions = state.games.flatMap((g) => g.humanPlaytests.map((s) => ({ ...s, title: g.title, slug: g.slug })));
   return (
     <div className="view">
       <div className="plist-head"><h2>Review queue</h2><span className="muted">Pitches waiting for your decision, oldest first.</span></div>
-      <p className="notice info">This screen is read-only. To record a decision, tell Claude Code, for example <span className="mono">approve {r.queue[0]?.slug || 'game-name'}</span>, and it updates the files this page reads.</p>
+      {saved && <SyncBox message={saved} onDismiss={() => setSaved(null)} />}
       <div className="tiles">
         <Tile label="Waiting for you" k={state.kpis.reviewQueue} />
         <Tile label="Approval rate" k={r.approvalRate} suffix="%" note="rising is better" />
@@ -57,10 +92,7 @@ export function ReviewQueueView({ state, onOpen }) {
           </div>
           <div className="pitch-actions">
             <button className="link" onClick={() => onOpen(q.slug)}>Open the full overview</button>
-            <div className="muted small">Tell Claude Code:</div>
-            <CopyBox text={`approve ${q.slug}`} />
-            <CopyBox text={`reject ${q.slug}`} />
-            <CopyBox text={`send ${q.slug} back with notes: ...`} />
+            <Verdict q={q} sample={state.sample} onSaved={setSaved} />
           </div>
         </section>
       ))}

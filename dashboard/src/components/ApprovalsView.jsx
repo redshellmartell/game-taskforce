@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { CopyBox } from './IdeaForm.jsx';
+import { SyncBox } from './SyncBox.jsx';
 import { Help } from './Help.jsx';
 import { ago } from '../util.js';
 
@@ -99,12 +100,7 @@ export function ApprovalsView({ state, onOpen }) {
       <div className="plist-head"><h2>Waiting for you <Help topic="approval-gate" /></h2><span className="muted">{pending.length} request{pending.length === 1 ? '' : 's'}, oldest first.</span></div>
       <p className="muted small" style={{ margin: '0 0 8px' }}>Approval mode: <b>{state.settings.approval_mode}</b> <Help topic="approval-mode" /> \u00b7 to change it, tell Claude Code: <span className="mono">set approval mode to strict</span>, <span className="mono">normal</span> or <span className="mono">relaxed</span>.</p>
       <p className="notice info">The Director stops before steps that use a lot of usage or could loop (see "Approval gates" in CLAUDE.md). Nothing here runs until you answer.</p>
-      {last && (
-        <div className="card saved-decision">
-          <p style={{ margin: '0 0 6px' }}><b>Recorded:</b> {last.label}{last.game ? ` (${last.game})` : ''}. Nothing has run yet. To carry it out, tell Claude Code:</p>
-          <CopyBox text="Continue with approved work" />
-          <button className="link" onClick={() => setLast(null)}>Dismiss</button>
-        </div>)}
+      {last && <SyncBox message={`${last.label}${last.game ? ` (${last.game})` : ''}.`} onDismiss={() => setLast(null)} />}
       {pending.length === 0 && <div className="card"><p className="empty" style={{ margin: 0 }}>Nothing is waiting for you.</p></div>}
       {pending.map((r) => <Card key={r.id} r={r} onOpen={onOpen} sample={state.sample} onDecided={setLast} />)}
       {done.length > 0 && <h3 className="sect">Decided and expired</h3>}
