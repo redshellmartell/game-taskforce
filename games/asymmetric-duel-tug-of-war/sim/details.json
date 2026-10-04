@@ -1,0 +1,36 @@
+{
+ "pair_T_win": {
+  "random(T) vs random(W)": 0.627,
+  "random(T) vs greedy(W)": 0.131,
+  "random(T) vs strategic(W)": 0.126,
+  "greedy(T) vs random(W)": 0.789,
+  "greedy(T) vs greedy(W)": 0.402,
+  "greedy(T) vs strategic(W)": 0.201,
+  "strategic(T) vs random(W)": 0.858,
+  "strategic(T) vs greedy(W)": 0.45,
+  "strategic(T) vs strategic(W)": 0.504
+ },
+ "mirror_strategic_T_win": 0.4915,
+ "strategic_vs_greedy": 0.62475,
+ "greedy_vs_random": 0.829,
+ "ends": {
+  "leader": 11167,
+  "tiebreak": 3491,
+  "throne": 3342
+ },
+ "nomove_tiebreak": 0,
+ "extra": {
+  "hush_blank": 24372,
+  "hush": 94255,
+  "retort": 11842,
+  "spend": 34844,
+  "hushed_spend": 6332,
+  "bank_lost": 11064,
+  "echo": 67977,
+  "dbl": 26200,
+  "tie_rounds": 7538
+ },
+ "mean_actions": 46.08983333333333,
+ "mean_rounds": null,
+ "tie_round_rate": null
+}

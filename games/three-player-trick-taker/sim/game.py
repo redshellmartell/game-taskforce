@@ -1,8 +1,8 @@
-"""Split the Take - full rules (rules.md v1). Standard library only.
+"""Split the Take - full rules (rules.md v2). Standard library only.
 Interpretation notes are in AMBIGUITIES at the bottom."""
 import random
 
-NT = None  # No Trump
+NT = None  # unused in v2 (No Trump removed)
 SUITNAMES = ["Co", "Ge", "Ke", "Ma"]
 
 def deck():
@@ -36,7 +36,8 @@ class Round:
     def crew(s): return s.tricks[s.planner] + s.tricks[s.safe]
 
 class Game:
-    def __init__(s, bots, seed, rounds=6, heat=True, log=False):
+    def __init__(s, bots, seed, rounds=6, heat=True, log=False, bmult=1):
+        s.bmult = bmult
         s.bots = bots; s.rng = random.Random(seed); s.nrounds = rounds; s.heat_on = heat
         s.scores = [0, 0, 0]; s.dc_wins = [0, 0, 0]; s.tricks_total = [0, 0, 0]
         s.log = [] if log else None
@@ -94,6 +95,7 @@ class Game:
         if clean: bonus[p], bonus[sf] = 3, 4
         elif ok: bonus[p], bonus[sf], bonus[dc] = 1, 2, 1
         else: bonus[dc] = 5; s.dc_wins[dc] += 1
+        bonus = [b_ * s.bmult for b_ in bonus]
         if R.heat is not None: bonus[R.heat] = max(0, bonus[R.heat] - 2)
         for i in range(3):
             s.scores[i] += pts[i] + bonus[i]; s.tricks_total[i] += pts[i]
@@ -116,12 +118,7 @@ def fmt(cards):
     return " ".join("%s%d" % (SUITNAMES[c[0]], c[1]) for c in sorted(cards))
 
 AMBIGUITIES = [
- "Heat when the leader is the Double-Crosser who also failed to score a bonus: Heat just does nothing (reduces a 0 bonus by 0). Simulated as no effect; rules say 'reduces your bonus by 1' which is unclear when no bonus is earned.",
- "Rules say the Planner 'starts' by random draw but also that the DC deals starting with the Planner; dealing order has no effect in the sim.",
- "Heat in round 1 and on ties is never held (as written); a 3-way tie at the top gives no Heat.",
- "Revoke rule text ('trick count taken as played' vs 'scored as 0 tricks') is internally contradictory; revokes are impossible in the sim.",
- "Role passing direction: 'pass each card one seat left' was implemented as the planner seat moving one seat to the right each round (P card goes left to become S). Because rotation is cyclic the choice is symmetric.",
- "Tiebreaker 1 counts double-crosses only when the crew missed; Heat-reduced successes still count.",
- "Rules.md section 4 phase 6: 'more or less than Target' - a Target the crew cannot reach (e.g. 7 with 0 tricks possible) is legal; no minimum-hand check.",
- "Safecracker swap draws before the Planner's Plan is known to the DC? No: Plan announced first. Safecracker's hand is therefore adapted to a public Target and trump, giving the crew a 2-player information edge over the DC (a design property, not an ambiguity).",
+ "Rules v2 has no unresolved ambiguities in simulation. Interpretations used: revokes are impossible; Heat on a 0 bonus does nothing; round 1 has no Heat (all tied); the Double-Crosser deal order has no effect on a random shuffle.",
+ "Minor wording point: rules say the role cards pass 'to the right' while the Safecracker sits on the Planner's left; both are consistent only because rotation is cyclic (checked: P becomes S's seat... see Phase 7 text). Suggest stating the new seat-to-role mapping once in setup only.",
+ "Targets 3-7 with crew tricks 0-7: Target 7 is a clean hit only on a sweep; legal, and rated as high-risk by the bots (success 69%).",
 ]
