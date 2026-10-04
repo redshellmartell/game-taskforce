@@ -18,3 +18,6 @@
 {"time": "2026-10-03T16:08:46Z", "agent": "manager", "game": "three-player-trick-taker", "event": "step", "message": "critic REVISE-MAJOR avg 3.0; waiting for approval: revision (three-player-trick-taker-revision-1)"}
 {"time":"2026-10-03T16:08:46Z","agent":"manager","game":"three-player-trick-taker","event":"waiting","message":"waiting for approval: revision (three-player-trick-taker-revision-1)"}
 {"time": "2026-10-04T10:48:46Z", "agent": "manager", "game": "three-player-trick-taker", "event": "step", "message": "Approved; revision 1 started"}
+{"time":"2026-10-04T10:50:00Z","agent":"game-designer","game":"three-player-trick-taker","event":"start","message":"Revision 1: fixing target hit rate, greedy-beats-strategic and lead changes"}
+{"time":"2026-10-04T10:56:00Z","agent":"game-designer","game":"three-player-trick-taker","event":"done","message":"rules.md v2 written"}
+{"time":"2026-10-04T10:51:30Z","agent":"playtester","game":"three-player-trick-taker","event":"start","message":"Revision 1 playtest (rules v2)"}
