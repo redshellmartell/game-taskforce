@@ -43,6 +43,7 @@ class Player:
         self.entered = 0; self.used = set(); self.plays = 0
         self.st12 = -1; self.st06 = -1
         self.thr = 13 if self.sid == "ST10" else 15
+        self.turns = 0
 
 
 class State:
@@ -56,7 +57,7 @@ class State:
         self.history = []        # per turn: leading player indices (lead-change tracking)
         self.lead_changes = 0; self.cm_cancelled_players = set(); self.cm_ever = set()
         self.cm_starts = {}
-        self.card_plays = {}
+        self.card_plays = {}; self.pc = {}; self.interact = 0
 
     # ------------------------------------------------------------------ small helpers
     def say(self, s):
@@ -504,7 +505,7 @@ def setup(st, bots):
 
 def start_turn(st, i):
     p = st.P[i]; b = st.bots[i]
-    p.entered = 0; p.used = set(); p.plays = 2
+    p.entered = 0; p.used = set(); p.plays = 2; p.turns += 1
     for c in st.all_cos():
         c.temps = [t for t in c.temps if t["until"] != ("start", i)]
     # INTERP G5: start-of-turn triggers first, then the draw
@@ -534,13 +535,13 @@ def end_turn(st, i):
     ts = total_size(st, i)
     if p.cm:
         if ts >= p.thr:
-            st.winner, st.reason, st.over = i, "cm", True
+            st.winner, st.reason, st.over = i, "cm", True; st.win_turns = p.turns
             st.say("P%d wins by Critical Mass (%d)" % (i, ts)); return
         p.cm = False
     if ts >= p.thr:
         p.cm = True; st.stats["cm_announce"] += 1
         if i in st.cm_cancelled_players: st.stats["cm_retrigger"] += 1
-        st.cm_ever.add(i); st.cm_starts[i] = st.round
+        st.cm_ever.add(i); st.cm_starts.setdefault(i, p.turns)
         st.say("P%d announces Critical Mass (%d)" % (i, ts))
     while len(p.hand) > 7:
         c = st.bots[i].discard_pick(st, i, p.hand)   # INTERP G34: owner chooses
@@ -901,6 +902,7 @@ def execute(st, i, a):
         if src == "AE18": p.used.add(("AE18", id(par["aug"])))
         else: p.used.add(src)
         st.say("P%d uses %s" % (i, src))
+        if par.get("tgt") is not None: st.interact += 1
         if src == "ST01":
             c = st.bots[i].discard_pick(st, i, p.hand); p.hand.remove(c); st.discard.append(c); draw(st, i, 1)
         elif src == "ST02":
@@ -912,6 +914,9 @@ def execute(st, i, a):
             move_in_orbit(st, i, par["co"], par["pos"])
         st.actor = None; return
     st.stats["plays"] += 1; p.plays -= 1
+    st.pc.setdefault(i, set()).add(card["id"])
+    fxt = a["fx"].get("tgt")
+    if (fxt is not None and fxt != i) or card["id"] in ("AE26", "AE41", "AE60"): st.interact += 1
     st.card_plays[card["id"]] = st.card_plays.get(card["id"], 0) + 1
     p.hand.remove(card)
     cid = card["id"]
