@@ -303,3 +303,12 @@ table.heat.grid td.cell { min-width: 44px; height: 30px; font-size: 12px; }
 .chip.owner { color: #e8c15a; border-color: #e8c15a; }
 
 .chip.v-major { color: #f08a5d; border-color: #f08a5d; background: rgba(240,138,93,.14); font-weight: 600; }
+
+/* review queue buttons */
+.pitch-decide { margin-top: 10px; }
+.pitch-buttons { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-top: 6px; }
+button.decide { border: 1px solid var(--border); background: var(--bg); color: var(--text); border-radius: 6px; padding: 8px 14px; cursor: pointer; font-weight: 600; }
+button.decide.good { border-color: var(--good); color: var(--good); } button.decide.warn { border-color: var(--warn); color: var(--warn); } button.decide.bad { border-color: var(--bad); color: var(--bad); }
+button.decide:hover:not(:disabled) { background: #1b1e25; } button.decide:disabled { opacity: .5; cursor: default; }
+.pitch-decide textarea { width: 100%; background: var(--bg); color: var(--text); border: 1px solid var(--border); border-radius: 6px; padding: 8px; }
+.saved-ok { color: var(--good); } .saved-err { color: var(--bad); }

@@ -105,7 +105,7 @@ Some steps use a lot of the owner's usage or could loop without adding value. Be
 
 ### Recording decisions
 
-The owner can answer in the dashboard (Approvals page, which sets the request's `status` to `approved` or `declined`, and writes `decision`, `decided_at` and `owner_notes`) or by replying to you in chat. When the owner says **"continue with approved work"**, read `games/approvals.json`, act on every request decided since the last run (one that is `approved` or `declined` and not yet recorded in `games/decisions.json`), record each in `games/decisions.json` (`slug` is `null` for requests that are not about a game), and continue or stop accordingly. A decision whose key is anything other than `approve` (for example `pitch`, `park`, `kill`) means the gated step is not run; do what that option says instead.
+The owner can answer in the dashboard (Approvals page, which sets the request's `status` to `approved` or `declined`, and writes `decision`, `decided_at` and `owner_notes`) or by replying to you in chat. When the owner says **"continue with approved work"**, read `games/approvals.json`, act on every request decided since the last run (one that is `approved` or `declined` and not yet recorded in `games/decisions.json`), record each in `games/decisions.json` (`slug` is `null` for requests that are not about a game), and continue or stop accordingly. **Pitch decisions from the Review Queue** arrive as entries in `games/decisions.json` (`approve`, `reject` or `send-back`, with notes) for a game still in `owner-review`: act on them the same way: `approve` sets the game's stage to `approved`; `reject` moves it to `games/_archive/` (stage `killed`, with the owner's notes as the reason) and updates its idea in the bank; `send-back` returns it to design as a revision proposal at a `revision` gate (the owner's notes are the brief). Record the stage change in `status.json` and `STATUS.md`. A decision whose key is anything other than `approve` (for example `pitch`, `park`, `kill`) means the gated step is not run; do what that option says instead.
 
 
 When the owner replies, update the request's `status`, `decision`, `decided_at` and `owner_notes`, log it in `games/decisions.json`, and continue (or stop) accordingly. An approval covers one step only: a second revision needs a new gate. Requests older than 14 days with no answer become `expired`; mention them in the next status report.
@@ -217,7 +217,7 @@ The owner pays for sessions from a limited credit balance, so work economically:
 
 ## Dashboard project
 
-The owner's dashboard lives in `dashboard/`. When asked to build or change it, follow `docs/BUILD-DASHBOARD.md` (build steps) and `docs/dashboard-notes.md` (product spec), working one milestone at a time. The dashboard is read-only in v1 and must never start agents or change files in `games/`. The owner is new to coding: explain steps in plain language and keep setup minimal.
+The owner's dashboard lives in `dashboard/`. When asked to build or change it, follow `docs/BUILD-DASHBOARD.md` (build steps) and `docs/dashboard-notes.md` (product spec), working one milestone at a time. The dashboard must never start agents. Its only writes are: saving ideas to `games/_inbox/`, recording approval decisions in `games/approvals.json`, and appending the owner's pitch decisions (Approve, Send back, Reject in the Review Queue) to `games/decisions.json`. The owner is new to coding: explain steps in plain language and keep setup minimal.
 
 ## Default first command
 

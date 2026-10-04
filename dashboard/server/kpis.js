@@ -267,7 +267,7 @@ export function ownerStats(games, decisions) {
 
 // Pitches waiting for the owner, oldest first.
 export function reviewQueueItems(games, now = Date.now()) {
-  return games.filter((g) => g.stage === 'owner-review').map((g) => {
+  return games.filter((g) => g.stage === 'owner-review' && !g.pitchDecision).map((g) => {
     const h = [...(g.history || [])].reverse().find((e) => e.stage === 'owner-review');
     const since = h ? Date.parse(h.time) : NaN;
     const passing = g.scorecard.filter((r) => r.status === 'good').length;

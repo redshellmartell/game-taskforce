@@ -321,3 +321,16 @@ test('approval requests carry the game verdicts so the page can show a critic/pl
   assert.ok(withGame.every((r) => 'verdicts' in r));
   assert.ok(withGame.some((r) => r.verdicts && r.verdicts.critic));
 });
+
+test('a pitch decided in the dashboard leaves the review queue (waiting for the Director)', () => {
+  const fs2 = fs; const tmp = fs2.mkdtempSync(path.join(os.tmpdir(), 'rq-'));
+  fs2.mkdirSync(path.join(tmp, 'games', 'g1'), { recursive: true });
+  fs2.writeFileSync(path.join(tmp, 'games', 'status.json'), JSON.stringify({ games: [{ slug: 'g1', title: 'G1', stage: 'owner-review', history: [{ stage: 'owner-review', time: '2026-10-01T10:00:00Z' }], verdicts: {} }] }));
+  fs2.writeFileSync(path.join(tmp, 'games', 'g1', 'pitch.json'), JSON.stringify({ title: 'G1' }));
+  const before = buildState({ repoRoot: tmp, dashboardDir, sample: false, now: Date.parse('2026-10-02T00:00:00Z') });
+  assert.equal(before.review.queue.length, 1); assert.equal(before.waitingPitches.length, 1);
+  fs2.writeFileSync(path.join(tmp, 'games', 'decisions.json'), JSON.stringify({ decisions: [{ slug: 'g1', time: '2026-10-01T12:00:00Z', decision: 'approve', notes: 'ok' }] }));
+  const after = buildState({ repoRoot: tmp, dashboardDir, sample: false, now: Date.parse('2026-10-02T00:00:00Z') });
+  assert.equal(after.review.queue.length, 0); assert.equal(after.waitingPitches.length, 0);
+  assert.equal(after.games[0].pitchDecision.decision, 'approve');
+});

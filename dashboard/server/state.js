@@ -5,6 +5,7 @@ import path from 'node:path';
 import { computeKpis, gameScorecard, stageFunnel, killRateByStage, cycleTimes, avgRevisionLoops, firstPassRate, stuckGames, roomStats, panelStats, milestones, ownerStats, reviewQueueItems, qualityLab, portfolio, opsStats, ideaBankStats, usageStats, approvalStats } from './kpis.js';
 import { listInbox } from './ideas.js';
 import { loadPanel } from './panel.js';
+import { pitchDecisionFor } from './pitch.js';
 
 const AGENT_ORDER = ['market-researcher', 'game-designer', 'playtester', 'critic', 'test-panel', 'manager'];
 // Which report each agent writes (used for "Its work" and for the handoff lines).
@@ -198,7 +199,14 @@ export function buildState({ repoRoot, dashboardDir, sample, now = Date.now() })
     a.currentGame = a.state === 'working' ? last.game : null;
     a.reports = games.flatMap((g) => g.files.filter((f) => f.agent === a.id).map((f) => ({ ...f, game: g.slug, gameTitle: g.title }))).sort((x, y) => y.mtime - x.mtime);
   }
-  const waitingPitches = games.filter((g) => g.stage === 'owner-review');
+  const decisionsEarly = (readJson(path.join(gamesDir, 'decisions.json'))?.decisions || []).map((d) => ({ ...d, time: shiftTime(d.time) }));
+  for (const g of games.filter((x) => x.stage === 'owner-review')) {     // a pitch you decided in the dashboard that the Director has not acted on yet
+    const h = [...(g.history || [])].reverse().find((e) => e.stage === 'owner-review');
+    const since = h ? Date.parse(shiftTime(h.time)) || 0 : 0;
+    const d = pitchDecisionFor(g.slug, since, decisionsEarly);
+    g.pitchDecision = d ? { decision: d.decision, time: d.time, notes: d.notes || null } : null;
+  }
+  const waitingPitches = games.filter((g) => g.stage === 'owner-review' && !g.pitchDecision);
   const manager = agents.find((a) => a.id === 'manager');
   if (manager && waitingPitches.length && manager.state === 'idle') manager.state = 'waiting';
 
