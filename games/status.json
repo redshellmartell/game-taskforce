@@ -150,6 +150,12 @@
           "time": "2026-10-04T12:14:19Z",
           "verdict": "REVISE-MINOR",
           "note": "revision 2: critic avg 3.67; waiting for owner decision: pitch or revise"
+        },
+        {
+          "stage": "critique",
+          "time": "2026-10-04T18:32:00Z",
+          "verdict": null,
+          "note": "owner chose pitch; Director writes pitch.md"
         }
       ],
       "verdicts": {
@@ -236,6 +242,12 @@
           "time": "2026-10-04T10:58:43Z",
           "verdict": "REVISE-MAJOR",
           "note": "critic REVISE-MAJOR avg 3.33; waiting for approval: revision"
+        },
+        {
+          "stage": "critique",
+          "time": "2026-10-04T18:32:00Z",
+          "verdict": null,
+          "note": "revision 1 approved; designer starts"
         }
       ],
       "verdicts": {
@@ -279,6 +291,12 @@
           "time": "2026-10-04T11:25:36Z",
           "verdict": "REVISE-MINOR",
           "note": "critic REVISE-MINOR avg 3.67; waiting for approval: revision"
+        },
+        {
+          "stage": "critique",
+          "time": "2026-10-04T18:32:00Z",
+          "verdict": null,
+          "note": "revision 1 approved; designer starts"
         }
       ],
       "verdicts": {
