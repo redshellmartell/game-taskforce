@@ -1,28 +1,14 @@
-{
-  "verdict": "REVISE-MINOR",
-  "revision": 1,
-  "scores": {
-    "originality": 2.5,
-    "clarity": 3.5,
-    "fun": 3,
-    "balance": 3.5,
-    "market_fit": 3,
-    "production": 5
-  },
-  "average": 3.4,
-  "strength": "A clean, fast, fair 2-player push-your-luck loop with one real decision per turn, and tiny production cost.",
-  "weakness": "The three advertised twists (bait, species majority, Lifebuoy refund) are close to inert in the data, so it plays as a generic shared-row duplicate-bust game that sits very near Port Royal.",
-  "closest_existing_game": {
-    "name": "Port Royal",
-    "similarity": "medium"
-  },
+{ "verdict": "REVISE-MINOR", "revision": 2,
+  "scores": { "originality": 2.5, "clarity": 4, "fun": 3, "balance": 3, "market_fit": 3, "production": 5 },
+  "average": 3.42,
+  "strength": "Clean, fast, fair 2-player push-your-luck loop with unambiguous rules, balanced seats (gap 1.2), and trivial production cost.",
+  "weakness": "The bait hurdle is inert (claimed 99% of the time), so 'leave lowest' is still correct and the game's only differentiator from Port Royal and Flip 7 does not show in play. Runaway leader is 74.8% against a 65% target.",
+  "closest_existing_game": { "name": "Port Royal", "similarity": "medium" },
   "required_changes": [
-    "Fix the bait wording contradiction between the Overview, section 4 and section 5.",
-    "Add the 1-card river sentence, delete the dead 'other leftovers' text, and state what counts toward the refund.",
-    "Remove or clearly flag the untested 3-4 player variant.",
-    "Make bait worth leaving (for example a bust against bait lets the bait owner take a card from the opponent's pile) and re-run the simulation; target: leave-lowest under 60% against a smart leaver.",
-    "Species bonus: score per card of margin or raise to 12, and re-run (target: swings 10%+ of games), or drop species.",
-    "Refund: drop it, or move it to 3 cards with +4 for seat 2.",
-    "Check BGG for an existing 'leave one card' shared-row game, and do not call the river novel in the pitch."
-  ]
-}
+    "Make the bait hurdle bind (claim needs pile >= 2x bait, or a failed claimer pays a pile card). Target: smart leaver deviates from leave-lowest in 25%+ of choices, with leave-lowest and leave-highest both under 60%.",
+    "Runaway leader: accept and document 74.8%, or test one catch-up rule (trailing player claims bait on pile >= bait). Target: halfway leader at 65% or less, seat gap 5 or less.",
+    "Delete stale design notes (unchecked-originality line, considered-but-not-adopted paragraph) so panel readers do not copy them.",
+    "Before any physical prototype, do a plain web check for existing leave-one-card-as-bait games; the pitch must not call the shared river new."
+  ],
+  "revision_worth_it": true,
+  "revision_reason": "Yes, narrowly: the hurdle fix is a clear one-line testable change aimed at the only differentiator, but if it fails, park or pitch as a plain filler." }

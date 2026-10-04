@@ -3,8 +3,8 @@
     {
       "slug": "duelflip",
       "title": "Duel Flip",
-      "stage": "owner-review",
-      "revision": 1,
+      "stage": "critique",
+      "revision": 2,
       "history": [
         {
           "stage": "brief",
@@ -65,6 +65,18 @@
           "time": "2026-10-03T13:36:57Z",
           "verdict": null,
           "note": "panel reviews done (approved); panel-report.md written"
+        },
+        {
+          "stage": "owner-review",
+          "time": "2026-10-04T15:20:00Z",
+          "verdict": null,
+          "note": "owner sent back to game-designer; waiting for approval: revision (duelflip-revision-2)"
+        },
+        {
+          "stage": "critique",
+          "time": "2026-10-04T15:30:49Z",
+          "verdict": "REVISE-MINOR",
+          "note": "revision 2 done: playtest NEEDS-FIXES (bait claimed 99%, runaway leader 74.8%), critic 3.42; waiting for approval: revision (duelflip-revision-3)"
         }
       ],
       "verdicts": {

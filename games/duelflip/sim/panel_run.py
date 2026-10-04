@@ -39,7 +39,7 @@ def one_game(a, b, seed, log=False):
         trailed = bool(mid) and ((mid < 0) if seat == 0 else (mid > 0))
         out.append(dict(won=int(w == seat), turns=r["turns"], decisions=c.n, lead_changes=lc,
                         trailed=int(trailed), comeback=int(trailed and w == seat),
-                        busts=st.stats["busts"], bait=st.stats["bait_clash_busts"],
+                        busts=st.stats["busts"], bait=st.stats["bait_busts"],
                         opp_decisions=(ca if seat == 1 else cb).n))
     return out, st
 

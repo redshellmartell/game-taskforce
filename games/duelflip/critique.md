@@ -1,79 +1,49 @@
-# Duel Flip - Critique (rules v2)
+# Duel Flip - Critique (rules v2, revision 2 review)
 
-**Verdict: REVISE-MINOR**
+**Verdict: REVISE-MINOR** (borderline). Average 3.42, under the 3.5 pitch bar.
 
-The core loop works and is fair. The three features that make it different from its neighbours do not change how it plays. The owner has said no further revision loops will run. So read this as: playable and fair, but a "solid, simple push-your-luck game", not the "bait and majority" game the rules advertise. Treat it as a feasibility prototype, not a differentiated product.
+The game is fair, short and clearly written. Revision 2 fixed the clarity problems and the seat balance. It did not fix the two things that matter: the bait is still not a real decision, and the runaway leader rate is over target. Originality was not re-checked, because the core mechanic did not change. The earlier finding stands: it sits close to Port Royal (shared row, duplicate ends the turn) and Flip 7 (duplicate number busts).
 
 ## Scores (1-5)
 
 | Area | Score | Note |
 |---|---|---|
-| Originality | 2.5 | Close to Port Royal in structure, and to Flip 7 in feel. See below. |
-| Rules clarity | 3.5 | Short, but with gaps (listed below). |
-| Fun | 3 | One good decision per turn (flip again?). The leave decision is automatic. |
-| Balance | 3.5 | Seats are fair and the game always ends. Three twists are inert. |
-| Market fit | 3 | It fits the 2P, short, shared-information gap. It does not deliver a clear reason to buy over Flip 7. |
-| Production | 5 | 60 cards and 2 tokens, one deck, about $10-15. Trivial to make. |
-
-## Originality
-
-I found no exact match, so this is not an automatic KILL. No rules, card text or artwork are copied. The closest games are:
-
-- **Port Royal (Pfister).** This is the nearest match. Cards go into a shared, visible display (the Harbor), and you push your luck by drawing until a duplicate ends your turn. What is left in the display goes to the opponent. Duel Flip changes the duplicate trigger to matching values (not colours) and adds forced leave-one-behind banking. The skeleton is still the same: shared row, matching-value bust, leftovers feeding the next player. This is close, and the pitch must not call the shared river "new".
-- **Flip 7.** The brief's own comparable. It uses the same "duplicate number = bust" trigger and a flip-to-bank feel. The shared river and bait differ, and the 7-unique-number win condition is not used.
-- **Sea Salt & Paper.** Only the species-majority bonus overlaps with it, and that is generic set collection.
-
-My search was thin. Search results were summaries, and I did not open BGG pages. I could not rule out a small indie game with "leave one card as bait", so check that before any public use.
-
-## Rules clarity
-
-A new player could mostly learn this from the rules, but these items are confusing or missing:
-
-1. The bank phase says the river has at least 2 cards, but it can have only 1 (a deck that runs out after one flip, or a Lifebuoy spent on a second-flip clash). The playtest found this. It is unwritten: the rules need a sentence saying you take the single card.
-2. "Other leftovers stay in the river" is dead text. Only 0 or 1 leftover can exist, so delete it and avoid confusing readers.
-3. Refund: it must say that the card you leave counts toward the 4 cards, and that the refund applies only if the Lifebuoy is spent. This is an interpretation in the playtest report, not in the rules.
-4. The bait rules are hard to follow. The sequence is "bust vs leftover: opponent takes the leftover into their haul", but the Overview and Bait text say the leaver "gets it back". Those two readings give opposite results. Check the wording: bust gives the opponent your pile, and the bait goes to its leaver. Section 4 says the opponent takes the leftover, which contradicts section 5 and the hook. This needs fixing, because a player cannot tell who gets the card.
-5. The 3-4 player variant is untested and ambiguous (who "owns" the bait, who receives a bust pile). Remove it or label it clearly "untested", or cut it.
-6. The scoring tiebreak is stated, but the "+3 to second player" can look like it breaks a tie in two places. Minor.
-
-## Fun
-
-- Strength: the "one more flip?" decision is genuine. About 25-35% clash risk per extra flip, a visible river, and short turns. Strategic bots beat random ones 82% and win 58-63% against the other bots, so skill matters.
-- The narrated notes show the best stretch (turns 12-19): three bait hits in 8 turns, short turns, real risk. That is the good version of the game.
-- Weakness: the leave decision is "leave your lowest card" about 3 turns in 4 (the best clever rule gains only 2-3 points). Narrated turns 22-25 had the same move four times with no tension. This is the part the game is sold on.
-- Pushing deep is not rewarded (pusher targets from 4 to 20 score about the same). The 4-card refund is reached 0.56 times per game, so Lifebuoy holding is not a decision (spend it).
-- The species bonus changes the winner in about 5% of games, and chasing species costs more than it gains. The narrated notes agree: "a pile of numbers, not a majority fight".
-- 10-17% of turns are 1-card busts, which feel like small taxes. A mild snowball (the leader after one third wins 66-70%) is acceptable.
-- A human game is about 12 minutes. The ending is a count of numbers, with little surprise. I would expect a gradual end rather than a dramatic one.
-
-## Balance
-
-The numbers support the claims they test: seat 1 wins 50.6-51.9% with the +3 bonus, games last 17-30 turns, there are no 500-turn cases, and ties are under 1%. Unfixed problems are the three inert twists above. The playtest recommends fixes (bait payoff, species bonus per card or 12, refund at 3 or dropped), none of them tested. Do not assume they work.
-
-## Market fit
-
-The gap was 2P-first push-your-luck with shared information and no take-that. That is delivered: no hidden information and no random take-that. The brief admitted the gap evidence is thin (unverified BGG 2P rankings), and that is still unchecked. The risk is that a reviewer calls it "Port Royal-lite or Flip 7 with a shared row", since the advertised differentiators do not show in play. It has not drifted from the brief; it just does not yet make the gap's promise stand out.
-
-## Production
-
-60 cards (6 species x 1-10) and 2 tokens. Species must be told apart by colour and icon, so colour-blind-friendly icons are needed. The 10 values x 6 species are all unique, so there is no card text and no translation cost. This is cheap and easy to make.
+| Originality | 2.5 | Unchanged. Close to Port Royal. The bait is the only differentiator, and it is inert. |
+| Rules clarity | 4 | Up from 3.5. Zero ambiguities found. The bait wording is unified, the one-card pile is covered, and the 3-4 player variant and species are gone. |
+| Fun | 3 | The "one more flip?" decision is real. The leave decision is still automatic: a smart leaver deviates from "lowest" in 5% of choices and gains about 0 points. The narrated trace shows the same routine on turns 1-3. |
+| Balance | 3 | Seat gap 1.2, skill gap 44.3, length 12 min and lead changes 3.4 all pass. Runaway leader fails at 74.8% (halfway) against a 65% target, and v1 was about the same. The bait hurdle is claimed 99% of the time. |
+| Market fit | 3 | It fits the 2P, short, no-hidden-information gap. It gives no clear reason to choose it over Flip 7 or Port Royal. The panel (older, rev 1) rated it a filler for Casual and Competitor players and weak for Family and Story. |
+| Production | 5 | 60 cards and 2 tokens, about $10-15. No card text. |
 
 ## Biggest strength
-
-A clean, fast, fair 2-player push-your-luck loop with one real decision per turn, and tiny production cost.
+A clean, fast, fair 2-player push-your-luck loop. The rules are now unambiguous, the seats are balanced, and it costs almost nothing to build.
 
 ## Biggest weakness
+The bait hurdle, the revision's headline change, does nothing. Bots flip until the pile beats the bait, and the Lifebuoy covers a clash. "Leave lowest" is still correct 19 times in 20. The game's only differentiator from Port Royal and Flip 7 is therefore not visible in play. The panel's top complaint, from three personas, is unresolved.
 
-The three advertised twists (bait, species majority, Lifebuoy refund) are close to inert in the data, so the game plays as a generic shared-row duplicate-bust game that sits very near Port Royal.
+## Balance against the KPIs
+- Pass: seat gap, skill expression, length, lead changes, zero ambiguities, zero dead cards.
+- Fail: runaway leader, 74.8% against 65% or less (68.6% at one third of the game).
+- Misleading pass: "leave-lowest under 60%" is met at 50.1%, but only because no alternative beats it. The target was a proxy for "the bait is a real choice", and that is not met.
+- Critic average: 3.42, under the 3.5 target.
 
-## Required changes (the owner is running no more loops, so these are "do before a physical prototype")
+## Required changes (one more loop)
+1. **Make the hurdle bind.** Change the claim test to pile total at least 2x the bait value (a 10 bait needs 20), or make a failed claimer pay a card from their pile. This targets the bait-inert flag. Success looks like: a smart leaver picks a non-lowest card in at least 25% of choices, with leave-lowest under 60% and leave-highest under 60%.
+   - Risk: 2x may over-correct, so that every bait above 5 is unclaimable and "leave highest" becomes a free gift. Re-test both directions. The playtester has run 5 experiments, so the next pass needs a small budget, or a `budget` approval for more.
+2. **Runaway leader.** Do not try for a fix and a rule change together. Either (a) accept 74.8% and document it as a known risk (it was about the same in v1, and a 12-minute filler tolerates a snowball), or (b) test one catch-up rule only: the trailing player claims the bait on pile at least equal to its value. Target: halfway leader at 65% or less, with seat gap still 5 or less.
+3. Delete the stale design-note lines: "originality has not been checked against a game database" and the "considered but not adopted" paragraph. Panel readers pick them up, which is why the persona reviews looked alike.
+4. Before any physical prototype: do a plain web check for existing "leave one card as bait" games. The pitch must not call the river new.
 
-1. Fix the bait wording contradiction between the Overview, section 4 and section 5 (item 4 above). This is the one clarity change that must be made.
-2. Add the 1-card river sentence, delete "other leftovers", and state the refund counts (items 1-3).
-3. Remove or flag the 3-4 player variant.
-4. Make bait worth leaving: for example a bust against bait also lets the bait owner take one card from the opponent's pile. Run the sim before you trust it. Target: "leave lowest" under 60% against a smart leaver.
-5. Species bonus: per card of margin or 12, and re-run (target: swings 10%+ of games). Otherwise drop species and score pure values.
-6. Refund: drop it or move it to 3 cards with +4 for seat 2.
-7. Check BGG for any existing "leave one card" shared-row game, and avoid describing the river as novel in the pitch.
+## Can the remaining issues be fixed in one more small loop?
+Partly.
+- Bait hurdle: yes. The diagnosis is clear (claim rate 99%, with the data by bait value), and the fix is a one-line rule change. The risk is that it over-corrects, so it may need a second tuning step.
+- Runaway leader: probably not by rules tweaks without cost. It was 74.8% here and about the same in v1, so two revisions have not moved it. Treat it as accept-and-document unless the catch-up test works first time.
 
-If the owner builds the current v2 as-is, it will be playable and fair. It will not feel like the pitch.
+## Owner options
+- **Pitch as is:** not recommended on the numbers (average 3.42, one KPI failed). If chosen, the pitch must say the bait is a mild twist and "a solid simple filler", list the runaway rate as a remaining risk, and keep the Port Royal comparison honest.
+- **Revise once more (my pick):** a narrow loop, with a hurdle change only and the runaway leader documented. This is the last loop worth running. Two attempts at the bait have failed, and a third failure means park it as a plain filler.
+- **Park:** reasonable if the owner doesn't care about differentiation. The game is playable and cheap to prototype as is, but it will not stand out.
+- KILL is not warranted: nothing is copied, and the game is playable, fair and cheap.
+
+## Is another revision worth it?
+Yes, narrowly: the hurdle fix is a clear, one-line, testable change aimed at the only thing that would differentiate the game, but if it does not work, stop and park or pitch it as a plain filler.

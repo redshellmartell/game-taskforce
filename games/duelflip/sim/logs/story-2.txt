@@ -1,41 +1,41 @@
-Duel Flip: story (seat 1) vs competitor (seat 2), table 'worst' for story. Cards are species+value (Cr St Ur An Sn Ke).
+Duel Flip: story (seat 1) vs barraiser (seat 2), table 'worst' for story. Cards are species+value (Cr St Ur An Sn Ke).
 T0 P0 first An7
 T0 P0 flips An5
 T0 P0 flips Ke2
 T0 P0 flips Ke6
-T0 P0 banks ['An7', 'An5', 'Ke6'] leaves Ke2
-T1 P1 first Ur6
+T0 P0 banks, leaves Ke2
+T1 P1 first Ur6 (bait Ke2)
 T1 P1 flips An3
-T1 P1 flips St3 CLASH -> buoy
-T1 P1 banks ['Ke2', 'Ur6'] leaves An3
-T2 P0 first St5
+T1 P1 flips St3 CLASH -> Lifebuoy
+T1 P1 pile 9 vs bait Ke2: claims
+T1 P1 banks, leaves An3
+T2 P0 first St5 (bait An3)
 T2 P0 flips St9
 T2 P0 flips Ke1
 T2 P0 flips Ke7
-T2 P0 banks ['An3', 'St5', 'St9', 'Ke7'] leaves Ke1
-T3 P1 first An2
+T2 P0 pile 22 vs bait An3: claims
+T2 P0 banks, leaves Ke1
+T3 P1 first An2 (bait Ke1)
 T3 P1 flips St8
-T3 P1 banks ['Ke1', 'St8'] leaves An2
-T4 P0 first Ur10
-T4 P0 flips An10 CLASH -> BUST, opp gets ['Ur10']
-T5 P1 first St4
+T3 P1 pile 10 vs bait Ke1: claims
+T3 P1 banks, leaves An2
+T4 P0 first Ur10 (bait An2)
+T4 P0 flips An10 CLASH -> BUST, opp takes ['An2', 'Ur10']
+T5 P1 first Sn2
+T5 P1 flips St4
 T5 P1 flips An8
-T5 P1 banks ['An2', 'An8'] leaves St4
-T6 P0 first Sn5
+T5 P1 banks, leaves Sn2
+T6 P0 first Sn5 (bait Sn2)
 T6 P0 flips Cr10
 T6 P0 flips An6
-T6 P0 banks ['St4', 'Sn5', 'An6'] leaves Cr10
-T7 P1 first Sn7
+T6 P0 pile 21 vs bait Sn2: claims
+T6 P0 banks, leaves Cr10
+T7 P1 first Sn7 (bait Cr10)
 T7 P1 flips Ke3
-T7 P1 banks ['Cr10', 'Ke3'] leaves Sn7
+T7 P1 flips Ur7 CLASH -> BUST, opp takes ['Cr10', 'Sn7', 'Ke3']
 T8 P0 first Cr6
 T8 P0 flips Sn3
 T8 P0 flips Ur5
 T8 P0 flips St1
-T8 P0 flips Sn1 CLASH -> buoy
-T8 P0 banks ['Sn7', 'Cr6', 'Sn3', 'Ur5'] leaves St1
-T9 P1 first St7
-T9 P1 flips Ke5
-T9 P1 banks ['St1', 'Ke5'] leaves St7
-T10 P0 first Cr2
-T10 P0 flips An4
+T8 P0 flips Sn1 CLASH -> Lifebuoy
+T8 P0 banks, leaves St1

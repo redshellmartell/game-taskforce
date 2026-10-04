@@ -15,3 +15,11 @@
 {"time": "2026-10-03T13:36:57Z", "agent": "panel:story", "game": "duelflip", "event": "done", "message": "review written"}
 {"time": "2026-10-03T13:36:57Z", "agent": "panel:family", "game": "duelflip", "event": "done", "message": "review written"}
 {"time": "2026-10-03T13:36:57Z", "agent": "manager", "game": "duelflip", "event": "done", "message": "panel-report.md written"}
+{"time": "2026-10-04T15:20:00Z", "agent": "director", "game": "duelflip", "event": "waiting", "message": "Owner send-back received; waiting for approval: duelflip-revision-2"}
+{"time": "2026-10-04T15:21:58Z", "agent": "director", "game": "duelflip", "event": "step", "message": "revision 2 approved by owner; briefing game-designer"}
+{"time": "2026-10-04T15:25:07Z", "agent": "playtester", "game": "duelflip", "event": "start", "message": "Revision 2 playtest: updating sim to new rules"}
+{"time":"2026-10-04T15:25:09Z","agent":"game-designer","game":"duelflip","event":"done","message":"Revision 2 rules written (bait claim rule, species and refund dropped, ambiguities closed, 3-4p variant removed)"}
+{"time": "2026-10-04T15:29:12Z", "agent": "playtester", "game": "duelflip", "event": "step", "message": "Headline 72,000 games + 5 experiments done; running panel rotation"}
+{"time": "2026-10-04T15:29:38Z", "agent": "playtester", "game": "duelflip", "event": "done", "message": "Revision 2 playtest NEEDS-FIXES: hurdle inert (claim 99%), runaway 74.8%"}
+{"time": "2026-10-04T15:30:49Z", "agent": "critic", "game": "duelflip", "event": "done", "message": "Revision 2 critique: REVISE-MINOR, average 3.42"}
+{"time": "2026-10-04T15:30:49Z", "agent": "director", "game": "duelflip", "event": "waiting", "message": "waiting for approval: duelflip-revision-3"}

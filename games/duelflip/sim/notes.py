@@ -1,52 +1,27 @@
-"""Text for playtest.json that a person (the playtester) wrote after reading the numbers.
-Everything here is transcribed from ../playtest-report.md (v2 rules re-test); the numbers are not.
-"""
-
-VERDICT = "NEEDS-FIXES"
-REVISION = 1  # one revision loop done: rules v1 -> v2
-
-# Human-play estimate from the narrated games in the report ("about 12 minutes for a human").
-ESTIMATED_MINUTES = 12
-# The brief asks for 10-15 minutes; the target used here is the middle of that range.
+"""Playtester's judgement text for playtest.json (revision 2). Numbers come from run.py; words from playtest-report.md."""
+VERDICT = "NEEDS-FIXES"; REVISION = 2
+ESTIMATED_MINUTES = 12   # about 23 turns at roughly 30 seconds each; brief asks 10-15 (target 12.5)
 TARGET_MINUTES = 12.5
-
-AMBIGUITIES = [
-    "River with only 1 card at banking: section 4 says at least 2, but it can be 1 (deck runs out after the first flip, or a Lifebuoy is spent on a second-flip clash). Interpreted: you take the single card.",
-    "Safe scout when the deck runs dry: if every remaining card matches the river the scout redraws until the deck is empty with an empty pile, and the game ends (consistent with section 5).",
-    "Refund counting: the card you leave counts toward the 4 cards, and the refund only applies if the Lifebuoy was spent. Interpreted by the playtester; not stated in the rules.",
-    "Multiple leftovers: only 0 or 1 leftover can exist, so the 'other leftovers stay in the river' wording in section 4 is dead text.",
-    "Lifebuoy on a bait clash: spending it keeps your pile and you must bank the bait. Allowed, but not stated.",
-    "Tiebreaker: equal score, then more cards, then the second player. Assumed.",
-]
-
-# Ranked problems from the report. Severity: report's Medium -> medium, Low-Med and Low -> low.
+AMBIGUITIES = []   # none found in rules.md revision 2; interpretations used are listed in the report (not rule gaps)
 PROBLEMS = [
-    {"severity": "medium", "problem": "Bait/leave decision is solved by 'leave your lowest card'",
-     "evidence": "Leaving high wins 17-24% and random 31-36% against leave-lowest; the best clever leave rule gains only +2 to +3 points. The answer is 'lowest' about 3 turns in 4.",
-     "fix": "Make a bait hit pay more (bait owner also takes a card from the opponent's pile, or the pile counts double), then re-run experiments.py section A. Target: leave-lowest under 60% against a smart leaver."},
-    {"severity": "medium", "problem": "Species bonus decides only about 5% of games",
-     "evidence": "Flips the winner in 4.8% of games at bonus 8 (v1: about 4% at 5). The species-aware leave rule scores 45-47% against plain lowest, so chasing species costs more than it gains.",
-     "fix": "Score the bonus per card of margin (for example +3 per card ahead) or raise it to 12-15, then re-run section E. Target: swings 10%+ of games."},
-    {"severity": "low", "problem": "Pushing deep is not rewarded and the Lifebuoy refund is rarely used",
-     "evidence": "Pusher targets 4 to 20 all win 35-40% against strategic. Refund happens 0.56 times per game. Refund at 3 re-tilts seat 1 to 55.5%.",
-     "fix": "Move the refund to 3 cards with seat 2 +4, or drop the refund and keep a one-shot Lifebuoy."},
-    {"severity": "low", "problem": "1-card busts feel like small taxes",
-     "evidence": "10-17% of turns; average bust pile 5.6 points, none reach 15.",
-     "fix": "Optionally make the Lifebuoy free when the pile is one card."},
-    {"severity": "low", "problem": "Mild snowball",
-     "evidence": "The leader after one third of the game wins 66-70%. Unchanged from v1.",
-     "fix": "None needed; acceptable."},
-    {"severity": "low", "problem": "Random bots give seat 1 only 48%",
-     "evidence": "Small over-correction from the +3 compensation; no bot is further than 2 points from fair.",
-     "fix": "Keep +3 (+2 is an alternative)."},
+ {"severity": "high", "problem": "Bait hurdle is inert: the bait is claimed 99% of the time, so 'leave lowest' is still the answer",
+  "evidence": "Claim rate by bait value 1-10: 1.00 for 1-5, 0.99/0.98/0.96/0.95 for 6-9, 0.89 for 10. Smart leaver picks a non-lowest card in only 5% of choices; leave-lowest scores 50.1% against it (target <60% met, but only because there is nothing to gain from leaving anything else). Bots simply flip until the pile beats the bait. Variant claim needs pile > bait+3: low still 49.3% vs smart, claim still 98%.",
+  "fix": "The hurdle must bind. Options: claim needs pile total >= 2x bait value (a 10 bait needs 20), or the failed claimer also pays a cost (bait returns with 1 card from their pile). Re-test leave-lowest vs smart."},
+ {"severity": "medium", "problem": "Runaway leader above KPI",
+  "evidence": "Halfway leader wins 74.8% (strategic mirror), one-third leader 68.6%; KPI is 65% or less. Haul-based scoring only accumulates and busts are small (average pile 5.9).",
+  "fix": "Add catch-up: bust pile counts less for the trailing player, or the trailing player claims bait on pile >= bait. Alternatively accept and document; v1 was about the same."},
+ {"severity": "low", "problem": "Leave-highest is not dominant, but it is a trap rather than a choice",
+  "evidence": "Leave-highest wins 20.9% against smart; leave-lowest beats leave-highest 80.8%; random leave 34.5%.",
+  "fix": "Resolved if the hurdle fix makes mid-high baits viable."},
+ {"severity": "low", "problem": "Busts are frequent and small",
+  "evidence": "4.3 busts per game (1.8 on the bait), average bust pile 5.9. Every Lifebuoy is spent in every game (2.0 per game).",
+  "fix": "None needed; the Lifebuoy is a guaranteed-use token, so it is fine as a one-shot."},
 ]
-
-# The playtester's judgement of the three advertised twists (report, questions 2, 6 and 7). They are design
-# elements rather than individual cards, so they are listed in the "cards" section of playtest.json.
-# win_correlation is null for all three: a plain correlation would be confounded (holding more cards means
-# more points), so the effect is described in words instead.
-CARD_FLAGS = {
-    "Species majority bonus": "inert: changes the winner in only about 5% of games at bonus 8",
-    "Lifebuoy refund": "inert: refunded about 0.56 times per game and changes no measurable outcome",
-    "Bait (leave one card)": "dominated: leaving the lowest card is the right choice about 3 turns in 4",
-}
+def cards(res):
+    return [
+     {"name": "Bait hurdle (claim only if pile > bait)", "played_rate": round(res["bait_turn_rate"], 3), "win_correlation": None,
+      "flag": "inert: bait claimed %.0f%% of tries, so the hurdle rarely bites" % (100 * res["claim_rate"])},
+     {"name": "Bait (leave one card)", "played_rate": 1.0, "win_correlation": None,
+      "flag": "dominated: leave-lowest is about optimal (smart leaver deviates 5% of the time, gain about 0 points)"},
+     {"name": "Lifebuoy (one-shot)", "played_rate": round(res["buoys_per_game"] / 2, 3), "win_correlation": None, "flag": None},
+    ]
