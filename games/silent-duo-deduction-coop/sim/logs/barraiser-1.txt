@@ -1,0 +1,29 @@
+Silent Duo: team barraiser (seat 1) + strategist (seat 2), table 'best' for barraiser. Events: offer <by> <owner> <ship> <shown> <row>; light <by> <ship> <card> <ship value> <beacon>.
+T1 P1 offer 1 0 0 4 high
+T2 P0 light 0 0 2 1 False
+T3 P1 offer 1 0 2 3 high
+T4 P0 light 0 2 2 2 True
+T5 P1 offer 1 0 1 6 high
+T6 P0 offer 0 1 1 7 low
+T7 P1 light 1 1 9 9 True
+T8 P0 offer 0 1 2 5 high
+T9 P1 trim 1
+T10 P0 offer 0 1 0 8 high
+T11 P1 offer 1 0 1 4 low
+T12 P0 light 0 1 6 5 False
+T13 P1 trim 1
+T14 P0 offer 0 1 0 3 low
+T15 P1 trim 1
+T16 P0 offer 0 1 0 9 high
+T17 P1 trim 1
+T18 P0 offer 0 1 0 6 high
+T19 P1 light 1 0 4 5 False
+T20 P0 trim 0
+T21 P1 trim 1
+T22 P0 offer 0 1 2 8 high
+T23 P1 trim 1
+T24 P0 offer 0 1 2 1 low
+T25 P1 trim 1
+T26 P0 trim 0
+T27 P1 light 1 2 4 3 False
+Result: WIN after 27 turns

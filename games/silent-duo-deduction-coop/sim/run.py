@@ -64,19 +64,23 @@ def main(N=2000):
     if H["win"] > 0.60:
         probs.append(dict(severity="high", problem="Standard (F=8) is too easy: Honest teams win above the 40-60% band, and Convention/Code attack as well.",
             evidence="Honest %.1f%%, Greedy (lights at 50%% confidence) %.1f%%, Convention %.1f%%; Honest by Fog: F=8 %.0f%%, F=12 %.0f%%, F=16 %.0f%%." % (H["win"]*100, res["greedy"]["win"]*100, res["convention"]["win"]*100, H["win"]*100, ex["honest_storm_F12"]["win"]*100, ex["honest_F16"]["win"]*100),
-            fix="Raise default Fog to about 14 (F=16 gives ~41%, F=12 ~62%), or drop the Beacon bonus from 2 to 1 card (Beacons fire about %.1f times per game, each worth two turns), or lower lighting tolerance. Human teams without perfect counting will win less than the bots, so check by human test before pushing difficulty hard." % H["beacons"]))
+            fix="Set 2-player Standard to Fog 12 (Honest 57.5%%, in band) and keep 3-player near Fog 8 (Honest 3p at F=8 is %.1f%%). Beacons fire %.1f times per game and each buys two turns; cutting Beacons to 1 card needs less Fog. Human teams will deduce worse than the bots, so confirm with a human test before pushing difficulty." % (ex["honest_3p_standard"]["win"]*100, H["beacons"])))
     if res["greedy"]["win"] > H["win"]:
-        probs.append(dict(severity="medium", problem="Risk-taking beats caution: the Greedy bot (lights at 50% confidence, no card counting) out-wins Honest, so careful deduction is not the best line at Standard.",
-            evidence="Greedy %.1f%% vs Honest %.1f%% (cautious light_p 0.99: %.1f%%); Reefs (2 free misses) are cheap relative to turns." % (res["greedy"]["win"]*100, H["win"]*100, ex["greedy_vs_cautious_light_p_0.99"]["win"]*100),
-            fix="Make a miss cost more: raise Reef cost (2 reefs instead of 3) or make a miss also discard a card from the Fog/draw deck. Counter-check against decisions mattering: Random-Honest gap is huge but Greedy-Honest gap is negative."))
+        probs.append(dict(severity="medium", problem="Risk-taking beats the default careful play: the Greedy bot (lights at 50% confidence, no card counting) out-wins Honest, and Honest is hugely sensitive to its light threshold.",
+            evidence="Greedy %.1f%% vs Honest %.1f%%; Honest with light threshold 0.99 only %.1f%%. Reefs (two free misses) are cheap relative to turns." % (res["greedy"]["win"]*100, H["win"]*100, ex["greedy_vs_cautious_light_p_0.99"]["win"]*100),
+            fix="Make a miss cost more (two Reefs instead of three, or a miss also sends a Fog card to the Night pile). Needs a designer decision."))
+    if ex["code_F16"]["win"] - ex["honest_F16"]["win"] > 0.10:
+        probs.append(dict(severity="high", problem="The code attack beats Honest by more than 10 points once the game is made harder (F=16), so the anti-code design only holds at the easy Standard setting.",
+            evidence="At F=16: Code attack %.1f%% vs Honest %.1f%% (gap %+.1f); at F=8 the gap is %+.1f. The code (revealed value + ship index) mod 10 works because one offered card is always the coded one, revealed half the time, and a Bayesian receiver weights it by its posterior." % (ex["code_F16"]["win"]*100, ex["honest_F16"]["win"]*100, (ex["code_F16"]["win"]-ex["honest_F16"]["win"])*100, gap_c*1.0),
+            fix="Weaken what a card value can carry. Options: only the Offer's row is revealed to the owner and the card value stays hidden until the end; or offered pairs must be adjacent values. Needs a designer decision; re-test Code attack at the new Fog before deciding (untested)."))
     if cards[2]["flag"]:
-        probs.append(dict(severity="medium", problem="Trim is a dead-ish waiting action: Honest bots spend about a third of turns trimming.",
+        probs.append(dict(severity="medium", problem="Trim is a waiting action: Honest bots spend about a third of turns trimming.",
             evidence="Trim played in %.0f%% of turns, win correlation %.2f." % (cards[2]["played_rate"]*100, cards[2]["win_correlation"]),
-            fix="Give Trim a small upside (for example the trimmed card is placed in the Night pile face-up for the partner, or draw 2 keep 1)."))
-    probs.append(dict(severity="low", problem="Late tension is thin if wins are early.", evidence="Wins with 3 or fewer deck cards left: %s; losses with only one ship unlit: %s (target about 30%% each)." % (None if H["late_win"] is None else "%.0f%%" % (H["late_win"]*100), None if H["near_loss"] is None else "%.0f%%" % (H["near_loss"]*100)), fix="Fog tuning as above."))
-    verdict = "NEEDS-FIXES" if H["win"] > 0.60 or H["win"] < 0.40 else "PASS"
+            fix="Give Trim a small upside (draw 2 keep 1, or the trimmed card goes face-up to the Night pile)."))
+    probs.append(dict(severity="low", problem="Tension is fine (late wins and near-losses are common) but depends on Fog tuning.", evidence="Wins with 3 or fewer deck cards left: %s; losses with only one ship unlit: %s (target about 30%% each)." % (None if H["late_win"] is None else "%.0f%%" % (H["late_win"]*100), None if H["near_loss"] is None else "%.0f%%" % (H["near_loss"]*100)), fix="Re-check after any Fog change."))
+    verdict = "NEEDS-FIXES" if H["win"] > 0.60 or H["win"] < 0.40 or gap_c > 10 or ex["code_F16"]["win"] - ex["honest_F16"]["win"] > 0.10 else "PASS"
     pj = dict(verdict=verdict, revision=0, games_simulated=N * 5 + 6 * 1000, mode="co-operative; team win rates",
-        seat_win_rates=None, seat_balance_gap=None,
+        seat_win_rates=None, seat_balance_gap=0,
         bot_win_rates={k: round(res[k]["win"], 3) for k in res}, skill_expression=round(gap_r, 1),
         length=dict(mean_turns=round(H["turns"], 1), stdev=round(H["sd"], 1), estimated_minutes=est, target_minutes=TARGET_MIN),
         length_histogram=[dict(turns=t, games=g) for t, g in sorted(hist.items())],
