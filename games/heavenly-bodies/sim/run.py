@@ -138,7 +138,9 @@ def main(N=2000):
     kill = {}
     for atk in ("ST01", "ST05"):
         for hp in (5, 6, 7, 8, 9):
-            tgt = [s for s in G.STARS if G.STARS[s]["hp"] == hp and s not in ("ST03", "ST12", "ST06") and s != atk][0]
+            cand = [s for s in G.STARS if G.STARS[s]["hp"] == hp and s not in ("ST03", "ST12", "ST06") and s != atk]
+            if not cand: continue
+            tgt = cand[0]
             rs = []
             for k in range(500):
                 r = one(G.Config(2, stars=[atk, tgt], first=0), [B.Strategic(k, w_cm=0.35, w_def=0.3), Passive(k)], 80000 + k)

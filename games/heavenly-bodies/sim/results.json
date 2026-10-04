@@ -1,0 +1,1618 @@
+{
+ "mirror2": {
+  "n": 100,
+  "cm_share": 0.42,
+  "star_share": 0.58,
+  "cap": 0.0,
+  "rounds_all": 5.04,
+  "rounds_sd": 1.5160474926597782,
+  "star_rounds": 4.672413793103448,
+  "cm_rounds": 5.5476190476190474,
+  "star_win_turns": 4.672413793103448,
+  "cm_win_turns": 5.5476190476190474
+ },
+ "seat2": [
+  0.59,
+  0.41
+ ],
+ "pairs": {
+  "random_v_greedy": {
+   "first_bot_win": 0.18,
+   "n": 100,
+   "cm_share": 0.39,
+   "star_share": 0.61,
+   "cap": 0.0,
+   "rounds_all": 5.33,
+   "rounds_sd": 1.7207847047204947,
+   "star_rounds": 5.229508196721311,
+   "cm_rounds": 5.487179487179487,
+   "star_win_turns": 5.229508196721311,
+   "cm_win_turns": 5.487179487179487
+  },
+  "random_v_strategic": {
+   "first_bot_win": 0.18,
+   "n": 100,
+   "cm_share": 0.36,
+   "star_share": 0.64,
+   "cap": 0.0,
+   "rounds_all": 5.7,
+   "rounds_sd": 2.2956480566497994,
+   "star_rounds": 5.8125,
+   "cm_rounds": 5.5,
+   "star_win_turns": 5.796875,
+   "cm_win_turns": 5.5
+  },
+  "greedy_v_strategic": {
+   "first_bot_win": 0.5,
+   "n": 100,
+   "cm_share": 0.37,
+   "star_share": 0.63,
+   "cap": 0.0,
+   "rounds_all": 4.64,
+   "rounds_sd": 1.552546295606028,
+   "star_rounds": 4.317460317460317,
+   "cm_rounds": 5.1891891891891895,
+   "star_win_turns": 4.253968253968254,
+   "cm_win_turns": 5.1891891891891895
+  }
+ },
+ "ffa": {
+  "3p": {
+   "wins": {
+    "strategic": 0.42,
+    "greedy": 0.48,
+    "random": 0.1
+   },
+   "seat": [
+    0.43,
+    0.3,
+    0.27
+   ],
+   "n": 100,
+   "cm_share": 0.58,
+   "star_share": 0.42,
+   "cap": 0.0,
+   "rounds_all": 6.17,
+   "rounds_sd": 1.5814866423716643,
+   "star_rounds": 6.428571428571429,
+   "cm_rounds": 5.982758620689655,
+   "star_win_turns": 6.428571428571429,
+   "cm_win_turns": 5.982758620689655
+  },
+  "4p": {
+   "wins": {
+    "random": 0.03,
+    "greedy": 0.3,
+    "strategic": 0.67
+   },
+   "seat": [
+    0.35,
+    0.25,
+    0.22,
+    0.18
+   ],
+   "n": 100,
+   "cm_share": 0.6,
+   "star_share": 0.4,
+   "cap": 0.0,
+   "rounds_all": 6.73,
+   "rounds_sd": 1.8913222887704781,
+   "star_rounds": 7.7,
+   "cm_rounds": 6.083333333333333,
+   "star_win_turns": 7.675,
+   "cm_win_turns": 6.083333333333333
+  },
+  "3p_strategic_mirror": {
+   "seat": [
+    0.41,
+    0.38,
+    0.21
+   ],
+   "lc": 3.52,
+   "cm_announced": 0.78,
+   "n": 100,
+   "cm_share": 0.36,
+   "star_share": 0.64,
+   "cap": 0.0,
+   "rounds_all": 5.86,
+   "rounds_sd": 1.5938632312717425,
+   "star_rounds": 6.0,
+   "cm_rounds": 5.611111111111111,
+   "star_win_turns": 5.96875,
+   "cm_win_turns": 5.611111111111111
+  },
+  "4p_strategic_mirror": {
+   "seat": [
+    0.22,
+    0.26,
+    0.28,
+    0.24
+   ],
+   "lc": 5.19,
+   "cm_announced": 0.93,
+   "n": 100,
+   "cm_share": 0.55,
+   "star_share": 0.45,
+   "cap": 0.0,
+   "rounds_all": 6.41,
+   "rounds_sd": 1.2735383779062177,
+   "star_rounds": 6.733333333333333,
+   "cm_rounds": 6.1454545454545455,
+   "star_win_turns": 6.688888888888889,
+   "cm_win_turns": 6.1454545454545455
+  }
+ },
+ "star_rr": {
+  "ST01": {
+   "win": 0.7059782608695652,
+   "games": 1840,
+   "hp": 9,
+   "arche": "Simple"
+  },
+  "ST02": {
+   "win": 0.5261363636363636,
+   "games": 880,
+   "hp": 8,
+   "arche": "Augmentation-stacking"
+  },
+  "ST03": {
+   "win": 0.5727272727272728,
+   "games": 880,
+   "hp": 8,
+   "arche": "Out of Orbit"
+  },
+  "ST04": {
+   "win": 0.49204545454545456,
+   "games": 880,
+   "hp": 7,
+   "arche": "Critical Mass"
+  },
+  "ST05": {
+   "win": 0.6397727272727273,
+   "games": 880,
+   "hp": 7,
+   "arche": "Aggression"
+  },
+  "ST06": {
+   "win": 0.5511363636363636,
+   "games": 880,
+   "hp": 7,
+   "arche": "Aggression"
+  },
+  "ST07": {
+   "win": 0.6056818181818182,
+   "games": 880,
+   "hp": 6,
+   "arche": "Aggression"
+  },
+  "ST08": {
+   "win": 0.38977272727272727,
+   "games": 880,
+   "hp": 6,
+   "arche": "Augmentation-stacking"
+  },
+  "ST09": {
+   "win": 0.4647727272727273,
+   "games": 880,
+   "hp": 6,
+   "arche": "Out of Orbit"
+  },
+  "ST10": {
+   "win": 0.3967391304347826,
+   "games": 1840,
+   "hp": 5,
+   "arche": "Critical Mass"
+  },
+  "ST11": {
+   "win": 0.33152173913043476,
+   "games": 1840,
+   "hp": 5,
+   "arche": "Out of Orbit"
+  },
+  "ST12": {
+   "win": 0.45,
+   "games": 1840,
+   "hp": 5,
+   "arche": "Denial/control"
+  }
+ },
+ "rr_path": {
+  "n": 7200,
+  "cm_share": 0.28847222222222224,
+  "star_share": 0.7115277777777778,
+  "cap": 0.0,
+  "rounds_all": 4.660833333333334,
+  "rounds_sd": 1.4235009171444573,
+  "star_rounds": 4.445051727503416,
+  "cm_rounds": 5.1930669234472795,
+  "star_win_turns": 4.419285574858481,
+  "cm_win_turns": 5.1930669234472795
+ },
+ "pairs_star": {
+  "ST01_v_ST02": {
+   "a_win": 0.525,
+   "n": 80,
+   "cm_share": 0.475,
+   "star_share": 0.525,
+   "rounds_all": 5.825,
+   "star_rounds": 6.119047619047619,
+   "cm_rounds": 5.5
+  },
+  "ST01_v_ST03": {
+   "a_win": 0.5375,
+   "n": 80,
+   "cm_share": 0.6,
+   "star_share": 0.4,
+   "rounds_all": 6.0125,
+   "star_rounds": 6.28125,
+   "cm_rounds": 5.833333333333333
+  },
+  "ST01_v_ST04": {
+   "a_win": 0.625,
+   "n": 80,
+   "cm_share": 0.475,
+   "star_share": 0.525,
+   "rounds_all": 5.55,
+   "star_rounds": 5.619047619047619,
+   "cm_rounds": 5.473684210526316
+  },
+  "ST01_v_ST05": {
+   "a_win": 0.5125,
+   "n": 80,
+   "cm_share": 0.3375,
+   "star_share": 0.6625,
+   "rounds_all": 5.3375,
+   "star_rounds": 5.39622641509434,
+   "cm_rounds": 5.222222222222222
+  },
+  "ST01_v_ST06": {
+   "a_win": 0.625,
+   "n": 80,
+   "cm_share": 0.4,
+   "star_share": 0.6,
+   "rounds_all": 5.1125,
+   "star_rounds": 5.1875,
+   "cm_rounds": 5.0
+  },
+  "ST01_v_ST07": {
+   "a_win": 0.65,
+   "n": 80,
+   "cm_share": 0.3125,
+   "star_share": 0.6875,
+   "rounds_all": 4.6375,
+   "star_rounds": 4.327272727272727,
+   "cm_rounds": 5.32
+  },
+  "ST01_v_ST08": {
+   "a_win": 0.7125,
+   "n": 80,
+   "cm_share": 0.425,
+   "star_share": 0.575,
+   "rounds_all": 5.3125,
+   "star_rounds": 5.173913043478261,
+   "cm_rounds": 5.5
+  },
+  "ST01_v_ST09": {
+   "a_win": 0.5375,
+   "n": 80,
+   "cm_share": 0.5625,
+   "star_share": 0.4375,
+   "rounds_all": 4.9125,
+   "star_rounds": 4.828571428571428,
+   "cm_rounds": 4.977777777777778
+  },
+  "ST01_v_ST10": {
+   "a_win": 0.705,
+   "n": 400,
+   "cm_share": 0.365,
+   "star_share": 0.635,
+   "rounds_all": 4.49,
+   "star_rounds": 4.153543307086614,
+   "cm_rounds": 5.075342465753424
+  },
+  "ST01_v_ST11": {
+   "a_win": 0.8175,
+   "n": 400,
+   "cm_share": 0.2575,
+   "star_share": 0.7425,
+   "rounds_all": 4.66,
+   "star_rounds": 4.511784511784512,
+   "cm_rounds": 5.087378640776699
+  },
+  "ST01_v_ST12": {
+   "a_win": 0.78,
+   "n": 400,
+   "cm_share": 0.2525,
+   "star_share": 0.7475,
+   "rounds_all": 4.48,
+   "star_rounds": 4.270903010033445,
+   "cm_rounds": 5.099009900990099
+  },
+  "ST02_v_ST03": {
+   "a_win": 0.425,
+   "n": 80,
+   "cm_share": 0.6,
+   "star_share": 0.4,
+   "rounds_all": 6.2,
+   "star_rounds": 6.625,
+   "cm_rounds": 5.916666666666667
+  },
+  "ST02_v_ST04": {
+   "a_win": 0.5,
+   "n": 80,
+   "cm_share": 0.6125,
+   "star_share": 0.3875,
+   "rounds_all": 5.6375,
+   "star_rounds": 5.67741935483871,
+   "cm_rounds": 5.612244897959184
+  },
+  "ST02_v_ST05": {
+   "a_win": 0.5,
+   "n": 80,
+   "cm_share": 0.2875,
+   "star_share": 0.7125,
+   "rounds_all": 5.1875,
+   "star_rounds": 5.245614035087719,
+   "cm_rounds": 5.043478260869565
+  },
+  "ST02_v_ST06": {
+   "a_win": 0.5,
+   "n": 80,
+   "cm_share": 0.475,
+   "star_share": 0.525,
+   "rounds_all": 5.4125,
+   "star_rounds": 5.4523809523809526,
+   "cm_rounds": 5.368421052631579
+  },
+  "ST02_v_ST07": {
+   "a_win": 0.45,
+   "n": 80,
+   "cm_share": 0.3625,
+   "star_share": 0.6375,
+   "rounds_all": 5.1625,
+   "star_rounds": 4.980392156862745,
+   "cm_rounds": 5.482758620689655
+  },
+  "ST02_v_ST08": {
+   "a_win": 0.575,
+   "n": 80,
+   "cm_share": 0.425,
+   "star_share": 0.575,
+   "rounds_all": 5.2,
+   "star_rounds": 5.043478260869565,
+   "cm_rounds": 5.411764705882353
+  },
+  "ST02_v_ST09": {
+   "a_win": 0.5,
+   "n": 80,
+   "cm_share": 0.4625,
+   "star_share": 0.5375,
+   "rounds_all": 5.125,
+   "star_rounds": 4.906976744186046,
+   "cm_rounds": 5.378378378378378
+  },
+  "ST02_v_ST10": {
+   "a_win": 0.5875,
+   "n": 80,
+   "cm_share": 0.35,
+   "star_share": 0.65,
+   "rounds_all": 4.8875,
+   "star_rounds": 4.6923076923076925,
+   "cm_rounds": 5.25
+  },
+  "ST02_v_ST11": {
+   "a_win": 0.7,
+   "n": 80,
+   "cm_share": 0.3375,
+   "star_share": 0.6625,
+   "rounds_all": 5.0875,
+   "star_rounds": 4.962264150943396,
+   "cm_rounds": 5.333333333333333
+  },
+  "ST02_v_ST12": {
+   "a_win": 0.575,
+   "n": 80,
+   "cm_share": 0.325,
+   "star_share": 0.675,
+   "rounds_all": 4.825,
+   "star_rounds": 4.703703703703703,
+   "cm_rounds": 5.076923076923077
+  },
+  "ST03_v_ST04": {
+   "a_win": 0.5375,
+   "n": 80,
+   "cm_share": 0.475,
+   "star_share": 0.525,
+   "rounds_all": 5.4875,
+   "star_rounds": 5.523809523809524,
+   "cm_rounds": 5.447368421052632
+  },
+  "ST03_v_ST05": {
+   "a_win": 0.325,
+   "n": 80,
+   "cm_share": 0.325,
+   "star_share": 0.675,
+   "rounds_all": 5.25,
+   "star_rounds": 5.277777777777778,
+   "cm_rounds": 5.1923076923076925
+  },
+  "ST03_v_ST06": {
+   "a_win": 0.5625,
+   "n": 80,
+   "cm_share": 0.3625,
+   "star_share": 0.6375,
+   "rounds_all": 5.3375,
+   "star_rounds": 5.215686274509804,
+   "cm_rounds": 5.551724137931035
+  },
+  "ST03_v_ST07": {
+   "a_win": 0.425,
+   "n": 80,
+   "cm_share": 0.25,
+   "star_share": 0.75,
+   "rounds_all": 4.6875,
+   "star_rounds": 4.516666666666667,
+   "cm_rounds": 5.2
+  },
+  "ST03_v_ST08": {
+   "a_win": 0.7125,
+   "n": 80,
+   "cm_share": 0.3875,
+   "star_share": 0.6125,
+   "rounds_all": 5.325,
+   "star_rounds": 5.204081632653061,
+   "cm_rounds": 5.516129032258065
+  },
+  "ST03_v_ST09": {
+   "a_win": 0.65,
+   "n": 80,
+   "cm_share": 0.375,
+   "star_share": 0.625,
+   "rounds_all": 4.9125,
+   "star_rounds": 4.74,
+   "cm_rounds": 5.2
+  },
+  "ST03_v_ST10": {
+   "a_win": 0.6875,
+   "n": 80,
+   "cm_share": 0.35,
+   "star_share": 0.65,
+   "rounds_all": 4.675,
+   "star_rounds": 4.480769230769231,
+   "cm_rounds": 5.035714285714286
+  },
+  "ST03_v_ST11": {
+   "a_win": 0.725,
+   "n": 80,
+   "cm_share": 0.2,
+   "star_share": 0.8,
+   "rounds_all": 4.7,
+   "star_rounds": 4.59375,
+   "cm_rounds": 5.125
+  },
+  "ST03_v_ST12": {
+   "a_win": 0.6375,
+   "n": 80,
+   "cm_share": 0.2625,
+   "star_share": 0.7375,
+   "rounds_all": 5.075,
+   "star_rounds": 4.915254237288136,
+   "cm_rounds": 5.523809523809524
+  },
+  "ST04_v_ST05": {
+   "a_win": 0.3125,
+   "n": 80,
+   "cm_share": 0.275,
+   "star_share": 0.725,
+   "rounds_all": 5.125,
+   "star_rounds": 5.120689655172414,
+   "cm_rounds": 5.136363636363637
+  },
+  "ST04_v_ST06": {
+   "a_win": 0.45,
+   "n": 80,
+   "cm_share": 0.375,
+   "star_share": 0.625,
+   "rounds_all": 5.5125,
+   "star_rounds": 5.5,
+   "cm_rounds": 5.533333333333333
+  },
+  "ST04_v_ST07": {
+   "a_win": 0.375,
+   "n": 80,
+   "cm_share": 0.2,
+   "star_share": 0.8,
+   "rounds_all": 4.8125,
+   "star_rounds": 4.828125,
+   "cm_rounds": 4.75
+  },
+  "ST04_v_ST08": {
+   "a_win": 0.6125,
+   "n": 80,
+   "cm_share": 0.475,
+   "star_share": 0.525,
+   "rounds_all": 5.35,
+   "star_rounds": 5.357142857142857,
+   "cm_rounds": 5.342105263157895
+  },
+  "ST04_v_ST09": {
+   "a_win": 0.475,
+   "n": 80,
+   "cm_share": 0.45,
+   "star_share": 0.55,
+   "rounds_all": 5.175,
+   "star_rounds": 5.0,
+   "cm_rounds": 5.388888888888889
+  },
+  "ST04_v_ST10": {
+   "a_win": 0.6625,
+   "n": 80,
+   "cm_share": 0.35,
+   "star_share": 0.65,
+   "rounds_all": 4.8125,
+   "star_rounds": 4.4423076923076925,
+   "cm_rounds": 5.5
+  },
+  "ST04_v_ST11": {
+   "a_win": 0.5875,
+   "n": 80,
+   "cm_share": 0.325,
+   "star_share": 0.675,
+   "rounds_all": 4.9375,
+   "star_rounds": 4.648148148148148,
+   "cm_rounds": 5.538461538461538
+  },
+  "ST04_v_ST12": {
+   "a_win": 0.6,
+   "n": 80,
+   "cm_share": 0.2875,
+   "star_share": 0.7125,
+   "rounds_all": 4.5875,
+   "star_rounds": 4.350877192982456,
+   "cm_rounds": 5.173913043478261
+  },
+  "ST05_v_ST06": {
+   "a_win": 0.5875,
+   "n": 80,
+   "cm_share": 0.2125,
+   "star_share": 0.7875,
+   "rounds_all": 4.925,
+   "star_rounds": 4.888888888888889,
+   "cm_rounds": 5.0588235294117645
+  },
+  "ST05_v_ST07": {
+   "a_win": 0.4875,
+   "n": 80,
+   "cm_share": 0.05,
+   "star_share": 0.95,
+   "rounds_all": 4.3,
+   "star_rounds": 4.2631578947368425,
+   "cm_rounds": 5.0
+  },
+  "ST05_v_ST08": {
+   "a_win": 0.8,
+   "n": 80,
+   "cm_share": 0.1875,
+   "star_share": 0.8125,
+   "rounds_all": 4.8875,
+   "star_rounds": 4.8307692307692305,
+   "cm_rounds": 5.133333333333334
+  },
+  "ST05_v_ST09": {
+   "a_win": 0.6125,
+   "n": 80,
+   "cm_share": 0.2125,
+   "star_share": 0.7875,
+   "rounds_all": 4.6,
+   "star_rounds": 4.492063492063492,
+   "cm_rounds": 5.0
+  },
+  "ST05_v_ST10": {
+   "a_win": 0.6875,
+   "n": 80,
+   "cm_share": 0.2375,
+   "star_share": 0.7625,
+   "rounds_all": 4.275,
+   "star_rounds": 4.147540983606557,
+   "cm_rounds": 4.684210526315789
+  },
+  "ST05_v_ST11": {
+   "a_win": 0.775,
+   "n": 80,
+   "cm_share": 0.15,
+   "star_share": 0.85,
+   "rounds_all": 4.2625,
+   "star_rounds": 4.102941176470588,
+   "cm_rounds": 5.166666666666667
+  },
+  "ST05_v_ST12": {
+   "a_win": 0.7375,
+   "n": 80,
+   "cm_share": 0.0625,
+   "star_share": 0.9375,
+   "rounds_all": 4.25,
+   "star_rounds": 4.213333333333333,
+   "cm_rounds": 4.8
+  },
+  "ST06_v_ST07": {
+   "a_win": 0.4625,
+   "n": 80,
+   "cm_share": 0.125,
+   "star_share": 0.875,
+   "rounds_all": 4.1875,
+   "star_rounds": 4.142857142857143,
+   "cm_rounds": 4.5
+  },
+  "ST06_v_ST08": {
+   "a_win": 0.7,
+   "n": 80,
+   "cm_share": 0.3,
+   "star_share": 0.7,
+   "rounds_all": 4.9375,
+   "star_rounds": 4.910714285714286,
+   "cm_rounds": 5.0
+  },
+  "ST06_v_ST09": {
+   "a_win": 0.6,
+   "n": 80,
+   "cm_share": 0.3875,
+   "star_share": 0.6125,
+   "rounds_all": 4.75,
+   "star_rounds": 4.653061224489796,
+   "cm_rounds": 4.903225806451613
+  },
+  "ST06_v_ST10": {
+   "a_win": 0.675,
+   "n": 80,
+   "cm_share": 0.275,
+   "star_share": 0.725,
+   "rounds_all": 4.675,
+   "star_rounds": 4.551724137931035,
+   "cm_rounds": 5.0
+  },
+  "ST06_v_ST11": {
+   "a_win": 0.75,
+   "n": 80,
+   "cm_share": 0.2625,
+   "star_share": 0.7375,
+   "rounds_all": 4.3875,
+   "star_rounds": 4.0508474576271185,
+   "cm_rounds": 5.333333333333333
+  },
+  "ST06_v_ST12": {
+   "a_win": 0.6,
+   "n": 80,
+   "cm_share": 0.1375,
+   "star_share": 0.8625,
+   "rounds_all": 4.3125,
+   "star_rounds": 4.173913043478261,
+   "cm_rounds": 5.181818181818182
+  },
+  "ST07_v_ST08": {
+   "a_win": 0.6375,
+   "n": 80,
+   "cm_share": 0.15,
+   "star_share": 0.85,
+   "rounds_all": 4.45,
+   "star_rounds": 4.25,
+   "cm_rounds": 5.583333333333333
+  },
+  "ST07_v_ST09": {
+   "a_win": 0.675,
+   "n": 80,
+   "cm_share": 0.2125,
+   "star_share": 0.7875,
+   "rounds_all": 4.0125,
+   "star_rounds": 3.8253968253968256,
+   "cm_rounds": 4.705882352941177
+  },
+  "ST07_v_ST10": {
+   "a_win": 0.7125,
+   "n": 80,
+   "cm_share": 0.15,
+   "star_share": 0.85,
+   "rounds_all": 3.9375,
+   "star_rounds": 3.7205882352941178,
+   "cm_rounds": 5.166666666666667
+  },
+  "ST07_v_ST11": {
+   "a_win": 0.8125,
+   "n": 80,
+   "cm_share": 0.0625,
+   "star_share": 0.9375,
+   "rounds_all": 3.775,
+   "star_rounds": 3.68,
+   "cm_rounds": 5.2
+  },
+  "ST07_v_ST12": {
+   "a_win": 0.675,
+   "n": 80,
+   "cm_share": 0.1125,
+   "star_share": 0.8875,
+   "rounds_all": 3.7,
+   "star_rounds": 3.492957746478873,
+   "cm_rounds": 5.333333333333333
+  },
+  "ST08_v_ST09": {
+   "a_win": 0.5,
+   "n": 80,
+   "cm_share": 0.3625,
+   "star_share": 0.6375,
+   "rounds_all": 4.725,
+   "star_rounds": 4.431372549019608,
+   "cm_rounds": 5.241379310344827
+  },
+  "ST08_v_ST10": {
+   "a_win": 0.4875,
+   "n": 80,
+   "cm_share": 0.3125,
+   "star_share": 0.6875,
+   "rounds_all": 4.725,
+   "star_rounds": 4.509090909090909,
+   "cm_rounds": 5.2
+  },
+  "ST08_v_ST11": {
+   "a_win": 0.6875,
+   "n": 80,
+   "cm_share": 0.2,
+   "star_share": 0.8,
+   "rounds_all": 4.7875,
+   "star_rounds": 4.5625,
+   "cm_rounds": 5.6875
+  },
+  "ST08_v_ST12": {
+   "a_win": 0.3625,
+   "n": 80,
+   "cm_share": 0.175,
+   "star_share": 0.825,
+   "rounds_all": 4.425,
+   "star_rounds": 4.212121212121212,
+   "cm_rounds": 5.428571428571429
+  },
+  "ST09_v_ST10": {
+   "a_win": 0.6125,
+   "n": 80,
+   "cm_share": 0.3875,
+   "star_share": 0.6125,
+   "rounds_all": 4.5,
+   "star_rounds": 4.326530612244898,
+   "cm_rounds": 4.774193548387097
+  },
+  "ST09_v_ST11": {
+   "a_win": 0.5875,
+   "n": 80,
+   "cm_share": 0.3625,
+   "star_share": 0.6375,
+   "rounds_all": 4.3375,
+   "star_rounds": 4.098039215686274,
+   "cm_rounds": 4.758620689655173
+  },
+  "ST09_v_ST12": {
+   "a_win": 0.4625,
+   "n": 80,
+   "cm_share": 0.225,
+   "star_share": 0.775,
+   "rounds_all": 4.125,
+   "star_rounds": 3.903225806451613,
+   "cm_rounds": 4.888888888888889
+  },
+  "ST10_v_ST11": {
+   "a_win": 0.535,
+   "n": 400,
+   "cm_share": 0.265,
+   "star_share": 0.735,
+   "rounds_all": 4.2,
+   "star_rounds": 4.040816326530612,
+   "cm_rounds": 4.6415094339622645
+  },
+  "ST10_v_ST12": {
+   "a_win": 0.4175,
+   "n": 400,
+   "cm_share": 0.175,
+   "star_share": 0.825,
+   "rounds_all": 3.93,
+   "star_rounds": 3.7606060606060607,
+   "cm_rounds": 4.728571428571429
+  },
+  "ST11_v_ST12": {
+   "a_win": 0.4025,
+   "n": 400,
+   "cm_share": 0.105,
+   "star_share": 0.895,
+   "rounds_all": 3.8475,
+   "star_rounds": 3.712290502793296,
+   "cm_rounds": 5.0
+  }
+ },
+ "ffa_tables": {
+  "3p ST01,ST10,ST11": {
+   "wins": {
+    "ST01": 0.74,
+    "ST10": 0.1575,
+    "ST11": 0.1025
+   },
+   "cm_share": 0.4225,
+   "star_share": 0.5775,
+   "rounds_all": 5.35,
+   "star_rounds": 5.207792207792208,
+   "cm_rounds": 5.544378698224852
+  },
+  "3p ST01,ST12,ST09": {
+   "wins": {
+    "ST01": 0.65,
+    "ST12": 0.075,
+    "ST09": 0.275
+   },
+   "cm_share": 0.4975,
+   "star_share": 0.5025,
+   "rounds_all": 5.425,
+   "star_rounds": 5.417910447761194,
+   "cm_rounds": 5.432160804020101
+  },
+  "4p ST01,ST10,ST11,ST12": {
+   "wins": {
+    "ST01": 0.6825,
+    "ST10": 0.1025,
+    "ST11": 0.11,
+    "ST12": 0.105
+   },
+   "cm_share": 0.495,
+   "star_share": 0.505,
+   "rounds_all": 5.925,
+   "star_rounds": 6.01980198019802,
+   "cm_rounds": 5.828282828282828
+  },
+  "4p ST01,ST05,ST12,ST04": {
+   "wins": {
+    "ST01": 0.5375,
+    "ST05": 0.2425,
+    "ST12": 0.0025,
+    "ST04": 0.2175
+   },
+   "cm_share": 0.62,
+   "star_share": 0.38,
+   "rounds_all": 6.38,
+   "star_rounds": 6.881578947368421,
+   "cm_rounds": 6.07258064516129
+  }
+ },
+ "cm_solo": {
+  "games": 1000,
+  "announced": 0.918,
+  "announce_turn_mean": 5.06318082788671,
+  "announce_turn_median": 4.0,
+  "announce_hist": {
+   "3": 144,
+   "4": 450,
+   "5": 110,
+   "6": 71,
+   "7": 37,
+   "8": 27,
+   "9": 22,
+   "10": 12,
+   "11": 12,
+   "12": 10,
+   "13": 3,
+   "14": 6,
+   "15": 6,
+   "17": 2,
+   "18": 1,
+   "19": 3,
+   "29": 1,
+   "44": 1
+  },
+  "win_turn_mean": 6.462986198243413,
+  "win_rate": 0.797,
+  "cancelled": 0.5
+ },
+ "cm_combo": {
+  "p_random4_ge15": 0.3488837959426195,
+  "p_random3_ge15": 0.00784313725490196,
+  "size5_cards": 8,
+  "size4_cards": 11,
+  "mean_size": 3.361111111111111
+ },
+ "star_kill": {
+  "ST01_hp5": {
+   "kill_rate": 0.61,
+   "turns_mean": 4.560655737704918,
+   "turns_median": 4,
+   "cm_wins": 0.39
+  },
+  "ST01_hp6": {
+   "kill_rate": 0.488,
+   "turns_mean": 5.151639344262295,
+   "turns_median": 5.0,
+   "cm_wins": 0.512
+  },
+  "ST01_hp7": {
+   "kill_rate": 0.39,
+   "turns_mean": 5.779487179487179,
+   "turns_median": 5,
+   "cm_wins": 0.61
+  },
+  "ST01_hp8": {
+   "kill_rate": 0.322,
+   "turns_mean": 6.571428571428571,
+   "turns_median": 6,
+   "cm_wins": 0.678
+  },
+  "ST05_hp5": {
+   "kill_rate": 0.858,
+   "turns_mean": 4.417249417249417,
+   "turns_median": 4,
+   "cm_wins": 0.142
+  },
+  "ST05_hp6": {
+   "kill_rate": 0.776,
+   "turns_mean": 5.002577319587629,
+   "turns_median": 5.0,
+   "cm_wins": 0.224
+  },
+  "ST05_hp7": {
+   "kill_rate": 0.682,
+   "turns_mean": 5.536656891495602,
+   "turns_median": 5,
+   "cm_wins": 0.318
+  },
+  "ST05_hp8": {
+   "kill_rate": 0.626,
+   "turns_mean": 5.993610223642173,
+   "turns_median": 6,
+   "cm_wins": 0.374
+  },
+  "ST05_hp9": {
+   "kill_rate": 0.564,
+   "turns_mean": 6.539007092198582,
+   "turns_median": 6.0,
+   "cm_wins": 0.436
+  }
+ },
+ "dead": {
+  "hands": 6000,
+  "ae_dead_share_of_ae_seen": 0.7822500950209046,
+  "dead_per_7card_hand": 3.4301666666666666,
+  "hand_dist": {
+   "0": 0.008166666666666666,
+   "1": 0.05633333333333333,
+   "2": 0.17333333333333334,
+   "3": 0.2861666666666667,
+   "4": 0.2738333333333333,
+   "5": 0.1485,
+   "6": 0.044833333333333336,
+   "7": 0.008833333333333334
+  },
+  "hands_without_co": 0.034333333333333334,
+  "always_dead_AEs": [
+   "AE01",
+   "AE02",
+   "AE03",
+   "AE04",
+   "AE05",
+   "AE06",
+   "AE07",
+   "AE08",
+   "AE09",
+   "AE10",
+   "AE11",
+   "AE12",
+   "AE13",
+   "AE14",
+   "AE15",
+   "AE16",
+   "AE17",
+   "AE18",
+   "AE19",
+   "AE20",
+   "AE21",
+   "AE22",
+   "AE24",
+   "AE27",
+   "AE28",
+   "AE29",
+   "AE31",
+   "AE32",
+   "AE34",
+   "AE36",
+   "AE38",
+   "AE39",
+   "AE40",
+   "AE42",
+   "AE43",
+   "AE44",
+   "AE45",
+   "AE46",
+   "AE49",
+   "AE50",
+   "AE51",
+   "AE52",
+   "AE53",
+   "AE55",
+   "AE56",
+   "AE57",
+   "AE59"
+  ],
+  "n_always_dead": 47,
+  "share_always_dead_of_ae": 0.7833333333333333,
+  "real_turn1_dead_cards_mean": 3.45
+ },
+ "cards": {
+  "CO01": {
+   "name": "Ice Moonlet",
+   "played_rate": 0.07,
+   "win_correlation": -0.22205773501110293,
+   "per_player_played": 0.035
+  },
+  "CO02": {
+   "name": "Debris Clump",
+   "played_rate": 0.13,
+   "win_correlation": -0.28794734677087613,
+   "per_player_played": 0.065
+  },
+  "CO03": {
+   "name": "Gas Dwarf",
+   "played_rate": 0.3,
+   "win_correlation": 0.11764705882352938,
+   "per_player_played": 0.15
+  },
+  "CO04": {
+   "name": "Puffy Planet",
+   "played_rate": 0.18,
+   "win_correlation": 0.12210012210012217,
+   "per_player_played": 0.09
+  },
+  "CO05": {
+   "name": "Polar World",
+   "played_rate": 0.18,
+   "win_correlation": 0.0,
+   "per_player_played": 0.09
+  },
+  "CO06": {
+   "name": "Drifting Giant",
+   "played_rate": 0.18,
+   "win_correlation": 0.061050061050061055,
+   "per_player_played": 0.09
+  },
+  "CO07": {
+   "name": "Equatorial World",
+   "played_rate": 0.26,
+   "win_correlation": -0.044208664898320094,
+   "per_player_played": 0.13
+  },
+  "CO08": {
+   "name": "Crumbling Giant",
+   "played_rate": 0.21,
+   "win_correlation": -0.07980845969672784,
+   "per_player_played": 0.105
+  },
+  "CO09": {
+   "name": "Bloated Giant",
+   "played_rate": 0.25,
+   "win_correlation": 0.022857142857142854,
+   "per_player_played": 0.125
+  },
+  "CO10": {
+   "name": "Ice Giant",
+   "played_rate": 0.31,
+   "win_correlation": 0.01908761213972132,
+   "per_player_played": 0.155
+  },
+  "CO11": {
+   "name": "Shedding Giant",
+   "played_rate": 0.23,
+   "win_correlation": -0.17194792434291328,
+   "per_player_played": 0.115
+  },
+  "CO12": {
+   "name": "Hydrogen Giant",
+   "played_rate": 0.32,
+   "win_correlation": 0.03720238095238093,
+   "per_player_played": 0.16
+  },
+  "CO13": {
+   "name": "Ringed Titan",
+   "played_rate": 0.29,
+   "win_correlation": 0.020165355918532024,
+   "per_player_played": 0.145
+  },
+  "CO14": {
+   "name": "Shepherd Moon",
+   "played_rate": 0.07,
+   "win_correlation": 0.22205773501110293,
+   "per_player_played": 0.035
+  },
+  "CO15": {
+   "name": "Scout Moon",
+   "played_rate": 0.09,
+   "win_correlation": 0.17452006980802787,
+   "per_player_played": 0.045
+  },
+  "CO16": {
+   "name": "Twilight World",
+   "played_rate": 0.2,
+   "win_correlation": 0.1111111111111111,
+   "per_player_played": 0.1
+  },
+  "CO17": {
+   "name": "Water World",
+   "played_rate": 0.2,
+   "win_correlation": -0.055555555555555525,
+   "per_player_played": 0.1
+  },
+  "CO18": {
+   "name": "Tumbling Moon",
+   "played_rate": 0.28,
+   "win_correlation": 0.20764119601328906,
+   "per_player_played": 0.14
+  },
+  "CO19": {
+   "name": "Mini-Neptune",
+   "played_rate": 0.27,
+   "win_correlation": -0.10704345964461576,
+   "per_player_played": 0.135
+  },
+  "CO20": {
+   "name": "Salvager World",
+   "played_rate": 0.22,
+   "win_correlation": -0.05107252298263537,
+   "per_player_played": 0.11
+  },
+  "CO21": {
+   "name": "Retrograde Wanderer",
+   "played_rate": 0.37,
+   "win_correlation": -0.14922898358481174,
+   "per_player_played": 0.185
+  },
+  "CO22": {
+   "name": "Overheated Giant",
+   "played_rate": 0.35,
+   "win_correlation": -0.05194805194805191,
+   "per_player_played": 0.175
+  },
+  "CO23": {
+   "name": "Brown Dwarf Companion",
+   "played_rate": 0.37,
+   "win_correlation": 0.082904990880451,
+   "per_player_played": 0.185
+  },
+  "CO24": {
+   "name": "Trojan Asteroid",
+   "played_rate": 0.05,
+   "win_correlation": -0.30769230769230765,
+   "per_player_played": 0.025
+  },
+  "CO25": {
+   "name": "Polar Sentinel",
+   "played_rate": 0.14,
+   "win_correlation": -0.15360983102918585,
+   "per_player_played": 0.07
+  },
+  "CO26": {
+   "name": "Thieving Moon",
+   "played_rate": 0.11,
+   "win_correlation": 0.14430014430014432,
+   "per_player_played": 0.055
+  },
+  "CO27": {
+   "name": "Tidally Locked World",
+   "played_rate": 0.17,
+   "win_correlation": -0.03214400514304083,
+   "per_player_played": 0.085
+  },
+  "CO28": {
+   "name": "Terrestrial World",
+   "played_rate": 0.23,
+   "win_correlation": -0.22107590272660282,
+   "per_player_played": 0.115
+  },
+  "CO29": {
+   "name": "Super-Mercury",
+   "played_rate": 0.23,
+   "win_correlation": 0.17194792434291328,
+   "per_player_played": 0.115
+  },
+  "CO30": {
+   "name": "Hot Jupiter",
+   "played_rate": 0.37,
+   "win_correlation": 0.21555297628917258,
+   "per_player_played": 0.185
+  },
+  "CO31": {
+   "name": "Guardian Moon",
+   "played_rate": 0.07,
+   "win_correlation": -0.074019245003701,
+   "per_player_played": 0.035
+  },
+  "CO32": {
+   "name": "Rocky Moon",
+   "played_rate": 0.16,
+   "win_correlation": 0.06793478260869568,
+   "per_player_played": 0.08
+  },
+  "CO33": {
+   "name": "Survey Moon",
+   "played_rate": 0.14,
+   "win_correlation": -0.15360983102918585,
+   "per_player_played": 0.07
+  },
+  "CO34": {
+   "name": "Spin Moon",
+   "played_rate": 0.19,
+   "win_correlation": 0.08723466123873219,
+   "per_player_played": 0.095
+  },
+  "CO35": {
+   "name": "Super-Earth",
+   "played_rate": 0.33,
+   "win_correlation": -0.0544365813826892,
+   "per_player_played": 0.165
+  },
+  "CO36": {
+   "name": "Iron Remnant",
+   "played_rate": 0.08,
+   "win_correlation": -0.26041666666666663,
+   "per_player_played": 0.04
+  },
+  "AE01": {
+   "name": "Orbital Stabilizer",
+   "played_rate": 0.15,
+   "win_correlation": -0.036036036036036,
+   "per_player_played": 0.075
+  },
+  "AE02": {
+   "name": "Accretion Disk",
+   "played_rate": 0.3,
+   "win_correlation": -0.15686274509803927,
+   "per_player_played": 0.15
+  },
+  "AE03": {
+   "name": "Planetary Ring",
+   "played_rate": 0.23,
+   "win_correlation": 0.024563989191844715,
+   "per_player_played": 0.115
+  },
+  "AE04": {
+   "name": "Magnetosphere",
+   "played_rate": 0.03,
+   "win_correlation": 0.16920473773265648,
+   "per_player_played": 0.015
+  },
+  "AE05": {
+   "name": "Thick Atmosphere",
+   "played_rate": 0.12,
+   "win_correlation": -0.17730496453900707,
+   "per_player_played": 0.06
+  },
+  "AE06": {
+   "name": "Captured Satellite",
+   "played_rate": 0.23,
+   "win_correlation": 0.024563989191844715,
+   "per_player_played": 0.115
+  },
+  "AE07": {
+   "name": "Binary Tether",
+   "played_rate": 0.03,
+   "win_correlation": 0.5076142131979695,
+   "per_player_played": 0.015
+  },
+  "AE08": {
+   "name": "Satellite Swarm",
+   "played_rate": 0.05,
+   "win_correlation": -0.5128205128205128,
+   "per_player_played": 0.025
+  },
+  "AE09": {
+   "name": "Ion Cannon",
+   "played_rate": 0.26,
+   "win_correlation": 0.13262599469496023,
+   "per_player_played": 0.13
+  },
+  "AE10": {
+   "name": "Impact Lance",
+   "played_rate": 0.13,
+   "win_correlation": 0.3702180172768408,
+   "per_player_played": 0.065
+  },
+  "AE11": {
+   "name": "Siphon Tap",
+   "played_rate": 0.13,
+   "win_correlation": 0.0411353352529823,
+   "per_player_played": 0.065
+  },
+  "AE12": {
+   "name": "Erosion",
+   "played_rate": 0.25,
+   "win_correlation": 0.11428571428571427,
+   "per_player_played": 0.125
+  },
+  "AE13": {
+   "name": "Mass Loss",
+   "played_rate": 0.21,
+   "win_correlation": 0.026602819898909336,
+   "per_player_played": 0.105
+  },
+  "AE14": {
+   "name": "Rogue Gravity",
+   "played_rate": 0.06,
+   "win_correlation": 0.17182130584192434,
+   "per_player_played": 0.03
+  },
+  "AE15": {
+   "name": "Retrograde Kick",
+   "played_rate": 0.11,
+   "win_correlation": -0.04810004810004814,
+   "per_player_played": 0.055
+  },
+  "AE16": {
+   "name": "Lagrange Anchor",
+   "played_rate": 0.03,
+   "win_correlation": -0.16920473773265648,
+   "per_player_played": 0.015
+  },
+  "AE17": {
+   "name": "Shield Lattice",
+   "played_rate": 0.03,
+   "win_correlation": 0.5076142131979695,
+   "per_player_played": 0.015
+  },
+  "AE18": {
+   "name": "Booster Engine",
+   "played_rate": 0.14,
+   "win_correlation": -0.2304147465437788,
+   "per_player_played": 0.07
+  },
+  "AE19": {
+   "name": "Deep Space Network",
+   "played_rate": 0.13,
+   "win_correlation": 0.0411353352529823,
+   "per_player_played": 0.065
+  },
+  "AE20": {
+   "name": "Tidal Heating",
+   "played_rate": 0.13,
+   "win_correlation": 0.0411353352529823,
+   "per_player_played": 0.065
+  },
+  "AE21": {
+   "name": "Volatile Core",
+   "played_rate": 0.33,
+   "win_correlation": -0.01814552712756301,
+   "per_player_played": 0.165
+  },
+  "AE22": {
+   "name": "Roche Tether",
+   "played_rate": 0.19,
+   "win_correlation": 0.08723466123873219,
+   "per_player_played": 0.095
+  },
+  "AE23": {
+   "name": "Solar Flare",
+   "played_rate": 0.3,
+   "win_correlation": 0.0784313725490196,
+   "per_player_played": 0.15
+  },
+  "AE24": {
+   "name": "Coronal Mass Ejection",
+   "played_rate": 0.31,
+   "win_correlation": -0.05726283641916402,
+   "per_player_played": 0.155
+  },
+  "AE25": {
+   "name": "Gamma-Ray Burst",
+   "played_rate": 0.29,
+   "win_correlation": 0.3024803387779794,
+   "per_player_played": 0.145
+  },
+  "AE26": {
+   "name": "Supernova Shockwave",
+   "played_rate": 0.28,
+   "win_correlation": 0.12458471760797335,
+   "per_player_played": 0.14
+  },
+  "AE27": {
+   "name": "Meteor Shower",
+   "played_rate": 0.26,
+   "win_correlation": 0.17683465959328032,
+   "per_player_played": 0.13
+  },
+  "AE28": {
+   "name": "Gravitational Slingshot",
+   "played_rate": 0.23,
+   "win_correlation": 0.36845983787767134,
+   "per_player_played": 0.115
+  },
+  "AE29": {
+   "name": "Impact Event",
+   "played_rate": 0.29,
+   "win_correlation": 0.18148820326678766,
+   "per_player_played": 0.145
+  },
+  "AE30": {
+   "name": "Stellar Wind",
+   "played_rate": 0.33,
+   "win_correlation": 0.19960079840319356,
+   "per_player_played": 0.165
+  },
+  "AE31": {
+   "name": "Retaliation Pulse",
+   "played_rate": 0.19,
+   "win_correlation": 0.14539110206455363,
+   "per_player_played": 0.095
+  },
+  "AE32": {
+   "name": "Tidal Disruption",
+   "played_rate": 0.23,
+   "win_correlation": 0.024563989191844715,
+   "per_player_played": 0.115
+  },
+  "AE33": {
+   "name": "Pulsar Beam",
+   "played_rate": 0.31,
+   "win_correlation": 0.01908761213972132,
+   "per_player_played": 0.155
+  },
+  "AE34": {
+   "name": "Kessler Cascade",
+   "played_rate": 0.23,
+   "win_correlation": -0.02456398919184477,
+   "per_player_played": 0.115
+  },
+  "AE35": {
+   "name": "Flare Star",
+   "played_rate": 0.29,
+   "win_correlation": 0.10082677959265979,
+   "per_player_played": 0.145
+  },
+  "AE36": {
+   "name": "X-Ray Binary",
+   "played_rate": 0.15,
+   "win_correlation": -0.036036036036036,
+   "per_player_played": 0.075
+  },
+  "AE37": {
+   "name": "Starquake",
+   "played_rate": 0.2,
+   "win_correlation": 0.1111111111111111,
+   "per_player_played": 0.1
+  },
+  "AE38": {
+   "name": "Gravitational Perturbation",
+   "played_rate": 0.19,
+   "win_correlation": -0.1453911020645537,
+   "per_player_played": 0.095
+  },
+  "AE39": {
+   "name": "Asteroid Impact",
+   "played_rate": 0.22,
+   "win_correlation": -0.10214504596527069,
+   "per_player_played": 0.11
+  },
+  "AE40": {
+   "name": "Black Hole",
+   "played_rate": 0.35,
+   "win_correlation": 0.017316017316017285,
+   "per_player_played": 0.175
+  },
+  "AE41": {
+   "name": "Solar Wind Sweep",
+   "played_rate": 0.02,
+   "win_correlation": 0.505050505050505,
+   "per_player_played": 0.01
+  },
+  "AE42": {
+   "name": "Strip Atmosphere",
+   "played_rate": 0.07,
+   "win_correlation": 0.22205773501110293,
+   "per_player_played": 0.035
+  },
+  "AE43": {
+   "name": "Solar Storm",
+   "played_rate": 0.01,
+   "win_correlation": 0.5025125628140703,
+   "per_player_played": 0.005
+  },
+  "AE44": {
+   "name": "Recapture",
+   "played_rate": 0.18,
+   "win_correlation": -0.18315018315018322,
+   "per_player_played": 0.09
+  },
+  "AE45": {
+   "name": "Comet Return",
+   "played_rate": 0.02,
+   "win_correlation": 0.0,
+   "per_player_played": 0.01
+  },
+  "AE46": {
+   "name": "Lagrange Rescue",
+   "played_rate": 0.14,
+   "win_correlation": 0.0,
+   "per_player_played": 0.07
+  },
+  "AE47": {
+   "name": "Stargazing",
+   "played_rate": 0.18,
+   "win_correlation": -0.12210012210012205,
+   "per_player_played": 0.09
+  },
+  "AE48": {
+   "name": "Deep Field Survey",
+   "played_rate": 0.18,
+   "win_correlation": -0.12210012210012205,
+   "per_player_played": 0.09
+  },
+  "AE49": {
+   "name": "Search the Skies",
+   "played_rate": 0.05,
+   "win_correlation": 0.10256410256410253,
+   "per_player_played": 0.025
+  },
+  "AE50": {
+   "name": "Mass Transfer",
+   "played_rate": 0.15,
+   "win_correlation": 0.10810810810810806,
+   "per_player_played": 0.075
+  },
+  "AE51": {
+   "name": "Dark Matter Halo",
+   "played_rate": 0.16,
+   "win_correlation": -0.06793478260869568,
+   "per_player_played": 0.08
+  },
+  "AE52": {
+   "name": "Event Horizon",
+   "played_rate": 0.06,
+   "win_correlation": 0.0,
+   "per_player_played": 0.03
+  },
+  "AE53": {
+   "name": "Roche Limit",
+   "played_rate": 0.3,
+   "win_correlation": 0.11764705882352938,
+   "per_player_played": 0.15
+  },
+  "AE54": {
+   "name": "Orbital Insertion",
+   "played_rate": 0.18,
+   "win_correlation": -0.12210012210012205,
+   "per_player_played": 0.09
+  },
+  "AE55": {
+   "name": "Free-Return Trajectory",
+   "played_rate": 0.0,
+   "win_correlation": 0.0,
+   "per_player_played": 0.0
+  },
+  "AE56": {
+   "name": "Stellar Nursery",
+   "played_rate": 0.3,
+   "win_correlation": -0.23529411764705882,
+   "per_player_played": 0.15
+  },
+  "AE57": {
+   "name": "Gravity Assist",
+   "played_rate": 0.0,
+   "win_correlation": 0.0,
+   "per_player_played": 0.0
+  },
+  "AE58": {
+   "name": "Orbital Resonance",
+   "played_rate": 0.23,
+   "win_correlation": -0.02456398919184477,
+   "per_player_played": 0.115
+  },
+  "AE59": {
+   "name": "Scavenge",
+   "played_rate": 0.14,
+   "win_correlation": 0.2304147465437788,
+   "per_player_played": 0.07
+  },
+  "AE60": {
+   "name": "Gravitational Wave",
+   "played_rate": 0.0,
+   "win_correlation": 0.0,
+   "per_player_played": 0.0
+  }
+ },
+ "elapsed": 42.03138995170593
+}
