@@ -21,3 +21,5 @@
 {"time":"2026-10-04T10:50:00Z","agent":"game-designer","game":"three-player-trick-taker","event":"start","message":"Revision 1: fixing target hit rate, greedy-beats-strategic and lead changes"}
 {"time":"2026-10-04T10:56:00Z","agent":"game-designer","game":"three-player-trick-taker","event":"done","message":"rules.md v2 written"}
 {"time":"2026-10-04T10:51:30Z","agent":"playtester","game":"three-player-trick-taker","event":"start","message":"Revision 1 playtest (rules v2)"}
+{"time":"2026-10-04T10:59:54Z","agent":"playtester","game":"three-player-trick-taker","event":"step","message":"Rules v2 sim run: seat gap 3.5, skill 51.6, lead changes 1.49, greedy beats strategic"}
+{"time":"2026-10-04T10:59:54Z","agent":"playtester","game":"three-player-trick-taker","event":"done","message":"Revision 1 verdict NEEDS-FIXES; panel run complete, Bar Raiser veto not active"}

@@ -1,4 +1,4 @@
-Split the Take: seats 0,1,2 = strategist, casual, family; table 'worst' for strategist. Cards: Co/Ge/Ke/Ma + rank. Scores after each round in header.
+Split the Take: seats 0,1,2 = barraiser, casual, family; table 'worst' for barraiser. Cards: Co/Ge/Ke/Ma + rank. Scores after each round in header.
 R1 P=2 S=0 D=1 trump=Ke target=5 heat=None scores=[0, 0, 0]
   P hand: Co5 Ge9 Ke1 Ke4 Ke6 Ke9 Ma7 | S hand after swap: Co1 Co7 Ge5 Ge8 Ke2 Ke3 Ma4
   T1 1:Co2 2:Co5 0:Co1 -> 2
