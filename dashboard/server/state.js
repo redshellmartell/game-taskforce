@@ -127,7 +127,7 @@ function buildApprovals(requests, games, shiftTime, now) {
     const g = r.game ? bySlug[r.game] : null;
     const rows = g ? g.scorecard.filter((x) => x.status !== 'none') : [];
     return {
-      ...r, time, decided_at: r.decided_at ? shiftTime(r.decided_at) : null, state, ageDays: age, gameTitle: g?.title || r.game || null, ownerIdea: !!g?.ownerIdea, verdicts: g?.verdicts || null,
+      ...r, time, decided_at: r.decided_at ? shiftTime(r.decided_at) : null, state, ageDays: age, gameTitle: g?.title || r.game || null, agentId: r.agent || GATE_AGENT[r.gate] || null, ownerIdea: !!g?.ownerIdea, verdicts: g?.verdicts || null,
       revision: r.gate === 'revision' && g ? { worthIt: g.critique?.revision_worth_it ?? null, reason: g.critique?.revision_reason || null, scorecard: rows, revisionsDone: g.revision || 0 } : null,
     };
   });

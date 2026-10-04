@@ -26,6 +26,7 @@ function RevisionContext({ rev }) {
   );
 }
 
+export function ApprovalCard(props) { return <Card {...props} />; }
 function Card({ r, onOpen, decided, sample, onDecided, index, total }) {
   const [open, setOpen] = useState(false);
   const [more, setMore] = useState(false);

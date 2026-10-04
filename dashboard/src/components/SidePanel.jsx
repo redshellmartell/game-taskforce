@@ -4,6 +4,9 @@ import { Help } from './Help.jsx';
 import { IdeaForm, CopyBox, stageForAgent } from './IdeaForm.jsx';
 import { PanelTab } from './PanelTab.jsx';
 import { ResearchTab } from './ResearchTab.jsx';
+import { AgentActions } from './AgentActions.jsx';
+import { ApprovalCard } from './ApprovalsView.jsx';
+import { PitchActions } from './ReviewQueueView.jsx';
 import { GATE_LABEL } from './ApprovalsView.jsx';
 import { ago, STATE_LABEL } from '../util.js';
 
@@ -75,12 +78,12 @@ function TalkTab({ agent, state }) {
 }
 
 // Click a node -> tabs: what it's doing, how it works, its work, talk to it.
-export function AgentPanel({ agent, state, onClose, initialTab, onPersona }) {
-  const firstTab = agent.id === 'market-researcher' ? 'research' : 'doing';   // Market Intel opens on its actions
+export function AgentPanel({ agent, state, onClose, initialTab, onPersona, onOpenGame, onNavigate }) {
+  const firstTab = agent.id === 'market-researcher' ? 'research' : 'actions';   // every agent opens on what you can do with it
   const [tab, setTab] = useState(initialTab || firstTab);
   const [viewing, setViewing] = useState(null);
   const [personaId, setPersonaId] = useState(null);   // kept here so "Back" from a file returns to the same persona
-  useEffect(() => { setTab(initialTab || (agent.id === 'market-researcher' ? 'research' : 'doing')); setViewing(null); setPersonaId(null); }, [agent.id, initialTab]);
+  useEffect(() => { setTab(initialTab || (agent.id === 'market-researcher' ? 'research' : 'actions')); setViewing(null); setPersonaId(null); }, [agent.id, initialTab]);
   const version = state.generatedAt;
   const last = agent.lastEvent;
   const gameTitle = (slug) => state.games.find((g) => g.slug === slug)?.title || slug;
@@ -123,28 +126,46 @@ export function AgentPanel({ agent, state, onClose, initialTab, onPersona }) {
       ))}
     </>
   );
-  else if (tab === 'research') content = <ResearchTab state={state} />;
+  else if (tab === 'research') content = <><ResearchTab state={state} /><AgentActions agent={agent} state={state} onOpenGame={onOpenGame || (() => {})} onNavigate={onNavigate || (() => {})} /></>;
+  else if (tab === 'actions') content = <AgentActions agent={agent} state={state} onOpenGame={onOpenGame || (() => {})} onNavigate={onNavigate || (() => {})} />;
   else if (tab === 'panel') content = <PanelTab state={state} onOpen={setViewing} id={personaId} setId={setPersonaId} onPersona={onPersona} />;
   else content = <TalkTab agent={agent} state={state} />;
 
   return (
     <Shell title={`${agent.room} · ${STATE_LABEL[agent.state]}`} color={agent.color} onClose={onClose}
       help={<><Help topic="agent" />{agent.id !== 'manager' && agent.id !== 'test-panel' && <Help topic="subagent" />}</>}
-      tabs={[...(agent.id === 'market-researcher' ? [['research', 'Research actions']] : []), ['doing', "What it's doing"], ['how', 'How it works'], ['work', 'Its work'], ...(agent.id === 'playtester' || agent.id === 'test-panel' ? [['panel', 'Test panel']] : []), ['talk', 'Talk to it']]} tab={tab} setTab={(t) => { setViewing(null); setTab(t); }}>
+      tabs={[...(agent.id === 'market-researcher' ? [['research', 'Research actions']] : [['actions', 'Actions']]), ['doing', "What it's doing"], ['how', 'How it works'], ['work', 'Its work'], ...(agent.id === 'playtester' || agent.id === 'test-panel' ? [['panel', 'Test panel']] : []), ['talk', 'Talk to it']]} tab={tab} setTab={(t) => { setViewing(null); setTab(t); }}>
       {content}
     </Shell>
   );
 }
 
 // You (the owner) node: inject your own ideas, and review what the agents pitched.
-export function OwnerPanel({ state, onClose }) {
-  const [tab, setTab] = useState('ideas');
+export function OwnerPanel({ state, onClose, onOpenGame, onNavigate }) {
+  const [tab, setTab] = useState('desk');
+  const [last, setLast] = useState(null);
   const [viewing, setViewing] = useState(null);
   const waiting = state.games.filter((g) => g.stage === 'owner-review');
   const stageName = { research: 'Market Intel', design: 'Design Studio', playtest: 'Playtest Lab', critique: 'Review Board', pitch: "Director's Office" };
 
   let content;
   if (viewing) content = <Viewing path={viewing} version={state.generatedAt} onBack={() => setViewing(null)} />;
+  else if (tab === 'desk') content = (
+    <>
+      <div className="action-tiles">
+        <button className="action-tile" onClick={() => onNavigate('approvals')}><span className="at-title">Approvals <span className="chip v-warn">{state.approvals.pending}</span></span><span className="at-foot"><span className="at-go">Open the page →</span></span></button>
+      </div>
+      <h4 style={{ marginTop: 0 }}>Requests waiting for you ({state.approvals.requests.filter((r) => r.state === 'pending').length})</h4>
+      {last && <p className="saved-ok small">Recorded: {last.label}. Tell the Director: <span className="mono">continue with approved work</span></p>}
+      {state.approvals.requests.filter((r) => r.state === 'pending').length === 0 && <p className="empty">Nothing waiting.</p>}
+      {state.approvals.requests.filter((r) => r.state === 'pending').map((r) => <ApprovalCard key={r.id} r={r} onOpen={onOpenGame} sample={state.sample} onDecided={setLast} />)}
+      <h4>Pitches waiting for you ({waiting.length})</h4>
+      {waiting.length === 0 && <p className="empty">Nothing waiting.</p>}
+      {waiting.map((g) => <div className="item" key={g.slug}><button className="link" onClick={() => onOpenGame(g.slug)}><b>{g.title}</b></button><PitchActions slug={g.slug} sample={state.sample} agents={state.agents} /></div>)}
+      <h4>Ideas in your inbox ({state.inbox.length})</h4>
+      {state.inbox.length === 0 ? <p className="empty">No ideas waiting.</p> : state.inbox.map((i) => <div className="item" key={i.slug}><b>{i.title}</b><div className="meta">starts at {stageName[i.stage]}</div></div>)}
+    </>
+  );
   else if (tab === 'ideas') content = (
     <>
       <Markdown text={summaryFor('owner')} />
@@ -171,7 +192,7 @@ export function OwnerPanel({ state, onClose }) {
     </>
   );
   return (
-    <Shell title="You · the owner" color="#d9d4c7" onClose={onClose} tabs={[['ideas', 'Your ideas'], ['review', 'Review']]} tab={tab} setTab={(t) => { setViewing(null); setTab(t); }}>
+    <Shell title="You · the owner" color="#d9d4c7" onClose={onClose} tabs={[['desk', 'Your desk'], ['ideas', 'Your ideas'], ['review', 'Past decisions']]} tab={tab} setTab={(t) => { setViewing(null); setTab(t); }}>
       {content}
     </Shell>
   );

@@ -25,7 +25,7 @@ const PITCH_OPTIONS = [
 ];
 
 // Approve / Send back / Reject for one pitch, with an optional note and a confirm step.
-function PitchActions({ slug, sample, agents }) {
+export function PitchActions({ slug, sample, agents }) {
   const [target, setTarget] = useState('game-designer');
   const [choice, setChoice] = useState(null);
   const [notes, setNotes] = useState('');
