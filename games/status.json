@@ -65,6 +65,12 @@
           "time": "2026-10-03T13:36:57Z",
           "verdict": null,
           "note": "panel reviews done (approved); panel-report.md written"
+        },
+        {
+          "stage": "owner-review",
+          "time": "2026-10-04T15:20:00Z",
+          "verdict": null,
+          "note": "owner sent back to game-designer; waiting for approval: revision (duelflip-revision-2)"
         }
       ],
       "verdicts": {

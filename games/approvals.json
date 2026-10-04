@@ -517,6 +517,39 @@
       "decision": null,
       "decided_at": null,
       "owner_notes": null
+    },
+    {
+      "id": "duelflip-revision-2",
+      "gate": "revision",
+      "game": "duelflip",
+      "time": "2026-10-04T15:20:00Z",
+      "status": "pending",
+      "summary": "You sent Duel Flip back to the designer from the Review Queue. Last results: playtest NEEDS-FIXES (seat gap 3.4, runaway leader 76%, lead changes 3.1, six rule ambiguities), critic REVISE-MINOR 3.4. The three twists (bait, species bonus, Lifebuoy refund) barely change results, so it plays like a generic duplicate-bust game close to Port Royal.",
+      "why_needed": "Your send-back note was just 'decided in the dashboard', so the brief is the critic's required changes and the panel's suggestions. The twists need to matter, and six rule gaps need closing before a prototype is worth building.",
+      "expected_outcome": "Bait: a bust against bait lets the bait owner take a card from the opponent's pile (target: leave-lowest under 60% vs a smart leaver). Species bonus: score per card of margin or raise to 12, or drop it (target: swings 10%+ of games). Refund: drop it or move to 3 cards with +4 for seat 2. Fix the bait wording contradiction, the 1-card river rule and the dead 'other leftovers' text. Remove or flag the 3-4 player variant. Runaway leader should fall from 76% toward 65%. The critic's 'check BGG' item is skipped under the research rules.",
+      "usage_estimate": "M",
+      "recommendation": "approve",
+      "options": [
+        {
+          "key": "approve",
+          "label": "Run revision 2 (designer, then playtester, then critic)"
+        },
+        {
+          "key": "pitch",
+          "label": "Pitch as is, with the known issues listed"
+        },
+        {
+          "key": "park",
+          "label": "Park the game; no further work for now"
+        },
+        {
+          "key": "kill",
+          "label": "Kill it and record why"
+        }
+      ],
+      "decision": null,
+      "decided_at": null,
+      "owner_notes": null
     }
   ]
 }
