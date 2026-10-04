@@ -1,16 +1,16 @@
-{ "verdict": "REVISE-MAJOR", "revision": 0,
-  "scores": { "originality": 3, "clarity": 3, "fun": 2, "balance": 2, "market_fit": 3, "production": 5 },
-  "average": 3.0,
-  "strength": "Cheap, 3-player-only shared-contract structure with rotating roles; seat balance already near target (4.3 pts).",
-  "weakness": "The exact-Target twist succeeds only ~20% of rounds, so the Double-Crosser bonus is nearly free and greedy trick-grabbing beats the intended strategy.",
+{ "verdict": "REVISE-MAJOR", "revision": 1,
+  "scores": { "originality": 3, "clarity": 4, "fun": 3, "balance": 3, "market_fit": 3, "production": 5 },
+  "average": 3.5,
+  "strength": "Cheap 3-player-only shared-contract structure; contract success (56.6%), role points (3.84/3.53/3.95), seat gap (3.5) and runaway rate (52.3%) are now inside target.",
+  "weakness": "The intended contract-steering strategy still loses to plain trick-grabbing (strategic 28.5% vs greedy 63.5%), and lead changes are 1.49 (target 2).",
   "closest_existing_game": { "name": "Oh Hell / Wizard (exact-bid trick-taking)", "similarity": "medium" },
   "required_changes": [
-    "Make the Target reachable (+/-1 band with reduced bonus, or DC bonus 2 and higher crew bonus): contract success 40-60%, greedy no longer dominant",
-    "Rebalance roles (stronger Swap or Safecracker loot bonus): Safecracker vs Double-Crosser points per round within ~1",
-    "Make Heat bite (-2 or loot penalty) or cut it: lead changes >= 2, runaway leader <= 65%",
-    "Remove or give a real payoff to No Trump: zero dead options",
-    "Fix rule ambiguities (revoke, Heat with no bonus, pass direction, tiebreaker 1): zero ambiguities at pitch",
-    "Re-run seat balance on 4,000+ games: gap <= 5 points"
+    "Make steering worth more than loot (loot at half value or DC-only, clean +5/+6): mixed-table strategic win rate >= 40% and >= greedy",
+    "Raise volatility (Heat -3 or double-scored final round): lead changes >= 2, sole leader after round 3 <= 65%",
+    "Re-test with a stronger card-counting strategic bot: confirm whether steering is learnable, kill if greedy still wins",
+    "Hold other KPIs on 4,000+ games: seat gap <= 5, contract success 40-60%, role points within ~1",
+    "Get at least one human playtest alongside the revision to check the bot-based verdict"
   ],
   "revision_worth_it": true,
-  "revision_reason": "Yes: the diagnosis is clear and the fixes are cheap scoring changes; allow one loop and kill if contract success stays under 35%." }
+  "revision_reason": "Yes, as the final loop: one clear diagnosis (loot outweighs steering) with a specific untested fix; if strategic still cannot reach greedy, kill.",
+  "note": "Fun and Market fit scored from free panel.json predictions; no panel-report.md (AI persona reviews not approved). Originality not re-searched (core mechanic unchanged)." }

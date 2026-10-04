@@ -297,6 +297,39 @@
       "decision": null,
       "decided_at": null,
       "owner_notes": null
+    },
+    {
+      "id": "three-player-trick-taker-revision-2",
+      "gate": "revision",
+      "game": "three-player-trick-taker",
+      "time": "2026-10-04T11:01:02Z",
+      "status": "pending",
+      "summary": "Revision 1 hit 8 of 10 KPIs (contract success 19.7% to 56.6%, seat gap 3.5, skill gap +51.6, runaway 52.3%). Critic REVISE-MAJOR, average 3.5 (was 3.0; needs 3.5 at pitch). Still missing: lead changes 1.49 (target 2) and the strategic bot (28.5%) loses to the greedy bot (63.5%), so the intended contract-steering strategy is not rewarded.",
+      "why_needed": "The core idea (steering a contract) still loses to plain trick-grabbing, so skill is not rewarded the way the game intends. Doubling or tripling bonuses did not fix it.",
+      "expected_outcome": "Designer: cut loot to half value (or make it Double-Crosser-only) with clean +5/+6 bonuses, and Heat -3. Playtester: a stronger card-counting strategic bot. Targets: strategic at least matches greedy, lead changes 2+, seat gap 5 or less, critic average 3.5 or more. If strategic still cannot reach greedy, the critic suggests killing the game.",
+      "usage_estimate": "M",
+      "recommendation": "approve",
+      "options": [
+        {
+          "key": "approve",
+          "label": "Run revision 2 (designer, playtester, critic), the last sensible loop"
+        },
+        {
+          "key": "pitch",
+          "label": "Pitch as is, with the known issues listed (not recommended: playtest NEEDS-FIXES)"
+        },
+        {
+          "key": "park",
+          "label": "Park the game; no further work for now"
+        },
+        {
+          "key": "kill",
+          "label": "Kill it and record why"
+        }
+      ],
+      "decision": null,
+      "decided_at": null,
+      "owner_notes": null
     }
   ]
 }
