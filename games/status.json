@@ -299,7 +299,7 @@
       "slug": "heavenly-bodies",
       "title": "Heavenly Bodies",
       "source": "owner",
-      "stage": "playtest",
+      "stage": "critique",
       "revision": 0,
       "history": [
         {
@@ -319,11 +319,23 @@
           "time": "2026-10-04T11:49:03Z",
           "verdict": null,
           "note": "rules.md and the 96-card pile written (40 rule gaps listed); simulation started"
+        },
+        {
+          "stage": "playtest",
+          "time": "2026-10-04T12:12:05Z",
+          "verdict": "NEEDS-FIXES",
+          "note": "win paths flip with player count; first-seat 7.4 (from G4 reading); Bar Raiser veto active"
+        },
+        {
+          "stage": "critique",
+          "time": "2026-10-04T12:12:05Z",
+          "verdict": "REVISE-MAJOR",
+          "note": "critic REVISE-MAJOR avg 2.83; waiting for owner rulings and revision approval"
         }
       ],
       "verdicts": {
-        "playtest": null,
-        "critic": null
+        "playtest": "NEEDS-FIXES",
+        "critic": "REVISE-MAJOR"
       },
       "kill_reason": null
     }
