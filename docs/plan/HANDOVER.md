@@ -31,9 +31,9 @@ Read this first in a fresh session, after `CLAUDE.md`. It holds context that is 
 - Review-session list (panel-player improvements, billing plan vs credits, veto tuning, RPG scope, evidence refresh) is in `docs/plan/PROGRESS.md`.
 
 ## Pending owner decisions (check `games/approvals.json` for the live list)
-- `grid-of-cards-area-control-revision-1` (recommend approve)
+- Revisions approved by the owner on the dashboard, not yet run: `grid-of-cards-area-control-revision-1`, `asymmetric-duel-tug-of-war-revision-1` (recorded in `decisions.json`). Pitch chosen for `three-player-trick-taker`: `pitch.md` not yet written.
 - `silent-duo-deduction-coop-revision-1`
-- `asymmetric-duel-tug-of-war-revision-1`
+- New `-revision-1` requests after the 25+/30 run: `standard-deck-engine-workshop` (recommend approve), `five-six-simultaneous-auction` (recommend park), `solo-nine-card-roguelike` (recommend approve), `two-player-hidden-movement-grid` (recommend approve)
 - `heavenly-bodies-revision-1`: recommend the owner answers the design rulings first (G1, G4, G7, G8, G10, G12/13, G27, G29)
 - `archetypes-greenlight`: recommend answering its six open questions first
 - `three-player-trick-taker-pitch-or-revise` (pitch recommended)
@@ -41,7 +41,7 @@ Read this first in a fresh session, after `CLAUDE.md`. It holds context that is 
 - Unread owner note `games/_notes/20261004T122552Z-game-designer.md` (Heavenly Bodies comparables: Bang!, Smash Up, Fluxx, Exploding Kittens, Sushi Go; MTG/Dominion rejected; Love Letter/Coup/Munchkin brackets). Pass it to the designer, critic and Bar Raiser, then move it to `games/_notes/_done/` with a Director's reply.
 
 ## Queued work
-- Task 011: dashboard live/interactive, three stages, branch `dashboard-interactive`.
+- Task 011: dashboard live/interactive, three stages, branch `dashboard-interactive`. **Read the 2026-10-04 (evening) entry in `docs/plan/PROGRESS.md` first**: it has the owner's "click, then see the effect" requirement and the Step A/B/C plan.
 - Task 012: role-playing games in the pipeline (RPGs need a different playtest approach; say plainly what simulation cannot test).
 
 ## First moves for a new session
