@@ -1,0 +1,27 @@
+{
+  "slug": "solo-nine-card-roguelike",
+  "title": "Nine Lives Dungeon",
+  "idea_id": "solo-nine-card-roguelike",
+  "players": "1",
+  "minutes": 10,
+  "complexity": 2,
+  "mechanics": ["solo mode", "roguelike", "card arrangement", "push-your-luck"],
+  "theme": "cat adventurer with nine lives",
+  "opportunity_score": 25,
+  "rubric": { "demand": 4, "gap": 3, "originality": 3, "producibility": 5, "simulatability": 5, "owner_fit": 5 },
+  "candidates": [
+    { "idea": "solo-nine-card-roguelike", "score": 25, "chosen": true },
+    { "idea": "standard-deck-engine-workshop", "score": 27, "chosen": false },
+    { "idea": "solo-coop-micro-deckbuilder", "score": 22, "chosen": false }
+  ],
+  "comparables": [
+    { "name": "Friday", "bgg_rating": null, "crowdfunding": null, "difference": "Nine fixed cards only, with a lives track that persists across runs." },
+    { "name": "One Deck Dungeon", "bgg_rating": null, "crowdfunding": null, "difference": "Ten minutes and no dice." },
+    { "name": "Onirim", "bgg_rating": null, "crowdfunding": null, "difference": "Rearranged fixed cards with run-to-run persistence." }
+  ],
+  "sources": [
+    "https://gummysearch.com/tools/best-products/solo-games/",
+    "https://opinionatedgamers.com/2026/09/15/solo-gaming-2026-the-first-eight-months/",
+    "https://zatu.com/en-au/blogs/news/why-solo-board-gaming-is-booming-in-2026"
+  ]
+}
