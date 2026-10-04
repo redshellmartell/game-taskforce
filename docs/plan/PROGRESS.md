@@ -2,6 +2,10 @@
 
 Written by Claude Code after each task, newest first. See `WORKFLOW.md` for the format.
 
+## 2026-10-04 — Owner note: focus on card games, card-heavy games and tabletop RPGs
+- The owner's current focus is **card games, card-heavy games with a few small components, and tabletop role-playing games**. Recorded in `studio-settings.json` (`focus`) and in `CLAUDE.md` ("Owner focus").
+- The taskforce handles RPGs poorly (simulation cannot judge roleplay fun). Queued as task `012-role-playing-games-in-the-pipeline.md` (propose first, then build); the first case is the owner's `archetypes` idea. For the review session: confirm the scope of 012 and whether to prefer RPG and card-heavy ideas in the next market scan.
+
 ## 2026-10-03 — Owner request: extended scan, sixth persona (Bar Raiser), games at several stages
 - **Extended market scan (approved, `market-scan-2`):** 9 searches, 13 new ideas (bank now 26, 19 banked at 18 or above; the agent reported 14, the file holds 13). All page reads were blocked, so evidence is search summaries only and BGG ratings are `null`. Top new: Fifty-Two Workshop 27, Last Bid Standing 25, Nine Lives Dungeon 25, Dead Reckoning 25 (overlaps Nine Fields).
 - **Bar Raiser persona (`barraiser`):** veteran-designer judge, the only persona with a veto (limits in its profile: predicted fun below 2.5, dominant strategy, seat gap over 6 points, low originality). Scoring has a new `originality` metric (from the brief's rubric; a missing metric is left out, not counted as zero), 11 scoring tests. Duel Flip's rotation now covers 15 tables and 2,000 games per persona. Panel research and calibration ran for it: **mean error 0.38 over 8 games, trusted, confidence low** (evidence from search summaries only; every page read was blocked). It has no written review of any game yet (that is behind `panel-reviews`).

@@ -14,5 +14,13 @@
     "warn_at_percent": 50,
     "cache_read_weight": 0.1
   },
-  "approval_mode": "normal"
+  "approval_mode": "normal",
+  "focus": {
+    "primary": [
+      "card games",
+      "card-heavy games with a few small components",
+      "tabletop role-playing games"
+    ],
+    "note": "Owner's current focus (2026-10-04). Prefer these when picking ideas from the bank and when scoring owner_fit; avoid big boards and miniatures."
+  }
 }

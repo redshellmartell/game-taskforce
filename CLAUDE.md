@@ -45,6 +45,8 @@ The studio runs on the owner's Claude subscription, so usage is the main constra
 - Never print large files, logs or simulation output into the conversation.
 - One game or one task per Claude Code session. When a game reaches a stage boundary and the session is long, tell the owner it's a good moment to start a fresh session; the repository holds all the state.
 
+**Owner focus.** The owner's current focus is card games, card-heavy games with a few small components, and tabletop role-playing games (`studio-settings.json`, `focus`). Favour these when choosing ideas from the bank and when scoring `owner_fit`; avoid big boards and miniatures. Role-playing games need a different playtest approach (task 012 is queued); until then say plainly what simulation cannot test.
+
 **Run in batches the owner triggers.** Don't start new games or research on your own. A good rhythm is one new game per week, with panel runs and research refreshes grouped together.
 
 ## Approval gates
