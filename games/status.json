@@ -513,7 +513,7 @@
     {
       "slug": "two-player-hidden-movement-grid",
       "title": "Dead Reckoning",
-      "stage": "design",
+      "stage": "playtest",
       "revision": 0,
       "history": [
         {
@@ -527,6 +527,12 @@
           "time": "2026-10-04T19:37:36Z",
           "verdict": null,
           "note": "Brief written, 25/30; design starts"
+        },
+        {
+          "stage": "playtest",
+          "time": "2026-10-04T19:42:32Z",
+          "verdict": null,
+          "note": "rules.md written (cooling helm, collisions, torpedoes); playtest next"
         }
       ],
       "verdicts": {

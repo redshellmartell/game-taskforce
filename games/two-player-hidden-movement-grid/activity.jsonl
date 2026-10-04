@@ -2,3 +2,5 @@
 {"time": "2026-10-04T19:37:03Z", "agent": "market-researcher", "game": "two-player-hidden-movement-grid", "event": "start", "message": "Writing brief from the idea bank"}
 {"time": "2026-10-04T19:37:36Z", "agent": "market-researcher", "game": "two-player-hidden-movement-grid", "event": "done", "message": "Brief written, 25/30; design starts"}
 {"time": "2026-10-04T19:37:36Z", "agent": "game-designer", "game": "two-player-hidden-movement-grid", "event": "start", "message": "Writing rules.md from the brief"}
+{"time": "2026-10-04T19:42:32Z", "agent": "game-designer", "game": "two-player-hidden-movement-grid", "event": "done", "message": "rules.md written (cooling helm, collisions, torpedoes); playtest next"}
+{"time": "2026-10-04T19:42:32Z", "agent": "playtester", "game": "two-player-hidden-movement-grid", "event": "start", "message": "Coding the simulation and running experiments"}
