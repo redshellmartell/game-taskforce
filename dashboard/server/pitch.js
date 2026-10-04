@@ -19,8 +19,9 @@ function waitingSince(statusFile) {
 }
 
 // The pitch decision (if any) recorded for a game since it entered owner-review.
+// Only entries marked kind "pitch" count: decisions.json also holds approval-gate decisions ("approve" on a revision, a scan...) that must not be mistaken for a decision on the pitch.
 export function pitchDecisionFor(slug, since, decisions) {
-  return [...(decisions || [])].reverse().find((d) => d && d.slug === slug && KEYS.includes(d.decision) && (Date.parse(d.time) || 0) >= since) || null;
+  return [...(decisions || [])].reverse().find((d) => d && d.kind === 'pitch' && d.slug === slug && KEYS.includes(d.decision) && (Date.parse(d.time) || 0) >= since) || null;
 }
 
 export function decidePitch(decisionsFile, statusFile, slug, key, notes, now = Date.now()) {
@@ -32,7 +33,7 @@ export function decidePitch(decisionsFile, statusFile, slug, key, notes, now = D
   let data = { decisions: [] };
   try { data = JSON.parse(fs.readFileSync(decisionsFile, 'utf8')); if (!Array.isArray(data.decisions)) data.decisions = []; } catch { /* no file yet: start one */ }
   if (pitchDecisionFor(slug, waiting[slug], data.decisions)) fail(409, 'You already decided on this pitch.');
-  const entry = { slug, time: new Date(now).toISOString(), decision: key, notes: cleanNotes || 'decided in the dashboard (Review Queue)' };
+  const entry = { slug, kind: 'pitch', time: new Date(now).toISOString(), decision: key, notes: cleanNotes || 'decided in the dashboard (Review Queue)' };
   data.decisions.push(entry);
   const tmp = `${decisionsFile}.tmp`;
   fs.writeFileSync(tmp, JSON.stringify(data, null, 2) + '\n');

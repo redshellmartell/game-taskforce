@@ -42,7 +42,7 @@ test('refusals: not waiting 404, already decided 409, notes too long 400', () =>
   assert.equal(read(decisions).decisions.length, 1);
 });
 test('an old decision from before the game entered owner-review does not count', () => {
-  const { status, decisions } = setup([{ slug: 'g1', decision: 'send-back', time: '2026-09-20T00:00:00Z', notes: 'earlier round' }]);
+  const { status, decisions } = setup([{ slug: 'g1', kind: 'pitch', decision: 'send-back', time: '2026-09-20T00:00:00Z', notes: 'earlier round' }]);
   assert.equal(pitchDecisionFor('g1', Date.parse('2026-10-01T10:00:00Z'), read(decisions).decisions), null);
   assert.equal(decidePitch(decisions, status, 'g1', 'approve', '').decision, 'approve');
 });
@@ -55,4 +55,12 @@ test('the server file itself loads (catches a broken import before it reaches th
   const { spawnSync } = await import('node:child_process');
   const r = spawnSync(process.execPath, ['--check', new URL('./index.js', import.meta.url).pathname], { encoding: 'utf8' });
   assert.equal(r.status, 0, r.stderr);
+});
+
+test('an approval-gate decision for the same game is NOT mistaken for a pitch decision', () => {
+  const gate = { slug: 'g1', time: '2026-10-02T00:00:00Z', decision: 'approve', notes: 'g1-revision-1 (revision gate): owner approved' };
+  assert.equal(pitchDecisionFor('g1', Date.parse('2026-10-01T10:00:00Z'), [gate]), null);
+  const { status, decisions } = setup([gate]);
+  const e = decidePitch(decisions, status, 'g1', 'approve', 'ok');            // so the pitch can still be decided
+  assert.equal(e.kind, 'pitch');
 });
