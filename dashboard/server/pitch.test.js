@@ -64,3 +64,15 @@ test('an approval-gate decision for the same game is NOT mistaken for a pitch de
   const e = decidePitch(decisions, status, 'g1', 'approve', 'ok');            // so the pitch can still be decided
   assert.equal(e.kind, 'pitch');
 });
+
+test('send-back records the department it goes to (design by default); other decisions refuse a target', () => {
+  let { status, decisions } = setup();
+  assert.equal(decidePitch(decisions, status, 'g1', 'send-back', 'n').target, 'game-designer');
+  ({ status, decisions } = setup());
+  assert.equal(decidePitch(decisions, status, 'g1', 'send-back', 'check the market again', Date.now(), 'market-researcher').target, 'market-researcher');
+  ({ status, decisions } = setup());
+  assert.throws(() => decidePitch(decisions, status, 'g1', 'send-back', '', Date.now(), 'owner'), (e) => e.status === 400);
+  assert.throws(() => decidePitch(decisions, status, 'g1', 'approve', '', Date.now(), 'critic'), (e) => e.status === 400);
+  assert.equal(JSON.parse(fs.readFileSync(decisions, 'utf8')).decisions.length, 0);
+  assert.equal(decidePitch(decisions, status, 'g1', 'approve', '').target, undefined);
+});

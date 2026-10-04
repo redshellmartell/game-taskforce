@@ -16,14 +16,17 @@ function Tile({ label, k, suffix = '', note }) {
 }
 
 // Pitches waiting for the owner, past decisions and your real-world playtests. Read-only.
+const TARGETS = ['game-designer', 'market-researcher', 'playtester', 'test-panel', 'critic'];
 const PITCH_OPTIONS = [
   { key: 'approve', label: 'Approve for a prototype', cls: 'good', ask: 'Approve this pitch for a physical prototype?' },
-  { key: 'send-back', label: 'Send back for revision', cls: 'warn', ask: 'Send this game back to the design team for a revision? Say what to change in the note; the Director turns it into a revision request for you to approve.' },
+  { key: 'revise', decision: 'send-back', target: 'game-designer', label: 'Send back for revision', cls: 'warn', ask: 'Send this game back to the design team for a revision? Say what to change in the note; the Director turns it into a revision request for you to approve.' },
+  { key: 'send-to', decision: 'send-back', needsTarget: true, label: 'Send back with note…', cls: 'warn', ask: 'Send this game back to a department of your choice, with a note. The Director routes it and asks you to approve anything that uses a lot of usage.' },
   { key: 'reject', label: 'Reject', cls: 'bad', ask: 'Reject this pitch? The game will be set aside.' },
 ];
 
 // Approve / Send back / Reject for one pitch, with an optional note and a confirm step.
-function PitchActions({ slug, sample }) {
+function PitchActions({ slug, sample, agents }) {
+  const [target, setTarget] = useState('game-designer');
   const [choice, setChoice] = useState(null);
   const [notes, setNotes] = useState('');
   const [busy, setBusy] = useState(false);
@@ -31,7 +34,7 @@ function PitchActions({ slug, sample }) {
   const save = async () => {
     setBusy(true); setMsg(null);
     try {
-      const res = await fetch(`/api/pitch/${encodeURIComponent(slug)}`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ decision: choice.key, notes }) });
+      const res = await fetch(`/api/pitch/${encodeURIComponent(slug)}`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ decision: choice.decision || choice.key, notes, target: choice.needsTarget ? target : (choice.target || undefined) }) });
       const body = await res.json();
       if (!res.ok) throw new Error(body.error || 'Could not save the decision');
       setMsg({ ok: true, text: `Saved: ${choice.label}. It will leave this queue in a moment.` }); setChoice(null);
@@ -45,6 +48,7 @@ function PitchActions({ slug, sample }) {
       {choice && (
         <div className="confirm">
           <p style={{ margin: '0 0 6px' }}><b>{choice.ask}</b></p>
+          {choice.needsTarget && <label className="small" style={{ display: 'block', margin: '0 0 6px' }}>Send it back to <select value={target} onChange={(e) => setTarget(e.target.value)}>{TARGETS.map((id) => <option key={id} value={id}>{agents?.find((a) => a.id === id)?.room || id}</option>)}</select></label>}
           <textarea rows={2} value={notes} onChange={(e) => setNotes(e.target.value)} placeholder="Optional note for the Director (required in spirit when sending back)" />
           <div className="pitch-buttons"><button className={`decide ${choice.cls}`} disabled={busy} onClick={save}>{busy ? 'Saving…' : `Yes: ${choice.label}`}</button><button className="link" disabled={busy} onClick={() => setChoice(null)}>Cancel</button></div>
         </div>
@@ -104,7 +108,7 @@ export function ReviewQueueView({ state, onOpen }) {
           <div className="pitch-actions">
             <button className="link" onClick={() => onOpen(q.slug)}>Open the full overview</button>
           </div>
-          <PitchActions slug={q.slug} sample={state.sample} />
+          <PitchActions slug={q.slug} sample={state.sample} agents={state.agents} />
         </section>
       ))}
 

@@ -64,7 +64,7 @@ app.post('/api/pitch/:slug', (req, res) => {
   const origin = req.get('origin');
   if (origin && new URL(origin).host !== req.get('host')) return res.status(403).json({ error: 'Not allowed' });
   if (useSample()) return res.status(409).json({ error: 'The dashboard is showing sample data, so decisions are not saved. Run npm start in a copy of the repository that has real games.' });
-  try { res.json(decidePitch(path.join(repoRoot, 'games', 'decisions.json'), path.join(repoRoot, 'games', 'status.json'), req.params.slug, (req.body || {}).decision, (req.body || {}).notes)); }
+  try { res.json(decidePitch(path.join(repoRoot, 'games', 'decisions.json'), path.join(repoRoot, 'games', 'status.json'), req.params.slug, (req.body || {}).decision, (req.body || {}).notes, Date.now(), (req.body || {}).target)); }
   catch (e) { res.status(e.status || 500).json({ error: e.status ? e.message : 'Could not record the decision.' }); }
 });
 
