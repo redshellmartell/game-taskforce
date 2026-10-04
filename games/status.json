@@ -360,7 +360,7 @@
     {
       "slug": "standard-deck-engine-workshop",
       "title": "Fifty-Two Workshop",
-      "stage": "playtest",
+      "stage": "critique",
       "revision": 0,
       "history": [
         {
@@ -380,6 +380,12 @@
           "time": "2026-10-04T17:37:58Z",
           "verdict": null,
           "note": "rules.md written (gear trains, Bench, Apprentice); playtest next"
+        },
+        {
+          "stage": "critique",
+          "time": "2026-10-04T17:56:25Z",
+          "verdict": null,
+          "note": "Playtest NEEDS-FIXES: solo trivial (98.6%), engine suits don't pay, infinite-loop hole, 11 ambiguities; critique next"
         }
       ],
       "verdicts": {
