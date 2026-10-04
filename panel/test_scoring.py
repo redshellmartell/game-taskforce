@@ -62,6 +62,11 @@ class T(unittest.TestCase):
         self.assertEqual(ok, {"active": False, "reasons": []})
         bad = S.check_veto(br["veto"], 2.0, {"dominant_strategy_absent": 0.2, "originality": 0.1}, 9.0)
         self.assertTrue(bad["active"]); self.assertEqual(len(bad["reasons"]), 4)
+    def test_null_seat_gap_from_a_co_op_playtest_does_not_crash(self):
+        ps = S.load_personas(only={"casual", "barraiser"})
+        res = {"personas": {k: {"raw": RAW, "bot": {"win_rate": .5}} for k in ps}, "matchups": [], "rotation": {"tables": 1}}
+        out = S.build_panel({**PT, "seat_balance_gap": None}, 1400, res, ps, 1)
+        self.assertFalse(out["personas"]["barraiser"]["veto"]["reasons"] and "seat" in " ".join(out["personas"]["barraiser"]["veto"]["reasons"]))
     def test_veto_in_panel_json_only_for_personas_that_have_one(self):
         ps = S.load_personas(only={"casual", "barraiser"})
         res = {"personas": {k: {"raw": RAW, "bot": {"win_rate": .5}} for k in ps}, "matchups": [], "rotation": {"tables": 1}}

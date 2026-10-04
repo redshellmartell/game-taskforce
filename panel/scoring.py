@@ -236,7 +236,7 @@ def build_panel(playtest, rules_words, results, personas, revision=1, previous=N
         metrics = {**game_metrics(playtest, rules_words, p["preferred_minutes"], brief), **bot_metrics(raw)}
         fun = fun_from_metrics(metrics, p["weights"])
         buy, price = would_buy(fun, minutes, p["price_tolerance_usd"], p["preferred_minutes"])
-        raw = {**raw, "seat_gap": playtest.get("seat_balance_gap", 0), "minutes": minutes, "preferred_max": p["preferred_minutes"][1]}
+        raw = {**raw, "seat_gap": (playtest.get("seat_balance_gap") or 0), "minutes": minutes, "preferred_max": p["preferred_minutes"][1]}
         out[pid] = {
             "fun": fun, "replay": replay_from_metrics(metrics, p["weights"]), "would_buy": buy, "price_usd": price,
             "metrics": {k: round(v, 3) for k, v in metrics.items()},
@@ -245,7 +245,7 @@ def build_panel(playtest, rules_words, results, personas, revision=1, previous=N
             "review": ((previous or {}).get("personas", {}).get(pid, {}) or {}).get("review"),
         }
         if p.get("veto"):
-            out[pid]["veto"] = check_veto(p["veto"], fun, metrics, playtest.get("seat_balance_gap", 0))
+            out[pid]["veto"] = check_veto(p["veto"], fun, metrics, (playtest.get("seat_balance_gap") or 0))
     matchups = []
     for m in results.get("matchups", []):
         a, b = m["a"], m["b"]
