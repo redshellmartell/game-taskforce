@@ -97,7 +97,8 @@ def main():
     git("add", *FILES)
     if git("status", "--porcelain", "--", *FILES).strip():
         git("commit", "-q", "-m", "Recovered approvals answered on the Mac (repair)")
-    git("push", "-q", "origin", branch)
+    if git("log", "origin/%s..HEAD" % branch, "--oneline", check=False).strip():      # only push when there is something new to send
+        git("push", "-q", "origin", branch)
     if has_stash:
         git("stash", "drop", "-q", check=False)
     print("Done. Refresh the dashboard. Pending requests left: %s" % ", ".join(r["id"] for r in merged_a["requests"] if r["status"] == "pending"))
