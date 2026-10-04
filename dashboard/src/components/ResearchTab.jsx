@@ -17,7 +17,7 @@ function hintFor(kind, h) {
     if (!h.scan) return 'No idea bank yet.';
     return h.scan.due ? { due: true, text: `Due: ${h.scan.reasons.join('; ')}` } : { text: `Last scan ${h.scan.days} day${h.scan.days === 1 ? '' : 's'} ago; ${h.scan.strongBanked} strong ideas banked.` };
   }
-  if (kind === 'persona-research') return h.personas.updated ? { due: h.personas.due, text: `Calibration last run ${h.personas.updated} (${h.personas.days} day${h.personas.days === 1 ? '' : 's'} ago); evidence is thin until BoardGameGeek and Reddit are reachable.` } : { due: true, text: 'Never calibrated.' };
+  if (kind === 'persona-research') return h.personas.updated ? { due: h.personas.due, text: `Calibration last run ${h.personas.updated} (${h.personas.days} day${h.personas.days === 1 ? '' : 's'} ago); evidence stays thin: search summaries only, and BoardGameGeek is off limits.` } : { due: true, text: 'Never calibrated.' };
   const n = h.games.length, stale = h.games.filter((g) => g.days === null).length;
   return { text: `${n} game${n === 1 ? '' : 's'} in the pipeline; ${stale} never researched in depth.` };
 }
@@ -92,7 +92,7 @@ export function ResearchTab({ state }) {
               </div>
             </>
           )}
-          <p className="small">Estimated usage: <b>{usage}</b> ({USAGE_TEXT[usage]}){open === 'reanalyze' ? `, for ${chosen.length} game${chosen.length === 1 ? '' : 's'}` : ''}. {open === 'persona-research' && 'Thin evidence is likely until BoardGameGeek and Reddit are allowed in the environment’s network settings.'}</p>
+          <p className="small">Estimated usage: <b>{usage}</b> ({USAGE_TEXT[usage]}){open === 'reanalyze' ? `, for ${chosen.length} game${chosen.length === 1 ? '' : 's'}` : ''}. {open === 'persona-research' && 'Evidence stays thin: web-search summaries only, and BoardGameGeek is off limits by your decision.'}</p>
           <textarea rows={2} value={note} onChange={(e) => setNote(e.target.value)} placeholder="Optional note for the researcher (for example: focus on tabletop RPGs)" style={{ width: '100%' }} />
           <div className="pitch-buttons">
             <button className="primary" disabled={busy || (open === 'reanalyze' && chosen.length === 0)} onClick={send}>{busy ? 'Saving…' : 'Run this'}</button>

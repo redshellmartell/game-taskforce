@@ -47,6 +47,8 @@ The studio runs on the owner's Claude subscription, so usage is the main constra
 
 **Owner focus.** The owner's current focus is card games, card-heavy games with a few small components, and tabletop role-playing games (`studio-settings.json`, `focus`). Favour these when choosing ideas from the bank and when scoring `owner_fit`; avoid big boards and miniatures. Role-playing games need a different playtest approach (task 012 is queued); until then say plainly what simulation cannot test.
 
+**Research rules.** Never fetch pages or call APIs on boardgamegeek.com, rpggeek.com or videogamegeek.com, and never scrape any site whose terms forbid automated access. The owner ruled this out (2026-10-04) after BoardGameGeek's XML API terms turned out to require registration and a token, with AI use unconfirmed. Web-search result snippets are fine to use and cite. If BGG data is wanted later, the owner registers a non-commercial application at boardgamegeek.com/applications and says so; until then ratings from BGG are `null` unless a snippet shows one. Respect other sites' terms and keep page reads low.
+
 **Run in batches the owner triggers.** Don't start new games or research on your own. A good rhythm is one new game per week, with panel runs and research refreshes grouped together.
 
 ## Approval gates

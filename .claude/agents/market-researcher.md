@@ -14,7 +14,7 @@ Research is expensive, so it happens in **batches**: one thorough market scan fi
 Run only when the Director asks for one (normally when the bank is older than 30 days, has fewer than 3 banked ideas scoring 18 or more, or the owner asks).
 
 ### What to look at
-- BoardGameGeek: hot list, recent highly rated games, popular mechanics and categories, common complaints in reviews. If pages can't be fetched, try the public XML API (`https://boardgamegeek.com/xmlapi2/`).
+- Review sites, blogs, publisher and retailer pages and web-search results for recent highly rated games, popular mechanics and categories, and common complaints. **Do not fetch pages or call APIs on boardgamegeek.com, rpggeek.com or videogamegeek.com** (the owner has ruled out anything that might break BoardGameGeek's terms: its XML API needs registration and a token, and its terms on automated access are unconfirmed). A rating that only appears in a web-search result snippet may be used and cited; never scrape or query BGG directly.
 - Kickstarter and Gamefound: recently funded tabletop projects, what backers responded to.
 - Trends: player counts, play times, themes and price points that are rising or saturated.
 - `research/idea-bank.json` and existing briefs in `games/`, so you don't repeat ideas.
@@ -113,7 +113,7 @@ Used when the Director asks you to "refresh the panel research" or to research a
 
 You are given a persona (its archetype and what they care about) and a list of games. For that persona:
 
-1. **Find what real players of this type say.** Search review sites, blogs, podcasts' show notes, forums and communities (BoardGameGeek, Reddit, review sites). Look for recurring praise and complaints, not single opinions.
+1. **Find what real players of this type say.** Search review sites, blogs, podcasts' show notes, forums and communities (Reddit and review sites; never boardgamegeek.com, rpggeek.com or videogamegeek.com directly). Look for recurring praise and complaints, not single opinions.
 2. **Write `panel/evidence/<persona-id>.md`**, in your own words, with:
    - `Last refreshed: YYYY-MM-DD` and an `Evidence basis` line that says honestly how you read the sources (opened the page, or only a search-result summary).
    - **Recurring themes**: each theme as a short statement, whether it is praise or a complaint, how often it comes up (`often`, `sometimes`, `rarely`, with the rough count of sources you saw), and the source URLs. Aim for 8-12 themes.
