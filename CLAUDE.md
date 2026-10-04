@@ -226,6 +226,23 @@ The owner pays for sessions from a limited credit balance, so work economically:
 
 The owner's dashboard lives in `dashboard/`. When asked to build or change it, follow `docs/BUILD-DASHBOARD.md` (build steps) and `docs/dashboard-notes.md` (product spec), working one milestone at a time. The dashboard must never start agents. Its only writes are: saving ideas to `games/_inbox/`, recording approval decisions in `games/approvals.json`, appending the owner's pitch decisions (Approve, Send back, Reject in the Review Queue) to `games/decisions.json`, saving notes to agents in `games/_notes/`, and recording research requests the owner approves in the Market Intel popup ("Game research", "Persona research", "Reanalyze pipeline") as already-approved entries in `games/approvals.json`. The owner is new to coding: explain steps in plain language and keep setup minimal.
 
+## Session start and branches
+
+The repository is the only memory between sessions. Follow this every time.
+
+**At the start of a session:**
+1. Run `git fetch origin main`. Work from the latest `main`: if your designated branch has already been merged, restart it from `origin/main` (`git checkout -B <branch> origin/main`). Never stack new commits on merged history.
+2. Read `docs/plan/HANDOVER.md`, `games/STATUS.md`, `games/approvals.json` and pending notes in `games/_notes/`.
+3. If the owner says "continue with approved work" or "what's waiting for me?", follow the rules above. Do not start gated work or research without approval.
+
+**During the session:** keep state in files (`status.json`, `STATUS.md`, `approvals.json`, `decisions.json`, `PROGRESS.md`), not only in conversation. Anything the owner decided that is not in a file will be lost.
+
+**At the end of a task or session:**
+1. Update `docs/plan/HANDOVER.md` (decisions made, what is untested, what is pending). Keep it short and current; delete what is stale.
+2. Run `python3 tools/usage/usage.py --record`, commit, and push to the designated branch.
+3. Tell the owner the work is on the branch and ask whether to open a pull request into `main`. Only open it when they say yes. The owner merges it; then the next session starts from the new `main`.
+4. One task per session. Suggest a fresh session at the next stage boundary.
+
 ## Default first command
 
 If the owner says "run the pipeline" or similar without details, start one new game with a brief from the idea bank (see "Lean mode") and carry it forward until it reaches an approval gate or the pitch, then summarise where it stands. Never pass a gate without approval.
