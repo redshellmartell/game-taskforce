@@ -1,0 +1,9 @@
+Nine Lives Dungeon, solo, barraiser bot, seed 600012 (lost run). Solo game: one table per persona.
+T1 Shove Owl into 8, Snake comes up
+T2 Shove Spider into 3, Rat comes up
+T3 Shove Snake into 5, Moth comes up
+T4 Shove Crow into 6, Hound comes up
+T5 Shove Hound into 6, Crow comes up
+T6 Fight Moth (danger 1, claws 2, wounds 0, ready 0)
+T7 Fight Crow (danger 7, claws 3, wounds 4, ready 1)
+T7 DEAD, killed by Crow

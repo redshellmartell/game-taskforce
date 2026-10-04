@@ -1,0 +1,12 @@
+Nine Lives Dungeon, solo, casual bot, seed 100010 (won run). Solo game: one table per persona.
+T1 Fight Mouse (danger 2, claws 2, wounds 0, ready 0)
+T2 Fight Spider (danger 3, claws 3, wounds 0, ready 1)
+T3 Fight Rat (danger 4, claws 4, wounds 0, ready 2)
+T3 Thief spends a trophy
+T4 Fight Owl (danger 3, claws 3, wounds 0, ready 1)
+T5 Scavenge readies ['Mouse', 'Spider']
+T5 Fight Snake (danger 7, claws 7, wounds 0, ready 3)
+T6 Fight Fox (danger 8, claws 8, wounds 0, ready 4)
+T6 Hunt spends a trophy
+T7 Fight Hound (danger 9, claws 8, wounds 1, ready 4)
+T7 ESCAPE

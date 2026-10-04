@@ -1,0 +1,12 @@
+Nine Lives Dungeon, solo, strategist bot, seed 500000 (lost run). Solo game: one table per persona.
+T1 Shove Snake into 8, Moth comes up
+T2 Fight Moth (danger 1, claws 2, wounds 0, ready 0)
+T3 Fight Spider (danger 3, claws 3, wounds 0, ready 1)
+T4 Glow sees Mouse at 6
+T4 Glow sees Crow at 5
+T4 Shove Fox into 8, Snake comes up
+T5 Shove Owl into 8, Fox comes up
+T6 Shove Fox into 8, Owl comes up
+T7 Shove Rat into 8, Fox comes up
+T8 Fight Fox (danger 10, claws 2, wounds 8, ready 0)
+T8 DEAD, killed by Fox

@@ -1,0 +1,11 @@
+Nine Lives Dungeon, solo, family bot, seed 300001 (won run). Solo game: one table per persona.
+T1 Fight Moth (danger 1, claws 2, wounds 0, ready 0)
+T2 Fight Spider (danger 3, claws 3, wounds 0, ready 1)
+T3 Fight Rat (danger 4, claws 4, wounds 0, ready 2)
+T4 Fight Mouse (danger 2, claws 5, wounds 0, ready 3)
+T4 Thief spends a trophy
+T5 Fight Crow (danger 5, claws 5, wounds 0, ready 3)
+T6 Fight Owl (danger 6, claws 6, wounds 0, ready 4)
+T6 Hunt spends a trophy
+T7 Fight Hound (danger 9, claws 8, wounds 1, ready 4)
+T7 ESCAPE
