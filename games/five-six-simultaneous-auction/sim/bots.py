@@ -50,7 +50,7 @@ class Greedy:
 class Strategic:
     """Hint bot from rules.md: EV of each card vs passing, with projected-crash awareness."""
     name = "strategic"
-    cardval = 1.0; noise = 0.0; est_rate = 0.4; saboteur = False; exact = False; spec = 0.0; fav = None
+    cardval = 0.5; noise = 0.0; est_rate = 0.4; saboteur = False; exact = False; spec = 0.0; fav = None
     def __init__(self, seed=0, **kw):
         self.rng = random.Random(seed); self.__dict__.update(kw)
     def est(self, st):
@@ -75,7 +75,7 @@ class Strategic:
         best, besti = pass_val, None
         late = st.cfg.rounds - st.round
         for i, (c, v) in enumerate(h):
-            p1, p2 = T[(m, qi, v)]
+            p1, p2 = T[(m, qi, max(1, min(10, round(v * 10 / st.cfg.bid_max))))]
             if self.exact:   # use true unseen distribution for rivals' bids
                 p1, p2 = self.exact_probs(st, p, v, qi)
             burn_val = 0.0 if c in top else self.mine(st, p, c) - 0.5 * self.rivals(st, p, c)

@@ -40,6 +40,8 @@ class State:
                           burned=[0] * CATS, nostand_rounds=0, hand_sum=0, hand_obs=0, sec=0.0)
         self.plays = [dict(pass_=0, bid=[0] * (cfg.bid_max + 1)) for _ in range(self.n)]
         self.lotwins_by_bid = [0] * (cfg.bid_max + 1)
+        self.score_hist = []
+        self.cancelled_by = [0] * self.n
         self.crash_before_last = None
         self.leader_before_last = None
 
@@ -93,6 +95,8 @@ def play(cfg, bots, seed):
         for p, (c, v) in played.items(): cnt[v] = cnt.get(v, 0) + 1
         stand = sorted([p for p, (c, v) in played.items() if cnt[v] == 1], key=lambda p: -played[p][1])
         st.stats["cancelled"] += sum(1 for p, (c, v) in played.items() if cnt[v] > 1)
+        for p, (c, v) in played.items():
+            if cnt[v] > 1: st.cancelled_by[p] += 1
         winners = stand[:2]
         lots = list(st.block)
         if len(winners) >= 1:
@@ -114,7 +118,7 @@ def play(cfg, bots, seed):
                 st.stats["nodraw"] += 1; break
             for p in passers: st.draw(p)
         st.stats["sec"] += 25 + 15 + 4 * burned + 6 * (2 - len(lots))
-        st.leaders.append(st.provisional_leader())
+        st.leaders.append(st.provisional_leader()); st.score_hist.append(st.scores()[0])
         if cfg.log:
             st.log.append("R%d lots %s bids %s -> winners %s, unsold %d, hype %s" % (
                 r + 1, st.block, {p + 1: played[p] for p in played}, [w + 1 for w in winners], len(lots), st.hype_counts()))
