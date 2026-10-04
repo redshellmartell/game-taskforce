@@ -1,41 +1,41 @@
 Duel Flip: casual (seat 1) vs story (seat 2), table 'best' for casual. Cards are species+value (Cr St Ur An Sn Ke).
 T0 P0 first Cr3
-T0 P0 flips Ur3 CLASH -> buoy
+T0 P0 flips Ur3 CLASH -> Lifebuoy
+T0 P0 banks single card
 T1 P1 first Cr9
-T1 P1 flips Sn9 CLASH -> BUST, opp gets ['Cr9']
+T1 P1 flips Sn9 CLASH -> BUST, opp takes ['Cr9']
 T2 P0 first Ur4
-T2 P0 flips Ke4 CLASH -> BUST, opp gets ['Ur4']
+T2 P0 flips Ke4 CLASH -> BUST, opp takes ['Ur4']
 T3 P1 first Sn3
 T3 P1 flips St4
 T3 P1 flips Ur7
 T3 P1 flips Sn1
 T3 P1 flips St10
-T3 P1 banks ['Sn3', 'St4', 'Ur7', 'St10'] leaves Sn1
-T4 P0 first An10
-T4 P0 flips Cr1 CLASH(bait) -> BUST, opp gets ['An10', 'Sn1']
+T3 P1 banks, leaves Sn1
+T4 P0 first An10 (bait Sn1)
+T4 P0 flips Cr1 CLASH -> BUST, opp takes ['Sn1', 'An10']
 T5 P1 first St1
 T5 P1 flips Ur2
-T5 P1 flips Sn2 CLASH -> BUST, opp gets ['St1', 'Ur2']
+T5 P1 flips Sn2 CLASH -> BUST, opp takes ['St1', 'Ur2']
 T6 P0 first An5
 T6 P0 flips Sn8
-T6 P0 banks ['Sn8'] leaves An5
-T7 P1 first Cr8
+T6 P0 banks, leaves An5
+T7 P1 first Cr8 (bait An5)
 T7 P1 flips Cr6
-T7 P1 flips St5 CLASH -> buoy
-T7 P1 banks ['An5', 'Cr8'] leaves Cr6
-T8 P0 first An8
-T8 P0 flips Ur6 CLASH(bait) -> BUST, opp gets ['An8', 'Cr6']
+T7 P1 flips St5 CLASH -> Lifebuoy
+T7 P1 pile 14 vs bait An5: claims
+T7 P1 banks, leaves Cr6
+T8 P0 first An8 (bait Cr6)
+T8 P0 flips Ur6 CLASH -> BUST, opp takes ['Cr6', 'An8']
 T9 P1 first Ke10
 T9 P1 flips An9
-T9 P1 banks ['An9'] leaves Ke10
-T10 P0 first Ur9
+T9 P1 banks, leaves Ke10
+T10 P0 first Ur9 (bait Ke10)
 T10 P0 flips St3
-T10 P0 banks ['Ke10', 'Ur9'] leaves St3
-T11 P1 first Ur5
+T10 P0 pile 12 vs bait Ke10: claims
+T10 P0 banks, leaves St3
+T11 P1 first Ur5 (bait St3)
 T11 P1 flips St8
 T11 P1 flips Sn7
-T11 P1 banks ['St3', 'St8', 'Sn7'] leaves Ur5
-T12 P0 first Cr4
-T12 P0 flips An7
-T12 P0 flips Cr10
-T12 P0 banks ['Ur5', 'An7', 'Cr10'] leaves Cr4
+T11 P1 pile 20 vs bait St3: claims
+T11 P1 banks, leaves Ur5

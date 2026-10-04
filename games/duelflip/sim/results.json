@@ -1,0 +1,158 @@
+{
+ "n": 2000,
+ "avg": {
+  "random": 0.2845,
+  "greedy": 0.6085499999999999,
+  "bank_early": 0.547,
+  "pusher": 0.33940000000000003,
+  "hoarder": 0.47939999999999994,
+  "strategic": 0.7277499999999999
+ },
+ "pair": {
+  "random v greedy": 0.224,
+  "random v bank_early": 0.253,
+  "random v pusher": 0.499,
+  "random v hoarder": 0.306,
+  "random v strategic": 0.141,
+  "greedy v random": 0.775,
+  "greedy v bank_early": 0.565,
+  "greedy v pusher": 0.693,
+  "greedy v hoarder": 0.623,
+  "greedy v strategic": 0.387,
+  "bank_early v random": 0.737,
+  "bank_early v greedy": 0.432,
+  "bank_early v pusher": 0.703,
+  "bank_early v hoarder": 0.557,
+  "bank_early v strategic": 0.306,
+  "pusher v random": 0.478,
+  "pusher v greedy": 0.296,
+  "pusher v bank_early": 0.298,
+  "pusher v hoarder": 0.384,
+  "pusher v strategic": 0.24,
+  "hoarder v random": 0.684,
+  "hoarder v greedy": 0.388,
+  "hoarder v bank_early": 0.441,
+  "hoarder v pusher": 0.602,
+  "hoarder v strategic": 0.282,
+  "strategic v random": 0.862,
+  "strategic v greedy": 0.607,
+  "strategic v bank_early": 0.693,
+  "strategic v pusher": 0.774,
+  "strategic v hoarder": 0.703
+ },
+ "seat1_mirror": {
+  "random": 0.489,
+  "greedy": 0.496,
+  "bank_early": 0.499,
+  "pusher": 0.507,
+  "hoarder": 0.502,
+  "strategic": 0.512
+ },
+ "gap": 1.2000000000000028,
+ "turns_mean": 23.226,
+ "turns_sd": 1.6489160075637668,
+ "ties": 0.002,
+ "scoreties": 0.0065,
+ "caps": 0,
+ "lc": 3.4035,
+ "el_half": 0.7475826972010178,
+ "el_third": 0.6861648016276704,
+ "exps": {},
+ "claim_rate": 0.9925668979187314,
+ "bait_turn_rate": 0.7640144665461122,
+ "busts_per_game": 4.3425,
+ "bait_busts_per_game": 1.7855,
+ "buoys_per_game": 2.0,
+ "left_hist": {
+  "1": 7775,
+  "4": 4692,
+  "3": 5596,
+  "5": 3911,
+  "2": 6576,
+  "7": 2220,
+  "10": 709,
+  "6": 3020,
+  "8": 1481,
+  "9": 987
+ },
+ "scout_per_game": 1.85,
+ "claim_by_val": [
+  null,
+  1.0,
+  0.999,
+  0.999,
+  0.997,
+  0.996,
+  0.989,
+  0.983,
+  0.965,
+  0.95,
+  0.891
+ ],
+ "bait_by_val": [
+  0,
+  5970,
+  5123,
+  4386,
+  3577,
+  3002,
+  2296,
+  1679,
+  1074,
+  679,
+  466
+ ],
+ "avg_bust_pile": 5.88957973517559,
+ "forced_end": 0.0355,
+ "hist": [
+  [
+   17,
+   4
+  ],
+  [
+   18,
+   9
+  ],
+  [
+   19,
+   20
+  ],
+  [
+   20,
+   76
+  ],
+  [
+   21,
+   172
+  ],
+  [
+   22,
+   333
+  ],
+  [
+   23,
+   488
+  ],
+  [
+   24,
+   461
+  ],
+  [
+   25,
+   303
+  ],
+  [
+   26,
+   101
+  ],
+  [
+   27,
+   29
+  ],
+  [
+   28,
+   4
+  ]
+ ],
+ "total": 72000
+}

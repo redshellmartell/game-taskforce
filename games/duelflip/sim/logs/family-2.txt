@@ -1,41 +1,41 @@
 Duel Flip: family (seat 1) vs competitor (seat 2), table 'worst' for family. Cards are species+value (Cr St Ur An Sn Ke).
 T0 P0 first An7
 T0 P0 flips An5
-T0 P0 banks ['An7'] leaves An5
-T1 P1 first Ke2
+T0 P0 banks, leaves An5
+T1 P1 first Ke2 (bait An5)
 T1 P1 flips Ke6
-T1 P1 flips St2 CLASH -> BUST, opp gets ['Ke2', 'Ke6']
-T2 P0 first Ur6
+T1 P1 flips St2 CLASH -> Lifebuoy
+T1 P1 pile 8 vs bait An5: claims
+T1 P1 banks, leaves Ke2
+T2 P0 first Ur6 (bait Ke2)
 T2 P0 flips An3
-T2 P0 banks ['An5', 'Ur6'] leaves An3
-T3 P1 first St5
+T2 P0 pile 9 vs bait Ke2: claims
+T2 P0 banks, leaves An3
+T3 P1 first St5 (bait An3)
 T3 P1 flips St9
-T3 P1 flips Ke1
-T3 P1 flips Ke7
-T3 P1 banks ['An3', 'St5', 'St9', 'Ke7'] leaves Ke1
-T4 P0 first An2
-T4 P0 flips St8
-T4 P0 banks ['Ke1', 'St8'] leaves An2
-T5 P1 first Ur10
-T5 P1 flips An10 CLASH -> buoy
-T5 P1 banks ['An2'] leaves Ur10
-T6 P0 first Sn2
-T6 P0 flips St4
-T6 P0 banks ['Ur10', 'Sn2'] leaves St4
-T7 P1 first An8
-T7 P1 flips Sn5
-T7 P1 banks ['St4', 'An8'] leaves Sn5
-T8 P0 first Cr10
-T8 P0 flips An6
-T8 P0 banks ['Sn5', 'Cr10'] leaves An6
-T9 P1 first Sn7
-T9 P1 flips Ke3
-T9 P1 banks ['An6', 'Sn7'] leaves Ke3
-T10 P0 first Ur7
-T10 P0 flips Cr6
-T10 P0 banks ['Ke3', 'Ur7'] leaves Cr6
-T11 P1 first Sn3
-T11 P1 flips Ur5
-T11 P1 flips St1
-T11 P1 banks ['Cr6', 'Sn3', 'Ur5'] leaves St1
-T12 P0 first St7
+T3 P1 pile 14 vs bait An3: claims
+T3 P1 banks, leaves St5
+T4 P0 first Ke1 (bait St5)
+T4 P0 flips Ke7
+T4 P0 pile 8 vs bait St5: claims
+T4 P0 banks, leaves Ke1
+T5 P1 first An2 (bait Ke1)
+T5 P1 flips St8
+T5 P1 pile 10 vs bait Ke1: claims
+T5 P1 banks, leaves An2
+T6 P0 first Ur10 (bait An2)
+T6 P0 flips An10 CLASH -> Lifebuoy
+T6 P0 pile 10 vs bait An2: claims
+T6 P0 banks single card
+T7 P1 first Sn2
+T7 P1 flips St4
+T7 P1 flips An8
+T7 P1 banks, leaves Sn2
+T8 P0 first Sn5 (bait Sn2)
+T8 P0 flips Cr10
+T8 P0 pile 15 vs bait Sn2: claims
+T8 P0 banks, leaves Cr10
+T9 P1 first An6 (bait Cr10)
+T9 P1 flips Sn7
+T9 P1 pile 13 vs bait Cr10: claims
+T9 P1 banks, leaves An6
