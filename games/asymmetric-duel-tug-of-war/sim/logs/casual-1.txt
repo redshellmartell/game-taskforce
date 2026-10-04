@@ -1,0 +1,27 @@
+Tug of Crowns: casual (Treasurer) vs family (Whisperer), best table for casual. Crown pos: negative = Treasurer side.
+R1 T plays Tax Collector
+R1 W plays Silencer hush #0
+R1 T plays Granary
+R1 W plays False Witness hush #1
+R1 T plays Mint Master
+R1 W passes
+R1 T passes
+R1 totals T5 W2 winner 0 pos -1
+R2 W plays Gossip
+R2 T plays Royal Loan spend 1
+R2 W plays Courtier
+R2 T plays Treasury Vault spend 1
+R2 W plays Courtier
+R2 T plays Ledger
+R2 W plays Veiled Threat
+R2 T plays Gold Purse
+R2 W plays Spymaster
+R2 T plays Gold Purse
+R2 W passes
+R2 T has no cards, passes
+R2 totals T17 W14 winner 0 pos -2
+R3 W passes
+R3 T plays Ledger
+R3 T plays Patron
+R3 T has no cards, passes
+R3 totals T5 W0 winner 0 pos -4

@@ -95,7 +95,6 @@
   ],
   "ambiguities": [
     "Rules v2 has no unresolved ambiguities in simulation. Interpretations used: revokes are impossible; Heat on a 0 bonus does nothing; round 1 has no Heat (all tied); the Double-Crosser deal order has no effect on a random shuffle.",
-    "Minor wording point: rules say the role cards pass 'to the right' while the Safecracker sits on the Planner's left; both are consistent only because rotation is cyclic (checked: P becomes S's seat... see Phase 7 text). Suggest stating the new seat-to-role mapping once in setup only.",
     "Targets 3-7 with crew tricks 0-7: Target 7 is a clean hit only on a sweep; legal, and rated as high-risk by the bots (success 69%)."
   ],
   "problems": [

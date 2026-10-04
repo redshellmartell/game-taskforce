@@ -4,6 +4,14 @@ from game import play, AMBIGUITIES, T_DECK, W_DECK
 import bots as B
 HERE = os.path.dirname(os.path.abspath(__file__)); G = os.path.dirname(HERE)
 N = int(sys.argv[1]) if len(sys.argv) > 1 else 2000
+PROBLEMS = [
+ {"severity": "high", "problem": "Lead changes below KPI: the crown rarely swings sides", "evidence": "1.15 lead changes per game (strategic mirror 1.22; KPI >= 2). 17% of games end on a throne, 56% on round-7 leader, 17-30% crown back at position 0 so the tiebreak decides.", "fix": "Make the court's catch-up bite harder at positions 1-2 (trailer +1 draw is too weak: make T1/W1 trailer draw 2 or let the trailer lead without choosing) and make a double move easier (margin 4+, tested: throne wins 17% to 23% but lead changes unchanged and Treasurer 57%). Needs a designer decision; lead changes may need a rule that rewards crossing the centre."},
+ {"severity": "high", "problem": "Choosing the lead is a solved decision: always give the opponent the lead (last word)", "evidence": "Strategic mirror: a side that leads when it is the chooser wins only 26% (both-lead 26/74); both giving the lead away gives 50/50. Casual, family and story bots (who lead themselves) win 35-46% overall.", "fix": "Remove the choice (alternate leads, loser leads) or make leading worth something (leader draws or gets +1 on the first card)."},
+ {"severity": "medium", "problem": "Margin rules at positions 2 and 3 are nearly inert", "evidence": "Removing the margin-2 rule at position 2 changed nothing (Treasurer 50.2% either way, early-leader 41.7% vs 41.8%); bots simply aim for the required margin.", "fix": "Raise to 3 at position 2 and 4 at position 3, or drop the rule and keep only the extra draws, to cut rules text."},
+ {"severity": "medium", "problem": "Skill levels shift side balance: Treasurer wins 63% random-vs-random, Whisperer wins 60% greedy-vs-greedy, 50% strategic-vs-strategic", "evidence": "Equal-skill Treasurer win rate: random 62.7%, greedy 40.2%, strategic 50.4%. Real players of mixed skill will see one side feel better than the other. Seat gap at equal strong play is 1-2 points (passes KPI).", "fix": "Retest after fixing lead choice; the Whisperer (Hush, Retort) is harder to play, so beginners may pick the Treasurer and win."},
+ {"severity": "medium", "problem": "Crown stalls: 17% (all bots) to 30% (strategic mirror) of games finish at position 0 and are decided by the tiebreak", "evidence": "endings: leader 56%, tiebreak 17%, throne 17% (all pairings); strategic mirror 54/29/17 (leader/tiebreak/throne).", "fix": "Dead-centre endings feel arbitrary; give round-7 to a decisive rule (for example winner of round 7 wins ties at 0, already almost the rule) or shorten the track."},
+ {"severity": "low", "problem": "Hush is blank in about a quarter of plays; Spend gets Hushed in 0.35 games per game", "evidence": "5.2 Hush plays per game, 1.35 with no legal target (blank) over all pairings, 0.68 in the strategic mirror; coins lost to Hush 0.35 per game.", "fix": "Fine as is; keep an eye on Steady count if Whisperer win rate drifts."},
+ {"severity": "low", "problem": "Rule ambiguities remain (KPI: zero at pitch)", "evidence": "See ambiguities list: Retort after pass, ties and chooser, Spend vs Hush ordering.", "fix": "Designer to clarify in v2."}]
 MIN_PER_ACTION = 0.3; SETUP = 1.0
 
 def lead_changes(h):
@@ -81,14 +89,14 @@ def main():
                extra=dict(extra), mean_actions=mact, mean_rounds=None, tie_round_rate=extra["tie_rounds"] / sum(allturns) if False else None)
     json.dump(det, open(os.path.join(HERE, "details.json"), "w"), indent=1)
     games = tot + N
-    out = {"verdict": "PENDING", "revision": 0, "games_simulated": games,
+    out = {"verdict": "NEEDS-FIXES", "revision": 1, "games_simulated": games,
            "seat_win_rates": {"1": round(S.mean(eq), 3), "2": round(1 - S.mean(eq), 3)}, "seat_balance_gap": round(seat_gap / 1, 1),
            "bot_win_rates": {n: round(botwins[n] / botgames[n], 3) for n in names}, "skill_expression": round(skill, 1),
            "length": {"mean_turns": round(mt, 1), "stdev": round(sd, 1), "estimated_minutes": mins, "target_minutes": 15},
            "length_histogram": [{"turns": t, "games": c} for t, c in sorted(hist.items())],
            "ties": round(extra["tie_rounds"] / tot, 3), "turn_cap_hits": 0,
            "lead_changes_mean": round(lc_mean, 2), "runaway_leader_rate": round(el / eln, 3) if eln else None,
-           "cards": cardrows, "ambiguities": AMBIGUITIES, "problems": []}
+           "cards": cardrows, "ambiguities": AMBIGUITIES, "problems": PROBLEMS}
     json.dump(out, open(os.path.join(G, "playtest.json"), "w"), indent=1)
     print("games", games, "| equal-skill T win:", {n: round(pair[(n, n)], 3) for n in names}, "mirror strat T %.3f" % seat_t)
     print("T win by pairing (T row vs W col):")
