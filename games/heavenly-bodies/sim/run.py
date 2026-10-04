@@ -187,6 +187,25 @@ def main(N=2000):
         cardstat[cid] = dict(name=c["name"], played_rate=gp, win_correlation=corr, per_player_played=len(pl_) / len(pg))
     res["cards"] = cardstat
 
+    # ---------------- (d) Critical Mass countdown events
+    def cmsum(rows):
+        ann = sum(r["stats"]["cm_announce"] for r in rows); can = sum(r["stats"]["cm_cancel"] for r in rows); ret = sum(r["stats"]["cm_retrigger"] for r in rows)
+        by = [x for r in rows for x in r["cancel_by"]]
+        cmw = sum(1 for r in rows if r["reason"] == "cm")
+        return dict(games=len(rows), games_with_announce=share(rows, lambda r: r["stats"]["cm_announce"] > 0), announces=ann / len(rows), cancels=can / len(rows),
+                    games_with_cancel=share(rows, lambda r: r["stats"]["cm_cancel"] > 0), retrigger_games=share(rows, lambda r: r["stats"]["cm_retrigger"] > 0),
+                    cancel_share_of_announces=can / max(1, ann), cm_wins_per_announce=cmw / max(1, ann), cancel_by_opponent=sum(1 for x in by if x == "opp") / max(1, len(by)))
+    res["cm_events"] = {"2p_mirror": cmsum(res["mirror2_rows"]), "3p_mirror": cmsum(res["ffa3_rows"]), "4p_mirror": cmsum(res["ffa4_rows"]), "solo_vs_passive": cmsum(solo)}
+    # turn-1 / turn-2 plays (dead early hands in real games)
+    t1 = [dict(r["tp"])[1] for r in res["mirror2_rows"]]; t2 = [dict(r["tp"])[2] for r in res["mirror2_rows"] if 2 in dict(r["tp"])]
+    res["turn_plays"] = dict(t1_mean=mean(t1), t1_two_plays=share(res["mirror2_rows"], lambda r: dict(r["tp"])[1] == 2), t1_zero=share(res["mirror2_rows"], lambda r: dict(r["tp"])[1] == 0),
+                             t2_mean=mean(t2), t2_two_plays=mean(1 if x == 2 else 0 for x in t2), t1_one_play=share(res["mirror2_rows"], lambda r: dict(r["tp"])[1] == 1))
+    # 5p / 6p length (strategic mirror)
+    big = {}
+    for n in (5, 6):
+        rs = batch(300, lambda k: [S(k * 7 + j) for j in range(n)], lambda k: G.Config(n, first=0), 95000 + n * 1000)
+        big["%dp" % n] = dict(turns=mean(r["turns"] for r in rs), minutes=mean(r["turns"] for r in rs) * MIN_PER_TURN + SETUP_MIN, **{k: v for k, v in path_summary(rs).items() if k in ("cm_share", "star_share", "rounds_all", "cap")})
+    res["big"] = big
     res["elapsed"] = time.time() - t0
     return res
 
