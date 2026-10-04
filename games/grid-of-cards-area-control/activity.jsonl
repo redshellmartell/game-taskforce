@@ -6,3 +6,5 @@
 {"time":"2026-10-04T11:20:00Z","agent":"game-designer","game":"grid-of-cards-area-control","event":"start","message":"Designing from the brief"}
 {"time":"2026-10-04T11:26:00Z","agent":"game-designer","game":"grid-of-cards-area-control","event":"done","message":"rules.md v1 written"}
 {"time":"2026-10-04T11:06:55Z","agent":"playtester","game":"grid-of-cards-area-control","event":"start","message":"First playtest of rules v1: simulation, narrated play, panel rotation"}
+{"time":"2026-10-04T11:23:55Z","agent":"playtester","game":"grid-of-cards-area-control","event":"step","message":"28,000 headline games and 4 experiments run; panel rotation (50 tables, 16,000 games per persona) and scoring done"}
+{"time":"2026-10-04T11:23:55Z","agent":"playtester","game":"grid-of-cards-area-control","event":"done","message":"Verdict NEEDS-FIXES: 2p ends on stall limit (58%), lead changes 1.77, runaway 0.687; 3-4p fine; no Bar Raiser veto"}

@@ -276,6 +276,26 @@
         "critic": null
       },
       "kill_reason": null
+    },
+    {
+      "slug": "heavenly-bodies",
+      "title": "Heavenly Bodies",
+      "source": "owner",
+      "stage": "design",
+      "revision": 0,
+      "history": [
+        {
+          "stage": "design",
+          "time": "2026-10-04T11:24:21Z",
+          "verdict": null,
+          "note": "owner idea (Star roster only); waiting for the owner's Rules v2 before any agent runs"
+        }
+      ],
+      "verdicts": {
+        "playtest": null,
+        "critic": null
+      },
+      "kill_reason": null
     }
   ]
 }
