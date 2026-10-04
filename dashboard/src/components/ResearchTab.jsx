@@ -59,17 +59,21 @@ export function ResearchTab({ state }) {
   const mine = state.approvals.requests.filter((r) => r.research_kind).slice(0, 6);
   return (
     <>
-      <p className="muted small" style={{ marginTop: 0 }}>Each button opens a popup. <b>Run this</b> is your approval; the dashboard never starts anything. Say <span className="mono">continue with approved work</span> to the Director and it runs.</p>
-      {BUTTONS.map((x) => {
-        const h = hintFor(x.kind, hints);
-        return (
-          <div className="research-card" key={x.kind}>
-            <div className="research-head"><b>{x.title}</b><span className="chip">{x.gate}</span><span className="chip" title={USAGE_TEXT[x.usage || 'M']}>usage {x.usage || 'M-XL'}</span></div>
-            <p className="small" style={{ margin: '4px 0' }}>{x.blurb}</p>
-            {h && <p className={`small ${h.due ? 'due' : 'muted'}`} style={{ margin: '0 0 6px' }}>{typeof h === 'string' ? h : h.text}</p>}
-            <button className="primary" onClick={() => { setOpen(x.kind); setMsg(null); }}>{x.title}…</button>
-          </div>);
-      })}
+
+      <div className="action-tiles">
+        {BUTTONS.map((x) => {
+          const h = hintFor(x.kind, hints);
+          const due = h && typeof h !== 'string' && h.due;
+          return (
+            <button key={x.kind} className={`action-tile ${due ? 'due' : ''}`} onClick={() => { setOpen(x.kind); setMsg(null); }}>
+              <span className="at-title">{x.title}{due && <span className="at-due">due</span>}</span>
+              <span className="at-blurb">{x.blurb}</span>
+              {h && <span className="at-hint">{typeof h === 'string' ? h : h.text}</span>}
+              <span className="at-foot"><span className="chip">{x.gate}</span><span className="chip" title={USAGE_TEXT[x.usage || 'M']}>usage {x.usage || 'M-XL'}</span><span className="at-go">Open →</span></span>
+            </button>);
+        })}
+      </div>
+      <p className="muted small" style={{ margin: '0 0 8px' }}>Run this in the popup is your approval. Then tell the Director: <span className="mono">continue with approved work</span>.</p>
       {msg && <p className={msg.ok ? 'saved-ok' : 'saved-err'} role="status">{msg.text}</p>}
       {mine.length > 0 && <><h4>Your research requests</h4>{mine.map((r) => (
         <div className="item" key={r.id}><b>{BUTTONS.find((x) => x.kind === r.research_kind)?.title || r.research_kind}</b>{r.targets ? ` (${r.targets.join(', ')})` : ''}<div className="meta">{done(r.id) ? 'done' : r.status === 'approved' ? 'approved, waiting for the Director' : r.status} · {ago(r.time)}</div></div>))}</>}

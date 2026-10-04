@@ -76,10 +76,11 @@ function TalkTab({ agent, state }) {
 
 // Click a node -> tabs: what it's doing, how it works, its work, talk to it.
 export function AgentPanel({ agent, state, onClose, initialTab, onPersona }) {
-  const [tab, setTab] = useState(initialTab || 'doing');
+  const firstTab = agent.id === 'market-researcher' ? 'research' : 'doing';   // Market Intel opens on its actions
+  const [tab, setTab] = useState(initialTab || firstTab);
   const [viewing, setViewing] = useState(null);
   const [personaId, setPersonaId] = useState(null);   // kept here so "Back" from a file returns to the same persona
-  useEffect(() => { setTab(initialTab || 'doing'); setViewing(null); setPersonaId(null); }, [agent.id, initialTab]);
+  useEffect(() => { setTab(initialTab || (agent.id === 'market-researcher' ? 'research' : 'doing')); setViewing(null); setPersonaId(null); }, [agent.id, initialTab]);
   const version = state.generatedAt;
   const last = agent.lastEvent;
   const gameTitle = (slug) => state.games.find((g) => g.slug === slug)?.title || slug;
@@ -129,7 +130,7 @@ export function AgentPanel({ agent, state, onClose, initialTab, onPersona }) {
   return (
     <Shell title={`${agent.room} · ${STATE_LABEL[agent.state]}`} color={agent.color} onClose={onClose}
       help={<><Help topic="agent" />{agent.id !== 'manager' && agent.id !== 'test-panel' && <Help topic="subagent" />}</>}
-      tabs={[['doing', "What it's doing"], ['how', 'How it works'], ['work', 'Its work'], ...(agent.id === 'market-researcher' ? [['research', 'Research']] : []), ...(agent.id === 'playtester' || agent.id === 'test-panel' ? [['panel', 'Test panel']] : []), ['talk', 'Talk to it']]} tab={tab} setTab={(t) => { setViewing(null); setTab(t); }}>
+      tabs={[...(agent.id === 'market-researcher' ? [['research', 'Research actions']] : []), ['doing', "What it's doing"], ['how', 'How it works'], ['work', 'Its work'], ...(agent.id === 'playtester' || agent.id === 'test-panel' ? [['panel', 'Test panel']] : []), ['talk', 'Talk to it']]} tab={tab} setTab={(t) => { setViewing(null); setTab(t); }}>
       {content}
     </Shell>
   );
