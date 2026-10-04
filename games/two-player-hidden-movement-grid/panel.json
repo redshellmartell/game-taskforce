@@ -1,0 +1,403 @@
+{
+  "revision": 0,
+  "stage": "scores",
+  "personas": {
+    "barraiser": {
+      "fun": 4.26,
+      "replay": 4.06,
+      "would_buy": "yes",
+      "price_usd": 46,
+      "metrics": {
+        "originality": 0.75,
+        "skill_expression": 1.0,
+        "length_fit": 0.74,
+        "rules_simplicity": 0.09,
+        "dominant_strategy_absent": 1.0,
+        "decisions_per_turn": 1.0,
+        "lead_changes": 0.374,
+        "catch_up": 0.574,
+        "interaction": 0.637
+      },
+      "pet_peeves_hit": [
+        "Ambiguous rules and missing edge cases"
+      ],
+      "bot": {
+        "win_rate": 0.605,
+        "fell_behind_rate": 0.294,
+        "decisions_per_turn": 3.35,
+        "downtime": 0.0,
+        "games": 2000,
+        "seat_win_rates": {
+          "1": 0.597,
+          "2": 0.613
+        }
+      },
+      "best_table": [
+        "barraiser",
+        "story"
+      ],
+      "worst_table": [
+        "barraiser",
+        "competitor"
+      ],
+      "review": null,
+      "veto": {
+        "active": false,
+        "reasons": []
+      }
+    },
+    "casual": {
+      "fun": 3.19,
+      "replay": 3.43,
+      "would_buy": "maybe",
+      "price_usd": 12,
+      "metrics": {
+        "originality": 0.75,
+        "skill_expression": 1.0,
+        "length_fit": 1.0,
+        "rules_simplicity": 0.09,
+        "dominant_strategy_absent": 1.0,
+        "decisions_per_turn": 1.0,
+        "lead_changes": 0.395,
+        "catch_up": 0.223,
+        "interaction": 0.731
+      },
+      "pet_peeves_hit": [
+        "A long or heavy rulebook and a teacher who needs ten minutes of explanation"
+      ],
+      "bot": {
+        "win_rate": 0.331,
+        "fell_behind_rate": 0.497,
+        "decisions_per_turn": 3.28,
+        "downtime": 0.0,
+        "games": 2000,
+        "seat_win_rates": {
+          "1": 0.325,
+          "2": 0.337
+        }
+      },
+      "best_table": [
+        "casual",
+        "story"
+      ],
+      "worst_table": [
+        "barraiser",
+        "casual"
+      ],
+      "review": null
+    },
+    "competitor": {
+      "fun": 4.45,
+      "replay": 4.18,
+      "would_buy": "yes",
+      "price_usd": 34,
+      "metrics": {
+        "originality": 0.75,
+        "skill_expression": 1.0,
+        "length_fit": 0.493,
+        "rules_simplicity": 0.09,
+        "dominant_strategy_absent": 1.0,
+        "decisions_per_turn": 1.0,
+        "lead_changes": 0.391,
+        "catch_up": 0.654,
+        "interaction": 0.661
+      },
+      "pet_peeves_hit": [
+        "Ambiguous rules and missing errata"
+      ],
+      "bot": {
+        "win_rate": 0.642,
+        "fell_behind_rate": 0.263,
+        "decisions_per_turn": 3.36,
+        "downtime": 0.0,
+        "games": 2000,
+        "seat_win_rates": {
+          "1": 0.643,
+          "2": 0.64
+        }
+      },
+      "best_table": [
+        "competitor",
+        "story"
+      ],
+      "worst_table": [
+        "barraiser",
+        "competitor"
+      ],
+      "review": null
+    },
+    "family": {
+      "fun": 2.91,
+      "replay": 3.25,
+      "would_buy": "no",
+      "price_usd": null,
+      "metrics": {
+        "originality": 0.75,
+        "skill_expression": 1.0,
+        "length_fit": 0.987,
+        "rules_simplicity": 0.09,
+        "dominant_strategy_absent": 1.0,
+        "decisions_per_turn": 1.0,
+        "lead_changes": 0.374,
+        "catch_up": 0.329,
+        "interaction": 0.689
+      },
+      "pet_peeves_hit": [
+        "Rules that are hard to teach, or a thick rulebook that the parent must master first",
+        "A child getting hopelessly behind with no way back, or busting round after round"
+      ],
+      "bot": {
+        "win_rate": 0.451,
+        "fell_behind_rate": 0.402,
+        "decisions_per_turn": 3.56,
+        "downtime": 0.0,
+        "games": 2000,
+        "seat_win_rates": {
+          "1": 0.487,
+          "2": 0.414
+        }
+      },
+      "best_table": [
+        "family",
+        "story"
+      ],
+      "worst_table": [
+        "family",
+        "strategist"
+      ],
+      "review": null
+    },
+    "story": {
+      "fun": 3.26,
+      "replay": 3.47,
+      "would_buy": "maybe",
+      "price_usd": 32,
+      "metrics": {
+        "originality": 0.75,
+        "skill_expression": 1.0,
+        "length_fit": 0.329,
+        "rules_simplicity": 0.09,
+        "dominant_strategy_absent": 1.0,
+        "decisions_per_turn": 1.0,
+        "lead_changes": 0.392,
+        "catch_up": 0.236,
+        "interaction": 0.768
+      },
+      "pet_peeves_hit": [
+        "Rules overhead and bookkeeping that pull people out of the world"
+      ],
+      "bot": {
+        "win_rate": 0.338,
+        "fell_behind_rate": 0.493,
+        "decisions_per_turn": 3.24,
+        "downtime": 0.0,
+        "games": 2000,
+        "seat_win_rates": {
+          "1": 0.34,
+          "2": 0.337
+        }
+      },
+      "best_table": [
+        "casual",
+        "story"
+      ],
+      "worst_table": [
+        "barraiser",
+        "story"
+      ],
+      "review": null
+    },
+    "strategist": {
+      "fun": 4.42,
+      "replay": 4.16,
+      "would_buy": "yes",
+      "price_usd": 33,
+      "metrics": {
+        "originality": 0.75,
+        "skill_expression": 1.0,
+        "length_fit": 0.329,
+        "rules_simplicity": 0.09,
+        "dominant_strategy_absent": 1.0,
+        "decisions_per_turn": 1.0,
+        "lead_changes": 0.379,
+        "catch_up": 0.684,
+        "interaction": 0.675
+      },
+      "pet_peeves_hit": [
+        "Dense, ambiguous rulebooks and scoring overload"
+      ],
+      "bot": {
+        "win_rate": 0.634,
+        "fell_behind_rate": 0.273,
+        "decisions_per_turn": 3.34,
+        "downtime": 0.0,
+        "games": 2000,
+        "seat_win_rates": {
+          "1": 0.612,
+          "2": 0.656
+        }
+      },
+      "best_table": [
+        "story",
+        "strategist"
+      ],
+      "worst_table": [
+        "competitor",
+        "strategist"
+      ],
+      "review": null
+    }
+  },
+  "rotation": {
+    "player_counts": [
+      2
+    ],
+    "tables": 15,
+    "seatings_per_table": 2,
+    "games_per_seating": 200,
+    "filler_bots": []
+  },
+  "matchups": [
+    {
+      "a": "barraiser",
+      "b": "casual",
+      "games": 400,
+      "a_win_rate": 0.719,
+      "note": "",
+      "a_fun": 4.28,
+      "b_fun": 3.08
+    },
+    {
+      "a": "barraiser",
+      "b": "competitor",
+      "games": 400,
+      "a_win_rate": 0.495,
+      "note": "",
+      "a_fun": 4.22,
+      "b_fun": 4.42
+    },
+    {
+      "a": "barraiser",
+      "b": "family",
+      "games": 400,
+      "a_win_rate": 0.599,
+      "note": "",
+      "a_fun": 4.25,
+      "b_fun": 2.8
+    },
+    {
+      "a": "barraiser",
+      "b": "story",
+      "games": 400,
+      "a_win_rate": 0.74,
+      "note": "",
+      "a_fun": 4.32,
+      "b_fun": 3.12
+    },
+    {
+      "a": "barraiser",
+      "b": "strategist",
+      "games": 400,
+      "a_win_rate": 0.47,
+      "note": "",
+      "a_fun": 4.26,
+      "b_fun": 4.41
+    },
+    {
+      "a": "casual",
+      "b": "competitor",
+      "games": 400,
+      "a_win_rate": 0.244,
+      "note": "",
+      "a_fun": 3.17,
+      "b_fun": 4.48
+    },
+    {
+      "a": "casual",
+      "b": "family",
+      "games": 400,
+      "a_win_rate": 0.409,
+      "note": "",
+      "a_fun": 3.25,
+      "b_fun": 3.16
+    },
+    {
+      "a": "casual",
+      "b": "story",
+      "games": 400,
+      "a_win_rate": 0.459,
+      "note": "",
+      "a_fun": 3.39,
+      "b_fun": 3.5
+    },
+    {
+      "a": "casual",
+      "b": "strategist",
+      "games": 400,
+      "a_win_rate": 0.26,
+      "note": "",
+      "a_fun": 3.1,
+      "b_fun": 4.46
+    },
+    {
+      "a": "competitor",
+      "b": "family",
+      "games": 400,
+      "a_win_rate": 0.675,
+      "note": "",
+      "a_fun": 4.42,
+      "b_fun": 2.78
+    },
+    {
+      "a": "competitor",
+      "b": "story",
+      "games": 400,
+      "a_win_rate": 0.755,
+      "note": "",
+      "a_fun": 4.48,
+      "b_fun": 3.19
+    },
+    {
+      "a": "competitor",
+      "b": "strategist",
+      "games": 400,
+      "a_win_rate": 0.517,
+      "note": "",
+      "a_fun": 4.46,
+      "b_fun": 4.37
+    },
+    {
+      "a": "family",
+      "b": "story",
+      "games": 400,
+      "a_win_rate": 0.605,
+      "note": "",
+      "a_fun": 3.18,
+      "b_fun": 3.33
+    },
+    {
+      "a": "family",
+      "b": "strategist",
+      "games": 400,
+      "a_win_rate": 0.331,
+      "note": "",
+      "a_fun": 2.74,
+      "b_fun": 4.39
+    },
+    {
+      "a": "story",
+      "b": "strategist",
+      "games": 400,
+      "a_win_rate": 0.25,
+      "note": "",
+      "a_fun": 3.16,
+      "b_fun": 4.51
+    }
+  ],
+  "summary": {
+    "average_fun": 3.75,
+    "spread": 1.54,
+    "best_fit": "competitor",
+    "worst_fit": "family"
+  }
+}

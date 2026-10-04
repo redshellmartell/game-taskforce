@@ -4,3 +4,8 @@
 {"time": "2026-10-04T19:37:36Z", "agent": "game-designer", "game": "two-player-hidden-movement-grid", "event": "start", "message": "Writing rules.md from the brief"}
 {"time": "2026-10-04T19:42:32Z", "agent": "game-designer", "game": "two-player-hidden-movement-grid", "event": "done", "message": "rules.md written (cooling helm, collisions, torpedoes); playtest next"}
 {"time": "2026-10-04T19:42:32Z", "agent": "playtester", "game": "two-player-hidden-movement-grid", "event": "start", "message": "Coding the simulation and running experiments"}
+{"time": "2026-10-04T20:01:27Z", "agent": "playtester", "game": "two-player-hidden-movement-grid", "event": "step", "message": "Headline 12,000 games and 5 experiments done; verdict NEEDS-FIXES"}
+{"time": "2026-10-04T20:01:27Z", "agent": "playtester", "game": "two-player-hidden-movement-grid", "event": "step", "message": "Panel rotation (15 tables) and scoring done"}
+{"time": "2026-10-04T20:01:27Z", "agent": "playtester", "game": "two-player-hidden-movement-grid", "event": "done", "message": "playtest-report.md, playtest.json, panel.json written"}
+{"time": "2026-10-04T20:01:50Z", "agent": "playtester", "game": "two-player-hidden-movement-grid", "event": "done", "message": "Playtest NEEDS-FIXES: runaway leader 0.79, lead changes 1.5, Sonar dead card, 6 ambiguities; critique next"}
+{"time": "2026-10-04T20:01:50Z", "agent": "critic", "game": "two-player-hidden-movement-grid", "event": "start", "message": "Reviewing design and playtest"}

@@ -513,7 +513,7 @@
     {
       "slug": "two-player-hidden-movement-grid",
       "title": "Dead Reckoning",
-      "stage": "playtest",
+      "stage": "critique",
       "revision": 0,
       "history": [
         {
@@ -533,6 +533,12 @@
           "time": "2026-10-04T19:42:32Z",
           "verdict": null,
           "note": "rules.md written (cooling helm, collisions, torpedoes); playtest next"
+        },
+        {
+          "stage": "critique",
+          "time": "2026-10-04T20:01:50Z",
+          "verdict": null,
+          "note": "Playtest NEEDS-FIXES: runaway leader 0.79, lead changes 1.5, Sonar dead card, 6 ambiguities; critique next"
         }
       ],
       "verdicts": {
