@@ -250,6 +250,26 @@
         "critic": null
       },
       "kill_reason": null
+    },
+    {
+      "slug": "archetypes",
+      "title": "Archetypes",
+      "source": "owner",
+      "stage": "brief",
+      "revision": 0,
+      "history": [
+        {
+          "stage": "brief",
+          "time": "2026-10-04T11:17:44Z",
+          "verdict": null,
+          "note": "owner idea (from the inbox), enters at research"
+        }
+      ],
+      "verdicts": {
+        "playtest": null,
+        "critic": null
+      },
+      "kill_reason": null
     }
   ]
 }
