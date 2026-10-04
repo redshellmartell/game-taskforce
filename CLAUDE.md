@@ -241,7 +241,8 @@ The repository is the only memory between sessions. Follow this every time.
 1. Update `docs/plan/HANDOVER.md` (decisions made, what is untested, what is pending). Keep it short and current; delete what is stale.
 2. Run `python3 tools/usage/usage.py --record`, commit, and push to the designated branch.
 3. Tell the owner the work is on the branch and ask whether to open a pull request into `main`. Only open it when they say yes. The owner merges it; then the next session starts from the new `main`.
-4. One task per session. Suggest a fresh session at the next stage boundary.
+4. **Remind the owner of every action they must take on GitHub** (merge a pull request, approve, add a token, change a setting), in the same message, with the direct link and the exact buttons to click (for example: "Open <PR link>, click Merge pull request, then Confirm merge"). Say plainly when nothing is needed. Repeat the reminder at the end of the session if the step is still open.
+5. One task per session. Suggest a fresh session at the next stage boundary.
 
 ## Default first command
 
