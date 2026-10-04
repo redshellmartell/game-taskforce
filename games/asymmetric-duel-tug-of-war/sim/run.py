@@ -27,10 +27,12 @@ def run_pair(a, b, n, base=0, collect=None):
         res["echo"] += s["echo_returned"]; res["spend"] += s["spend_used"]; res["dbl"] += s["double_moves"]; res["tie_rounds"] += s["ties_rounds"]
         if collect is not None:
             for p in (0, 1):
-                for name in set(s["plays"][p]):
-                    d = collect[p].setdefault(name, [0, 0, 0]); d[0] += 1; d[1] += (r["winner"] == p)
-                for name in (T_DECK, W_DECK)[p]:
-                    if name not in s["plays"][p]: collect[p].setdefault(name, [0, 0, 0])[2] += (r["winner"] == p)
+                for name, (a_, b_) in s["card_round"][p].items():
+                    d = collect[p].setdefault(name, [0, 0, 0]); d[0] += a_; d[1] += b_
+                    d[2] += sum(1 for _ in [0] if False)
+                collect[p].setdefault("_rounds", [0, 0, 0]); collect[p]["_rounds"][0] += s["rounds"]; collect[p]["_rounds"][1] += s["round_w"][p]
+                # games in which the card was played at all
+                for name in s["plays"][p]: collect[p].setdefault("g:" + name, [0])[0] += 1
             collect["games"] += 1
     return res
 
@@ -48,6 +50,8 @@ def main():
     # mirror strategic stats
     mirror = run_pair("strategic", "strategic", N, base=90000)
     seat_t = mirror["tw"] / N
+    mir = dict(T_win=seat_t, lead_changes=S.mean(mirror["lc"]), ends=dict(mirror["end"]), early=mirror["el"] / max(1, mirror["eln"]), turns=S.mean(mirror["turns"]),
+               hush_blank=mirror["hush_blank"] / N, hush=mirror["hush"] / N, tie_rounds=mirror["tie_rounds"] / N, dbl=mirror["dbl"] / N)
     sr_t = pair[("strategic", "random")]; sr_w = 1 - pair[("random", "strategic")]   # strategic wins as T / as W vs random
     skill = (sr_t + sr_w) / 2 * 100 - (1 - (sr_t + sr_w) / 2) * 100
     sg_t = pair[("strategic", "greedy")]; sg_w = 1 - pair[("greedy", "strategic")]
@@ -60,17 +64,19 @@ def main():
     hist = collections.Counter(allturns)
     cardrows = []
     for p in (0, 1):
-        for name, (pl, wins, wnp) in sorted(cards[p].items()):
-            n = cards["games"]; notp = n - pl
-            wr_pl = wins / pl if pl else 0; wr_np = wnp / notp if notp else 0
-            corr = wr_pl - wr_np
+        base = cards[p]["_rounds"][1] / cards[p]["_rounds"][0]
+        for name, v_ in sorted(cards[p].items()):
+            if name.startswith("_") or name.startswith("g:"): continue
+            rp, rw = v_[0], v_[1]
+            n = cards["games"]; pl = cards[p]["g:" + name][0]
+            corr = rw / rp - base      # round win rate when the card is in the row, minus the side's baseline
             flag = None
             if pl / n < 0.3: flag = "rarely played"
-            elif corr < -0.05: flag = "dominated? played games win less"
-            elif corr > 0.12: flag = "strong"
+            elif corr < -0.12: flag = "weak: rounds with it are won %.0f pts less than the side's average" % (-corr * 100)
+            elif corr > 0.15: flag = "strong"
             cardrows.append({"name": ("T: " if p == 0 else "W: ") + name, "played_rate": round(pl / n, 3), "win_correlation": round(corr, 3), "flag": flag})
     lc_mean = S.mean(alllc)
-    det = dict(pair_T_win={"%s(T) vs %s(W)" % k: round(v, 3) for k, v in pair.items()}, mirror_strategic_T_win=seat_t,
+    det = dict(mirror=mir, pair_T_win={"%s(T) vs %s(W)" % k: round(v, 3) for k, v in pair.items()}, mirror_strategic_T_win=seat_t,
                strategic_vs_greedy=(sg_t + sg_w) / 2, greedy_vs_random=(gr_t + gr_w) / 2, ends=dict(ends), nomove_tiebreak=nomove,
                extra=dict(extra), mean_actions=mact, mean_rounds=None, tie_round_rate=extra["tie_rounds"] / sum(allturns) if False else None)
     json.dump(det, open(os.path.join(HERE, "details.json"), "w"), indent=1)
@@ -87,6 +93,7 @@ def main():
     print("games", games, "| equal-skill T win:", {n: round(pair[(n, n)], 3) for n in names}, "mirror strat T %.3f" % seat_t)
     print("T win by pairing (T row vs W col):")
     for a in names: print("  %-9s" % a, " ".join("%.3f" % pair[(a, b)] for b in names))
+    print("MIRROR strategic:", {k: (round(v, 3) if isinstance(v, float) else v) for k, v in mir.items()})
     print("bot win rates", out["bot_win_rates"], "skill gap strat-vs-random %.1f" % skill,
           "strat-vs-greedy %.3f greedy-vs-random %.3f" % ((sg_t + sg_w) / 2, (gr_t + gr_w) / 2))
     print("seat gap %.1f | turns %.1f sd %.1f actions %.1f -> %.1f min" % (seat_gap, mt, sd, mact, mins))

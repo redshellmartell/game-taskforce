@@ -1,6 +1,6 @@
 {
   "verdict": "NEEDS-FIXES",
-  "revision": 0,
+  "revision": 1,
   "games_simulated": 16005,
   "seat_win_rates": {
     "1": 0.351,
@@ -81,12 +81,6 @@
       "flag": null
     },
     {
-      "name": "No Trump",
-      "played_rate": 0.0,
-      "win_correlation": 0.0,
-      "flag": null
-    },
-    {
       "name": "Heat",
       "played_rate": 0.71,
       "win_correlation": null,
@@ -100,51 +94,34 @@
     }
   ],
   "ambiguities": [
-    "Heat when the leader is the Double-Crosser who also failed to score a bonus: Heat just does nothing (reduces a 0 bonus by 0). Simulated as no effect; rules say 'reduces your bonus by 1' which is unclear when no bonus is earned.",
-    "Rules say the Planner 'starts' by random draw but also that the DC deals starting with the Planner; dealing order has no effect in the sim.",
-    "Heat in round 1 and on ties is never held (as written); a 3-way tie at the top gives no Heat.",
-    "Revoke rule text ('trick count taken as played' vs 'scored as 0 tricks') is internally contradictory; revokes are impossible in the sim.",
-    "Role passing direction: 'pass each card one seat left' was implemented as the planner seat moving one seat to the right each round (P card goes left to become S). Because rotation is cyclic the choice is symmetric.",
-    "Tiebreaker 1 counts double-crosses only when the crew missed; Heat-reduced successes still count.",
-    "Rules.md section 4 phase 6: 'more or less than Target' - a Target the crew cannot reach (e.g. 7 with 0 tricks possible) is legal; no minimum-hand check.",
-    "Safecracker swap draws before the Planner's Plan is known to the DC? No: Plan announced first. Safecracker's hand is therefore adapted to a public Target and trump, giving the crew a 2-player information edge over the DC (a design property, not an ambiguity)."
+    "Rules v2 has no unresolved ambiguities in simulation. Interpretations used: revokes are impossible; Heat on a 0 bonus does nothing; round 1 has no Heat (all tied); the Double-Crosser deal order has no effect on a random shuffle.",
+    "Minor wording point: rules say the role cards pass 'to the right' while the Safecracker sits on the Planner's left; both are consistent only because rotation is cyclic (checked: P becomes S's seat... see Phase 7 text). Suggest stating the new seat-to-role mapping once in setup only.",
+    "Targets 3-7 with crew tricks 0-7: Target 7 is a clean hit only on a sweep; legal, and rated as high-risk by the bots (success 69%)."
   ],
   "problems": [
     {
       "severity": "high",
-      "problem": "The exact-contract twist almost never succeeds, so the Double-Crosser bonus is nearly free.",
-      "evidence": "Crew hits the Target 57% of rounds (design aim 40-60%); random bots 17%, greedy 19%, strategic 20%. Double-Crosser earns 4.0 pts/round vs Safecracker 3.5 and Planner 3.8.",
-      "fix": "Make hitting the target far likelier: accept Target +/-1 for a smaller bonus, or let the crew hit if tricks fall in a band; or cut the Double-Crosser bonus to +2 and raise the crew bonus."
-    },
-    {
-      "severity": "high",
-      "problem": "Intended strategy (hit the exact Target, duck to avoid overshoot) loses to plain trick-grabbing.",
-      "evidence": "Mixed table: greedy 63.5%, strategic 28.5%, random 8.1%. Greedy beats two randoms 83% of games vs strategic 68%. Four tuned variants of strategic (greedy swap/plan/lead, no-duck) stayed at 13-17% vs two greedy bots (fair is 33%).",
-      "fix": "Same as above: exactness must be achievable. Caveat: my strategic heuristic is a simple one and a smarter bot (card tracking, partner signalling) might do better."
+      "problem": "Greedy trick-grabbing still beats the intended contract-steering strategy; skill is in loot, not in the contract.",
+      "evidence": "Mixed table: greedy 63.5%, strategic 28.5%, random 8.1% (KPI/design aim: strategic >= 40%, >= greedy). Per round (300x6 games) greedy crew scores 4.4-4.5 pts and takes 3.7-3.8 tricks; strategic crew scores 3.5-3.6 with 2.3-2.9 tricks, yet contract success is the same (greedy 48-52%, strategic 53-55%). Ducking to protect the contract costs loot and does not raise the success rate. Doubling all bonuses (experiment) moves greedy 63%->50% and strategic 29%->33%; tripling gives 43%/34%: the gap closes only by making greedy worse, not strategic better.",
+      "fix": "Make steering reliably profitable: e.g. loot only for tricks won as Double-Crosser, or 1 loot per two tricks, or clean +5/+6 with messy 0; and/or give the crew a way to control the count (e.g. Planner may pass a card). Caveat: my strategic heuristic is simple; a smarter bot may do better, but a heuristic derived from the design notes that cannot match plain grabbing is a warning."
     },
     {
       "severity": "medium",
-      "problem": "Role imbalance within a round: Safecracker is the worst role, Double-Crosser the best.",
-      "evidence": "Points per round 3.53 (Safecracker) vs 3.95 (Double-Crosser); roles rotate so seats stay fair, but every player spends a third of the game in a role with little chance.",
-      "fix": "Rebalance bonuses; consider giving the Safecracker a keep-3 swap or a loot bonus."
-    },
-    {
-      "severity": "medium",
-      "problem": "Too few lead changes and a borderline runaway rate.",
-      "evidence": "1.49 lead changes per game (KPI >= 2); sole leader after round 3 wins 52.3% (KPI <= 65%). Removing Heat changes it little (lead changes 0.98, early leader 67.4%): Heat does almost nothing, it is held in 73% of rounds and costs the holder ~0.45 pts.",
-      "fix": "Make Heat bite harder (-2, or also -1 loot) or drop it to simplify; more volatile bonuses would also help."
+      "problem": "Lead changes below KPI.",
+      "evidence": "1.49 lead changes per game (KPI >= 2). Sole leader after round 3 wins 52.3% (OK, KPI <= 65%). Heat helps: without Heat lead changes 0.98 and early leader 67.4%.",
+      "fix": "Raise round volatility (bigger clean/blown bonuses, bonus multiplier 2 gave 1.56) or score the last round double; Heat -3 would be another lever."
     },
     {
       "severity": "low",
-      "problem": "Seat gap close to the limit and game length is fixed.",
-      "evidence": "Seat win rates [0.351, 0.332, 0.317] (gap 3.5 pts, standard error about 1.1 pts per seat at 2,000 games). All games last exactly 42 tricks; length is not variable, estimated 18 min vs target 20 (inside +/-20%).",
-      "fix": "Re-check seat gap on a larger run after the next revision; no change needed now."
+      "problem": "Target 3 dominates bot choices (about a third of rounds) but is the least reliable target.",
+      "evidence": "Planner picks Target 3 in 34% of rounds with a 36% success rate; Target 5-7 succeed 73-86%. Fixed Target 5 planner wins 37.6% (fair 33%) with success 61%, so not dominant.",
+      "fix": "None required; the bot's target estimate is conservative. Watch for high Targets being too easy for the crew (86%% at Target 6)."
     },
     {
       "severity": "low",
-      "problem": "Target choice: low targets dominate bot choices but are mostly misses.",
-      "evidence": "Strategic planners pick Target 3 in 34% of rounds with a 36% hit rate; best hit rate is Target 6 (86%). A fixed Target 5 planner wins 37.6% vs two adaptive bots (fair 33%), so fixed targets are not dominant.",
-      "fix": "Improve the bot's target estimate when revising; the real fix is the exactness issue above."
+      "problem": "Seat balance inside tolerance but with noise; length is fixed.",
+      "evidence": "Seat win rates [0.351, 0.332, 0.317], gap 3.5 pts (KPI <= 5, standard error ~1.1 pts per seat at 2,000 games). Every game is 42 tricks; estimated 18 min vs target 20 (inside +/-20%).",
+      "fix": "Re-check on 4,000+ games if the rules change again."
     }
   ]
 }

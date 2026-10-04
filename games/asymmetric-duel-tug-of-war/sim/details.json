@@ -1,4 +1,19 @@
 {
+ "mirror": {
+  "T_win": 0.4915,
+  "lead_changes": 1.2215,
+  "ends": {
+   "throne": 333,
+   "leader": 1066,
+   "tiebreak": 601
+  },
+  "early": 0.4352542372881356,
+  "turns": 47.988,
+  "hush_blank": 0.6795,
+  "hush": 5.3825,
+  "tie_rounds": 0.035,
+  "dbl": 0.8465
+ },
  "pair_T_win": {
   "random(T) vs random(W)": 0.627,
   "random(T) vs greedy(W)": 0.131,

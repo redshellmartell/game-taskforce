@@ -22,6 +22,8 @@ AMBIGUITIES = [
     "A player who passed with cards in hand may not re-enter (T), but W may via Retort only after T plays a card; T playing a card after W passed with no Retort in hand just continues.",
 ]
 
+KNOB = {"need": {2: 2, 3: 3}, "double_at": 5}
+
 def card_list(deck):
     out = []
     for name, (n, inf, kw) in deck.items():
@@ -47,7 +49,7 @@ class State:
         self.logon = log; self.log = []
         self.stats = dict(plays=[{}, {}], won_with=[{}, {}], hush=0, hush_blank=0, retort=0, spend_used=0, spend_coins=0,
                           hushed_spend=0, actions=0, passes=0, bank_lost=0, echo_returned=0, throne_win=0, round_end_win=0,
-                          pos0_end=0, tiebreak_noround=0, ties_rounds=0, double_moves=0, hush_targets_avail=[], rounds=0)
+                          pos0_end=0, tiebreak_noround=0, ties_rounds=0, double_moves=0, hush_targets_avail=[], rounds=0, card_round=[{}, {}], round_w=[0, 0])
     def L(self, s):
         if self.logon: self.log.append("R%d %s" % (self.rnd, s))
     def total(self, p):
@@ -57,7 +59,7 @@ class State:
     def need(self):
         """(leader, margin leader needs)"""
         a = abs(self.pos); ld = self.leader()
-        return ld, (3 if a == 3 else 2 if a == 2 else 1)
+        return ld, KNOB["need"].get(a, 1)
     def my_need(self, p):
         ld, m = self.need()
         return m if ld == p else 1
@@ -152,14 +154,16 @@ def play(bots, seed, log=False, max_rounds=7):
         if winner is None:
             stats["ties_rounds"] += 1; st.round_winners.append(None)
         else:
-            m = abs(t0 - t1); moved = 2 if m >= 5 else 1
+            m = abs(t0 - t1); moved = 2 if m >= KNOB["double_at"] else 1
             if moved == 2: stats["double_moves"] += 1
             old = st.pos
             st.pos += -moved if winner == 0 else moved
             st.pos = max(-4, min(4, st.pos)); st.last_mover = winner
             st.round_winners.append(winner)
-            for e in st.row[winner]:
-                n = e["card"][0]; stats["won_with"][winner][n] = stats["won_with"][winner].get(n, 0) + 1
+        for p_ in (0, 1):
+            for nm in set(e["card"][0] for e in st.row[p_]):
+                d = stats["card_round"][p_].setdefault(nm, [0, 0]); d[0] += 1; d[1] += (winner == p_)
+        stats["round_w"][0] += winner == 0; stats["round_w"][1] += winner == 1
         st.history.append(st.pos)
         st.L("totals T%d W%d winner %s pos %d" % (t0, t1, winner, st.pos))
         # cleanup

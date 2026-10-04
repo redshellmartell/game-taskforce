@@ -273,110 +273,110 @@
   {
    "name": "T: Chancellor's Seal",
    "played_rate": 0.839,
-   "win_correlation": 0.005,
-   "flag": null
+   "win_correlation": 0.214,
+   "flag": "strong"
   },
   {
    "name": "T: Gold Purse",
    "played_rate": 0.965,
-   "win_correlation": -0.117,
-   "flag": "dominated? played games win less"
+   "win_correlation": 0.058,
+   "flag": null
   },
   {
    "name": "T: Granary",
    "played_rate": 0.954,
-   "win_correlation": 0.07,
+   "win_correlation": 0.066,
    "flag": null
   },
   {
    "name": "T: Ledger",
    "played_rate": 0.958,
-   "win_correlation": -0.029,
+   "win_correlation": 0.07,
    "flag": null
   },
   {
    "name": "T: Mint Master",
    "played_rate": 0.934,
-   "win_correlation": -0.082,
-   "flag": "dominated? played games win less"
+   "win_correlation": 0.065,
+   "flag": null
   },
   {
    "name": "T: Patron",
    "played_rate": 0.944,
-   "win_correlation": -0.054,
-   "flag": "dominated? played games win less"
+   "win_correlation": 0.084,
+   "flag": null
   },
   {
    "name": "T: Royal Loan",
    "played_rate": 0.929,
-   "win_correlation": -0.182,
-   "flag": "dominated? played games win less"
+   "win_correlation": 0.03,
+   "flag": null
   },
   {
    "name": "T: Tax Collector",
    "played_rate": 0.959,
-   "win_correlation": -0.112,
-   "flag": "dominated? played games win less"
+   "win_correlation": 0.017,
+   "flag": null
   },
   {
    "name": "T: Treasury Vault",
    "played_rate": 0.865,
-   "win_correlation": -0.106,
-   "flag": "dominated? played games win less"
+   "win_correlation": 0.083,
+   "flag": null
   },
   {
    "name": "W: Courtier",
    "played_rate": 0.966,
-   "win_correlation": 0.128,
-   "flag": "strong"
+   "win_correlation": 0.111,
+   "flag": null
   },
   {
    "name": "W: Eavesdropper",
    "played_rate": 0.937,
-   "win_correlation": -0.062,
-   "flag": "dominated? played games win less"
+   "win_correlation": 0.015,
+   "flag": null
   },
   {
    "name": "W: False Witness",
    "played_rate": 0.961,
-   "win_correlation": 0.077,
+   "win_correlation": 0.081,
    "flag": null
   },
   {
    "name": "W: Gossip",
    "played_rate": 0.976,
-   "win_correlation": -0.044,
+   "win_correlation": -0.009,
    "flag": null
   },
   {
    "name": "W: Shadow Envoy",
    "played_rate": 0.88,
-   "win_correlation": 0.043,
+   "win_correlation": 0.023,
    "flag": null
   },
   {
    "name": "W: Silencer",
    "played_rate": 0.978,
-   "win_correlation": 0.239,
-   "flag": "strong"
+   "win_correlation": 0.106,
+   "flag": null
   },
   {
    "name": "W: Spymaster",
    "played_rate": 0.936,
-   "win_correlation": 0.096,
-   "flag": null
+   "win_correlation": 0.153,
+   "flag": "strong"
   },
   {
    "name": "W: The Whisper",
    "played_rate": 0.873,
-   "win_correlation": 0.193,
+   "win_correlation": 0.244,
    "flag": "strong"
   },
   {
    "name": "W: Veiled Threat",
    "played_rate": 0.914,
-   "win_correlation": -0.118,
-   "flag": "dominated? played games win less"
+   "win_correlation": 0.058,
+   "flag": null
   }
  ],
  "ambiguities": [
