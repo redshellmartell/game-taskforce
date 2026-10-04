@@ -20,6 +20,8 @@ Read this first in a fresh session, after `CLAUDE.md`. It holds context that is 
 - `tools/sync/repair.py` fixes the `games/approvals.json` conflicts that happened after pulls.
 - Untested on a real Mac: `install-mac.sh` (background install) and auto-restart. Treat them as unverified.
 - Dashboard fixes only reach the Mac after it pulls and the dashboard restarts.
+- **The Mac must stay on `main`.** On 2026-10-04 it was left on an old `claude/...` branch, so it never saw merged work and the Approvals buttons looked missing. Cloud sessions work on their own branch; the owner merges the pull request into `main`, then the Mac catches up within about 20s.
+- `claude/quirky-rubin-3ooa5m` (Review Queue pitch-decision change plus a sync box) is unmerged and 52 commits behind `main`; it conflicts with `main` in `dashboard/package.json`, `dashboard/server/index.js` and `ReviewQueueView.jsx`. Update it before any merge.
 
 ## Known gaps and half-finished items
 - Panel calibration is thin (snippets only, no BGG). Mean error 0.38, trusted at low confidence.
@@ -35,7 +37,7 @@ Read this first in a fresh session, after `CLAUDE.md`. It holds context that is 
 - `heavenly-bodies-revision-1`: recommend the owner answers the design rulings first (G1, G4, G7, G8, G10, G12/13, G27, G29)
 - `archetypes-greenlight`: recommend answering its six open questions first
 - `three-player-trick-taker-pitch-or-revise` (pitch recommended)
-- Duel Flip pitch decision (Review Queue)
+- `duelflip-revision-3` (recommend approve: bait hurdle fix only; revision 2 left playtest NEEDS-FIXES, critic REVISE-MINOR 3.42, runaway leader 74.8% to be documented). Last allowed loop.
 - Unread owner note `games/_notes/20261004T122552Z-game-designer.md` (Heavenly Bodies comparables: Bang!, Smash Up, Fluxx, Exploding Kittens, Sushi Go; MTG/Dominion rejected; Love Letter/Coup/Munchkin brackets). Pass it to the designer, critic and Bar Raiser, then move it to `games/_notes/_done/` with a Director's reply.
 
 ## Queued work
