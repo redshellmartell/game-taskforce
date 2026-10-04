@@ -31,3 +31,6 @@
 {"time":"2026-10-04T12:05:00Z","agent":"game-designer","game":"three-player-trick-taker","event":"start","message":"Revision 2: loot value, bonuses and Heat to make contract steering beat trick-grabbing"}
 {"time":"2026-10-04T12:10:00Z","agent":"game-designer","game":"three-player-trick-taker","event":"done","message":"rules.md v3 written"}
 {"time":"2026-10-04T12:05:15Z","agent":"playtester","game":"three-player-trick-taker","event":"start","message":"Revision 2 playtest (rules v3)"}
+{"time":"2026-10-04T12:12:25Z","agent":"playtester","game":"three-player-trick-taker","event":"step","message":"Updated sim to v3, added card-counting bot; headline 2000 games: strategic 42.0 vs greedy 41.8, lead changes 1.61"}
+{"time":"2026-10-04T12:12:25Z","agent":"playtester","game":"three-player-trick-taker","event":"step","message":"Ran 3 fallback variants (double_final, cleanloot, flat); none reached 2 lead changes; panel rotation and scoring re-run"}
+{"time":"2026-10-04T12:12:25Z","agent":"playtester","game":"three-player-trick-taker","event":"done","message":"Revision 2 playtest NEEDS-FIXES (minor): only lead changes 1.61 misses; Bar Raiser veto not active"}
