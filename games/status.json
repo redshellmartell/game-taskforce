@@ -403,7 +403,7 @@
     {
       "slug": "five-six-simultaneous-auction",
       "title": "Last Bid Standing",
-      "stage": "design",
+      "stage": "playtest",
       "revision": 0,
       "history": [
         {
@@ -417,6 +417,12 @@
           "time": "2026-10-04T17:57:55Z",
           "verdict": null,
           "note": "Brief written, 25/30; design starts"
+        },
+        {
+          "stage": "playtest",
+          "time": "2026-10-04T18:03:47Z",
+          "verdict": null,
+          "note": "rules.md written (Hype row, bubble crash, cancelling ties); playtest waiting on usage guard/owner"
         }
       ],
       "verdicts": {

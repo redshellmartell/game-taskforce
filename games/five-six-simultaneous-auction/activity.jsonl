@@ -2,3 +2,4 @@
 {"time": "2026-10-04T17:57:20Z", "agent": "market-researcher", "game": "five-six-simultaneous-auction", "event": "start", "message": "Writing brief from the idea bank"}
 {"time": "2026-10-04T17:57:55Z", "agent": "market-researcher", "game": "five-six-simultaneous-auction", "event": "done", "message": "Brief written, 25/30; design starts"}
 {"time": "2026-10-04T17:57:55Z", "agent": "game-designer", "game": "five-six-simultaneous-auction", "event": "start", "message": "Writing rules.md from the brief"}
+{"time": "2026-10-04T18:03:47Z", "agent": "game-designer", "game": "five-six-simultaneous-auction", "event": "done", "message": "rules.md written (Hype row, bubble crash, cancelling ties); playtest waiting on usage guard/owner"}
