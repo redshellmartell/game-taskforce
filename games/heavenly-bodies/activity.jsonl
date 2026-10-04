@@ -2,3 +2,4 @@
 {"time": "2026-10-04T11:34:34Z", "agent": "manager", "game": "heavenly-bodies", "event": "step", "message": "Owner supplied the complete design document (rules, star roster, audit, build brief) and passed it to design"}
 {"time": "2026-10-04T11:34:34Z", "agent": "game-designer", "game": "heavenly-bodies", "event": "start", "message": "Building the 96-card draw pile against Rules v2"}
 {"time":"2026-10-04T11:40:00Z","agent":"game-designer","game":"heavenly-bodies","event":"step","message":"Rules v2 restated; building the 36 COs"}
+{"time": "2026-10-04T11:43:40Z", "agent": "manager", "game": "heavenly-bodies", "event": "step", "message": "Live test: if you can see this, the dashboard is live"}
