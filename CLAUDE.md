@@ -185,6 +185,8 @@ Add a history entry every time a game changes stage or completes a revision. Pit
 
 **KPI targets** (used by the critic, playtester and you when judging): seat balance gap ≤ 5 points; strategic-vs-random win gap ≥ 20 points; simulated length within ±20% of the brief's target; runaway leader rate ≤ 65%; at least 2 lead changes per game on average; zero dead cards and zero rule ambiguities at pitch; critic average ≥ 3.5 at pitch.
 
+**Owner notes to agents.** The owner can send a short note to an agent from the dashboard ("Talk to it" tab); it is saved as `games/_notes/<time>-<agent>.md` (header: agent, game, submitted). At the start of any session, and on "continue with approved work", read the pending notes there. For each: act on it within the gates (a note never bypasses an approval gate or the usage rules; if it needs a gated step, raise the request), pass it to the named agent when you next run that agent, or answer it yourself, then move the file to `games/_notes/_done/` and append `## Director's reply` followed by one or two sentences saying what you did or will do. The dashboard shows pending and answered notes under that agent.
+
 ## Player test panel
 
 A panel of player personas (`panel/personas/`) gives games a "public test" on top of the bot playtest. Each persona is modelled on a real type of player, backed by research evidence in `panel/evidence/`, and checked against real receptions of well-known games in `panel/calibration.json`. Details are in `panel/README.md`.
@@ -217,7 +219,7 @@ The owner pays for sessions from a limited credit balance, so work economically:
 
 ## Dashboard project
 
-The owner's dashboard lives in `dashboard/`. When asked to build or change it, follow `docs/BUILD-DASHBOARD.md` (build steps) and `docs/dashboard-notes.md` (product spec), working one milestone at a time. The dashboard must never start agents. Its only writes are: saving ideas to `games/_inbox/`, recording approval decisions in `games/approvals.json`, and appending the owner's pitch decisions (Approve, Send back, Reject in the Review Queue) to `games/decisions.json`. The owner is new to coding: explain steps in plain language and keep setup minimal.
+The owner's dashboard lives in `dashboard/`. When asked to build or change it, follow `docs/BUILD-DASHBOARD.md` (build steps) and `docs/dashboard-notes.md` (product spec), working one milestone at a time. The dashboard must never start agents. Its only writes are: saving ideas to `games/_inbox/`, recording approval decisions in `games/approvals.json`, appending the owner's pitch decisions (Approve, Send back, Reject in the Review Queue) to `games/decisions.json`, and saving notes to agents in `games/_notes/`. The owner is new to coding: explain steps in plain language and keep setup minimal.
 
 ## Default first command
 

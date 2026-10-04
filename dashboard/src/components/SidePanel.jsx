@@ -29,6 +29,19 @@ function TalkTab({ agent, state }) {
   const [note, setNote] = useState('');
   const where = game || 'a new game';
   const prompt = `Ask the ${agent.id} agent to work on ${game ? `games/${game}` : 'a new game'}: ${note.trim() || '(write your note above)'}`;
+  const [busy, setBusy] = useState(false);
+  const [msg, setMsg] = useState(null);
+  const mine = (state.notes || []).filter((n) => n.agent === agent.id);
+  const send = async () => {
+    setBusy(true); setMsg(null);
+    try {
+      const r = await fetch('/api/notes', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ agent: agent.id, game: game || null, note }) });
+      const body = await r.json();
+      if (!r.ok) throw new Error(body.error || 'Could not save the note');
+      setMsg({ ok: true, text: `Saved (${body.file}). The Director reads it at the start of the next session.` }); setNote('');
+    } catch (e) { setMsg({ ok: false, text: e.message }); }
+    setBusy(false);
+  };
   return (
     <>
       <h4 style={{ marginTop: 0 }}>Leave a note for {agent.room}</h4>
@@ -41,8 +54,20 @@ function TalkTab({ agent, state }) {
           </select>
         </label>
         <label>Your note<textarea rows={3} value={note} onChange={(e) => setNote(e.target.value)} placeholder={`e.g. Focus on 2-player games for ${where}`} /></label>
-        <CopyBox text={prompt} />
+        <button type="button" className="primary" disabled={busy || !note.trim()} onClick={send}>{busy ? 'Saving…' : `Send note to ${agent.room}`}</button>
+        {!note.trim() && <p className="muted small" style={{ margin: 0 }}>Write a note to enable the button.</p>}
+        {msg && <p className={msg.ok ? 'saved-ok' : 'saved-err'} role="status" style={{ margin: 0 }}>{msg.text}</p>}
+        <details><summary className="muted small">Or copy a prompt to paste into Claude Code yourself</summary><CopyBox text={prompt} /></details>
       </div>
+      {mine.length > 0 && <>
+        <h4>Your notes to {agent.room}</h4>
+        {mine.slice(0, 6).map((n) => (
+          <div className="item" key={n.file}>
+            <div>{n.text}</div>
+            <div className="meta">{n.game ? `${n.game} · ` : ''}{n.done ? 'answered' : 'waiting for the Director'}</div>
+            {n.reply && <div className="small" style={{ color: agent.color }}><b>Reply:</b> {n.reply}</div>}
+          </div>))}
+      </>}
       <IdeaForm key={agent.id} state={state} fixedStage={stageForAgent(agent.id)} heading={`Or start my own idea at ${agent.room}`} />
     </>
   );

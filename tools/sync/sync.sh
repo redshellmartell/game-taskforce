@@ -7,7 +7,7 @@
 # Usage (from the game-taskforce folder):  bash tools/sync/sync.sh        (add a number to change the seconds: bash tools/sync/sync.sh 10)
 INTERVAL="${1:-20}"
 export GIT_TERMINAL_PROMPT=0     # never stop to ask for a GitHub login; a push that needs one just fails quietly and is retried
-OWNER_FILES=("games/approvals.json" "games/decisions.json" "studio-settings.json" "games/_inbox")
+OWNER_FILES=("games/approvals.json" "games/decisions.json" "studio-settings.json" "games/_inbox" "games/_notes")
 cd "$(git rev-parse --show-toplevel)" || exit 1
 BRANCH="$(git rev-parse --abbrev-ref HEAD)"
 echo "Syncing branch $BRANCH every ${INTERVAL}s. Press Ctrl+C to stop."

@@ -312,3 +312,21 @@ button.decide.good { border-color: var(--good); color: var(--good); } button.dec
 button.decide:hover:not(:disabled) { background: #1b1e25; } button.decide:disabled { opacity: .5; cursor: default; }
 .pitch-decide textarea { width: 100%; background: var(--bg); color: var(--text); border: 1px solid var(--border); border-radius: 6px; padding: 8px; }
 .saved-ok { color: var(--good); } .saved-err { color: var(--bad); }
+
+/* approvals: compact, clearly separated cards */
+.approval { border: 1px solid #3a3f4d; border-left: 5px solid var(--border); background: #181b22; margin: 0 0 22px; padding: 14px 18px; box-shadow: 0 1px 0 rgba(0,0,0,.4); }
+.approval.stripe-go { border-left-color: var(--good); } .approval.stripe-stop { border-left-color: var(--bad); } .approval.stripe-think { border-left-color: var(--warn); } .approval.stripe-neutral { border-left-color: #4a4f5c; }
+.ap-top { display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: center; }
+.ap-num { font-family: ui-monospace, monospace; font-size: 12px; color: var(--muted); border: 1px solid var(--border); border-radius: 10px; padding: 1px 8px; }
+.ap-title { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; flex: 1; min-width: 240px; }
+.ap-title .chip { margin: 0; font-size: 11px; }
+button.link.ap-game, b.ap-game { font-size: 18px; font-weight: 700; }
+.ap-meta { display: flex; align-items: center; gap: 8px; }
+.ap-meta .chip { margin: 0; }
+.ap-summary { margin: 8px 0 4px; color: var(--text); }
+.ap-summary.clamp { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.ap-rec { margin: 6px 0 4px; font-size: 13px; color: var(--good); }
+.approval .opt-buttons { display: flex; flex-wrap: wrap; gap: 8px; }
+.ap-toggle { display: block; margin-top: 10px; }
+.ap-details { margin-top: 8px; border-top: 1px dashed var(--border); padding-top: 6px; }
+h3.sect { margin: 26px 0 10px; }
