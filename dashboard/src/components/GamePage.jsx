@@ -1,5 +1,6 @@
 import { GamePanel } from './PanelView.jsx';
 import { OwnerMark } from './OwnerMark.jsx';
+import { PlaytestCard } from './PlaytestCard.jsx';
 import { useState } from 'react';
 import { FileView } from './Markdown.jsx';
 import { CopyBox } from './IdeaForm.jsx';
@@ -7,7 +8,7 @@ import { Help } from './Help.jsx';
 import { GATE_LABEL } from './ApprovalsView.jsx';
 import { STAGE_LABEL, verdictClass } from './ProjectsView.jsx';
 import { ago, clock } from '../util.js';
-import { CriticRadar, RateBars, CardCorrelation, LengthHistogram, colorOf } from './charts.jsx';
+import { CriticRadar, colorOf } from './charts.jsx';
 
 const DOCS = [['brief.md', 'Brief'], ['rules.md', 'Rules'], ['playtest-report.md', 'Playtest report'], ['panel-report.md', 'Panel report'], ['critique.md', 'Critique'], ['pitch.md', 'Pitch']];
 
@@ -64,25 +65,14 @@ export function GamePage({ game: g, state, onBack, onPersona }) {
           {cr?.closest_existing_game?.name && <p className="muted">Closest existing game: {cr.closest_existing_game.name} ({cr.closest_existing_game.similarity} similarity)</p>}
         </section>
         <section className="card">
-          <h3>Balance <span className="muted" style={{ fontWeight: 400 }}>{pt?.games_simulated ? `${pt.games_simulated.toLocaleString()} simulated games` : ''}</span></h3>
-          <h4>Win rate by seat</h4>
-          <RateBars rates={pt?.seat_win_rates} color={colorOf(state, 'playtester')} fair={pt ? 100 / Math.max(1, Object.keys(pt.seat_win_rates || {}).length) : null} prefix="seat " />
-          <h4>Win rate by bot</h4>
-          <RateBars rates={pt?.bot_win_rates} color={colorOf(state, 'playtester')} />
-          <h4>Game length (turns)</h4>
-          <LengthHistogram length={pt?.length} histogram={pt?.length_histogram} color={colorOf(state, 'playtester')} />
-          <h4>Card win correlation</h4>
-          <CardCorrelation cards={pt?.cards} />
-          {pt?.cards?.some((c) => c.flag) && <><h4>Flagged by the playtester</h4>{pt.cards.filter((c) => c.flag).map((c) => <div className="item" key={c.name}><b>{c.name}</b>: {c.flag}{typeof c.played_rate === 'number' && <div className="meta">comes into play in {Math.round(c.played_rate * 100)}% of games</div>}</div>)}</>}
-          {pt?.problems?.length > 0 && <><h4>Problems found</h4>{pt.problems.map((p, i) => <div className="item" key={i}><span className={`chip sev-${p.severity}`}>{p.severity}</span> {p.problem}<div className="meta">{p.fix}</div></div>)}</>}
-        </section>
-        <section className="card">
           <h3>What happens next</h3>
           <p style={{ marginTop: 0 }}>{step.text}</p>
           {step.prompt && <><div className="muted small">Tell Claude Code:</div><CopyBox text={step.prompt} />{step.alt?.map((a) => <CopyBox key={a} text={a} />)}</>}
           {g.humanPlaytests.length > 0 && <><h4>Your playtests</h4>{g.humanPlaytests.map((s, i) => <div className="item" key={i}>{s.date}: fun {s.fun}/5, replay {s.replay}/5, clarity {s.clarity}/5<div className="meta">{s.notes}</div></div>)}</>}
         </section>
       </div>
+
+      <PlaytestCard pt={pt} state={state} />
 
       {state.approvals.requests.some((r) => r.game === g.slug) && (
         <section className="card">

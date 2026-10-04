@@ -330,3 +330,12 @@ button.link.ap-game, b.ap-game { font-size: 18px; font-weight: 700; }
 .ap-toggle { display: block; margin-top: 10px; }
 .ap-details { margin-top: 8px; border-top: 1px dashed var(--border); padding-top: 6px; }
 h3.sect { margin: 26px 0 10px; }
+
+/* project page: playtest card with tabs */
+.gp-grid { align-items: start; }
+.pt-charts { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 18px; }
+.pt-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 18px; }
+.pt-scroll { max-height: 420px; overflow-y: auto; border: 1px solid var(--border); border-radius: 6px; padding: 4px 6px; margin-bottom: 6px; }
+.pt-problem { display: flex; gap: 10px; align-items: flex-start; padding: 10px 0; border-top: 1px solid var(--border); }
+.pt-problem:first-of-type { border-top: none; }
+.pt-problem .chip { flex: none; margin: 2px 0 0; }
