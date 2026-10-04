@@ -4,3 +4,4 @@
 {"time": "2026-10-04T17:57:55Z", "agent": "game-designer", "game": "five-six-simultaneous-auction", "event": "start", "message": "Writing rules.md from the brief"}
 {"time": "2026-10-04T18:03:47Z", "agent": "game-designer", "game": "five-six-simultaneous-auction", "event": "done", "message": "rules.md written (Hype row, bubble crash, cancelling ties); playtest waiting on usage guard/owner"}
 {"time": "2026-10-04T18:23:54Z", "agent": "playtester", "game": "five-six-simultaneous-auction", "event": "start", "message": "Coding the simulation and running experiments"}
+{"time": "2026-10-04T18:24:30Z", "agent": "playtester", "game": "five-six-simultaneous-auction", "event": "start", "message": "Playtest revision 0: coding sim, 2,000 games at 5 and 6 players"}
