@@ -245,7 +245,7 @@
       "gate": "greenlight",
       "game": "grid-of-cards-area-control",
       "time": "2026-10-03T16:17:49Z",
-      "status": "pending",
+      "status": "approved",
       "summary": "Brief written: Nine Fields, 2-4 players, 20 minutes, complexity 2.5, opportunity score 24/30. A 20-minute area-control game on a 3x3 grid of island cards that flip and shift as you place pawns.",
       "why_needed": "Design, playtest and critique run through without further gates once started, so this is the point to say whether this idea is worth the usage.",
       "expected_outcome": "A complete rulebook, then a simulation with seat balance gap 5 points or less and a strategic-vs-random win gap of 20 points or more.",
@@ -265,9 +265,9 @@
           "label": "Reject the idea and record why"
         }
       ],
-      "decision": null,
-      "decided_at": null,
-      "owner_notes": null
+      "decision": "approve",
+      "decided_at": "2026-10-04T11:01:19Z",
+      "owner_notes": "Owner said in chat: \"I approved the start design for Nine Fields\""
     },
     {
       "id": "asymmetric-duel-tug-of-war-revision-1",
