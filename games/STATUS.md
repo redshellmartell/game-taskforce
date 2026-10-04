@@ -12,6 +12,6 @@ grid-of-cards-area-control | critique | NEEDS-FIXES (2p only) / REVISE-MINOR (3.
 heavenly-bodies | design | - | Owner idea; full design doc supplied; designer building the 96-card pile (36 COs + 60 AEs)
 heavenly-bodies | critique | NEEDS-FIXES (Bar Raiser veto) / REVISE-MAJOR (2.83) | owner rulings needed (G4 etc.); revision request waiting
 | standard-deck-engine-workshop | 4. Critique | NEEDS-FIXES / REVISE-MAJOR (3.17) | Fifty-Two Workshop: engine does not pay, solo trivial; revision request waiting |
-| five-six-simultaneous-auction | 3. Playtest (not started) | - | Last Bid Standing: rules written; paused, usage guard at STOP, waiting for owner |
+| five-six-simultaneous-auction | 3. Playtest | - | Last Bid Standing: rules written; playtester working |
 | solo-nine-card-roguelike | 1. Brief | - | Nine Lives Dungeon: owner greenlit (banked 25+/30); brief next |
 | two-player-hidden-movement-grid | 1. Brief | - | Dead Reckoning: owner greenlit (banked 25+/30); brief next |
