@@ -385,6 +385,39 @@
       "decision": null,
       "decided_at": null,
       "owner_notes": null
+    },
+    {
+      "id": "archetypes-greenlight",
+      "gate": "greenlight",
+      "game": "archetypes",
+      "time": "2026-10-04T11:20:09Z",
+      "status": "pending",
+      "summary": "Your idea, researched: Archetypes, opportunity score 21/30 (demand 3, gap 4, originality 4, producibility 4, simulatability 2, owner fit 4). A questionnaire-driven role-playing game where players roleplay an archetype, not a character. Proposed defaults (yours to change): card deck plus a one-page questionnaire, 3-5 players, 45 min, GM-less, 3 avatars offered, 16 original archetypes.",
+      "why_needed": "Six open questions are yours to decide (format, players and time, GM or GM-less, avatar count, what an archetype changes in play, audience); the brief lists options and proposals. The main risk: simulation can only test questionnaire reachability and the balance of the 16 outcomes, not whether roleplay is fun, so only human sessions can judge it.",
+      "expected_outcome": "A rulebook and a limited simulation (questionnaire reachability, outcome balance, avatar rules, token economy). Honest limit: the Bar Raiser and critic cannot rate roleplay fun from numbers.",
+      "usage_estimate": "L",
+      "recommendation": "alternative",
+      "options": [
+        {
+          "key": "approve",
+          "label": "Greenlight with the proposed defaults (design, playtest, critique)"
+        },
+        {
+          "key": "answer",
+          "label": "Answer the open questions first (see brief.md), then greenlight"
+        },
+        {
+          "key": "park",
+          "label": "Park it; no further work for now"
+        },
+        {
+          "key": "kill",
+          "label": "Reject the idea and record why"
+        }
+      ],
+      "decision": null,
+      "decided_at": null,
+      "owner_notes": null
     }
   ]
 }

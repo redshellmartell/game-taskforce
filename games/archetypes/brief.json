@@ -1,0 +1,40 @@
+{
+  "slug": "archetypes",
+  "title": "Archetypes",
+  "idea_id": "archetypes-questionnaire-rpg",
+  "source": "owner",
+  "hook": "Answer a short original questionnaire, pick one of the avatars it offers, and roleplay an archetype rather than a named character.",
+  "players": "3-5",
+  "minutes": 45,
+  "complexity": 1.5,
+  "proposed_defaults_note": "players, minutes and complexity are PROPOSALS; the owner has not decided them",
+  "mechanics": ["questionnaire character creation", "role-playing", "GM-less storytelling"],
+  "theme": "personality archetypes (original; no MBTI or 16Personalities material)",
+  "opportunity_score": 21,
+  "rubric": { "demand": 3, "gap": 4, "originality": 4, "producibility": 4, "simulatability": 2, "owner_fit": 4 },
+  "open_questions": [
+    { "question": "Format", "options": ["Card deck plus one-page questionnaire sheet", "Booklet RPG", "Phone/web quiz plus printed cards"], "recommendation": "Card deck plus questionnaire sheet", "status": "PROPOSAL" },
+    { "question": "Player count and play time", "options": ["3-5 players, 45 min one-shot", "2-4 players, 90 min", "3-6 players, open-ended campaign"], "recommendation": "3-5 players, 45 min one-shot", "status": "PROPOSAL" },
+    { "question": "GM or GM-less", "options": ["GM-less, table frames scenes in turn", "One rotating GM", "Fixed GM"], "recommendation": "GM-less", "status": "PROPOSAL" },
+    { "question": "How many avatars the results offer", "options": ["Three: best match, near neighbour, stretch opposite", "Top two", "Top five"], "recommendation": "Three", "status": "PROPOSAL" },
+    { "question": "What the archetype changes in play", "options": ["Drive, signature move and blind spot; token for acting in type", "Scene goals only", "Narrative only, no mechanics"], "recommendation": "Drive, signature move, blind spot plus in-type token", "status": "PROPOSAL" },
+    { "question": "Audience", "options": ["Friends, story-curious and party groups", "Classrooms and teams as icebreaker", "Experienced RPG players"], "recommendation": "Friends, story-curious and party groups", "status": "PROPOSAL" }
+  ],
+  "testing_note": "Role-playing game: simulation can test questionnaire reachability and balance of the 16 outcomes, avatar-offer rules, token economy and scene length; it cannot test roleplay fun, question fairness or table dynamics. Human sessions required.",
+  "candidates": [
+    { "idea": "Archetypes", "score": 21, "chosen": true }
+  ],
+  "comparables": [
+    { "name": "Ultima IV: Quest of the Avatar", "bgg_rating": null, "crowdfunding": null, "difference": "Video game, moral-dilemma questions give one forced class; this offers several avatars and is tabletop." },
+    { "name": "Fiasco", "bgg_rating": null, "crowdfunding": null, "difference": "GM-less improv from a pick-a-playbook menu; this starts from a questionnaire and archetypes." },
+    { "name": "Emotional Intelligence (personality deduction party game)", "bgg_rating": null, "crowdfunding": "Funded on Kickstarter (amount not found)", "difference": "Guessing traits about players; this is roleplay of a type." }
+  ],
+  "sources": [
+    "https://en.wikipedia.org/wiki/Ultima_IV:_Quest_of_the_Avatar",
+    "https://wiki.ultimacodex.com/wiki/The_Gypsy",
+    "https://bardsandcards.com/products/the-broken-cask-society",
+    "https://cannibalhalflinggaming.com/2026/06/10/",
+    "https://www.kicktraq.com/projects/jujusees/emotional-intelligence-a-personality-deduction-game/",
+    "https://www.scienceabc.com/eyeopeners/is-the-myers-briggs-test-meaningful-or-is-it-just-pseudo-science"
+  ]
+}

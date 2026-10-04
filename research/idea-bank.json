@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-03",
+  "updated": "2026-10-04",
   "last_scan": "2026-10-03",
   "ideas": [
     {
@@ -627,6 +627,30 @@
       "scan": "2026-10-03",
       "source": "scan",
       "notes": "Rejected: saturated, long setup, and miniatures cannot be prototyped cheaply by a solo creator."
+    },
+    {
+      "id": "archetypes-questionnaire-rpg",
+      "title": "Archetypes",
+      "pitch": "A role-playing game where an original personality questionnaire builds your character, offers several avatars, and you roleplay an archetype rather than a named character.",
+      "players": "3-5",
+      "minutes": 45,
+      "complexity": 1.5,
+      "mechanics": ["questionnaire character creation", "role-playing", "GM-less storytelling"],
+      "theme": "personality archetypes (original; no MBTI or 16Personalities material)",
+      "score": 21,
+      "rubric": { "demand": 3, "gap": 4, "originality": 4, "producibility": 4, "simulatability": 2, "owner_fit": 4 },
+      "comparables": [
+        { "name": "Ultima IV: Quest of the Avatar", "bgg_rating": null, "difference": "Video game; moral-dilemma questions give one forced class. This is tabletop and offers several avatars." },
+        { "name": "Fiasco", "bgg_rating": null, "difference": "GM-less improv from a pick-a-playbook menu; this starts from a questionnaire." }
+      ],
+      "evidence": "Owner idea. Questions-as-creation is proven by Ultima IV; playbook GM-less games are known to suit newcomers; the 16-type model is culturally popular though academically disputed. No tabletop game found that combines quiz-built roles with playing a type (weak evidence; search summaries only).",
+      "sources": ["https://en.wikipedia.org/wiki/Ultima_IV:_Quest_of_the_Avatar", "https://bardsandcards.com/products/the-broken-cask-society", "https://www.scienceabc.com/eyeopeners/is-the-myers-briggs-test-meaningful-or-is-it-just-pseudo-science"],
+      "status": "in-pipeline",
+      "game_slug": "archetypes",
+      "added": "2026-10-04",
+      "scan": "2026-10-03",
+      "source": "owner",
+      "notes": "Players, time and complexity are proposals; the owner has not decided format, GM, avatar count, archetype effects or audience (see brief.json open_questions). Role-playing game: bot simulation tests only questionnaire reachability and token economy, not fun. Original names and questions required (IP)."
     }
   ]
 }
