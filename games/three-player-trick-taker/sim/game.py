@@ -60,14 +60,14 @@ class Game:
         mx = max(s.scores); who = [i for i in range(3) if s.scores[i] == mx]
         R.heat = who[0] if (s.heat_on and len(who) == 1 and rd > 0) else None
         d = deck(); s.rng.shuffle(d)
-        R.hands = [d[0:7], d[7:14], d[14:21]]; stash = d[21:]
+        R.hands = [d[0:7], d[7:14], d[14:21]]; stash = d[21:]  # 15-card stash
         p, sf, dc = R.planner, R.safe, R.dc
         tr, tg = s.bots[p].plan(R, p, list(R.hands[p]))
-        assert tr in (None, 0, 1, 2, 3) and 3 <= tg <= 7
+        assert tr in (0, 1, 2, 3) and 3 <= tg <= 7
         R.trump, R.target = tr, tg; s.decisions[p] += 1
-        h9 = R.hands[sf] + stash[:2]
+        h9 = R.hands[sf] + stash[:3]
         disc = s.bots[sf].swap(R, sf, list(h9)); s.decisions[sf] += 1
-        assert len(disc) == 2 and disc[0] != disc[1] and all(c in h9 for c in disc)
+        assert len(disc) == 3 and disc[0] != disc[1] and all(c in h9 for c in disc)
         R.hands[sf] = [c for c in h9 if c not in disc]
         s.say("R%d P=%d S=%d D=%d trump=%s target=%d heat=%s scores=%s" % (rd + 1, p, sf, dc, "NT" if tr is None else SUITNAMES[tr], tg, R.heat, s.scores))
         s.say("  P hand: %s | S hand after swap: %s" % (fmt(R.hands[p]), fmt(R.hands[sf])))
@@ -88,18 +88,19 @@ class Game:
             if R.trump is not None and led != R.trump and wc[0] == R.trump: s.ruffs += 1
             R.tricks[w] += 1; R.trick_no += 1; s.tricks_played += 1; leader = w
             s.say("  T%d %s -> %d" % (t + 1, " ".join("%d:%s" % (a, fmt([c])) for a, c in trick), w))
-        crew = R.crew; ok = crew == R.target
+        crew = R.crew; dev = abs(crew - R.target); ok = dev <= 1; clean = dev == 0; blown = dev >= 2
         pts = [R.tricks[i] for i in range(3)]
         bonus = [0, 0, 0]
-        if ok: bonus[p] = bonus[sf] = 3
-        else: bonus[dc] = 4; s.dc_wins[dc] += 1
-        if R.heat is not None and bonus[R.heat]: bonus[R.heat] -= 1
+        if clean: bonus[p], bonus[sf] = 3, 4
+        elif ok: bonus[p], bonus[sf], bonus[dc] = 1, 2, 1
+        else: bonus[dc] = 5; s.dc_wins[dc] += 1
+        if R.heat is not None: bonus[R.heat] = max(0, bonus[R.heat] - 2)
         for i in range(3):
             s.scores[i] += pts[i] + bonus[i]; s.tricks_total[i] += pts[i]
         mx = max(s.scores); who = [i for i in range(3) if s.scores[i] == mx]
         s.lead_seq.append(who[0] if len(who) == 1 else None)
-        s.say("  crew=%d target=%d %s; tricks=%s bonus=%s -> scores %s" % (crew, tg, "JOB" if ok else "DOUBLE-CROSS", R.tricks, bonus, s.scores))
-        s.rec.append(dict(target=tg, trump=tr, ok=ok, crew=crew, planner=p, safe=sf, dc=dc, heat=R.heat,
+        s.say("  crew=%d target=%d %s; tricks=%s bonus=%s -> scores %s" % (crew, tg, "CLEAN" if clean else ("MESSY" if ok else "BLOWN"), R.tricks, bonus, s.scores))
+        s.rec.append(dict(target=tg, trump=tr, ok=ok, clean=clean, crew=crew, planner=p, safe=sf, dc=dc, heat=R.heat,
                           pts=[pts[i] + bonus[i] for i in range(3)], bonus=bonus, tricks=list(R.tricks)))
 
     def finish(s):

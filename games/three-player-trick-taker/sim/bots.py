@@ -31,8 +31,8 @@ class Base:
 
 class Random(Base):
     name = "random"
-    def plan(self, R, seat, hand): return self.rng.choice([None, 0, 1, 2, 3]), self.rng.randint(3, 7)
-    def swap(self, R, seat, h9): return self.rng.sample(h9, 2)
+    def plan(self, R, seat, hand): return self.rng.choice([0, 1, 2, 3]), self.rng.randint(3, 7)
+    def swap(self, R, seat, h9): return self.rng.sample(h9, 3)
     def play(self, R, seat, legal, trick): return self.rng.choice(legal)
 
 def longest_trump(hand):
@@ -40,7 +40,7 @@ def longest_trump(hand):
 
 def drop_lowest(h9, trump):
     order = sorted(h9, key=lambda c: (c[0] == trump, c[1]))
-    return order[:2]
+    return order[:3]
 
 def win_cheap(legal, trick, trump):
     w = [c for c in legal if beats(c, trick, trump)]
@@ -62,7 +62,7 @@ class Strategic(Base):
     name = "strategic"
     offset = 0; noise = 0.0; plan_noise = 0
     def plan(self, R, seat, hand):
-        best = max([None, 0, 1, 2, 3], key=lambda t: (strength(hand, t, set()), sum(1 for c in hand if c[0] == t) if t is not None else 0))
+        best = max([0, 1, 2, 3], key=lambda t: (strength(hand, t, set()), sum(1 for c in hand if c[0] == t)))
         s = strength(hand, best, set())
         tg = int(round(2 * s)) + self.offset
         if self.plan_noise: tg += self.rng.choice([-1, 0, 1]) if self.rng.random() < self.plan_noise else 0
@@ -70,8 +70,8 @@ class Strategic(Base):
     def swap(self, R, seat, h9):
         want = R.target / 2.0
         best = None
-        for pair in itertools.combinations(range(9), 2):
-            keep = [h9[i] for i in range(9) if i not in pair]
+        for pair in itertools.combinations(range(10), 3):
+            keep = [h9[i] for i in range(10) if i not in pair]
             sc = (abs(strength(keep, R.trump, set()) - want), -sum(c[1] for c in keep if c[0] == R.trump))
             if best is None or sc < best[0]: best = (sc, pair)
         return [h9[i] for i in best[1]]
@@ -127,7 +127,6 @@ class Flavour(Strategic):      # story: dramatic - big targets, lead aces, go fo
     def plan(self, R, seat, hand):
         tr = max([0, 1, 2, 3], key=lambda s: (max([c[1] for c in hand if c[0] == s] or [0]), sum(1 for c in hand if c[0] == s)))
         nines = sum(1 for c in hand if c[1] >= 8)
-        if nines >= 3: tr = None
         s = strength(hand, tr, set())
         return tr, max(4, min(7, int(round(2 * s)) + 1))
     def want_win(self, R, seat, legal, trick):
@@ -144,5 +143,15 @@ class Cautious(Strategic):     # family: simple and safe, plays like greedy, mod
         if not trick: return highest(legal) if R.crew < R.target or R.role(seat) == "D" else lowest(legal)
         return win_cheap(legal, trick, R.trump) or lowest(legal)
 
+class Expert(Strategic):       # barraiser: strongest line; same engine as optimiser, plus DC steers a full 2 away from Target
+    name = "expert"
+    def want_win(self, R, seat, legal, trick):
+        if R.role(seat) == "D":
+            hand = R.hands[seat]
+            proj_crew = R.crew + min(R.remaining, max(0, R.remaining - strength(hand, R.trump, R.played)))
+            # push down if crew is projected at or below target, else push up (duck)
+            return proj_crew <= R.target
+        return super().want_win(R, seat, legal, trick)
+
 STD = {"random": Random, "greedy": Greedy, "strategic": Strategic}
-PERSONA = {"strategist": Planner, "casual": Instinct, "competitor": Optimiser, "story": Flavour, "family": Cautious}
+PERSONA = {"strategist": Planner, "casual": Instinct, "competitor": Optimiser, "story": Flavour, "family": Cautious, "barraiser": Expert}
