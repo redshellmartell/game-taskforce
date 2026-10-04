@@ -337,7 +337,7 @@
       "game": "silent-duo-deduction-coop",
       "agent": "playtester",
       "time": "2026-10-04T11:05:31Z",
-      "status": "pending",
+      "status": "approved",
       "summary": "The playtester finished Silent Duo within budget except for one extra experiment (6 configurations instead of 5). It asks to run the Code attack bot at Fog 12 and 14 (2 x 1,000 games, under a minute) to check whether the recommended Fog fix breaks the anti-code design.",
       "why_needed": "Honest teams win 73% (target 40-60%). Raising Fog fixes that, but at Fog 16 the code attack gains +12.1 points (limit 10). Whether Fog 12 or 14 is safe decides the revision's main fix.",
       "expected_outcome": "A clear yes or no on Fog 12 and 14, so the designer's revision does not break the anti-code rule.",
@@ -353,8 +353,8 @@
           "label": "Decline; the revision will test Fog values on its own budget"
         }
       ],
-      "decision": null,
-      "decided_at": null,
+      "decision": "approve",
+      "decided_at": "2026-10-04T11:45:46.446Z",
       "owner_notes": null
     },
     {
