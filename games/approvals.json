@@ -725,6 +725,35 @@
       "decision": null,
       "decided_at": null,
       "owner_notes": null
+    },
+    {
+      "id": "solo-nine-card-roguelike-revision-1",
+      "gate": "revision",
+      "game": "solo-nine-card-roguelike",
+      "time": "2026-10-04T19:37:03Z",
+      "status": "pending",
+      "summary": "Playtest NEEDS-FIXES: the designer's outline bot wins 19% and a lookahead bot 81% (target 40-60%), Claws is a knife edge, Ghost lift ranges +0 to +44, Moth/Spider/Carry tricks almost unused, 3-5 rule ambiguities. Critic REVISE-MINOR, average 3.33 (bar 3.5). The critic reads the win-rate spread as mostly a bot problem, not a design one.",
+      "why_needed": "The core idea (nine fixed cards, hidden order, deaths turn killers into Ghosts) works and the diagnoses are clear and cheap to test. Three tricks are near-dead cards and Ghosts are uneven. 'Nine Lives: Rogue-and-Write' is an existing dice game with the same title.",
+      "expected_outcome": "One targeted pass: rework Ghosts to +5 to +25 each; revive Glow, Silk and Carry (zero dead cards) and test Carry with a bot that models it; close all ambiguities; cut one rule (Thief is the candidate); rename the game; fix the reference bot and re-measure all 362,880 layouts. Keep base Claws 2. Critic and playtester both advise human solo sessions after this pass.",
+      "usage_estimate": "M",
+      "recommendation": "approve",
+      "options": [
+        {
+          "key": "approve",
+          "label": "Run revision 1 (designer, playtester, critic)"
+        },
+        {
+          "key": "park",
+          "label": "Park the game; no further work for now"
+        },
+        {
+          "key": "kill",
+          "label": "Kill it and record why"
+        }
+      ],
+      "decision": null,
+      "decided_at": null,
+      "owner_notes": null
     }
   ]
 }

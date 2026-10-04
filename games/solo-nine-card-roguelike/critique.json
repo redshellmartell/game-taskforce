@@ -1,0 +1,20 @@
+{
+  "verdict": "REVISE-MINOR",
+  "revision": 0,
+  "scores": { "originality": 3, "clarity": 3, "fun": 3, "balance": 3, "market_fit": 3, "production": 5 },
+  "average": 3.33,
+  "strength": "Known nine creatures in an unknown order with Lighting-driven reveals gives deduction and push-your-luck in nine cards; huge skill expression (random 0%, greedy 5%, lookahead 81%).",
+  "weakness": "The nine-lives persistence layer is uneven: Ghost lift ranges from +0 (Moth, Mouse, Spider) to +44 (Owl, Fox, Crow), and Glow, Silk and Carry are near-dead, so not every card matters.",
+  "closest_existing_game": { "name": "9-Bit Dungeon (format); Nine Lives: Rogue-and-Write (theme and title)", "similarity": "medium" },
+  "required_changes": [
+    "Rework Ghosts so each gives roughly +5 to +25 points: real effect for Moth, Mouse, Spider; Ghost Danger 2 for Owl, Fox, Crow (KPI: single-Ghost lift in range)",
+    "Revive Glow, Silk and Carry and test Carry with a bot that models it (KPI: each trick used in at least 15% of runs where Ready; zero dead cards)",
+    "Close the five rule ambiguities, incl. Hound-known wording and Ghost free-trophy wording (KPI: zero ambiguities; clarity)",
+    "Cut at least one rule or state, for example the Crow's Thief (KPI: clarity, casual rules_simplicity)",
+    "Rename the game to avoid Nine Lives: Rogue-and-Write (originality, market fit)",
+    "Fix the reference bot's shove loop and unclear steps and re-measure exhaustively; keep Claws 2 (KPI: reference bot 25-60%, median length at least 7)",
+    "Only if human sessions show a grindy opening: free Peek or one starting trophy"
+  ],
+  "revision_worth_it": true,
+  "revision_reason": "Yes: Ghost, trick and ambiguity problems have clear diagnoses and cheap tests, and one pass should lift the average from 3.33 past 3.5; do not tune Claws or chase the 40-60% band with bots, and get human solo sessions after."
+}
