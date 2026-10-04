@@ -1,0 +1,19 @@
+{
+  "verdict": "REVISE-MAJOR",
+  "revision": 0,
+  "scores": { "originality": 3, "clarity": 2, "fun": 3, "balance": 2, "market_fit": 4, "production": 5 },
+  "average": 3.17,
+  "strength": "Near-zero production cost (one standard deck plus a rule card) with a clear hook, and solid multiplayer numbers: seat gap 4.0 or less, runaway 36-60%, skill gap 72 points.",
+  "weakness": "The advertised engine does not pay (Spades negative, Hearts-in-a-mixed-train wins, strategic barely beats greedy), solo is trivially won (98.6%), and the rules are heavier than the one-page brief with 11 ambiguities.",
+  "closest_existing_game": { "name": "Sprawlopolis (standard-style small-box adjacency puzzle)", "similarity": "low" },
+  "required_changes": [
+    "Make the engine pay: test Spade discount 4 or Spade 2 points, or a 0-cost Club pull, one at a time; target Spade/Club win correlation >= 0 and strategic vs greedy >= 60% at 2p",
+    "Fix solo: raise the win line (about 31, re-measure), harsher Rival (2 cards per turn), longer solo; target strategic 45-55%, random under 15%, length 12-18 min",
+    "Close the stall loop with a Bench trim rule (remove leftmost Bench card when over 5 at end of turn); target zero turn-cap hits without bot patching",
+    "Resolve all 11 ambiguities and cut rules weight (consider dropping Apprentice, simplify Hearts bonus); target zero ambiguities and rules card on one side",
+    "Add decisions and interaction so the mid-game is not forced; target lead changes >= 2.5 and strategic vs greedy gap widened",
+    "Re-check 4-player length after engine changes (16.6 of 20 min); consider a 10-card target"
+  ],
+  "revision_worth_it": true,
+  "revision_reason": "Yes: failures have concrete testable fixes and multiplayer balance already passes, but limit to one revision and kill if the engine still does not outscore Heart play."
+}

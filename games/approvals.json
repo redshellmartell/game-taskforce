@@ -667,6 +667,35 @@
       "decision": "approve",
       "decided_at": "2026-10-04T17:27:45Z",
       "owner_notes": "Owner said in chat: run the taskforce and push through all banked games at least 25/30."
+    },
+    {
+      "id": "standard-deck-engine-workshop-revision-1",
+      "gate": "revision",
+      "game": "standard-deck-engine-workshop",
+      "time": "2026-10-04T17:57:20Z",
+      "status": "pending",
+      "summary": "Playtest NEEDS-FIXES: solo is trivial (98.6% win), the engine suits don't pay (Spades lose, Hearts win; strategic beats greedy by only 3 points), a Gather/discard loop can stall, 11 rule ambiguities. Critic REVISE-MAJOR, average 3.17. Multiplayer seat balance, runaway leader and skill gap already pass.",
+      "why_needed": "The pitch is 'an engine-builder from a plain deck', and the engine currently doesn't beat simply building Hearts. Solo is a headline feature and is unplayable at this win line. Rules are heavier than the one-page promise.",
+      "expected_outcome": "Test engine buffs one at a time (Spade discount 4, Spade worth 2 points, or a 0-cost Club pull; target Spade/Club win correlation at or above 0, strategic vs greedy 60%+). Solo: win line about 31, Rival takes 2 cards, target strategic wins 45-55% and random under 15%. Add a Bench-trim stall breaker (zero turn-cap hits). Resolve all 11 ambiguities and consider dropping Apprentice. Lead changes 2.5+. Critic says one revision only; kill it if the engine still doesn't beat Heart play.",
+      "usage_estimate": "M",
+      "recommendation": "approve",
+      "options": [
+        {
+          "key": "approve",
+          "label": "Run revision 1 (designer, playtester, critic)"
+        },
+        {
+          "key": "park",
+          "label": "Park the game; no further work for now"
+        },
+        {
+          "key": "kill",
+          "label": "Kill it and record why"
+        }
+      ],
+      "decision": null,
+      "decided_at": null,
+      "owner_notes": null
     }
   ]
 }

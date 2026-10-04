@@ -386,11 +386,17 @@
           "time": "2026-10-04T17:56:25Z",
           "verdict": null,
           "note": "Playtest NEEDS-FIXES: solo trivial (98.6%), engine suits don't pay, infinite-loop hole, 11 ambiguities; critique next"
+        },
+        {
+          "stage": "critique",
+          "time": "2026-10-04T17:57:20Z",
+          "verdict": "REVISE-MAJOR",
+          "note": "Critic REVISE-MAJOR avg 3.17; waiting for approval: revision (standard-deck-engine-workshop-revision-1)"
         }
       ],
       "verdicts": {
-        "playtest": null,
-        "critic": null
+        "playtest": "NEEDS-FIXES",
+        "critic": "REVISE-MAJOR"
       },
       "kill_reason": null
     },
