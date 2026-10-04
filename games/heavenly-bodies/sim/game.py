@@ -232,7 +232,7 @@ def coll_winner(st, inc, occ):
 def win_triggers(st, co):
     """'When this CO wins a Collision' (CO30 and Augmentation AE10)."""
     p = co.owner
-    if co.id == "CO30": dmg(st, p, pick_opp(st, p) if st.opps(p) else p, 1) if st.opps(p) else None
+    if co.id == "CO30" and st.opps(p): dmg(st, p, pick_opp(st, p), 1)
     for a in list(co.augs):
         if a.id == "AE10" and st.opps(p): dmg(st, p, pick_opp(st, p), 1, "AE")
 
@@ -285,7 +285,8 @@ def on_enter(st, i, co, losing=False):
             ch = b.pick(st, i, "move", opts, may=True)
             if ch: move_in_orbit(st, i, ch[0], ch[1])
     elif cid == "CO08":
-        if p.hand: p.hand.remove(b.discard_pick(st, i, p.hand)); st.discard.append(None) if False else None; st.discard.append(_last_discard) if False else None
+        if p.hand:
+            c8 = b.discard_pick(st, i, p.hand); p.hand.remove(c8); st.discard.append(c8)
     elif cid == "CO11":
         for q in st.opps(i): draw(st, q, 1)
     elif cid == "CO14":
@@ -354,30 +355,20 @@ def discard_from_hand(st, i, n, exclude=None):
 
 
 def move_in_orbit(st, i, co, pos, cause=None):
-    """Move a CO inside its orbit (not rotation, not entering). INTERP G11: no enters-orbit trigger, no cap use; mover is incoming."""
-    p = st.P[co.owner]; old = co.pos
-    occ = p.orbit[pos]
-    p.orbit[old] = None
-    co.pos = pos
+    """Move a CO inside its orbit (not rotation, not entering). INTERP G11: no enters-orbit trigger, no cap use; the mover is the incoming CO."""
+    p = st.P[co.owner]; old = co.pos; occ = p.orbit[pos]
     if occ is None:
-        p.orbit[pos] = co
+        p.orbit[old] = None; p.orbit[pos] = co; co.pos = pos
     else:
         st.stats["collisions"] += 1
-        w = coll_winner(st, co, occ)
+        co.pos = pos; w = coll_winner(st, co, occ); co.pos = old
         if w is co:
-            occ.pos = pos; p.orbit[pos] = occ
-            remove_co(st, occ, "ooo", cause); p.orbit[pos] = co; co.pos = pos; co.owner = p.i
+            p.orbit[old] = None
+            remove_co(st, occ, "ooo", cause)
+            p.orbit[pos] = co; co.pos = pos
             win_triggers(st, co)
         else:
-            p.orbit[pos] = occ; p.orbit[old] = None
-            co.owner = p.i; co.pos = old; p.orbit[old] = co  # temporarily restore so remove_co works
-            co.pos = pos
-            p.orbit[old] = None
-            # knock moved CO
-            for a in co.augs: st.discard.append(a.card)
-            co.augs = []; co.temps = []
-            st.ooo.append(co.card); owner = co.owner; co.owner = None; st.stats["knockouts"] += 1
-            leave_triggers(st, owner, "ooo", cause)
+            remove_co(st, co, "ooo", cause)
             win_triggers(st, occ)
     settle(st)
 
@@ -432,22 +423,17 @@ def rotate_orbit(st, q, actor, dry=False):
     for c in plan: c.pos = saved[c]
     cause = actor if actor is not None and actor != q else None
     newo = [None] * 4
-    for dst, c in winners.items(): newo[dst] = c;
-    for c in losers:
-        p.orbit[c.pos] = None
+    for dst, c in winners.items(): newo[dst] = c
     for dst, c in winners.items(): c.pos = dst
     p.orbit = newo
     st.say("P%d orbit rotates%s" % (q, " (collision: %s out)" % ",".join(c.id for c in losers) if losers else ""))
     for c in losers:
-        c.owner = q
-        p.orbit[c.pos] = None
         for a in c.augs: st.discard.append(a.card)
         c.augs = []; c.temps = []
         st.ooo.append(c.card); c.owner = None; st.stats["knockouts"] += 1; st.stats["collisions"] += 1
         leave_triggers(st, q, "ooo", cause)
     for dst, c in winners.items():
-        if any(l for l in losers) and len(groups[dst]) > 1:
-            old_actor = st.actor; win_triggers(st, c)
+        if len(groups[dst]) > 1: win_triggers(st, c)
     settle(st)
     return losers
 
@@ -581,8 +567,7 @@ def take_turn(st):
 
 def track_lead(st):
     """Leader = highest (own total Size + 3*(HP)/... ) proxy: progress score for the strongest threat; lead change when the leader changes."""
-    sc = [(total_size(st, p.i) / 15.0 + (1 - max(0, p.hp) / p.maxhp) * 0 + p.hp / 9.0 * 0.0, p.i) for p in st.P if p.alive]
-    if len(sc) < 2: return
+    if len(st.alive()) < 2: return
     # progress = max(own CM progress, damage dealt to others) ; use HP lead + size lead
     def prog(p):
         others = [q for q in st.P if q.alive and q is not p]
@@ -599,7 +584,7 @@ def track_lead(st):
 
 def play_phase(st, i):
     p = st.P[i]; b = st.bots[i]
-    if st.round == 0 and st.turn_no <= len(st.P):
+    if st.turn_no == 1:
         for c in p.hand:
             if not [a for a in gen_one(st, i, c)]: st.first_dead.append(c["id"])
     n = 0
@@ -616,11 +601,22 @@ def play_phase(st, i):
     if n == 0: st.stats.setdefault("zero_action_turns", 0); st.stats["zero_action_turns"] += 1
 
 
-def play(cfg, bots, seed):
+def count_cards(st):
+    n = len(st.deck) + len(st.discard) + len(st.ooo)
+    for p in st.P:
+        n += len(p.hand)
+        for c in p.orbit:
+            if c: n += 1 + len(c.augs)
+    return n
+
+
+def play(cfg, bots, seed, check=False):
     st = State(cfg, seed)
     setup(st, bots)
+    total = count_cards(st)
     while not st.over and st.round < cfg.round_cap:
         take_turn(st)
+        if check: assert count_cards(st) == total, ("card leak", count_cards(st), total, st.log[-6:])
     capped = not st.over
     return dict(st=st, winner=st.winner, reason=st.reason or ("cap" if capped else None), rounds=st.round + 1, turns=st.turn_no, capped=capped)
 
@@ -919,7 +915,7 @@ def execute(st, i, a):
     st.card_plays[card["id"]] = st.card_plays.get(card["id"], 0) + 1
     p.hand.remove(card)
     cid = card["id"]
-    st.say("P%d plays %s%s" % (i, cid, " " + str({k: (v if not hasattr(v, 'id') else v.id) for k, v in par.items() if k != 'aug'}) if par else ""))
+    st.say("P%d plays %s %s" % (i, cid, {k: (v["id"] if isinstance(v, dict) else v.id if hasattr(v, "id") else v) for k, v in par.items() if k != "aug"}))
     if card["type"] == "CO":
         enter(st, i, CO(card), par["pos"]); st.actor = None; return
     if card["subtype"] == "Augmentation":
