@@ -65,6 +65,12 @@
       "time": "2026-10-04T11:34:34Z",
       "decision": "approve",
       "notes": "heavenly-bodies: owner passed the complete design document directly to the design team (greenlight by direct instruction)"
+    },
+    {
+      "slug": "silent-duo-deduction-coop",
+      "time": "2026-10-04T11:56:07Z",
+      "decision": "approve",
+      "notes": "silent-duo-deduction-coop-budget-1 (budget gate): owner approved in the dashboard on the Mac; applies to the retest inside revision 1 once that is approved"
     }
   ]
 }
