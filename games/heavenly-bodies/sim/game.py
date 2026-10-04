@@ -423,6 +423,7 @@ def rotate_orbit(st, q, actor, dry=False):
     if dry: return losers
     for c in plan: c.pos = saved[c]
     cause = actor if actor is not None and actor != q else None
+    if losers: st.stats['rot_collisions'] = st.stats.get('rot_collisions', 0) + len(losers)
     newo = [None] * 4
     for dst, c in winners.items(): newo[dst] = c
     for dst, c in winners.items(): c.pos = dst

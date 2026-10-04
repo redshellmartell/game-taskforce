@@ -1614,5 +1614,77 @@
    "per_player_played": 0.00325
   }
  },
- "elapsed": 103.0256450176239
+ "cm_events": {
+  "2p_mirror": {
+   "games": 2000,
+   "games_with_announce": 0.596,
+   "announces": 1.015,
+   "cancels": 0.418,
+   "games_with_cancel": 0.2925,
+   "retrigger_games": 0.169,
+   "cancel_share_of_announces": 0.41182266009852214,
+   "cm_wins_per_announce": 0.2788177339901478,
+   "cancel_by_opponent": 0.7703349282296651
+  },
+  "3p_mirror": {
+   "games": 2000,
+   "games_with_announce": 0.791,
+   "announces": 1.573,
+   "cancels": 0.6815,
+   "games_with_cancel": 0.429,
+   "retrigger_games": 0.274,
+   "cancel_share_of_announces": 0.433248569612206,
+   "cm_wins_per_announce": 0.2905276541640178,
+   "cancel_by_opponent": 0.7791636096845195
+  },
+  "4p_mirror": {
+   "games": 2000,
+   "games_with_announce": 0.926,
+   "announces": 2.2015,
+   "cancels": 1.0215,
+   "games_with_cancel": 0.5785,
+   "retrigger_games": 0.3885,
+   "cancel_share_of_announces": 0.4640018169429934,
+   "cm_wins_per_announce": 0.2789007494889848,
+   "cancel_by_opponent": 0.8100832109642683
+  },
+  "solo_vs_passive": {
+   "games": 1000,
+   "games_with_announce": 0.918,
+   "announces": 1.362,
+   "cancels": 0.5,
+   "games_with_cancel": 0.235,
+   "retrigger_games": 0.201,
+   "cancel_share_of_announces": 0.3671071953010279,
+   "cm_wins_per_announce": 0.5851688693098385,
+   "cancel_by_opponent": 0.0
+  }
+ },
+ "turn_plays": {
+  "t1_mean": 1.848,
+  "t1_two_plays": 0.8545,
+  "t1_zero": 0.0065,
+  "t2_mean": 1.9355,
+  "t2_two_plays": 0.9385,
+  "t1_one_play": 0.139
+ },
+ "big": {
+  "5p": {
+   "turns": 21.74,
+   "minutes": 24.74,
+   "cm_share": 0.6966666666666667,
+   "star_share": 0.30333333333333334,
+   "cap": 0.0,
+   "rounds_all": 6.556666666666667
+  },
+  "6p": {
+   "turns": 25.973333333333333,
+   "minutes": 28.973333333333333,
+   "cm_share": 0.75,
+   "star_share": 0.25,
+   "cap": 0.0,
+   "rounds_all": 6.903333333333333
+  }
+ },
+ "elapsed": 108.41128921508789
 }

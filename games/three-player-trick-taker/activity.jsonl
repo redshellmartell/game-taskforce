@@ -29,3 +29,5 @@
 {"time": "2026-10-04T11:01:02Z", "agent": "manager", "game": "three-player-trick-taker", "event": "waiting", "message": "waiting for approval: revision (three-player-trick-taker-revision-2)"}
 {"time": "2026-10-04T12:02:12Z", "agent": "manager", "game": "three-player-trick-taker", "event": "step", "message": "Revision 2 approved by the owner (last sensible loop)"}
 {"time":"2026-10-04T12:05:00Z","agent":"game-designer","game":"three-player-trick-taker","event":"start","message":"Revision 2: loot value, bonuses and Heat to make contract steering beat trick-grabbing"}
+{"time":"2026-10-04T12:10:00Z","agent":"game-designer","game":"three-player-trick-taker","event":"done","message":"rules.md v3 written"}
+{"time":"2026-10-04T12:05:15Z","agent":"playtester","game":"three-player-trick-taker","event":"start","message":"Revision 2 playtest (rules v3)"}
