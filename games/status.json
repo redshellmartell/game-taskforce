@@ -360,7 +360,7 @@
     {
       "slug": "standard-deck-engine-workshop",
       "title": "Fifty-Two Workshop",
-      "stage": "brief",
+      "stage": "design",
       "revision": 0,
       "history": [
         {
@@ -368,6 +368,12 @@
           "time": "2026-10-04T17:27:45Z",
           "verdict": null,
           "note": "owner greenlit all banked ideas 25+/30; brief from the idea bank next"
+        },
+        {
+          "stage": "design",
+          "time": "2026-10-04T17:28:41Z",
+          "verdict": null,
+          "note": "Brief written, 27/30; design starts"
         }
       ],
       "verdicts": {

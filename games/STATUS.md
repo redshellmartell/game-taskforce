@@ -11,7 +11,7 @@ archetypes | brief | - | Owner idea (personality-test RPG); researching
 grid-of-cards-area-control | critique | NEEDS-FIXES (2p only) / REVISE-MINOR (3.67) | good at 3-4 players; 2p stalls; revision request waiting
 heavenly-bodies | design | - | Owner idea; full design doc supplied; designer building the 96-card pile (36 COs + 60 AEs)
 heavenly-bodies | critique | NEEDS-FIXES (Bar Raiser veto) / REVISE-MAJOR (2.83) | owner rulings needed (G4 etc.); revision request waiting
-| standard-deck-engine-workshop | 1. Brief | - | Fifty-Two Workshop: owner greenlit (banked 25+/30); brief next |
+| standard-deck-engine-workshop | 2. Design | - | Fifty-Two Workshop: brief 27/30 done; designer working |
 | five-six-simultaneous-auction | 1. Brief | - | Last Bid Standing: owner greenlit (banked 25+/30); brief next |
 | solo-nine-card-roguelike | 1. Brief | - | Nine Lives Dungeon: owner greenlit (banked 25+/30); brief next |
 | two-player-hidden-movement-grid | 1. Brief | - | Dead Reckoning: owner greenlit (banked 25+/30); brief next |
