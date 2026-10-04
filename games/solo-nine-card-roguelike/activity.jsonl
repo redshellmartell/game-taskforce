@@ -3,3 +3,5 @@
 {"time": "2026-10-04T18:35:58Z", "agent": "market-researcher", "game": "solo-nine-card-roguelike", "event": "start", "message": "Writing brief from the idea bank"}
 {"time": "2026-10-04T18:36:41Z", "agent": "market-researcher", "game": "solo-nine-card-roguelike", "event": "done", "message": "Brief written, 25/30; design starts"}
 {"time": "2026-10-04T18:36:41Z", "agent": "game-designer", "game": "solo-nine-card-roguelike", "event": "start", "message": "Writing rules.md from the brief"}
+{"time": "2026-10-04T18:54:47Z", "agent": "game-designer", "game": "solo-nine-card-roguelike", "event": "done", "message": "rules.md written (3x3 grid, Fight or Shove, Ghosts on a 9-life tally); playtest next"}
+{"time": "2026-10-04T18:54:47Z", "agent": "playtester", "game": "solo-nine-card-roguelike", "event": "start", "message": "Coding the simulation and running experiments"}

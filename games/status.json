@@ -464,7 +464,7 @@
     {
       "slug": "solo-nine-card-roguelike",
       "title": "Nine Lives Dungeon",
-      "stage": "design",
+      "stage": "playtest",
       "revision": 0,
       "history": [
         {
@@ -484,6 +484,12 @@
           "time": "2026-10-04T18:36:41Z",
           "verdict": null,
           "note": "Brief written, 25/30; design starts"
+        },
+        {
+          "stage": "playtest",
+          "time": "2026-10-04T18:54:47Z",
+          "verdict": null,
+          "note": "rules.md written (3x3 grid, Fight or Shove, Ghosts on a 9-life tally); playtest next"
         }
       ],
       "verdicts": {
