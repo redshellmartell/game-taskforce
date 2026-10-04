@@ -1,0 +1,126 @@
+{
+  "verdict": "NEEDS-FIXES",
+  "revision": 2,
+  "games_simulated": 16005,
+  "seat_win_rates": {
+    "1": 0.344,
+    "2": 0.327,
+    "3": 0.329
+  },
+  "seat_balance_gap": 1.7,
+  "bot_win_rates": {
+    "random": 0.162,
+    "greedy": 0.418,
+    "strategic": 0.42
+  },
+  "skill_expression": 46.1,
+  "length": {
+    "mean_turns": 42,
+    "stdev": 0.0,
+    "estimated_minutes": 18,
+    "target_minutes": 20
+  },
+  "length_histogram": [
+    {
+      "turns": 42,
+      "games": 2000
+    }
+  ],
+  "ties": 0.005,
+  "turn_cap_hits": 0,
+  "lead_changes_mean": 1.61,
+  "runaway_leader_rate": 0.503,
+  "contract_success_rate": 0.5,
+  "cards": [
+    {
+      "name": "Planner role",
+      "played_rate": 1.0,
+      "win_correlation": 0.1,
+      "flag": null
+    },
+    {
+      "name": "Safecracker role",
+      "played_rate": 1.0,
+      "win_correlation": -0.07,
+      "flag": null
+    },
+    {
+      "name": "Double-Crosser role",
+      "played_rate": 1.0,
+      "win_correlation": -0.03,
+      "flag": null
+    },
+    {
+      "name": "Target 3",
+      "played_rate": 0.34,
+      "win_correlation": -0.22,
+      "flag": null
+    },
+    {
+      "name": "Target 4",
+      "played_rate": 0.19,
+      "win_correlation": -0.16,
+      "flag": null
+    },
+    {
+      "name": "Target 5",
+      "played_rate": 0.14,
+      "win_correlation": 0.09,
+      "flag": null
+    },
+    {
+      "name": "Target 6",
+      "played_rate": 0.14,
+      "win_correlation": 0.35,
+      "flag": null
+    },
+    {
+      "name": "Target 7",
+      "played_rate": 0.19,
+      "win_correlation": 0.23,
+      "flag": null
+    },
+    {
+      "name": "Heat",
+      "played_rate": 0.74,
+      "win_correlation": null,
+      "flag": null
+    },
+    {
+      "name": "The Swap",
+      "played_rate": 1.0,
+      "win_correlation": null,
+      "flag": null
+    }
+  ],
+  "ambiguities": [
+    "Rules v3 has no unresolved ambiguities in simulation. Interpretations used: Heat -3 floors the bonus at 0 (Heat on a messy +2 leaves 0); tiebreaker 2 counts all tricks including those on blown jobs; the role-pass direction (to the right) is equivalent to a fixed seat rotation; revokes are impossible; Heat on a 0 bonus does nothing; round 1 has no Heat (all tied); the Double-Crosser deal order has no effect on a random shuffle.",
+    "Targets 3-7 with crew tricks 0-7: Target 7 is a clean hit only on a sweep; legal, and rated as high-risk by the bots (success 69%)."
+  ],
+  "problems": [
+    {
+      "severity": "medium",
+      "problem": "Lead changes still below KPI (the only KPI miss).",
+      "evidence": "1.61 lead changes per game vs target 2 (v2 1.49). Fallback experiments, 2,000 mirror games each: double-scored final round 1.84 (early leader 43%, but mixed-table strategic fell to 38.5% vs greedy 41.8%); crew loot on clean jobs only 1.64; critic's flat version 1.71 (greedy 48% vs strategic 36%). None reaches 2. Without Heat lead changes are 1.07, so Heat -3 is doing most of the work.",
+      "fix": "Accept 1.6-1.8 as a known soft miss (runaway leader is only 50%%, so games are not decided early), or ship double-scored final round as an optional finale. Untested: Heat on the sole leader also costs 1 loot; 7-round variants are not allowed by the rotation."
+    },
+    {
+      "severity": "low",
+      "problem": "Strategic only ties greedy at the mixed table; skill lives mostly in beating random.",
+      "evidence": "Mixed table: greedy 41.8%, strategic (card-counting) 42.0%, random 16.2%. Skill gap vs random 46.1 pts (KPI 20), but greedy alone beats two randoms at 69.9% vs strategic 64.1%. v2: greedy 63.5% vs strategic 28.5% - the loot-on-success rule closed that gap fully.",
+      "fix": "None required for the KPI (strategic >= greedy within noise: +-1.1 pts). A human who can count cards and read the Double-Crosser should do better than the bot; confirm with a human playtest."
+    },
+    {
+      "severity": "low",
+      "problem": "Target 3 is the most common bot choice and the least reliable; Targets 4-6 are the profitable band.",
+      "evidence": "Target 3 chosen 34% of rounds, success 28%; Target 6 chosen 14%, success 85%.",
+      "fix": "None; a sensible planner choice, not a dead option."
+    },
+    {
+      "severity": "low",
+      "problem": "Games are low-scoring and Heat is on in most rounds.",
+      "evidence": "Mean final score 16.0 (rules.md predicted 18-28); Heat applies in 74% of rounds (holder averages 1.76 pts vs 2.67 round average).",
+      "fix": "Update the design-note scoring expectation to about 16; no rule change."
+    }
+  ]
+}

@@ -5,6 +5,9 @@ import path from 'node:path';
 import { computeKpis, gameScorecard, stageFunnel, killRateByStage, cycleTimes, avgRevisionLoops, firstPassRate, stuckGames, roomStats, panelStats, milestones, ownerStats, reviewQueueItems, qualityLab, portfolio, opsStats, ideaBankStats, usageStats, approvalStats } from './kpis.js';
 import { listInbox } from './ideas.js';
 import { loadPanel } from './panel.js';
+import { pitchDecisionFor } from './pitch.js';
+import { listNotes } from './notes.js';
+import { researchHints } from './research.js';
 
 const AGENT_ORDER = ['market-researcher', 'game-designer', 'playtester', 'critic', 'test-panel', 'manager'];
 // Which report each agent writes (used for "Its work" and for the handoff lines).
@@ -110,7 +113,7 @@ function extractSection(text, name) {
 function titleFromSlug(slug) { return slug.split('-').map((w) => w[0]?.toUpperCase() + w.slice(1)).join(' '); }
 
 // Which agent would run the gated step (a request may name one in an optional `agent` field).
-const GATE_AGENT = { scan: 'market-researcher', greenlight: 'game-designer', revision: 'game-designer', 'panel-research': 'market-researcher', 'panel-reviews': 'playtester', budget: 'playtester', 'free-api': 'playtester' };
+const GATE_AGENT = { scan: 'market-researcher', greenlight: 'game-designer', revision: 'game-designer', 'panel-research': 'market-researcher', 'deep-research': 'market-researcher', 'panel-reviews': 'playtester', budget: 'playtester', 'free-api': 'playtester' };
 const EXPIRE_DAYS = 14;
 const DAY_MS = 24 * 3600 * 1000;
 // Requests the Director wrote to games/approvals.json (see "Approval gates" in CLAUDE.md), with what the owner needs to decide.
@@ -124,7 +127,7 @@ function buildApprovals(requests, games, shiftTime, now) {
     const g = r.game ? bySlug[r.game] : null;
     const rows = g ? g.scorecard.filter((x) => x.status !== 'none') : [];
     return {
-      ...r, time, decided_at: r.decided_at ? shiftTime(r.decided_at) : null, state, ageDays: age, gameTitle: g?.title || r.game || null,
+      ...r, time, decided_at: r.decided_at ? shiftTime(r.decided_at) : null, state, ageDays: age, gameTitle: g?.title || r.game || null, agentId: r.agent || GATE_AGENT[r.gate] || null, ownerIdea: !!g?.ownerIdea, verdicts: g?.verdicts || null,
       revision: r.gate === 'revision' && g ? { worthIt: g.critique?.revision_worth_it ?? null, reason: g.critique?.revision_reason || null, scorecard: rows, revisionsDone: g.revision || 0 } : null,
     };
   });
@@ -164,6 +167,9 @@ export function buildState({ repoRoot, dashboardDir, sample, now = Date.now() })
       // No activity log yet: show the files that exist as finished steps (marked synthetic).
       events = files.filter((f) => f.agent).map((f) => ({ time: new Date(f.mtime).toISOString(), agent: f.agent, game: slug, event: 'done', message: `${f.name} written`, synthetic: true }));
     }
+    // an agent without a clock may guess a time in the future: never show one (clamp to now and mark it approximate)
+    events = events.map((e) => (Date.parse(e.time) > now + 60000 ? { ...e, time: new Date(now).toISOString(), time_estimated: true } : e));
+    events = events.map((e, i) => ({ ...e, _seq: activity.length + i }));
     activity = activity.concat(events);
     games.push({
       slug,
@@ -177,11 +183,13 @@ export function buildState({ repoRoot, dashboardDir, sample, now = Date.now() })
       humanPlaytests: readJson(path.join(dir, 'human-playtests.json'))?.sessions || [],
       panel: readJson(path.join(dir, 'panel.json')), conversations: readJsonl(path.join(dir, 'panel', 'conversations.jsonl')).map((c) => ({ ...c, time: shiftTime(c.time) })),
       files, howItPlays: extractSection(readText(path.join(dir, 'pitch.md')), 'How it plays'),
+      ownerIdea: st?.source === 'owner' || files.some((f) => f.name === 'idea.md'),   // came from the owner's inbox (see "Owner ideas inbox")
       derived: !st,
     });
   }
   for (const g of games) g.scorecard = gameScorecard(g);
-  activity.sort((a, b) => Date.parse(b.time) - Date.parse(a.time));
+  // newest first; lines with the same time (agents without a clock, clamped times) keep file order, so the LAST line written counts as the latest
+  activity.sort((a, b) => (Date.parse(b.time) - Date.parse(a.time)) || ((b._seq ?? 0) - (a._seq ?? 0)));
 
   // Agent states from the newest activity line of each agent.
   for (const a of agents) {
@@ -195,7 +203,14 @@ export function buildState({ repoRoot, dashboardDir, sample, now = Date.now() })
     a.currentGame = a.state === 'working' ? last.game : null;
     a.reports = games.flatMap((g) => g.files.filter((f) => f.agent === a.id).map((f) => ({ ...f, game: g.slug, gameTitle: g.title }))).sort((x, y) => y.mtime - x.mtime);
   }
-  const waitingPitches = games.filter((g) => g.stage === 'owner-review');
+  const decisionsEarly = (readJson(path.join(gamesDir, 'decisions.json'))?.decisions || []).map((d) => ({ ...d, time: shiftTime(d.time) }));
+  for (const g of games.filter((x) => x.stage === 'owner-review')) {     // a pitch you decided in the dashboard that the Director has not acted on yet
+    const h = [...(g.history || [])].reverse().find((e) => e.stage === 'owner-review');
+    const since = h ? Date.parse(shiftTime(h.time)) || 0 : 0;
+    const d = pitchDecisionFor(g.slug, since, decisionsEarly);
+    g.pitchDecision = d ? { decision: d.decision, time: d.time, notes: d.notes || null } : null;
+  }
+  const waitingPitches = games.filter((g) => g.stage === 'owner-review' && !g.pitchDecision);
   const manager = agents.find((a) => a.id === 'manager');
   if (manager && waitingPitches.length && manager.state === 'idle') manager.state = 'waiting';
 
@@ -223,5 +238,5 @@ export function buildState({ repoRoot, dashboardDir, sample, now = Date.now() })
   };
   const review = { ...ownerStats(games, decisions), queue: reviewQueueItems(games, now) };
 
-  return { sample, generatedAt: new Date(now).toISOString(), agents, games, activity: activity.slice(0, 500), decisions, approvals, settings, inbox: listInbox(gamesDir), panel: panel && { ...panel, stats: panelData }, kpis, pipeline, review, quality: qualityLab(games), market: { ...portfolio(games), ideaBank: bankFile && bankStats ? { ...bankStats, updated: bankFile.updated || null, ideas: bankFile.ideas } : null }, ops: { ...opsStats(games, agents, activity, now), usage: usageStats(usageSessions, games, now), guard, approvals: approvalStats(approvals.requests) }, waitingPitches: waitingPitches.map((g) => g.slug) };
+  return { sample, generatedAt: new Date(now).toISOString(), agents, games, activity: activity.slice(0, 500), decisions, approvals, settings, inbox: listInbox(gamesDir), notes: listNotes(gamesDir), research: researchHints({ bank: bankStats, calibrated: panel?.calibrated || null, games, now, fileTimes: Object.fromEntries(games.map((g) => { const f = g.files.find((x) => x.name === 'research-update.md'); return [g.slug, f ? f.mtime : null]; })) }), panel: panel && { ...panel, stats: panelData }, kpis, pipeline, review, quality: qualityLab(games), market: { ...portfolio(games), ideaBank: bankFile && bankStats ? { ...bankStats, updated: bankFile.updated || null, ideas: bankFile.ideas } : null }, ops: { ...opsStats(games, agents, activity, now), usage: usageStats(usageSessions, games, now), guard, approvals: approvalStats(approvals.requests) }, waitingPitches: waitingPitches.map((g) => g.slug) };
 }

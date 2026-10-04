@@ -1,9 +1,12 @@
 import { useState } from 'react';
+import { verdictClass } from './ProjectsView.jsx';
+
+import { OwnerMark } from './OwnerMark.jsx';
 import { CopyBox } from './IdeaForm.jsx';
 import { Help } from './Help.jsx';
 import { ago } from '../util.js';
 
-export const GATE_LABEL = { scan: 'Market scan', greenlight: 'Start design', revision: 'Revision loop', 'panel-research': 'Panel research', 'panel-reviews': 'Persona reviews', budget: 'Over budget', 'free-api': 'Free AI provider' };
+export const GATE_LABEL = { scan: 'Market scan', greenlight: 'Start design', revision: 'Revision loop', 'panel-research': 'Panel research', 'panel-reviews': 'Persona reviews', budget: 'Over budget', 'free-api': 'Free AI provider', 'deep-research': 'Deep research' };
 const USAGE = { S: ['S', 'a few short agent calls'], M: ['M', 'one agent pass, such as a revision or a brief'], L: ['L', 'a full stage with simulation work or research'], XL: ['XL', 'a market scan or panel research'] };
 const STATE_CLASS = { approved: 'v-good', declined: 'v-warn', expired: 'v-bad', pending: 'v-warn' };
 
@@ -23,7 +26,10 @@ function RevisionContext({ rev }) {
   );
 }
 
-function Card({ r, onOpen, decided, sample, onDecided }) {
+export function ApprovalCard(props) { return <Card {...props} />; }
+function Card({ r, onOpen, decided, sample, onDecided, index, total }) {
+  const [open, setOpen] = useState(false);
+  const [more, setMore] = useState(false);
   const u = USAGE[r.usage_estimate];
   const [choice, setChoice] = useState(null);      // the option the owner clicked, awaiting confirmation
   const [notes, setNotes] = useState('');
@@ -39,33 +45,33 @@ function Card({ r, onOpen, decided, sample, onDecided }) {
     } catch (e) { setError(e.message); }
     setBusy(false);
   };
+  const stripe = decided ? 'neutral' : r.recommendation === 'approve' || r.recommendation === 'pitch' ? 'go' : r.recommendation === 'decline' || r.recommendation === 'kill' ? 'stop' : 'think';
   return (
-    <section className={`card approval ${decided ? 'decided' : ''}`}>
-      <div className="pitch-head">
-        <div>
-          <span className="chip big">{GATE_LABEL[r.gate] || r.gate}</span>{' '}
-          {r.gameTitle && <button className="link" onClick={() => onOpen(r.game)}>{r.gameTitle}</button>}
-          <div className="muted small">{r.id} · asked {r.ageDays === 0 ? 'today' : `${r.ageDays} day${r.ageDays === 1 ? '' : 's'} ago`}</div>
+    <section className={`card approval stripe-${stripe} ${decided ? 'decided' : ''}`}>
+      <div className="ap-top">
+        {index != null && <span className="ap-num" title={`Request ${index} of ${total}`}>{index}/{total}</span>}
+        <div className="ap-title">
+          {r.gameTitle ? <button className="link ap-game" onClick={() => onOpen(r.game)}><OwnerMark game={{ ownerIdea: r.ownerIdea }} /> {r.gameTitle}</button> : <b className="ap-game">{GATE_LABEL[r.gate] || r.gate}</b>}
+          <span className="chip">{GATE_LABEL[r.gate] || r.gate}</span>
+          {r.verdicts?.critic && <span className={`chip v-${verdictClass(r.verdicts.critic)}`} title="The critic's verdict on this game">critic: {r.verdicts.critic}</span>}
+          {r.verdicts?.playtest && <span className={`chip v-${verdictClass(r.verdicts.playtest)}`} title="The playtester's verdict on this game">playtest: {r.verdicts.playtest}</span>}
         </div>
-        <div className="gp-chips">
-          {r.state !== 'pending' && <span className={`chip big ${STATE_CLASS[r.state]}`}>{r.state}{r.decision && r.state !== 'expired' ? `: ${r.decision}` : ''}</span>}
-          {u && <span className="chip big" title={`Usage estimate ${u[0]}: ${u[1]}`}>usage {u[0]} <Help topic="usage-estimate" /></span>}
-          {r.recommendation && <span className="chip big v-good">Director recommends: {r.recommendation}</span>}
+        <div className="ap-meta">
+          {r.state !== 'pending' && <span className={`chip ${STATE_CLASS[r.state]}`}>{r.state}{r.decision && r.state !== 'expired' ? `: ${r.decision}` : ''}</span>}
+          {u && <span className="chip" title={`Usage estimate ${u[0]}: ${u[1]}`}>usage {u[0]} <Help topic="usage-estimate" /></span>}
+          <span className="muted small">{r.ageDays === 0 ? 'today' : `${r.ageDays} d ago`}</span>
         </div>
       </div>
-      <p style={{ marginBottom: 6 }}>{r.summary}</p>
+      <p className={`ap-summary ${more ? '' : 'clamp'}`}>{r.summary}</p>
+      {r.summary && r.summary.length > 220 && <button className="link small" onClick={() => setMore(!more)}>{more ? 'Show less' : 'Read all'}</button>}
       {!decided && (
         <>
-          <div className="pitch-cols">
-            <div><h4>Why it is needed</h4><p style={{ marginTop: 0 }}>{r.why_needed}</p></div>
-            <div><h4>What should change</h4><p style={{ marginTop: 0 }}>{r.expected_outcome}</p></div>
-          </div>
-          {r.revision && <RevisionContext rev={r.revision} />}
           <div className="pitch-actions">
-            {sample && <p className="notice info" style={{ marginTop: 0 }}>Sample data: decisions can not be saved here. With real games, these buttons record your decision.</p>}
+            {sample && <p className="notice info" style={{ marginTop: 0 }}>Sample data: decisions can not be saved here.</p>}
+            {r.recommendation && <div className="ap-rec">Director recommends: <b>{r.options.find((o) => o.key === r.recommendation)?.label || r.recommendation}</b></div>}
             {!choice && (
               <div className="opt-buttons">{r.options.map((o) => (
-                <button key={o.key} className={o.key === r.recommendation ? 'primary rec' : 'optbtn'} disabled={sample} onClick={() => { setChoice(o); setError(null); }}>{o.label}{o.key === r.recommendation ? ' (recommended)' : ''}</button>))}</div>
+                <button key={o.key} className={o.key === r.recommendation ? 'primary rec' : 'optbtn'} disabled={sample} onClick={() => { setChoice(o); setError(null); }}>{o.label}</button>))}</div>
             )}
             {choice && (
               <div className="confirm">
@@ -78,10 +84,21 @@ function Card({ r, onOpen, decided, sample, onDecided }) {
                 {error && <p className="err">{error}</p>}
               </div>
             )}
-            <details style={{ marginTop: 8 }}><summary className="muted small">Or reply in Claude Code instead</summary>
-              {r.options.map((o) => <div key={o.key} className="opt"><span>{o.label}</span><CopyBox text={replyFor(r, o)} /></div>)}
-            </details>
           </div>
+          <button className="link small ap-toggle" onClick={() => setOpen(!open)}>{open ? '\u25be Hide details' : '\u25b8 Details: why it is needed, what should change, the targets'}</button>
+          {open && (
+            <div className="ap-details">
+              <div className="pitch-cols">
+                <div><h4>Why it is needed</h4><p style={{ marginTop: 0 }}>{r.why_needed}</p></div>
+                <div><h4>What should change</h4><p style={{ marginTop: 0 }}>{r.expected_outcome}</p></div>
+              </div>
+              {r.revision && <RevisionContext rev={r.revision} />}
+              <details style={{ marginTop: 8 }}><summary className="muted small">Or reply in Claude Code instead</summary>
+                {r.options.map((o) => <div key={o.key} className="opt"><span>{o.label}</span><CopyBox text={replyFor(r, o)} /></div>)}
+              </details>
+              <div className="muted small mono" style={{ marginTop: 6 }}>{r.id}</div>
+            </div>
+          )}
         </>
       )}
       {decided && r.owner_notes && <p className="muted small" style={{ marginBottom: 0 }}>Your note: {r.owner_notes}{r.decided_at ? ` (${ago(r.decided_at)})` : ''}</p>}
@@ -97,7 +114,7 @@ export function ApprovalsView({ state, onOpen }) {
   return (
     <div className="view">
       <div className="plist-head"><h2>Waiting for you <Help topic="approval-gate" /></h2><span className="muted">{pending.length} request{pending.length === 1 ? '' : 's'}, oldest first.</span></div>
-      <p className="muted small" style={{ margin: '0 0 8px' }}>Approval mode: <b>{state.settings.approval_mode}</b> <Help topic="approval-mode" /> \u00b7 to change it, tell Claude Code: <span className="mono">set approval mode to strict</span>, <span className="mono">normal</span> or <span className="mono">relaxed</span>.</p>
+      <p className="muted small" style={{ margin: '0 0 8px' }}>Approval mode: <b>{state.settings.approval_mode}</b> <Help topic="approval-mode" /> · to change it, tell Claude Code: <span className="mono">set approval mode to strict</span>, <span className="mono">normal</span> or <span className="mono">relaxed</span>.</p>
       <p className="notice info">The Director stops before steps that use a lot of usage or could loop (see "Approval gates" in CLAUDE.md). Nothing here runs until you answer.</p>
       {last && (
         <div className="card saved-decision">
@@ -106,7 +123,7 @@ export function ApprovalsView({ state, onOpen }) {
           <button className="link" onClick={() => setLast(null)}>Dismiss</button>
         </div>)}
       {pending.length === 0 && <div className="card"><p className="empty" style={{ margin: 0 }}>Nothing is waiting for you.</p></div>}
-      {pending.map((r) => <Card key={r.id} r={r} onOpen={onOpen} sample={state.sample} onDecided={setLast} />)}
+      {pending.map((r, i) => <Card key={r.id} r={r} onOpen={onOpen} sample={state.sample} onDecided={setLast} index={i + 1} total={pending.length} />)}
       {done.length > 0 && <h3 className="sect">Decided and expired</h3>}
       {done.map((r) => <Card key={r.id} r={r} onOpen={onOpen} decided />)}
     </div>

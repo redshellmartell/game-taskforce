@@ -21,7 +21,7 @@ import sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 METRICS = ["skill_expression", "decisions_per_turn", "lead_changes", "length_fit",
-           "rules_simplicity", "catch_up", "interaction", "dominant_strategy_absent"]
+           "rules_simplicity", "catch_up", "interaction", "dominant_strategy_absent", "originality"]
 
 
 def clamp(x, lo=0.0, hi=1.0):
@@ -118,10 +118,17 @@ def dominant_absent(cards):
     return clamp(1 - dominated / len(cards))
 
 
-def game_metrics(playtest, rules_words, preferred):
+def originality(brief):
+    """The researcher's originality score for the idea (1-5 in brief.json's rubric) as 0-1; None if the brief has none."""
+    v = ((brief or {}).get("rubric") or {}).get("originality")
+    return clamp((v - 1) / 4.0) if isinstance(v, (int, float)) else None
+
+
+def game_metrics(playtest, rules_words, preferred, brief=None):
     """Metrics that depend on the game and the persona's taste, not on how the persona's bot played."""
     minutes = (playtest.get("length") or {}).get("estimated_minutes") or 0
-    return {
+    extra = {"originality": originality(brief)}
+    return {**{k: v for k, v in extra.items() if v is not None},
         "skill_expression": skill_expression(playtest.get("skill_expression") or 0),
         "length_fit": length_fit(minutes, preferred),
         "rules_simplicity": rules_simplicity(rules_words),
@@ -140,7 +147,11 @@ def bot_metrics(r):
 
 
 def weighted(metrics, weights):
-    return sum(weights.get(k, 0.0) * metrics.get(k, 0.0) for k in weights)
+    """Weighted mean of the metrics. A metric that is not available (for example originality when the game has no
+    brief.json) is left out and the remaining weights are scaled up, so a missing number never counts as zero."""
+    have = {k: w for k, w in weights.items() if k in metrics and w > 0}
+    total = sum(have.values())
+    return sum(w * metrics[k] for k, w in have.items()) / total if total else 0.0
 
 
 def fun_from_metrics(metrics, weights):
@@ -187,27 +198,45 @@ def peeves_hit(titles, metrics, raw):
     return hit
 
 
+def check_veto(rules, fun, metrics, seat_gap):
+    """The Bar Raiser's veto: returns {"active": bool, "reasons": [...]} from the limits in the persona's `veto` block."""
+    reasons = []
+    if fun < rules.get("min_fun", 0):
+        reasons.append("predicted fun %.2f is below %.1f" % (fun, rules["min_fun"]))
+    if metrics.get("dominant_strategy_absent", 1) < rules.get("min_dominant_strategy_absent", 0):
+        reasons.append("a dominant strategy was flagged by the playtester")
+    if seat_gap > rules.get("max_seat_gap", 1e9):
+        reasons.append("seat advantage of %.1f points" % seat_gap)
+    if "originality" in metrics and metrics["originality"] < rules.get("min_originality", 0):
+        reasons.append("low originality in the brief's rubric")
+    return {"active": bool(reasons), "reasons": reasons}
+
+
 def summarise(personas_out):
     funs = {k: v["fun"] for k, v in personas_out.items()}
     if not funs:
         return {}
     best, worst = max(funs, key=funs.get), min(funs, key=funs.get)
-    return {"average_fun": round(sum(funs.values()) / len(funs), 2),
-            "spread": round(max(funs.values()) - min(funs.values()), 2), "best_fit": best, "worst_fit": worst}
+    out = {"average_fun": round(sum(funs.values()) / len(funs), 2),
+           "spread": round(max(funs.values()) - min(funs.values()), 2), "best_fit": best, "worst_fit": worst}
+    vetoes = {k: v["veto"]["reasons"] for k, v in personas_out.items() if v.get("veto", {}).get("active")}
+    if vetoes:
+        out["veto"] = vetoes
+    return out
 
 
 # ---------------------------------------------------------------- the whole file
-def build_panel(playtest, rules_words, results, personas, revision=1, previous=None):
+def build_panel(playtest, rules_words, results, personas, revision=1, previous=None, brief=None):
     """results: contents of sim/panel-results.json. Returns the panel.json dict."""
     minutes = (playtest.get("length") or {}).get("estimated_minutes") or 0
     out = {}
     for pid, per in results["personas"].items():
         p = personas[pid]
         raw = per["raw"]
-        metrics = {**game_metrics(playtest, rules_words, p["preferred_minutes"]), **bot_metrics(raw)}
+        metrics = {**game_metrics(playtest, rules_words, p["preferred_minutes"], brief), **bot_metrics(raw)}
         fun = fun_from_metrics(metrics, p["weights"])
         buy, price = would_buy(fun, minutes, p["price_tolerance_usd"], p["preferred_minutes"])
-        raw = {**raw, "seat_gap": playtest.get("seat_balance_gap", 0), "minutes": minutes, "preferred_max": p["preferred_minutes"][1]}
+        raw = {**raw, "seat_gap": (playtest.get("seat_balance_gap") or 0), "minutes": minutes, "preferred_max": p["preferred_minutes"][1]}
         out[pid] = {
             "fun": fun, "replay": replay_from_metrics(metrics, p["weights"]), "would_buy": buy, "price_usd": price,
             "metrics": {k: round(v, 3) for k, v in metrics.items()},
@@ -215,11 +244,13 @@ def build_panel(playtest, rules_words, results, personas, revision=1, previous=N
             "bot": per["bot"], "best_table": per.get("best_table"), "worst_table": per.get("worst_table"),
             "review": ((previous or {}).get("personas", {}).get(pid, {}) or {}).get("review"),
         }
+        if p.get("veto"):
+            out[pid]["veto"] = check_veto(p["veto"], fun, metrics, (playtest.get("seat_balance_gap") or 0))
     matchups = []
     for m in results.get("matchups", []):
         a, b = m["a"], m["b"]
-        matchups.append({**m, "a_fun": fun_from_metrics({**game_metrics(playtest, rules_words, personas[a]["preferred_minutes"]), **bot_metrics(m["a_raw"])}, personas[a]["weights"]),
-                         "b_fun": fun_from_metrics({**game_metrics(playtest, rules_words, personas[b]["preferred_minutes"]), **bot_metrics(m["b_raw"])}, personas[b]["weights"])})
+        matchups.append({**m, "a_fun": fun_from_metrics({**game_metrics(playtest, rules_words, personas[a]["preferred_minutes"], brief), **bot_metrics(m["a_raw"])}, personas[a]["weights"]),
+                         "b_fun": fun_from_metrics({**game_metrics(playtest, rules_words, personas[b]["preferred_minutes"], brief), **bot_metrics(m["b_raw"])}, personas[b]["weights"])})
         matchups[-1].pop("a_raw"); matchups[-1].pop("b_raw")
     return {"revision": revision, "stage": "scores", "personas": out, "rotation": results["rotation"],
             "matchups": matchups, "summary": summarise(out)}
@@ -237,8 +268,10 @@ def main(argv):
     results = json.load(open(os.path.join(g, "sim", "panel-results.json")))
     prev_path = os.path.join(g, "panel.json")
     previous = json.load(open(prev_path)) if os.path.exists(prev_path) else None
+    brief_path = os.path.join(g, "brief.json")
+    brief = json.load(open(brief_path)) if os.path.exists(brief_path) else None
     panel = build_panel(playtest, words, results, load_personas(ROOT, set(results["personas"])),
-                        revision or playtest.get("revision", 1), previous)
+                        revision or playtest.get("revision", 1), previous, brief)
     with open(prev_path, "w") as f:
         json.dump(panel, f, indent=2)
         f.write("\n")

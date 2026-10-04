@@ -43,7 +43,7 @@ export function loadPanel(repoRoot) {
       personas.push({
         id: fm.id, name: fm.name || fm.id, archetype: fm.archetype || '', tagline: fm.tagline || '', color: fm.color || '#8a8f9b', initials: fm.initials || fm.id.slice(0, 2).toUpperCase(),
         botStyle: fm.bot_style || null, preferredMinutes: fm.preferred_minutes || null, priceUsd: fm.price_tolerance_usd || null, drivers,
-        profile: `panel/personas/${f}`, evidence: fm.evidence || `panel/evidence/${fm.id}.md`,
+        veto: fm.veto || null, profile: `panel/personas/${f}`, evidence: fm.evidence || `panel/evidence/${fm.id}.md`,
         calibration: c ? { trusted: !!c.trusted, meanAbsError: c.mean_abs_error, ratedGames: c.rated_games, confidence: c.confidence || null, notes: c.notes || '',
           games: (c.games || []).map((g) => ({ game: g.game, predicted: g.predicted, actual: g.actual })) } : null,
       });

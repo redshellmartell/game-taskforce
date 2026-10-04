@@ -34,6 +34,7 @@ export default function App() {
   const [replay, setReplay] = useState(null);
   const [ideaOpen, setIdeaOpen] = useState(false);
   const go = (v) => { setView(v); setGame(null); };
+  const openGameFromMap = (slug) => { setView('pipeline'); setGame(slug); setSelection(null); };   // the game page lives under Pipeline
   const openPersona = (id) => { setPtab('who'); setPersona(id); setView('panel'); setGame(null); };
   const setLearn = (v) => { setLearnState(v); store.set('learn', v ? '1' : '0'); };
   useEffect(() => { if (view !== 'network') setReplay(null); }, [view]);
@@ -70,9 +71,9 @@ export default function App() {
         </div>
         {view === 'network' ? (
           <div className={`main ${selection ? 'open' : ''}`}>
-            <NetworkView compact={!!selection} state={state} selection={selection} onSelect={setSelection} frame={frame} onPersona={openPersona} />
-            {agent && <AgentPanel agent={agent} state={state} initialTab={selection.tab} onClose={() => setSelection(null)} onPersona={openPersona} />}
-            {selection?.type === 'owner' && <OwnerPanel state={state} onClose={() => setSelection(null)} />}
+            <NetworkView compact={!!selection} state={state} selection={selection} onSelect={setSelection} frame={frame} onPersona={openPersona} onPanel={() => { setPersona(null); go('panel'); }} />
+            {agent && <AgentPanel agent={agent} state={state} initialTab={selection.tab} onClose={() => setSelection(null)} onPersona={openPersona} onOpenGame={openGameFromMap} onNavigate={go} />}
+            {selection?.type === 'owner' && <OwnerPanel state={state} onClose={() => setSelection(null)} onOpenGame={openGameFromMap} onNavigate={go} />}
             {selection?.type === 'edge' && <EdgePanel edge={selection.edge} state={state} onClose={() => setSelection(null)} />}
           </div>
         ) : openGame ? (

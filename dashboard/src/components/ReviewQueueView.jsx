@@ -1,5 +1,7 @@
+import { useState } from 'react';
 import { CopyBox } from './IdeaForm.jsx';
 import { Help } from './Help.jsx';
+import { verdictClass } from './ProjectsView.jsx';
 import { ago } from '../util.js';
 
 function Tile({ label, k, suffix = '', note }) {
@@ -14,13 +16,57 @@ function Tile({ label, k, suffix = '', note }) {
 }
 
 // Pitches waiting for the owner, past decisions and your real-world playtests. Read-only.
+const TARGETS = ['game-designer', 'market-researcher', 'playtester', 'test-panel', 'critic'];
+const PITCH_OPTIONS = [
+  { key: 'approve', label: 'Approve for a prototype', cls: 'good', ask: 'Approve this pitch for a physical prototype?' },
+  { key: 'revise', decision: 'send-back', target: 'game-designer', label: 'Send back for revision', cls: 'warn', ask: 'Send this game back to the design team for a revision? Say what to change in the note; the Director turns it into a revision request for you to approve.' },
+  { key: 'send-to', decision: 'send-back', needsTarget: true, label: 'Send back with note…', cls: 'warn', ask: 'Send this game back to a department of your choice, with a note. The Director routes it and asks you to approve anything that uses a lot of usage.' },
+  { key: 'reject', label: 'Reject', cls: 'bad', ask: 'Reject this pitch? The game will be set aside.' },
+];
+
+// Approve / Send back / Reject for one pitch, with an optional note and a confirm step.
+export function PitchActions({ slug, sample, agents }) {
+  const [target, setTarget] = useState('game-designer');
+  const [choice, setChoice] = useState(null);
+  const [notes, setNotes] = useState('');
+  const [busy, setBusy] = useState(false);
+  const [msg, setMsg] = useState(null);
+  const save = async () => {
+    setBusy(true); setMsg(null);
+    try {
+      const res = await fetch(`/api/pitch/${encodeURIComponent(slug)}`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ decision: choice.decision || choice.key, notes, target: choice.needsTarget ? target : (choice.target || undefined) }) });
+      const body = await res.json();
+      if (!res.ok) throw new Error(body.error || 'Could not save the decision');
+      setMsg({ ok: true, text: `Saved: ${choice.label}. It will leave this queue in a moment.` }); setChoice(null);
+    } catch (e) { setMsg({ ok: false, text: e.message }); }
+    setBusy(false);
+  };
+  return (
+    <div className="pitch-decide">
+      {sample && <p className="muted small">Sample data: decisions are not saved.</p>}
+      {!choice && <div className="pitch-buttons">{PITCH_OPTIONS.map((o) => <button key={o.key} className={`decide ${o.cls}`} onClick={() => { setChoice(o); setMsg(null); }}>{o.label}</button>)}</div>}
+      {choice && (
+        <div className="confirm">
+          <p style={{ margin: '0 0 6px' }}><b>{choice.ask}</b></p>
+          {choice.needsTarget && <label className="small" style={{ display: 'block', margin: '0 0 6px' }}>Send it back to <select value={target} onChange={(e) => setTarget(e.target.value)}>{TARGETS.map((id) => <option key={id} value={id}>{agents?.find((a) => a.id === id)?.room || id}</option>)}</select></label>}
+          <textarea rows={2} value={notes} onChange={(e) => setNotes(e.target.value)} placeholder="Optional note for the Director (required in spirit when sending back)" />
+          <div className="pitch-buttons"><button className={`decide ${choice.cls}`} disabled={busy} onClick={save}>{busy ? 'Saving…' : `Yes: ${choice.label}`}</button><button className="link" disabled={busy} onClick={() => setChoice(null)}>Cancel</button></div>
+        </div>
+      )}
+      {msg && <p className={msg.ok ? 'saved-ok' : 'saved-err'} role="status">{msg.text}</p>}
+    </div>
+  );
+}
+
 export function ReviewQueueView({ state, onOpen }) {
   const r = state.review;
+  const decided = state.games.filter((g) => g.pitchDecision);
   const sessions = state.games.flatMap((g) => g.humanPlaytests.map((s) => ({ ...s, title: g.title, slug: g.slug })));
   return (
     <div className="view">
       <div className="plist-head"><h2>Review queue</h2><span className="muted">Pitches waiting for your decision, oldest first.</span></div>
-      <p className="notice info">This screen is read-only. To record a decision, tell Claude Code, for example <span className="mono">approve {r.queue[0]?.slug || 'game-name'}</span>, and it updates the files this page reads.</p>
+      <p className="notice info">Decide on each pitch with the buttons below. Your decision is saved to <span className="mono">games/decisions.json</span> and the pitch leaves this queue; the Director moves the game on when you say <span className="mono">continue with approved work</span>. Nothing is started by the dashboard.</p>
+      {decided.length > 0 && <div className="card"><h3>Decided, waiting for the Director</h3>{decided.map((g) => <div className="item" key={g.slug}><b>{g.title}</b>: <span className="chip v-good">{g.pitchDecision.decision}</span> <span className="muted small">{g.pitchDecision.notes}</span></div>)}</div>}
       <div className="tiles">
         <Tile label="Waiting for you" k={state.kpis.reviewQueue} />
         <Tile label="Approval rate" k={r.approvalRate} suffix="%" note="rising is better" />
@@ -42,6 +88,10 @@ export function ReviewQueueView({ state, onOpen }) {
               <span className={`chip big ${q.days != null && q.days > 7 ? 'v-bad' : 'v-warn'}`}>{q.days != null ? `waiting ${q.days} day${q.days === 1 ? '' : 's'}` : 'waiting'}</span>
               {q.critic != null && <span className={`chip big ${q.critic >= 3.5 ? 'v-good' : 'v-warn'}`}>critic {q.critic}/5</span>}
               {q.scored > 0 && <span className="chip big">{q.passing} of {q.scored} KPIs on target</span>}
+              {q.opportunity != null && <span className="chip big" title="Opportunity score from the brief">{q.opportunity}/30</span>}
+              {q.verdicts?.playtest && <span className={`chip big v-${verdictClass(q.verdicts.playtest)}`} title="The playtester's verdict">playtest: {q.verdicts.playtest}</span>}
+              {q.verdicts?.critic && <span className={`chip big v-${verdictClass(q.verdicts.critic)}`} title="The critic's verdict">critic: {q.verdicts.critic}</span>}
+              {q.revision > 0 && <span className="chip big" title="Revision loops done so far">revision {q.revision} of 3</span>}
             </div>
           </div>
           <div className="pitch-cols">
@@ -57,11 +107,8 @@ export function ReviewQueueView({ state, onOpen }) {
           </div>
           <div className="pitch-actions">
             <button className="link" onClick={() => onOpen(q.slug)}>Open the full overview</button>
-            <div className="muted small">Tell Claude Code:</div>
-            <CopyBox text={`approve ${q.slug}`} />
-            <CopyBox text={`reject ${q.slug}`} />
-            <CopyBox text={`send ${q.slug} back with notes: ...`} />
           </div>
+          <PitchActions slug={q.slug} sample={state.sample} agents={state.agents} />
         </section>
       ))}
 

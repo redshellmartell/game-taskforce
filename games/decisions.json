@@ -5,6 +5,86 @@
       "time": "2026-10-03T13:26:33Z",
       "decision": "approve",
       "notes": "panel-reviews gate (duelflip-panel-reviews-1): owner replied proceed"
+    },
+    {
+      "slug": null,
+      "time": "2026-10-03T14:48:55Z",
+      "decision": "decline",
+      "notes": "free-model-experiment-api: local Ollama on the owner's Mac only"
+    },
+    {
+      "slug": null,
+      "time": "2026-10-03T15:16:31Z",
+      "decision": "approve",
+      "notes": "market-scan-1 (scan gate): owner approved"
+    },
+    {
+      "slug": "three-player-trick-taker",
+      "time": "2026-10-03T15:57:30Z",
+      "decision": "approve",
+      "notes": "greenlight gate (three-player-trick-taker-greenlight): owner approved in chat"
+    },
+    {
+      "slug": null,
+      "time": "2026-10-03T16:12:01Z",
+      "decision": "approve",
+      "notes": "market-scan-2: owner requested it in chat"
+    },
+    {
+      "slug": null,
+      "time": "2026-10-03T16:12:01Z",
+      "decision": "approve",
+      "notes": "panel-research-2: owner requested it in chat"
+    },
+    {
+      "slug": "three-player-trick-taker",
+      "time": "2026-10-04T10:48:46Z",
+      "decision": "approve",
+      "notes": "three-player-trick-taker-revision-1: owner said run the taskforce now; Director chose scope"
+    },
+    {
+      "slug": "silent-duo-deduction-coop",
+      "time": "2026-10-04T10:48:46Z",
+      "decision": "approve",
+      "notes": "silent-duo-deduction-coop-greenlight: owner said run the taskforce now; Director chose scope"
+    },
+    {
+      "slug": "asymmetric-duel-tug-of-war",
+      "time": "2026-10-04T10:48:46Z",
+      "decision": "approve",
+      "notes": "asymmetric-duel-tug-of-war-greenlight: owner said run the taskforce now; Director chose scope"
+    },
+    {
+      "slug": "grid-of-cards-area-control",
+      "time": "2026-10-04T11:01:19Z",
+      "decision": "approve",
+      "notes": "grid-of-cards-area-control-greenlight: owner approved (Nine Fields) in chat"
+    },
+    {
+      "slug": "heavenly-bodies",
+      "time": "2026-10-04T11:34:34Z",
+      "decision": "approve",
+      "notes": "heavenly-bodies: owner passed the complete design document directly to the design team (greenlight by direct instruction)"
+    },
+    {
+      "slug": "silent-duo-deduction-coop",
+      "time": "2026-10-04T11:56:07Z",
+      "decision": "approve",
+      "notes": "silent-duo-deduction-coop-budget-1 (budget gate): owner approved in the dashboard on the Mac; applies to the retest inside revision 1 once that is approved"
+    },
+    {
+      "slug": "three-player-trick-taker",
+      "time": "2026-10-04T12:02:12Z",
+      "decision": "approve",
+      "notes": "three-player-trick-taker-revision-2 (revision gate): owner approved in the dashboard"
+    },
+    {
+      "slug": "duelflip",
+      "kind": "pitch",
+      "time": "2026-10-04T14:20:44.819Z",
+      "decision": "send-back",
+      "target": "game-designer",
+      "notes": "decided in the dashboard (Review Queue)"
     }
   ]
 }

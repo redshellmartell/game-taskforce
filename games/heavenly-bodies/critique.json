@@ -1,0 +1,15 @@
+{ "verdict": "REVISE-MAJOR", "revision": 0,
+  "scores": { "originality": 4, "clarity": 2, "fun": 3, "balance": 2, "market_fit": 3, "production": 3 },
+  "average": 2.83,
+  "strength": "The orbit-as-clock rotation is a fresh, skill-rich core: strategic bot beats random by 77.7 points and the game runs cleanly with no ties or stuck games.",
+  "weakness": "The two win conditions are not co-equal and the split flips with player count (2p 72/28 Star, 4p 39/61, 6p 25/75), together with HP-dominated Star strength and 40 open rule gaps; these are mostly owner decisions on the locked rules.",
+  "closest_existing_game": { "name": "Orbita (2025); nearest in feel is CCG duels", "similarity": "low" },
+  "required_changes": [
+    "Re-cost or lower AE28 and AE25 (3-damage hard-cost cards); target winning link under 0.2",
+    "Add 4-6 cheap knockout/Size-reduction AEs including 1 Denial card; target CM cancel share 45-55% and a higher CM share at 2p",
+    "Give rotation-trick cards (AE41, AE43, AE45, AE55, AE57, AE60, CO14, CO24) clear payoffs; target each played in at least 5% of games",
+    "After the owner rules on G4, G7, G8, G10, G12/13, G27, G29, re-run on the locked readings; target seat gap 5 or less",
+    "Replace 2-3 always-dead AEs with cards playable on an empty board; target under 3 dead cards per 7-card hand"
+  ],
+  "revision_worth_it": true,
+  "revision_reason": "Yes, once the owner answers G4, win-path scaling and the key rule gaps; card fixes are cheap with a clear diagnosis, but without those answers a revision re-measures an unsettled rule set." }

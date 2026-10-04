@@ -1,4 +1,4 @@
-Duel Flip: strategist (seat 1) vs competitor (seat 2), table 'worst' for strategist. Cards are species+value (Cr St Ur An Sn Ke).
+Duel Flip: strategist (seat 1) vs barraiser (seat 2), table 'worst' for strategist. Cards are species+value (Cr St Ur An Sn Ke).
 T0 P0 first An7
 T0 P0 flips An5
 T0 P0 flips Ke2

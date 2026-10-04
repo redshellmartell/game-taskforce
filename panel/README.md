@@ -50,8 +50,12 @@ You can also do step 1 yourself: copy a file in `personas/`, change the settings
 
 ## Limits to know about
 
-- This panel was built in a cloud session where **BoardGameGeek, Reddit, Wikipedia, Meeple Mountain and Dice Tower were blocked** and web searches were capped at 200 for the whole session. Every evidence file says it rests on search-result summaries, and the calibration baseline is thin. To improve it, allow those sites under the environment's *Network access* settings and raise the web-search limit, then ask for a refresh.
+- This panel was built in a cloud session where **BoardGameGeek, Reddit, Wikipedia, Meeple Mountain and Dice Tower were blocked** (BoardGameGeek stays off limits by the owner's decision: see "Research rules" in `CLAUDE.md`) and web searches were capped at 200 for the whole session. Every evidence file says it rests on search-result summaries, and the calibration baseline is thin. To improve it, allow those sites under the environment's *Network access* settings and raise the web-search limit, then ask for a refresh.
 - The personas are language-model roleplay anchored on that evidence. They can be consistent and useful, but they are not real people.
+
+## The Bar Raiser (sixth persona)
+
+`barraiser` is a veteran-designer persona that joins the panel as its hardest judge and the only one that can **veto** a game (a recorded "do not pitch as it stands" the owner must decide on). Its profile sets the veto limits. It starts untrusted: it needs panel research (`panel/evidence/barraiser.md`) and calibration like the others.
 
 ## Scoring and rotation (task 006)
 

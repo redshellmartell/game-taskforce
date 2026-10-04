@@ -85,7 +85,7 @@ function GhostNode() { return <div style={{ width: 1, height: 1 }} />; }
 const nodeTypes = { agent: AgentNode, persona: PersonaNode, ghost: GhostNode };
 const edgeTypes = { handoff: HandoffEdge, revision: RevisionEdge, org: OrgEdge };
 
-export function NetworkView({ state, selection, onSelect, compact, frame, onPersona }) {
+export function NetworkView({ state, selection, onSelect, compact, frame, onPersona, onPanel }) {
   const [expanded, setExpanded] = useState(false);   // the Test Panel's personas are hidden until you ask
   const { nodes, edges } = useMemo(() => {
     const byId = Object.fromEntries(state.agents.map((a) => [a.id, a]));
@@ -171,7 +171,7 @@ export function NetworkView({ state, selection, onSelect, compact, frame, onPers
       <ReactFlow key={`${compact ? 'compact' : 'full'}-${expanded ? 'open' : 'closed'}`} nodes={nodes} edges={edges} nodeTypes={nodeTypes} edgeTypes={edgeTypes}
         fitView fitViewOptions={{ padding: 0.12 }} nodesDraggable={false} nodesConnectable={false} elementsSelectable
         panOnDrag zoomOnScroll={false} minZoom={0.4}
-        onNodeClick={(_, n) => (n.id.startsWith('persona:') ? onPersona?.(n.id.slice(8)) : onSelect({ type: n.id === 'owner' ? 'owner' : 'agent', id: n.id }))}
+        onNodeClick={(_, n) => (n.id.startsWith('persona:') ? onPersona?.(n.id.slice(8)) : n.id === 'test-panel' && onPanel ? onPanel() : onSelect({ type: n.id === 'owner' ? 'owner' : 'agent', id: n.id }))}
         onEdgeClick={(_, e) => onSelect(e.data?.org ? { type: 'agent', id: e.data.agent } : { type: 'edge', id: e.id, edge: e.data })}
         onPaneClick={() => onSelect(null)} proOptions={{ hideAttribution: true }} />
     </div>

@@ -72,6 +72,278 @@
         "critic": "REVISE-MINOR"
       },
       "kill_reason": null
+    },
+    {
+      "slug": "three-player-trick-taker",
+      "title": "Three-Hand Trick-Taker",
+      "stage": "critique",
+      "revision": 2,
+      "history": [
+        {
+          "stage": "brief",
+          "time": "2026-10-03T15:44:49Z",
+          "verdict": null,
+          "note": "started from idea bank (market scan 1)"
+        },
+        {
+          "stage": "brief",
+          "time": "2026-10-03T15:46:15Z",
+          "verdict": "26/30",
+          "note": "brief written; waiting for approval: greenlight"
+        },
+        {
+          "stage": "design",
+          "time": "2026-10-03T15:57:36Z",
+          "verdict": null,
+          "note": "greenlight approved by owner; design started"
+        },
+        {
+          "stage": "playtest",
+          "time": "2026-10-03T16:00:34Z",
+          "verdict": null,
+          "note": "rules.md written (Split the Take); playtest started"
+        },
+        {
+          "stage": "critique",
+          "time": "2026-10-03T16:08:01Z",
+          "verdict": "NEEDS-FIXES",
+          "note": "playtest NEEDS-FIXES (target hit 19.7%, greedy beats strategic); critique started"
+        },
+        {
+          "stage": "critique",
+          "time": "2026-10-03T16:08:46Z",
+          "verdict": "REVISE-MAJOR",
+          "note": "critic REVISE-MAJOR avg 3.0; waiting for approval: revision (three-player-trick-taker-revision-1)"
+        },
+        {
+          "stage": "design",
+          "time": "2026-10-04T10:48:46Z",
+          "verdict": null,
+          "note": "revision 1 approved; designer revising rules"
+        },
+        {
+          "stage": "critique",
+          "time": "2026-10-04T11:01:02Z",
+          "verdict": "REVISE-MAJOR",
+          "note": "revision 1: critic avg 3.5; waiting for approval: revision 2"
+        },
+        {
+          "stage": "design",
+          "time": "2026-10-04T12:02:12Z",
+          "verdict": null,
+          "note": "revision 2 approved; designer revising rules"
+        },
+        {
+          "stage": "critique",
+          "time": "2026-10-04T12:14:19Z",
+          "verdict": "REVISE-MINOR",
+          "note": "revision 2: critic avg 3.67; waiting for owner decision: pitch or revise"
+        }
+      ],
+      "verdicts": {
+        "playtest": "NEEDS-FIXES",
+        "critic": "REVISE-MINOR"
+      },
+      "kill_reason": null
+    },
+    {
+      "slug": "silent-duo-deduction-coop",
+      "title": "Silent Duo",
+      "stage": "critique",
+      "revision": 0,
+      "history": [
+        {
+          "stage": "brief",
+          "time": "2026-10-03T16:13:48Z",
+          "verdict": null,
+          "note": "started from the idea bank (market scan 1)"
+        },
+        {
+          "stage": "brief",
+          "time": "2026-10-03T16:15:15Z",
+          "verdict": "25/30",
+          "note": "brief written; waiting for approval: greenlight"
+        },
+        {
+          "stage": "design",
+          "time": "2026-10-04T10:48:46Z",
+          "verdict": null,
+          "note": "greenlit; design started"
+        },
+        {
+          "stage": "playtest",
+          "time": "2026-10-04T11:06:35Z",
+          "verdict": "NEEDS-FIXES",
+          "note": "honest win 73%; code attack +12.1 at F=16"
+        },
+        {
+          "stage": "critique",
+          "time": "2026-10-04T11:06:35Z",
+          "verdict": "REVISE-MAJOR",
+          "note": "critic REVISE-MAJOR avg 3.5; waiting for approval: revision"
+        }
+      ],
+      "verdicts": {
+        "playtest": "NEEDS-FIXES",
+        "critic": "REVISE-MAJOR"
+      },
+      "kill_reason": null
+    },
+    {
+      "slug": "asymmetric-duel-tug-of-war",
+      "title": "Tug of Crowns",
+      "stage": "critique",
+      "revision": 0,
+      "history": [
+        {
+          "stage": "brief",
+          "time": "2026-10-03T16:13:48Z",
+          "verdict": null,
+          "note": "started from the idea bank (market scan 1)"
+        },
+        {
+          "stage": "brief",
+          "time": "2026-10-03T16:16:36Z",
+          "verdict": "24/30",
+          "note": "brief written; waiting for approval: greenlight"
+        },
+        {
+          "stage": "design",
+          "time": "2026-10-04T10:48:46Z",
+          "verdict": null,
+          "note": "greenlit; design started"
+        },
+        {
+          "stage": "playtest",
+          "time": "2026-10-04T10:58:43Z",
+          "verdict": "NEEDS-FIXES",
+          "note": "lead changes 1.15; lead choice solved; seat gap 2.2"
+        },
+        {
+          "stage": "critique",
+          "time": "2026-10-04T10:58:43Z",
+          "verdict": "REVISE-MAJOR",
+          "note": "critic REVISE-MAJOR avg 3.33; waiting for approval: revision"
+        }
+      ],
+      "verdicts": {
+        "playtest": "NEEDS-FIXES",
+        "critic": "REVISE-MAJOR"
+      },
+      "kill_reason": null
+    },
+    {
+      "slug": "grid-of-cards-area-control",
+      "title": "Nine Fields",
+      "stage": "critique",
+      "revision": 0,
+      "history": [
+        {
+          "stage": "brief",
+          "time": "2026-10-03T16:13:48Z",
+          "verdict": null,
+          "note": "started from the idea bank (market scan 1)"
+        },
+        {
+          "stage": "brief",
+          "time": "2026-10-03T16:17:49Z",
+          "verdict": "24/30",
+          "note": "brief written; waiting for approval: greenlight"
+        },
+        {
+          "stage": "design",
+          "time": "2026-10-04T11:01:19Z",
+          "verdict": null,
+          "note": "greenlit by owner; design started"
+        },
+        {
+          "stage": "playtest",
+          "time": "2026-10-04T11:25:36Z",
+          "verdict": "NEEDS-FIXES",
+          "note": "fails 2-player lead changes and runaway; 3-4 players pass"
+        },
+        {
+          "stage": "critique",
+          "time": "2026-10-04T11:25:36Z",
+          "verdict": "REVISE-MINOR",
+          "note": "critic REVISE-MINOR avg 3.67; waiting for approval: revision"
+        }
+      ],
+      "verdicts": {
+        "playtest": "NEEDS-FIXES",
+        "critic": "REVISE-MINOR"
+      },
+      "kill_reason": null
+    },
+    {
+      "slug": "archetypes",
+      "title": "Archetypes",
+      "source": "owner",
+      "stage": "brief",
+      "revision": 0,
+      "history": [
+        {
+          "stage": "brief",
+          "time": "2026-10-04T11:17:44Z",
+          "verdict": null,
+          "note": "owner idea (from the inbox), enters at research"
+        },
+        {
+          "stage": "brief",
+          "time": "2026-10-04T11:20:09Z",
+          "verdict": "21/30",
+          "note": "brief written; waiting for approval: greenlight"
+        }
+      ],
+      "verdicts": {
+        "playtest": null,
+        "critic": null
+      },
+      "kill_reason": null
+    },
+    {
+      "slug": "heavenly-bodies",
+      "title": "Heavenly Bodies",
+      "source": "owner",
+      "stage": "critique",
+      "revision": 0,
+      "history": [
+        {
+          "stage": "design",
+          "time": "2026-10-04T11:24:21Z",
+          "verdict": null,
+          "note": "owner idea (Star roster only); waiting for the owner's Rules v2 before any agent runs"
+        },
+        {
+          "stage": "design",
+          "time": "2026-10-04T11:34:34Z",
+          "verdict": null,
+          "note": "owner supplied the complete design doc and passed it directly to design (96-card build)"
+        },
+        {
+          "stage": "playtest",
+          "time": "2026-10-04T11:49:03Z",
+          "verdict": null,
+          "note": "rules.md and the 96-card pile written (40 rule gaps listed); simulation started"
+        },
+        {
+          "stage": "playtest",
+          "time": "2026-10-04T12:12:05Z",
+          "verdict": "NEEDS-FIXES",
+          "note": "win paths flip with player count; first-seat 7.4 (from G4 reading); Bar Raiser veto active"
+        },
+        {
+          "stage": "critique",
+          "time": "2026-10-04T12:12:05Z",
+          "verdict": "REVISE-MAJOR",
+          "note": "critic REVISE-MAJOR avg 2.83; waiting for owner rulings and revision approval"
+        }
+      ],
+      "verdicts": {
+        "playtest": "NEEDS-FIXES",
+        "critic": "REVISE-MAJOR"
+      },
+      "kill_reason": null
     }
   ]
 }

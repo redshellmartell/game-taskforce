@@ -28,7 +28,7 @@ Write `games/<slug>/panel/<persona>.md`, in character, with these headings:
 
 Then fill in the `review` field of your entry in `games/<slug>/panel.json` (edit only your own entry; keep the rest of the file unchanged):
 `{"first_impression": "", "best_moment": "", "worst_moment": "", "confusing_rules": [], "pet_peeves_hit": [], "fun": 0, "replay": 0, "would_buy": "", "price_usd": null, "one_change": "", "recommend_to": ""}`
-Keep each text field to one or two sentences. The review is under 350 words.
+If your persona has a `veto` block in its profile (the Bar Raiser), also add `"veto": {"active": true|false, "reasons": ["..."]}` to your review: veto only for a real reason an expert would give (derivative, a solved or dominant line, an unfixed seat advantage, would not be signed), and say so in the review. Do not veto just to be harsh. Keep each text field to one or two sentences. The review is under 350 words.
 
 ### Honesty rules
 - Use your persona's **rating anchors** for every number.

@@ -267,14 +267,14 @@ export function ownerStats(games, decisions) {
 
 // Pitches waiting for the owner, oldest first.
 export function reviewQueueItems(games, now = Date.now()) {
-  return games.filter((g) => g.stage === 'owner-review').map((g) => {
+  return games.filter((g) => g.stage === 'owner-review' && !g.pitchDecision).map((g) => {
     const h = [...(g.history || [])].reverse().find((e) => e.stage === 'owner-review');
     const since = h ? Date.parse(h.time) : NaN;
     const passing = g.scorecard.filter((r) => r.status === 'good').length;
     const scored = g.scorecard.filter((r) => r.status !== 'none').length;
     return { slug: g.slug, title: g.title, hook: g.pitch?.hook || null, howItPlays: g.howItPlays || null, components: g.pitch?.components || [], cost: g.pitch?.estimated_prototype_cost_usd ?? null,
       players: g.pitch?.players || g.brief?.players || null, minutes: g.pitch?.minutes || g.brief?.minutes || null, since: Number.isNaN(since) ? null : new Date(since).toISOString(),
-      days: Number.isNaN(since) ? null : Math.floor((now - since) / DAY), passing, scored, critic: criticAverage(g.critique) };
+      days: Number.isNaN(since) ? null : Math.floor((now - since) / DAY), passing, scored, critic: criticAverage(g.critique), verdicts: g.verdicts || null, revision: g.revision || 0, opportunity: g.brief?.opportunity_score ?? null };
   }).sort((a, b) => (a.since || '').localeCompare(b.since || ''));
 }
 

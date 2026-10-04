@@ -1,0 +1,27 @@
+{
+  "slug": "silent-duo-deduction-coop",
+  "title": "Silent Duo",
+  "idea_id": "silent-duo-deduction-coop",
+  "players": "2-3",
+  "minutes": 20,
+  "complexity": 2.5,
+  "mechanics": ["co-operative", "deduction", "limited communication"],
+  "theme": "lighthouse keepers signalling in fog",
+  "opportunity_score": 25,
+  "rubric": { "demand": 4, "gap": 3, "originality": 4, "producibility": 5, "simulatability": 4, "owner_fit": 5 },
+  "candidates": [
+    { "idea": "silent-duo-deduction-coop", "score": 25, "chosen": true },
+    { "idea": "asymmetric-duel-tug-of-war", "score": 24, "chosen": false },
+    { "idea": "grid-of-cards-area-control", "score": 24, "chosen": false }
+  ],
+  "comparables": [
+    { "name": "Bomb Busters", "bgg_rating": 7.4, "crowdfunding": null, "difference": "Cards only, no talking at all, far fewer components, about 20 minutes." },
+    { "name": "The Crew", "bgg_rating": 7.8, "crowdfunding": null, "difference": "Deduces a hidden sequence rather than trick-taking." },
+    { "name": "Sky Team", "bgg_rating": 7.9, "crowdfunding": null, "difference": "No board or dice; scales to 3 players." }
+  ],
+  "sources": [
+    "https://boardgamematcher.com/game/bomb-busters",
+    "https://www.boardgameoftheyear.org/2025/sites/Tabletop%20Express",
+    "https://hexagamers.com/best-cooperative-board-games-2026/"
+  ]
+}

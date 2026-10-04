@@ -1,0 +1,46 @@
+Tug of Crowns: strategist (Treasurer) vs story (Whisperer), best table for strategist. Crown pos: negative = Treasurer side.
+R1 W plays Gossip
+R1 T plays Tax Collector
+R1 W plays Silencer hush #0
+R1 T plays Granary
+R1 W plays False Witness hush #1
+R1 T plays Gold Purse
+R1 W plays Courtier
+R1 T plays Ledger
+R1 W plays Veiled Threat
+R1 T plays Mint Master
+R1 W plays Gossip
+R1 T passes
+R1 W has no cards, passes
+R1 totals T12 W10 winner 0 pos -1
+R2 W plays Gossip
+R2 T plays Royal Loan spend 1
+R2 W plays Courtier
+R2 T plays Treasury Vault spend 1
+R2 W plays Spymaster
+R2 T plays Gold Purse
+R2 W plays Gossip
+R2 T has no cards, passes
+R2 W passes
+R2 totals T10 W9 winner 0 pos -2
+R3 T passes
+R3 W plays Gossip
+R3 W passes
+R3 totals T0 W1 winner 1 pos -1
+R4 W plays Gossip
+R4 T plays Tax Collector
+R4 W plays Shadow Envoy
+R4 T plays Patron
+R4 W plays Eavesdropper
+R4 T plays Ledger
+R4 W plays Courtier
+R4 T plays Gold Purse
+R4 W plays Spymaster
+R4 T has no cards, passes
+R4 W passes
+R4 totals T11 W12 winner 1 pos 0
+R5 W plays Gossip
+R5 T plays Tax Collector
+R5 W passes
+R5 T passes
+R5 totals T2 W1 winner 0 pos -1

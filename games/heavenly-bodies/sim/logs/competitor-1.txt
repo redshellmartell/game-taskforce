@@ -1,0 +1,41 @@
+Heavenly Bodies: competitor bot (seat 1, first) vs strategist bot (seat 2), table 'best' for competitor. First 40 log lines. Result: P1 wins (cm)
+R0 T1: P0 (ST01) starts with 7 cards
+R0 T1: P0 orbit rotates
+R0 T1: P0 plays CO06 {'pos': 2}
+R0 T1: P0: CO06 enters S
+R0 T1: P0 plays AE09 {'host': 'CO06'}
+R0 T1: P0 attaches AE09 to CO06 (P0)
+R0 T1: P0 uses ST01
+R0 T2: P1 (ST05) starts with 7 cards
+R0 T2: P1 orbit rotates
+R0 T2: P1 plays CO28 {'pos': 1}
+R0 T2: P1: CO28 enters E
+R0 T2: P1 plays AE03 {'host': 'CO28'}
+R0 T2: P1 attaches AE03 to CO28 (P1)
+R1 T3: P1 (ST05) takes 1 (hp 6)
+R1 T3: P0 (ST01) starts with 7 cards
+R1 T3: P0 orbit rotates
+R1 T3: P0 plays CO22 {'pos': 0}
+R1 T3: P0: CO22 enters N
+R1 T3: P0 (ST01) takes 1 (hp 8)
+R1 T3: P0 plays AE50 {'host': 'CO06'}
+R1 T3: P0 uses ST01
+R1 T4: P1 (ST05) starts with 7 cards
+R1 T4: P1 orbit rotates
+R1 T4: P1 plays CO30 {'pos': 0}
+R1 T4: P1: CO30 enters N
+R1 T4: P1 plays AE40 {'co': 'CO22'}
+R1 T4: CO22 leaves P0 orbit -> discard
+R2 T5: P1 (ST05) takes 1 (hp 5)
+R2 T5: P0 (ST01) starts with 7 cards
+R2 T5: P0 orbit rotates
+R2 T5: P0 plays CO12 {'pos': 2}
+R2 T5: P0: CO12 enters S
+R2 T5: P0 plays AE15 {'host': 'CO12'}
+R2 T5: P0 attaches AE15 to CO12 (P0)
+R2 T5: P0 uses ST01
+R2 T6: P1 (ST05) starts with 5 cards
+R2 T6: P1 orbit rotates
+R2 T6: P1 plays CO29 {'pos': 2}
+R2 T6: P1: CO29 enters S
+R2 T6: P1 plays AE21 {'host': 'CO28'}

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { OwnerMark } from './OwnerMark.jsx';
 import { Help } from './Help.jsx';
 import { PipelineHealth } from './PipelineHealth.jsx';
 import { GATE_LABEL } from './ApprovalsView.jsx';
@@ -22,6 +23,7 @@ export function verdictClass(v) {
   if (!v) return '';
   if (/^(PASS|APPROVE)/i.test(v)) return 'good';
   if (/KILL|BROKEN/i.test(v)) return 'bad';
+  if (/MAJOR/i.test(v)) return 'major';   // REVISE-MAJOR: clearly distinct from REVISE-MINOR (amber)
   return 'warn';
 }
 
@@ -30,7 +32,7 @@ function Card({ g, onOpen, waiting }) {
   const opp = g.brief?.opportunity_score;
   return (
     <button className="pcard" onClick={() => onOpen(g.slug)}>
-      <b>{g.title}</b>
+      <b><OwnerMark game={g} /> {g.title}</b>
       {info && <span className="muted">{info}</span>}
       <span className="pmeta">
         {opp != null && <span className="chip">{opp}/30</span>}
@@ -78,7 +80,7 @@ export function ProjectsView({ state, onOpen, onOpenIdea }) {
         <div className="dead">
           <button className="link" onClick={() => setShowDead(!showDead)}>{showDead ? '▾' : '▸'} Killed and archived ({dead.length})</button>
           {showDead && dead.map((g) => (
-            <div className="item" key={g.slug}><button className="link" onClick={() => onOpen(g.slug)}>{g.title}</button><div className="meta">{g.kill_reason || 'no reason recorded'}</div></div>
+            <div className="item" key={g.slug}><button className="link" onClick={() => onOpen(g.slug)}><OwnerMark game={g} /> {g.title}</button><div className="meta">{g.kill_reason || 'no reason recorded'}</div></div>
           ))}
         </div>
       )}

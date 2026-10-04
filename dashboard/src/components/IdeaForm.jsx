@@ -66,6 +66,7 @@ export function IdeaForm({ state, fixedStage, heading }) {
       )}
       {fixedStage && <p className="muted" style={{ margin: '0 0 8px' }}>Starts at <b>{roomFor(fixedStage)}</b>: {STAGE_HELP[fixedStage]}.</p>}
       <button className="primary" disabled={busy || !title.trim()}>{busy ? 'Saving…' : 'Save idea to inbox'}</button>
+      {!title.trim() && <p className="muted small" style={{ margin: '4px 0 0' }}>Give the idea a name to enable the button.</p>}
       {error && <p className="err">{error}</p>}
       {saved && (
         <div className="saved">

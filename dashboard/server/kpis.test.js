@@ -254,10 +254,12 @@ test('the approval mode is read from studio-settings.json and defaults to normal
 
 // ---- Test panel (task 007)
 import { panelStats, gamePanelSummary } from './kpis.js';
+import fs from 'node:fs';
+import os from 'node:os';
 test('panel: sample games give each persona stats, a heatmap and an agreement flag', () => {
   const state = buildState({ repoRoot, dashboardDir, sample: true, now: Date.now() });
   const ps = state.panel.stats;
-  assert.equal(Object.keys(ps.personas).length, 5);
+  assert.equal(Object.keys(ps.personas).length, 6);
   assert.equal(ps.gamesWithPanel, 2);
   assert.equal(ps.grid.length, 2);
   const lh = state.games.find((g) => g.slug === 'lantern-heist');
@@ -290,4 +292,68 @@ test('panel: a persona with a panel: activity line shows as playing', () => {
   assert.equal(state.panel.stats.personas.casual.state, 'playing');
   assert.equal(state.agents.find((a) => a.id === 'test-panel').state, 'working');
   assert.equal(state.agents.find((a) => a.id === 'test-panel').reportsTo, 'playtester');
+});
+
+test('owner ideas: a game from the inbox (source owner, or an idea.md file) is marked ownerIdea', () => {
+  const s = buildState({ repoRoot, dashboardDir, sample: true, now: Date.now() });
+  assert.equal(s.games.find((g) => g.slug === 'ember-market').ownerIdea, true);
+  assert.equal(s.games.find((g) => g.slug === 'lantern-heist').ownerIdea, false);
+  assert.ok(s.approvals.requests.every((r) => typeof r.ownerIdea === 'boolean'));
+});
+
+test('activity lines dated in the future are clamped to now and marked estimated', () => {
+  const pth = path;
+  const tmp = fs.mkdtempSync(pth.join(os.tmpdir(), 'future-'));
+  fs.mkdirSync(pth.join(tmp, 'games', 'g1'), { recursive: true });
+  const now = Date.parse('2026-10-04T13:00:00Z');
+  fs.writeFileSync(pth.join(tmp, 'games', 'g1', 'activity.jsonl'),
+    JSON.stringify({ time: '2026-10-04T12:00:00Z', agent: 'critic', game: 'g1', event: 'step', message: 'past' }) + '\n' +
+    JSON.stringify({ time: '2026-10-04T13:30:00Z', agent: 'critic', game: 'g1', event: 'done', message: 'future' }) + '\n');
+  const s = buildState({ repoRoot: tmp, dashboardDir, sample: false, now });
+  const f = s.activity.find((e) => e.message === 'future'), p = s.activity.find((e) => e.message === 'past');
+  assert.equal(Date.parse(f.time), now); assert.equal(f.time_estimated, true); assert.equal(p.time_estimated, undefined);
+});
+
+test('approval requests carry the game verdicts so the page can show a critic/playtest tag', () => {
+  const s = buildState({ repoRoot, dashboardDir, sample: true, now: Date.now() });
+  const withGame = s.approvals.requests.filter((r) => r.game);
+  assert.ok(withGame.length > 0);
+  assert.ok(withGame.every((r) => 'verdicts' in r));
+  assert.ok(withGame.some((r) => r.verdicts && r.verdicts.critic));
+});
+
+test('a pitch decided in the dashboard leaves the review queue (waiting for the Director)', () => {
+  const fs2 = fs; const tmp = fs2.mkdtempSync(path.join(os.tmpdir(), 'rq-'));
+  fs2.mkdirSync(path.join(tmp, 'games', 'g1'), { recursive: true });
+  fs2.writeFileSync(path.join(tmp, 'games', 'status.json'), JSON.stringify({ games: [{ slug: 'g1', title: 'G1', stage: 'owner-review', history: [{ stage: 'owner-review', time: '2026-10-01T10:00:00Z' }], verdicts: {} }] }));
+  fs2.writeFileSync(path.join(tmp, 'games', 'g1', 'pitch.json'), JSON.stringify({ title: 'G1' }));
+  const before = buildState({ repoRoot: tmp, dashboardDir, sample: false, now: Date.parse('2026-10-02T00:00:00Z') });
+  assert.equal(before.review.queue.length, 1); assert.equal(before.waitingPitches.length, 1);
+  fs2.writeFileSync(path.join(tmp, 'games', 'decisions.json'), JSON.stringify({ decisions: [{ slug: 'g1', time: '2026-10-01T12:00:00Z', decision: 'approve', notes: 'g1-revision-1: a gate decision, not a pitch decision' }] }));
+  const gateOnly = buildState({ repoRoot: tmp, dashboardDir, sample: false, now: Date.parse('2026-10-02T00:00:00Z') });
+  assert.equal(gateOnly.review.queue.length, 1);          // a gate decision must not hide the pitch (the bug the owner hit)
+  fs2.writeFileSync(path.join(tmp, 'games', 'decisions.json'), JSON.stringify({ decisions: [{ slug: 'g1', kind: 'pitch', time: '2026-10-01T12:00:00Z', decision: 'approve', notes: 'ok' }] }));
+  const after = buildState({ repoRoot: tmp, dashboardDir, sample: false, now: Date.parse('2026-10-02T00:00:00Z') });
+  assert.equal(after.review.queue.length, 0); assert.equal(after.waitingPitches.length, 0);
+  assert.equal(after.games[0].pitchDecision.decision, 'approve');
+});
+
+test('review queue items carry the verdicts, revision count and opportunity score for the tags', () => {
+  const s = buildState({ repoRoot, dashboardDir, sample: true, now: Date.now() });
+  const q = s.review.queue[0];
+  assert.ok(q); assert.ok('verdicts' in q && 'revision' in q && 'opportunity' in q);
+  assert.ok(q.verdicts && q.verdicts.critic);
+});
+
+test('lines written in the same second: the last line written is the latest (a finished agent is not "working")', () => {
+  const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'tie-'));
+  fs.mkdirSync(path.join(tmp, 'games', 'g1'), { recursive: true });
+  fs.mkdirSync(path.join(tmp, '.claude', 'agents'), { recursive: true });
+  fs.writeFileSync(path.join(tmp, '.claude', 'agents', 'critic.md'), '---\nname: critic\ndescription: test\ntools: Read\n---\n');
+  const t = '2026-10-04T12:00:00Z', line = (event, message) => JSON.stringify({ time: t, agent: 'critic', game: 'g1', event, message }) + '\n';
+  fs.writeFileSync(path.join(tmp, 'games', 'g1', 'activity.jsonl'), line('start', 'first') + line('step', 'second') + line('done', 'third'));
+  const s = buildState({ repoRoot: tmp, dashboardDir, sample: false, now: Date.parse('2026-10-04T12:05:00Z') });
+  const critic = s.agents.find((a) => a.id === 'critic');
+  assert.equal(critic.lastEvent.event, 'done'); assert.equal(critic.state, 'idle');
+  assert.equal(s.activity[0].message, 'third');
 });

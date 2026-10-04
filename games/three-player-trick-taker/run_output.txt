@@ -1,0 +1,15 @@
+games: mixed 2004, skill 2001, mirror 2000, experiments 5x2000
+seat win rates (S,S,S): [0.349, 0.345, 0.306] gap 4.3 pts
+bot win rates (R/G/S table): {'random': 0.053, 'greedy': 0.675, 'strategic': 0.272}
+skill: strategic 0.687 vs each random 0.156  gap 53.1 pts
+greedy vs two random: 0.851
+length: fixed 42 tricks / 6 rounds, est 18.2 min
+ties 0.0360  lead changes 1.27  early leader (after R3) wins 0.644 (after R2 0.517)
+contract success 0.197  DC success 0.803; by target: {3: (0.34, 0.1), 4: (0.19, 0.15), 5: (0.14, 0.26), 6: (0.14, 0.35), 7: (0.19, 0.26)}
+role pts/round: {'Planner': (3.66, -0.03), 'Safecracker': (2.71, -0.52), 'Double-Crosser': (4.8, 0.55)}
+heat in 0.73 of rounds; holder avg pts 3.27 (round avg 3.72); mean final 22.3 margin 3.4; ruff rate 0.20
+no-heat: gap 4.3 lc 1.15 early3 0.681
+  exp fixed5: seat0 win 0.370 success 0.224 dcrate 0.776
+  exp offset-1: seat0 win 0.344 success 0.187 dcrate 0.813
+  exp offset+1: seat0 win 0.322 success 0.210 dcrate 0.790
+  exp dc_always_win: seat0 win 0.353 success 0.212 dcrate 0.788

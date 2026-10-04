@@ -1,4 +1,4 @@
-export const METRIC = { skill_expression: 'skill over luck', decisions_per_turn: 'meaningful decisions', lead_changes: 'lead changes', length_fit: 'fitting their time', rules_simplicity: 'simple rules', catch_up: 'nobody left behind', interaction: 'interaction', dominant_strategy_absent: 'no dominant strategy' };
+export const METRIC = { skill_expression: 'skill over luck', decisions_per_turn: 'meaningful decisions', lead_changes: 'lead changes', length_fit: 'fitting their time', rules_simplicity: 'simple rules', catch_up: 'nobody left behind', interaction: 'interaction', dominant_strategy_absent: 'no dominant strategy', originality: 'originality' };
 
 export function Avatar({ p, size = 38 }) {
   return <span className="avatar" style={{ background: p.color, width: size, height: size, fontSize: size * 0.38 }} aria-hidden>{p.initials}</span>;

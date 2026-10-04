@@ -1,0 +1,5 @@
+{"time": "2026-10-04T11:17:44Z", "agent": "manager", "game": "archetypes", "event": "start", "message": "Owner idea processed from the inbox; enters at research"}
+{"time": "2026-10-04T11:17:44Z", "agent": "market-researcher", "game": "archetypes", "event": "start", "message": "Researching the owner's idea and writing a brief"}
+{"time":"2026-10-04T11:25:00Z","agent":"market-researcher","game":"archetypes","event":"step","message":"Comparable research done (searches used: 5)"}
+{"time":"2026-10-04T11:27:00Z","agent":"market-researcher","game":"archetypes","event":"done","message":"Brief complete, opportunity score 21/30"}
+{"time": "2026-10-04T11:20:09Z", "agent": "manager", "game": "archetypes", "event": "waiting", "message": "waiting for approval: greenlight (archetypes-greenlight)"}

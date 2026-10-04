@@ -31,7 +31,7 @@
       "game": null,
       "agent": "playtester",
       "time": "2026-10-03T13:58:31Z",
-      "status": "pending",
+      "status": "declined",
       "summary": "Task 009 wants to test one free API (OpenRouter free models or Google AI Studio) for persona reviews. That means sending Duel Flip's rules and persona material to a third party.",
       "why_needed": "Local Ollama on your Mac needs no approval, but a free API could be faster on a small Mac. Free tiers may use prompts for training, so unpublished designs should only go there with your agreement. I could not read the providers' terms from this cloud session, so I cannot summarise them yet.",
       "expected_outcome": "A blind quality comparison against Haiku and a recommendation per job. If you decline, the experiment uses local Ollama only.",
@@ -45,6 +45,473 @@
         {
           "key": "decline",
           "label": "Local Ollama only; send nothing to third parties"
+        }
+      ],
+      "decision": "decline",
+      "decided_at": "2026-10-03T14:48:55Z",
+      "owner_notes": "Owner: test on my Mac (local Ollama only)"
+    },
+    {
+      "id": "market-scan-1",
+      "gate": "scan",
+      "game": null,
+      "time": "2026-10-03T14:53:02Z",
+      "status": "approved",
+      "summary": "The idea bank has only 2 banked ideas scoring 18 or more (needs 3) and the last scan was 2026-10-03 on a single game, so starting a new game needs a market scan first.",
+      "why_needed": "A batched scan fills the bank with several scored ideas at once, so each later game only needs a cheap brief from the bank instead of its own research.",
+      "expected_outcome": "At least 5 new scored ideas in research/idea-bank.json, so the next game can start from a brief (target: 3 or more banked ideas scoring 18+).",
+      "usage_estimate": "XL",
+      "recommendation": "approve",
+      "options": [
+        {
+          "key": "approve",
+          "label": "Run one market scan (search limit 10, batch of ideas into the bank)"
+        },
+        {
+          "key": "decline",
+          "label": "No scan; I'll add an idea to the bank myself"
+        }
+      ],
+      "decision": "approve",
+      "decided_at": "2026-10-03T15:16:31Z",
+      "owner_notes": "Owner said in chat that they approved it in the dashboard; recorded here because the dashboard file lives on their Mac"
+    },
+    {
+      "id": "three-player-trick-taker-greenlight",
+      "gate": "greenlight",
+      "game": "three-player-trick-taker",
+      "time": "2026-10-03T15:46:15Z",
+      "status": "approved",
+      "summary": "Brief written: Three-Hand Trick-Taker, 3 players, 20 minutes, complexity 2, opportunity score 26/30. A competitive trick-taker built only for 3, with leader, chaser and spoiler roles rotating each round and a heist theme.",
+      "why_needed": "Design, playtest and critique run through without further gates once started, so this is the point to say whether this idea is worth the usage.",
+      "expected_outcome": "A complete rulebook, then a simulation with seat balance gap 5 points or less and a strategic-vs-random win gap of 20 points or more. Main risk to watch: the spoiler role kingmaking, and 2-vs-1 gang-ups.",
+      "usage_estimate": "L",
+      "recommendation": "approve",
+      "options": [
+        {
+          "key": "approve",
+          "label": "Greenlight: start design, playtest and critique"
+        },
+        {
+          "key": "park",
+          "label": "Park it; no further work for now"
+        },
+        {
+          "key": "kill",
+          "label": "Reject the idea and record why"
+        }
+      ],
+      "decision": "approve",
+      "decided_at": "2026-10-03T15:57:30Z",
+      "owner_notes": "Owner replied \"I approved it\" in chat (dashboard change not visible in cloud session)"
+    },
+    {
+      "id": "three-player-trick-taker-revision-1",
+      "gate": "revision",
+      "game": "three-player-trick-taker",
+      "time": "2026-10-03T16:08:46Z",
+      "status": "approved",
+      "summary": "Playtest NEEDS-FIXES: crew hits the exact Target in only 19.7% of rounds (aim 40-60%), so the Double-Crosser's +4 is nearly free; greedy bots beat the strategic bot 68% to 27%; lead changes 1.27 (aim 2+). Critic REVISE-MAJOR, average 3.0 (needs 3.5).",
+      "why_needed": "The core twist (exact Target) almost never succeeds, so the game collapses into grabbing tricks. The fixes are cheap scoring changes, but without them the game cannot be pitched.",
+      "expected_outcome": "Contract success 35-60% (critic kills the game if it stays under 35%); strategic beats greedy; lead changes 2 or more; seat gap stays 5 or less, checked on 4,000+ games.",
+      "usage_estimate": "M",
+      "recommendation": "approve",
+      "options": [
+        {
+          "key": "approve",
+          "label": "Run revision 1 (designer + playtester + critic)"
+        },
+        {
+          "key": "park",
+          "label": "Park the game; no further work for now"
+        },
+        {
+          "key": "kill",
+          "label": "Kill it and record why"
+        }
+      ],
+      "planned_changes": [
+        "Add a +/-1 tolerance band on the Target (KPI: contract success rate)",
+        "Strengthen the Safecracker, e.g. draw 3 (KPI: strategic vs greedy win gap)",
+        "Make Heat bite or cut it (KPI: lead changes, leader win rate)",
+        "Drop or fix No Trump; fix 4 rule ambiguities (KPI: zero ambiguities)"
+      ],
+      "decision": "approve",
+      "decided_at": "2026-10-04T10:48:46Z",
+      "owner_notes": "Owner said \"run the taskforce now ... to an appropriate usage\"; the Director chose this scope (the area-control greenlight was left waiting)"
+    },
+    {
+      "id": "market-scan-2",
+      "gate": "scan",
+      "game": null,
+      "time": "2026-10-03T16:12:01Z",
+      "status": "approved",
+      "summary": "Extended market scan: at least 10 new ideas, up to 20 if usage allows (budget raised above the usual 25 searches).",
+      "why_needed": "Owner request to widen the idea bank.",
+      "expected_outcome": "10-20 new scored ideas in research/idea-bank.json and an updated research/market-scan.md.",
+      "usage_estimate": "XL",
+      "recommendation": "approve",
+      "options": [
+        {
+          "key": "approve",
+          "label": "Run the extended scan"
+        }
+      ],
+      "decision": "approve",
+      "decided_at": "2026-10-03T16:12:01Z",
+      "owner_notes": "Owner asked for this in chat (\"I want to run an extensive market research agent ... improve the persona agents ... sixth persona\")"
+    },
+    {
+      "id": "panel-research-2",
+      "gate": "panel-research",
+      "game": null,
+      "time": "2026-10-03T16:12:01Z",
+      "status": "approved",
+      "summary": "Panel research: new sixth persona (Bar Raiser) and a refresh of the evidence for the five existing personas, then calibration.",
+      "why_needed": "Owner request to improve the persona agents and add a veto-capable expert persona.",
+      "expected_outcome": "panel/evidence/barraiser.md plus refreshed evidence files, and a calibration entry for the Bar Raiser (trusted only if mean error is 1.0 or less).",
+      "usage_estimate": "XL",
+      "recommendation": "approve",
+      "options": [
+        {
+          "key": "approve",
+          "label": "Run panel research and calibration"
+        }
+      ],
+      "decision": "approve",
+      "decided_at": "2026-10-03T16:12:01Z",
+      "owner_notes": "Owner asked for this in chat (\"I want to run an extensive market research agent ... improve the persona agents ... sixth persona\")"
+    },
+    {
+      "id": "silent-duo-deduction-coop-greenlight",
+      "gate": "greenlight",
+      "game": "silent-duo-deduction-coop",
+      "time": "2026-10-03T16:15:15Z",
+      "status": "approved",
+      "summary": "Brief written: Silent Duo, 2-3 players, 20 minutes, complexity 2.5, opportunity score 25/30. ",
+      "why_needed": "Design, playtest and critique run through without further gates once started, so this is the point to say whether this idea is worth the usage.",
+      "expected_outcome": "A complete rulebook, then a simulation with seat balance gap 5 points or less and a strategic-vs-random win gap of 20 points or more.",
+      "usage_estimate": "L",
+      "recommendation": "approve",
+      "options": [
+        {
+          "key": "approve",
+          "label": "Greenlight: start design, playtest and critique"
+        },
+        {
+          "key": "park",
+          "label": "Park it; no further work for now"
+        },
+        {
+          "key": "kill",
+          "label": "Reject the idea and record why"
+        }
+      ],
+      "decision": "approve",
+      "decided_at": "2026-10-04T10:48:46Z",
+      "owner_notes": "Owner said \"run the taskforce now ... to an appropriate usage\"; the Director chose this scope (the area-control greenlight was left waiting)"
+    },
+    {
+      "id": "asymmetric-duel-tug-of-war-greenlight",
+      "gate": "greenlight",
+      "game": "asymmetric-duel-tug-of-war",
+      "time": "2026-10-03T16:16:36Z",
+      "status": "approved",
+      "summary": "Brief written: Tug of Crowns, 2 players, 15 minutes, complexity 2, opportunity score 24/30. Two rival court advisors with different 20-card decks haul one shared crown track toward their side in a 15-minute duel.",
+      "why_needed": "Design, playtest and critique run through without further gates once started, so this is the point to say whether this idea is worth the usage.",
+      "expected_outcome": "A complete rulebook, then a simulation with seat balance gap 5 points or less and a strategic-vs-random win gap of 20 points or more.",
+      "usage_estimate": "L",
+      "recommendation": "approve",
+      "options": [
+        {
+          "key": "approve",
+          "label": "Greenlight: start design, playtest and critique"
+        },
+        {
+          "key": "park",
+          "label": "Park it; no further work for now"
+        },
+        {
+          "key": "kill",
+          "label": "Reject the idea and record why"
+        }
+      ],
+      "decision": "approve",
+      "decided_at": "2026-10-04T10:48:46Z",
+      "owner_notes": "Owner said \"run the taskforce now ... to an appropriate usage\"; the Director chose this scope (the area-control greenlight was left waiting)"
+    },
+    {
+      "id": "grid-of-cards-area-control-greenlight",
+      "gate": "greenlight",
+      "game": "grid-of-cards-area-control",
+      "time": "2026-10-03T16:17:49Z",
+      "status": "approved",
+      "summary": "Brief written: Nine Fields, 2-4 players, 20 minutes, complexity 2.5, opportunity score 24/30. A 20-minute area-control game on a 3x3 grid of island cards that flip and shift as you place pawns.",
+      "why_needed": "Design, playtest and critique run through without further gates once started, so this is the point to say whether this idea is worth the usage.",
+      "expected_outcome": "A complete rulebook, then a simulation with seat balance gap 5 points or less and a strategic-vs-random win gap of 20 points or more.",
+      "usage_estimate": "L",
+      "recommendation": "approve",
+      "options": [
+        {
+          "key": "approve",
+          "label": "Greenlight: start design, playtest and critique"
+        },
+        {
+          "key": "park",
+          "label": "Park it; no further work for now"
+        },
+        {
+          "key": "kill",
+          "label": "Reject the idea and record why"
+        }
+      ],
+      "decision": "approve",
+      "decided_at": "2026-10-04T11:01:19Z",
+      "owner_notes": "Owner said in chat: \"I approved the start design for Nine Fields\""
+    },
+    {
+      "id": "asymmetric-duel-tug-of-war-revision-1",
+      "gate": "revision",
+      "game": "asymmetric-duel-tug-of-war",
+      "time": "2026-10-04T10:58:43Z",
+      "status": "pending",
+      "summary": "Playtest NEEDS-FIXES: lead changes 1.15 (target 2+), up to 30% of games decided by a centre tiebreak, and 'hand the opponent the lead' is a solved choice. Critic REVISE-MAJOR, average 3.33 (needs 3.5). Seat gap 2.2 and skill gap +73 already pass.",
+      "why_needed": "The balance and skill KPIs pass, so the remaining problems are rules-level and well diagnosed. Without a fix the game cannot pass at pitch (lead changes, a dominant choice, 8 rule ambiguities).",
+      "expected_outcome": "Designer changes: (1) make the lead choice a real decision (a leader bonus or a cost for giving up the lead) to remove the dominant line; (2) stronger trailer draws or a shorter track to lift lead changes to 2+ and cut centre-tiebreak endings under 10%; (3) fix the 8 listed ambiguities. Then re-measure: seat gap stays 5 or less, lead changes 2+, critic average 3.5+.",
+      "usage_estimate": "M",
+      "recommendation": "approve",
+      "options": [
+        {
+          "key": "approve",
+          "label": "Run revision 1 (designer, playtester, critic)"
+        },
+        {
+          "key": "park",
+          "label": "Park the game; no further work for now"
+        },
+        {
+          "key": "kill",
+          "label": "Kill it and record why"
+        }
+      ],
+      "decision": null,
+      "decided_at": null,
+      "owner_notes": null
+    },
+    {
+      "id": "three-player-trick-taker-revision-2",
+      "gate": "revision",
+      "game": "three-player-trick-taker",
+      "time": "2026-10-04T11:01:02Z",
+      "status": "approved",
+      "summary": "Revision 1 hit 8 of 10 KPIs (contract success 19.7% to 56.6%, seat gap 3.5, skill gap +51.6, runaway 52.3%). Critic REVISE-MAJOR, average 3.5 (was 3.0; needs 3.5 at pitch). Still missing: lead changes 1.49 (target 2) and the strategic bot (28.5%) loses to the greedy bot (63.5%), so the intended contract-steering strategy is not rewarded.",
+      "why_needed": "The core idea (steering a contract) still loses to plain trick-grabbing, so skill is not rewarded the way the game intends. Doubling or tripling bonuses did not fix it.",
+      "expected_outcome": "Designer: cut loot to half value (or make it Double-Crosser-only) with clean +5/+6 bonuses, and Heat -3. Playtester: a stronger card-counting strategic bot. Targets: strategic at least matches greedy, lead changes 2+, seat gap 5 or less, critic average 3.5 or more. If strategic still cannot reach greedy, the critic suggests killing the game.",
+      "usage_estimate": "M",
+      "recommendation": "approve",
+      "options": [
+        {
+          "key": "approve",
+          "label": "Run revision 2 (designer, playtester, critic), the last sensible loop"
+        },
+        {
+          "key": "pitch",
+          "label": "Pitch as is, with the known issues listed (not recommended: playtest NEEDS-FIXES)"
+        },
+        {
+          "key": "park",
+          "label": "Park the game; no further work for now"
+        },
+        {
+          "key": "kill",
+          "label": "Kill it and record why"
+        }
+      ],
+      "decision": "approve",
+      "decided_at": "2026-10-04T12:00:54.051Z",
+      "owner_notes": null
+    },
+    {
+      "id": "silent-duo-deduction-coop-budget-1",
+      "gate": "budget",
+      "game": "silent-duo-deduction-coop",
+      "agent": "playtester",
+      "time": "2026-10-04T11:05:31Z",
+      "status": "approved",
+      "summary": "The playtester finished Silent Duo within budget except for one extra experiment (6 configurations instead of 5). It asks to run the Code attack bot at Fog 12 and 14 (2 x 1,000 games, under a minute) to check whether the recommended Fog fix breaks the anti-code design.",
+      "why_needed": "Honest teams win 73% (target 40-60%). Raising Fog fixes that, but at Fog 16 the code attack gains +12.1 points (limit 10). Whether Fog 12 or 14 is safe decides the revision's main fix.",
+      "expected_outcome": "A clear yes or no on Fog 12 and 14, so the designer's revision does not break the anti-code rule.",
+      "usage_estimate": "S",
+      "recommendation": "approve",
+      "options": [
+        {
+          "key": "approve",
+          "label": "Allow the 2 extra runs (inside a revision, if you approve one)"
+        },
+        {
+          "key": "decline",
+          "label": "Decline; the revision will test Fog values on its own budget"
+        }
+      ],
+      "decision": "approve",
+      "decided_at": "2026-10-04T11:45:46.446Z",
+      "owner_notes": null
+    },
+    {
+      "id": "silent-duo-deduction-coop-revision-1",
+      "gate": "revision",
+      "game": "silent-duo-deduction-coop",
+      "time": "2026-10-04T11:06:35Z",
+      "status": "pending",
+      "summary": "Playtest NEEDS-FIXES: honest teams win 73% (target 40-60%), Greedy beats Honest, 38% of turns are Trims, and the code attack gains +12.1 at Fog 16 (limit 10; Fog 12 untested). Critic REVISE-MAJOR, average 3.5. Strength: a simple new signal (offer two cards, one random reveal); random wins 0.6%.",
+      "why_needed": "The core loop works and the problems are named and testable, but the game is too easy and the anti-code rule is unproven, which is the whole point of the design.",
+      "expected_outcome": "Designer: raise difficulty (Fog around 12, retested for the code attack), make Trim a real decision (fewer waiting turns), reward careful play over greedy risk-taking, fix the 9 ambiguities. Then: honest 40-60%, code attack within 10 of honest, critic average 3.5 or more. The budget request silent-duo-deduction-coop-budget-1 supports this.",
+      "usage_estimate": "M",
+      "recommendation": "approve",
+      "options": [
+        {
+          "key": "approve",
+          "label": "Run revision 1 (designer, playtester, critic)"
+        },
+        {
+          "key": "park",
+          "label": "Park the game; no further work for now"
+        },
+        {
+          "key": "kill",
+          "label": "Kill it and record why"
+        }
+      ],
+      "decision": null,
+      "decided_at": null,
+      "owner_notes": null
+    },
+    {
+      "id": "archetypes-greenlight",
+      "gate": "greenlight",
+      "game": "archetypes",
+      "time": "2026-10-04T11:20:09Z",
+      "status": "pending",
+      "summary": "Your idea, researched: Archetypes, opportunity score 21/30 (demand 3, gap 4, originality 4, producibility 4, simulatability 2, owner fit 4). A questionnaire-driven role-playing game where players roleplay an archetype, not a character. Proposed defaults (yours to change): card deck plus a one-page questionnaire, 3-5 players, 45 min, GM-less, 3 avatars offered, 16 original archetypes.",
+      "why_needed": "Six open questions are yours to decide (format, players and time, GM or GM-less, avatar count, what an archetype changes in play, audience); the brief lists options and proposals. The main risk: simulation can only test questionnaire reachability and the balance of the 16 outcomes, not whether roleplay is fun, so only human sessions can judge it.",
+      "expected_outcome": "A rulebook and a limited simulation (questionnaire reachability, outcome balance, avatar rules, token economy). Honest limit: the Bar Raiser and critic cannot rate roleplay fun from numbers.",
+      "usage_estimate": "L",
+      "recommendation": "alternative",
+      "options": [
+        {
+          "key": "approve",
+          "label": "Greenlight with the proposed defaults (design, playtest, critique)"
+        },
+        {
+          "key": "answer",
+          "label": "Answer the open questions first (see brief.md), then greenlight"
+        },
+        {
+          "key": "park",
+          "label": "Park it; no further work for now"
+        },
+        {
+          "key": "kill",
+          "label": "Reject the idea and record why"
+        }
+      ],
+      "decision": null,
+      "decided_at": null,
+      "owner_notes": null
+    },
+    {
+      "id": "grid-of-cards-area-control-revision-1",
+      "gate": "revision",
+      "game": "grid-of-cards-area-control",
+      "time": "2026-10-04T11:25:36Z",
+      "status": "pending",
+      "summary": "Nine Fields: playtest NEEDS-FIXES only at 2 players (lead changes 1.77, early leader wins 68.7%, 58% of games end on the stall limit). At 3-4 players every KPI passes. Critic REVISE-MINOR, average 3.67 (originality 4, market fit 4, production 5).",
+      "why_needed": "Nobody wants to trigger a flood, so 2-player games stall; the playtest must pass before a pitch, and this is a small, testable fix.",
+      "expected_outcome": "Designer: a 'storm' that floods the fullest island on a stall instead of ending the game, a neutral final tiebreak, six rules gaps closed with a worked example, and a shorter 3-4 player game if it stays near 22 minutes. Targets: 2-player lead changes 2+, early leader 65% or less, critic average 3.5 or more.",
+      "usage_estimate": "M",
+      "recommendation": "approve",
+      "options": [
+        {
+          "key": "approve",
+          "label": "Run revision 1 (designer, playtester, critic)"
+        },
+        {
+          "key": "pitch",
+          "label": "Pitch as a 3-4 player game only, with the 2-player issue listed (playtest not fully passed)"
+        },
+        {
+          "key": "park",
+          "label": "Park the game; no further work for now"
+        },
+        {
+          "key": "kill",
+          "label": "Kill it and record why"
+        }
+      ],
+      "decision": null,
+      "decided_at": null,
+      "owner_notes": null
+    },
+    {
+      "id": "heavenly-bodies-revision-1",
+      "gate": "revision",
+      "game": "heavenly-bodies",
+      "time": "2026-10-04T12:12:05Z",
+      "status": "pending",
+      "summary": "Heavenly Bodies: playtest NEEDS-FIXES and the Bar Raiser VETO is active (7.4-point first-seat advantage in 2-player games, caused by one interpretation: gap G4, first player draws on turn 1). Critic REVISE-MAJOR, average 2.83 (originality 4, clarity 2, fun 3, balance 2, market fit 3, production 3). Strength: the orbit-as-clock rotation is a fresh, skill-rich core (strategic beats random by 77.7 points). Weakness: the two win paths are not co-equal (2 players 72/28 Star Destruction, 6 players 25/75 Critical Mass), HP outweighs Star ability, and 40 rule gaps remain. Most of this is your locked rules, not the card set.",
+      "why_needed": "The studio may not change Rules v2. These are YOUR decisions (the critic's recommendation in brackets): (1) G4, first player skips the turn-1 draw [yes: gives a 50.2% seat split and clears the veto]; (2) make 2-player the primary mode and scale the Critical Mass threshold with player count [yes]; (3) buff the HP 5 Star abilities (ST08, ST10, ST11) rather than flatten the HP curve [yes]; (4) a free mulligan for an opening hand with no CO [yes]; (5) rule on G1, G4, G7, G8, G10, G12/13, G27 and G29 (the sim did not use the locked LIFO stack, G29); (6) reword the 'zero dead cards' target. Card-only fixes are cheap and clearly diagnosed (re-cost AE28 and AE25, more answers to Critical Mass, fewer dead AEs).",
+      "expected_outcome": "After you answer decisions 1, 2 and 5, a revision re-costs and re-writes cards within your rules and the playtester re-runs the simulation with your rulings. Targets: seat gap 5 or less, win paths within about 40/60 at 2 and 4 players, critic average 3.5 or more, veto cleared.",
+      "usage_estimate": "M",
+      "recommendation": "alternative",
+      "options": [
+        {
+          "key": "answer",
+          "label": "Answer decisions 1-6 first (reply with your rulings), then run revision 1"
+        },
+        {
+          "key": "approve",
+          "label": "Run revision 1 now with card-only fixes (cards.md only, no rules changes; the veto stays until G4 is decided)"
+        },
+        {
+          "key": "park",
+          "label": "Park the game; no further work for now"
+        },
+        {
+          "key": "kill",
+          "label": "Kill it and record why"
+        }
+      ],
+      "decision": null,
+      "decided_at": null,
+      "owner_notes": null
+    },
+    {
+      "id": "three-player-trick-taker-pitch-or-revise",
+      "gate": "revision",
+      "game": "three-player-trick-taker",
+      "time": "2026-10-04T12:14:19Z",
+      "status": "pending",
+      "summary": "Revision 2 done: playtest NEEDS-FIXES (minor: lead changes 1.61 vs target 2; everything else passes: seat gap 1.7, runaway 50.3%, contract success 50.0%, strategic ties greedy 42.0 vs 41.8, Bar Raiser veto not active). Critic REVISE-MINOR, average 3.67 (above the 3.5 pitch bar; revision 1 was 3.5 REVISE-MAJOR).",
+      "why_needed": "The studio rule is to pitch only games that passed the playtest and got PASS or REVISE-MINOR. The critic clears the second part; the playtest has one minor miss, so pitching is your decision. The playtester and critic both recommend pitching with the risks stated and a human playtest, not another bot-driven loop (three fallback variants did not reach 2 lead changes).",
+      "expected_outcome": "If you choose pitch: pitch.md with the risks listed (lead changes 1.61 vs 2; strategic only ties greedy so skill depth is unproven with humans; family 2.86 and casual 3.14 are weak fits, so this is a niche competitor/strategist game; rules are heavy; fun and market fit rest on predicted scores; no human playtest; originality is medium-similar to Oh Hell and Wizard), after four small doc fixes from the critic.",
+      "usage_estimate": "S",
+      "recommendation": "pitch",
+      "options": [
+        {
+          "key": "pitch",
+          "label": "Pitch it with the known risks, and plan a human playtest (recommended)"
+        },
+        {
+          "key": "approve",
+          "label": "Run revision 3 (the last allowed loop)"
+        },
+        {
+          "key": "park",
+          "label": "Park the game; no further work for now"
+        },
+        {
+          "key": "kill",
+          "label": "Kill it and record why"
         }
       ],
       "decision": null,

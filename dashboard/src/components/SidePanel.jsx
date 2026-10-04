@@ -3,6 +3,10 @@ import { FileView, Markdown } from './Markdown.jsx';
 import { Help } from './Help.jsx';
 import { IdeaForm, CopyBox, stageForAgent } from './IdeaForm.jsx';
 import { PanelTab } from './PanelTab.jsx';
+import { ResearchTab } from './ResearchTab.jsx';
+import { AgentActions } from './AgentActions.jsx';
+import { ApprovalCard } from './ApprovalsView.jsx';
+import { PitchActions } from './ReviewQueueView.jsx';
 import { GATE_LABEL } from './ApprovalsView.jsx';
 import { ago, STATE_LABEL } from '../util.js';
 
@@ -29,6 +33,19 @@ function TalkTab({ agent, state }) {
   const [note, setNote] = useState('');
   const where = game || 'a new game';
   const prompt = `Ask the ${agent.id} agent to work on ${game ? `games/${game}` : 'a new game'}: ${note.trim() || '(write your note above)'}`;
+  const [busy, setBusy] = useState(false);
+  const [msg, setMsg] = useState(null);
+  const mine = (state.notes || []).filter((n) => n.agent === agent.id);
+  const send = async () => {
+    setBusy(true); setMsg(null);
+    try {
+      const r = await fetch('/api/notes', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ agent: agent.id, game: game || null, note }) });
+      const body = await r.json();
+      if (!r.ok) throw new Error(body.error || 'Could not save the note');
+      setMsg({ ok: true, text: `Saved (${body.file}). The Director reads it at the start of the next session.` }); setNote('');
+    } catch (e) { setMsg({ ok: false, text: e.message }); }
+    setBusy(false);
+  };
   return (
     <>
       <h4 style={{ marginTop: 0 }}>Leave a note for {agent.room}</h4>
@@ -41,19 +58,32 @@ function TalkTab({ agent, state }) {
           </select>
         </label>
         <label>Your note<textarea rows={3} value={note} onChange={(e) => setNote(e.target.value)} placeholder={`e.g. Focus on 2-player games for ${where}`} /></label>
-        <CopyBox text={prompt} />
+        <button type="button" className="primary" disabled={busy || !note.trim()} onClick={send}>{busy ? 'Saving…' : `Send note to ${agent.room}`}</button>
+        {!note.trim() && <p className="muted small" style={{ margin: 0 }}>Write a note to enable the button.</p>}
+        {msg && <p className={msg.ok ? 'saved-ok' : 'saved-err'} role="status" style={{ margin: 0 }}>{msg.text}</p>}
+        <details><summary className="muted small">Or copy a prompt to paste into Claude Code yourself</summary><CopyBox text={prompt} /></details>
       </div>
+      {mine.length > 0 && <>
+        <h4>Your notes to {agent.room}</h4>
+        {mine.slice(0, 6).map((n) => (
+          <div className="item" key={n.file}>
+            <div>{n.text}</div>
+            <div className="meta">{n.game ? `${n.game} · ` : ''}{n.done ? 'answered' : 'waiting for the Director'}</div>
+            {n.reply && <div className="small" style={{ color: agent.color }}><b>Reply:</b> {n.reply}</div>}
+          </div>))}
+      </>}
       <IdeaForm key={agent.id} state={state} fixedStage={stageForAgent(agent.id)} heading={`Or start my own idea at ${agent.room}`} />
     </>
   );
 }
 
 // Click a node -> tabs: what it's doing, how it works, its work, talk to it.
-export function AgentPanel({ agent, state, onClose, initialTab, onPersona }) {
-  const [tab, setTab] = useState(initialTab || 'doing');
+export function AgentPanel({ agent, state, onClose, initialTab, onPersona, onOpenGame, onNavigate }) {
+  const firstTab = agent.id === 'market-researcher' ? 'research' : 'actions';   // every agent opens on what you can do with it
+  const [tab, setTab] = useState(initialTab || firstTab);
   const [viewing, setViewing] = useState(null);
   const [personaId, setPersonaId] = useState(null);   // kept here so "Back" from a file returns to the same persona
-  useEffect(() => { setTab(initialTab || 'doing'); setViewing(null); setPersonaId(null); }, [agent.id, initialTab]);
+  useEffect(() => { setTab(initialTab || (agent.id === 'market-researcher' ? 'research' : 'actions')); setViewing(null); setPersonaId(null); }, [agent.id, initialTab]);
   const version = state.generatedAt;
   const last = agent.lastEvent;
   const gameTitle = (slug) => state.games.find((g) => g.slug === slug)?.title || slug;
@@ -96,27 +126,46 @@ export function AgentPanel({ agent, state, onClose, initialTab, onPersona }) {
       ))}
     </>
   );
+  else if (tab === 'research') content = <><ResearchTab state={state} /><AgentActions agent={agent} state={state} onOpenGame={onOpenGame || (() => {})} onNavigate={onNavigate || (() => {})} /></>;
+  else if (tab === 'actions') content = <AgentActions agent={agent} state={state} onOpenGame={onOpenGame || (() => {})} onNavigate={onNavigate || (() => {})} />;
   else if (tab === 'panel') content = <PanelTab state={state} onOpen={setViewing} id={personaId} setId={setPersonaId} onPersona={onPersona} />;
   else content = <TalkTab agent={agent} state={state} />;
 
   return (
     <Shell title={`${agent.room} · ${STATE_LABEL[agent.state]}`} color={agent.color} onClose={onClose}
       help={<><Help topic="agent" />{agent.id !== 'manager' && agent.id !== 'test-panel' && <Help topic="subagent" />}</>}
-      tabs={[['doing', "What it's doing"], ['how', 'How it works'], ['work', 'Its work'], ...(agent.id === 'playtester' || agent.id === 'test-panel' ? [['panel', 'Test panel']] : []), ['talk', 'Talk to it']]} tab={tab} setTab={(t) => { setViewing(null); setTab(t); }}>
+      tabs={[...(agent.id === 'market-researcher' ? [['research', 'Research actions']] : [['actions', 'Actions']]), ['doing', "What it's doing"], ['how', 'How it works'], ['work', 'Its work'], ...(agent.id === 'playtester' || agent.id === 'test-panel' ? [['panel', 'Test panel']] : []), ['talk', 'Talk to it']]} tab={tab} setTab={(t) => { setViewing(null); setTab(t); }}>
       {content}
     </Shell>
   );
 }
 
 // You (the owner) node: inject your own ideas, and review what the agents pitched.
-export function OwnerPanel({ state, onClose }) {
-  const [tab, setTab] = useState('ideas');
+export function OwnerPanel({ state, onClose, onOpenGame, onNavigate }) {
+  const [tab, setTab] = useState('desk');
+  const [last, setLast] = useState(null);
   const [viewing, setViewing] = useState(null);
   const waiting = state.games.filter((g) => g.stage === 'owner-review');
   const stageName = { research: 'Market Intel', design: 'Design Studio', playtest: 'Playtest Lab', critique: 'Review Board', pitch: "Director's Office" };
 
   let content;
   if (viewing) content = <Viewing path={viewing} version={state.generatedAt} onBack={() => setViewing(null)} />;
+  else if (tab === 'desk') content = (
+    <>
+      <div className="action-tiles">
+        <button className="action-tile" onClick={() => onNavigate('approvals')}><span className="at-title">Approvals <span className="chip v-warn">{state.approvals.pending}</span></span><span className="at-foot"><span className="at-go">Open the page →</span></span></button>
+      </div>
+      <h4 style={{ marginTop: 0 }}>Requests waiting for you ({state.approvals.requests.filter((r) => r.state === 'pending').length})</h4>
+      {last && <p className="saved-ok small">Recorded: {last.label}. Tell the Director: <span className="mono">continue with approved work</span></p>}
+      {state.approvals.requests.filter((r) => r.state === 'pending').length === 0 && <p className="empty">Nothing waiting.</p>}
+      {state.approvals.requests.filter((r) => r.state === 'pending').map((r) => <ApprovalCard key={r.id} r={r} onOpen={onOpenGame} sample={state.sample} onDecided={setLast} />)}
+      <h4>Pitches waiting for you ({waiting.length})</h4>
+      {waiting.length === 0 && <p className="empty">Nothing waiting.</p>}
+      {waiting.map((g) => <div className="item" key={g.slug}><button className="link" onClick={() => onOpenGame(g.slug)}><b>{g.title}</b></button><PitchActions slug={g.slug} sample={state.sample} agents={state.agents} /></div>)}
+      <h4>Ideas in your inbox ({state.inbox.length})</h4>
+      {state.inbox.length === 0 ? <p className="empty">No ideas waiting.</p> : state.inbox.map((i) => <div className="item" key={i.slug}><b>{i.title}</b><div className="meta">starts at {stageName[i.stage]}</div></div>)}
+    </>
+  );
   else if (tab === 'ideas') content = (
     <>
       <Markdown text={summaryFor('owner')} />
@@ -143,7 +192,7 @@ export function OwnerPanel({ state, onClose }) {
     </>
   );
   return (
-    <Shell title="You · the owner" color="#d9d4c7" onClose={onClose} tabs={[['ideas', 'Your ideas'], ['review', 'Review']]} tab={tab} setTab={(t) => { setViewing(null); setTab(t); }}>
+    <Shell title="You · the owner" color="#d9d4c7" onClose={onClose} tabs={[['desk', 'Your desk'], ['ideas', 'Your ideas'], ['review', 'Past decisions']]} tab={tab} setTab={(t) => { setViewing(null); setTab(t); }}>
       {content}
     </Shell>
   );

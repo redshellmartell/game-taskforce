@@ -1,0 +1,5 @@
+{"time": "2026-10-03T16:00:00Z", "agent": "market-researcher", "game": "_research", "event": "start", "message": "Market scan (reduced budget 10/10)"}
+{"time": "2026-10-03T16:10:00Z", "agent": "market-researcher", "game": "_research", "event": "step", "message": "8 searches done; 3 page reads blocked by proxy"}
+{"time": "2026-10-03T16:20:00Z", "agent": "market-researcher", "game": "_research", "event": "done", "message": "Wrote market-scan.md; added 11 ideas to idea bank"}
+{"time":"2026-10-03T16:50:00Z","agent":"market-researcher","game":"research","event":"start","message":"Extended market scan 2"}
+{"time":"2026-10-03T16:58:00Z","agent":"market-researcher","game":"research","event":"done","message":"Scan 2 done: 14 ideas added"}

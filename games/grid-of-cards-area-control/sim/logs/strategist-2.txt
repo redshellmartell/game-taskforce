@@ -1,0 +1,21 @@
+Nine Fields: seats 1.. = strategist, barraiser; worst table for strategist. Cells 0-8 in reading order; scores are trophy totals.
+open: seat 2 lands on cell 7
+open: seat 1 lands on cell 0
+t1 seat 1 lands on cell 3
+t2 seat 2 lands on cell 1
+t3 seat 1 lands on cell 7
+t4 seat 2 lands on cell 7
+t5 seat 1 lands on cell 7 floods card 30 (axis ?, dir 1): card 30 value 4 falls to nobody. scores [0, 0]
+t6 seat 2 lands on cell 0
+t7 seat 1 lands on cell 0
+t8 seat 2 lands on cell 0 floods card 28 (axis ?, dir 1): card 1 value 1 falls to seat 2. scores [0, 1]
+t9 seat 1 lands on cell 0
+t10 seat 2 lands on cell 0
+t11 seat 1 sails cell 3 -> 0
+t12 seat 2 sails cell 3 -> 0 floods card 29 (axis ?, dir 1): card 14 value 2 falls to seat 2. scores [0, 3]
+t13 seat 1 sails cell 3 -> 4
+t14 seat 2 sails cell 3 -> 6
+t15 seat 1 sails cell 4 -> 3
+t16 seat 2 sails cell 6 -> 3
+t17 seat 1 sails cell 3 -> 4
+t18 seat 2 sails cell 3 -> 6

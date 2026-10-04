@@ -13,7 +13,7 @@ Every game lives in its own folder: `games/<game-slug>/`. A game moves through t
 | 1. Research | `market-researcher` | `brief.md` (from the idea bank, see "Lean mode") |
 | 2. Design | `game-designer` | `rules.md` |
 | 3. Playtest | `playtester` | `playtest-report.md` (+ `sim/` code) |
-| 3b. Test panel | bots + `panel/scoring.py` (free), `panel-player` x5 (AI, gated) | `panel.json`, `panel-report.md` |
+| 3b. Test panel | bots + `panel/scoring.py` (free), `panel-player` per persona (AI, gated) | `panel.json`, `panel-report.md` |
 | 4. Critique | `critic` | `critique.md` |
 | 5. Pitch | Manager (you) | `pitch.md` |
 
@@ -45,6 +45,10 @@ The studio runs on the owner's Claude subscription, so usage is the main constra
 - Never print large files, logs or simulation output into the conversation.
 - One game or one task per Claude Code session. When a game reaches a stage boundary and the session is long, tell the owner it's a good moment to start a fresh session; the repository holds all the state.
 
+**Owner focus.** The owner's current focus is card games, card-heavy games with a few small components, and tabletop role-playing games (`studio-settings.json`, `focus`). Favour these when choosing ideas from the bank and when scoring `owner_fit`; avoid big boards and miniatures. Role-playing games need a different playtest approach (task 012 is queued); until then say plainly what simulation cannot test.
+
+**Research rules.** Never fetch pages or call APIs on boardgamegeek.com, rpggeek.com or videogamegeek.com, and never scrape any site whose terms forbid automated access. The owner ruled this out (2026-10-04) after BoardGameGeek's XML API terms turned out to require registration and a token, with AI use unconfirmed. Web-search result snippets are fine to use and cite. If BGG data is wanted later, the owner registers a non-commercial application at boardgamegeek.com/applications and says so; until then ratings from BGG are `null` unless a snippet shows one. Respect other sites' terms and keep page reads low.
+
 **Run in batches the owner triggers.** Don't start new games or research on your own. A good rhythm is one new game per week, with panel runs and research refreshes grouped together.
 
 ## Approval gates
@@ -61,6 +65,7 @@ Some steps use a lot of the owner's usage or could loop without adding value. Be
 | `panel-research` | Before panel research or calibration refreshes (task 005 onwards) | Heavy, occasional research |
 | `panel-reviews` | Before persona AI reviews or "ask the panel" for more than one persona | Adds up across personas |
 | `budget` | Whenever an agent wants to exceed its budget (for example the playtester wanting more experiments) | Budgets exist for a reason |
+| `deep-research` | Before deeper research on selected pipeline games (researcher Mode 3, "Reanalyze pipeline") | A few searches per game, so it adds up |
 | `free-api` | Before sending a game's content to a free third-party AI provider | Privacy of unpublished designs |
 
 **Not gated** (runs straight through once the game is greenlit): design → playtest → critique for the first pass, persona bots and scoring (free code), and the pitch.
@@ -103,7 +108,7 @@ Some steps use a lot of the owner's usage or could loop without adding value. Be
 
 ### Recording decisions
 
-The owner can answer in the dashboard (Approvals page, which sets the request's `status` to `approved` or `declined`, and writes `decision`, `decided_at` and `owner_notes`) or by replying to you in chat. When the owner says **"continue with approved work"**, read `games/approvals.json`, act on every request decided since the last run (one that is `approved` or `declined` and not yet recorded in `games/decisions.json`), record each in `games/decisions.json` (`slug` is `null` for requests that are not about a game), and continue or stop accordingly. A decision whose key is anything other than `approve` (for example `pitch`, `park`, `kill`) means the gated step is not run; do what that option says instead.
+The owner can answer in the dashboard (Approvals page, which sets the request's `status` to `approved` or `declined`, and writes `decision`, `decided_at` and `owner_notes`) or by replying to you in chat. When the owner says **"continue with approved work"**, read `games/approvals.json`, act on every request decided since the last run (one that is `approved` or `declined` and not yet recorded in `games/decisions.json`), record each in `games/decisions.json` (`slug` is `null` for requests that are not about a game), and continue or stop accordingly. **Pitch decisions from the Review Queue** arrive as entries in `games/decisions.json` with `"kind": "pitch"` (`approve`, `reject` or `send-back`, with notes) for a game still in `owner-review`: act on them the same way: `approve` sets the game's stage to `approved`; `reject` moves it to `games/_archive/` (stage `killed`, with the owner's notes as the reason) and updates its idea in the bank; `send-back` returns it to the department in the entry's `target` (default `game-designer`; others: `market-researcher`, `playtester`, `test-panel`, `critic`): for `game-designer` raise a revision proposal at a `revision` gate (the owner's notes are the brief); for another department route the note to that agent and raise the gate its work needs (`scan` for research, `panel-reviews` for the test panel, a `revision` for a playtest or critique re-run), never starting gated work without approval. Record the stage change in `status.json` and `STATUS.md`. A decision whose key is anything other than `approve` (for example `pitch`, `park`, `kill`) means the gated step is not run; do what that option says instead.
 
 
 When the owner replies, update the request's `status`, `decision`, `decided_at` and `owner_notes`, log it in `games/decisions.json`, and continue (or stop) accordingly. An approval covers one step only: a second revision needs a new gate. Requests older than 14 days with no answer become `expired`; mention them in the next status report.
@@ -160,7 +165,7 @@ This studio is run like a game company think tank, and a dashboard tracks its KP
 {"time": "2026-10-03T13:02:00Z", "agent": "playtester", "game": "<slug>", "event": "start|step|done|error", "message": "Running 2,000 simulated games"}
 ```
 
-Use the real current time (`date -u +%Y-%m-%dT%H:%M:%SZ`). When delegating to an agent, remind it of its slug and that it must write its activity lines and JSON file.
+Use the real current time (`date -u +%Y-%m-%dT%H:%M:%SZ`). When delegating to an agent, remind it of its slug and that it must write its activity lines and JSON file. **Agents without a shell (designer, critic, market-researcher, panel-player) cannot read the clock: never give them guessed times.** Tell them to leave their activity lines to you and add them yourself with the real time when they return. `python3 tools/activity/fix_future_times.py` repairs any line dated in the future, and the dashboard shows such lines as `~` estimates.
 
 **Studio status (you).** Keep `games/status.json` up to date alongside `STATUS.md`:
 
@@ -178,16 +183,22 @@ Use the real current time (`date -u +%Y-%m-%dT%H:%M:%SZ`). When delegating to an
 Add a history entry every time a game changes stage or completes a revision. Pitched games go to `owner-review`.
 
 **Owner data.** When the owner tells you a decision ("approve ember-market", "I built a prototype", "we played it, fun 4/5"), record it:
-- `games/decisions.json`: `{ "decisions": [ { "slug", "time", "decision": "approve|reject|send-back|prototyped", "notes" } ] }`, and update the game's stage.
+- `games/decisions.json`: `{ "decisions": [ { "slug", "kind": "pitch", "time", "decision": "approve|reject|send-back|prototyped", "notes" } ] }`, and update the game's stage. Always set `"kind": "pitch"` on a decision about a pitch (the dashboard's Review Queue uses it); entries recording an approval-gate answer have no `kind` and name the request id in `notes`.
 - `games/<slug>/human-playtests.json`: `{ "sessions": [ { "date", "players", "fun", "replay", "clarity", "player_type", "notes" } ] }` (scores 1-5).
 
 **KPI targets** (used by the critic, playtester and you when judging): seat balance gap ≤ 5 points; strategic-vs-random win gap ≥ 20 points; simulated length within ±20% of the brief's target; runaway leader rate ≤ 65%; at least 2 lead changes per game on average; zero dead cards and zero rule ambiguities at pitch; critic average ≥ 3.5 at pitch.
+
+**Research requests from the dashboard.** The owner can ask Market Intel for research from the agent panel's Research tab. Each popup records an already-approved request in `games/approvals.json` with an id `research-<kind>-<time>` and `research_kind`: `game-research` (gate `scan`: run researcher Mode 1, focus-aware, to fill the idea bank), `persona-research` (gate `panel-research`: refresh `panel/evidence/` and re-run calibration) or `reanalyze` (gate `deep-research`, with `targets`: the selected games; run researcher Mode 3 on each, one at a time, and tell the critic and Bar Raiser to read `research-update.md` next time they review that game). On "continue with approved work" run them like any approved request (the popup's "Run this" is the approval) and put the request id in the decision's `notes`. The dashboard only hints when research looks due (idea bank stale, persona evidence old, a game never researched in depth); it never runs anything.
+
+**Owner notes to agents.** The owner can send a short note to an agent from the dashboard ("Talk to it" tab); it is saved as `games/_notes/<time>-<agent>.md` (header: agent, game, submitted). At the start of any session, and on "continue with approved work", read the pending notes there. For each: act on it within the gates (a note never bypasses an approval gate or the usage rules; if it needs a gated step, raise the request), pass it to the named agent when you next run that agent, or answer it yourself, then move the file to `games/_notes/_done/` and append `## Director's reply` followed by one or two sentences saying what you did or will do. The dashboard shows pending and answered notes under that agent.
 
 ## Player test panel
 
 A panel of player personas (`panel/personas/`) gives games a "public test" on top of the bot playtest. Each persona is modelled on a real type of player, backed by research evidence in `panel/evidence/`, and checked against real receptions of well-known games in `panel/calibration.json`. Details are in `panel/README.md`.
 
 **Stage 3b (every game).** After every playtest the playtester's persona bots and `panel/scoring.py` run automatically (free): `games/<slug>/panel.json` gets each persona's predicted fun, replay, would-buy and pet peeves hit. Only when the playtest verdict is PASS (or the owner asks) and the owner has approved the `panel-reviews` gate, run `panel-player` once per trusted persona (one at a time), then write `games/<slug>/panel-report.md`: who the game is for, where the personas agree and disagree, recurring complaints, suggested changes. The critic reads `panel-report.md` for its Fun and Market fit scores. Log `start`/`done` lines in `activity.jsonl` with `"agent": "panel:<persona>"` and add a `panel` entry to the game's `status.json` history.
+
+**The Bar Raiser (veto).** The sixth persona, `barraiser`, acts as a professional veteran designer who joins the playtest and is the panel's hardest judge. It is the only persona that can **veto**: `panel/scoring.py` sets `veto.active` in its `panel.json` entry when the numbers cross the limits in its profile (`panel/personas/barraiser.md`, the `veto` block: predicted fun below 2.5, a dominant strategy, a seat advantage over 6 points, low originality), and its written review may veto on expert grounds (derivative, would not be signed). A veto never kills a game by itself, but the Director must put it first in `panel-report.md` and in any pitch's "Remaining risks", and must not pitch a vetoed game without the owner's explicit decision (revise, pitch anyway, or park). Treat the Bar Raiser as untrusted until its panel research and calibration have run.
 
 **Asking a persona.** When the owner says "Ask <persona> about <game>: <question>", run `panel-player` for that persona in conversation mode (give it the current UTC time); it answers in character and appends to `games/<slug>/panel/conversations.jsonl`. "Ask the panel ..." means every trusted persona, one short answer each; this needs the `panel-reviews` approval when more than one persona is asked.
 
@@ -213,7 +224,7 @@ The owner pays for sessions from a limited credit balance, so work economically:
 
 ## Dashboard project
 
-The owner's dashboard lives in `dashboard/`. When asked to build or change it, follow `docs/BUILD-DASHBOARD.md` (build steps) and `docs/dashboard-notes.md` (product spec), working one milestone at a time. The dashboard is read-only in v1 and must never start agents or change files in `games/`. The owner is new to coding: explain steps in plain language and keep setup minimal.
+The owner's dashboard lives in `dashboard/`. When asked to build or change it, follow `docs/BUILD-DASHBOARD.md` (build steps) and `docs/dashboard-notes.md` (product spec), working one milestone at a time. The dashboard must never start agents. Its only writes are: saving ideas to `games/_inbox/`, recording approval decisions in `games/approvals.json`, appending the owner's pitch decisions (Approve, Send back, Reject in the Review Queue) to `games/decisions.json`, saving notes to agents in `games/_notes/`, and recording research requests the owner approves in the Market Intel popup ("Game research", "Persona research", "Reanalyze pipeline") as already-approved entries in `games/approvals.json`. The owner is new to coding: explain steps in plain language and keep setup minimal.
 
 ## Default first command
 

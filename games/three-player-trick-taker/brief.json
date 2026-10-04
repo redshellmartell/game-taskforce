@@ -1,0 +1,30 @@
+{
+  "slug": "three-player-trick-taker",
+  "title": "Three-Hand Trick-Taker",
+  "idea_id": "three-player-trick-taker",
+  "players": "3",
+  "minutes": 20,
+  "complexity": 2,
+  "mechanics": ["trick-taking", "rotating roles"],
+  "theme": "heist crew splitting a haul",
+  "opportunity_score": 26,
+  "rubric": { "demand": 3, "gap": 4, "originality": 4, "producibility": 5, "simulatability": 5, "owner_fit": 5 },
+  "candidates": [
+    { "idea": "three-player-trick-taker", "score": 26, "chosen": true },
+    { "idea": "silent-duo-deduction-coop", "score": 25, "chosen": false },
+    { "idea": "asymmetric-duel-tug-of-war", "score": 24, "chosen": false }
+  ],
+  "comparables": [
+    { "name": "The Crew: The Quest for Planet Nine", "bgg_rating": 7.8, "crowdfunding": null, "difference": "Co-op, scales 2-5 and best at 4; this is competitive and tuned for exactly 3." },
+    { "name": "Skull King", "bgg_rating": 7.5, "crowdfunding": null, "difference": "Bidding and chaotic scoring for 2-8; this uses rotating roles and no bidding." },
+    { "name": "Hearts / Sheepshead (3-player)", "bgg_rating": null, "crowdfunding": null, "difference": "Need house rules for 3; this is designed for 3 from the start." }
+  ],
+  "sources": [
+    "https://www.destructoid.com/best-3-player-card-games/",
+    "https://whatsericplaying.com/the-crew",
+    "https://boardgamematcher.com/game/skull-king",
+    "https://zatu.com/products/the-fox-in-the-forest",
+    "https://www.boardgameoftheyear.org/2025/sites/Tabletop%20Express",
+    "https://www.boardgamequest.com/crowdfunding-campaigns-of-the-week-8-10-26/"
+  ]
+}

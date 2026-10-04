@@ -1,0 +1,50 @@
+{
+ "double_final": {
+  "lc": 1.837,
+  "early3": 0.4287757437070938,
+  "gap": 1.7000000000000015,
+  "success": 0.49975,
+  "role": {
+   "Planner": 3.39,
+   "Safecracker": 2.86,
+   "Double-Crosser": 3.02
+  },
+  "mixed": {
+   "random": 0.197,
+   "greedy": 0.418,
+   "strategic": 0.385
+  }
+ },
+ "cleanloot": {
+  "lc": 1.6385,
+  "early3": 0.5137749737118822,
+  "gap": 3.075,
+  "success": 0.49975,
+  "role": {
+   "Planner": 1.88,
+   "Safecracker": 1.96,
+   "Double-Crosser": 2.67
+  },
+  "mixed": {
+   "random": 0.223,
+   "greedy": 0.384,
+   "strategic": 0.394
+  }
+ },
+ "flat": {
+  "lc": 1.711,
+  "early3": 0.4542319749216301,
+  "gap": 3.325,
+  "success": 0.49975,
+  "role": {
+   "Planner": 2.73,
+   "Safecracker": 2.43,
+   "Double-Crosser": 1.64
+  },
+  "mixed": {
+   "random": 0.161,
+   "greedy": 0.483,
+   "strategic": 0.356
+  }
+ }
+}

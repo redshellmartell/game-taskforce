@@ -1,4 +1,4 @@
-Duel Flip: competitor (seat 1) vs casual (seat 2), table 'best' for competitor. Cards are species+value (Cr St Ur An Sn Ke).
+Duel Flip: competitor (seat 1) vs barraiser (seat 2), table 'best' for competitor. Cards are species+value (Cr St Ur An Sn Ke).
 T0 P0 first Cr3
 T0 P0 flips Ur3 CLASH -> BUST, opp gets ['Cr3']
 T1 P1 first Cr9
@@ -8,11 +8,11 @@ T2 P0 flips Ke4 CLASH -> BUST, opp gets ['Ur4']
 T3 P1 first Sn3
 T3 P1 flips St4
 T3 P1 flips Ur7
-T3 P1 banks ['St4', 'Ur7'] leaves Sn3
+T3 P1 banks ['Sn3', 'St4'] leaves Ur7
 T4 P0 first Sn1
 T4 P0 flips St10
 T4 P0 flips An1 CLASH -> buoy
-T4 P0 banks ['Sn3', 'St10'] leaves Sn1
+T4 P0 banks ['Ur7', 'St10'] leaves Sn1
 T5 P1 first An10
 T5 P1 flips Cr1 CLASH(bait) -> BUST, opp gets ['An10', 'Sn1']
 T6 P0 first St1
@@ -20,22 +20,22 @@ T6 P0 flips Ur2
 T6 P0 flips Sn2 CLASH -> BUST, opp gets ['St1', 'Ur2']
 T7 P1 first An5
 T7 P1 flips Sn8
-T7 P1 flips Cr8 CLASH -> BUST, opp gets ['An5', 'Sn8']
-T8 P0 first Cr6
-T8 P0 flips St5
-T8 P0 banks ['St5'] leaves Cr6
-T9 P1 first An8
-T9 P1 flips Ur6 CLASH(bait) -> BUST, opp gets ['An8', 'Cr6']
-T10 P0 first Ke10
-T10 P0 flips An9
-T10 P0 banks ['Ke10'] leaves An9
-T11 P1 first St3
-T11 P1 flips Ur5
-T11 P1 flips St8
-T11 P1 banks ['An9', 'St3', 'Ur5'] leaves St8
-T12 P0 first Sn7
-T12 P0 flips Cr5
-T12 P0 banks ['St8', 'Cr5'] leaves Sn7
-T13 P1 first Cr4
-T13 P1 flips An7 CLASH(bait) -> BUST, opp gets ['Cr4', 'Sn7']
-T14 P0 first Cr10
+T7 P1 banks ['Sn8'] leaves An5
+T8 P0 first Cr8
+T8 P0 flips Cr6
+T8 P0 banks ['An5', 'Cr8'] leaves Cr6
+T9 P1 first St5
+T9 P1 flips An8
+T9 P1 banks ['Cr6', 'An8'] leaves St5
+T10 P0 first Ur6
+T10 P0 flips Ke10
+T10 P0 banks ['St5', 'Ke10'] leaves Ur6
+T11 P1 first An9
+T11 P1 flips Ur9 CLASH -> BUST, opp gets ['An9']
+T12 P0 first St3
+T12 P0 flips Ur5
+T12 P0 banks ['Ur6', 'St3'] leaves Ur5
+T13 P1 first St8
+T13 P1 flips Sn7
+T13 P1 banks ['Ur5', 'St8'] leaves Sn7
+T14 P0 first Cr5
