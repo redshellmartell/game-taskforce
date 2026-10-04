@@ -1,0 +1,1045 @@
+{
+ "verdict": "NEEDS-FIXES",
+ "revision": 0,
+ "games_simulated": 38900,
+ "seat_win_rates": {
+  "1": 0.574,
+  "2": 0.426
+ },
+ "seat_balance_gap": 7.4,
+ "bot_win_rates": {
+  "random": 0.119,
+  "greedy": 0.669,
+  "strategic": 0.712
+ },
+ "skill_expression": 77.7,
+ "length": {
+  "mean_turns": 9.0,
+  "stdev": 2.9,
+  "estimated_minutes": 12,
+  "target_minutes": 15,
+  "note": "turns = player turns (2p). Minutes are an estimate: 1 min per player turn + 3 min setup. Owner's 10-20 min at 2p is flexible and not a locked target; 15 is the midpoint."
+ },
+ "length_histogram": [
+  {
+   "turns": 2,
+   "games": 3
+  },
+  {
+   "turns": 3,
+   "games": 37
+  },
+  {
+   "turns": 4,
+   "games": 57
+  },
+  {
+   "turns": 5,
+   "games": 119
+  },
+  {
+   "turns": 6,
+   "games": 137
+  },
+  {
+   "turns": 7,
+   "games": 264
+  },
+  {
+   "turns": 8,
+   "games": 225
+  },
+  {
+   "turns": 9,
+   "games": 352
+  },
+  {
+   "turns": 10,
+   "games": 235
+  },
+  {
+   "turns": 11,
+   "games": 209
+  },
+  {
+   "turns": 12,
+   "games": 138
+  },
+  {
+   "turns": 13,
+   "games": 91
+  },
+  {
+   "turns": 14,
+   "games": 50
+  },
+  {
+   "turns": 15,
+   "games": 41
+  },
+  {
+   "turns": 16,
+   "games": 20
+  },
+  {
+   "turns": 17,
+   "games": 9
+  },
+  {
+   "turns": 18,
+   "games": 8
+  },
+  {
+   "turns": 19,
+   "games": 4
+  },
+  {
+   "turns": 20,
+   "games": 1
+  }
+ ],
+ "ties": 0.0,
+ "turn_cap_hits": 0,
+ "lead_changes_mean": 3.08,
+ "runaway_leader_rate": 0.634,
+ "win_path": {
+  "mirror_2p": {
+   "star": 0.717,
+   "cm": 0.283,
+   "star_own_turns": 4.61,
+   "cm_own_turns": 5.26
+  },
+  "mirror_3p": {
+   "star": 0.543,
+   "cm": 0.457
+  },
+  "mirror_4p": {
+   "star": 0.386,
+   "cm": 0.614,
+   "star_own_turns": 6.76,
+   "cm_own_turns": 6.1
+  },
+  "star_pairings_2p": {
+   "star": 0.712,
+   "cm": 0.288
+  }
+ },
+ "cards": [
+  {
+   "name": "CO01 Ice Moonlet",
+   "played_rate": 0.095,
+   "win_correlation": -0.097,
+   "flag": null
+  },
+  {
+   "name": "CO02 Debris Clump",
+   "played_rate": 0.111,
+   "win_correlation": 0.0,
+   "flag": null
+  },
+  {
+   "name": "CO03 Gas Dwarf",
+   "played_rate": 0.239,
+   "win_correlation": 0.001,
+   "flag": null
+  },
+  {
+   "name": "CO04 Puffy Planet",
+   "played_rate": 0.236,
+   "win_correlation": -0.052,
+   "flag": null
+  },
+  {
+   "name": "CO05 Polar World",
+   "played_rate": 0.158,
+   "win_correlation": -0.064,
+   "flag": null
+  },
+  {
+   "name": "CO06 Drifting Giant",
+   "played_rate": 0.228,
+   "win_correlation": -0.062,
+   "flag": null
+  },
+  {
+   "name": "CO07 Equatorial World",
+   "played_rate": 0.258,
+   "win_correlation": -0.001,
+   "flag": null
+  },
+  {
+   "name": "CO08 Crumbling Giant",
+   "played_rate": 0.235,
+   "win_correlation": -0.053,
+   "flag": null
+  },
+  {
+   "name": "CO09 Bloated Giant",
+   "played_rate": 0.287,
+   "win_correlation": 0.02,
+   "flag": null
+  },
+  {
+   "name": "CO10 Ice Giant",
+   "played_rate": 0.241,
+   "win_correlation": -0.051,
+   "flag": null
+  },
+  {
+   "name": "CO11 Shedding Giant",
+   "played_rate": 0.283,
+   "win_correlation": 0.029,
+   "flag": null
+  },
+  {
+   "name": "CO12 Hydrogen Giant",
+   "played_rate": 0.286,
+   "win_correlation": 0.034,
+   "flag": null
+  },
+  {
+   "name": "CO13 Ringed Titan",
+   "played_rate": 0.265,
+   "win_correlation": 0.037,
+   "flag": null
+  },
+  {
+   "name": "CO14 Shepherd Moon",
+   "played_rate": 0.048,
+   "win_correlation": 0.016,
+   "flag": "dominated: almost never played by the bots (played in 4.8% of games); never worth taking, or the bots cannot value it"
+  },
+  {
+   "name": "CO15 Scout Moon",
+   "played_rate": 0.089,
+   "win_correlation": 0.009,
+   "flag": null
+  },
+  {
+   "name": "CO16 Twilight World",
+   "played_rate": 0.182,
+   "win_correlation": -0.008,
+   "flag": null
+  },
+  {
+   "name": "CO17 Water World",
+   "played_rate": 0.193,
+   "win_correlation": 0.0,
+   "flag": null
+  },
+  {
+   "name": "CO18 Tumbling Moon",
+   "played_rate": 0.179,
+   "win_correlation": -0.017,
+   "flag": null
+  },
+  {
+   "name": "CO19 Mini-Neptune",
+   "played_rate": 0.272,
+   "win_correlation": -0.011,
+   "flag": null
+  },
+  {
+   "name": "CO20 Salvager World",
+   "played_rate": 0.28,
+   "win_correlation": -0.011,
+   "flag": null
+  },
+  {
+   "name": "CO21 Retrograde Wanderer",
+   "played_rate": 0.263,
+   "win_correlation": -0.118,
+   "flag": null
+  },
+  {
+   "name": "CO22 Overheated Giant",
+   "played_rate": 0.313,
+   "win_correlation": -0.08,
+   "flag": null
+  },
+  {
+   "name": "CO23 Brown Dwarf Companion",
+   "played_rate": 0.283,
+   "win_correlation": 0.076,
+   "flag": null
+  },
+  {
+   "name": "CO24 Trojan Asteroid",
+   "played_rate": 0.051,
+   "win_correlation": -0.076,
+   "flag": null
+  },
+  {
+   "name": "CO25 Polar Sentinel",
+   "played_rate": 0.12,
+   "win_correlation": -0.007,
+   "flag": null
+  },
+  {
+   "name": "CO26 Thieving Moon",
+   "played_rate": 0.12,
+   "win_correlation": -0.064,
+   "flag": null
+  },
+  {
+   "name": "CO27 Tidally Locked World",
+   "played_rate": 0.183,
+   "win_correlation": -0.086,
+   "flag": null
+  },
+  {
+   "name": "CO28 Terrestrial World",
+   "played_rate": 0.127,
+   "win_correlation": -0.015,
+   "flag": null
+  },
+  {
+   "name": "CO29 Super-Mercury",
+   "played_rate": 0.269,
+   "win_correlation": 0.051,
+   "flag": null
+  },
+  {
+   "name": "CO30 Hot Jupiter",
+   "played_rate": 0.303,
+   "win_correlation": 0.039,
+   "flag": null
+  },
+  {
+   "name": "CO31 Guardian Moon",
+   "played_rate": 0.06,
+   "win_correlation": -0.034,
+   "flag": null
+  },
+  {
+   "name": "CO32 Rocky Moon",
+   "played_rate": 0.108,
+   "win_correlation": -0.108,
+   "flag": null
+  },
+  {
+   "name": "CO33 Survey Moon",
+   "played_rate": 0.126,
+   "win_correlation": 0.002,
+   "flag": null
+  },
+  {
+   "name": "CO34 Spin Moon",
+   "played_rate": 0.202,
+   "win_correlation": -0.058,
+   "flag": null
+  },
+  {
+   "name": "CO35 Super-Earth",
+   "played_rate": 0.297,
+   "win_correlation": 0.008,
+   "flag": null
+  },
+  {
+   "name": "CO36 Iron Remnant",
+   "played_rate": 0.072,
+   "win_correlation": -0.014,
+   "flag": null
+  },
+  {
+   "name": "AE01 Orbital Stabilizer",
+   "played_rate": 0.129,
+   "win_correlation": -0.054,
+   "flag": null
+  },
+  {
+   "name": "AE02 Accretion Disk",
+   "played_rate": 0.226,
+   "win_correlation": -0.026,
+   "flag": null
+  },
+  {
+   "name": "AE03 Planetary Ring",
+   "played_rate": 0.226,
+   "win_correlation": -0.042,
+   "flag": null
+  },
+  {
+   "name": "AE04 Magnetosphere",
+   "played_rate": 0.029,
+   "win_correlation": 0.129,
+   "flag": "dominated: almost never played by the bots (played in 2.9% of games); never worth taking, or the bots cannot value it"
+  },
+  {
+   "name": "AE05 Thick Atmosphere",
+   "played_rate": 0.113,
+   "win_correlation": -0.021,
+   "flag": null
+  },
+  {
+   "name": "AE06 Captured Satellite",
+   "played_rate": 0.168,
+   "win_correlation": -0.127,
+   "flag": null
+  },
+  {
+   "name": "AE07 Binary Tether",
+   "played_rate": 0.071,
+   "win_correlation": -0.069,
+   "flag": null
+  },
+  {
+   "name": "AE08 Satellite Swarm",
+   "played_rate": 0.061,
+   "win_correlation": -0.076,
+   "flag": null
+  },
+  {
+   "name": "AE09 Ion Cannon",
+   "played_rate": 0.201,
+   "win_correlation": 0.051,
+   "flag": null
+  },
+  {
+   "name": "AE10 Impact Lance",
+   "played_rate": 0.127,
+   "win_correlation": -0.004,
+   "flag": null
+  },
+  {
+   "name": "AE11 Siphon Tap",
+   "played_rate": 0.165,
+   "win_correlation": 0.005,
+   "flag": null
+  },
+  {
+   "name": "AE12 Erosion",
+   "played_rate": 0.203,
+   "win_correlation": 0.022,
+   "flag": null
+  },
+  {
+   "name": "AE13 Mass Loss",
+   "played_rate": 0.14,
+   "win_correlation": -0.111,
+   "flag": null
+  },
+  {
+   "name": "AE14 Rogue Gravity",
+   "played_rate": 0.064,
+   "win_correlation": 0.02,
+   "flag": null
+  },
+  {
+   "name": "AE15 Retrograde Kick",
+   "played_rate": 0.086,
+   "win_correlation": -0.066,
+   "flag": null
+  },
+  {
+   "name": "AE16 Lagrange Anchor",
+   "played_rate": 0.029,
+   "win_correlation": 0.112,
+   "flag": "dominated: almost never played by the bots (played in 2.9% of games); never worth taking, or the bots cannot value it"
+  },
+  {
+   "name": "AE17 Shield Lattice",
+   "played_rate": 0.028,
+   "win_correlation": 0.083,
+   "flag": "dominated: almost never played by the bots (played in 2.8% of games); never worth taking, or the bots cannot value it"
+  },
+  {
+   "name": "AE18 Booster Engine",
+   "played_rate": 0.106,
+   "win_correlation": -0.06,
+   "flag": null
+  },
+  {
+   "name": "AE19 Deep Space Network",
+   "played_rate": 0.157,
+   "win_correlation": -0.014,
+   "flag": null
+  },
+  {
+   "name": "AE20 Tidal Heating",
+   "played_rate": 0.158,
+   "win_correlation": -0.038,
+   "flag": null
+  },
+  {
+   "name": "AE21 Volatile Core",
+   "played_rate": 0.269,
+   "win_correlation": -0.034,
+   "flag": null
+  },
+  {
+   "name": "AE22 Roche Tether",
+   "played_rate": 0.171,
+   "win_correlation": 0.038,
+   "flag": null
+  },
+  {
+   "name": "AE23 Solar Flare",
+   "played_rate": 0.26,
+   "win_correlation": 0.031,
+   "flag": null
+  },
+  {
+   "name": "AE24 Coronal Mass Ejection",
+   "played_rate": 0.294,
+   "win_correlation": 0.146,
+   "flag": null
+  },
+  {
+   "name": "AE25 Gamma-Ray Burst",
+   "played_rate": 0.308,
+   "win_correlation": 0.263,
+   "flag": "overpowered: winning link +0.26"
+  },
+  {
+   "name": "AE26 Supernova Shockwave",
+   "played_rate": 0.278,
+   "win_correlation": 0.048,
+   "flag": null
+  },
+  {
+   "name": "AE27 Meteor Shower",
+   "played_rate": 0.302,
+   "win_correlation": 0.112,
+   "flag": null
+  },
+  {
+   "name": "AE28 Gravitational Slingshot",
+   "played_rate": 0.246,
+   "win_correlation": 0.418,
+   "flag": "overpowered: winning link +0.42"
+  },
+  {
+   "name": "AE29 Impact Event",
+   "played_rate": 0.277,
+   "win_correlation": 0.092,
+   "flag": null
+  },
+  {
+   "name": "AE30 Stellar Wind",
+   "played_rate": 0.307,
+   "win_correlation": 0.108,
+   "flag": null
+  },
+  {
+   "name": "AE31 Retaliation Pulse",
+   "played_rate": 0.249,
+   "win_correlation": 0.136,
+   "flag": null
+  },
+  {
+   "name": "AE32 Tidal Disruption",
+   "played_rate": 0.206,
+   "win_correlation": 0.16,
+   "flag": null
+  },
+  {
+   "name": "AE33 Pulsar Beam",
+   "played_rate": 0.279,
+   "win_correlation": 0.048,
+   "flag": null
+  },
+  {
+   "name": "AE34 Kessler Cascade",
+   "played_rate": 0.192,
+   "win_correlation": 0.137,
+   "flag": null
+  },
+  {
+   "name": "AE35 Flare Star",
+   "played_rate": 0.305,
+   "win_correlation": 0.099,
+   "flag": null
+  },
+  {
+   "name": "AE36 X-Ray Binary",
+   "played_rate": 0.155,
+   "win_correlation": 0.068,
+   "flag": null
+  },
+  {
+   "name": "AE37 Starquake",
+   "played_rate": 0.299,
+   "win_correlation": 0.117,
+   "flag": null
+  },
+  {
+   "name": "AE38 Gravitational Perturbation",
+   "played_rate": 0.242,
+   "win_correlation": 0.018,
+   "flag": null
+  },
+  {
+   "name": "AE39 Asteroid Impact",
+   "played_rate": 0.18,
+   "win_correlation": -0.017,
+   "flag": null
+  },
+  {
+   "name": "AE40 Black Hole",
+   "played_rate": 0.24,
+   "win_correlation": 0.058,
+   "flag": null
+  },
+  {
+   "name": "AE41 Solar Wind Sweep",
+   "played_rate": 0.004,
+   "win_correlation": 0.501,
+   "flag": "dominated: almost never played by the bots (played in 0.4% of games); never worth taking, or the bots cannot value it"
+  },
+  {
+   "name": "AE42 Strip Atmosphere",
+   "played_rate": 0.067,
+   "win_correlation": -0.019,
+   "flag": null
+  },
+  {
+   "name": "AE43 Solar Storm",
+   "played_rate": 0.021,
+   "win_correlation": 0.106,
+   "flag": "dominated: almost never played by the bots (played in 2.1% of games); never worth taking, or the bots cannot value it"
+  },
+  {
+   "name": "AE44 Recapture",
+   "played_rate": 0.149,
+   "win_correlation": -0.056,
+   "flag": null
+  },
+  {
+   "name": "AE45 Comet Return",
+   "played_rate": 0.024,
+   "win_correlation": 0.042,
+   "flag": "dominated: almost never played by the bots (played in 2.4% of games); never worth taking, or the bots cannot value it"
+  },
+  {
+   "name": "AE46 Lagrange Rescue",
+   "played_rate": 0.162,
+   "win_correlation": -0.032,
+   "flag": null
+  },
+  {
+   "name": "AE47 Stargazing",
+   "played_rate": 0.21,
+   "win_correlation": -0.04,
+   "flag": null
+  },
+  {
+   "name": "AE48 Deep Field Survey",
+   "played_rate": 0.16,
+   "win_correlation": -0.002,
+   "flag": null
+  },
+  {
+   "name": "AE49 Search the Skies",
+   "played_rate": 0.044,
+   "win_correlation": 0.017,
+   "flag": "dominated: almost never played by the bots (played in 4.5% of games); never worth taking, or the bots cannot value it"
+  },
+  {
+   "name": "AE50 Mass Transfer",
+   "played_rate": 0.155,
+   "win_correlation": -0.007,
+   "flag": null
+  },
+  {
+   "name": "AE51 Dark Matter Halo",
+   "played_rate": 0.14,
+   "win_correlation": -0.052,
+   "flag": null
+  },
+  {
+   "name": "AE52 Event Horizon",
+   "played_rate": 0.096,
+   "win_correlation": 0.041,
+   "flag": null
+  },
+  {
+   "name": "AE53 Roche Limit",
+   "played_rate": 0.237,
+   "win_correlation": 0.05,
+   "flag": null
+  },
+  {
+   "name": "AE54 Orbital Insertion",
+   "played_rate": 0.234,
+   "win_correlation": -0.035,
+   "flag": null
+  },
+  {
+   "name": "AE55 Free-Return Trajectory",
+   "played_rate": 0.0,
+   "win_correlation": 0.0,
+   "flag": "dominated: almost never played by the bots (played in 0.0% of games); never worth taking, or the bots cannot value it"
+  },
+  {
+   "name": "AE56 Stellar Nursery",
+   "played_rate": 0.216,
+   "win_correlation": -0.009,
+   "flag": null
+  },
+  {
+   "name": "AE57 Gravity Assist",
+   "played_rate": 0.001,
+   "win_correlation": 0.0,
+   "flag": "dominated: almost never played by the bots (played in 0.1% of games); never worth taking, or the bots cannot value it"
+  },
+  {
+   "name": "AE58 Orbital Resonance",
+   "played_rate": 0.182,
+   "win_correlation": -0.065,
+   "flag": null
+  },
+  {
+   "name": "AE59 Scavenge",
+   "played_rate": 0.069,
+   "win_correlation": 0.053,
+   "flag": null
+  },
+  {
+   "name": "AE60 Gravitational Wave",
+   "played_rate": 0.006,
+   "win_correlation": 0.502,
+   "flag": "dominated: almost never played by the bots (played in 0.7% of games); never worth taking, or the bots cannot value it"
+  }
+ ],
+ "ambiguities": [
+  "G1 rotation direction (clockwise assumed)",
+  "G2 first player random, clockwise",
+  "G3 hands dealt after Stars chosen; Stars dealt 2 each, kept at random",
+  "G4 first player draws on turn 1 (changes seat balance by 7 points)",
+  "G5/G6/G7 start/end-of-turn order and whose end of turn checks Critical Mass",
+  "G8 cancel check is continuous",
+  "G10 reclaims and collision losers use the CO-per-turn cap",
+  "G11/G12/G13 moving within an orbit, two movers on one position, knockouts after the whole rotation",
+  "G14-G19 collision overrides, floor arithmetic, Size 0 versus Stability 0, values above 5",
+  "G20-G22 ownership, Augmentation targets, restrictions after moving",
+  "G26/G27/G28 hard costs, 'once per turn' on Star triggers, 'since your last turn'",
+  "G29/G30/G31/G33 trigger order, elimination mid-turn, orphaned Augmentations, simultaneous zero",
+  "G34/G35/G36 hand-limit choice, empty deck, healing cap (full list in playtest-report.md)"
+ ],
+ "problems": [
+  {
+   "severity": "high",
+   "problem": "The two win conditions are not at parity, and the split flips with player count",
+   "evidence": "Strategic mirror: 2p 72% Star Destruction / 28% Critical Mass; 3p 54/46; 4p 39/61; 5p 30/70; 6p 25/75 (2000 games each, 300 for 5-6p).",
+   "fix": "One global AE-damage number cannot fix both modes (see tuning-lever call). Owner decision: which mode is primary, or scale a lever with player count (untested)."
+  },
+  {
+   "severity": "high",
+   "problem": "2-player first-seat advantage is above the 5-point KPI",
+   "evidence": "Seat 1 (first player) wins 57.4% vs 42.6% (gap 7.4 points) in strategic mirror. The cause is G4: the first player also draws 2 on turn 1. Experiment: first player draws 1 -> seat 1 53.6%; draws 0 -> 50.2%.",
+   "fix": "Resolve G4 so the first player skips the turn-1 draw (fair at 50.2% in the sim)."
+  },
+  {
+   "severity": "high",
+   "problem": "Star strength follows HP, not the intended HP-versus-ability trade-off",
+   "evidence": "Round-robin win rate by HP: HP9 71%, HP8 55%, HP7 56%, HP6 49%, HP5 39%. ST01 (HP 9, 'Simple') 71%, ST11 (HP 5) 33%, ST08 39%, ST10 40%. HP 9 beats every HP 5 Star 70-82% of the time.",
+   "fix": "The HP curve is too steep or HP 5 abilities are too weak for a damage race that ends in about 4.6 own turns. Candidates: lift HP 5 abilities, or flatten the HP curve. Not tested (Star roster is outside this build)."
+  },
+  {
+   "severity": "medium",
+   "problem": "Dead early draws: most Augmentations and conditional Direct Effects have no legal play on an empty board",
+   "evidence": "78% of AE cards held on turn 1 are unplayable (47 of 60 AEs); a 7-card opening hand has 3.4 dead cards on average; 3.4% of hands hold no CO. Real turn 1: 85% make 2 plays, 14% only 1, 0.7% none. In my narrated game three straight hands held no CO.",
+   "fix": "Mostly by design (Augmentations need a CO), so the real cost is clogged hands. Consider a mulligan or a guaranteed CO in the opening hand; or let the owner decide the 'zero dead cards at pitch' KPI is met by rule (a dead card is held, not wasted)."
+  },
+  {
+   "severity": "medium",
+   "problem": "Critical Mass counterplay is thin; a countdown is usually cancelled only by an opponent's knockout",
+   "evidence": "2p: 41% of announces are cancelled (77% by an opponent's effect), 28% of announces turn into a win; 4p: 46% cancelled. Only about 12 of 60 AEs can knock a CO out (AE12/13/22/38/39/40/52/53/29/41...). In my narrated game I held no answer for three turns.",
+   "fix": "Not alarming in the average, but swingy for the player holding no answer. Consider more cheap knockout/denial AEs (also helps the Denial/control Star roster gap)."
+  },
+  {
+   "severity": "medium",
+   "problem": "3-damage hard-cost Direct Effects are the strongest cards; the 'hard cost' barely hurts",
+   "evidence": "AE28 (sacrifice a CO, 3 damage) winning link +0.42, AE25 (1 self damage, 3 damage) +0.26; both played in about 25-31% of games. 3 damage is about 45% of an average Star.",
+   "fix": "Watch in human play; if confirmed, raise the cost (discard 2, or sacrifice a CO with Stability 2+)."
+  },
+  {
+   "severity": "medium",
+   "problem": "The rotation twist is almost never used by the bots",
+   "evidence": "Position/rotation tricks (AE41, AE55, AE57, AE60, AE45, AE43, CO14, CO24) are played in under 5% of games. Rotation collisions happen in 30% of games (0.48 per game); most Collisions come from placement (0.76 per game). The 'clock' pillar may rarely drive decisions, or the bots are blind to it (bot-dependent).",
+   "fix": "Check in human playtests; if real, add rotation-driven cards that are easy to value (AE60-type with a payoff)."
+  },
+  {
+   "severity": "low",
+   "problem": "Strategic bot barely beats greedy",
+   "evidence": "Greedy wins 46.5% against strategic (seats alternate). Strategic beats random 88.8%. Decisions matter against random play, but extra planning adds little over taking the best immediate gain.",
+   "fix": "Bot-dependent; revisit with human sessions."
+  }
+ ],
+ "tuning_lever": {
+  "experiments": {
+   "E1_first_player_draws_1_2p": {
+    "cm": 0.317,
+    "star": 0.683,
+    "rounds": 4.89,
+    "star_rounds": 4.68,
+    "cm_rounds": 5.35,
+    "seat1": 0.536
+   },
+   "E1b_first_player_draws_0_2p": {
+    "cm": 0.311,
+    "star": 0.689,
+    "rounds": 4.98,
+    "star_rounds": 4.8,
+    "cm_rounds": 5.36,
+    "seat1": 0.502
+   },
+   "E2_plus6_dmg_2p": {
+    "cm": 0.218,
+    "star": 0.781,
+    "rounds": 4.48,
+    "star_rounds": 4.31,
+    "cm_rounds": 5.08,
+    "seat1": 0.553
+   },
+   "E2_plus6_dmg_4p": {
+    "cm": 0.524,
+    "star": 0.475,
+    "rounds": 6.2,
+    "star_rounds": 6.52,
+    "cm_rounds": 5.91,
+    "seat1": 0.281
+   },
+   "E3_minus6_dmg_2p": {
+    "cm": 0.469,
+    "star": 0.531,
+    "rounds": 5.26,
+    "star_rounds": 5.1,
+    "cm_rounds": 5.45,
+    "seat1": 0.574
+   },
+   "E3_minus6_dmg_4p": {
+    "cm": 0.801,
+    "star": 0.199,
+    "rounds": 6.58,
+    "star_rounds": 7.56,
+    "cm_rounds": 6.33,
+    "seat1": 0.276
+   }
+  },
+  "call": "do not pull as a single global change: +6 damage AEs moves 4p to near parity but pushes 2p to 78% Star; the reverse (-6) fixes 2p but pushes 4p to 80% CM"
+ },
+ "cm_reachability": {
+  "solo": {
+   "games": 1000,
+   "announced": 0.918,
+   "announce_turn_mean": 5.06318082788671,
+   "announce_turn_median": 4.0,
+   "announce_hist": {
+    "3": 144,
+    "4": 450,
+    "5": 110,
+    "6": 71,
+    "7": 37,
+    "8": 27,
+    "9": 22,
+    "10": 12,
+    "11": 12,
+    "12": 10,
+    "13": 3,
+    "14": 6,
+    "15": 6,
+    "17": 2,
+    "18": 1,
+    "19": 3,
+    "29": 1,
+    "44": 1
+   },
+   "win_turn_mean": 6.462986198243413,
+   "win_rate": 0.797,
+   "cancelled": 0.5
+  },
+  "combinatorics": {
+   "p_random4_ge15": 0.3488837959426195,
+   "p_random3_ge15": 0.00784313725490196,
+   "size5_cards": 8,
+   "size4_cards": 11,
+   "mean_size": 3.361111111111111
+  }
+ },
+ "star_kill": {
+  "ST01_hp5": {
+   "kill_rate": 0.61,
+   "turns_mean": 4.560655737704918,
+   "turns_median": 4,
+   "cm_wins": 0.39
+  },
+  "ST01_hp6": {
+   "kill_rate": 0.488,
+   "turns_mean": 5.151639344262295,
+   "turns_median": 5.0,
+   "cm_wins": 0.512
+  },
+  "ST01_hp7": {
+   "kill_rate": 0.39,
+   "turns_mean": 5.779487179487179,
+   "turns_median": 5,
+   "cm_wins": 0.61
+  },
+  "ST01_hp8": {
+   "kill_rate": 0.322,
+   "turns_mean": 6.571428571428571,
+   "turns_median": 6,
+   "cm_wins": 0.678
+  },
+  "ST05_hp5": {
+   "kill_rate": 0.858,
+   "turns_mean": 4.417249417249417,
+   "turns_median": 4,
+   "cm_wins": 0.142
+  },
+  "ST05_hp6": {
+   "kill_rate": 0.776,
+   "turns_mean": 5.002577319587629,
+   "turns_median": 5.0,
+   "cm_wins": 0.224
+  },
+  "ST05_hp7": {
+   "kill_rate": 0.682,
+   "turns_mean": 5.536656891495602,
+   "turns_median": 5,
+   "cm_wins": 0.318
+  },
+  "ST05_hp8": {
+   "kill_rate": 0.626,
+   "turns_mean": 5.993610223642173,
+   "turns_median": 6,
+   "cm_wins": 0.374
+  },
+  "ST05_hp9": {
+   "kill_rate": 0.564,
+   "turns_mean": 6.539007092198582,
+   "turns_median": 6.0,
+   "cm_wins": 0.436
+  }
+ },
+ "dead_draws": {
+  "hands": 6000,
+  "ae_dead_share_of_ae_seen": 0.7822500950209046,
+  "dead_per_7card_hand": 3.4301666666666666,
+  "hand_dist": {
+   "0": 0.008166666666666666,
+   "1": 0.05633333333333333,
+   "2": 0.17333333333333334,
+   "3": 0.2861666666666667,
+   "4": 0.2738333333333333,
+   "5": 0.1485,
+   "6": 0.044833333333333336,
+   "7": 0.008833333333333334
+  },
+  "hands_without_co": 0.034333333333333334,
+  "always_dead_AEs": [
+   "AE01",
+   "AE02",
+   "AE03",
+   "AE04",
+   "AE05",
+   "AE06",
+   "AE07",
+   "AE08",
+   "AE09",
+   "AE10",
+   "AE11",
+   "AE12",
+   "AE13",
+   "AE14",
+   "AE15",
+   "AE16",
+   "AE17",
+   "AE18",
+   "AE19",
+   "AE20",
+   "AE21",
+   "AE22",
+   "AE24",
+   "AE27",
+   "AE28",
+   "AE29",
+   "AE31",
+   "AE32",
+   "AE34",
+   "AE36",
+   "AE38",
+   "AE39",
+   "AE40",
+   "AE42",
+   "AE43",
+   "AE44",
+   "AE45",
+   "AE46",
+   "AE49",
+   "AE50",
+   "AE51",
+   "AE52",
+   "AE53",
+   "AE55",
+   "AE56",
+   "AE57",
+   "AE59"
+  ],
+  "n_always_dead": 47,
+  "share_always_dead_of_ae": 0.7833333333333333,
+  "real_turn1_dead_cards_mean": 3.4375
+ },
+ "cm_events": {
+  "2p_mirror": {
+   "games": 2000,
+   "games_with_announce": 0.596,
+   "announces": 1.015,
+   "cancels": 0.418,
+   "games_with_cancel": 0.2925,
+   "retrigger_games": 0.169,
+   "cancel_share_of_announces": 0.41182266009852214,
+   "cm_wins_per_announce": 0.2788177339901478,
+   "cancel_by_opponent": 0.7703349282296651
+  },
+  "3p_mirror": {
+   "games": 2000,
+   "games_with_announce": 0.791,
+   "announces": 1.573,
+   "cancels": 0.6815,
+   "games_with_cancel": 0.429,
+   "retrigger_games": 0.274,
+   "cancel_share_of_announces": 0.433248569612206,
+   "cm_wins_per_announce": 0.2905276541640178,
+   "cancel_by_opponent": 0.7791636096845195
+  },
+  "4p_mirror": {
+   "games": 2000,
+   "games_with_announce": 0.926,
+   "announces": 2.2015,
+   "cancels": 1.0215,
+   "games_with_cancel": 0.5785,
+   "retrigger_games": 0.3885,
+   "cancel_share_of_announces": 0.4640018169429934,
+   "cm_wins_per_announce": 0.2789007494889848,
+   "cancel_by_opponent": 0.8100832109642683
+  },
+  "solo_vs_passive": {
+   "games": 1000,
+   "games_with_announce": 0.918,
+   "announces": 1.362,
+   "cancels": 0.5,
+   "games_with_cancel": 0.235,
+   "retrigger_games": 0.201,
+   "cancel_share_of_announces": 0.3671071953010279,
+   "cm_wins_per_announce": 0.5851688693098385,
+   "cancel_by_opponent": 0.0
+  }
+ },
+ "star_win_rates": {
+  "ST01": 0.706,
+  "ST02": 0.526,
+  "ST03": 0.573,
+  "ST04": 0.492,
+  "ST05": 0.64,
+  "ST06": 0.551,
+  "ST07": 0.606,
+  "ST08": 0.39,
+  "ST09": 0.465,
+  "ST10": 0.397,
+  "ST11": 0.332,
+  "ST12": 0.45
+ }
+}

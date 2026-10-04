@@ -1,0 +1,18 @@
+{
+  "slug": "heavenly-bodies",
+  "title": "Heavenly Bodies",
+  "players": "2-4",
+  "minutes": 12,
+  "complexity": 3.5,
+  "mechanics": ["rotating orbit positions", "dual win conditions (Star Destruction / Critical Mass)", "shared draw deck", "free-for-all"],
+  "theme": "orbital mechanics",
+  "estimate_notes": "OWNER-SUPPLIED game, no market brief was written. minutes = playtester's estimate for 2 players (about 1 minute per player turn + 3 minutes setup; the owner's own figure is 10-20 min at 2p, flexible). complexity = playtester's estimate (3.5 of 5: 108 cards, 4-phase turn, 40 listed rule gaps). originality is deliberately null because no researcher scored it, so the originality metric is skipped.",
+  "rubric": {
+    "demand": null,
+    "gap": null,
+    "originality": null,
+    "producibility": null,
+    "simulatability": null,
+    "owner_fit": null
+  }
+}

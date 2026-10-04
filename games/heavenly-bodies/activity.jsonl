@@ -4,3 +4,5 @@
 {"time":"2026-10-04T11:40:00Z","agent":"game-designer","game":"heavenly-bodies","event":"step","message":"Rules v2 restated; building the 36 COs"}
 {"time":"2026-10-04T11:55:00Z","agent":"game-designer","game":"heavenly-bodies","event":"done","message":"rules.md and cards.md written: 36 COs + 60 AEs"}
 {"time": "2026-10-04T11:49:03Z", "agent": "playtester", "game": "heavenly-bodies", "event": "start", "message": "Simulating the 96-card pile and Star pairings (Critical Mass vs Star Destruction pacing)"}
+{"time": "2026-10-04T12:10:28Z", "agent": "playtester", "game": "heavenly-bodies", "event": "step", "message": "Simulated about 30,000 games; win paths 72/28 at 2p, flipping to CM at 4p+; ran persona panel (6 personas, 6,000 games) and scoring"}
+{"time": "2026-10-04T12:10:28Z", "agent": "playtester", "game": "heavenly-bodies", "event": "done", "message": "NEEDS-FIXES: 2p seat gap 7.4 (G4), win-path parity fails, HP9 Star dominant; Bar Raiser veto active (seat gap)"}

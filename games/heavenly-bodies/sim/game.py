@@ -57,7 +57,7 @@ class State:
         self.history = []        # per turn: leading player indices (lead-change tracking)
         self.lead_changes = 0; self.cm_cancelled_players = set(); self.cm_ever = set()
         self.cm_starts = {}
-        self.card_plays = {}; self.pc = {}; self.interact = 0; self.cm_cancel_by = []; self.turn_plays = []
+        self.card_plays = {}; self.pc = {}; self.interact = 0; self.inter_by = {}; self.cm_cancel_by = []; self.turn_plays = []
 
     # ------------------------------------------------------------------ small helpers
     def say(self, s):
@@ -904,7 +904,7 @@ def execute(st, i, a):
         if src == "AE18": p.used.add(("AE18", id(par["aug"])))
         else: p.used.add(src)
         st.say("P%d uses %s" % (i, src))
-        if par.get("tgt") is not None: st.interact += 1
+        if par.get("tgt") is not None: st.interact += 1; st.inter_by[i] = st.inter_by.get(i, 0) + 1
         if src == "ST01":
             c = st.bots[i].discard_pick(st, i, p.hand); p.hand.remove(c); st.discard.append(c); draw(st, i, 1)
         elif src == "ST02":
@@ -918,7 +918,7 @@ def execute(st, i, a):
     st.stats["plays"] += 1; p.plays -= 1
     st.pc.setdefault(i, set()).add(card["id"])
     fxt = a["fx"].get("tgt")
-    if (fxt is not None and fxt != i) or card["id"] in ("AE26", "AE41", "AE60"): st.interact += 1
+    if (fxt is not None and fxt != i) or card["id"] in ("AE26", "AE41", "AE60"): st.interact += 1; st.inter_by[i] = st.inter_by.get(i, 0) + 1
     st.card_plays[card["id"]] = st.card_plays.get(card["id"], 0) + 1
     p.hand.remove(card)
     cid = card["id"]

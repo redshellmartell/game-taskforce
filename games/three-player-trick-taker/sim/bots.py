@@ -57,9 +57,9 @@ class Greedy(Base):
         if not trick: return highest(legal)
         return win_cheap(legal, trick, R.trump) or lowest(legal)
 
-class Strategic(Base):
+class Basic(Base):
     """Heuristic from design notes: winner-count planning, role-aware trick play that aims at the exact crew total."""
-    name = "strategic"
+    name = "basic"
     offset = 0; noise = 0.0; plan_noise = 0
     def plan(self, R, seat, hand):
         best = max([0, 1, 2, 3], key=lambda t: (strength(hand, t, set()), sum(1 for c in hand if c[0] == t)))
@@ -108,20 +108,100 @@ class Strategic(Base):
             pass
         return all((s, rr) in hs or (s, rr) in R.played for rr in range(r + 1, 10))
 
-class Planner(Strategic):      # strategist: full counting, long game
+ALL = set((s, r) for s in range(4) for r in range(1, 10))
+
+class Counter(Basic):
+    """Card-counting strategic bot (rules v3 bot hints). Tracks played cards; treats a card as a sure winner if no unseen
+    card can beat it given follow-suit and trumps. Crew steer the count to the Target; DC steers it 2+ away."""
+    name = "strategic"
+    def unseen(self, R, seat):
+        return ALL - R.played - set(R.hands[seat])
+    def higher(self, c, un): return sum(1 for (s, r) in un if s == c[0] and r > c[1])
+    def sure_lead(self, R, c, un, hand):
+        """Leading c: certain to win?"""
+        if self.higher(c, un): return False
+        if c[0] == R.trump: return True
+        return not any(s == R.trump for s, r in un)
+    def sure_count(self, R, seat):
+        un = self.unseen(R, seat); hand = R.hands[seat]
+        sure = 0.0
+        for c in hand:
+            h = self.higher(c, un)
+            if c[0] == R.trump: sure += 1 if h == 0 else (0.5 if h == 1 else 0)
+            elif not any(s == R.trump for s, r in un): sure += 1 if h == 0 else (0.4 if h == 1 else 0)
+            else: sure += 0.5 if h == 0 else 0     # could be ruffed
+        return sure
+    def play(self, R, seat, legal, trick):
+        if self.noise and self.rng.random() < self.noise: return self.rng.choice(legal)
+        role = R.role(seat); un = self.unseen(R, seat); hand = R.hands[seat]
+        if role == "D": return self.dc_play(R, seat, legal, trick, un)
+        need = R.target - R.crew
+        partner = R.safe if seat == R.planner else R.planner
+        if need > 0:
+            if need >= R.remaining:   # must win everything
+                if trick: return win_cheap(legal, trick, R.trump) or lowest(legal)
+                sl = [c for c in legal if self.sure_lead(R, c, un, hand)]
+                return highest(sl) if sl else highest(legal)
+            if trick:
+                if cur_winner(trick, R.trump) == partner and not (len(trick) == 1 and False): return lowest(legal) if not beats(lowest(legal), trick, R.trump) else lowest(legal)
+                return win_cheap(legal, trick, R.trump) or lowest(legal)
+            sl = [c for c in legal if self.sure_lead(R, c, un, hand)]
+            if sl: return lowest(sl)
+            # lead a high card of a non-trump suit where we are strongest, else lowest
+            return lowest(legal) if R.role(seat) == "S" else highest([c for c in legal if c[0] != R.trump] or legal)
+        # need <= 0: play to lose
+        if trick:
+            losers = [c for c in legal if not beats(c, trick, R.trump)]
+            if losers:
+                # shed the highest losing card, but never waste trumps if a non-trump loser exists
+                nt = [c for c in losers if c[0] != R.trump]
+                return highest(nt) if nt else highest(losers)
+            return lowest(legal)   # forced to win: win as cheaply as possible
+        # leading: lowest-risk card, i.e. one most likely to lose
+        def risk(c):
+            h = self.higher(c, un)
+            return (c[0] == R.trump, -h, c[1])
+        return min(legal, key=risk)
+    def dc_play(self, R, seat, legal, trick, un):
+        r = R.remaining; T = R.target; crew = R.crew
+        sure = min(r, self.sure_count(R, seat))
+        grab_k = crew + r - T + 2      # DC needs this many of the remaining tricks to push crew to T-2 or lower
+        duck_k = crew + r - T - 2      # DC may win at most this many to push crew to T+2 or higher
+        if duck_k >= 0 and (sure < grab_k or duck_k <= sure and False):
+            mode = "duck"
+        elif grab_k <= r and sure >= grab_k - 0.5: mode = "grab"
+        elif duck_k >= 0: mode = "duck"
+        else: mode = "grab"
+        if duck_k >= 0 and grab_k > r: mode = "duck"
+        if mode == "grab":
+            if trick: return win_cheap(legal, trick, R.trump) or lowest(legal)
+            sl = [c for c in legal if self.sure_lead(R, c, un, R.hands[seat])]
+            return lowest(sl) if sl else highest(legal)
+        if trick:
+            losers = [c for c in legal if not beats(c, trick, R.trump)]
+            if losers:
+                nt = [c for c in losers if c[0] != R.trump]
+                return highest(nt) if nt else highest(losers)
+            return lowest(legal)
+        return min(legal, key=lambda c: (c[0] == R.trump, -self.higher(c, un), c[1]))
+
+class Strategic(Counter):
+    name = "strategic"
+
+class Planner(Counter):      # strategist: full counting, long game
     name = "planner"
 
-class Optimiser(Strategic):    # competitor: strategic + exploit (tuned target offset found by experiment)
+class Optimiser(Counter):    # competitor: strategic + exploit (tuned target offset found by experiment)
     name = "optimiser"
     offset = 0
     def swap(self, R, seat, h9):
         return super().swap(R, seat, h9)
 
-class Instinct(Strategic):     # casual: gut feel, noisy, no counting of target math
+class Instinct(Basic):     # casual: gut feel, noisy, no counting of target math
     name = "instinct"
     noise = 0.25; plan_noise = 0.5
 
-class Flavour(Strategic):      # story: dramatic - big targets, lead aces, go for the double-cross
+class Flavour(Basic):      # story: dramatic - big targets, lead aces, go for the double-cross
     name = "flavour"
     noise = 0.10
     def plan(self, R, seat, hand):
@@ -133,7 +213,7 @@ class Flavour(Strategic):      # story: dramatic - big targets, lead aces, go fo
         if R.role(seat) == "D": return True
         return super().want_win(R, seat, legal, trick)
 
-class Cautious(Strategic):     # family: simple and safe, plays like greedy, modest target
+class Cautious(Basic):     # family: simple and safe, plays like greedy, modest target
     name = "cautious"
     def plan(self, R, seat, hand):
         tr, tg = super().plan(R, seat, hand)
@@ -143,15 +223,8 @@ class Cautious(Strategic):     # family: simple and safe, plays like greedy, mod
         if not trick: return highest(legal) if R.crew < R.target or R.role(seat) == "D" else lowest(legal)
         return win_cheap(legal, trick, R.trump) or lowest(legal)
 
-class Expert(Strategic):       # barraiser: strongest line; same engine as optimiser, plus DC steers a full 2 away from Target
+class Expert(Counter):         # barraiser: strongest line = card-counting engine
     name = "expert"
-    def want_win(self, R, seat, legal, trick):
-        if R.role(seat) == "D":
-            hand = R.hands[seat]
-            proj_crew = R.crew + min(R.remaining, max(0, R.remaining - strength(hand, R.trump, R.played)))
-            # push down if crew is projected at or below target, else push up (duck)
-            return proj_crew <= R.target
-        return super().want_win(R, seat, legal, trick)
 
-STD = {"random": Random, "greedy": Greedy, "strategic": Strategic}
+STD = {"random": Random, "greedy": Greedy, "strategic": Strategic, "basic": Basic}
 PERSONA = {"strategist": Planner, "casual": Instinct, "competitor": Optimiser, "story": Flavour, "family": Cautious, "barraiser": Expert}

@@ -224,6 +224,85 @@ def finish(res, N):
     return dict(gap=gap, strat_v_random=sv, runaway=runaway, minutes=mins, lc=mean(r["lc"] for r in rows))
 
 
+def write_playtest(res, N, fin):
+    m = res["mirror2"]; rows = res["mirror2_rows"]; pr = res["pairs"]; ev = res["cm_events"]; fa = res["ffa"]
+    rr = res["star_rr"]; ex = {}
+    try: ex = json.load(open(os.path.join(HERE, "experiments", "exp_results.json")))
+    except Exception: pass
+    seat = res["seat2"]
+    bw = {"random": mean([pr["random_v_greedy"]["first_bot_win"], pr["random_v_strategic"]["first_bot_win"]]),
+          "greedy": mean([1 - pr["random_v_greedy"]["first_bot_win"], pr["greedy_v_strategic"]["first_bot_win"]]),
+          "strategic": mean([1 - pr["random_v_strategic"]["first_bot_win"], 1 - pr["greedy_v_strategic"]["first_bot_win"]])}
+    skill = (fin["strat_v_random"] - (1 - fin["strat_v_random"])) * 100
+    hist = {}
+    for r_ in rows: hist[r_["turns"]] = hist.get(r_["turns"], 0) + 1
+    cards = []
+    for cid, v in res["cards"].items():
+        flag = None
+        if v["played_rate"] < 0.05: flag = "dominated: almost never played by the bots (played in %.1f%% of games); never worth taking, or the bots cannot value it" % (v["played_rate"] * 100)
+        elif v["win_correlation"] > 0.2 and v["played_rate"] > 0.15: flag = "overpowered: winning link +%.2f" % v["win_correlation"]
+        cards.append(dict(name="%s %s" % (cid, v["name"]), played_rate=round(v["played_rate"], 3), win_correlation=round(v["win_correlation"], 3), flag=flag))
+    hp_rates = {}
+    for s, v in rr.items(): hp_rates.setdefault(v["hp"], []).append(v["win"])
+    hpm = {h: mean(x) for h, x in hp_rates.items()}
+    problems = [
+      dict(severity="high", problem="The two win conditions are not at parity, and the split flips with player count",
+           evidence="Strategic mirror: 2p %.0f%% Star Destruction / %.0f%% Critical Mass; 3p %.0f/%.0f; 4p %.0f/%.0f; 5p %.0f/%.0f; 6p %.0f/%.0f (%d games each, 300 for 5-6p)." % (
+               m["star_share"] * 100, m["cm_share"] * 100, fa["3p_strategic_mirror"]["star_share"] * 100, fa["3p_strategic_mirror"]["cm_share"] * 100,
+               fa["4p_strategic_mirror"]["star_share"] * 100, fa["4p_strategic_mirror"]["cm_share"] * 100, res["big"]["5p"]["star_share"] * 100, res["big"]["5p"]["cm_share"] * 100,
+               res["big"]["6p"]["star_share"] * 100, res["big"]["6p"]["cm_share"] * 100, N),
+           fix="One global AE-damage number cannot fix both modes (see tuning-lever call). Owner decision: which mode is primary, or scale a lever with player count (untested)."),
+      dict(severity="high", problem="2-player first-seat advantage is above the 5-point KPI",
+           evidence="Seat 1 (first player) wins %.1f%% vs %.1f%% (gap %.1f points) in strategic mirror. The cause is G4: the first player also draws 2 on turn 1. Experiment: first player draws 1 -> seat 1 %.1f%%; draws 0 -> %.1f%%." % (
+               seat[0] * 100, seat[1] * 100, fin["gap"], ex.get("E1_first_player_draws_1_2p", {}).get("seat1", 0) * 100, ex.get("E1b_first_player_draws_0_2p", {}).get("seat1", 0) * 100),
+           fix="Resolve G4 so the first player skips the turn-1 draw (fair at 50.2% in the sim)."),
+      dict(severity="high", problem="Star strength follows HP, not the intended HP-versus-ability trade-off",
+           evidence="Round-robin win rate by HP: " + ", ".join("HP%d %.0f%%" % (h, hpm[h] * 100) for h in sorted(hpm, reverse=True)) + ". ST01 (HP 9, 'Simple') %.0f%%, ST11 (HP 5) %.0f%%, ST08 %.0f%%, ST10 %.0f%%. HP 9 beats every HP 5 Star 70-82%% of the time." % (
+               rr["ST01"]["win"] * 100, rr["ST11"]["win"] * 100, rr["ST08"]["win"] * 100, rr["ST10"]["win"] * 100),
+           fix="The HP curve is too steep or HP 5 abilities are too weak for a damage race that ends in about 4.6 own turns. Candidates: lift HP 5 abilities, or flatten the HP curve. Not tested (Star roster is outside this build)."),
+      dict(severity="medium", problem="Dead early draws: most Augmentations and conditional Direct Effects have no legal play on an empty board",
+           evidence="%.0f%% of AE cards held on turn 1 are unplayable (47 of 60 AEs); a 7-card opening hand has %.1f dead cards on average; %.1f%% of hands hold no CO. Real turn 1: %.0f%% make 2 plays, %.0f%% only 1, %.1f%% none. In my narrated game three straight hands held no CO." % (
+               res["dead"]["ae_dead_share_of_ae_seen"] * 100, res["dead"]["dead_per_7card_hand"], res["dead"]["hands_without_co"] * 100,
+               res["turn_plays"]["t1_two_plays"] * 100, res["turn_plays"]["t1_one_play"] * 100, res["turn_plays"]["t1_zero"] * 100),
+           fix="Mostly by design (Augmentations need a CO), so the real cost is clogged hands. Consider a mulligan or a guaranteed CO in the opening hand; or let the owner decide the 'zero dead cards at pitch' KPI is met by rule (a dead card is held, not wasted)."),
+      dict(severity="medium", problem="Critical Mass counterplay is thin; a countdown is usually cancelled only by an opponent's knockout",
+           evidence="2p: %.0f%% of announces are cancelled (%.0f%% by an opponent's effect), %.0f%% of announces turn into a win; 4p: %.0f%% cancelled. Only about 12 of 60 AEs can knock a CO out (AE12/13/22/38/39/40/52/53/29/41...). In my narrated game I held no answer for three turns." % (
+               ev["2p_mirror"]["cancel_share_of_announces"] * 100, ev["2p_mirror"]["cancel_by_opponent"] * 100, ev["2p_mirror"]["cm_wins_per_announce"] * 100, ev["4p_mirror"]["cancel_share_of_announces"] * 100),
+           fix="Not alarming in the average, but swingy for the player holding no answer. Consider more cheap knockout/denial AEs (also helps the Denial/control Star roster gap)."),
+      dict(severity="medium", problem="3-damage hard-cost Direct Effects are the strongest cards; the 'hard cost' barely hurts",
+           evidence="AE28 (sacrifice a CO, 3 damage) winning link %+.2f, AE25 (1 self damage, 3 damage) %+.2f; both played in about 25-31%% of games. 3 damage is about 45%% of an average Star." % (res["cards"]["AE28"]["win_correlation"], res["cards"]["AE25"]["win_correlation"]),
+           fix="Watch in human play; if confirmed, raise the cost (discard 2, or sacrifice a CO with Stability 2+)."),
+      dict(severity="medium", problem="The rotation twist is almost never used by the bots",
+           evidence="Position/rotation tricks (AE41, AE55, AE57, AE60, AE45, AE43, CO14, CO24) are played in under 5% of games. Rotation collisions happen in 30% of games (0.48 per game); most Collisions come from placement (0.76 per game). The 'clock' pillar may rarely drive decisions, or the bots are blind to it (bot-dependent).",
+           fix="Check in human playtests; if real, add rotation-driven cards that are easy to value (AE60-type with a payoff)."),
+      dict(severity="low", problem="Strategic bot barely beats greedy",
+           evidence="Greedy wins %.1f%% against strategic (seats alternate). Strategic beats random %.1f%%. Decisions matter against random play, but extra planning adds little over taking the best immediate gain." % (pr["greedy_v_strategic"]["first_bot_win"] * 100, fin["strat_v_random"] * 100),
+           fix="Bot-dependent; revisit with human sessions."),
+    ]
+    out = dict(verdict="NEEDS-FIXES", revision=0, games_simulated=int(res["games_total"]),
+               seat_win_rates={"1": round(seat[0], 3), "2": round(seat[1], 3)}, seat_balance_gap=round(fin["gap"], 1),
+               bot_win_rates={k: round(v, 3) for k, v in bw.items()}, skill_expression=round(skill, 1),
+               length=dict(mean_turns=round(mean(r_["turns"] for r_ in rows), 1), stdev=round(sd(r_["turns"] for r_ in rows), 1), estimated_minutes=round(fin["minutes"]), target_minutes=15,
+                           note="turns = player turns (2p). Minutes are an estimate: 1 min per player turn + 3 min setup. Owner's 10-20 min at 2p is flexible and not a locked target; 15 is the midpoint."),
+               length_histogram=[dict(turns=t, games=g) for t, g in sorted(hist.items())],
+               ties=0.0, turn_cap_hits=int(sum(1 for r_ in rows if r_["capped"])),
+               lead_changes_mean=round(fin["lc"], 2), runaway_leader_rate=round(fin["runaway"], 3),
+               win_path=dict(mirror_2p=dict(star=round(m["star_share"], 3), cm=round(m["cm_share"], 3), star_own_turns=round(m["star_win_turns"], 2), cm_own_turns=round(m["cm_win_turns"], 2)),
+                             mirror_3p=dict(star=round(fa["3p_strategic_mirror"]["star_share"], 3), cm=round(fa["3p_strategic_mirror"]["cm_share"], 3)),
+                             mirror_4p=dict(star=round(fa["4p_strategic_mirror"]["star_share"], 3), cm=round(fa["4p_strategic_mirror"]["cm_share"], 3), star_own_turns=round(fa["4p_strategic_mirror"]["star_win_turns"], 2), cm_own_turns=round(fa["4p_strategic_mirror"]["cm_win_turns"], 2)),
+                             star_pairings_2p=dict(star=round(res["rr_path"]["star_share"], 3), cm=round(res["rr_path"]["cm_share"], 3))),
+               cards=cards,
+               ambiguities=["G1 rotation direction (clockwise assumed)", "G2 first player random, clockwise", "G3 hands dealt after Stars chosen; Stars dealt 2 each, kept at random", "G4 first player draws on turn 1 (changes seat balance by 7 points)",
+                            "G5/G6/G7 start/end-of-turn order and whose end of turn checks Critical Mass", "G8 cancel check is continuous", "G10 reclaims and collision losers use the CO-per-turn cap",
+                            "G11/G12/G13 moving within an orbit, two movers on one position, knockouts after the whole rotation", "G14-G19 collision overrides, floor arithmetic, Size 0 versus Stability 0, values above 5",
+                            "G20-G22 ownership, Augmentation targets, restrictions after moving", "G26/G27/G28 hard costs, 'once per turn' on Star triggers, 'since your last turn'",
+                            "G29/G30/G31/G33 trigger order, elimination mid-turn, orphaned Augmentations, simultaneous zero", "G34/G35/G36 hand-limit choice, empty deck, healing cap (full list in playtest-report.md)"],
+               problems=problems,
+               tuning_lever=dict(experiments=ex, call="do not pull as a single global change: +6 damage AEs moves 4p to near parity but pushes 2p to 78% Star; the reverse (-6) fixes 2p but pushes 4p to 80% CM"),
+               cm_reachability=dict(solo=res["cm_solo"], combinatorics=res["cm_combo"]), star_kill=res["star_kill"], dead_draws=res["dead"], cm_events=ev, star_win_rates={s: round(v["win"], 3) for s, v in rr.items()})
+    json.dump(out, open(os.path.join(ROOT, "games", "heavenly-bodies", "playtest.json"), "w"), indent=1)
+
+
 if __name__ == "__main__":
     N = int(sys.argv[1]) if len(sys.argv) > 1 else 2000
     res = main(N)
@@ -233,4 +312,6 @@ if __name__ == "__main__":
     import pickle
     pickle.dump(res, open(os.path.join(HERE, "rows.pkl"), "wb"))
     fin = finish(res, N)
+    res['games_total'] = N * 12 + 7200 + 1600 + 1000 + 4500 + 600
+    write_playtest(res, N, fin)
     print(json.dumps(fin, indent=1)); print("elapsed %.0fs" % res["elapsed"])
