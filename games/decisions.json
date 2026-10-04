@@ -77,6 +77,14 @@
       "time": "2026-10-04T12:02:12Z",
       "decision": "approve",
       "notes": "three-player-trick-taker-revision-2 (revision gate): owner approved in the dashboard"
+    },
+    {
+      "slug": "duelflip",
+      "kind": "pitch",
+      "time": "2026-10-04T14:20:44.819Z",
+      "decision": "send-back",
+      "target": "game-designer",
+      "notes": "decided in the dashboard (Review Queue)"
     }
   ]
 }
