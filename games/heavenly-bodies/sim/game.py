@@ -14,12 +14,12 @@ AUG_IDS = [c["id"] for c in DATA["cards"] if c["subtype"] == "Augmentation"]
 
 
 class Config:
-    def __init__(self, n=2, stars=None, log=False, round_cap=60, extra_dmg=0, swap_dmg=0, first=None, deck_ids=None):
+    def __init__(self, n=2, stars=None, log=False, round_cap=60, extra_dmg=0, swap_dmg=0, first=None, deck_ids=None, first_draw=2):
         self.n, self.stars, self.log, self.round_cap = n, stars, log, round_cap
         self.extra_dmg = extra_dmg      # experiment: +N damage on every direct-damage AE
         self.swap_dmg = swap_dmg        # experiment: replace N low-value AEs with plain 1-damage copies
         self.first = first
-        self.deck_ids = deck_ids
+        self.deck_ids = deck_ids; self.first_draw = first_draw
 
 
 class CO:
@@ -57,7 +57,7 @@ class State:
         self.history = []        # per turn: leading player indices (lead-change tracking)
         self.lead_changes = 0; self.cm_cancelled_players = set(); self.cm_ever = set()
         self.cm_starts = {}
-        self.card_plays = {}; self.pc = {}; self.interact = 0
+        self.card_plays = {}; self.pc = {}; self.interact = 0; self.cm_cancel_by = []; self.turn_plays = []
 
     # ------------------------------------------------------------------ small helpers
     def say(self, s):
@@ -214,7 +214,7 @@ def settle(st):
         if not ch: break
     for p in st.P:
         if p.alive and p.cm and total_size(st, p.i) < p.thr:   # INTERP G8: continuous check; a dip inside one resolution cancels
-            p.cm = False; st.stats["cm_cancel"] += 1; st.cm_cancelled_players.add(p.i)
+            p.cm = False; st.stats["cm_cancel"] += 1; st.cm_cancelled_players.add(p.i); st.cm_cancel_by.append("opp" if st.actor not in (None, p.i) else "self")
             st.say("P%d Critical Mass CANCELLED" % p.i)
 
 
@@ -515,7 +515,7 @@ def start_turn(st, i):
             if a.id == "AE09" and st.opps(i): dmg(st, i, pick_opp(st, i), 1, "AE")
             elif a.id == "AE11" and st.P[c.owner].alive and c.owner != i: dmg(st, i, c.owner, 1, "AE")
     if st.over or not p.alive: return
-    draw(st, i, 2)   # INTERP G4: first player also draws on turn 1, no compensation for later seats
+    draw(st, i, st.cfg.first_draw if st.turn_no == 1 else 2)   # INTERP G4: first player also draws on turn 1, no compensation for later seats
     st.say("P%d (%s) starts with %d cards" % (i, p.sid, len(p.hand)))
     rotate_orbit(st, i, None)
 
@@ -599,6 +599,7 @@ def play_phase(st, i):
         n += 1
         execute(st, i, a)
         settle(st)
+    st.turn_plays.append((st.turn_no, 2 - p.plays))
     if n == 0: st.stats.setdefault("zero_action_turns", 0); st.stats["zero_action_turns"] += 1
 
 

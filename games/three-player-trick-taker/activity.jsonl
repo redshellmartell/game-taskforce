@@ -27,3 +27,4 @@
 {"time":"2026-10-04T11:03:00Z","agent":"critic","game":"three-player-trick-taker","event":"step","message":"Scored six areas; originality not re-searched (core mechanic unchanged); Fun and Market fit from panel.json (no panel-report.md)"}
 {"time":"2026-10-04T11:04:00Z","agent":"critic","game":"three-player-trick-taker","event":"done","message":"critique.md and critique.json written: REVISE-MAJOR, average 3.5 (was 3.0); final revision loop recommended"}
 {"time": "2026-10-04T11:01:02Z", "agent": "manager", "game": "three-player-trick-taker", "event": "waiting", "message": "waiting for approval: revision (three-player-trick-taker-revision-2)"}
+{"time": "2026-10-04T12:02:12Z", "agent": "manager", "game": "three-player-trick-taker", "event": "step", "message": "Revision 2 approved by the owner (last sensible loop)"}

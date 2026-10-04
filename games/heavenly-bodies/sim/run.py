@@ -25,7 +25,7 @@ def one(cfg, bots, seed):
     return dict(w=w, reason=r["reason"], rounds=r["rounds"], turns=r["turns"], capped=r["capped"], lc=st.lead_changes,
                 mid=mid, wt=(st.P[w].turns if w is not None else None), stats=st.stats, cm_starts=dict(st.cm_starts),
                 cm_ever=sorted(st.cm_ever), pc={k: sorted(v) for k, v in st.pc.items()}, first_dead=list(st.first_dead),
-                stars=[p.sid for p in st.P], interact=st.interact, hp=[p.hp for p in st.P], cmx=sorted(st.cm_cancelled_players))
+                cancel_by=list(st.cm_cancel_by), tp=list(st.turn_plays), stars=[p.sid for p in st.P], interact=st.interact, hp=[p.hp for p in st.P], cmx=sorted(st.cm_cancelled_players))
 
 
 def batch(n, mk, cfgf, seed0):

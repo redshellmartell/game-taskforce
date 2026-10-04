@@ -1,0 +1,50 @@
+{
+ "E1_first_player_draws_1_2p": {
+  "cm": 0.317,
+  "star": 0.683,
+  "rounds": 4.89,
+  "star_rounds": 4.68,
+  "cm_rounds": 5.35,
+  "seat1": 0.536
+ },
+ "E1b_first_player_draws_0_2p": {
+  "cm": 0.311,
+  "star": 0.689,
+  "rounds": 4.98,
+  "star_rounds": 4.8,
+  "cm_rounds": 5.36,
+  "seat1": 0.502
+ },
+ "E2_plus6_dmg_2p": {
+  "cm": 0.218,
+  "star": 0.781,
+  "rounds": 4.48,
+  "star_rounds": 4.31,
+  "cm_rounds": 5.08,
+  "seat1": 0.553
+ },
+ "E2_plus6_dmg_4p": {
+  "cm": 0.524,
+  "star": 0.475,
+  "rounds": 6.2,
+  "star_rounds": 6.52,
+  "cm_rounds": 5.91,
+  "seat1": 0.281
+ },
+ "E3_minus6_dmg_2p": {
+  "cm": 0.469,
+  "star": 0.531,
+  "rounds": 5.26,
+  "star_rounds": 5.1,
+  "cm_rounds": 5.45,
+  "seat1": 0.574
+ },
+ "E3_minus6_dmg_4p": {
+  "cm": 0.801,
+  "star": 0.199,
+  "rounds": 6.58,
+  "star_rounds": 7.56,
+  "cm_rounds": 6.33,
+  "seat1": 0.276
+ }
+}
