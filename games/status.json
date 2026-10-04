@@ -301,6 +301,12 @@
           "time": "2026-10-04T11:24:21Z",
           "verdict": null,
           "note": "owner idea (Star roster only); waiting for the owner's Rules v2 before any agent runs"
+        },
+        {
+          "stage": "design",
+          "time": "2026-10-04T11:34:34Z",
+          "verdict": null,
+          "note": "owner supplied the complete design doc and passed it directly to design (96-card build)"
         }
       ],
       "verdicts": {

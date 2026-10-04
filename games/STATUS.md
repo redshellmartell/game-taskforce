@@ -7,5 +7,6 @@ three-player-trick-taker | critique | REVISE-MAJOR | Playtest NEEDS-FIXES, criti
 asymmetric-duel-tug-of-war | critique | NEEDS-FIXES / REVISE-MAJOR (3.33) | balanced, but lead changes low and lead choice solved; revision request waiting
 silent-duo-deduction-coop | critique | NEEDS-FIXES / REVISE-MAJOR (3.5) | too easy (73%); anti-code unproven; revision request waiting
 archetypes | brief | - | Owner idea (personality-test RPG); researching
-heavenly-bodies | design | - | Owner idea (12-card Star roster); waiting for the owner's Rules v2 before any agent runs
+
 grid-of-cards-area-control | critique | NEEDS-FIXES (2p only) / REVISE-MINOR (3.67) | good at 3-4 players; 2p stalls; revision request waiting
+heavenly-bodies | design | - | Owner idea; full design doc supplied; designer building the 96-card pile (36 COs + 60 AEs)

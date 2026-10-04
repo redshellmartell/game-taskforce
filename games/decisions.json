@@ -59,6 +59,12 @@
       "time": "2026-10-04T11:01:19Z",
       "decision": "approve",
       "notes": "grid-of-cards-area-control-greenlight: owner approved (Nine Fields) in chat"
+    },
+    {
+      "slug": "heavenly-bodies",
+      "time": "2026-10-04T11:34:34Z",
+      "decision": "approve",
+      "notes": "heavenly-bodies: owner passed the complete design document directly to the design team (greenlight by direct instruction)"
     }
   ]
 }

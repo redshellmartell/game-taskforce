@@ -1,1 +1,3 @@
 {"time": "2026-10-04T11:24:21Z", "agent": "manager", "game": "heavenly-bodies", "event": "step", "message": "Owner idea injected (Star roster). Waiting for the owner: Rules v2 and the Design Audit are referenced but not provided"}
+{"time": "2026-10-04T11:34:34Z", "agent": "manager", "game": "heavenly-bodies", "event": "step", "message": "Owner supplied the complete design document (rules, star roster, audit, build brief) and passed it to design"}
+{"time": "2026-10-04T11:34:34Z", "agent": "game-designer", "game": "heavenly-bodies", "event": "start", "message": "Building the 96-card draw pile against Rules v2"}
