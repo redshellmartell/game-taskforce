@@ -337,3 +337,10 @@ test('a pitch decided in the dashboard leaves the review queue (waiting for the 
   assert.equal(after.review.queue.length, 0); assert.equal(after.waitingPitches.length, 0);
   assert.equal(after.games[0].pitchDecision.decision, 'approve');
 });
+
+test('review queue items carry the verdicts, revision count and opportunity score for the tags', () => {
+  const s = buildState({ repoRoot, dashboardDir, sample: true, now: Date.now() });
+  const q = s.review.queue[0];
+  assert.ok(q); assert.ok('verdicts' in q && 'revision' in q && 'opportunity' in q);
+  assert.ok(q.verdicts && q.verdicts.critic);
+});

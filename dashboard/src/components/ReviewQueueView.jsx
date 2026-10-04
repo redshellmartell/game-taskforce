@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { CopyBox } from './IdeaForm.jsx';
 import { Help } from './Help.jsx';
+import { verdictClass } from './ProjectsView.jsx';
 import { ago } from '../util.js';
 
 function Tile({ label, k, suffix = '', note }) {
@@ -17,7 +18,7 @@ function Tile({ label, k, suffix = '', note }) {
 // Pitches waiting for the owner, past decisions and your real-world playtests. Read-only.
 const PITCH_OPTIONS = [
   { key: 'approve', label: 'Approve for a prototype', cls: 'good', ask: 'Approve this pitch for a physical prototype?' },
-  { key: 'send-back', label: 'Send back with notes', cls: 'warn', ask: 'Send this game back to the design team? Say what to change in the notes.' },
+  { key: 'send-back', label: 'Send back for revision', cls: 'warn', ask: 'Send this game back to the design team for a revision? Say what to change in the note; the Director turns it into a revision request for you to approve.' },
   { key: 'reject', label: 'Reject', cls: 'bad', ask: 'Reject this pitch? The game will be set aside.' },
 ];
 
@@ -83,6 +84,10 @@ export function ReviewQueueView({ state, onOpen }) {
               <span className={`chip big ${q.days != null && q.days > 7 ? 'v-bad' : 'v-warn'}`}>{q.days != null ? `waiting ${q.days} day${q.days === 1 ? '' : 's'}` : 'waiting'}</span>
               {q.critic != null && <span className={`chip big ${q.critic >= 3.5 ? 'v-good' : 'v-warn'}`}>critic {q.critic}/5</span>}
               {q.scored > 0 && <span className="chip big">{q.passing} of {q.scored} KPIs on target</span>}
+              {q.opportunity != null && <span className="chip big" title="Opportunity score from the brief">{q.opportunity}/30</span>}
+              {q.verdicts?.playtest && <span className={`chip big v-${verdictClass(q.verdicts.playtest)}`} title="The playtester's verdict">playtest: {q.verdicts.playtest}</span>}
+              {q.verdicts?.critic && <span className={`chip big v-${verdictClass(q.verdicts.critic)}`} title="The critic's verdict">critic: {q.verdicts.critic}</span>}
+              {q.revision > 0 && <span className="chip big" title="Revision loops done so far">revision {q.revision} of 3</span>}
             </div>
           </div>
           <div className="pitch-cols">

@@ -274,7 +274,7 @@ export function reviewQueueItems(games, now = Date.now()) {
     const scored = g.scorecard.filter((r) => r.status !== 'none').length;
     return { slug: g.slug, title: g.title, hook: g.pitch?.hook || null, howItPlays: g.howItPlays || null, components: g.pitch?.components || [], cost: g.pitch?.estimated_prototype_cost_usd ?? null,
       players: g.pitch?.players || g.brief?.players || null, minutes: g.pitch?.minutes || g.brief?.minutes || null, since: Number.isNaN(since) ? null : new Date(since).toISOString(),
-      days: Number.isNaN(since) ? null : Math.floor((now - since) / DAY), passing, scored, critic: criticAverage(g.critique) };
+      days: Number.isNaN(since) ? null : Math.floor((now - since) / DAY), passing, scored, critic: criticAverage(g.critique), verdicts: g.verdicts || null, revision: g.revision || 0, opportunity: g.brief?.opportunity_score ?? null };
   }).sort((a, b) => (a.since || '').localeCompare(b.since || ''));
 }
 
