@@ -1,0 +1,275 @@
+{
+  "verdict": "NEEDS-FIXES",
+  "revision": 0,
+  "games_simulated": 46000,
+  "seat_win_rates": {
+    "1": 0.235,
+    "2": 0.236,
+    "3": 0.246,
+    "4": 0.283
+  },
+  "seat_balance_gap": 4.0,
+  "seat_win_rates_by_players": {
+    "2": [
+      0.46,
+      0.54
+    ],
+    "3": [
+      0.297,
+      0.331,
+      0.372
+    ],
+    "4": [
+      0.235,
+      0.236,
+      0.246,
+      0.283
+    ]
+  },
+  "bot_win_rates": {
+    "random": 0.028,
+    "greedy": 0.658,
+    "strategic": 0.749
+  },
+  "skill_expression": 72.1,
+  "skill_vs_greedy_2p": 3.1,
+  "length": {
+    "mean_turns": 53.6,
+    "stdev": 4.1,
+    "estimated_minutes": 16.6,
+    "target_minutes": 20,
+    "by_players": {
+      "2": {
+        "mean_turns": 35.3,
+        "estimated_minutes": 11.1,
+        "target_minutes": 12
+      },
+      "3": {
+        "mean_turns": 46.5,
+        "estimated_minutes": 14.5,
+        "target_minutes": 16
+      },
+      "4": {
+        "mean_turns": 53.6,
+        "estimated_minutes": 16.6,
+        "target_minutes": 20
+      }
+    },
+    "solo": {
+      "mean_turns": 19.5,
+      "estimated_minutes": 6.0,
+      "target_minutes": 15
+    }
+  },
+  "length_histogram": [
+    {
+      "turns": 40,
+      "games": 5
+    },
+    {
+      "turns": 44,
+      "games": 42
+    },
+    {
+      "turns": 48,
+      "games": 326
+    },
+    {
+      "turns": 52,
+      "games": 682
+    },
+    {
+      "turns": 56,
+      "games": 654
+    },
+    {
+      "turns": 60,
+      "games": 277
+    },
+    {
+      "turns": 64,
+      "games": 14
+    }
+  ],
+  "ties": 0.1335,
+  "turn_cap_hits": 0,
+  "lead_changes_mean": 2.08,
+  "lead_changes_by_players": {
+    "2": 2.03,
+    "3": 2.31,
+    "4": 2.08
+  },
+  "runaway_leader_rate": 0.364,
+  "runaway_by_players": {
+    "2": 0.595,
+    "3": 0.426,
+    "4": 0.364
+  },
+  "solo_win_rates": {
+    "random": 0.68,
+    "greedy": 0.984,
+    "strategic": 0.986,
+    "rush": 0.67
+  },
+  "rush": {
+    "rush_vs_strategic_2p": 0.181,
+    "rush_in_4p_vs_3_strategic": 0.087,
+    "rush_in_3p_vs_2_strategic": 0.112,
+    "rush_turns_4p": 43.792
+  },
+  "cards": [
+    {
+      "name": "Spades (Springs)",
+      "played_rate": 0.141,
+      "win_correlation": -0.056,
+      "flag": "weak: negative win correlation, built least often of the point-bearing suits; the engine does not pay"
+    },
+    {
+      "name": "Clubs (Gears)",
+      "played_rate": 0.108,
+      "win_correlation": 0.031,
+      "flag": null
+    },
+    {
+      "name": "Diamonds (Jewels)",
+      "played_rate": 0.194,
+      "win_correlation": -0.013,
+      "flag": null
+    },
+    {
+      "name": "Hearts (Clock faces)",
+      "played_rate": 0.145,
+      "win_correlation": 0.1,
+      "flag": "strongest suit: highest win correlation"
+    },
+    {
+      "name": "Rank A (all suits)",
+      "played_rate": 0.127,
+      "win_correlation": 0.031,
+      "flag": null
+    },
+    {
+      "name": "Rank 2 (all suits)",
+      "played_rate": 0.147,
+      "win_correlation": 0.037,
+      "flag": null
+    },
+    {
+      "name": "Rank 3 (all suits)",
+      "played_rate": 0.161,
+      "win_correlation": 0.038,
+      "flag": null
+    },
+    {
+      "name": "Rank 4 (all suits)",
+      "played_rate": 0.167,
+      "win_correlation": 0.048,
+      "flag": null
+    },
+    {
+      "name": "Rank 5 (all suits)",
+      "played_rate": 0.171,
+      "win_correlation": 0.059,
+      "flag": null
+    },
+    {
+      "name": "Rank 6 (all suits)",
+      "played_rate": 0.169,
+      "win_correlation": 0.056,
+      "flag": null
+    },
+    {
+      "name": "Rank 7 (all suits)",
+      "played_rate": 0.164,
+      "win_correlation": 0.049,
+      "flag": null
+    },
+    {
+      "name": "Rank 8 (all suits)",
+      "played_rate": 0.16,
+      "win_correlation": 0.038,
+      "flag": null
+    },
+    {
+      "name": "Rank 9 (all suits)",
+      "played_rate": 0.156,
+      "win_correlation": 0.018,
+      "flag": null
+    },
+    {
+      "name": "Rank 10 (all suits)",
+      "played_rate": 0.146,
+      "win_correlation": -0.006,
+      "flag": null
+    },
+    {
+      "name": "Rank J (all suits)",
+      "played_rate": 0.138,
+      "win_correlation": -0.037,
+      "flag": null
+    },
+    {
+      "name": "Rank Q (all suits)",
+      "played_rate": 0.12,
+      "win_correlation": -0.049,
+      "flag": "rarely built (money only); K-spade and K-club built 7% and 4%"
+    },
+    {
+      "name": "Rank K (all suits)",
+      "played_rate": 0.086,
+      "win_correlation": -0.079,
+      "flag": "rarely built (money only); K-spade and K-club built 7% and 4%"
+    }
+  ],
+  "ambiguities": [
+    "Gather when picks are optional: taking from the deck is blind (top card goes straight to hand); simulated as such.",
+    "Apprentice with a tie for fewest workshop cards: 'strictly fewer than every other player' read literally, so no bonus on a tie.",
+    "Clock striking on the last-seat player's own turn ends the game at once; if it strikes earlier, play continues to the end of that round (seat n finishes). Interpreted as written.",
+    "Deck-empty clock: checked after the refill, so the clock can strike the moment the last card is dealt to the Bench; the deck is NOT empty while any of those cards could still be drawn.",
+    "Build legality counts only the other cards in hand BEFORE Gears pull; the rules say this explicitly, but a Club build that is illegal by hand total could be legal after Gears. Simulated as written.",
+    "Cost 0 builds: paying is forbidden; no ambiguity, but a 0-cost build with Gears still pulls cards.",
+    "Hand limit discards may be the cards just paid? No: discard is after payment; interpreted as discards happen after the build.",
+    "Solo: Rival acts before refill and the clock is checked after refill; the 'deck empty' strike can come before 11 builds. Interpreted as written.",
+    "Pass: only if neither Gather nor Build is legal (Bench and deck empty and no legal build). Counted in stats.",
+    "Same-rank tiebreak sequence: score, workshop cards, longest train, then shared win (shared wins count as fractional wins).",
+    "'Best' progress for lead changes: provisional score of the workshop at the end of each full round (the rules have no live score)."
+  ],
+  "problems": [
+    {
+      "severity": "high",
+      "problem": "Solo win line (22) is trivially met: a strategic or greedy bot wins about 98.5% and even the random bot wins 68%; the ladder titles above Apprentice mean nothing. Solo also runs about 19.5 turns (about 6 estimated minutes) against a 15-minute target.",
+      "evidence": "2,000 solo games per bot: random 68.0% (avg 23.9), greedy 98.4% (avg 30.9), strategic 98.6% (avg 30.4), rush 67.0%.",
+      "fix": "Raise the win line to about 31+ (untested: strategic average is 30.4, so aim for about 50% at 31); make the Rival take 2 cards per turn or the 2 highest cards so solo is longer and tighter; re-measure."
+    },
+    {
+      "severity": "medium",
+      "problem": "The engine suits do not pay. Spades have a negative win correlation (-0.06 overall, K-spade -0.15) and Hearts a strongly positive one (+0.10); Spades and Clubs are built only 14% and 11% of the time against 20% for Diamonds. The advertised 'engine first' strategy is not clearly the best line, and Strategic beats Greedy by only 3 to 9 points.",
+      "evidence": "Win correlation by suit in the 4-player strategic mirror (8,000 workshops): S -0.056, C +0.031, D -0.013, H +0.100. Strategic v greedy 53.1% (2p). Engine-heavy planner bot v greedy 55.6%, optimiser v greedy 57.6%. In the panel rotation the Flavour (story) bot, which just builds long mixed trains with Hearts, wins the most (40.6% over all tables, 16,000 games) against the engine-minded Planner (33.0%), Optimiser (32.4%) and Expert (31.8%).",
+      "fix": "Strengthen the engine: Spade discount 4 (knob in the notes) or give Spades 2 points; test one at a time. This is also a skill-ceiling issue: beyond not playing randomly, the decisions barely beat 'take the most points now'."
+    },
+    {
+      "severity": "medium",
+      "problem": "Rules allow a no-progress loop: Gather, then hand-limit discards put the same cards back on the Bench, the Bench stays at 5 so the deck never shrinks, and the clock never strikes. A cautious or threshold-based player can do this forever.",
+      "evidence": "Before a bot fix, 8 of 2,000 strategic 2-player games (0.4%) hit the 600-turn cap; the log shows two players swapping 6C/5C/3H endlessly with 7-card hands and 1 workshop card each. After the fix (a full hand forces a build) there were 0 cap hits in 46,000 games, so humans rarely hit it, but the rule is open.",
+      "fix": "Add a stall breaker: for example, discarded cards go to the Bench and then the leftmost Bench card is removed from the game whenever the Bench has more than 5 cards, or a player who Gathers with a full hand must Build."
+    },
+    {
+      "severity": "low",
+      "problem": "Last seat has a steady advantage (it sees the whole round and always gets a final turn).",
+      "evidence": "Strategic mirrors: 2p seat 2 wins 54.0%, 3p seat 3 37.2%, 4p seat 4 28.3%; max deviation from fair 4.0 / 3.9 / 3.3 points (KPI 5). Noise is about 1 point at 2,000 games.",
+      "fix": "No change needed now; if it grows after other fixes, give seats 3 and 4 a 4-card start (knob in the notes)."
+    },
+    {
+      "severity": "low",
+      "problem": "Length at 4 players is close to the lower limit and solo is far short; 2p and 3p are fine.",
+      "evidence": "Estimated minutes (25s per build, 10s per gather): 2p 11.1 vs 12 (-7%), 3p 14.5 vs 16 (-9%), 4p 16.6 vs 20 (-17%), solo about 6 vs 15.",
+      "fix": "Raise the 4-player target to 10 workshop cards, or accept; check against a human playtest because the time-per-action estimate is the designer's, not measured."
+    },
+    {
+      "severity": "low",
+      "problem": "Lead changes sit right on the 2.0 floor and score ties are common at 4 players.",
+      "evidence": "Lead changes 2.03 (2p), 2.31 (3p), 2.08 (4p). Exact score ties 6.2% / 9.0% / 13.4%; tiebreakers resolve all but about 1% (shared wins).",
+      "fix": "Watch after the engine fix; the tiebreakers (cards, then longest train) work."
+    }
+  ]
+}

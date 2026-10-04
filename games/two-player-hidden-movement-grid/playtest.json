@@ -1,0 +1,253 @@
+{
+ "verdict": "NEEDS-FIXES",
+ "revision": 0,
+ "games_simulated": 12000,
+ "seat_win_rates": {
+  "1": 0.493,
+  "2": 0.507
+ },
+ "seat_balance_gap": 1.4,
+ "bot_win_rates": {
+  "random": 0.319,
+  "greedy": 0.532,
+  "strategic": 0.648
+ },
+ "skill_expression": 75.0,
+ "strategic_vs_greedy": 0.718,
+ "length": {
+  "mean_turns": 9.74,
+  "stdev": 0.79,
+  "estimated_minutes": 14.8,
+  "target_minutes": 15
+ },
+ "length_histogram": [
+  {
+   "turns": 4,
+   "games": 2
+  },
+  {
+   "turns": 5,
+   "games": 16
+  },
+  {
+   "turns": 6,
+   "games": 67
+  },
+  {
+   "turns": 7,
+   "games": 154
+  },
+  {
+   "turns": 8,
+   "games": 227
+  },
+  {
+   "turns": 9,
+   "games": 276
+  },
+  {
+   "turns": 10,
+   "games": 5258
+  }
+ ],
+ "ties": 0.0037,
+ "turn_cap_hits": 0,
+ "lead_changes_mean": 1.5,
+ "runaway_leader_rate": 0.795,
+ "cards": [
+  {
+   "name": "Salvage 1",
+   "played_rate": 0.927,
+   "win_correlation": 0.283,
+   "flag": null,
+   "per_game": 2.12
+  },
+  {
+   "name": "Salvage 2",
+   "played_rate": 0.924,
+   "win_correlation": 0.372,
+   "flag": null,
+   "per_game": 2.13
+  },
+  {
+   "name": "Salvage 3",
+   "played_rate": 0.8,
+   "win_correlation": 0.35,
+   "flag": null,
+   "per_game": 1.27
+  },
+  {
+   "name": "Mine",
+   "played_rate": 0.887,
+   "win_correlation": -0.069,
+   "flag": null,
+   "per_game": 1.69
+  },
+  {
+   "name": "Reef",
+   "played_rate": 0.82,
+   "win_correlation": 0.043,
+   "flag": null,
+   "per_game": 1.28
+  },
+  {
+   "name": "Sonar (taken)",
+   "played_rate": 0.793,
+   "win_correlation": 0.156,
+   "flag": null,
+   "per_game": 1.26
+  },
+  {
+   "name": "Sonar ping (spent)",
+   "played_rate": 0.534,
+   "win_correlation": 0.135,
+   "flag": "no measurable value (E4: strategic without pinging wins 50.0%)",
+   "per_game": 0.71
+  },
+  {
+   "name": "Torpedo (played)",
+   "played_rate": 0.999,
+   "win_correlation": -0.006,
+   "flag": null,
+   "per_game": 3.62
+  },
+  {
+   "name": "Torpedo hit",
+   "played_rate": 0.588,
+   "win_correlation": 0.334,
+   "flag": "strong link to winning (0.33) but only ~1.9 hits per game",
+   "per_game": 0.94
+  },
+  {
+   "name": "Harbour (rounds ended home)",
+   "played_rate": 0.411,
+   "win_correlation": -0.026,
+   "flag": null,
+   "per_game": 0.66
+  }
+ ],
+ "ambiguities": [
+  "Does an unspent Sonar count toward 'lower score' for ping order and lead during the game? (sim: yes, 1 point each)",
+  "Reef bounce clash: the other sub 'goes back' but has already entered its square; harmless today because the bouncer just emptied it, but the text reads as if it could matter",
+  "A cancelled step (after a Mine): is the helm card still 'played' for cooling? (sim: yes, all 3 cards cool)",
+  "Both subs targeting the same face-down card: collision says nothing is entered; is the card 'seen' by anyone? (sim: no)",
+  "Tiebreak 'more Salvage cards' counts cards in pile after theft; Sonar excluded (sim assumption)",
+  "Ping when both players could ping: only the first decider may; if they decline, the second may (sim follows this)"
+ ],
+ "problems": [
+  {
+   "severity": "high",
+   "problem": "Runaway leader and too few lead changes",
+   "evidence": "runaway-leader rate 0.79 (target <=0.65), lead changes 1.50 per game (target >=2); mirror strategic games 0.77 / 1.58. Final gap averages 7.4 points on 24 on the grid.",
+   "fix": "Early fog flips decide the game and the only comeback (a torpedo hit, ~1.9 per game) is too rare. Try: hit steals the victim's highest card AND the victim cannot be hit next round; or a trailing player gets a free Helm card swap; or fewer Mines/more Salvage 1s so first flips swing less. Re-test with one change at a time."
+  },
+  {
+   "severity": "medium",
+   "problem": "Sonar ping has no measurable value",
+   "evidence": "E4: strategic bot that never pings wins 50.0% against the normal strategic bot (1,000 games); only 1.4 pings per game.",
+   "fix": "Make the ping reveal the whole plot order of one card more, or let the pinger see step 1 AND step 2; or drop the ping and make Sonar a simple 'peek at one face-down card' (check dead-card KPI)."
+  },
+  {
+   "severity": "medium",
+   "problem": "Simultaneous guessing adds little skill over plain route efficiency",
+   "evidence": "Strategic beats greedy 71.8%, greedy beats random 84.8%; a strategic bot blind to the cooling rows loses only to 45.1% (E3), so reading the visible helm cards is worth ~5 points for a shallow bot. Most skill is exploration and safe routing.",
+   "fix": "Cannot be judged from bots alone; human playtest should check whether reading the 6 visible cards feels meaningful. If not, make torpedo timing matter more (hits more often)."
+  },
+  {
+   "severity": "medium",
+   "problem": "Round 10 cap, not Salvage supply, ends 71-76% of games",
+   "evidence": "Designer expected Salvage to run out in rounds 8-10; sim shows salvage left on the grid after round 10 in ~75% of strategic games. Mean 9.6 rounds, est. 14.8 min (OK).",
+   "fix": "No length problem, but note a leader can safely coast and camp; consider cap 12 or fewer Mines only if lead changes stay low."
+  },
+  {
+   "severity": "low",
+   "problem": "Harbour camping not punished",
+   "evidence": "E2: camper bot (ends rounds at home 3.6 of 10 rounds) wins 52.3% vs strategic (n=1000, +-3 points): not clearly dominant, but not worse.",
+   "fix": "Watch in human play; if leaders turtle, limit Harbour safety to once per round pair."
+  },
+  {
+   "severity": "low",
+   "problem": "Torpedo spam is roughly fair, not dominant",
+   "evidence": "E1: spammer (always plots T) wins 47.8% vs strategic. Hits per game 1.9; orthogonal-only range (E5) cuts hits to 1.1 per game with seat balance unchanged.",
+   "fix": "None needed; keep 8-square range since hits are already rare."
+  }
+ ],
+ "extra": {
+  "hits_per_game": 1.89,
+  "mines_per_game": 3.38,
+  "fired_per_game": 6.81,
+  "pings_per_game": 1.43,
+  "collisions_per_game": 0.51,
+  "blocked_per_game": 6.09,
+  "reef_found_per_game": 2.55,
+  "mean_final_gap": 7.4
+ },
+ "round_10_end_rate": 0.75,
+ "experiments": {
+  "E1 spammer(A) v strategic": {
+   "n": 1000,
+   "a_win": 0.478,
+   "seat1": 0.503,
+   "rounds": 9.661,
+   "ties": 0.004,
+   "runaway": 0.752,
+   "capped": 0.741,
+   "lc": 1.66,
+   "hits": 2.01,
+   "fired": 8.04,
+   "home_a": 0.46
+  },
+  "E2 camper(A) v strategic": {
+   "n": 1000,
+   "a_win": 0.523,
+   "seat1": 0.512,
+   "rounds": 9.776,
+   "ties": 0.005,
+   "runaway": 0.8,
+   "capped": 0.835,
+   "lc": 1.52,
+   "hits": 1.96,
+   "fired": 7.14,
+   "home_a": 3.59
+  },
+  "E3 blind-to-cooling(A) v strategic": {
+   "n": 1000,
+   "a_win": 0.451,
+   "seat1": 0.496,
+   "rounds": 9.608,
+   "ties": 0.006,
+   "runaway": 0.777,
+   "capped": 0.725,
+   "lc": 1.58,
+   "hits": 1.88,
+   "fired": 6.87,
+   "home_a": 0.86
+  },
+  "E4 noping(A) v strategic": {
+   "n": 1000,
+   "a_win": 0.5,
+   "seat1": 0.524,
+   "rounds": 9.599,
+   "ties": 0.004,
+   "runaway": 0.781,
+   "capped": 0.735,
+   "lc": 1.49,
+   "hits": 2.02,
+   "fired": 6.87,
+   "home_a": 0.63
+  },
+  "E5 strategic mirror, torpedo orthogonal only": {
+   "n": 1000,
+   "a_win": 0.5,
+   "seat1": 0.497,
+   "rounds": 9.546,
+   "ties": 0.006,
+   "runaway": 0.799,
+   "capped": 0.726,
+   "lc": 1.4,
+   "hits": 1.14,
+   "fired": 6.3,
+   "home_a": 0.99
+  }
+ }
+}

@@ -150,6 +150,12 @@
           "time": "2026-10-04T12:14:19Z",
           "verdict": "REVISE-MINOR",
           "note": "revision 2: critic avg 3.67; waiting for owner decision: pitch or revise"
+        },
+        {
+          "stage": "critique",
+          "time": "2026-10-04T18:32:00Z",
+          "verdict": null,
+          "note": "owner chose pitch; Director writes pitch.md"
         }
       ],
       "verdicts": {
@@ -236,6 +242,12 @@
           "time": "2026-10-04T10:58:43Z",
           "verdict": "REVISE-MAJOR",
           "note": "critic REVISE-MAJOR avg 3.33; waiting for approval: revision"
+        },
+        {
+          "stage": "critique",
+          "time": "2026-10-04T18:32:00Z",
+          "verdict": null,
+          "note": "revision 1 approved; designer starts"
         }
       ],
       "verdicts": {
@@ -279,6 +291,12 @@
           "time": "2026-10-04T11:25:36Z",
           "verdict": "REVISE-MINOR",
           "note": "critic REVISE-MINOR avg 3.67; waiting for approval: revision"
+        },
+        {
+          "stage": "critique",
+          "time": "2026-10-04T18:32:00Z",
+          "verdict": null,
+          "note": "revision 1 approved; designer starts"
         }
       ],
       "verdicts": {
@@ -349,6 +367,184 @@
           "time": "2026-10-04T12:12:05Z",
           "verdict": "REVISE-MAJOR",
           "note": "critic REVISE-MAJOR avg 2.83; waiting for owner rulings and revision approval"
+        }
+      ],
+      "verdicts": {
+        "playtest": "NEEDS-FIXES",
+        "critic": "REVISE-MAJOR"
+      },
+      "kill_reason": null
+    },
+    {
+      "slug": "standard-deck-engine-workshop",
+      "title": "Fifty-Two Workshop",
+      "stage": "critique",
+      "revision": 0,
+      "history": [
+        {
+          "stage": "brief",
+          "time": "2026-10-04T17:27:45Z",
+          "verdict": null,
+          "note": "owner greenlit all banked ideas 25+/30; brief from the idea bank next"
+        },
+        {
+          "stage": "design",
+          "time": "2026-10-04T17:28:41Z",
+          "verdict": null,
+          "note": "Brief written, 27/30; design starts"
+        },
+        {
+          "stage": "playtest",
+          "time": "2026-10-04T17:37:58Z",
+          "verdict": null,
+          "note": "rules.md written (gear trains, Bench, Apprentice); playtest next"
+        },
+        {
+          "stage": "critique",
+          "time": "2026-10-04T17:56:25Z",
+          "verdict": null,
+          "note": "Playtest NEEDS-FIXES: solo trivial (98.6%), engine suits don't pay, infinite-loop hole, 11 ambiguities; critique next"
+        },
+        {
+          "stage": "critique",
+          "time": "2026-10-04T17:57:20Z",
+          "verdict": "REVISE-MAJOR",
+          "note": "Critic REVISE-MAJOR avg 3.17; waiting for approval: revision (standard-deck-engine-workshop-revision-1)"
+        }
+      ],
+      "verdicts": {
+        "playtest": "NEEDS-FIXES",
+        "critic": "REVISE-MAJOR"
+      },
+      "kill_reason": null
+    },
+    {
+      "slug": "five-six-simultaneous-auction",
+      "title": "Last Bid Standing",
+      "stage": "critique",
+      "revision": 0,
+      "history": [
+        {
+          "stage": "brief",
+          "time": "2026-10-04T17:27:45Z",
+          "verdict": null,
+          "note": "owner greenlit all banked ideas 25+/30; brief from the idea bank next"
+        },
+        {
+          "stage": "design",
+          "time": "2026-10-04T17:57:55Z",
+          "verdict": null,
+          "note": "Brief written, 25/30; design starts"
+        },
+        {
+          "stage": "playtest",
+          "time": "2026-10-04T18:03:47Z",
+          "verdict": null,
+          "note": "rules.md written (Hype row, bubble crash, cancelling ties); playtest waiting on usage guard/owner"
+        },
+        {
+          "stage": "critique",
+          "time": "2026-10-04T18:34:47Z",
+          "verdict": null,
+          "note": "Playtest NEEDS-FIXES: skill gap 17.5 (<20), Hype 55-64% of points, empty hands 22%, 7 ambiguities; critique next"
+        },
+        {
+          "stage": "critique",
+          "time": "2026-10-04T18:35:58Z",
+          "verdict": "REVISE-MAJOR",
+          "note": "Critic REVISE-MAJOR avg 3.0; waiting for approval: revision (five-six-simultaneous-auction-revision-1)"
+        }
+      ],
+      "verdicts": {
+        "playtest": "NEEDS-FIXES",
+        "critic": "REVISE-MAJOR"
+      },
+      "kill_reason": null
+    },
+    {
+      "slug": "solo-nine-card-roguelike",
+      "title": "Nine Lives Dungeon",
+      "stage": "critique",
+      "revision": 0,
+      "history": [
+        {
+          "stage": "brief",
+          "time": "2026-10-04T17:27:45Z",
+          "verdict": null,
+          "note": "owner greenlit all banked ideas 25+/30; brief from the idea bank next"
+        },
+        {
+          "stage": "design",
+          "time": "2026-10-04T18:35:58Z",
+          "verdict": null,
+          "note": "Writing brief from the idea bank"
+        },
+        {
+          "stage": "design",
+          "time": "2026-10-04T18:36:41Z",
+          "verdict": null,
+          "note": "Brief written, 25/30; design starts"
+        },
+        {
+          "stage": "playtest",
+          "time": "2026-10-04T18:54:47Z",
+          "verdict": null,
+          "note": "rules.md written (3x3 grid, Fight or Shove, Ghosts on a 9-life tally); playtest next"
+        },
+        {
+          "stage": "critique",
+          "time": "2026-10-04T19:35:53Z",
+          "verdict": null,
+          "note": "Playtest NEEDS-FIXES: outline bot wins 19%, lookahead 81% (target 40-60), Claws a knife edge, 3 ambiguities; critique next"
+        },
+        {
+          "stage": "critique",
+          "time": "2026-10-04T19:37:03Z",
+          "verdict": "REVISE-MINOR",
+          "note": "Critic REVISE-MINOR avg 3.33; waiting for approval: revision (solo-nine-card-roguelike-revision-1)"
+        }
+      ],
+      "verdicts": {
+        "playtest": "NEEDS-FIXES",
+        "critic": "REVISE-MINOR"
+      },
+      "kill_reason": null
+    },
+    {
+      "slug": "two-player-hidden-movement-grid",
+      "title": "Dead Reckoning",
+      "stage": "critique",
+      "revision": 0,
+      "history": [
+        {
+          "stage": "brief",
+          "time": "2026-10-04T17:27:45Z",
+          "verdict": null,
+          "note": "owner greenlit all banked ideas 25+/30; brief from the idea bank next"
+        },
+        {
+          "stage": "design",
+          "time": "2026-10-04T19:37:36Z",
+          "verdict": null,
+          "note": "Brief written, 25/30; design starts"
+        },
+        {
+          "stage": "playtest",
+          "time": "2026-10-04T19:42:32Z",
+          "verdict": null,
+          "note": "rules.md written (cooling helm, collisions, torpedoes); playtest next"
+        },
+        {
+          "stage": "critique",
+          "time": "2026-10-04T20:01:50Z",
+          "verdict": null,
+          "note": "Playtest NEEDS-FIXES: runaway leader 0.79, lead changes 1.5, Sonar dead card, 6 ambiguities; critique next"
+        },
+        {
+          "stage": "critique",
+          "time": "2026-10-04T20:02:56Z",
+          "verdict": "REVISE-MAJOR",
+          "note": "Critic REVISE-MAJOR avg 3.33; waiting for approval: revision (two-player-hidden-movement-grid-revision-1)"
         }
       ],
       "verdicts": {

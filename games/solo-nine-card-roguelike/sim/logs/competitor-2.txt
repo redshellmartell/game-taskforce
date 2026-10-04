@@ -1,0 +1,7 @@
+Nine Lives Dungeon, solo, competitor bot, seed 200000 (lost run). Solo game: one table per persona.
+T1 Shove Snake into 3, Rat comes up
+T2 Shove Fox into 5, Moth comes up
+T3 Fight Moth (danger 1, claws 2, wounds 0, ready 0)
+T3 Thief spends a trophy
+T4 Fight Owl (danger 6, claws 2, wounds 4, ready 0)
+T4 DEAD, killed by Owl

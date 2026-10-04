@@ -1,0 +1,67 @@
+{
+ "E1 spammer(A) v strategic": {
+  "n": 1000,
+  "a_win": 0.478,
+  "seat1": 0.503,
+  "rounds": 9.661,
+  "ties": 0.004,
+  "runaway": 0.752,
+  "capped": 0.741,
+  "lc": 1.66,
+  "hits": 2.01,
+  "fired": 8.04,
+  "home_a": 0.46
+ },
+ "E2 camper(A) v strategic": {
+  "n": 1000,
+  "a_win": 0.523,
+  "seat1": 0.512,
+  "rounds": 9.776,
+  "ties": 0.005,
+  "runaway": 0.8,
+  "capped": 0.835,
+  "lc": 1.52,
+  "hits": 1.96,
+  "fired": 7.14,
+  "home_a": 3.59
+ },
+ "E3 blind-to-cooling(A) v strategic": {
+  "n": 1000,
+  "a_win": 0.451,
+  "seat1": 0.496,
+  "rounds": 9.608,
+  "ties": 0.006,
+  "runaway": 0.777,
+  "capped": 0.725,
+  "lc": 1.58,
+  "hits": 1.88,
+  "fired": 6.87,
+  "home_a": 0.86
+ },
+ "E4 noping(A) v strategic": {
+  "n": 1000,
+  "a_win": 0.5,
+  "seat1": 0.524,
+  "rounds": 9.599,
+  "ties": 0.004,
+  "runaway": 0.781,
+  "capped": 0.735,
+  "lc": 1.49,
+  "hits": 2.02,
+  "fired": 6.87,
+  "home_a": 0.63
+ },
+ "E5 strategic mirror, torpedo orthogonal only": {
+  "n": 1000,
+  "a_win": 0.5,
+  "seat1": 0.497,
+  "rounds": 9.546,
+  "ties": 0.006,
+  "runaway": 0.799,
+  "capped": 0.726,
+  "lc": 1.4,
+  "hits": 1.14,
+  "fired": 6.3,
+  "home_a": 0.99
+ }
+}

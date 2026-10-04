@@ -1,0 +1,13 @@
+Nine Lives Dungeon, solo, competitor bot, seed 200002 (won run). Solo game: one table per persona.
+T1 Shove Snake into 3, Spider comes up
+T2 Shove Fox into 5, Crow comes up
+T3 Shove Rat into 7, Mouse comes up
+T4 Fight Mouse (danger 2, claws 2, wounds 0, ready 0)
+T5 Fight Spider (danger 3, claws 3, wounds 0, ready 1)
+T6 Fight Crow (danger 5, claws 4, wounds 1, ready 2)
+T7 Fight Owl (danger 3, claws 3, wounds 0, ready 1)
+T8 Fight Rat (danger 6, claws 6, wounds 0, ready 2)
+T8 Hunt spends a trophy
+T9 Scavenge readies ['Mouse', 'Spider']
+T9 Fight Hound (danger 9, claws 7, wounds 2, ready 3)
+T9 ESCAPE

@@ -1,0 +1,20 @@
+{
+  "verdict": "REVISE-MAJOR",
+  "revision": 0,
+  "scores": { "originality": 3, "clarity": 3, "fun": 3, "balance": 3, "market_fit": 3, "production": 5 },
+  "average": 3.33,
+  "strength": "Cheap, no-downtime two-player design with a clear hook (the visible cooling row), good seat balance (gap 1.4) and a large skill gap (75 points).",
+  "weakness": "Early fog-flip luck decides most games (runaway 0.79, 1.5 lead changes, coin-flip round 1), and the signature reading layer is worth only about 5 points, so the game does not yet deliver the outguess-your-rival experience.",
+  "closest_existing_game": { "name": "Creep in Silent (2021)", "similarity": "medium" },
+  "required_changes": [
+    "Reduce early-fog luck (more 1s and 2s, fewer Mines, or free peeks at setup) - runaway leader 0.79 toward 0.65, lead changes 1.5 toward 2",
+    "Add a real comeback beyond torpedoes (hit protection, trailer bonus) - lead changes >= 2 without making torpedo spam dominant (E1 stays <= 50%)",
+    "Make Sonar matter (reveal two steps or peek at a face-down card) - dead cards = 0, never-ping win rate <= 45%",
+    "Stop leaders coasting at the round-10 cap (cap 12 or early-end rule) - runaway leader, length within 12-18 min",
+    "Raise the value of reading the cooling row - blind-vs-reading gap above 10 points",
+    "Close all 6 ambiguities and cut sub-rules (consider removing Reef bounce clash and Sonar-as-points) - ambiguities = 0, panel rules_simplicity above 0.09",
+    "Compare against Creep in Silent and make differences explicit - originality score"
+  ],
+  "revision_worth_it": true,
+  "revision_reason": "Yes: the core loop, seat balance and skill gap are healthy and each failure is narrow with a named KPI; if revision 1 does not bring runaway below 0.70, park it."
+}

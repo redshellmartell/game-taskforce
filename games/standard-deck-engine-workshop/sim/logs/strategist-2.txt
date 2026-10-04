@@ -1,0 +1,55 @@
+Fifty-Two Workshop: strategist (seat 1) with family, story, barraiser, worst table for strategist. Cards: rank+suit (S Spring, C Gear, D Jewel, H Clock face).
+P1 builds JD (train 11-11, cost 11) pays QS
+P2 builds KC (train 13-13, cost 13) gears take QD pays KS
+P3 builds 6H (train 6-6, cost 6) pays 6C
+P4 builds 6D (train 6-6, cost 6) pays JH
+P1 gathers QS 10S
+P2 gathers 10D 4D
+P3 gathers JH KS
+P4 gathers 8H AD
+P1 builds QS (train 11-12, cost 9) pays 9D
+P2 builds 4D (train 4-4, cost 4) pays 7D
+P3 builds JH (train 11-11, cost 11) pays KS
+P4 builds AD (train 1-1, cost 1) pays 5C
+P1 gathers KS 7D
+P2 gathers 9D 5C
+P3 gathers 7S AH(deck)
+P4 gathers 2H 9C
+P1 builds KS (train 11-13, cost 7) pays 7D
+P2 gathers 6S 7D
+P3 builds AH (train 1-1, cost 1) pays 2C
+P4 builds 2H (train 1-2, cost 2) pays 8H
+P1 gathers 10C 3D
+P2 builds 7D (train 7-7, cost 7) pays 9D
+P3 gathers 2C 9D
+P4 gathers 8D 8H
+P1 builds 10S (train 10-13, cost 1) pays 3D
+P2 gathers 3D 9H
+P3 builds 2C (train 1-2, cost 2) gears take 3H pays 3H
+P4 builds 8D (train 8-8, cost 8) pays 8H
+P1 gathers 3H 8H
+P2 builds 3D (train 3-4, cost 3) pays 5C
+P3 builds 7S (train 6-7, cost 4) pays 9D
+P4 gathers 9D 5C
+P1 gathers 8C KH
+P2 gathers 5D JC
+P3 gathers KD 4C
+P4 builds 9D (train 8-9, cost 9) pays 9C
+P1 gathers 9C 7C
+P2 builds 5D (train 3-5, cost 5) pays 6S
+P3 gathers 8S 5S
+P4 gathers 3C 6S
+P1 builds 9C (train 9-13, cost 0) gears take 5H
+P2 gathers 6C 2S
+P3 builds 5S (train 5-7, cost 0)
+P4 builds 3C (train 1-3, cost 3) gears take 4H pays 4H
+P1 builds 8H (train 8-13, cost 0) gears take 7H
+P2 builds 2S (train 2-5, cost 0)
+P3 builds 4C (train 4-7, cost 0) gears take 3S
+P4 builds 5C (train 5-6, cost 5) gears take 4H pays 6S
+P1 builds 7H (train 7-13, cost 0) gears take 6S
+P2 gathers QH AS 9S(deck)
+P2 hand limit -> Bench: JC
+P3 builds 3S (train 1-7, cost 0) gears take QC JC
+THE CLOCK STRIKES (P3, 8 cards, deck 0)
+P4 gathers 10H 4S

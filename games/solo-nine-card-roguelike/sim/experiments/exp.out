@@ -1,0 +1,20 @@
+== base_claws=1
+strategic win 0.014 29s
+lookahead win 0.065 (every 300th layout) 67s
+strategic win 0.014 random 0.000 greedy 0.000 | median turns 5.0 mean 5.83 | min 5.6 | first shove 0.62
+== base_claws=3
+strategic win 0.481 33s
+lookahead win 0.986 (every 300th layout) 152s
+strategic win 0.481 random 0.000 greedy 0.000 | median turns 7.0 mean 7.03 | min 6.8 | first shove 0.18
+== hunt=lethal
+strategic win 0.191 26s
+lookahead win 0.603 (every 300th layout) 106s
+strategic win 0.191 random 0.000 greedy 0.000 | median turns 5.0 mean 5.29 | min 5.3 | first shove 0.36
+== anger=3
+strategic win 0.191 34s
+lookahead win 0.671 (every 300th layout) 139s
+strategic win 0.191 random 0.000 greedy 0.000 | median turns 6.0 mean 6.68 | min 6.4 | first shove 0.36
+== hound_swap=False
+strategic win 0.160 34s
+lookahead win 0.785 (every 300th layout) 154s
+strategic win 0.160 random 0.000 greedy 0.000 | median turns 6.0 mean 6.66 | min 6.4 | first shove 0.57

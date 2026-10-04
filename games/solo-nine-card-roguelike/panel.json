@@ -1,0 +1,254 @@
+{
+  "revision": 0,
+  "stage": "scores",
+  "personas": {
+    "casual": {
+      "fun": 2.12,
+      "replay": 2.5,
+      "would_buy": "no",
+      "price_usd": null,
+      "metrics": {
+        "originality": 0.5,
+        "skill_expression": 1.0,
+        "length_fit": 0.83,
+        "rules_simplicity": 0.0,
+        "dominant_strategy_absent": 1.0,
+        "decisions_per_turn": 0.361,
+        "lead_changes": 0.037,
+        "catch_up": 0.018,
+        "interaction": 0.0
+      },
+      "pet_peeves_hit": [
+        "A long or heavy rulebook and a teacher who needs ten minutes of explanation",
+        "Multiplayer solitaire is only a mild complaint; a calm, low-conflict game is fine for a relaxed night"
+      ],
+      "bot": {
+        "win_rate": 0.1,
+        "fell_behind_rate": 0.775,
+        "decisions_per_turn": 1.08,
+        "downtime": 0.0,
+        "games": 1000,
+        "seat_win_rates": {
+          "1": 0.1
+        }
+      },
+      "best_table": [
+        "casual"
+      ],
+      "worst_table": [
+        "casual"
+      ],
+      "review": null
+    },
+    "competitor": {
+      "fun": 3.69,
+      "replay": 3.55,
+      "would_buy": "maybe",
+      "price_usd": 24,
+      "metrics": {
+        "originality": 0.5,
+        "skill_expression": 1.0,
+        "length_fit": 0.277,
+        "rules_simplicity": 0.0,
+        "dominant_strategy_absent": 1.0,
+        "decisions_per_turn": 0.406,
+        "lead_changes": 0.173,
+        "catch_up": 1.0,
+        "interaction": 0.0
+      },
+      "pet_peeves_hit": [
+        "Multiplayer solitaire with no way to affect others",
+        "Ambiguous rules and missing errata"
+      ],
+      "bot": {
+        "win_rate": 0.72,
+        "fell_behind_rate": 0.22,
+        "decisions_per_turn": 1.22,
+        "downtime": 0.0,
+        "games": 300,
+        "seat_win_rates": {
+          "1": 0.72
+        }
+      },
+      "best_table": [
+        "competitor"
+      ],
+      "worst_table": [
+        "competitor"
+      ],
+      "review": null
+    },
+    "family": {
+      "fun": 1.74,
+      "replay": 2.3,
+      "would_buy": "no",
+      "price_usd": null,
+      "metrics": {
+        "originality": 0.5,
+        "skill_expression": 1.0,
+        "length_fit": 0.553,
+        "rules_simplicity": 0.0,
+        "dominant_strategy_absent": 1.0,
+        "decisions_per_turn": 0.34,
+        "lead_changes": 0.067,
+        "catch_up": 0.003,
+        "interaction": 0.0
+      },
+      "pet_peeves_hit": [
+        "Rules that are hard to teach, or a thick rulebook that the parent must master first",
+        "A child getting hopelessly behind with no way back, or busting round after round"
+      ],
+      "bot": {
+        "win_rate": 0.108,
+        "fell_behind_rate": 0.735,
+        "decisions_per_turn": 1.02,
+        "downtime": 0.0,
+        "games": 1000,
+        "seat_win_rates": {
+          "1": 0.108
+        }
+      },
+      "best_table": [
+        "family"
+      ],
+      "worst_table": [
+        "family"
+      ],
+      "review": null
+    },
+    "story": {
+      "fun": 1.91,
+      "replay": 2.4,
+      "would_buy": "no",
+      "price_usd": null,
+      "metrics": {
+        "originality": 0.5,
+        "skill_expression": 1.0,
+        "length_fit": 0.184,
+        "rules_simplicity": 0.0,
+        "dominant_strategy_absent": 1.0,
+        "decisions_per_turn": 0.354,
+        "lead_changes": 0.062,
+        "catch_up": 0.024,
+        "interaction": 0.0
+      },
+      "pet_peeves_hit": [
+        "Rules overhead and bookkeeping that pull people out of the world",
+        "Multiplayer solitaire, because shared drama needs interaction"
+      ],
+      "bot": {
+        "win_rate": 0.155,
+        "fell_behind_rate": 0.749,
+        "decisions_per_turn": 1.06,
+        "downtime": 0.0,
+        "games": 1000,
+        "seat_win_rates": {
+          "1": 0.155
+        }
+      },
+      "best_table": [
+        "story"
+      ],
+      "worst_table": [
+        "story"
+      ],
+      "review": null
+    },
+    "strategist": {
+      "fun": 3.22,
+      "replay": 3.16,
+      "would_buy": "maybe",
+      "price_usd": 26,
+      "metrics": {
+        "originality": 0.5,
+        "skill_expression": 1.0,
+        "length_fit": 0.184,
+        "rules_simplicity": 0.0,
+        "dominant_strategy_absent": 1.0,
+        "decisions_per_turn": 0.358,
+        "lead_changes": 0.037,
+        "catch_up": 0.053,
+        "interaction": 0.0
+      },
+      "pet_peeves_hit": [
+        "Multiplayer solitaire",
+        "Runaway leaders and kingmaking",
+        "Dense, ambiguous rulebooks and scoring overload"
+      ],
+      "bot": {
+        "win_rate": 0.178,
+        "fell_behind_rate": 0.808,
+        "decisions_per_turn": 1.07,
+        "downtime": 0.0,
+        "games": 1000,
+        "seat_win_rates": {
+          "1": 0.178
+        }
+      },
+      "best_table": [
+        "strategist"
+      ],
+      "worst_table": [
+        "strategist"
+      ],
+      "review": null
+    },
+    "barraiser": {
+      "fun": 3.47,
+      "replay": 3.46,
+      "would_buy": "maybe",
+      "price_usd": 29,
+      "metrics": {
+        "originality": 0.5,
+        "skill_expression": 1.0,
+        "length_fit": 0.415,
+        "rules_simplicity": 0.0,
+        "dominant_strategy_absent": 1.0,
+        "decisions_per_turn": 0.413,
+        "lead_changes": 0.216,
+        "catch_up": 1.0,
+        "interaction": 0.0
+      },
+      "pet_peeves_hit": [
+        "Ambiguous rules and missing edge cases"
+      ],
+      "bot": {
+        "win_rate": 0.88,
+        "fell_behind_rate": 0.11,
+        "decisions_per_turn": 1.24,
+        "downtime": 0.0,
+        "games": 300,
+        "seat_win_rates": {
+          "1": 0.88
+        }
+      },
+      "best_table": [
+        "barraiser"
+      ],
+      "worst_table": [
+        "barraiser"
+      ],
+      "review": null,
+      "veto": {
+        "active": false,
+        "reasons": []
+      }
+    }
+  },
+  "rotation": {
+    "player_counts": [
+      1
+    ],
+    "tables": 6,
+    "seatings_per_table": 1,
+    "games_per_seating": 1000,
+    "filler_bots": []
+  },
+  "matchups": [],
+  "summary": {
+    "average_fun": 2.69,
+    "spread": 1.95,
+    "best_fit": "competitor",
+    "worst_fit": "family"
+  }
+}

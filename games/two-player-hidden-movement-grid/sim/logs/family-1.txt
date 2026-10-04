@@ -1,0 +1,41 @@
+Dead Reckoning: family (seat 1, Blue) vs story (seat 2, Red), best table for family. Squares A-E x 1-5.
+R1 plots: P1 NWN  P2 WSW  (pos C1 C5, score 0-0)
+  step1 N/W -> P1 C2 P2 B5 score 2-3
+  step2 W/S -> P1 B2 P2 B4 score 0-5
+  step3 N/W -> P1 B2 P2 A4 score 0-6
+R2: P2 pings; P1's step-1 card W is revealed
+R2 plots: P1 WSE  P2 SEE  (pos B2 A4, score 0-5)
+  step1 W/S -> P1 A2 P2 A3 score 0-7
+  step2 S/E -> P1 A2 P2 B3 score 0-10
+  step3 E/E -> P1 A2 P2 C3 score 0-12
+R3 plots: P1 ETS  P2 NNT  (pos A2 C3, score 0-12)
+  step1 E/N -> P1 B2 P2 C3 score 0-12
+  step2 T/N -> P1 B2 P2 C3 score 3-9
+  step3 S/T -> P1 B1 P2 C3 score 4-9
+R4 plots: P1 WNS  P2 ESS  (pos B1 C3, score 4-9)
+  step1 W/E -> P1 A1 P2 D3 score 5-10
+  step2 N/S -> P1 A2 P2 D2 score 5-9
+  step3 S/S -> P1 A1 P2 D2 score 5-9
+R5 plots: P1 EET  P2 ENN  (pos A1 D2, score 5-9)
+  step1 E/E -> P1 B1 P2 E2 score 5-11
+  step2 E/N -> P1 C1 P2 E3 score 5-12
+  step3 T/N -> P1 C1 P2 E4 score 5-13
+R6 plots: P1 NWS  P2 TEW  (pos C1 E4, score 5-13)
+  step1 N/T -> P1 C2 P2 E4 score 5-13
+  step2 W/E -> P1 B2 P2 E4 score 5-13
+  step3 S/W -> P1 B1 P2 D4 score 5-12
+R7 plots: P1 EET  P2 NES  (pos B1 D4, score 5-12)
+  step1 E/N -> P1 C1 P2 D4 score 5-12
+  step2 E/E -> P1 D1 P2 E4 score 8-12
+  step3 T/S -> P1 D1 P2 E3 score 8-12
+R8: P2 pings; P1's step-1 card S is revealed
+R8 plots: P1 SWW  P2 STW  (pos D1 E3, score 8-11)
+  step1 S/S -> P1 D1 P2 E2 score 8-11
+  step2 W/T -> P1 C1 P2 E2 score 8-11
+  step3 W/W -> P1 B1 P2 D2 score 8-11
+R9 plots: P1 ENT  P2 SEN  (pos B1 D2, score 8-11)
+  step1 E/S -> P1 C1 P2 D1 score 8-11
+  step2 N/E -> P1 C2 P2 E1 score 8-12
+  step3 T/N -> P1 C2 P2 E2 score 8-12
+R10 plots: P1 SEW  P2 EWT  (pos C2 E2, score 8-12)
+  step1 S/E -> P1 C1 P2 E2 score 8-12

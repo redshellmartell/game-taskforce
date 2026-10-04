@@ -1,0 +1,7 @@
+Nine Lives Dungeon, solo, story bot, seed 400000 (lost run). Solo game: one table per persona.
+T1 Shove Owl into 8, Spider comes up
+T2 Shove Crow into 8, Owl comes up
+T3 Shove Rat into 8, Crow comes up
+T4 Shove Spider into 8, Rat comes up
+T5 Fight Owl (danger 8, claws 2, wounds 6, ready 0)
+T5 DEAD, killed by Owl

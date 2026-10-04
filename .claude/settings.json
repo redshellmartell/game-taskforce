@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git status *)",
+      "Bash(git push origin claude/bold-knuth-u01pk9)",
+      "Bash(git push -u origin claude/bold-knuth-u01pk9)",
+      "Bash(git pull *origin claude/bold-knuth-u01pk9*)",
+      "Edit(games/**)"
+    ]
+  }
+}

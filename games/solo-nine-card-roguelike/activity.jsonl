@@ -1,0 +1,12 @@
+{"time": "2026-10-04T17:27:45Z", "agent": "director", "game": "solo-nine-card-roguelike", "event": "start", "message": "Owner greenlit; starting pipeline from the idea bank"}
+{"time": "2026-10-04T18:35:58Z", "agent": "market-researcher", "game": "solo-nine-card-roguelike", "event": "start", "message": "Writing brief from the idea bank"}
+{"time": "2026-10-04T18:35:58Z", "agent": "market-researcher", "game": "solo-nine-card-roguelike", "event": "start", "message": "Writing brief from the idea bank"}
+{"time": "2026-10-04T18:36:41Z", "agent": "market-researcher", "game": "solo-nine-card-roguelike", "event": "done", "message": "Brief written, 25/30; design starts"}
+{"time": "2026-10-04T18:36:41Z", "agent": "game-designer", "game": "solo-nine-card-roguelike", "event": "start", "message": "Writing rules.md from the brief"}
+{"time": "2026-10-04T18:54:47Z", "agent": "game-designer", "game": "solo-nine-card-roguelike", "event": "done", "message": "rules.md written (3x3 grid, Fight or Shove, Ghosts on a 9-life tally); playtest next"}
+{"time": "2026-10-04T18:54:47Z", "agent": "playtester", "game": "solo-nine-card-roguelike", "event": "start", "message": "Coding the simulation and running experiments"}
+{"time": "2026-10-04T19:35:29Z", "agent": "playtester", "game": "solo-nine-card-roguelike", "event": "step", "message": "Exhaustive 362,880-layout runs, lookahead bot, 5 experiments, persona panel rotation done"}
+{"time": "2026-10-04T19:35:29Z", "agent": "playtester", "game": "solo-nine-card-roguelike", "event": "done", "message": "Verdict NEEDS-FIXES: outline bot 19.1%, lookahead 80.8%; playtest.json, panel.json, playtest-report.md written"}
+{"time": "2026-10-04T19:35:53Z", "agent": "playtester", "game": "solo-nine-card-roguelike", "event": "done", "message": "Playtest NEEDS-FIXES: outline bot wins 19%, lookahead 81% (target 40-60), Claws a knife edge, 3 ambiguities; critique next"}
+{"time": "2026-10-04T19:35:53Z", "agent": "critic", "game": "solo-nine-card-roguelike", "event": "start", "message": "Reviewing design and playtest"}
+{"time": "2026-10-04T19:37:03Z", "agent": "critic", "game": "solo-nine-card-roguelike", "event": "done", "message": "Critic REVISE-MINOR avg 3.33; waiting for approval: revision (solo-nine-card-roguelike-revision-1)"}

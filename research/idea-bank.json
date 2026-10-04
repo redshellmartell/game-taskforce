@@ -9,14 +9,36 @@
       "players": "2",
       "minutes": 12.5,
       "complexity": 1.5,
-      "mechanics": ["push-your-luck", "shared draw row"],
+      "mechanics": [
+        "push-your-luck",
+        "shared draw row"
+      ],
       "theme": "tide-pool scavengers",
       "score": 26,
-      "rubric": { "demand": 5, "gap": 3, "originality": 3, "producibility": 5, "simulatability": 5, "owner_fit": 5 },
+      "rubric": {
+        "demand": 5,
+        "gap": 3,
+        "originality": 3,
+        "producibility": 5,
+        "simulatability": 5,
+        "owner_fit": 5
+      },
       "comparables": [
-        { "name": "Flip 7", "bgg_rating": null, "difference": "Makes 2P the primary mode, uses shared information and cuts random take-that." },
-        { "name": "Sea Salt & Paper", "bgg_rating": null, "difference": "Faster and push-your-luck rather than drafting." },
-        { "name": "Skull / Cacti-style bluffers", "bgg_rating": null, "difference": "No hidden bluffing; skill is in risk management." }
+        {
+          "name": "Flip 7",
+          "bgg_rating": null,
+          "difference": "Makes 2P the primary mode, uses shared information and cuts random take-that."
+        },
+        {
+          "name": "Sea Salt & Paper",
+          "bgg_rating": null,
+          "difference": "Faster and push-your-luck rather than drafting."
+        },
+        {
+          "name": "Skull / Cacti-style bluffers",
+          "bgg_rating": null,
+          "difference": "No hidden bluffing; skill is in risk management."
+        }
       ],
       "evidence": "Push-your-luck card games are at peak demand (Flip 7 is described as the most popular game of the past year). Flip 7 reviewers dislike its lack of a dedicated 2-player mode and its heavy luck. Gap evidence is thin: BGG and some pages could not be opened.",
       "sources": [
@@ -39,10 +61,20 @@
       "players": null,
       "minutes": null,
       "complexity": null,
-      "mechanics": ["deck-building", "co-operative"],
+      "mechanics": [
+        "deck-building",
+        "co-operative"
+      ],
       "theme": null,
       "score": 22,
-      "rubric": { "demand": 4, "gap": 3, "originality": 3, "producibility": 4, "simulatability": 4, "owner_fit": 4 },
+      "rubric": {
+        "demand": 4,
+        "gap": 3,
+        "originality": 3,
+        "producibility": 4,
+        "simulatability": 4,
+        "owner_fit": 4
+      },
       "comparables": [],
       "evidence": "Scored 22/30 as candidate B in Duel Flip's brief. The brief records only the name and scores, so player count, length and evidence were not kept. 2026-10-03 scan: solo play is a top-3 component of 2020-2025 releases, which supports demand.",
       "sources": [],
@@ -60,10 +92,19 @@
       "players": "4-6",
       "minutes": null,
       "complexity": null,
-      "mechanics": ["trick-taking"],
+      "mechanics": [
+        "trick-taking"
+      ],
       "theme": null,
       "score": 20,
-      "rubric": { "demand": 3, "gap": 2, "originality": 3, "producibility": 4, "simulatability": 4, "owner_fit": 4 },
+      "rubric": {
+        "demand": 3,
+        "gap": 2,
+        "originality": 3,
+        "producibility": 4,
+        "simulatability": 4,
+        "owner_fit": 4
+      },
       "comparables": [],
       "evidence": "Scored 20/30 as candidate C in Duel Flip's brief. The brief records only the name and scores.",
       "sources": [],
@@ -81,17 +122,45 @@
       "players": "3",
       "minutes": 20,
       "complexity": 2,
-      "mechanics": ["trick-taking", "rotating roles"],
+      "mechanics": [
+        "trick-taking",
+        "rotating roles"
+      ],
       "theme": "heist crew splitting a haul",
       "score": 26,
-      "rubric": { "demand": 3, "gap": 4, "originality": 4, "producibility": 5, "simulatability": 5, "owner_fit": 5 },
+      "rubric": {
+        "demand": 3,
+        "gap": 4,
+        "originality": 4,
+        "producibility": 5,
+        "simulatability": 5,
+        "owner_fit": 5
+      },
       "comparables": [
-        { "name": "The Crew", "bgg_rating": 7.8, "difference": "Competitive, not co-op, and tuned for 3 rather than scaling 2-5." },
-        { "name": "Skull King", "bgg_rating": 7.5, "difference": "No bidding; rotating roles instead of chaotic scoring." },
-        { "name": "Hearts (3-player variant)", "bgg_rating": null, "difference": "Needs card removal house rules; this is designed for 3 from the start." }
+        {
+          "name": "The Crew",
+          "bgg_rating": 7.8,
+          "difference": "Competitive, not co-op, and tuned for 3 rather than scaling 2-5."
+        },
+        {
+          "name": "Skull King",
+          "bgg_rating": 7.5,
+          "difference": "No bidding; rotating roles instead of chaotic scoring."
+        },
+        {
+          "name": "Hearts (3-player variant)",
+          "bgg_rating": null,
+          "difference": "Needs card removal house rules; this is designed for 3 from the start."
+        }
       ],
       "evidence": "Search summaries confirm 3 is the awkward player count for card games (destructoid and others). Trick-taking is hot (LOTR: Fellowship about 12,900 plays; Gamefound trick-taking bundle funded). Brief check: The Crew is BGG 7.8 but best at 4; Fox in the Forest (7.1) is 2-player only.",
-      "sources": ["https://www.destructoid.com/best-3-player-card-games/", "https://www.boardgameoftheyear.org/2025/sites/Tabletop%20Express", "https://www.boardgamequest.com/crowdfunding-campaigns-of-the-week-8-10-26/", "https://whatsericplaying.com/the-crew", "https://boardgamematcher.com/game/skull-king"],
+      "sources": [
+        "https://www.destructoid.com/best-3-player-card-games/",
+        "https://www.boardgameoftheyear.org/2025/sites/Tabletop%20Express",
+        "https://www.boardgamequest.com/crowdfunding-campaigns-of-the-week-8-10-26/",
+        "https://whatsericplaying.com/the-crew",
+        "https://boardgamematcher.com/game/skull-king"
+      ],
       "status": "in-pipeline",
       "game_slug": "three-player-trick-taker",
       "added": "2026-10-03",
@@ -106,17 +175,44 @@
       "players": "2-3",
       "minutes": 20,
       "complexity": 2.5,
-      "mechanics": ["co-operative", "deduction", "limited communication"],
+      "mechanics": [
+        "co-operative",
+        "deduction",
+        "limited communication"
+      ],
       "theme": "lighthouse keepers signalling in fog",
       "score": 25,
-      "rubric": { "demand": 4, "gap": 3, "originality": 4, "producibility": 5, "simulatability": 4, "owner_fit": 5 },
+      "rubric": {
+        "demand": 4,
+        "gap": 3,
+        "originality": 4,
+        "producibility": 5,
+        "simulatability": 4,
+        "owner_fit": 5
+      },
       "comparables": [
-        { "name": "Bomb Busters", "bgg_rating": 7.4, "difference": "Fewer components, no talking at all, ends in 20 minutes." },
-        { "name": "The Crew", "bgg_rating": 7.8, "difference": "Deduction of a shared sequence, not trick-taking." },
-        { "name": "Sky Team", "bgg_rating": 7.9, "difference": "Cards only, no dice or board." }
+        {
+          "name": "Bomb Busters",
+          "bgg_rating": 7.4,
+          "difference": "Fewer components, no talking at all, ends in 20 minutes."
+        },
+        {
+          "name": "The Crew",
+          "bgg_rating": 7.8,
+          "difference": "Deduction of a shared sequence, not trick-taking."
+        },
+        {
+          "name": "Sky Team",
+          "bgg_rating": 7.9,
+          "difference": "Cards only, no dice or board."
+        }
       ],
       "evidence": "Bomb Busters had about 13,900 plays by March 2026 and a BGG geek rating of 7.4 (about 7,750 ratings); co-op articles stress games that avoid the quarterback problem through restricted talk (hexagamers 2026 co-op list, Sky Team recommended).",
-      "sources": ["https://www.boardgameoftheyear.org/2025/sites/Tabletop%20Express", "https://hexagamers.com/best-cooperative-board-games-2026/", "https://boardgamematcher.com/game/bomb-busters"],
+      "sources": [
+        "https://www.boardgameoftheyear.org/2025/sites/Tabletop%20Express",
+        "https://hexagamers.com/best-cooperative-board-games-2026/",
+        "https://boardgamematcher.com/game/bomb-busters"
+      ],
       "status": "in-pipeline",
       "game_slug": "silent-duo-deduction-coop",
       "added": "2026-10-03",
@@ -131,16 +227,37 @@
       "players": "1-4",
       "minutes": 25,
       "complexity": 2,
-      "mechanics": ["tableau building", "solo mode"],
+      "mechanics": [
+        "tableau building",
+        "solo mode"
+      ],
       "theme": "tiny orchard or greenhouse",
       "score": 21,
-      "rubric": { "demand": 4, "gap": 2, "originality": 2, "producibility": 4, "simulatability": 4, "owner_fit": 5 },
+      "rubric": {
+        "demand": 4,
+        "gap": 2,
+        "originality": 2,
+        "producibility": 4,
+        "simulatability": 4,
+        "owner_fit": 5
+      },
       "comparables": [
-        { "name": "Wingspan Pocket", "bgg_rating": null, "difference": "Original theme and a solo scoring ladder; no licence tie." },
-        { "name": "Sea Salt & Paper", "bgg_rating": null, "difference": "Engine rather than set collection." }
+        {
+          "name": "Wingspan Pocket",
+          "bgg_rating": null,
+          "difference": "Original theme and a solo scoring ladder; no licence tie."
+        },
+        {
+          "name": "Sea Salt & Paper",
+          "bgg_rating": null,
+          "difference": "Engine rather than set collection."
+        }
       ],
       "evidence": "Wingspan Pocket (July 2026, 1-5p, 25-35 min) shows a big publisher moving into this exact format, so demand is proven but the gap is closing. Solo is top-3 component for recent releases.",
-      "sources": ["https://dicetower.com/board-game/473508", "https://zatu.com/en-au/blogs/news/why-solo-board-gaming-is-booming-in-2026"],
+      "sources": [
+        "https://dicetower.com/board-game/473508",
+        "https://zatu.com/en-au/blogs/news/why-solo-board-gaming-is-booming-in-2026"
+      ],
       "status": "banked",
       "game_slug": null,
       "added": "2026-10-03",
@@ -155,16 +272,36 @@
       "players": "2-5",
       "minutes": 15,
       "complexity": 1.5,
-      "mechanics": ["simultaneous selection", "set collection"],
+      "mechanics": [
+        "simultaneous selection",
+        "set collection"
+      ],
       "theme": "street market stalls",
       "score": 23,
-      "rubric": { "demand": 3, "gap": 3, "originality": 3, "producibility": 5, "simulatability": 5, "owner_fit": 4 },
+      "rubric": {
+        "demand": 3,
+        "gap": 3,
+        "originality": 3,
+        "producibility": 5,
+        "simulatability": 5,
+        "owner_fit": 4
+      },
       "comparables": [
-        { "name": "Sushi Go", "bgg_rating": null, "difference": "No passing hands; a shared market is contested by simultaneous reveals." },
-        { "name": "7 Wonders", "bgg_rating": null, "difference": "Far shorter and lighter." }
+        {
+          "name": "Sushi Go",
+          "bgg_rating": null,
+          "difference": "No passing hands; a shared market is contested by simultaneous reveals."
+        },
+        {
+          "name": "7 Wonders",
+          "bgg_rating": null,
+          "difference": "Far shorter and lighter."
+        }
       ],
       "evidence": "Downtime is the most repeated complaint in review search results (Wyrmspan, Oath); simultaneous games like Sushi Go are named as the fix (gnomestew).",
-      "sources": ["https://gnomestew.com/a-look-at-downtime-in-rpgs-and-board-games/"],
+      "sources": [
+        "https://gnomestew.com/a-look-at-downtime-in-rpgs-and-board-games/"
+      ],
       "status": "banked",
       "game_slug": null,
       "added": "2026-10-03",
@@ -179,17 +316,43 @@
       "players": "2",
       "minutes": 15,
       "complexity": 2,
-      "mechanics": ["asymmetric decks", "tug-of-war track", "hand management"],
+      "mechanics": [
+        "asymmetric decks",
+        "tug-of-war track",
+        "hand management"
+      ],
       "theme": "rival court advisors",
       "score": 24,
-      "rubric": { "demand": 4, "gap": 3, "originality": 4, "producibility": 4, "simulatability": 4, "owner_fit": 5 },
+      "rubric": {
+        "demand": 4,
+        "gap": 3,
+        "originality": 4,
+        "producibility": 4,
+        "simulatability": 4,
+        "owner_fit": 5
+      },
       "comparables": [
-        { "name": "Twilight Struggle (card engine)", "bgg_rating": null, "difference": "15 minutes, 40 cards total, no board." },
-        { "name": "Star Realms", "bgg_rating": null, "difference": "No deck-building; fixed asymmetric decks." },
-        { "name": "Jaipur", "bgg_rating": null, "difference": "Direct interaction on a shared track, asymmetric sides." }
+        {
+          "name": "Twilight Struggle (card engine)",
+          "bgg_rating": null,
+          "difference": "15 minutes, 40 cards total, no board."
+        },
+        {
+          "name": "Star Realms",
+          "bgg_rating": null,
+          "difference": "No deck-building; fixed asymmetric decks."
+        },
+        {
+          "name": "Jaipur",
+          "bgg_rating": null,
+          "difference": "Direct interaction on a shared track, asymmetric sides."
+        }
       ],
       "evidence": "Two-player focus is an identified trend (search summary of 2026 trends); under-two-hour games draw the strongest reactions. Asymmetry raises originality but makes balance the main risk (KPI: seat gap 5 points or less).",
-      "sources": ["https://www.boardgamequest.com/the-best-board-games-of-2026-so-far/", "https://boardgamewire.com/?p=7030"],
+      "sources": [
+        "https://www.boardgamequest.com/the-best-board-games-of-2026-so-far/",
+        "https://boardgamewire.com/?p=7030"
+      ],
       "status": "in-pipeline",
       "game_slug": "asymmetric-duel-tug-of-war",
       "added": "2026-10-03",
@@ -204,17 +367,42 @@
       "players": "2-4",
       "minutes": 20,
       "complexity": 2.5,
-      "mechanics": ["area control", "modular board", "tile/card flipping"],
+      "mechanics": [
+        "area control",
+        "modular board",
+        "tile/card flipping"
+      ],
       "theme": "shifting islands",
       "score": 24,
-      "rubric": { "demand": 3, "gap": 3, "originality": 4, "producibility": 5, "simulatability": 4, "owner_fit": 5 },
+      "rubric": {
+        "demand": 3,
+        "gap": 3,
+        "originality": 4,
+        "producibility": 5,
+        "simulatability": 4,
+        "owner_fit": 5
+      },
       "comparables": [
-        { "name": "Love Letter", "bgg_rating": null, "difference": "Spatial control rather than hidden hand elimination." },
-        { "name": "Onitama", "bgg_rating": null, "difference": "Area scoring, more than two players." },
-        { "name": "Res Arcana", "bgg_rating": null, "difference": "Much lighter; board is the cards." }
+        {
+          "name": "Love Letter",
+          "bgg_rating": null,
+          "difference": "Spatial control rather than hidden hand elimination."
+        },
+        {
+          "name": "Onitama",
+          "bgg_rating": null,
+          "difference": "Area scoring, more than two players."
+        },
+        {
+          "name": "Res Arcana",
+          "bgg_rating": null,
+          "difference": "Much lighter; board is the cards."
+        }
       ],
       "evidence": "Modular-map designs are noted among emerging mechanics in the hot-list search summary. Evidence is thin and unverified because BGG could not be opened.",
-      "sources": ["https://csr.hdsupply.com/best-board-games-2026/"],
+      "sources": [
+        "https://csr.hdsupply.com/best-board-games-2026/"
+      ],
       "status": "in-pipeline",
       "game_slug": "grid-of-cards-area-control",
       "added": "2026-10-03",
@@ -229,16 +417,38 @@
       "players": "1-4",
       "minutes": 20,
       "complexity": 1.5,
-      "mechanics": ["flip-and-write", "polyomino drawing", "solo mode"],
+      "mechanics": [
+        "flip-and-write",
+        "polyomino drawing",
+        "solo mode"
+      ],
       "theme": "cosy village",
       "score": 23,
-      "rubric": { "demand": 3, "gap": 3, "originality": 3, "producibility": 5, "simulatability": 4, "owner_fit": 5 },
+      "rubric": {
+        "demand": 3,
+        "gap": 3,
+        "originality": 3,
+        "producibility": 5,
+        "simulatability": 4,
+        "owner_fit": 5
+      },
       "comparables": [
-        { "name": "Cozy Stickerville", "bgg_rating": null, "difference": "Pencil only, no stickers; cheaper to print." },
-        { "name": "Welcome To...", "bgg_rating": null, "difference": "Shorter and spatial, with a solo score ladder." }
+        {
+          "name": "Cozy Stickerville",
+          "bgg_rating": null,
+          "difference": "Pencil only, no stickers; cheaper to print."
+        },
+        {
+          "name": "Welcome To...",
+          "bgg_rating": null,
+          "difference": "Shorter and spatial, with a solo score ladder."
+        }
       ],
       "evidence": "Cosy and solo trends are both rising: Cozy Stickerville was named a top 2026 pick in one list; solo play is a top-3 component of 2020-2025 releases.",
-      "sources": ["https://thetabletopfamily.com/best-board-games-2026/", "https://boardgamewire.com/?p=7030"],
+      "sources": [
+        "https://thetabletopfamily.com/best-board-games-2026/",
+        "https://boardgamewire.com/?p=7030"
+      ],
       "status": "banked",
       "game_slug": null,
       "added": "2026-10-03",
@@ -253,16 +463,37 @@
       "players": "1-3",
       "minutes": 20,
       "complexity": 2.5,
-      "mechanics": ["campaign", "co-operative", "deck-building"],
+      "mechanics": [
+        "campaign",
+        "co-operative",
+        "deck-building"
+      ],
       "theme": "watching a haunted inn",
       "score": 20,
-      "rubric": { "demand": 3, "gap": 3, "originality": 3, "producibility": 3, "simulatability": 3, "owner_fit": 3 },
+      "rubric": {
+        "demand": 3,
+        "gap": 3,
+        "originality": 3,
+        "producibility": 3,
+        "simulatability": 3,
+        "owner_fit": 3
+      },
       "comparables": [
-        { "name": "Aeon's End", "bgg_rating": null, "difference": "Much smaller, with fixed sealed content." },
-        { "name": "Pandemic Legacy", "bgg_rating": null, "difference": "Eight short sessions rather than a year-long campaign." }
+        {
+          "name": "Aeon's End",
+          "bgg_rating": null,
+          "difference": "Much smaller, with fixed sealed content."
+        },
+        {
+          "name": "Pandemic Legacy",
+          "bgg_rating": null,
+          "difference": "Eight short sessions rather than a year-long campaign."
+        }
       ],
       "evidence": "Solo and short-session trends support it, but the sealed envelopes make bot testing and prototyping harder. No direct sales evidence found.",
-      "sources": ["https://opinionatedgamers.com/2026/09/15/solo-gaming-2026-the-first-eight-months/"],
+      "sources": [
+        "https://opinionatedgamers.com/2026/09/15/solo-gaming-2026-the-first-eight-months/"
+      ],
       "status": "banked",
       "game_slug": null,
       "added": "2026-10-03",
@@ -277,16 +508,37 @@
       "players": "2-5",
       "minutes": 15,
       "complexity": 1.2,
-      "mechanics": ["co-operative", "race", "hand management"],
+      "mechanics": [
+        "co-operative",
+        "race",
+        "hand management"
+      ],
       "theme": "hedgehogs crossing a road",
       "score": 21,
-      "rubric": { "demand": 3, "gap": 3, "originality": 2, "producibility": 4, "simulatability": 5, "owner_fit": 4 },
+      "rubric": {
+        "demand": 3,
+        "gap": 3,
+        "originality": 2,
+        "producibility": 4,
+        "simulatability": 5,
+        "owner_fit": 4
+      },
       "comparables": [
-        { "name": "Hoot Owl Hoot!", "bgg_rating": null, "difference": "Adds light hand-management for older kids and parents." },
-        { "name": "Forbidden Island", "bgg_rating": null, "difference": "15 minutes, 40 cards." }
+        {
+          "name": "Hoot Owl Hoot!",
+          "bgg_rating": null,
+          "difference": "Adds light hand-management for older kids and parents."
+        },
+        {
+          "name": "Forbidden Island",
+          "bgg_rating": null,
+          "difference": "15 minutes, 40 cards."
+        }
       ],
       "evidence": "Flip 7 reached ages 8+ and 2 million sales, showing family-friendly small-box appeal; no kids-specific evidence was found in this scan.",
-      "sources": ["https://theop.games/blogs/theop/flip7-how-did-we-get-here"],
+      "sources": [
+        "https://theop.games/blogs/theop/flip7-how-did-we-get-here"
+      ],
       "status": "banked",
       "game_slug": null,
       "added": "2026-10-03",
@@ -301,15 +553,30 @@
       "players": "2",
       "minutes": 30,
       "complexity": 3,
-      "mechanics": ["collectible cards"],
+      "mechanics": [
+        "collectible cards"
+      ],
       "theme": null,
       "score": 11,
-      "rubric": { "demand": 4, "gap": 1, "originality": 2, "producibility": 1, "simulatability": 2, "owner_fit": 1 },
+      "rubric": {
+        "demand": 4,
+        "gap": 1,
+        "originality": 2,
+        "producibility": 1,
+        "simulatability": 2,
+        "owner_fit": 1
+      },
       "comparables": [
-        { "name": "Cyberpunk TCG", "bgg_rating": null, "difference": "n/a" }
+        {
+          "name": "Cyberpunk TCG",
+          "bgg_rating": null,
+          "difference": "n/a"
+        }
       ],
       "evidence": "Cyberpunk TCG raised over $13M but with a licensed IP and a professional studio. A solo creator cannot print, balance or distribute boosters.",
-      "sources": ["https://respawn.outlookindia.com/gaming/gaming-news/cyberpunk-trading-card-game-shatters-kickstarter-records-in-hours"],
+      "sources": [
+        "https://respawn.outlookindia.com/gaming/gaming-news/cyberpunk-trading-card-game-shatters-kickstarter-records-in-hours"
+      ],
       "status": "rejected",
       "game_slug": null,
       "added": "2026-10-03",
@@ -324,18 +591,40 @@
       "players": "1-4",
       "minutes": 20,
       "complexity": 2,
-      "mechanics": ["engine building", "standard deck", "solo mode"],
+      "mechanics": [
+        "engine building",
+        "standard deck",
+        "solo mode"
+      ],
       "theme": "clockmaker's workshop",
       "score": 27,
-      "rubric": { "demand": 4, "gap": 4, "originality": 4, "producibility": 5, "simulatability": 5, "owner_fit": 5 },
+      "rubric": {
+        "demand": 4,
+        "gap": 4,
+        "originality": 4,
+        "producibility": 5,
+        "simulatability": 5,
+        "owner_fit": 5
+      },
       "comparables": [
-        { "name": "Wingspan Pocket", "bgg_rating": null, "difference": "Needs no custom cards at all; a printed rule sheet is the entire product, so setup is seconds." },
-        { "name": "Sprawlopolis", "bgg_rating": null, "difference": "Engine building with a standard deck, not a custom 18-card puzzle." }
+        {
+          "name": "Wingspan Pocket",
+          "bgg_rating": null,
+          "difference": "Needs no custom cards at all; a printed rule sheet is the entire product, so setup is seconds."
+        },
+        {
+          "name": "Sprawlopolis",
+          "bgg_rating": null,
+          "difference": "Engine building with a standard deck, not a custom 18-card puzzle."
+        }
       ],
       "evidence": "Setup time is named as board gaming's top barrier to getting games played, and small-box, solo-capable games are the rising format. Standard-deck engine builders are scarce next to the many standard-deck solitaire and shedding games. Source pages opened: none (search summaries only).",
-      "sources": ["https://paperwave.substack.com/p/setup-time-board-gamings-secret-killer", "https://zatu.com/en-au/blogs/news/why-solo-board-gaming-is-booming-in-2026"],
-      "status": "banked",
-      "game_slug": null,
+      "sources": [
+        "https://paperwave.substack.com/p/setup-time-board-gamings-secret-killer",
+        "https://zatu.com/en-au/blogs/news/why-solo-board-gaming-is-booming-in-2026"
+      ],
+      "status": "in-pipeline",
+      "game_slug": "standard-deck-engine-workshop",
       "added": "2026-10-03",
       "scan": "2026-10-03",
       "source": "scan",
@@ -348,18 +637,41 @@
       "players": "5-6",
       "minutes": 20,
       "complexity": 2,
-      "mechanics": ["simultaneous bidding", "auction", "set collection"],
+      "mechanics": [
+        "simultaneous bidding",
+        "auction",
+        "set collection"
+      ],
       "theme": "estate sale",
       "score": 25,
-      "rubric": { "demand": 3, "gap": 4, "originality": 3, "producibility": 5, "simulatability": 5, "owner_fit": 5 },
+      "rubric": {
+        "demand": 3,
+        "gap": 4,
+        "originality": 3,
+        "producibility": 5,
+        "simulatability": 5,
+        "owner_fit": 5
+      },
       "comparables": [
-        { "name": "Sushi Go", "bgg_rating": null, "difference": "Bidding with a burn-on-loss cost rather than drafting, built for 5-6 first." },
-        { "name": "Modern Art / For Sale", "bgg_rating": null, "difference": "Fully simultaneous, so no active auctioneer and no downtime." }
+        {
+          "name": "Sushi Go",
+          "bgg_rating": null,
+          "difference": "Bidding with a burn-on-loss cost rather than drafting, built for 5-6 first."
+        },
+        {
+          "name": "Modern Art / For Sale",
+          "bgg_rating": null,
+          "difference": "Fully simultaneous, so no active auctioneer and no downtime."
+        }
       ],
       "evidence": "Search summaries show few games are built for 5-6 players (most stop at 5) and a podcast episode in June 2026 praised six players as a sweet spot; downtime is a top complaint. Pages not opened (blocked or summaries only).",
-      "sources": ["https://games.rjuuc.edu.np/en/best-board-games-for-5-6-players.html", "https://www.castfox.net/podcast/board-gamers-anonymous-169326/episode/episode-579-the-sweet-spot-six-players-2135311", "https://gnomestew.com/a-look-at-downtime-in-rpgs-and-board-games/"],
-      "status": "banked",
-      "game_slug": null,
+      "sources": [
+        "https://games.rjuuc.edu.np/en/best-board-games-for-5-6-players.html",
+        "https://www.castfox.net/podcast/board-gamers-anonymous-169326/episode/episode-579-the-sweet-spot-six-players-2135311",
+        "https://gnomestew.com/a-look-at-downtime-in-rpgs-and-board-games/"
+      ],
+      "status": "in-pipeline",
+      "game_slug": "five-six-simultaneous-auction",
       "added": "2026-10-03",
       "scan": "2026-10-03",
       "source": "scan",
@@ -372,16 +684,38 @@
       "players": "6",
       "minutes": 20,
       "complexity": 2.5,
-      "mechanics": ["team play", "limited communication", "trick-taking"],
+      "mechanics": [
+        "team play",
+        "limited communication",
+        "trick-taking"
+      ],
       "theme": "rival smuggler crews",
       "score": 22,
-      "rubric": { "demand": 3, "gap": 4, "originality": 4, "producibility": 4, "simulatability": 3, "owner_fit": 4 },
+      "rubric": {
+        "demand": 3,
+        "gap": 4,
+        "originality": 4,
+        "producibility": 4,
+        "simulatability": 3,
+        "owner_fit": 4
+      },
       "comparables": [
-        { "name": "Codenames", "bgg_rating": null, "difference": "Signalling happens through card play, not clue words." },
-        { "name": "Bridge-style partnership games", "bgg_rating": null, "difference": "Teams of three, no bidding system to learn." }
+        {
+          "name": "Codenames",
+          "bgg_rating": null,
+          "difference": "Signalling happens through card play, not clue words."
+        },
+        {
+          "name": "Bridge-style partnership games",
+          "bgg_rating": null,
+          "difference": "Teams of three, no bidding system to learn."
+        }
       ],
       "evidence": "Six players is described as an underserved sweet spot (podcast episode June 2026; lists note few games above 5). Team limited-communication games are praised as quarterback-proof in co-op articles. Evidence is thin; no sales data.",
-      "sources": ["https://www.castfox.net/podcast/board-gamers-anonymous-169326/episode/episode-579-the-sweet-spot-six-players-2135311", "https://hexagamers.com/best-cooperative-board-games-2026/"],
+      "sources": [
+        "https://www.castfox.net/podcast/board-gamers-anonymous-169326/episode/episode-579-the-sweet-spot-six-players-2135311",
+        "https://hexagamers.com/best-cooperative-board-games-2026/"
+      ],
       "status": "banked",
       "game_slug": null,
       "added": "2026-10-03",
@@ -396,16 +730,38 @@
       "players": "2",
       "minutes": 10,
       "complexity": 1.5,
-      "mechanics": ["deduction", "asymmetric roles", "hidden information"],
+      "mechanics": [
+        "deduction",
+        "asymmetric roles",
+        "hidden information"
+      ],
       "theme": "embassy night",
       "score": 24,
-      "rubric": { "demand": 3, "gap": 3, "originality": 3, "producibility": 5, "simulatability": 5, "owner_fit": 5 },
+      "rubric": {
+        "demand": 3,
+        "gap": 3,
+        "originality": 3,
+        "producibility": 5,
+        "simulatability": 5,
+        "owner_fit": 5
+      },
       "comparables": [
-        { "name": "Love Letter", "bgg_rating": null, "difference": "Roles differ and goals are hidden both ways, not elimination by rank." },
-        { "name": "Hive Mind-style duels (generic)", "bgg_rating": null, "difference": "Pure deduction with no board." }
+        {
+          "name": "Love Letter",
+          "bgg_rating": null,
+          "difference": "Roles differ and goals are hidden both ways, not elimination by rank."
+        },
+        {
+          "name": "Hive Mind-style duels (generic)",
+          "bgg_rating": null,
+          "difference": "Pure deduction with no board."
+        }
       ],
       "evidence": "The 2026 trend summary cites a return of social deduction and two-player focus as a rising area, but hidden-role games mostly need 5 or more players, so a true 2-player hidden-role game is rarer. Pages not opened.",
-      "sources": ["https://hexagamers.com/best-social-deduction-board-games-2026/", "https://www.boardgamequest.com/the-best-board-games-of-2026-so-far/"],
+      "sources": [
+        "https://hexagamers.com/best-social-deduction-board-games-2026/",
+        "https://www.boardgamequest.com/the-best-board-games-of-2026-so-far/"
+      ],
       "status": "banked",
       "game_slug": null,
       "added": "2026-10-03",
@@ -420,18 +776,42 @@
       "players": "1",
       "minutes": 10,
       "complexity": 2,
-      "mechanics": ["solo mode", "roguelike", "card arrangement", "push-your-luck"],
+      "mechanics": [
+        "solo mode",
+        "roguelike",
+        "card arrangement",
+        "push-your-luck"
+      ],
       "theme": "cat adventurer with nine lives",
       "score": 25,
-      "rubric": { "demand": 4, "gap": 3, "originality": 3, "producibility": 5, "simulatability": 5, "owner_fit": 5 },
+      "rubric": {
+        "demand": 4,
+        "gap": 3,
+        "originality": 3,
+        "producibility": 5,
+        "simulatability": 5,
+        "owner_fit": 5
+      },
       "comparables": [
-        { "name": "Friday", "bgg_rating": null, "difference": "Nine cards only, with a persistent lives track across runs." },
-        { "name": "One Deck Dungeon", "bgg_rating": null, "difference": "Ten minutes and no dice." }
+        {
+          "name": "Friday",
+          "bgg_rating": null,
+          "difference": "Nine cards only, with a persistent lives track across runs."
+        },
+        {
+          "name": "One Deck Dungeon",
+          "bgg_rating": null,
+          "difference": "Ten minutes and no dice."
+        }
       ],
       "evidence": "Solo reviewers rate small solo card games highly (Friday 4.5, Onirim 4.5 on Reddit-based summaries); solo is a top-3 component of recent releases; Opinionated Gamers highlight small portable boxes. Pages blocked.",
-      "sources": ["https://gummysearch.com/tools/best-products/solo-games/", "https://opinionatedgamers.com/2026/09/15/solo-gaming-2026-the-first-eight-months/", "https://zatu.com/en-au/blogs/news/why-solo-board-gaming-is-booming-in-2026"],
-      "status": "banked",
-      "game_slug": null,
+      "sources": [
+        "https://gummysearch.com/tools/best-products/solo-games/",
+        "https://opinionatedgamers.com/2026/09/15/solo-gaming-2026-the-first-eight-months/",
+        "https://zatu.com/en-au/blogs/news/why-solo-board-gaming-is-booming-in-2026"
+      ],
+      "status": "in-pipeline",
+      "game_slug": "solo-nine-card-roguelike",
       "added": "2026-10-03",
       "scan": "2026-10-03",
       "source": "scan",
@@ -444,16 +824,38 @@
       "players": "1-4",
       "minutes": 30,
       "complexity": 2.5,
-      "mechanics": ["card path building", "shared token", "tableau"],
+      "mechanics": [
+        "card path building",
+        "shared token",
+        "tableau"
+      ],
       "theme": "pilgrim caravan",
       "score": 22,
-      "rubric": { "demand": 5, "gap": 2, "originality": 3, "producibility": 4, "simulatability": 4, "owner_fit": 4 },
+      "rubric": {
+        "demand": 5,
+        "gap": 2,
+        "originality": 3,
+        "producibility": 4,
+        "simulatability": 4,
+        "owner_fit": 4
+      },
       "comparables": [
-        { "name": "Everdell Journeys", "bgg_rating": null, "difference": "One shared token and one shared path instead of a path per player." },
-        { "name": "Wingspan Pocket", "bgg_rating": null, "difference": "Shared board state, so there is real interaction." }
+        {
+          "name": "Everdell Journeys",
+          "bgg_rating": null,
+          "difference": "One shared token and one shared path instead of a path per player."
+        },
+        {
+          "name": "Wingspan Pocket",
+          "bgg_rating": null,
+          "difference": "Shared board state, so there is real interaction."
+        }
       ],
       "evidence": "Everdell Journeys (card-path drafting, 1-6p, 30-60 min) reached about $446k from 3,593 backers against a $35k goal in September 2026, showing strong demand for card-path tableaus. That also means the format is being taken by an established brand.",
-      "sources": ["https://godisageek.com/2026/09/everdell-journeys-kickstarter/", "https://kicktraq.com/projects/tycoon/everdell-journeys/"],
+      "sources": [
+        "https://godisageek.com/2026/09/everdell-journeys-kickstarter/",
+        "https://kicktraq.com/projects/tycoon/everdell-journeys/"
+      ],
       "status": "banked",
       "game_slug": null,
       "added": "2026-10-03",
@@ -468,16 +870,39 @@
       "players": "4",
       "minutes": 25,
       "complexity": 2,
-      "mechanics": ["climbing", "shedding", "partnerships", "hidden teams"],
+      "mechanics": [
+        "climbing",
+        "shedding",
+        "partnerships",
+        "hidden teams"
+      ],
       "theme": "mountain hut relay",
       "score": 24,
-      "rubric": { "demand": 3, "gap": 3, "originality": 3, "producibility": 5, "simulatability": 5, "owner_fit": 5 },
+      "rubric": {
+        "demand": 3,
+        "gap": 3,
+        "originality": 3,
+        "producibility": 5,
+        "simulatability": 5,
+        "owner_fit": 5
+      },
       "comparables": [
-        { "name": "Tichu", "bgg_rating": null, "difference": "Partnerships are re-chosen each round and hidden, and the rules are shorter." },
-        { "name": "The Crew", "bgg_rating": 7.8, "difference": "Competitive, shedding not trick-taking." }
+        {
+          "name": "Tichu",
+          "bgg_rating": null,
+          "difference": "Partnerships are re-chosen each round and hidden, and the rules are shorter."
+        },
+        {
+          "name": "The Crew",
+          "bgg_rating": 7.8,
+          "difference": "Competitive, shedding not trick-taking."
+        }
       ],
       "evidence": "Trick-taking and card-play games with partners are strong in 2026 (The Crew, LOTR Fellowship, Gamefound trick-taking trio); climbing games are comparatively unrepresented in recent releases. Pages not opened.",
-      "sources": ["https://www.boardgamequest.com/crowdfunding-campaigns-of-the-week-8-10-26/", "https://boardgamematcher.com/game/skull-king"],
+      "sources": [
+        "https://www.boardgamequest.com/crowdfunding-campaigns-of-the-week-8-10-26/",
+        "https://boardgamematcher.com/game/skull-king"
+      ],
       "status": "banked",
       "game_slug": null,
       "added": "2026-10-03",
@@ -492,16 +917,38 @@
       "players": "5-6",
       "minutes": 15,
       "complexity": 2,
-      "mechanics": ["hidden traitor", "social deduction", "cooperative"],
+      "mechanics": [
+        "hidden traitor",
+        "social deduction",
+        "cooperative"
+      ],
       "theme": "night ferry crossing",
       "score": 22,
-      "rubric": { "demand": 4, "gap": 3, "originality": 3, "producibility": 5, "simulatability": 3, "owner_fit": 4 },
+      "rubric": {
+        "demand": 4,
+        "gap": 3,
+        "originality": 3,
+        "producibility": 5,
+        "simulatability": 3,
+        "owner_fit": 4
+      },
       "comparables": [
-        { "name": "Werewolf-style games", "bgg_rating": null, "difference": "No elimination and no narrator." },
-        { "name": "Battlestar Galactica (traitor)", "bgg_rating": null, "difference": "15 minutes and 30 cards." }
+        {
+          "name": "Werewolf-style games",
+          "bgg_rating": null,
+          "difference": "No elimination and no narrator."
+        },
+        {
+          "name": "Battlestar Galactica (traitor)",
+          "bgg_rating": null,
+          "difference": "15 minutes and 30 cards."
+        }
       ],
       "evidence": "Search summaries list the return of social deduction and gambling as a major 2026 trend, with traitor-in-a-co-op designs named. Complaints about elimination are common for the genre. Pages blocked.",
-      "sources": ["https://hexagamers.com/best-social-deduction-board-games-2026/", "https://csr.hdsupply.com/best-board-games-2026/"],
+      "sources": [
+        "https://hexagamers.com/best-social-deduction-board-games-2026/",
+        "https://csr.hdsupply.com/best-board-games-2026/"
+      ],
       "status": "banked",
       "game_slug": null,
       "added": "2026-10-03",
@@ -516,18 +963,40 @@
       "players": "2",
       "minutes": 15,
       "complexity": 2,
-      "mechanics": ["simultaneous planning", "hidden movement", "grid cards"],
+      "mechanics": [
+        "simultaneous planning",
+        "hidden movement",
+        "grid cards"
+      ],
       "theme": "submarines in a fog bank",
       "score": 25,
-      "rubric": { "demand": 3, "gap": 3, "originality": 4, "producibility": 5, "simulatability": 5, "owner_fit": 5 },
+      "rubric": {
+        "demand": 3,
+        "gap": 3,
+        "originality": 4,
+        "producibility": 5,
+        "simulatability": 5,
+        "owner_fit": 5
+      },
       "comparables": [
-        { "name": "Onitama", "bgg_rating": null, "difference": "Moves are planned in secret and resolved at once, not alternated." },
-        { "name": "Battleship", "bgg_rating": null, "difference": "Shared uncertain terrain with movement, not guessing." }
+        {
+          "name": "Onitama",
+          "bgg_rating": null,
+          "difference": "Moves are planned in secret and resolved at once, not alternated."
+        },
+        {
+          "name": "Battleship",
+          "bgg_rating": null,
+          "difference": "Shared uncertain terrain with movement, not guessing."
+        }
       ],
       "evidence": "Two-player focus is an identified 2026 trend, and downtime is the top complaint; simultaneous planning removes waiting. Search results show a wide 2-player card game catalogue but no hidden-movement grid game. Pages blocked.",
-      "sources": ["https://boardgameshop.nl/en/card-games/2-player-card/", "https://gnomestew.com/a-look-at-downtime-in-rpgs-and-board-games/"],
-      "status": "banked",
-      "game_slug": null,
+      "sources": [
+        "https://boardgameshop.nl/en/card-games/2-player-card/",
+        "https://gnomestew.com/a-look-at-downtime-in-rpgs-and-board-games/"
+      ],
+      "status": "in-pipeline",
+      "game_slug": "two-player-hidden-movement-grid",
       "added": "2026-10-03",
       "scan": "2026-10-03",
       "source": "scan",
@@ -540,16 +1009,38 @@
       "players": "1-4",
       "minutes": 20,
       "complexity": 1.5,
-      "mechanics": ["co-operative", "tableau building", "solo mode"],
+      "mechanics": [
+        "co-operative",
+        "tableau building",
+        "solo mode"
+      ],
       "theme": "night garden with lanterns",
       "score": 21,
-      "rubric": { "demand": 4, "gap": 3, "originality": 2, "producibility": 4, "simulatability": 4, "owner_fit": 4 },
+      "rubric": {
+        "demand": 4,
+        "gap": 3,
+        "originality": 2,
+        "producibility": 4,
+        "simulatability": 4,
+        "owner_fit": 4
+      },
       "comparables": [
-        { "name": "Cozy Stickerville", "bgg_rating": null, "difference": "Co-operative, card based and reusable, not sticker consumables." },
-        { "name": "Forbidden Island", "bgg_rating": null, "difference": "No threat of losing; calmer weather-driven pressure." }
+        {
+          "name": "Cozy Stickerville",
+          "bgg_rating": null,
+          "difference": "Co-operative, card based and reusable, not sticker consumables."
+        },
+        {
+          "name": "Forbidden Island",
+          "bgg_rating": null,
+          "difference": "No threat of losing; calmer weather-driven pressure."
+        }
       ],
       "evidence": "Cosy games are a stated 2026 trend (Cozy Stickerville top pick, low rules threshold); co-op and solo both rising. No evidence of a gap for card-based cosy co-op specifically.",
-      "sources": ["https://thetabletopfamily.com/best-board-games-2026/", "https://csr.hdsupply.com/best-board-games-2026/"],
+      "sources": [
+        "https://thetabletopfamily.com/best-board-games-2026/",
+        "https://csr.hdsupply.com/best-board-games-2026/"
+      ],
       "status": "banked",
       "game_slug": null,
       "added": "2026-10-03",
@@ -564,16 +1055,38 @@
       "players": "1-5",
       "minutes": 20,
       "complexity": 1.5,
-      "mechanics": ["memory", "drawing", "simultaneous play"],
+      "mechanics": [
+        "memory",
+        "drawing",
+        "simultaneous play"
+      ],
       "theme": "expedition mapmakers",
       "score": 24,
-      "rubric": { "demand": 3, "gap": 3, "originality": 4, "producibility": 5, "simulatability": 4, "owner_fit": 5 },
+      "rubric": {
+        "demand": 3,
+        "gap": 3,
+        "originality": 4,
+        "producibility": 5,
+        "simulatability": 4,
+        "owner_fit": 5
+      },
       "comparables": [
-        { "name": "Cartographers", "bgg_rating": null, "difference": "Pure recall and drawing; no polyomino placing or seasons." },
-        { "name": "Memoarrr!", "bgg_rating": null, "difference": "Drawing from memory, with plausibility scoring." }
+        {
+          "name": "Cartographers",
+          "bgg_rating": null,
+          "difference": "Pure recall and drawing; no polyomino placing or seasons."
+        },
+        {
+          "name": "Memoarrr!",
+          "bgg_rating": null,
+          "difference": "Drawing from memory, with plausibility scoring."
+        }
       ],
       "evidence": "Simultaneous, low-downtime and cosy/solo-friendly formats are rising; memory games are rarely served in the hobby space. Evidence is thin, from trend summaries, with no direct sales data.",
-      "sources": ["https://thetabletopfamily.com/best-board-games-2026/", "https://gnomestew.com/a-look-at-downtime-in-rpgs-and-board-games/"],
+      "sources": [
+        "https://thetabletopfamily.com/best-board-games-2026/",
+        "https://gnomestew.com/a-look-at-downtime-in-rpgs-and-board-games/"
+      ],
       "status": "banked",
       "game_slug": null,
       "added": "2026-10-03",
@@ -588,16 +1101,38 @@
       "players": "2",
       "minutes": 15,
       "complexity": 2,
-      "mechanics": ["trading", "negotiation", "set collection"],
+      "mechanics": [
+        "trading",
+        "negotiation",
+        "set collection"
+      ],
       "theme": "caravan market",
       "score": 24,
-      "rubric": { "demand": 3, "gap": 4, "originality": 4, "producibility": 5, "simulatability": 3, "owner_fit": 5 },
+      "rubric": {
+        "demand": 3,
+        "gap": 4,
+        "originality": 4,
+        "producibility": 5,
+        "simulatability": 3,
+        "owner_fit": 5
+      },
       "comparables": [
-        { "name": "Jaipur", "bgg_rating": null, "difference": "Direct bilateral trades with a mutual-benefit rule, rather than market selling." },
-        { "name": "Catan (trading phase)", "bgg_rating": null, "difference": "Negotiation is the whole game, in 15 minutes for 2." }
+        {
+          "name": "Jaipur",
+          "bgg_rating": null,
+          "difference": "Direct bilateral trades with a mutual-benefit rule, rather than market selling."
+        },
+        {
+          "name": "Catan (trading phase)",
+          "bgg_rating": null,
+          "difference": "Negotiation is the whole game, in 15 minutes for 2."
+        }
       ],
       "evidence": "Search summaries show 2-player trading games are few and mostly market or selling designs, while two-player focus is rising. No direct evidence beyond catalogue listings; pages blocked.",
-      "sources": ["https://boardgameshop.nl/en/card-games/2-player-card/", "https://www.boardgamequest.com/the-best-board-games-of-2026-so-far/"],
+      "sources": [
+        "https://boardgameshop.nl/en/card-games/2-player-card/",
+        "https://www.boardgamequest.com/the-best-board-games-of-2026-so-far/"
+      ],
       "status": "banked",
       "game_slug": null,
       "added": "2026-10-03",
@@ -612,15 +1147,33 @@
       "players": "1-4",
       "minutes": 120,
       "complexity": 4,
-      "mechanics": ["campaign", "miniatures", "dungeon crawl"],
+      "mechanics": [
+        "campaign",
+        "miniatures",
+        "dungeon crawl"
+      ],
       "theme": "fantasy dungeon",
       "score": 11,
-      "rubric": { "demand": 4, "gap": 1, "originality": 2, "producibility": 1, "simulatability": 2, "owner_fit": 1 },
+      "rubric": {
+        "demand": 4,
+        "gap": 1,
+        "originality": 2,
+        "producibility": 1,
+        "simulatability": 2,
+        "owner_fit": 1
+      },
       "comparables": [
-        { "name": "Gloomhaven", "bgg_rating": null, "difference": "n/a" }
+        {
+          "name": "Gloomhaven",
+          "bgg_rating": null,
+          "difference": "n/a"
+        }
       ],
       "evidence": "Crowdfunding giants fund miniatures-heavy projects, but long play times, setup time and table space are the recurring 2026 complaints, and a solo prototyper cannot produce plastic or hundreds of cards.",
-      "sources": ["https://paperwave.substack.com/p/setup-time-board-gamings-secret-killer", "https://boardgamewire.com/index.php/2025/02/06/our-ambition-for-2025-is-to-be-number-one-in-tabletop-gamefound-closes-gap-on-kickstarter-again-as-crowdfunding-giants-2024-dollars-raised-remains-flat/"],
+      "sources": [
+        "https://paperwave.substack.com/p/setup-time-board-gamings-secret-killer",
+        "https://boardgamewire.com/index.php/2025/02/06/our-ambition-for-2025-is-to-be-number-one-in-tabletop-gamefound-closes-gap-on-kickstarter-again-as-crowdfunding-giants-2024-dollars-raised-remains-flat/"
+      ],
       "status": "rejected",
       "game_slug": null,
       "added": "2026-10-03",
@@ -635,16 +1188,39 @@
       "players": "3-5",
       "minutes": 45,
       "complexity": 1.5,
-      "mechanics": ["questionnaire character creation", "role-playing", "GM-less storytelling"],
+      "mechanics": [
+        "questionnaire character creation",
+        "role-playing",
+        "GM-less storytelling"
+      ],
       "theme": "personality archetypes (original; no MBTI or 16Personalities material)",
       "score": 21,
-      "rubric": { "demand": 3, "gap": 4, "originality": 4, "producibility": 4, "simulatability": 2, "owner_fit": 4 },
+      "rubric": {
+        "demand": 3,
+        "gap": 4,
+        "originality": 4,
+        "producibility": 4,
+        "simulatability": 2,
+        "owner_fit": 4
+      },
       "comparables": [
-        { "name": "Ultima IV: Quest of the Avatar", "bgg_rating": null, "difference": "Video game; moral-dilemma questions give one forced class. This is tabletop and offers several avatars." },
-        { "name": "Fiasco", "bgg_rating": null, "difference": "GM-less improv from a pick-a-playbook menu; this starts from a questionnaire." }
+        {
+          "name": "Ultima IV: Quest of the Avatar",
+          "bgg_rating": null,
+          "difference": "Video game; moral-dilemma questions give one forced class. This is tabletop and offers several avatars."
+        },
+        {
+          "name": "Fiasco",
+          "bgg_rating": null,
+          "difference": "GM-less improv from a pick-a-playbook menu; this starts from a questionnaire."
+        }
       ],
       "evidence": "Owner idea. Questions-as-creation is proven by Ultima IV; playbook GM-less games are known to suit newcomers; the 16-type model is culturally popular though academically disputed. No tabletop game found that combines quiz-built roles with playing a type (weak evidence; search summaries only).",
-      "sources": ["https://en.wikipedia.org/wiki/Ultima_IV:_Quest_of_the_Avatar", "https://bardsandcards.com/products/the-broken-cask-society", "https://www.scienceabc.com/eyeopeners/is-the-myers-briggs-test-meaningful-or-is-it-just-pseudo-science"],
+      "sources": [
+        "https://en.wikipedia.org/wiki/Ultima_IV:_Quest_of_the_Avatar",
+        "https://bardsandcards.com/products/the-broken-cask-society",
+        "https://www.scienceabc.com/eyeopeners/is-the-myers-briggs-test-meaningful-or-is-it-just-pseudo-science"
+      ],
       "status": "in-pipeline",
       "game_slug": "archetypes",
       "added": "2026-10-04",

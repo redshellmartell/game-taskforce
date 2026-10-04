@@ -1,0 +1,26 @@
+{
+  "slug": "standard-deck-engine-workshop",
+  "title": "Fifty-Two Workshop",
+  "idea_id": "standard-deck-engine-workshop",
+  "players": "1-4",
+  "minutes": 20,
+  "complexity": 2,
+  "mechanics": ["engine building", "standard deck", "solo mode"],
+  "theme": "clockmaker's workshop",
+  "opportunity_score": 27,
+  "rubric": { "demand": 4, "gap": 4, "originality": 4, "producibility": 5, "simulatability": 5, "owner_fit": 5 },
+  "candidates": [
+    { "idea": "standard-deck-engine-workshop", "score": 27, "chosen": true },
+    { "idea": "three-player-trick-taker", "score": 26, "chosen": false },
+    { "idea": "solo-nine-card-roguelike", "score": 25, "chosen": false }
+  ],
+  "comparables": [
+    { "name": "Wingspan Pocket", "bgg_rating": null, "crowdfunding": null, "difference": "Needs no custom cards; a printed rule sheet is the whole product, so setup takes seconds." },
+    { "name": "Sprawlopolis", "bgg_rating": null, "crowdfunding": null, "difference": "Engine building with a standard deck, not a custom 18-card puzzle." }
+  ],
+  "sources": [
+    "https://paperwave.substack.com/p/setup-time-board-gamings-secret-killer",
+    "https://zatu.com/en-au/blogs/news/why-solo-board-gaming-is-booming-in-2026",
+    "https://dicetower.com/board-game/473508"
+  ]
+}

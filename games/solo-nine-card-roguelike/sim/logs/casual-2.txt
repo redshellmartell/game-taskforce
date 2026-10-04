@@ -1,0 +1,3 @@
+Nine Lives Dungeon, solo, casual bot, seed 100000 (lost run). Solo game: one table per persona.
+T1 Fight Owl (danger 6, claws 2, wounds 4, ready 0)
+T1 DEAD, killed by Owl

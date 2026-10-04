@@ -1,0 +1,26 @@
+{
+  "slug": "two-player-hidden-movement-grid",
+  "title": "Dead Reckoning",
+  "idea_id": "two-player-hidden-movement-grid",
+  "players": "2",
+  "minutes": 15,
+  "complexity": 2,
+  "mechanics": ["simultaneous planning", "hidden movement", "grid cards"],
+  "theme": "submarines in a fog bank",
+  "opportunity_score": 25,
+  "rubric": { "demand": 3, "gap": 3, "originality": 4, "producibility": 5, "simulatability": 5, "owner_fit": 5 },
+  "candidates": [
+    { "idea": "two-player-hidden-movement-grid", "score": 25, "chosen": true },
+    { "idea": "two-player-hidden-role-duel", "score": 24, "chosen": false },
+    { "idea": "two-player-haggle-duel", "score": 24, "chosen": false }
+  ],
+  "comparables": [
+    { "name": "Onitama", "bgg_rating": null, "crowdfunding": null, "difference": "Moves are planned in secret and resolved at once, not alternated." },
+    { "name": "Battleship", "bgg_rating": null, "crowdfunding": null, "difference": "Shared uncertain terrain with movement and collisions, not pure guessing." }
+  ],
+  "sources": [
+    "https://boardgameshop.nl/en/card-games/2-player-card/",
+    "https://gnomestew.com/a-look-at-downtime-in-rpgs-and-board-games/",
+    "https://www.boardgamequest.com/the-best-board-games-of-2026-so-far/"
+  ]
+}

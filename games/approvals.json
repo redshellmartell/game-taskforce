@@ -274,7 +274,7 @@
       "gate": "revision",
       "game": "asymmetric-duel-tug-of-war",
       "time": "2026-10-04T10:58:43Z",
-      "status": "pending",
+      "status": "approved",
       "summary": "Playtest NEEDS-FIXES: lead changes 1.15 (target 2+), up to 30% of games decided by a centre tiebreak, and 'hand the opponent the lead' is a solved choice. Critic REVISE-MAJOR, average 3.33 (needs 3.5). Seat gap 2.2 and skill gap +73 already pass.",
       "why_needed": "The balance and skill KPIs pass, so the remaining problems are rules-level and well diagnosed. Without a fix the game cannot pass at pitch (lead changes, a dominant choice, 8 rule ambiguities).",
       "expected_outcome": "Designer changes: (1) make the lead choice a real decision (a leader bonus or a cost for giving up the lead) to remove the dominant line; (2) stronger trailer draws or a shorter track to lift lead changes to 2+ and cut centre-tiebreak endings under 10%; (3) fix the 8 listed ambiguities. Then re-measure: seat gap stays 5 or less, lead changes 2+, critic average 3.5+.",
@@ -294,8 +294,8 @@
           "label": "Kill it and record why"
         }
       ],
-      "decision": null,
-      "decided_at": null,
+      "decision": "approve",
+      "decided_at": "2026-10-04T18:25:36.350Z",
       "owner_notes": null
     },
     {
@@ -424,7 +424,7 @@
       "gate": "revision",
       "game": "grid-of-cards-area-control",
       "time": "2026-10-04T11:25:36Z",
-      "status": "pending",
+      "status": "approved",
       "summary": "Nine Fields: playtest NEEDS-FIXES only at 2 players (lead changes 1.77, early leader wins 68.7%, 58% of games end on the stall limit). At 3-4 players every KPI passes. Critic REVISE-MINOR, average 3.67 (originality 4, market fit 4, production 5).",
       "why_needed": "Nobody wants to trigger a flood, so 2-player games stall; the playtest must pass before a pitch, and this is a small, testable fix.",
       "expected_outcome": "Designer: a 'storm' that floods the fullest island on a stall instead of ending the game, a neutral final tiebreak, six rules gaps closed with a worked example, and a shorter 3-4 player game if it stays near 22 minutes. Targets: 2-player lead changes 2+, early leader 65% or less, critic average 3.5 or more.",
@@ -448,8 +448,8 @@
           "label": "Kill it and record why"
         }
       ],
-      "decision": null,
-      "decided_at": null,
+      "decision": "approve",
+      "decided_at": "2026-10-04T18:25:09.734Z",
       "owner_notes": null
     },
     {
@@ -490,7 +490,7 @@
       "gate": "revision",
       "game": "three-player-trick-taker",
       "time": "2026-10-04T12:14:19Z",
-      "status": "pending",
+      "status": "declined",
       "summary": "Revision 2 done: playtest NEEDS-FIXES (minor: lead changes 1.61 vs target 2; everything else passes: seat gap 1.7, runaway 50.3%, contract success 50.0%, strategic ties greedy 42.0 vs 41.8, Bar Raiser veto not active). Critic REVISE-MINOR, average 3.67 (above the 3.5 pitch bar; revision 1 was 3.5 REVISE-MAJOR).",
       "why_needed": "The studio rule is to pitch only games that passed the playtest and got PASS or REVISE-MINOR. The critic clears the second part; the playtest has one minor miss, so pitching is your decision. The playtester and critic both recommend pitching with the risks stated and a human playtest, not another bot-driven loop (three fallback variants did not reach 2 lead changes).",
       "expected_outcome": "If you choose pitch: pitch.md with the risks listed (lead changes 1.61 vs 2; strategic only ties greedy so skill depth is unproven with humans; family 2.86 and casual 3.14 are weak fits, so this is a niche competitor/strategist game; rules are heavy; fun and market fit rest on predicted scores; no human playtest; originality is medium-similar to Oh Hell and Wizard), after four small doc fixes from the critic.",
@@ -514,8 +514,8 @@
           "label": "Kill it and record why"
         }
       ],
-      "decision": null,
-      "decided_at": null,
+      "decision": "pitch",
+      "decided_at": "2026-10-04T18:24:52.216Z",
       "owner_notes": null
     },
     {
@@ -570,6 +570,206 @@
         {
           "key": "pitch",
           "label": "Pitch as is, listing bait and runaway leader as risks (not recommended)"
+        },
+        {
+          "key": "park",
+          "label": "Park the game; no further work for now"
+        },
+        {
+          "key": "kill",
+          "label": "Kill it and record why"
+        }
+      ],
+      "decision": null,
+      "decided_at": null,
+      "owner_notes": null
+    },
+    {
+      "id": "standard-deck-engine-workshop-greenlight",
+      "gate": "greenlight",
+      "game": "standard-deck-engine-workshop",
+      "time": "2026-10-04T17:27:45Z",
+      "status": "approved",
+      "summary": "Fifty-Two Workshop: banked idea scoring 25+/30.",
+      "why_needed": "Owner asked to push every banked idea scoring 25 or more through the pipeline.",
+      "expected_outcome": "Brief, design, playtest and critique.",
+      "usage_estimate": "L",
+      "recommendation": "approve",
+      "options": [
+        {
+          "key": "approve",
+          "label": "Greenlight"
+        }
+      ],
+      "decision": "approve",
+      "decided_at": "2026-10-04T17:27:45Z",
+      "owner_notes": "Owner said in chat: run the taskforce and push through all banked games at least 25/30."
+    },
+    {
+      "id": "five-six-simultaneous-auction-greenlight",
+      "gate": "greenlight",
+      "game": "five-six-simultaneous-auction",
+      "time": "2026-10-04T17:27:45Z",
+      "status": "approved",
+      "summary": "Last Bid Standing: banked idea scoring 25+/30.",
+      "why_needed": "Owner asked to push every banked idea scoring 25 or more through the pipeline.",
+      "expected_outcome": "Brief, design, playtest and critique.",
+      "usage_estimate": "L",
+      "recommendation": "approve",
+      "options": [
+        {
+          "key": "approve",
+          "label": "Greenlight"
+        }
+      ],
+      "decision": "approve",
+      "decided_at": "2026-10-04T17:27:45Z",
+      "owner_notes": "Owner said in chat: run the taskforce and push through all banked games at least 25/30."
+    },
+    {
+      "id": "solo-nine-card-roguelike-greenlight",
+      "gate": "greenlight",
+      "game": "solo-nine-card-roguelike",
+      "time": "2026-10-04T17:27:45Z",
+      "status": "approved",
+      "summary": "Nine Lives Dungeon: banked idea scoring 25+/30.",
+      "why_needed": "Owner asked to push every banked idea scoring 25 or more through the pipeline.",
+      "expected_outcome": "Brief, design, playtest and critique.",
+      "usage_estimate": "L",
+      "recommendation": "approve",
+      "options": [
+        {
+          "key": "approve",
+          "label": "Greenlight"
+        }
+      ],
+      "decision": "approve",
+      "decided_at": "2026-10-04T17:27:45Z",
+      "owner_notes": "Owner said in chat: run the taskforce and push through all banked games at least 25/30."
+    },
+    {
+      "id": "two-player-hidden-movement-grid-greenlight",
+      "gate": "greenlight",
+      "game": "two-player-hidden-movement-grid",
+      "time": "2026-10-04T17:27:45Z",
+      "status": "approved",
+      "summary": "Dead Reckoning: banked idea scoring 25+/30.",
+      "why_needed": "Owner asked to push every banked idea scoring 25 or more through the pipeline.",
+      "expected_outcome": "Brief, design, playtest and critique.",
+      "usage_estimate": "L",
+      "recommendation": "approve",
+      "options": [
+        {
+          "key": "approve",
+          "label": "Greenlight"
+        }
+      ],
+      "decision": "approve",
+      "decided_at": "2026-10-04T17:27:45Z",
+      "owner_notes": "Owner said in chat: run the taskforce and push through all banked games at least 25/30."
+    },
+    {
+      "id": "standard-deck-engine-workshop-revision-1",
+      "gate": "revision",
+      "game": "standard-deck-engine-workshop",
+      "time": "2026-10-04T17:57:20Z",
+      "status": "pending",
+      "summary": "Playtest NEEDS-FIXES: solo is trivial (98.6% win), the engine suits don't pay (Spades lose, Hearts win; strategic beats greedy by only 3 points), a Gather/discard loop can stall, 11 rule ambiguities. Critic REVISE-MAJOR, average 3.17. Multiplayer seat balance, runaway leader and skill gap already pass.",
+      "why_needed": "The pitch is 'an engine-builder from a plain deck', and the engine currently doesn't beat simply building Hearts. Solo is a headline feature and is unplayable at this win line. Rules are heavier than the one-page promise.",
+      "expected_outcome": "Test engine buffs one at a time (Spade discount 4, Spade worth 2 points, or a 0-cost Club pull; target Spade/Club win correlation at or above 0, strategic vs greedy 60%+). Solo: win line about 31, Rival takes 2 cards, target strategic wins 45-55% and random under 15%. Add a Bench-trim stall breaker (zero turn-cap hits). Resolve all 11 ambiguities and consider dropping Apprentice. Lead changes 2.5+. Critic says one revision only; kill it if the engine still doesn't beat Heart play.",
+      "usage_estimate": "M",
+      "recommendation": "approve",
+      "options": [
+        {
+          "key": "approve",
+          "label": "Run revision 1 (designer, playtester, critic)"
+        },
+        {
+          "key": "park",
+          "label": "Park the game; no further work for now"
+        },
+        {
+          "key": "kill",
+          "label": "Kill it and record why"
+        }
+      ],
+      "decision": null,
+      "decided_at": null,
+      "owner_notes": null
+    },
+    {
+      "id": "five-six-simultaneous-auction-revision-1",
+      "gate": "revision",
+      "game": "five-six-simultaneous-auction",
+      "time": "2026-10-04T18:35:58Z",
+      "status": "pending",
+      "summary": "Playtest NEEDS-FIXES: skill barely matters (strategic beats random by 17.5; only 0.8-2.3 at mixed tables; the casual bot beats the planner), Hype is 55-64% of points, players have no card to bid in 22% of rounds, 5-8 of 28 lots go unsold, 7 ambiguities. Panel fun 3.04. Critic REVISE-MAJOR, average 3.0 (fun 2, balance 2).",
+      "why_needed": "The Hype-and-crash hook is distinctive and cheap, but the game currently rewards luck and passivity over skill. Seat balance and lead changes pass.",
+      "expected_outcome": "One revision combining: income 2 per pass plus unsold-lot carry-over (empty-hand rounds 13% or less, unsold lots 5 or fewer); lot values 2-5 (Hype share 45-50%); bids 1-12 plus an information element (skill gap 20+ and mixed-table gap 5+); a single deterministic crash (last-round flips 20% or less); fix all 7 ambiguities. Critic: kill the game if the mixed-table skill gap stays under about 5 points.",
+      "usage_estimate": "M",
+      "recommendation": "alternative",
+      "options": [
+        {
+          "key": "approve",
+          "label": "Run revision 1 (designer, playtester, critic); kill if mixed-table skill gap stays under 5"
+        },
+        {
+          "key": "park",
+          "label": "Park the game; no further work for now (recommended)"
+        },
+        {
+          "key": "kill",
+          "label": "Kill it and record why"
+        }
+      ],
+      "decision": null,
+      "decided_at": null,
+      "owner_notes": null
+    },
+    {
+      "id": "solo-nine-card-roguelike-revision-1",
+      "gate": "revision",
+      "game": "solo-nine-card-roguelike",
+      "time": "2026-10-04T19:37:03Z",
+      "status": "pending",
+      "summary": "Playtest NEEDS-FIXES: the designer's outline bot wins 19% and a lookahead bot 81% (target 40-60%), Claws is a knife edge, Ghost lift ranges +0 to +44, Moth/Spider/Carry tricks almost unused, 3-5 rule ambiguities. Critic REVISE-MINOR, average 3.33 (bar 3.5). The critic reads the win-rate spread as mostly a bot problem, not a design one.",
+      "why_needed": "The core idea (nine fixed cards, hidden order, deaths turn killers into Ghosts) works and the diagnoses are clear and cheap to test. Three tricks are near-dead cards and Ghosts are uneven. 'Nine Lives: Rogue-and-Write' is an existing dice game with the same title.",
+      "expected_outcome": "One targeted pass: rework Ghosts to +5 to +25 each; revive Glow, Silk and Carry (zero dead cards) and test Carry with a bot that models it; close all ambiguities; cut one rule (Thief is the candidate); rename the game; fix the reference bot and re-measure all 362,880 layouts. Keep base Claws 2. Critic and playtester both advise human solo sessions after this pass.",
+      "usage_estimate": "M",
+      "recommendation": "approve",
+      "options": [
+        {
+          "key": "approve",
+          "label": "Run revision 1 (designer, playtester, critic)"
+        },
+        {
+          "key": "park",
+          "label": "Park the game; no further work for now"
+        },
+        {
+          "key": "kill",
+          "label": "Kill it and record why"
+        }
+      ],
+      "decision": null,
+      "decided_at": null,
+      "owner_notes": null
+    },
+    {
+      "id": "two-player-hidden-movement-grid-revision-1",
+      "gate": "revision",
+      "game": "two-player-hidden-movement-grid",
+      "time": "2026-10-04T20:02:56Z",
+      "status": "pending",
+      "summary": "Playtest NEEDS-FIXES: runaway leader 0.79 (target 0.65), lead changes 1.5 (target 2), early fog-flip luck decides most games, Sonar ping is a dead card, about 75% of games hit the round-10 cap, 6 ambiguities. Seat gap 1.4 and skill gap 75 pass. Critic REVISE-MAJOR, average 3.33. Closest game: Creep in Silent (2021), medium similarity.",
+      "why_needed": "The core loop is healthy and cheap, but early luck decides games, and reading the opponent's cooling row is worth only about 5 points, so the promised outguessing isn't there.",
+      "expected_outcome": "Cut early luck (fewer Mines, more 1s and 2s, or setup peeks; runaway toward 0.65, lead changes 2+); add a comeback beyond torpedoes (torpedo spam still 50% or less); make Sonar matter (never-ping win rate 45% or less); stop leaders coasting at the round-10 cap (cap 12 or an early-end rule, 12-18 min); make cooling-row reading worth 10+ points; close all 6 ambiguities, trimming sub-rules such as the Reef bounce clash. Critic: park the game if runaway stays above 0.70 after this revision.",
+      "usage_estimate": "M",
+      "recommendation": "approve",
+      "options": [
+        {
+          "key": "approve",
+          "label": "Run revision 1 (designer, playtester, critic); park if runaway stays above 0.70"
         },
         {
           "key": "park",
