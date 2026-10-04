@@ -1,0 +1,17 @@
+{
+  "verdict": "REVISE-MINOR",
+  "revision": 0,
+  "scores": { "originality": 4, "clarity": 3, "fun": 3, "balance": 3, "market_fit": 4, "production": 5 },
+  "average": 3.67,
+  "strength": "The flood-trigger decision: one simple action per turn, with a real dilemma over which end of the line falls and a quarter-turn axis swap, all visible and tactical. It is deep at 3-4 players (lead changes 3.4-3.7).",
+  "weakness": "The stall limit. When nobody wants to trigger a flood the game stalls into Sail-shuffling and ends early (58% of 2p games). This causes the 2p failures on lead changes (1.77) and runaway leader (68.7%), and was seen at the table in the narrated 3p game.",
+  "closest_existing_game": { "name": "Contactics", "similarity": "low" },
+  "required_changes": [
+    "Replace the stall-limit ending with a storm that floods the fullest island (next player picks direction): target 2p stall-end rate toward 0%, 2p lead changes at least 2, 2p runaway at most 65%, and lower 2p length sd",
+    "Test a neutral last tiebreak (most islands, then fewest pawns left on the board) in place of 'later seat wins': keep seat gap at or below 5 at all counts",
+    "Resolve the six rules gaps (flooded island that falls off is not turned, stall counter timing, final-tide reading-order scoring, equal-pile tie at final tide, full vs floods definition) and add a worked flood example: target zero ambiguities and a higher clarity score",
+    "If 3-4p stays near 22 minutes after the storm change, deal 18 islands or use a 2 x players stall limit: target 3-4p length at or under 22 minutes"
+  ],
+  "revision_worth_it": true,
+  "revision_reason": "The problem is clearly diagnosed (stall endings), the fix is small and testable, and 3-4p already pass every KPI; if the revision is declined, pitch it as a 3-4 player game only. Fun and market fit rest on bot-predicted panel scores only, since no persona reviews were run."
+}

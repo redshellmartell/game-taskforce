@@ -418,6 +418,39 @@
       "decision": null,
       "decided_at": null,
       "owner_notes": null
+    },
+    {
+      "id": "grid-of-cards-area-control-revision-1",
+      "gate": "revision",
+      "game": "grid-of-cards-area-control",
+      "time": "2026-10-04T11:25:36Z",
+      "status": "pending",
+      "summary": "Nine Fields: playtest NEEDS-FIXES only at 2 players (lead changes 1.77, early leader wins 68.7%, 58% of games end on the stall limit). At 3-4 players every KPI passes. Critic REVISE-MINOR, average 3.67 (originality 4, market fit 4, production 5).",
+      "why_needed": "Nobody wants to trigger a flood, so 2-player games stall; the playtest must pass before a pitch, and this is a small, testable fix.",
+      "expected_outcome": "Designer: a 'storm' that floods the fullest island on a stall instead of ending the game, a neutral final tiebreak, six rules gaps closed with a worked example, and a shorter 3-4 player game if it stays near 22 minutes. Targets: 2-player lead changes 2+, early leader 65% or less, critic average 3.5 or more.",
+      "usage_estimate": "M",
+      "recommendation": "approve",
+      "options": [
+        {
+          "key": "approve",
+          "label": "Run revision 1 (designer, playtester, critic)"
+        },
+        {
+          "key": "pitch",
+          "label": "Pitch as a 3-4 player game only, with the 2-player issue listed (playtest not fully passed)"
+        },
+        {
+          "key": "park",
+          "label": "Park the game; no further work for now"
+        },
+        {
+          "key": "kill",
+          "label": "Kill it and record why"
+        }
+      ],
+      "decision": null,
+      "decided_at": null,
+      "owner_notes": null
     }
   ]
 }

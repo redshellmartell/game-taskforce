@@ -223,7 +223,7 @@
     {
       "slug": "grid-of-cards-area-control",
       "title": "Nine Fields",
-      "stage": "design",
+      "stage": "critique",
       "revision": 0,
       "history": [
         {
@@ -243,11 +243,23 @@
           "time": "2026-10-04T11:01:19Z",
           "verdict": null,
           "note": "greenlit by owner; design started"
+        },
+        {
+          "stage": "playtest",
+          "time": "2026-10-04T11:25:36Z",
+          "verdict": "NEEDS-FIXES",
+          "note": "fails 2-player lead changes and runaway; 3-4 players pass"
+        },
+        {
+          "stage": "critique",
+          "time": "2026-10-04T11:25:36Z",
+          "verdict": "REVISE-MINOR",
+          "note": "critic REVISE-MINOR avg 3.67; waiting for approval: revision"
         }
       ],
       "verdicts": {
-        "playtest": null,
-        "critic": null
+        "playtest": "NEEDS-FIXES",
+        "critic": "REVISE-MINOR"
       },
       "kill_reason": null
     },
