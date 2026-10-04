@@ -123,7 +123,7 @@ def write_playtest(res):
     for k, (rate, corr) in sorted(d3["cards"].items()):
         cards.append({"name": "island " + k, "played_rate": round(rate / 21.4, 3), "win_correlation": round(corr, 3), "flag": None})
     gap = lambda d, n: round(max(abs(x - 1.0 / n) for x in d["seat_strategic"]) * 100, 1)
-    pt = {"verdict": "NEEDS-FIXES", "revision": REV, "games_simulated": N_GAMES * 3 * 3 + N_GAMES * 3 * 3,
+    pt = {"verdict": "NEEDS-FIXES", "revision": REV, "games_simulated": N_GAMES * 14,
           "main_player_count": 3, "note": "brief gives 2-4 players with no single main count; headline numbers are 3p, per-count numbers in by_player_count",
           "seat_win_rates": {str(i + 1): round(x, 3) for i, x in enumerate(d3["seat_strategic"])}, "seat_balance_gap": gap(d3, 3),
           "bot_win_rates": {k: round(v, 3) for k, v in d3["mixed"].items()}, "skill_expression": round(d3["skill"], 1),
