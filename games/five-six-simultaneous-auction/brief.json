@@ -1,0 +1,27 @@
+{
+  "slug": "five-six-simultaneous-auction",
+  "title": "Last Bid Standing",
+  "idea_id": "five-six-simultaneous-auction",
+  "players": "5-6",
+  "minutes": 20,
+  "complexity": 2,
+  "mechanics": ["simultaneous bidding", "auction", "set collection"],
+  "theme": "estate sale",
+  "opportunity_score": 25,
+  "rubric": { "demand": 3, "gap": 4, "originality": 3, "producibility": 5, "simulatability": 5, "owner_fit": 5 },
+  "candidates": [
+    { "idea": "five-six-simultaneous-auction", "score": 25, "chosen": true },
+    { "idea": "two-player-hidden-movement-grid", "score": 25, "chosen": false },
+    { "idea": "simultaneous-reveal-micro-draft", "score": 23, "chosen": false }
+  ],
+  "comparables": [
+    { "name": "Sushi Go", "bgg_rating": null, "crowdfunding": null, "difference": "Bidding with a burn-on-loss cost rather than drafting, built for 5-6 first." },
+    { "name": "For Sale", "bgg_rating": null, "crowdfunding": null, "difference": "Fully simultaneous, so no active auctioneer and no downtime." },
+    { "name": "Modern Art", "bgg_rating": null, "crowdfunding": null, "difference": "Far shorter and simultaneous rather than auctioneer-driven." }
+  ],
+  "sources": [
+    "https://games.rjuuc.edu.np/en/best-board-games-for-5-6-players.html",
+    "https://www.castfox.net/podcast/board-gamers-anonymous-169326/episode/episode-579-the-sweet-spot-six-players-2135311",
+    "https://gnomestew.com/a-look-at-downtime-in-rpgs-and-board-games/"
+  ]
+}

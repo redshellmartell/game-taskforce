@@ -403,7 +403,7 @@
     {
       "slug": "five-six-simultaneous-auction",
       "title": "Last Bid Standing",
-      "stage": "brief",
+      "stage": "design",
       "revision": 0,
       "history": [
         {
@@ -411,6 +411,12 @@
           "time": "2026-10-04T17:27:45Z",
           "verdict": null,
           "note": "owner greenlit all banked ideas 25+/30; brief from the idea bank next"
+        },
+        {
+          "stage": "design",
+          "time": "2026-10-04T17:57:55Z",
+          "verdict": null,
+          "note": "Brief written, 25/30; design starts"
         }
       ],
       "verdicts": {

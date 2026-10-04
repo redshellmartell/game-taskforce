@@ -1,24 +1,24 @@
 {
-  "checked_at": "2026-10-04T17:28:03Z",
-  "status": "warn",
+  "checked_at": "2026-10-04T17:57:55Z",
+  "status": "stop",
   "stop_at_percent": 70,
   "warn_at_percent": 50,
   "windows": [
     {
       "name": "5h",
       "hours": 5,
-      "used_tokens": 6873144,
+      "used_tokens": 7762945,
       "token_budget": 10185725,
-      "percent": 67.5,
-      "status": "warn"
+      "percent": 76.2,
+      "status": "stop"
     },
     {
       "name": "7d",
       "hours": 168,
-      "used_tokens": 34892388,
+      "used_tokens": 35782189,
       "token_budget": 71300077,
-      "percent": 48.9,
-      "status": "ok"
+      "percent": 50.2,
+      "status": "warn"
     }
   ]
 }

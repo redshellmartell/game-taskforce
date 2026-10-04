@@ -1,2 +1,4 @@
 {"time": "2026-10-04T17:27:45Z", "agent": "director", "game": "five-six-simultaneous-auction", "event": "start", "message": "Owner greenlit; starting pipeline from the idea bank"}
 {"time": "2026-10-04T17:57:20Z", "agent": "market-researcher", "game": "five-six-simultaneous-auction", "event": "start", "message": "Writing brief from the idea bank"}
+{"time": "2026-10-04T17:57:55Z", "agent": "market-researcher", "game": "five-six-simultaneous-auction", "event": "done", "message": "Brief written, 25/30; design starts"}
+{"time": "2026-10-04T17:57:55Z", "agent": "game-designer", "game": "five-six-simultaneous-auction", "event": "start", "message": "Writing rules.md from the brief"}
