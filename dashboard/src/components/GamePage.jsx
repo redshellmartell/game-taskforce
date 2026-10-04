@@ -10,7 +10,7 @@ import { STAGE_LABEL, verdictClass } from './ProjectsView.jsx';
 import { ago, clock } from '../util.js';
 import { CriticRadar, colorOf } from './charts.jsx';
 
-const DOCS = [['brief.md', 'Brief'], ['rules.md', 'Rules'], ['playtest-report.md', 'Playtest report'], ['panel-report.md', 'Panel report'], ['critique.md', 'Critique'], ['pitch.md', 'Pitch']];
+const DOCS = [['brief.md', 'Brief'], ['rules.md', 'Rules'], ['playtest-report.md', 'Playtest report'], ['panel-report.md', 'Panel report'], ['research-update.md', 'Research update'], ['critique.md', 'Critique'], ['pitch.md', 'Pitch']];
 
 // What the owner can do next, as a prompt to paste into Claude Code.
 function nextStep(g) {

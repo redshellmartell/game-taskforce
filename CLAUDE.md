@@ -63,6 +63,7 @@ Some steps use a lot of the owner's usage or could loop without adding value. Be
 | `panel-research` | Before panel research or calibration refreshes (task 005 onwards) | Heavy, occasional research |
 | `panel-reviews` | Before persona AI reviews or "ask the panel" for more than one persona | Adds up across personas |
 | `budget` | Whenever an agent wants to exceed its budget (for example the playtester wanting more experiments) | Budgets exist for a reason |
+| `deep-research` | Before deeper research on selected pipeline games (researcher Mode 3, "Reanalyze pipeline") | A few searches per game, so it adds up |
 | `free-api` | Before sending a game's content to a free third-party AI provider | Privacy of unpublished designs |
 
 **Not gated** (runs straight through once the game is greenlit): design → playtest → critique for the first pass, persona bots and scoring (free code), and the pitch.
@@ -185,6 +186,8 @@ Add a history entry every time a game changes stage or completes a revision. Pit
 
 **KPI targets** (used by the critic, playtester and you when judging): seat balance gap ≤ 5 points; strategic-vs-random win gap ≥ 20 points; simulated length within ±20% of the brief's target; runaway leader rate ≤ 65%; at least 2 lead changes per game on average; zero dead cards and zero rule ambiguities at pitch; critic average ≥ 3.5 at pitch.
 
+**Research requests from the dashboard.** The owner can ask Market Intel for research from the agent panel's Research tab. Each popup records an already-approved request in `games/approvals.json` with an id `research-<kind>-<time>` and `research_kind`: `game-research` (gate `scan`: run researcher Mode 1, focus-aware, to fill the idea bank), `persona-research` (gate `panel-research`: refresh `panel/evidence/` and re-run calibration) or `reanalyze` (gate `deep-research`, with `targets`: the selected games; run researcher Mode 3 on each, one at a time, and tell the critic and Bar Raiser to read `research-update.md` next time they review that game). On "continue with approved work" run them like any approved request (the popup's "Run this" is the approval) and put the request id in the decision's `notes`. The dashboard only hints when research looks due (idea bank stale, persona evidence old, a game never researched in depth); it never runs anything.
+
 **Owner notes to agents.** The owner can send a short note to an agent from the dashboard ("Talk to it" tab); it is saved as `games/_notes/<time>-<agent>.md` (header: agent, game, submitted). At the start of any session, and on "continue with approved work", read the pending notes there. For each: act on it within the gates (a note never bypasses an approval gate or the usage rules; if it needs a gated step, raise the request), pass it to the named agent when you next run that agent, or answer it yourself, then move the file to `games/_notes/_done/` and append `## Director's reply` followed by one or two sentences saying what you did or will do. The dashboard shows pending and answered notes under that agent.
 
 ## Player test panel
@@ -219,7 +222,7 @@ The owner pays for sessions from a limited credit balance, so work economically:
 
 ## Dashboard project
 
-The owner's dashboard lives in `dashboard/`. When asked to build or change it, follow `docs/BUILD-DASHBOARD.md` (build steps) and `docs/dashboard-notes.md` (product spec), working one milestone at a time. The dashboard must never start agents. Its only writes are: saving ideas to `games/_inbox/`, recording approval decisions in `games/approvals.json`, appending the owner's pitch decisions (Approve, Send back, Reject in the Review Queue) to `games/decisions.json`, and saving notes to agents in `games/_notes/`. The owner is new to coding: explain steps in plain language and keep setup minimal.
+The owner's dashboard lives in `dashboard/`. When asked to build or change it, follow `docs/BUILD-DASHBOARD.md` (build steps) and `docs/dashboard-notes.md` (product spec), working one milestone at a time. The dashboard must never start agents. Its only writes are: saving ideas to `games/_inbox/`, recording approval decisions in `games/approvals.json`, appending the owner's pitch decisions (Approve, Send back, Reject in the Review Queue) to `games/decisions.json`, saving notes to agents in `games/_notes/`, and recording research requests the owner approves in the Market Intel popup ("Game research", "Persona research", "Reanalyze pipeline") as already-approved entries in `games/approvals.json`. The owner is new to coding: explain steps in plain language and keep setup minimal.
 
 ## Default first command
 

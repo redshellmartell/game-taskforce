@@ -3,6 +3,7 @@ import { FileView, Markdown } from './Markdown.jsx';
 import { Help } from './Help.jsx';
 import { IdeaForm, CopyBox, stageForAgent } from './IdeaForm.jsx';
 import { PanelTab } from './PanelTab.jsx';
+import { ResearchTab } from './ResearchTab.jsx';
 import { GATE_LABEL } from './ApprovalsView.jsx';
 import { ago, STATE_LABEL } from '../util.js';
 
@@ -121,13 +122,14 @@ export function AgentPanel({ agent, state, onClose, initialTab, onPersona }) {
       ))}
     </>
   );
+  else if (tab === 'research') content = <ResearchTab state={state} />;
   else if (tab === 'panel') content = <PanelTab state={state} onOpen={setViewing} id={personaId} setId={setPersonaId} onPersona={onPersona} />;
   else content = <TalkTab agent={agent} state={state} />;
 
   return (
     <Shell title={`${agent.room} · ${STATE_LABEL[agent.state]}`} color={agent.color} onClose={onClose}
       help={<><Help topic="agent" />{agent.id !== 'manager' && agent.id !== 'test-panel' && <Help topic="subagent" />}</>}
-      tabs={[['doing', "What it's doing"], ['how', 'How it works'], ['work', 'Its work'], ...(agent.id === 'playtester' || agent.id === 'test-panel' ? [['panel', 'Test panel']] : []), ['talk', 'Talk to it']]} tab={tab} setTab={(t) => { setViewing(null); setTab(t); }}>
+      tabs={[['doing', "What it's doing"], ['how', 'How it works'], ['work', 'Its work'], ...(agent.id === 'market-researcher' ? [['research', 'Research']] : []), ...(agent.id === 'playtester' || agent.id === 'test-panel' ? [['panel', 'Test panel']] : []), ['talk', 'Talk to it']]} tab={tab} setTab={(t) => { setViewing(null); setTab(t); }}>
       {content}
     </Shell>
   );

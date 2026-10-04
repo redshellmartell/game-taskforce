@@ -7,6 +7,7 @@ import { listInbox } from './ideas.js';
 import { loadPanel } from './panel.js';
 import { pitchDecisionFor } from './pitch.js';
 import { listNotes } from './notes.js';
+import { researchHints } from './research.js';
 
 const AGENT_ORDER = ['market-researcher', 'game-designer', 'playtester', 'critic', 'test-panel', 'manager'];
 // Which report each agent writes (used for "Its work" and for the handoff lines).
@@ -112,7 +113,7 @@ function extractSection(text, name) {
 function titleFromSlug(slug) { return slug.split('-').map((w) => w[0]?.toUpperCase() + w.slice(1)).join(' '); }
 
 // Which agent would run the gated step (a request may name one in an optional `agent` field).
-const GATE_AGENT = { scan: 'market-researcher', greenlight: 'game-designer', revision: 'game-designer', 'panel-research': 'market-researcher', 'panel-reviews': 'playtester', budget: 'playtester', 'free-api': 'playtester' };
+const GATE_AGENT = { scan: 'market-researcher', greenlight: 'game-designer', revision: 'game-designer', 'panel-research': 'market-researcher', 'deep-research': 'market-researcher', 'panel-reviews': 'playtester', budget: 'playtester', 'free-api': 'playtester' };
 const EXPIRE_DAYS = 14;
 const DAY_MS = 24 * 3600 * 1000;
 // Requests the Director wrote to games/approvals.json (see "Approval gates" in CLAUDE.md), with what the owner needs to decide.
@@ -235,5 +236,5 @@ export function buildState({ repoRoot, dashboardDir, sample, now = Date.now() })
   };
   const review = { ...ownerStats(games, decisions), queue: reviewQueueItems(games, now) };
 
-  return { sample, generatedAt: new Date(now).toISOString(), agents, games, activity: activity.slice(0, 500), decisions, approvals, settings, inbox: listInbox(gamesDir), notes: listNotes(gamesDir), panel: panel && { ...panel, stats: panelData }, kpis, pipeline, review, quality: qualityLab(games), market: { ...portfolio(games), ideaBank: bankFile && bankStats ? { ...bankStats, updated: bankFile.updated || null, ideas: bankFile.ideas } : null }, ops: { ...opsStats(games, agents, activity, now), usage: usageStats(usageSessions, games, now), guard, approvals: approvalStats(approvals.requests) }, waitingPitches: waitingPitches.map((g) => g.slug) };
+  return { sample, generatedAt: new Date(now).toISOString(), agents, games, activity: activity.slice(0, 500), decisions, approvals, settings, inbox: listInbox(gamesDir), notes: listNotes(gamesDir), research: researchHints({ bank: bankStats, calibrated: panel?.calibrated || null, games, now, fileTimes: Object.fromEntries(games.map((g) => { const f = g.files.find((x) => x.name === 'research-update.md'); return [g.slug, f ? f.mtime : null]; })) }), panel: panel && { ...panel, stats: panelData }, kpis, pipeline, review, quality: qualityLab(games), market: { ...portfolio(games), ideaBank: bankFile && bankStats ? { ...bankStats, updated: bankFile.updated || null, ideas: bankFile.ideas } : null }, ops: { ...opsStats(games, agents, activity, now), usage: usageStats(usageSessions, games, now), guard, approvals: approvalStats(approvals.requests) }, waitingPitches: waitingPitches.map((g) => g.slug) };
 }

@@ -339,3 +339,11 @@ h3.sect { margin: 26px 0 10px; }
 .pt-problem { display: flex; gap: 10px; align-items: flex-start; padding: 10px 0; border-top: 1px solid var(--border); }
 .pt-problem:first-of-type { border-top: none; }
 .pt-problem .chip { flex: none; margin: 2px 0 0; }
+
+/* Market Intel research tab */
+.research-card { border: 1px solid var(--border); border-left: 4px solid var(--accent); border-radius: 6px; padding: 10px 12px; margin: 0 0 10px; background: var(--bg); }
+.research-head { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; } .research-head .chip { margin: 0; }
+.due { color: var(--warn); }
+.research-list { max-height: 320px; overflow-y: auto; border: 1px solid var(--border); border-radius: 6px; padding: 4px 8px; }
+.research-row { display: grid; grid-template-columns: auto 1fr auto; gap: 10px; align-items: center; padding: 8px 0; border-top: 1px solid var(--border); cursor: pointer; }
+.research-row:first-child { border-top: none; }

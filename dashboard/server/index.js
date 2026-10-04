@@ -12,6 +12,7 @@ import { saveIdea } from './ideas.js';
 import { decideApproval } from './approvals.js';
 import { decidePitch } from './pitch.js';
 import { saveNote } from './notes.js';
+import { requestResearch } from './research.js';
 
 const dashboardDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const repoRoot = path.resolve(dashboardDir, '..');
@@ -57,6 +58,16 @@ app.post('/api/notes', (req, res) => {
   if (useSample()) return res.status(409).json({ error: 'The dashboard is showing sample data, so notes are not saved. Run npm start in a copy of the repository that has real games.' });
   try { res.json(saveNote(path.join(repoRoot, 'games'), req.body || {})); }
   catch (e) { res.status(e.status || 500).json({ error: e.status ? e.message : 'Could not save the note.' }); }
+});
+
+// Ask the Market Intel agent for research: records an already-approved request in games/approvals.json (nothing is started).
+app.post('/api/research', (req, res) => {
+  const origin = req.get('origin');
+  if (origin && new URL(origin).host !== req.get('host')) return res.status(403).json({ error: 'Not allowed' });
+  if (useSample()) return res.status(409).json({ error: 'The dashboard is showing sample data, so requests are not saved. Run npm start in a copy of the repository that has real games.' });
+  const g = path.join(repoRoot, 'games');
+  try { res.json(requestResearch(path.join(g, 'approvals.json'), path.join(g, 'decisions.json'), path.join(g, 'status.json'), req.body || {})); }
+  catch (e) { res.status(e.status || 500).json({ error: e.status ? e.message : 'Could not save the request.' }); }
 });
 
 // Record the owner's decision on a pitch in the Review Queue (appends to games/decisions.json only; never starts an agent).

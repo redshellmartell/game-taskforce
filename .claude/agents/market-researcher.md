@@ -34,6 +34,15 @@ At most **25 searches and 25 page reads** per scan. Summarise each page in a few
 2. Use **at most 3 searches**, only to fill a gap that matters for this brief (for example, checking one comparable game).
 3. Write the brief (format below), set the idea's status to `in-pipeline` with the game's slug, and note which scan it came from.
 
+## Mode 3: Reanalyze (deeper research on existing pipeline games)
+
+Used when the Director names one or more pipeline games for a deep-research request (approved by the owner, gate `deep-research`). For each named game, one at a time:
+1. Read `games/<slug>/brief.md` and `rules.md` (and `critique.md` if present) so you know what the game really is now, including any revisions.
+2. Use **at most 4 searches and 3 page reads per game**: find the nearest comparable games (including recent releases and crowdfunding projects), how they were received, and whether anything has changed since the brief (a new close competitor, a trend, a published game with the same twist).
+3. Write `games/<slug>/research-update.md`: date, what you checked, nearest comparables with their ratings (`null` if not found), originality assessment against them (low / medium / high similarity, and why), market-fit notes, **new insights** (each with a source, or say "none found"), and what you could not reach. Write `games/<slug>/research-update.json`: `{ "updated": "YYYY-MM-DD", "closest": [{ "name": "", "similarity": "low|medium|high", "bgg_rating": null }], "originality": 1-5 or null, "insights": ["..."], "risks": ["..."], "sources": ["url"] }`. Never invent a source, a rating or a count; summarise in your own words.
+4. Do not edit `rules.md`, `brief.md` or the idea bank. If the update changes the picture (for example a close competitor appeared), say so in your return summary so the Director can tell the owner and the critic and Bar Raiser can use it.
+Return at most 3 lines per game: closest comparable, originality call, and the top insight or "none found".
+
 ## Scoring rubric
 
 Score each idea 1-5 on these six fields (max 30):
