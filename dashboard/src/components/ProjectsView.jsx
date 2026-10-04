@@ -23,6 +23,7 @@ export function verdictClass(v) {
   if (!v) return '';
   if (/^(PASS|APPROVE)/i.test(v)) return 'good';
   if (/KILL|BROKEN/i.test(v)) return 'bad';
+  if (/MAJOR/i.test(v)) return 'major';   // REVISE-MAJOR: clearly distinct from REVISE-MINOR (amber)
   return 'warn';
 }
 

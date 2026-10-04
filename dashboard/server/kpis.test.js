@@ -313,3 +313,11 @@ test('activity lines dated in the future are clamped to now and marked estimated
   const f = s.activity.find((e) => e.message === 'future'), p = s.activity.find((e) => e.message === 'past');
   assert.equal(Date.parse(f.time), now); assert.equal(f.time_estimated, true); assert.equal(p.time_estimated, undefined);
 });
+
+test('approval requests carry the game verdicts so the page can show a critic/playtest tag', () => {
+  const s = buildState({ repoRoot, dashboardDir, sample: true, now: Date.now() });
+  const withGame = s.approvals.requests.filter((r) => r.game);
+  assert.ok(withGame.length > 0);
+  assert.ok(withGame.every((r) => 'verdicts' in r));
+  assert.ok(withGame.some((r) => r.verdicts && r.verdicts.critic));
+});

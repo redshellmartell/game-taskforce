@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { verdictClass } from './ProjectsView.jsx';
+
 import { OwnerMark } from './OwnerMark.jsx';
 import { CopyBox } from './IdeaForm.jsx';
 import { Help } from './Help.jsx';
@@ -45,6 +47,8 @@ function Card({ r, onOpen, decided, sample, onDecided }) {
       <div className="pitch-head">
         <div>
           <span className="chip big">{GATE_LABEL[r.gate] || r.gate}</span>{' '}
+          {r.verdicts?.critic && <><span className={`chip big v-${verdictClass(r.verdicts.critic)}`} title="The critic's verdict on this game">critic: {r.verdicts.critic}</span>{' '}</>}
+          {r.verdicts?.playtest && <><span className={`chip big v-${verdictClass(r.verdicts.playtest)}`} title="The playtester's verdict on this game">playtest: {r.verdicts.playtest}</span>{' '}</>}
           {r.gameTitle && <button className="link" onClick={() => onOpen(r.game)}><OwnerMark game={{ ownerIdea: r.ownerIdea }} /> {r.gameTitle}</button>}
           <div className="muted small">{r.id} · asked {r.ageDays === 0 ? 'today' : `${r.ageDays} day${r.ageDays === 1 ? '' : 's'} ago`}</div>
         </div>

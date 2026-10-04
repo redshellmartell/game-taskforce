@@ -301,3 +301,5 @@ table.heat.grid td.cell { min-width: 44px; height: 30px; font-size: 12px; }
 /* owner-submitted ideas (task: indicator next to your ideas) */
 .ownermark { color: #e8c15a; margin-right: 2px; cursor: help; }
 .chip.owner { color: #e8c15a; border-color: #e8c15a; }
+
+.chip.v-major { color: #f08a5d; border-color: #f08a5d; background: rgba(240,138,93,.14); font-weight: 600; }
