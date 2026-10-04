@@ -268,6 +268,35 @@
       "decision": null,
       "decided_at": null,
       "owner_notes": null
+    },
+    {
+      "id": "asymmetric-duel-tug-of-war-revision-1",
+      "gate": "revision",
+      "game": "asymmetric-duel-tug-of-war",
+      "time": "2026-10-04T10:58:43Z",
+      "status": "pending",
+      "summary": "Playtest NEEDS-FIXES: lead changes 1.15 (target 2+), up to 30% of games decided by a centre tiebreak, and 'hand the opponent the lead' is a solved choice. Critic REVISE-MAJOR, average 3.33 (needs 3.5). Seat gap 2.2 and skill gap +73 already pass.",
+      "why_needed": "The balance and skill KPIs pass, so the remaining problems are rules-level and well diagnosed. Without a fix the game cannot pass at pitch (lead changes, a dominant choice, 8 rule ambiguities).",
+      "expected_outcome": "Designer changes: (1) make the lead choice a real decision (a leader bonus or a cost for giving up the lead) to remove the dominant line; (2) stronger trailer draws or a shorter track to lift lead changes to 2+ and cut centre-tiebreak endings under 10%; (3) fix the 8 listed ambiguities. Then re-measure: seat gap stays 5 or less, lead changes 2+, critic average 3.5+.",
+      "usage_estimate": "M",
+      "recommendation": "approve",
+      "options": [
+        {
+          "key": "approve",
+          "label": "Run revision 1 (designer, playtester, critic)"
+        },
+        {
+          "key": "park",
+          "label": "Park the game; no further work for now"
+        },
+        {
+          "key": "kill",
+          "label": "Kill it and record why"
+        }
+      ],
+      "decision": null,
+      "decided_at": null,
+      "owner_notes": null
     }
   ]
 }

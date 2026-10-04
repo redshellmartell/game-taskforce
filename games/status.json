@@ -162,7 +162,7 @@
     {
       "slug": "asymmetric-duel-tug-of-war",
       "title": "Tug of Crowns",
-      "stage": "design",
+      "stage": "critique",
       "revision": 0,
       "history": [
         {
@@ -182,11 +182,23 @@
           "time": "2026-10-04T10:48:46Z",
           "verdict": null,
           "note": "greenlit; design started"
+        },
+        {
+          "stage": "playtest",
+          "time": "2026-10-04T10:58:43Z",
+          "verdict": "NEEDS-FIXES",
+          "note": "lead changes 1.15; lead choice solved; seat gap 2.2"
+        },
+        {
+          "stage": "critique",
+          "time": "2026-10-04T10:58:43Z",
+          "verdict": "REVISE-MAJOR",
+          "note": "critic REVISE-MAJOR avg 3.33; waiting for approval: revision"
         }
       ],
       "verdicts": {
-        "playtest": null,
-        "critic": null
+        "playtest": "NEEDS-FIXES",
+        "critic": "REVISE-MAJOR"
       },
       "kill_reason": null
     },
