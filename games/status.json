@@ -76,7 +76,7 @@
     {
       "slug": "three-player-trick-taker",
       "title": "Three-Hand Trick-Taker",
-      "stage": "design",
+      "stage": "critique",
       "revision": 2,
       "history": [
         {
@@ -132,11 +132,17 @@
           "time": "2026-10-04T12:02:12Z",
           "verdict": null,
           "note": "revision 2 approved; designer revising rules"
+        },
+        {
+          "stage": "critique",
+          "time": "2026-10-04T12:14:19Z",
+          "verdict": "REVISE-MINOR",
+          "note": "revision 2: critic avg 3.67; waiting for owner decision: pitch or revise"
         }
       ],
       "verdicts": {
         "playtest": "NEEDS-FIXES",
-        "critic": "REVISE-MAJOR"
+        "critic": "REVISE-MINOR"
       },
       "kill_reason": null
     },

@@ -162,7 +162,7 @@ This studio is run like a game company think tank, and a dashboard tracks its KP
 {"time": "2026-10-03T13:02:00Z", "agent": "playtester", "game": "<slug>", "event": "start|step|done|error", "message": "Running 2,000 simulated games"}
 ```
 
-Use the real current time (`date -u +%Y-%m-%dT%H:%M:%SZ`). When delegating to an agent, remind it of its slug and that it must write its activity lines and JSON file.
+Use the real current time (`date -u +%Y-%m-%dT%H:%M:%SZ`). When delegating to an agent, remind it of its slug and that it must write its activity lines and JSON file. **Agents without a shell (designer, critic, market-researcher, panel-player) cannot read the clock: never give them guessed times.** Tell them to leave their activity lines to you and add them yourself with the real time when they return. `python3 tools/activity/fix_future_times.py` repairs any line dated in the future, and the dashboard shows such lines as `~` estimates.
 
 **Studio status (you).** Keep `games/status.json` up to date alongside `STATUS.md`:
 

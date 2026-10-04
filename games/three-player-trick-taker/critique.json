@@ -1,16 +1,15 @@
-{ "verdict": "REVISE-MAJOR", "revision": 1,
-  "scores": { "originality": 3, "clarity": 4, "fun": 3, "balance": 3, "market_fit": 3, "production": 5 },
-  "average": 3.5,
-  "strength": "Cheap 3-player-only shared-contract structure; contract success (56.6%), role points (3.84/3.53/3.95), seat gap (3.5) and runaway rate (52.3%) are now inside target.",
-  "weakness": "The intended contract-steering strategy still loses to plain trick-grabbing (strategic 28.5% vs greedy 63.5%), and lead changes are 1.49 (target 2).",
+{ "verdict": "REVISE-MINOR", "revision": 2,
+  "scores": { "originality": 3, "clarity": 4, "fun": 3, "balance": 4, "market_fit": 3, "production": 5 },
+  "average": 3.67,
+  "strength": "Loot lost on a blown job makes steering the shared contract compete with trick-grabbing; seat gap 1.7, runaway 50.3%, contract success 50.0%, role points spread 0.45 and length 18.2 min are all inside target.",
+  "weakness": "Depth is unproven and the audience is narrow: strategic only ties greedy (42.0 vs 41.8), lead changes 1.61 (target 2) rely on Heat in 74% of rounds, and family/casual are predicted at 2.86/3.14 fun.",
   "closest_existing_game": { "name": "Oh Hell / Wizard (exact-bid trick-taking)", "similarity": "medium" },
   "required_changes": [
-    "Make steering worth more than loot (loot at half value or DC-only, clean +5/+6): mixed-table strategic win rate >= 40% and >= greedy",
-    "Raise volatility (Heat -3 or double-scored final round): lead changes >= 2, sole leader after round 3 <= 65%",
-    "Re-test with a stronger card-counting strategic bot: confirm whether steering is learnable, kill if greedy still wins",
-    "Hold other KPIs on 4,000+ games: seat gap <= 5, contract success 40-60%, role points within ~1",
-    "Get at least one human playtest alongside the revision to check the bot-based verdict"
+    "Update design notes to measured values (mean final score about 16, Heat in 74% of rounds): zero stale numbers/ambiguities",
+    "Add one worked example round and a one-line Planner hint to rules.md: hold clarity 4, ease rulebook-weight peeves",
+    "Label the double-scored final round as an optional variant (lead changes 1.84; strategic drops to 38.5% in mixed table)",
+    "Pitch must list the known risks and ask for a human playtest with player_type recorded before any production: first human fun and clarity >= 3"
   ],
-  "revision_worth_it": true,
-  "revision_reason": "Yes, as the final loop: one clear diagnosis (loot outweighs steering) with a specific untested fix; if strategic still cannot reach greedy, kill.",
-  "note": "Fun and Market fit scored from free panel.json predictions; no panel-report.md (AI persona reviews not approved). Originality not re-searched (core mechanic unchanged)." }
+  "revision_worth_it": false,
+  "revision_reason": "No: the only missed KPI is a minor soft miss (1.61 vs 2), three tested variants did not fix it, and the remaining uncertainty (do humans find steering worth it) needs a human playtest, not another bot loop.",
+  "note": "Fun and Market fit scored from free panel.json predictions; no panel-report.md (AI persona reviews not approved). Originality not re-searched (core mechanic unchanged). No human playtest yet." }

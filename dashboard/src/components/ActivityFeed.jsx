@@ -25,7 +25,7 @@ export function ActivityFeed({ state, filterable }) {
         const a = byId[e.agent];
         return (
           <div className="row" key={i}>
-            <span className="time">{clock(e.time)}</span>
+            <span className="time" title={e.time_estimated ? 'time estimated by an agent without a clock' : undefined}>{e.time_estimated ? '~' : ''}{clock(e.time)}</span>
             <span className="who" style={{ color: a?.color }}>{a?.room || e.agent}</span>
             <span className="game">{ownerPrefix(byGame[e.game])}{e.game}</span>
             <span className={e.event === 'error' ? 'err' : ''}>{e.message}</span>

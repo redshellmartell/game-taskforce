@@ -254,6 +254,8 @@ test('the approval mode is read from studio-settings.json and defaults to normal
 
 // ---- Test panel (task 007)
 import { panelStats, gamePanelSummary } from './kpis.js';
+import fs from 'node:fs';
+import os from 'node:os';
 test('panel: sample games give each persona stats, a heatmap and an agreement flag', () => {
   const state = buildState({ repoRoot, dashboardDir, sample: true, now: Date.now() });
   const ps = state.panel.stats;
@@ -297,4 +299,17 @@ test('owner ideas: a game from the inbox (source owner, or an idea.md file) is m
   assert.equal(s.games.find((g) => g.slug === 'ember-market').ownerIdea, true);
   assert.equal(s.games.find((g) => g.slug === 'lantern-heist').ownerIdea, false);
   assert.ok(s.approvals.requests.every((r) => typeof r.ownerIdea === 'boolean'));
+});
+
+test('activity lines dated in the future are clamped to now and marked estimated', () => {
+  const pth = path;
+  const tmp = fs.mkdtempSync(pth.join(os.tmpdir(), 'future-'));
+  fs.mkdirSync(pth.join(tmp, 'games', 'g1'), { recursive: true });
+  const now = Date.parse('2026-10-04T13:00:00Z');
+  fs.writeFileSync(pth.join(tmp, 'games', 'g1', 'activity.jsonl'),
+    JSON.stringify({ time: '2026-10-04T12:00:00Z', agent: 'critic', game: 'g1', event: 'step', message: 'past' }) + '\n' +
+    JSON.stringify({ time: '2026-10-04T13:30:00Z', agent: 'critic', game: 'g1', event: 'done', message: 'future' }) + '\n');
+  const s = buildState({ repoRoot: tmp, dashboardDir, sample: false, now });
+  const f = s.activity.find((e) => e.message === 'future'), p = s.activity.find((e) => e.message === 'past');
+  assert.equal(Date.parse(f.time), now); assert.equal(f.time_estimated, true); assert.equal(p.time_estimated, undefined);
 });

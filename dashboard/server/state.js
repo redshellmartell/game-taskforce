@@ -164,6 +164,8 @@ export function buildState({ repoRoot, dashboardDir, sample, now = Date.now() })
       // No activity log yet: show the files that exist as finished steps (marked synthetic).
       events = files.filter((f) => f.agent).map((f) => ({ time: new Date(f.mtime).toISOString(), agent: f.agent, game: slug, event: 'done', message: `${f.name} written`, synthetic: true }));
     }
+    // an agent without a clock may guess a time in the future: never show one (clamp to now and mark it approximate)
+    events = events.map((e) => (Date.parse(e.time) > now + 60000 ? { ...e, time: new Date(now).toISOString(), time_estimated: true } : e));
     activity = activity.concat(events);
     games.push({
       slug,

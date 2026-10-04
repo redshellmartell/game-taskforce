@@ -484,6 +484,39 @@
       "decision": null,
       "decided_at": null,
       "owner_notes": null
+    },
+    {
+      "id": "three-player-trick-taker-pitch-or-revise",
+      "gate": "revision",
+      "game": "three-player-trick-taker",
+      "time": "2026-10-04T12:14:19Z",
+      "status": "pending",
+      "summary": "Revision 2 done: playtest NEEDS-FIXES (minor: lead changes 1.61 vs target 2; everything else passes: seat gap 1.7, runaway 50.3%, contract success 50.0%, strategic ties greedy 42.0 vs 41.8, Bar Raiser veto not active). Critic REVISE-MINOR, average 3.67 (above the 3.5 pitch bar; revision 1 was 3.5 REVISE-MAJOR).",
+      "why_needed": "The studio rule is to pitch only games that passed the playtest and got PASS or REVISE-MINOR. The critic clears the second part; the playtest has one minor miss, so pitching is your decision. The playtester and critic both recommend pitching with the risks stated and a human playtest, not another bot-driven loop (three fallback variants did not reach 2 lead changes).",
+      "expected_outcome": "If you choose pitch: pitch.md with the risks listed (lead changes 1.61 vs 2; strategic only ties greedy so skill depth is unproven with humans; family 2.86 and casual 3.14 are weak fits, so this is a niche competitor/strategist game; rules are heavy; fun and market fit rest on predicted scores; no human playtest; originality is medium-similar to Oh Hell and Wizard), after four small doc fixes from the critic.",
+      "usage_estimate": "S",
+      "recommendation": "pitch",
+      "options": [
+        {
+          "key": "pitch",
+          "label": "Pitch it with the known risks, and plan a human playtest (recommended)"
+        },
+        {
+          "key": "approve",
+          "label": "Run revision 3 (the last allowed loop)"
+        },
+        {
+          "key": "park",
+          "label": "Park the game; no further work for now"
+        },
+        {
+          "key": "kill",
+          "label": "Kill it and record why"
+        }
+      ],
+      "decision": null,
+      "decided_at": null,
+      "owner_notes": null
     }
   ]
 }
