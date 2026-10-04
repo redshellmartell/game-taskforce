@@ -70,7 +70,7 @@ export default function App() {
         </div>
         {view === 'network' ? (
           <div className={`main ${selection ? 'open' : ''}`}>
-            <NetworkView compact={!!selection} state={state} selection={selection} onSelect={setSelection} frame={frame} onPersona={openPersona} />
+            <NetworkView compact={!!selection} state={state} selection={selection} onSelect={setSelection} frame={frame} onPersona={openPersona} onPanel={() => { setPersona(null); go('panel'); }} />
             {agent && <AgentPanel agent={agent} state={state} initialTab={selection.tab} onClose={() => setSelection(null)} onPersona={openPersona} />}
             {selection?.type === 'owner' && <OwnerPanel state={state} onClose={() => setSelection(null)} />}
             {selection?.type === 'edge' && <EdgePanel edge={selection.edge} state={state} onClose={() => setSelection(null)} />}
