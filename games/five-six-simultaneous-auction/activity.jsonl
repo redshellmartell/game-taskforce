@@ -9,3 +9,4 @@
 {"time": "2026-10-04T18:34:30Z", "agent": "playtester", "game": "five-six-simultaneous-auction", "event": "done", "message": "Verdict NEEDS-FIXES: skill gap 17.5, Hype swamps values, unsold lots; playtest.json, panel.json written"}
 {"time": "2026-10-04T18:34:47Z", "agent": "playtester", "game": "five-six-simultaneous-auction", "event": "done", "message": "Playtest NEEDS-FIXES: skill gap 17.5 (<20), Hype 55-64% of points, empty hands 22%, 7 ambiguities; critique next"}
 {"time": "2026-10-04T18:34:47Z", "agent": "critic", "game": "five-six-simultaneous-auction", "event": "start", "message": "Reviewing design and playtest"}
+{"time": "2026-10-04T18:35:58Z", "agent": "critic", "game": "five-six-simultaneous-auction", "event": "done", "message": "Critic REVISE-MAJOR avg 3.0; waiting for approval: revision (five-six-simultaneous-auction-revision-1)"}

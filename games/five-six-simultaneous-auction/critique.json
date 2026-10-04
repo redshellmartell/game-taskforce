@@ -1,0 +1,16 @@
+{ "verdict": "REVISE-MAJOR", "revision": 0,
+  "scores": { "originality": 3, "clarity": 3, "fun": 2, "balance": 2, "market_fit": 3, "production": 5 },
+  "average": 3.0,
+  "strength": "A distinctive, rules-light hook: losing bids feed a category's value (Hype) and the hottest category crashes. It is clear, cheap and new in combination.",
+  "weakness": "Decisions do not separate good play from random play: the mixed-table skill gap is 0.8-2.3 points and the planner bot loses to the casual bot.",
+  "closest_existing_game": { "name": "Burnout/Pairs (tie-cancel bidding); also Modern Art (hidden simultaneous bids)", "similarity": "low" },
+  "required_changes": [
+    "Make skill matter: combine income 2, bids 1-12 and a public information element or a two-card choice (KPI: strategic-vs-random gap at 20+ lone-bot and 8-10+ at mixed tables, now 0.8-2.3)",
+    "Raise lot values to 2-5 with income 2 to cut Hype share to 45-50% of points (now 55-64%) with unsold lots of 6 or fewer",
+    "Adopt income 2 per pass and test carry-over of unsold lots: forced passes at or below 13% (now 22%) and unsold lots of 5 or fewer (now 4.6-7.8)",
+    "Replace the all-tied-categories-crash rule with a deterministic single crash: last-round winner flips at or below 20% (now 26-31%)",
+    "Resolve all 7 ambiguities, fix the reshuffle timing so seat order cannot matter and drop or justify the identical Paddle/Bid backs (KPI: ambiguities at zero)",
+    "Re-run with a kingmaking/spite bot to test the late swing and the saboteur strategy"
+  ],
+  "revision_worth_it": true,
+  "revision_reason": "Yes, one revision only: the hook is worth keeping and the fixes are concrete, but if the mixed-table skill gap stays under about 5 points, kill it." }

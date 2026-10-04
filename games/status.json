@@ -447,18 +447,24 @@
           "time": "2026-10-04T18:34:47Z",
           "verdict": null,
           "note": "Playtest NEEDS-FIXES: skill gap 17.5 (<20), Hype 55-64% of points, empty hands 22%, 7 ambiguities; critique next"
+        },
+        {
+          "stage": "critique",
+          "time": "2026-10-04T18:35:58Z",
+          "verdict": "REVISE-MAJOR",
+          "note": "Critic REVISE-MAJOR avg 3.0; waiting for approval: revision (five-six-simultaneous-auction-revision-1)"
         }
       ],
       "verdicts": {
-        "playtest": null,
-        "critic": null
+        "playtest": "NEEDS-FIXES",
+        "critic": "REVISE-MAJOR"
       },
       "kill_reason": null
     },
     {
       "slug": "solo-nine-card-roguelike",
       "title": "Nine Lives Dungeon",
-      "stage": "brief",
+      "stage": "design",
       "revision": 0,
       "history": [
         {
@@ -466,6 +472,12 @@
           "time": "2026-10-04T17:27:45Z",
           "verdict": null,
           "note": "owner greenlit all banked ideas 25+/30; brief from the idea bank next"
+        },
+        {
+          "stage": "design",
+          "time": "2026-10-04T18:35:58Z",
+          "verdict": null,
+          "note": "Writing brief from the idea bank"
         }
       ],
       "verdicts": {

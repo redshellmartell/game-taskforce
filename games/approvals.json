@@ -696,6 +696,35 @@
       "decision": null,
       "decided_at": null,
       "owner_notes": null
+    },
+    {
+      "id": "five-six-simultaneous-auction-revision-1",
+      "gate": "revision",
+      "game": "five-six-simultaneous-auction",
+      "time": "2026-10-04T18:35:58Z",
+      "status": "pending",
+      "summary": "Playtest NEEDS-FIXES: skill barely matters (strategic beats random by 17.5; only 0.8-2.3 at mixed tables; the casual bot beats the planner), Hype is 55-64% of points, players have no card to bid in 22% of rounds, 5-8 of 28 lots go unsold, 7 ambiguities. Panel fun 3.04. Critic REVISE-MAJOR, average 3.0 (fun 2, balance 2).",
+      "why_needed": "The Hype-and-crash hook is distinctive and cheap, but the game currently rewards luck and passivity over skill. Seat balance and lead changes pass.",
+      "expected_outcome": "One revision combining: income 2 per pass plus unsold-lot carry-over (empty-hand rounds 13% or less, unsold lots 5 or fewer); lot values 2-5 (Hype share 45-50%); bids 1-12 plus an information element (skill gap 20+ and mixed-table gap 5+); a single deterministic crash (last-round flips 20% or less); fix all 7 ambiguities. Critic: kill the game if the mixed-table skill gap stays under about 5 points.",
+      "usage_estimate": "M",
+      "recommendation": "alternative",
+      "options": [
+        {
+          "key": "approve",
+          "label": "Run revision 1 (designer, playtester, critic); kill if mixed-table skill gap stays under 5"
+        },
+        {
+          "key": "park",
+          "label": "Park the game; no further work for now (recommended)"
+        },
+        {
+          "key": "kill",
+          "label": "Kill it and record why"
+        }
+      ],
+      "decision": null,
+      "decided_at": null,
+      "owner_notes": null
     }
   ]
 }
