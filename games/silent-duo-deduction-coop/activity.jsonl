@@ -9,3 +9,7 @@
 {"time":"2026-10-04T11:05:16Z","agent":"playtester","game":"silent-duo-deduction-coop","event":"start","message":"Playtest started: sim written, running tiers (logged late)"}
 {"time":"2026-10-04T11:05:16Z","agent":"playtester","game":"silent-duo-deduction-coop","event":"step","message":"Headline 2000 games per tier plus 6 extras done; panel rotation run and scored"}
 {"time": "2026-10-04T11:05:31Z", "agent": "manager", "game": "silent-duo-deduction-coop", "event": "waiting", "message": "waiting for approval: budget (silent-duo-deduction-coop-budget-1)"}
+{"time":"2026-10-04T11:20:00Z","agent":"critic","game":"silent-duo-deduction-coop","event":"start","message":"First critique (time estimated; no shell for date)"}
+{"time":"2026-10-04T11:24:00Z","agent":"critic","game":"silent-duo-deduction-coop","event":"step","message":"Originality searches done (closest: Hanabi, medium); using panel.json since no panel-report"}
+{"time":"2026-10-04T11:28:00Z","agent":"critic","game":"silent-duo-deduction-coop","event":"done","message":"REVISE-MAJOR, avg 3.5; code channel unproven at F=16, Standard too easy, Trim waiting"}
+{"time": "2026-10-04T11:06:35Z", "agent": "manager", "game": "silent-duo-deduction-coop", "event": "waiting", "message": "waiting for approval: revision (silent-duo-deduction-coop-revision-1)"}

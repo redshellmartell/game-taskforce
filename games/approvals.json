@@ -356,6 +356,35 @@
       "decision": null,
       "decided_at": null,
       "owner_notes": null
+    },
+    {
+      "id": "silent-duo-deduction-coop-revision-1",
+      "gate": "revision",
+      "game": "silent-duo-deduction-coop",
+      "time": "2026-10-04T11:06:35Z",
+      "status": "pending",
+      "summary": "Playtest NEEDS-FIXES: honest teams win 73% (target 40-60%), Greedy beats Honest, 38% of turns are Trims, and the code attack gains +12.1 at Fog 16 (limit 10; Fog 12 untested). Critic REVISE-MAJOR, average 3.5. Strength: a simple new signal (offer two cards, one random reveal); random wins 0.6%.",
+      "why_needed": "The core loop works and the problems are named and testable, but the game is too easy and the anti-code rule is unproven, which is the whole point of the design.",
+      "expected_outcome": "Designer: raise difficulty (Fog around 12, retested for the code attack), make Trim a real decision (fewer waiting turns), reward careful play over greedy risk-taking, fix the 9 ambiguities. Then: honest 40-60%, code attack within 10 of honest, critic average 3.5 or more. The budget request silent-duo-deduction-coop-budget-1 supports this.",
+      "usage_estimate": "M",
+      "recommendation": "approve",
+      "options": [
+        {
+          "key": "approve",
+          "label": "Run revision 1 (designer, playtester, critic)"
+        },
+        {
+          "key": "park",
+          "label": "Park the game; no further work for now"
+        },
+        {
+          "key": "kill",
+          "label": "Kill it and record why"
+        }
+      ],
+      "decision": null,
+      "decided_at": null,
+      "owner_notes": null
     }
   ]
 }
