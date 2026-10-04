@@ -421,7 +421,7 @@
     {
       "slug": "five-six-simultaneous-auction",
       "title": "Last Bid Standing",
-      "stage": "playtest",
+      "stage": "critique",
       "revision": 0,
       "history": [
         {
@@ -441,6 +441,12 @@
           "time": "2026-10-04T18:03:47Z",
           "verdict": null,
           "note": "rules.md written (Hype row, bubble crash, cancelling ties); playtest waiting on usage guard/owner"
+        },
+        {
+          "stage": "critique",
+          "time": "2026-10-04T18:34:47Z",
+          "verdict": null,
+          "note": "Playtest NEEDS-FIXES: skill gap 17.5 (<20), Hype 55-64% of points, empty hands 22%, 7 ambiguities; critique next"
         }
       ],
       "verdicts": {

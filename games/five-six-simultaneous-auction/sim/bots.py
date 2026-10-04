@@ -93,7 +93,7 @@ class Strategic:
     def exact_probs(self, st, p, v, qi):
         cnt = unseen_counts(st, p); tot = sum(cnt) or 1
         q = (0.3, 0.5, 0.7, 0.9)[qi]; m = st.n - 1; rng = self.rng
-        a = b = 0; N = 60
+        a = b = 0; N = 20
         for _ in range(N):
             vals = []
             for _ in range(m):
