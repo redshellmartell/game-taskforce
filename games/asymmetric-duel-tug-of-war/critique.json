@@ -1,0 +1,17 @@
+{ "verdict": "REVISE-MAJOR", "revision": 0,
+  "scores": { "originality": 3, "clarity": 3, "fun": 3, "balance": 3, "market_fit": 3, "production": 5 },
+  "average": 3.33,
+  "strength": "Sides are already balanced (gap 2.2 points, skill gap +73) and the game is very cheap to make (49 cards).",
+  "weakness": "The crown stalls (1.15 lead changes, up to 30% of games decided by a tiebreak at the centre) and the lead choice is solved, so the middle is dull and the ending arbitrary.",
+  "closest_existing_game": { "name": "Tug of Roar", "similarity": "medium" },
+  "required_changes": [
+    "Remove or fix the lead choice (alternate the lead or make leading valuable). KPI: lead-side win rate 40-60% in the mirror; casual/family/story bot win rates up toward 45-55%.",
+    "Raise lead changes to at least 2 per game (try stronger trailer draws, a leader bonus or a shorter track) while keeping the side gap at or under 5 and runaway leader at or under 65%.",
+    "Make round 7 decisive so under 8% of games are decided by a tiebreak at position 0.",
+    "Raise the margin rules to 3 and 4 or delete them (they are currently inert).",
+    "Resolve all 8 listed ambiguities (Hush on Spend, Retort after pass, margin-blocked win and the next chooser, Echo on ties, position-0 tiebreak, passing again after Retort). KPI: zero ambiguities.",
+    "Cut rules weight to about one page (panel rules_simplicity is 0.025); casual/family predicted fun up from about 2.9 toward 3.3.",
+    "Give the Whisperer a plan once the deck runs dry (no reshuffle), and recheck the skill-dependent side balance."
+  ],
+  "revision_worth_it": true,
+  "revision_reason": "Side balance and skill expression already pass and the problems are rules-level and well diagnosed, so a revision can realistically fix lead changes and the lead choice; expect a game for competitive players rather than casual ones." }
