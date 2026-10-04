@@ -85,6 +85,12 @@
       "decision": "send-back",
       "target": "game-designer",
       "notes": "decided in the dashboard (Review Queue)"
+    },
+    {
+      "slug": "duelflip",
+      "time": "2026-10-04T15:21:58Z",
+      "decision": "approve",
+      "notes": "duelflip-revision-2 (revision gate): owner approved in chat"
     }
   ]
 }

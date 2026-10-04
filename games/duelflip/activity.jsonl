@@ -16,3 +16,4 @@
 {"time": "2026-10-03T13:36:57Z", "agent": "panel:family", "game": "duelflip", "event": "done", "message": "review written"}
 {"time": "2026-10-03T13:36:57Z", "agent": "manager", "game": "duelflip", "event": "done", "message": "panel-report.md written"}
 {"time": "2026-10-04T15:20:00Z", "agent": "director", "game": "duelflip", "event": "waiting", "message": "Owner send-back received; waiting for approval: duelflip-revision-2"}
+{"time": "2026-10-04T15:21:58Z", "agent": "director", "game": "duelflip", "event": "step", "message": "revision 2 approved by owner; briefing game-designer"}
