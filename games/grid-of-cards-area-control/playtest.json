@@ -1,0 +1,229 @@
+{
+  "verdict": "NEEDS-FIXES",
+  "revision": 0,
+  "games_simulated": 36000,
+  "main_player_count": 3,
+  "note": "brief gives 2-4 players with no single main count; headline numbers are 3p, per-count numbers in by_player_count",
+  "seat_win_rates": {
+    "1": 0.319,
+    "2": 0.329,
+    "3": 0.352
+  },
+  "seat_balance_gap": 1.9,
+  "bot_win_rates": {
+    "random": 0.001,
+    "greedy": 0.404,
+    "strategic": 0.596
+  },
+  "skill_expression": 59.6,
+  "length": {
+    "mean_turns": 54.2,
+    "stdev": 8.5,
+    "estimated_minutes": 22,
+    "target_minutes": 20
+  },
+  "length_histogram": [
+    {
+      "turns": 5,
+      "games": 1
+    },
+    {
+      "turns": 10,
+      "games": 7
+    },
+    {
+      "turns": 15,
+      "games": 14
+    },
+    {
+      "turns": 20,
+      "games": 10
+    },
+    {
+      "turns": 25,
+      "games": 9
+    },
+    {
+      "turns": 30,
+      "games": 9
+    },
+    {
+      "turns": 35,
+      "games": 21
+    },
+    {
+      "turns": 40,
+      "games": 78
+    },
+    {
+      "turns": 45,
+      "games": 306
+    },
+    {
+      "turns": 50,
+      "games": 511
+    },
+    {
+      "turns": 55,
+      "games": 568
+    },
+    {
+      "turns": 60,
+      "games": 304
+    },
+    {
+      "turns": 65,
+      "games": 122
+    },
+    {
+      "turns": 70,
+      "games": 34
+    },
+    {
+      "turns": 75,
+      "games": 5
+    },
+    {
+      "turns": 80,
+      "games": 1
+    }
+  ],
+  "ties": 0.114,
+  "turn_cap_hits": 0,
+  "lead_changes_mean": 3.37,
+  "runaway_leader_rate": 0.536,
+  "by_player_count": {
+    "2": {
+      "seat_win_rates": [
+        0.487,
+        0.512
+      ],
+      "seat_balance_gap": 1.3,
+      "skill_expression": 97.3,
+      "mean_turns": 41.8,
+      "stdev": 17.6,
+      "estimated_minutes": 16.8,
+      "ties_on_score": 0.075,
+      "stall_limit_end_rate": 0.578,
+      "floods_mean": 14.5,
+      "lead_changes": 1.77,
+      "runaway_leader_rate": 0.687
+    },
+    "3": {
+      "seat_win_rates": [
+        0.319,
+        0.329,
+        0.352
+      ],
+      "seat_balance_gap": 1.9,
+      "skill_expression": 59.6,
+      "mean_turns": 54.2,
+      "stdev": 8.5,
+      "estimated_minutes": 22.2,
+      "ties_on_score": 0.114,
+      "stall_limit_end_rate": 0.05,
+      "floods_mean": 21.4,
+      "lead_changes": 3.37,
+      "runaway_leader_rate": 0.536
+    },
+    "4": {
+      "seat_win_rates": [
+        0.222,
+        0.244,
+        0.252,
+        0.282
+      ],
+      "seat_balance_gap": 3.2,
+      "skill_expression": 37.9,
+      "mean_turns": 55.3,
+      "stdev": 5.4,
+      "estimated_minutes": 22.6,
+      "ties_on_score": 0.174,
+      "stall_limit_end_rate": 0.002,
+      "floods_mean": 22.0,
+      "lead_changes": 3.69,
+      "runaway_leader_rate": 0.432
+    }
+  },
+  "cards": [
+    {
+      "name": "island v1 cap2",
+      "played_rate": 0.277,
+      "win_correlation": -0.045,
+      "flag": null
+    },
+    {
+      "name": "island v2 cap2",
+      "played_rate": 0.124,
+      "win_correlation": 0.016,
+      "flag": null
+    },
+    {
+      "name": "island v2 cap3",
+      "played_rate": 0.328,
+      "win_correlation": 0.017,
+      "flag": null
+    },
+    {
+      "name": "island v3 cap3",
+      "played_rate": 0.13,
+      "win_correlation": 0.085,
+      "flag": null
+    },
+    {
+      "name": "island v3 cap4",
+      "played_rate": 0.26,
+      "win_correlation": 0.067,
+      "flag": null
+    },
+    {
+      "name": "island v4 cap4",
+      "played_rate": 0.086,
+      "win_correlation": 0.134,
+      "flag": null
+    }
+  ],
+  "ambiguities": [
+    "'Floods' triggers when count BECOMES equal to capacity. Opening pawns can never fill an island (capacity >= 2, one pawn each). I treat 'full' as count >= capacity.",
+    "The flooded island is turned only if it did not fall off; I find it by card identity after the slide.",
+    "Stall limit counts passes and non-flood turns; opening placements do not count. It ends the game on the turn the counter hits 3 x players.",
+    "Final tide is scored in reading order, pile sizes updated as each island is claimed (used for the fewest-trophies tiebreak).",
+    "Rules do not say whether a flooded island that is also the last in line (falls off) still counts as 'flooded island still in grid' - it does not; no turn.",
+    "'Fewest trophy cards' tiebreak: if tied players have equal pile sizes nobody claims; island is removed (no refill difference).",
+    "First player is random; I always make seat 1 the first player and the result is the same as random assignment.",
+    "Pawns on the falling island return to supply even for players with no majority (stated), so supply can exceed 4 never; pawns are conserved.",
+    "Not stated: whether Land is allowed onto an island that is already flooded-full - no (not full is required)."
+  ],
+  "problems": [
+    {
+      "severity": "high",
+      "problem": "At 2 players the game mostly ends on the stall limit, not on the deck: only ~14.5 of 22 floods happen, a third of the deck is never used, and length is erratic.",
+      "evidence": "2p strategic mirror: stall-end 58% of games (73-88% when an exploit-probe or expert bot plays), turns 41.8 sd 17.6, lead changes 1.77 (KPI >= 2), early-leader wins 68.7% (KPI <= 65%). 3p: stall-end 5%, 4p: 0%.",
+      "fix": "Do not let the stall limit end the game. Untested: when 3 x players turns pass with no flood, a 'storm' floods the fullest island (next player picks direction), so every game runs the full deck. A longer stall limit alone does not fix it (6 x players still ends 37% of 2p games and runaway stays 69%)."
+    },
+    {
+      "severity": "medium",
+      "problem": "Many games are decided on a tiebreak, and the tiebreaks lean to later seats.",
+      "evidence": "Score ties before tiebreaks: 7.5% (2p), 11.4% (3p), 17.4% (4p). Average margin of victory only 4.5 / 3.0 / 2.2 pearls. Seat win rates still within 3.2 points of fair.",
+      "fix": "Acceptable for the KPI, but consider a more neutral last tiebreak (for example most islands, then fewest pawns left on the board) so late seats do not collect close finishes."
+    },
+    {
+      "severity": "medium",
+      "problem": "Simulated length is above target at 3-4 players and the estimate rests on an assumed pace.",
+      "evidence": "~22.2 min (3p) and ~22.6 min (4p) vs 20 target (+11% / +13%, inside the 20% band, near the 25 min cap); 2p ~16.8 min. Pace assumed 15 s per turn + 20 s per flood + 90 s setup.",
+      "fix": "If a human playtest runs long, deal 18 islands instead of 21 (fewer floods) or drop the 3x players stall limit to 2x."
+    },
+    {
+      "severity": "low",
+      "problem": "Deeper search helps in 2 players but barely in 3 players against a greedy bot.",
+      "evidence": "Experiment: 2-ply bot beats 1-ply strategic 67.7% at 2p, but in 3p the 2-ply bot wins 41.3% vs greedy 40.3% (1-ply 18.4%). Could be a bot limit (it only models the next player) or real kingmaking noise.",
+      "fix": "Check with humans at 3p. If it holds, the trigger's direction choice at 3-4p is too swingy to plan around."
+    },
+    {
+      "severity": "low",
+      "problem": "Value-1 two-capacity islands are the weakest class; value-4 islands are the strongest.",
+      "evidence": "Claimer of a v1 cap2 island wins 4.5 points less often than fair (3p); claimer of a v4 island wins 13.4 points more. Nothing is dead.",
+      "fix": "None needed; keep an eye on it."
+    }
+  ]
+}
