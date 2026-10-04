@@ -96,7 +96,8 @@
         "playtest": "NEEDS-FIXES",
         "critic": null
       },
-      "kill_reason": null
+      "kill_reason": null,
+      "source": "owner"
     },
     {
       "slug": "tide-lords",

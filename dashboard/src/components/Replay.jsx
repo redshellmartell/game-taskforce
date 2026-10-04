@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { ownerPrefix } from './OwnerMark.jsx';
 import { replayEvents } from '../replay.js';
 import { clock } from '../util.js';
 
@@ -27,7 +28,7 @@ export function Replay({ state, replay, setReplay }) {
       <label className="muted">Replay a game</label>
       <select value={replay?.slug || ''} onChange={(e) => start(e.target.value)}>
         <option value="">Choose a game…</option>
-        {games.map((g) => <option key={g.slug} value={g.slug}>{g.title}</option>)}
+        {games.map((g) => <option key={g.slug} value={g.slug}>{ownerPrefix(g)}{g.title}</option>)}
       </select>
       {replay && cur && (
         <>

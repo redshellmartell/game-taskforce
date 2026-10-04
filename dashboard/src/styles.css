@@ -297,3 +297,7 @@ table.heat.grid td.cell { min-width: 44px; height: 30px; font-size: 12px; }
 .personapage .ptab { padding: 14px 2px; max-width: 820px; }
 .item.played { display: flex; flex-direction: column; gap: 3px; }
 .card.wide { grid-column: 1 / -1; }
+
+/* owner-submitted ideas (task: indicator next to your ideas) */
+.ownermark { color: #e8c15a; margin-right: 2px; cursor: help; }
+.chip.owner { color: #e8c15a; border-color: #e8c15a; }

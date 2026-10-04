@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { OwnerMark } from './OwnerMark.jsx';
 import { CopyBox } from './IdeaForm.jsx';
 import { Help } from './Help.jsx';
 import { ago } from '../util.js';
@@ -44,7 +45,7 @@ function Card({ r, onOpen, decided, sample, onDecided }) {
       <div className="pitch-head">
         <div>
           <span className="chip big">{GATE_LABEL[r.gate] || r.gate}</span>{' '}
-          {r.gameTitle && <button className="link" onClick={() => onOpen(r.game)}>{r.gameTitle}</button>}
+          {r.gameTitle && <button className="link" onClick={() => onOpen(r.game)}><OwnerMark game={{ ownerIdea: r.ownerIdea }} /> {r.gameTitle}</button>}
           <div className="muted small">{r.id} · asked {r.ageDays === 0 ? 'today' : `${r.ageDays} day${r.ageDays === 1 ? '' : 's'} ago`}</div>
         </div>
         <div className="gp-chips">

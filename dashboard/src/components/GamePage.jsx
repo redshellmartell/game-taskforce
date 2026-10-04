@@ -1,4 +1,5 @@
 import { GamePanel } from './PanelView.jsx';
+import { OwnerMark } from './OwnerMark.jsx';
 import { useState } from 'react';
 import { FileView } from './Markdown.jsx';
 import { CopyBox } from './IdeaForm.jsx';
@@ -32,12 +33,13 @@ export function GamePage({ game: g, state, onBack, onPersona }) {
       <button className="link back" onClick={onBack}>← All projects</button>
       <header className="gp-head">
         <div>
-          <h2>{g.title}</h2>
+          <h2><OwnerMark game={g} /> {g.title}</h2>
           {g.pitch?.hook && <p className="hook">{g.pitch.hook}</p>}
           <div className="muted">{meta || 'No details recorded yet.'}</div>
         </div>
         <div className="gp-chips">
           <span className="chip big">{STAGE_LABEL[g.stage] || g.stage}</span>
+          {g.ownerIdea && <span className="chip big owner" title="You submitted this idea">★ your idea</span>}
           {g.verdicts?.playtest && <span className={`chip big v-${verdictClass(g.verdicts.playtest)}`}>playtest: {g.verdicts.playtest} <Help topic="verdict" /></span>}
           {g.verdicts?.critic && <span className={`chip big v-${verdictClass(g.verdicts.critic)}`}>critic: {g.verdicts.critic}</span>}
           {g.revision > 0 && <span className="chip big">revision {g.revision} of 3</span>}

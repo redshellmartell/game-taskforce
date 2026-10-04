@@ -124,7 +124,7 @@ function buildApprovals(requests, games, shiftTime, now) {
     const g = r.game ? bySlug[r.game] : null;
     const rows = g ? g.scorecard.filter((x) => x.status !== 'none') : [];
     return {
-      ...r, time, decided_at: r.decided_at ? shiftTime(r.decided_at) : null, state, ageDays: age, gameTitle: g?.title || r.game || null,
+      ...r, time, decided_at: r.decided_at ? shiftTime(r.decided_at) : null, state, ageDays: age, gameTitle: g?.title || r.game || null, ownerIdea: !!g?.ownerIdea,
       revision: r.gate === 'revision' && g ? { worthIt: g.critique?.revision_worth_it ?? null, reason: g.critique?.revision_reason || null, scorecard: rows, revisionsDone: g.revision || 0 } : null,
     };
   });
@@ -177,6 +177,7 @@ export function buildState({ repoRoot, dashboardDir, sample, now = Date.now() })
       humanPlaytests: readJson(path.join(dir, 'human-playtests.json'))?.sessions || [],
       panel: readJson(path.join(dir, 'panel.json')), conversations: readJsonl(path.join(dir, 'panel', 'conversations.jsonl')).map((c) => ({ ...c, time: shiftTime(c.time) })),
       files, howItPlays: extractSection(readText(path.join(dir, 'pitch.md')), 'How it plays'),
+      ownerIdea: st?.source === 'owner' || files.some((f) => f.name === 'idea.md'),   // came from the owner's inbox (see "Owner ideas inbox")
       derived: !st,
     });
   }

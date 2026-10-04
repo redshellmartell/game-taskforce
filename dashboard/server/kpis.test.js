@@ -291,3 +291,10 @@ test('panel: a persona with a panel: activity line shows as playing', () => {
   assert.equal(state.agents.find((a) => a.id === 'test-panel').state, 'working');
   assert.equal(state.agents.find((a) => a.id === 'test-panel').reportsTo, 'playtester');
 });
+
+test('owner ideas: a game from the inbox (source owner, or an idea.md file) is marked ownerIdea', () => {
+  const s = buildState({ repoRoot, dashboardDir, sample: true, now: Date.now() });
+  assert.equal(s.games.find((g) => g.slug === 'ember-market').ownerIdea, true);
+  assert.equal(s.games.find((g) => g.slug === 'lantern-heist').ownerIdea, false);
+  assert.ok(s.approvals.requests.every((r) => typeof r.ownerIdea === 'boolean'));
+});

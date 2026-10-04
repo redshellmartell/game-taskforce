@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { ownerPrefix } from './OwnerMark.jsx';
 import { clock } from '../util.js';
 import { Help } from './Help.jsx';
 
@@ -7,6 +8,7 @@ export function ActivityFeed({ state, filterable }) {
   const [agentF, setAgentF] = useState('');
   const [gameF, setGameF] = useState('');
   const byId = Object.fromEntries(state.agents.map((a) => [a.id, a]));
+  const byGame = Object.fromEntries(state.games.map((g) => [g.slug, g]));
   const rows = state.activity.filter((e) => (!agentF || e.agent === agentF) && (!gameF || e.game === gameF)).slice(0, 40);
   return (
     <div className="feed">
@@ -14,7 +16,7 @@ export function ActivityFeed({ state, filterable }) {
         {filterable && (
           <span className="filters">
             <select value={agentF} onChange={(e) => setAgentF(e.target.value)} aria-label="Filter by agent"><option value="">All agents</option>{state.agents.map((a) => <option key={a.id} value={a.id}>{a.room}</option>)}</select>
-            <select value={gameF} onChange={(e) => setGameF(e.target.value)} aria-label="Filter by game"><option value="">All games</option>{state.games.map((g) => <option key={g.slug} value={g.slug}>{g.title}</option>)}</select>
+            <select value={gameF} onChange={(e) => setGameF(e.target.value)} aria-label="Filter by game"><option value="">All games</option>{state.games.map((g) => <option key={g.slug} value={g.slug}>{ownerPrefix(g)}{g.title}</option>)}</select>
           </span>
         )}
       </h3>
@@ -25,7 +27,7 @@ export function ActivityFeed({ state, filterable }) {
           <div className="row" key={i}>
             <span className="time">{clock(e.time)}</span>
             <span className="who" style={{ color: a?.color }}>{a?.room || e.agent}</span>
-            <span className="game">{e.game}</span>
+            <span className="game">{ownerPrefix(byGame[e.game])}{e.game}</span>
             <span className={e.event === 'error' ? 'err' : ''}>{e.message}</span>
           </div>
         );
