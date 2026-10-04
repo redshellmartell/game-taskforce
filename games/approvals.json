@@ -110,7 +110,7 @@
       "gate": "revision",
       "game": "three-player-trick-taker",
       "time": "2026-10-03T16:08:46Z",
-      "status": "pending",
+      "status": "approved",
       "summary": "Playtest NEEDS-FIXES: crew hits the exact Target in only 19.7% of rounds (aim 40-60%), so the Double-Crosser's +4 is nearly free; greedy bots beat the strategic bot 68% to 27%; lead changes 1.27 (aim 2+). Critic REVISE-MAJOR, average 3.0 (needs 3.5).",
       "why_needed": "The core twist (exact Target) almost never succeeds, so the game collapses into grabbing tricks. The fixes are cheap scoring changes, but without them the game cannot be pitched.",
       "expected_outcome": "Contract success 35-60% (critic kills the game if it stays under 35%); strategic beats greedy; lead changes 2 or more; seat gap stays 5 or less, checked on 4,000+ games.",
@@ -136,9 +136,9 @@
         "Make Heat bite or cut it (KPI: lead changes, leader win rate)",
         "Drop or fix No Trump; fix 4 rule ambiguities (KPI: zero ambiguities)"
       ],
-      "decision": null,
-      "decided_at": null,
-      "owner_notes": null
+      "decision": "approve",
+      "decided_at": "2026-10-04T10:48:46Z",
+      "owner_notes": "Owner said \"run the taskforce now ... to an appropriate usage\"; the Director chose this scope (the area-control greenlight was left waiting)"
     },
     {
       "id": "market-scan-2",
@@ -187,7 +187,7 @@
       "gate": "greenlight",
       "game": "silent-duo-deduction-coop",
       "time": "2026-10-03T16:15:15Z",
-      "status": "pending",
+      "status": "approved",
       "summary": "Brief written: Silent Duo, 2-3 players, 20 minutes, complexity 2.5, opportunity score 25/30. ",
       "why_needed": "Design, playtest and critique run through without further gates once started, so this is the point to say whether this idea is worth the usage.",
       "expected_outcome": "A complete rulebook, then a simulation with seat balance gap 5 points or less and a strategic-vs-random win gap of 20 points or more.",
@@ -207,16 +207,16 @@
           "label": "Reject the idea and record why"
         }
       ],
-      "decision": null,
-      "decided_at": null,
-      "owner_notes": null
+      "decision": "approve",
+      "decided_at": "2026-10-04T10:48:46Z",
+      "owner_notes": "Owner said \"run the taskforce now ... to an appropriate usage\"; the Director chose this scope (the area-control greenlight was left waiting)"
     },
     {
       "id": "asymmetric-duel-tug-of-war-greenlight",
       "gate": "greenlight",
       "game": "asymmetric-duel-tug-of-war",
       "time": "2026-10-03T16:16:36Z",
-      "status": "pending",
+      "status": "approved",
       "summary": "Brief written: Tug of Crowns, 2 players, 15 minutes, complexity 2, opportunity score 24/30. Two rival court advisors with different 20-card decks haul one shared crown track toward their side in a 15-minute duel.",
       "why_needed": "Design, playtest and critique run through without further gates once started, so this is the point to say whether this idea is worth the usage.",
       "expected_outcome": "A complete rulebook, then a simulation with seat balance gap 5 points or less and a strategic-vs-random win gap of 20 points or more.",
@@ -236,9 +236,9 @@
           "label": "Reject the idea and record why"
         }
       ],
-      "decision": null,
-      "decided_at": null,
-      "owner_notes": null
+      "decision": "approve",
+      "decided_at": "2026-10-04T10:48:46Z",
+      "owner_notes": "Owner said \"run the taskforce now ... to an appropriate usage\"; the Director chose this scope (the area-control greenlight was left waiting)"
     },
     {
       "id": "grid-of-cards-area-control-greenlight",

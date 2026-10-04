@@ -76,8 +76,8 @@
     {
       "slug": "three-player-trick-taker",
       "title": "Three-Hand Trick-Taker",
-      "stage": "critique",
-      "revision": 0,
+      "stage": "design",
+      "revision": 1,
       "history": [
         {
           "stage": "brief",
@@ -114,6 +114,12 @@
           "time": "2026-10-03T16:08:46Z",
           "verdict": "REVISE-MAJOR",
           "note": "critic REVISE-MAJOR avg 3.0; waiting for approval: revision (three-player-trick-taker-revision-1)"
+        },
+        {
+          "stage": "design",
+          "time": "2026-10-04T10:48:46Z",
+          "verdict": null,
+          "note": "revision 1 approved; designer revising rules"
         }
       ],
       "verdicts": {
@@ -125,7 +131,7 @@
     {
       "slug": "silent-duo-deduction-coop",
       "title": "Silent Duo",
-      "stage": "brief",
+      "stage": "design",
       "revision": 0,
       "history": [
         {
@@ -139,6 +145,12 @@
           "time": "2026-10-03T16:15:15Z",
           "verdict": "25/30",
           "note": "brief written; waiting for approval: greenlight"
+        },
+        {
+          "stage": "design",
+          "time": "2026-10-04T10:48:46Z",
+          "verdict": null,
+          "note": "greenlit; design started"
         }
       ],
       "verdicts": {
@@ -150,7 +162,7 @@
     {
       "slug": "asymmetric-duel-tug-of-war",
       "title": "Tug of Crowns",
-      "stage": "brief",
+      "stage": "design",
       "revision": 0,
       "history": [
         {
@@ -164,6 +176,12 @@
           "time": "2026-10-03T16:16:36Z",
           "verdict": "24/30",
           "note": "brief written; waiting for approval: greenlight"
+        },
+        {
+          "stage": "design",
+          "time": "2026-10-04T10:48:46Z",
+          "verdict": null,
+          "note": "greenlit; design started"
         }
       ],
       "verdicts": {

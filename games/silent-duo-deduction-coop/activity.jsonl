@@ -2,3 +2,4 @@
 {"time":"2026-10-03T16:16:00Z","agent":"market-researcher","game":"silent-duo-deduction-coop","event":"start","message":"Writing a brief from the bank (Mode 2)"}
 {"time":"2026-10-03T16:18:00Z","agent":"market-researcher","game":"silent-duo-deduction-coop","event":"done","message":"Brief complete, opportunity score 25/30"}
 {"time": "2026-10-03T16:15:15Z", "agent": "manager", "game": "silent-duo-deduction-coop", "event": "waiting", "message": "waiting for approval: greenlight (silent-duo-deduction-coop-greenlight)"}
+{"time": "2026-10-04T10:48:46Z", "agent": "manager", "game": "silent-duo-deduction-coop", "event": "step", "message": "Approved; design started"}

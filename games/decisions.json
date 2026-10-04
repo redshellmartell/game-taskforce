@@ -35,6 +35,24 @@
       "time": "2026-10-03T16:12:01Z",
       "decision": "approve",
       "notes": "panel-research-2: owner requested it in chat"
+    },
+    {
+      "slug": "three-player-trick-taker",
+      "time": "2026-10-04T10:48:46Z",
+      "decision": "approve",
+      "notes": "three-player-trick-taker-revision-1: owner said run the taskforce now; Director chose scope"
+    },
+    {
+      "slug": "silent-duo-deduction-coop",
+      "time": "2026-10-04T10:48:46Z",
+      "decision": "approve",
+      "notes": "silent-duo-deduction-coop-greenlight: owner said run the taskforce now; Director chose scope"
+    },
+    {
+      "slug": "asymmetric-duel-tug-of-war",
+      "time": "2026-10-04T10:48:46Z",
+      "decision": "approve",
+      "notes": "asymmetric-duel-tug-of-war-greenlight: owner said run the taskforce now; Director chose scope"
     }
   ]
 }
