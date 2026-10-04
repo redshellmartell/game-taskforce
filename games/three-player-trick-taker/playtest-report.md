@@ -1,34 +1,35 @@
-# Playtest report - Split the Take (revision 1, rules v2)
+# Playtest report - Split the Take (revision 2, rules v3)
 
-**Verdict: NEEDS-FIXES** (big improvement over revision 0; two KPIs still missed).
+**Verdict: NEEDS-FIXES (minor).** Five of six headline KPIs now pass, including the one that failed for two revisions (strategic vs greedy). Lead changes are still 1.61 against a target of 2, and none of the three fallback variants reached 2.
 
-| KPI | Target | Rev 0 | Rev 1 | Result |
+Sim updated in place (`sim/game.py` scoring to v3; new card-counting `Counter`/`Strategic` bot in `sim/bots.py`; old heuristic kept as `Basic`, used by the casual/story/family persona bots). 2,000 games per pairing, fixed seeds.
+
+| KPI | Target | Rev 1 | Rev 2 | Result |
 |---|---|---|---|---|
-| Seat gap (strategic mirror, 2,000 games) | <= 5 pts | 2.7 | 3.5 (35.1/33.2/31.7) | pass |
-| Strategic vs random (1 vs 2) | >= 20 pts | ~ | 51.6 pts (67.7% vs 16.1%) | pass |
-| Mixed table R/G/S | strategic >= greedy | 27% vs 68% | 28.5% strategic, 63.5% greedy, 8.1% random | FAIL |
-| Length | 20 min +/-20% | 18 | 18.2 min (42 tricks, fixed) | pass |
-| Runaway (leader after R3 wins) | <= 65% | 64.4% | 52.3% | pass |
-| Lead changes | >= 2 | 1.27 | 1.49 | FAIL |
-| Contract success (clean or messy) | 40-60% | 19.7% | 56.6% (DC paid 43.4%) | pass |
-| Role pts/round P / S / DC | within ~1 | 3.5/2.7/4.8 | 3.84 / 3.53 / 3.95 | pass |
-| Ties | low | | 0.75% | pass |
-| Dead options | 0 | No Trump | none | pass |
+| Mixed table strategic vs greedy | strategic >= greedy, >= 40% | 28.5% vs 63.5% | strategic 42.0%, greedy 41.8%, random 16.2% | pass (parity, noise +-1.1) |
+| Skill: 1 strategic vs 2 random | >= 20 pts | 51.6 | 46.1 pts (64.1% vs 18.0%) | pass |
+| Seat gap (strategic mirror) | <= 5 pts | 3.5 | 1.7 (34.4/32.7/32.9) | pass |
+| Lead changes | >= 2 | 1.49 | 1.61 | FAIL |
+| Runaway (sole leader after R3 wins) | <= 65% | 52.3% | 50.3% | pass |
+| Contract success (clean or messy) | 40-65% | 56.6% | 50.0% | pass |
+| Role pts/round P / S / DC | within ~1 | 3.84/3.53/3.95 | 2.93 / 2.48 / 2.59 | pass (spread 0.45) |
+| Length | 20 min +/-20% | 18.2 | 18.2 min (42 tricks) | pass |
+| Ties | low | 0.75% | 0.5% | pass |
 
 ## Problems
-1. **High: greedy still beats strategic.** Greedy 63.5% vs strategic 28.5% at a mixed table. Per-round data: a greedy crew member scores 4.4-4.5 pts (3.7-3.8 tricks); a strategic one 3.5-3.6 pts (2.3-2.9 tricks) with the same contract success (about 50-55%), so ducking to protect the contract costs loot and buys nothing. Swapping individual strategic components for greedy ones (plan, swap, play) each gave 32-38% vs greedy+random, no single culprit. Doubling all bonuses gave greedy 50%/strategic 33%/random 17%; tripling 43/34/23: greedy falls but strategic does not rise. Contract success is about a coin flip whatever the bot does, so steering skill is not rewarded. Fix: make steering pay clearly (loot worth less, e.g. half or only DC loot, with clean +5/+6; or give the crew a count-control tool). Caveat: my strategic bot is simple, a smarter one might do better.
-2. **Medium: lead changes 1.49 (KPI 2).** Heat helps (without Heat 0.98 lead changes, early leader 67.4%). Bonus x2 gave 1.56. Try Heat -3, or double scoring in the last round.
-3. **Low:** Target 3 is chosen 34% of rounds (36% success); Target 6 succeeds 86%. Not dominant (fixed Target 5 planner wins 37.6%, fair 33%, within noise of variant bots).
-4. **Low:** all games are exactly 42 tricks, no length variance.
+1. **Medium: lead changes 1.61 (target 2).** Fallbacks run on 2,000-game mirrors (3 of 5 allowed configs): double-scored final round 1.84 (early leader 43%, role points 3.4/2.9/3.0, but mixed-table strategic drops to 38.5% vs greedy 41.8%); crew loot on clean jobs only 1.64 (and Planner/Safecracker fall to 1.9/2.0 vs DC 2.7); critic's flat half-value version 1.71 (greedy 48%, strategic 36%; DC only 1.6). None reaches 2. Without Heat, lead changes are 1.07, so Heat -3 does most of the work. Fix options: accept as a known soft miss (runaway only 50%, so games are not decided early), or ship the double-scored final round as an optional finale. Untested: Heat also costing the leader 1 loot.
+2. **Low: strategic only ties greedy.** Greedy alone beats two randoms at 69.9% (vs strategic 64.1%). The v3 rule (crew loot lost on a blown job) closed the v2 gap of 35 points, but a bot cannot show that steering is clearly better than grabbing. Tuning (Target offset -1/+1, greedy swap, an always-grab DC) all landed at 35-43% for strategic, so this is the ceiling of the heuristic. A human playtest should settle whether humans can do better.
+3. **Low: Target 3 is the most common bot choice (34% of rounds) and the least reliable (28% success).** Targets 5-7 succeed 59/85/73%. Not a dead option.
+4. **Low: scoring is low.** Mean final score 16.0 (rules.md predicted 18-28); Heat is active in 74% of rounds. Update the design-note expectation; no rule change.
 
 ## Rule ambiguities
-None blocking in v2. Interpretations used: revokes impossible; Heat on 0 bonus does nothing; no Heat in round 1 (tied); deal order irrelevant to a random shuffle.
+None blocking. Interpretations: Heat -3 floors the bonus at 0; tiebreaker 2 counts all tricks, including those on blown jobs; the role-pass direction is equivalent to a fixed seat rotation; revokes are impossible in sim.
 
-## Experiments run (5 configs max)
-no Heat; fixed Target 5; offset -1; offset +1; DC always-wins (all within 0.33-0.38 seat-0 win vs two strategic bots: no exploit); plus component swaps and bonus x2/x3 (scratch scripts in sim/experiments/). Untested: loot halved with clean +5/+6; Heat -3; double final round; smarter strategic bot with card counting.
+## Experiments run (5 of 5 allowed, plus bot tuning)
+Mirror experiments from run.py: no Heat, fixed Target 5, offset -1, offset +1, DC always grabs (all inside the headline run). Fallbacks: double_final, cleanloot, flat (critic's variant). Throwaway scripts are in `sim/experiments/` (`variants.py`, `tune.py`, results in `variants.json`).
 
-## Narrated play
-Not replayed this pass (rules change affected scoring, not turn feel). Sample logs in sim/logs show the round now has a clear tension: a crew on target-1 with one trick left either takes it (clean) or ducks (messy), and the DC's choice to push away is visible. The Swap of 3 now regularly reshapes a hand, but cheap-win greedy play makes most rounds read as "take tricks" regardless of the contract.
+## How it felt
+Narrated play skipped (the change is scoring and bot strength, not turn flow). From the logs, the new tension is real: a crew member at the Target with tricks left must dump winners, and the blown job now zeroes both crew members at once, which creates sharp swings in single rounds. The cost is that many rounds still end at a modest score, so standings shuffle less than the design hopes.
 
-## Panel (free bot rotation)
-20 tables x 6 seatings x 200 games, 12,000 per persona. Average predicted fun 3.54 (competitor 4.31 best fit, family 3.07 worst fit; Bar Raiser 3.90, **veto not active**). Results in panel.json.
+## Panel
+Panel rotation re-run on v3; see `panel.json` and the summary below.
