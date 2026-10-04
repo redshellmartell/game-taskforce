@@ -539,11 +539,17 @@
           "time": "2026-10-04T20:01:50Z",
           "verdict": null,
           "note": "Playtest NEEDS-FIXES: runaway leader 0.79, lead changes 1.5, Sonar dead card, 6 ambiguities; critique next"
+        },
+        {
+          "stage": "critique",
+          "time": "2026-10-04T20:02:56Z",
+          "verdict": "REVISE-MAJOR",
+          "note": "Critic REVISE-MAJOR avg 3.33; waiting for approval: revision (two-player-hidden-movement-grid-revision-1)"
         }
       ],
       "verdicts": {
-        "playtest": null,
-        "critic": null
+        "playtest": "NEEDS-FIXES",
+        "critic": "REVISE-MAJOR"
       },
       "kill_reason": null
     }

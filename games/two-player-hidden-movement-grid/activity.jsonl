@@ -9,3 +9,4 @@
 {"time": "2026-10-04T20:01:27Z", "agent": "playtester", "game": "two-player-hidden-movement-grid", "event": "done", "message": "playtest-report.md, playtest.json, panel.json written"}
 {"time": "2026-10-04T20:01:50Z", "agent": "playtester", "game": "two-player-hidden-movement-grid", "event": "done", "message": "Playtest NEEDS-FIXES: runaway leader 0.79, lead changes 1.5, Sonar dead card, 6 ambiguities; critique next"}
 {"time": "2026-10-04T20:01:50Z", "agent": "critic", "game": "two-player-hidden-movement-grid", "event": "start", "message": "Reviewing design and playtest"}
+{"time": "2026-10-04T20:02:56Z", "agent": "critic", "game": "two-player-hidden-movement-grid", "event": "done", "message": "Critic REVISE-MAJOR avg 3.33; waiting for approval: revision (two-player-hidden-movement-grid-revision-1)"}

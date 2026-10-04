@@ -754,6 +754,35 @@
       "decision": null,
       "decided_at": null,
       "owner_notes": null
+    },
+    {
+      "id": "two-player-hidden-movement-grid-revision-1",
+      "gate": "revision",
+      "game": "two-player-hidden-movement-grid",
+      "time": "2026-10-04T20:02:56Z",
+      "status": "pending",
+      "summary": "Playtest NEEDS-FIXES: runaway leader 0.79 (target 0.65), lead changes 1.5 (target 2), early fog-flip luck decides most games, Sonar ping is a dead card, about 75% of games hit the round-10 cap, 6 ambiguities. Seat gap 1.4 and skill gap 75 pass. Critic REVISE-MAJOR, average 3.33. Closest game: Creep in Silent (2021), medium similarity.",
+      "why_needed": "The core loop is healthy and cheap, but early luck decides games, and reading the opponent's cooling row is worth only about 5 points, so the promised outguessing isn't there.",
+      "expected_outcome": "Cut early luck (fewer Mines, more 1s and 2s, or setup peeks; runaway toward 0.65, lead changes 2+); add a comeback beyond torpedoes (torpedo spam still 50% or less); make Sonar matter (never-ping win rate 45% or less); stop leaders coasting at the round-10 cap (cap 12 or an early-end rule, 12-18 min); make cooling-row reading worth 10+ points; close all 6 ambiguities, trimming sub-rules such as the Reef bounce clash. Critic: park the game if runaway stays above 0.70 after this revision.",
+      "usage_estimate": "M",
+      "recommendation": "approve",
+      "options": [
+        {
+          "key": "approve",
+          "label": "Run revision 1 (designer, playtester, critic); park if runaway stays above 0.70"
+        },
+        {
+          "key": "park",
+          "label": "Park the game; no further work for now"
+        },
+        {
+          "key": "kill",
+          "label": "Kill it and record why"
+        }
+      ],
+      "decision": null,
+      "decided_at": null,
+      "owner_notes": null
     }
   ]
 }
