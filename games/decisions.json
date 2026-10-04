@@ -91,6 +91,30 @@
       "time": "2026-10-04T15:21:58Z",
       "decision": "approve",
       "notes": "duelflip-revision-2 (revision gate): owner approved in chat"
+    },
+    {
+      "slug": "standard-deck-engine-workshop",
+      "time": "2026-10-04T17:27:45Z",
+      "decision": "approve",
+      "notes": "standard-deck-engine-workshop-greenlight: owner approved in chat (all banked ideas 25+/30)"
+    },
+    {
+      "slug": "five-six-simultaneous-auction",
+      "time": "2026-10-04T17:27:45Z",
+      "decision": "approve",
+      "notes": "five-six-simultaneous-auction-greenlight: owner approved in chat (all banked ideas 25+/30)"
+    },
+    {
+      "slug": "solo-nine-card-roguelike",
+      "time": "2026-10-04T17:27:45Z",
+      "decision": "approve",
+      "notes": "solo-nine-card-roguelike-greenlight: owner approved in chat (all banked ideas 25+/30)"
+    },
+    {
+      "slug": "two-player-hidden-movement-grid",
+      "time": "2026-10-04T17:27:45Z",
+      "decision": "approve",
+      "notes": "two-player-hidden-movement-grid-greenlight: owner approved in chat (all banked ideas 25+/30)"
     }
   ]
 }

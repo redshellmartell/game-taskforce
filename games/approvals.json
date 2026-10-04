@@ -583,6 +583,90 @@
       "decision": null,
       "decided_at": null,
       "owner_notes": null
+    },
+    {
+      "id": "standard-deck-engine-workshop-greenlight",
+      "gate": "greenlight",
+      "game": "standard-deck-engine-workshop",
+      "time": "2026-10-04T17:27:45Z",
+      "status": "approved",
+      "summary": "Fifty-Two Workshop: banked idea scoring 25+/30.",
+      "why_needed": "Owner asked to push every banked idea scoring 25 or more through the pipeline.",
+      "expected_outcome": "Brief, design, playtest and critique.",
+      "usage_estimate": "L",
+      "recommendation": "approve",
+      "options": [
+        {
+          "key": "approve",
+          "label": "Greenlight"
+        }
+      ],
+      "decision": "approve",
+      "decided_at": "2026-10-04T17:27:45Z",
+      "owner_notes": "Owner said in chat: run the taskforce and push through all banked games at least 25/30."
+    },
+    {
+      "id": "five-six-simultaneous-auction-greenlight",
+      "gate": "greenlight",
+      "game": "five-six-simultaneous-auction",
+      "time": "2026-10-04T17:27:45Z",
+      "status": "approved",
+      "summary": "Last Bid Standing: banked idea scoring 25+/30.",
+      "why_needed": "Owner asked to push every banked idea scoring 25 or more through the pipeline.",
+      "expected_outcome": "Brief, design, playtest and critique.",
+      "usage_estimate": "L",
+      "recommendation": "approve",
+      "options": [
+        {
+          "key": "approve",
+          "label": "Greenlight"
+        }
+      ],
+      "decision": "approve",
+      "decided_at": "2026-10-04T17:27:45Z",
+      "owner_notes": "Owner said in chat: run the taskforce and push through all banked games at least 25/30."
+    },
+    {
+      "id": "solo-nine-card-roguelike-greenlight",
+      "gate": "greenlight",
+      "game": "solo-nine-card-roguelike",
+      "time": "2026-10-04T17:27:45Z",
+      "status": "approved",
+      "summary": "Nine Lives Dungeon: banked idea scoring 25+/30.",
+      "why_needed": "Owner asked to push every banked idea scoring 25 or more through the pipeline.",
+      "expected_outcome": "Brief, design, playtest and critique.",
+      "usage_estimate": "L",
+      "recommendation": "approve",
+      "options": [
+        {
+          "key": "approve",
+          "label": "Greenlight"
+        }
+      ],
+      "decision": "approve",
+      "decided_at": "2026-10-04T17:27:45Z",
+      "owner_notes": "Owner said in chat: run the taskforce and push through all banked games at least 25/30."
+    },
+    {
+      "id": "two-player-hidden-movement-grid-greenlight",
+      "gate": "greenlight",
+      "game": "two-player-hidden-movement-grid",
+      "time": "2026-10-04T17:27:45Z",
+      "status": "approved",
+      "summary": "Dead Reckoning: banked idea scoring 25+/30.",
+      "why_needed": "Owner asked to push every banked idea scoring 25 or more through the pipeline.",
+      "expected_outcome": "Brief, design, playtest and critique.",
+      "usage_estimate": "L",
+      "recommendation": "approve",
+      "options": [
+        {
+          "key": "approve",
+          "label": "Greenlight"
+        }
+      ],
+      "decision": "approve",
+      "decided_at": "2026-10-04T17:27:45Z",
+      "owner_notes": "Owner said in chat: run the taskforce and push through all banked games at least 25/30."
     }
   ]
 }

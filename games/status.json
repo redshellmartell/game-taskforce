@@ -356,6 +356,82 @@
         "critic": "REVISE-MAJOR"
       },
       "kill_reason": null
+    },
+    {
+      "slug": "standard-deck-engine-workshop",
+      "title": "Fifty-Two Workshop",
+      "stage": "brief",
+      "revision": 0,
+      "history": [
+        {
+          "stage": "brief",
+          "time": "2026-10-04T17:27:45Z",
+          "verdict": null,
+          "note": "owner greenlit all banked ideas 25+/30; brief from the idea bank next"
+        }
+      ],
+      "verdicts": {
+        "playtest": null,
+        "critic": null
+      },
+      "kill_reason": null
+    },
+    {
+      "slug": "five-six-simultaneous-auction",
+      "title": "Last Bid Standing",
+      "stage": "brief",
+      "revision": 0,
+      "history": [
+        {
+          "stage": "brief",
+          "time": "2026-10-04T17:27:45Z",
+          "verdict": null,
+          "note": "owner greenlit all banked ideas 25+/30; brief from the idea bank next"
+        }
+      ],
+      "verdicts": {
+        "playtest": null,
+        "critic": null
+      },
+      "kill_reason": null
+    },
+    {
+      "slug": "solo-nine-card-roguelike",
+      "title": "Nine Lives Dungeon",
+      "stage": "brief",
+      "revision": 0,
+      "history": [
+        {
+          "stage": "brief",
+          "time": "2026-10-04T17:27:45Z",
+          "verdict": null,
+          "note": "owner greenlit all banked ideas 25+/30; brief from the idea bank next"
+        }
+      ],
+      "verdicts": {
+        "playtest": null,
+        "critic": null
+      },
+      "kill_reason": null
+    },
+    {
+      "slug": "two-player-hidden-movement-grid",
+      "title": "Dead Reckoning",
+      "stage": "brief",
+      "revision": 0,
+      "history": [
+        {
+          "stage": "brief",
+          "time": "2026-10-04T17:27:45Z",
+          "verdict": null,
+          "note": "owner greenlit all banked ideas 25+/30; brief from the idea bank next"
+        }
+      ],
+      "verdicts": {
+        "playtest": null,
+        "critic": null
+      },
+      "kill_reason": null
     }
   ]
 }
