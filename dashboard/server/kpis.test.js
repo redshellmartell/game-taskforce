@@ -344,3 +344,16 @@ test('review queue items carry the verdicts, revision count and opportunity scor
   assert.ok(q); assert.ok('verdicts' in q && 'revision' in q && 'opportunity' in q);
   assert.ok(q.verdicts && q.verdicts.critic);
 });
+
+test('lines written in the same second: the last line written is the latest (a finished agent is not "working")', () => {
+  const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'tie-'));
+  fs.mkdirSync(path.join(tmp, 'games', 'g1'), { recursive: true });
+  fs.mkdirSync(path.join(tmp, '.claude', 'agents'), { recursive: true });
+  fs.writeFileSync(path.join(tmp, '.claude', 'agents', 'critic.md'), '---\nname: critic\ndescription: test\ntools: Read\n---\n');
+  const t = '2026-10-04T12:00:00Z', line = (event, message) => JSON.stringify({ time: t, agent: 'critic', game: 'g1', event, message }) + '\n';
+  fs.writeFileSync(path.join(tmp, 'games', 'g1', 'activity.jsonl'), line('start', 'first') + line('step', 'second') + line('done', 'third'));
+  const s = buildState({ repoRoot: tmp, dashboardDir, sample: false, now: Date.parse('2026-10-04T12:05:00Z') });
+  const critic = s.agents.find((a) => a.id === 'critic');
+  assert.equal(critic.lastEvent.event, 'done'); assert.equal(critic.state, 'idle');
+  assert.equal(s.activity[0].message, 'third');
+});

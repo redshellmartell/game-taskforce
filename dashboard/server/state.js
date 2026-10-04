@@ -169,6 +169,7 @@ export function buildState({ repoRoot, dashboardDir, sample, now = Date.now() })
     }
     // an agent without a clock may guess a time in the future: never show one (clamp to now and mark it approximate)
     events = events.map((e) => (Date.parse(e.time) > now + 60000 ? { ...e, time: new Date(now).toISOString(), time_estimated: true } : e));
+    events = events.map((e, i) => ({ ...e, _seq: activity.length + i }));
     activity = activity.concat(events);
     games.push({
       slug,
@@ -187,7 +188,8 @@ export function buildState({ repoRoot, dashboardDir, sample, now = Date.now() })
     });
   }
   for (const g of games) g.scorecard = gameScorecard(g);
-  activity.sort((a, b) => Date.parse(b.time) - Date.parse(a.time));
+  // newest first; lines with the same time (agents without a clock, clamped times) keep file order, so the LAST line written counts as the latest
+  activity.sort((a, b) => (Date.parse(b.time) - Date.parse(a.time)) || ((b._seq ?? 0) - (a._seq ?? 0)));
 
   // Agent states from the newest activity line of each agent.
   for (const a of agents) {
