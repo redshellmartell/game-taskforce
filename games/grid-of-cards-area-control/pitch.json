@@ -1,0 +1,3 @@
+{ "title": "Nine Fields", "hook": "Crowd an island to its limit and the tide shoves a whole row or column, pushing one island off the edge and into your pocket.", "players": "2-4 (3-4 recommended)", "minutes": 20, "age": "10+", "complexity": 2.5,
+  "components": [{ "item": "island cards", "count": 30 }, { "item": "pawns", "count": 16 }, { "item": "rules card", "count": 1 }],
+  "estimated_prototype_cost_usd": 15, "prototype_ready": true }

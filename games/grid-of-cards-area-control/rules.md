@@ -90,7 +90,7 @@ An island **floods** when a pawn arrives on it (by Land or Sail) and its pawn co
 2. **Fall off.** The island at the end of the line in the chosen direction (the far right for "right", the top for "up", and so on) falls off the grid. This may be the flooded island itself. It is claimed (Section 5, "Claiming"). All pawns on it return to their owners' supplies.
 3. **Slide.** The other two islands in the line move one space in the chosen direction, carrying their pawns with them and keeping their orientation.
 4. **Refill.** Place the next island, upright and empty, in the space left open at the opposite end of the line. Then turn the top card of the deck face up as the new next island (if the deck is empty, there is now no next island). If there was no next island to place, leave the space empty; the game ends after this flood (Section 6).
-5. **Turn.** If the flooded island is still in the grid, give it a quarter turn: its axis swaps (Row becomes Column, Column becomes Row). It keeps all its pawns and stays full. If the flooded island fell off in step 2, nothing turns.
+5. **Turn.** If the flooded island is still in the grid, give it a quarter turn: its axis swaps (Row becomes Column, Column becomes Row). It keeps all its pawns. (A storm island need not be full.) If the flooded island fell off in step 2, nothing turns.
 
 After any flood, set the calm count to 0.
 
@@ -100,7 +100,7 @@ If no flood happened this turn (including a pass), add 1 to the calm count. If t
 
 1. **Storm island.** The storm island is the island with the fewest open spaces (capacity minus pawns). Ties: the one with the most pawns; then the first in reading order.
 2. **Storm player.** The storm player is the player with the fewest trophy cards. Ties: the first tied player in clockwise order starting from the player whose turn is next.
-3. **Resolve.** The storm island floods: the storm player is its trigger player and resolves Phase 2 steps 1-5 exactly as for a normal flood (including salvage and the quarter turn). The storm island need not be full.
+3. **Resolve.** The storm island floods: the storm player is its trigger player and resolves Phase 2 steps 1-5 exactly as for a normal flood (including salvage and the quarter turn). The storm island need not be full. If this flood leaves an empty space that cannot be refilled because there is no next island, the game ends after the storm flood (Section 6).
 4. Set the calm count to 0. Then play passes to the next player clockwise, who takes a normal turn.
 
 Otherwise, play passes to the next player clockwise.
@@ -150,7 +150,7 @@ Red chooses **up**. Crown and Salt Flat slide up; Shell Beach enters at bottom-l
 1. **Trigger:** the game ends at the end of a flood (normal or storm) in which an empty space could not be refilled because there was no next island. There is no other way for the game to end.
 2. **Final tide:** score each island still in the grid one at a time in reading order (space 1 to space 9, skipping the empty space) using the Claiming rules. Each claimed island goes into its claimer's pile at once, so the pile sizes used for the fewest-trophies tiebreak change as the final tide goes on. Empty islands are not claimed.
 3. **Score:** everyone reveals their trophy pile. Your score is the total value of your trophies.
-4. **Tiebreakers:** (a) the most trophy cards; (b) the fewest of your pawns that were on the grid when the game ended (counted before the final tide); (c) if still tied, the tied players share the win.
+4. **Tiebreakers:** (a) the most trophy cards; (b) the fewest of your pawns that were on the grid when the game ended (counted before the final tide); (c) if still tied, the tied players share the win. A shared win is a legitimate result; it happens in roughly 1-2.5% of games.
 
 ## 7. Design notes
 

@@ -271,7 +271,7 @@
     {
       "slug": "grid-of-cards-area-control",
       "title": "Nine Fields",
-      "stage": "critique",
+      "stage": "owner-review",
       "revision": 1,
       "history": [
         {
@@ -333,6 +333,12 @@
           "time": "2026-10-05T12:06:04Z",
           "verdict": "PASS",
           "note": "Revision 1 critic PASS avg 3.83; 3-4p pass; 2p weaker mode; pitch as 3-4 player game"
+        },
+        {
+          "stage": "owner-review",
+          "time": "2026-10-05T12:06:40Z",
+          "verdict": null,
+          "note": "Pitch written (3-4 player game, 2p flagged); three wording fixes applied to rules.md"
         }
       ],
       "verdicts": {
