@@ -8,3 +8,4 @@
 {"time": "2026-10-04T17:56:25Z", "agent": "playtester", "game": "standard-deck-engine-workshop", "event": "done", "message": "Playtest NEEDS-FIXES: solo trivial (98.6%), engine suits don't pay, infinite-loop hole, 11 ambiguities; critique next"}
 {"time": "2026-10-04T17:56:25Z", "agent": "critic", "game": "standard-deck-engine-workshop", "event": "start", "message": "Reviewing design and playtest"}
 {"time": "2026-10-04T17:57:20Z", "agent": "critic", "game": "standard-deck-engine-workshop", "event": "done", "message": "Critic REVISE-MAJOR avg 3.17; waiting for approval: revision (standard-deck-engine-workshop-revision-1)"}
+{"time": "2026-10-05T12:23:03Z", "agent": "game-designer", "game": "standard-deck-engine-workshop", "event": "start", "message": "Revision 1: rewriting rules.md from critique and playtest"}
