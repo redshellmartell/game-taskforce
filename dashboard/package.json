@@ -8,7 +8,7 @@
     "start": "vite build && node server/index.js",
     "demo": "vite build && node server/index.js --demo",
     "dev": "concurrently -k \"node server/index.js --dev\" \"vite\"",
-    "test": "node --test server/kpis.test.js server/ideas.test.js server/panel.test.js server/approvals.test.js server/pitch.test.js server/notes.test.js server/research.test.js"
+    "test": "node --test server/kpis.test.js server/ideas.test.js server/panel.test.js server/approvals.test.js server/pitch.test.js server/notes.test.js server/research.test.js server/taskforce.test.js"
   },
   "dependencies": {
     "@xyflow/react": "^12.3.5",

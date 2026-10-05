@@ -13,6 +13,8 @@ import { decideApproval } from './approvals.js';
 import { decidePitch } from './pitch.js';
 import { saveNote } from './notes.js';
 import { requestResearch } from './research.js';
+import { writeSwitch } from './taskforce.js';
+import { recordApprovalEffects, raiseRevisionForSendBack } from './effects.js';
 
 const dashboardDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const repoRoot = path.resolve(dashboardDir, '..');
@@ -47,7 +49,14 @@ app.post('/api/approvals/:id', (req, res) => {
   const origin = req.get('origin');
   if (origin && new URL(origin).host !== req.get('host')) return res.status(403).json({ error: 'Not allowed' });
   if (useSample()) return res.status(409).json({ error: 'The dashboard is showing sample data, so decisions are not saved. Run npm start in a copy of the repository that has real games.' });
-  try { res.json(decideApproval(path.join(repoRoot, 'games', 'approvals.json'), req.params.id, (req.body || {}).decision, (req.body || {}).notes)); }
+  try {
+    const g = path.join(repoRoot, 'games');
+    const out = decideApproval(path.join(g, 'approvals.json'), req.params.id, (req.body || {}).decision, (req.body || {}).notes);
+    // the click writes its whole effect (decisions.json and the game's history), so nobody has to type "continue with approved work"
+    try { recordApprovalEffects({ approvalsFile: path.join(g, 'approvals.json'), decisionsFile: path.join(g, 'decisions.json'), statusFile: path.join(g, 'status.json') }, req.params.id); }
+    catch (e) { console.warn('[dashboard] could not record the effects of the decision:', e.message); }
+    res.json(out);
+  }
   catch (e) { res.status(e.status || 500).json({ error: e.status ? e.message : 'Could not record the decision.' }); }
 });
 
@@ -75,8 +84,27 @@ app.post('/api/pitch/:slug', (req, res) => {
   const origin = req.get('origin');
   if (origin && new URL(origin).host !== req.get('host')) return res.status(403).json({ error: 'Not allowed' });
   if (useSample()) return res.status(409).json({ error: 'The dashboard is showing sample data, so decisions are not saved. Run npm start in a copy of the repository that has real games.' });
-  try { res.json(decidePitch(path.join(repoRoot, 'games', 'decisions.json'), path.join(repoRoot, 'games', 'status.json'), req.params.slug, (req.body || {}).decision, (req.body || {}).notes, Date.now(), (req.body || {}).target)); }
+  try {
+    const g = path.join(repoRoot, 'games');
+    const body = req.body || {};
+    const out = decidePitch(path.join(g, 'decisions.json'), path.join(g, 'status.json'), req.params.slug, body.decision, body.notes, Date.now(), body.target);
+    // a send-back to the designer raises the revision request it needs (pending: one more click approves it)
+    if (body.decision === 'send-back') {
+      try { raiseRevisionForSendBack({ approvalsFile: path.join(g, 'approvals.json'), statusFile: path.join(g, 'status.json') }, req.params.slug, out.notes, out.target); }
+      catch (e) { console.warn('[dashboard] could not raise the revision request:', e.message); }
+    }
+    res.json(out);
+  }
   catch (e) { res.status(e.status || 500).json({ error: e.status ? e.message : 'Could not record the decision.' }); }
+});
+
+// The taskforce on/off switch (task 014): writes studio/taskforce.json only. It never starts an agent itself; the runner reads the file.
+app.post('/api/taskforce/switch', (req, res) => {
+  const origin = req.get('origin');
+  if (origin && new URL(origin).host !== req.get('host')) return res.status(403).json({ error: 'Not allowed' });
+  const studio = useSample() ? path.join(dashboardDir, 'sample-data', 'studio') : path.join(repoRoot, 'studio');
+  try { res.json(writeSwitch(studio, (req.body || {}).active, (req.body || {}).pause_mode)); }
+  catch (e) { res.status(e.status || 500).json({ error: e.status ? e.message : 'Could not save the switch.' }); }
 });
 
 // Only Markdown files inside games/ (or sample-data/games/) and .claude/agents/ may be read.
@@ -107,7 +135,7 @@ function notifyChanged() {
   clearTimeout(timer);
   timer = setTimeout(() => { for (const c of clients) c.write('event: changed\ndata: {}\n\n'); }, 300);
 }
-const watchPaths = [path.join(repoRoot, 'games'), path.join(repoRoot, '.claude', 'agents'), path.join(dashboardDir, 'agents.json'), path.join(dashboardDir, 'sample-data'), path.join(repoRoot, 'research'), path.join(repoRoot, 'usage'), path.join(repoRoot, 'panel')];
+const watchPaths = [path.join(repoRoot, 'games'), path.join(repoRoot, '.claude', 'agents'), path.join(dashboardDir, 'agents.json'), path.join(dashboardDir, 'sample-data'), path.join(repoRoot, 'research'), path.join(repoRoot, 'usage'), path.join(repoRoot, 'panel'), path.join(repoRoot, 'studio')];
 chokidar.watch(watchPaths, { ignoreInitial: true, ignored: /(__pycache__|\.pyc$|\/sim\/)/, awaitWriteFinish: { stabilityThreshold: 150, pollInterval: 50 } })
   .on('all', notifyChanged).on('error', (e) => console.warn('[dashboard] watcher:', e.message));
 setInterval(() => { for (const c of clients) c.write(': ping\n\n'); }, 25000); // keep connections open
@@ -118,6 +146,6 @@ if (!process.argv.includes('--dev')) {
   app.get('*', (req, res) => res.sendFile(path.join(dist, 'index.html')));
 }
 
-app.listen(PORT, () => {
+app.listen(PORT, '127.0.0.1', () => {   // this computer only: nothing else on the network can reach the dashboard
   console.log(`\nThink Tank dashboard: http://localhost:${PORT}  (${useSample() ? 'sample data' : 'real games'})\n`);
 });

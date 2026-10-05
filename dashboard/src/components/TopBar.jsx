@@ -1,4 +1,5 @@
 import { Help } from './Help.jsx';
+import { TaskforceSwitch } from './TaskforceSwitch.jsx';
 
 // The five headline KPIs. All numbers are computed on the server (server/kpis.js).
 function Kpi({ label, k, suffix = '', extra }) {
@@ -19,6 +20,7 @@ export function TopBar({ state, learn, setLearn, onWaiting }) {
       <span className="brand">Game Think Tank</span>
       {state.sample && <span className="badge" title="No real games yet, or started with npm run demo">Sample data</span>}
       {state.approvals?.pending > 0 && <button className="waiting-badge" onClick={onWaiting} title="The Director is waiting for your decision">Waiting for you <b>{state.approvals.pending}</b></button>}
+      <TaskforceSwitch state={state} />
       <Kpi label="Concepts in development" k={k.concepts} />
       <Kpi label="Pitch rate" k={k.pitchRate} suffix="%" />
       <Kpi label="Avg critic score" k={k.avgCritic} suffix={k.avgCritic?.value != null ? ' / 5' : ''} />
