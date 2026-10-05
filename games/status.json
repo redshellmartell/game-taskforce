@@ -271,7 +271,7 @@
     {
       "slug": "grid-of-cards-area-control",
       "title": "Nine Fields",
-      "stage": "critique",
+      "stage": "design",
       "revision": 0,
       "history": [
         {
@@ -309,6 +309,12 @@
           "time": "2026-10-04T18:32:00Z",
           "verdict": null,
           "note": "revision 1 approved; designer starts"
+        },
+        {
+          "stage": "design",
+          "time": "2026-10-05T11:42:01Z",
+          "verdict": null,
+          "note": "Owner approved revision 1; briefing designer"
         }
       ],
       "verdicts": {

@@ -12,3 +12,5 @@
 {"time":"2026-10-04T11:35:00Z","agent":"critic","game":"grid-of-cards-area-control","event":"step","message":"1 web search for originality (closest: Contactics, low); scored from playtest.json and panel.json (no panel-report.md)"}
 {"time":"2026-10-04T11:40:00Z","agent":"critic","game":"grid-of-cards-area-control","event":"done","message":"REVISE-MINOR, average 3.67; good at 3-4p, 2p fails lead changes and runaway; revision worth it"}
 {"time": "2026-10-04T11:25:36Z", "agent": "manager", "game": "grid-of-cards-area-control", "event": "waiting", "message": "waiting for approval: revision (grid-of-cards-area-control-revision-1)"}
+{"time": "2026-10-05T11:42:01Z", "agent": "director", "game": "grid-of-cards-area-control", "event": "step", "message": "Owner approved revision 1; briefing designer"}
+{"time": "2026-10-05T11:42:01Z", "agent": "game-designer", "game": "grid-of-cards-area-control", "event": "start", "message": "Revision 1: rewriting rules.md from critique and playtest"}
