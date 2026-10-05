@@ -43,6 +43,9 @@ Read this first in a fresh session, after `CLAUDE.md`. It holds context that is 
 ## Task 013 (learning loop), in progress
 - Built: scoreboard (`python3 tools/learning/scoreboard.py`), `studio/lessons.md`, `studio/design-rules.md`, agent read-lines, `review_cap` settings, dashboard `review-cap` gate, and the `CLAUDE.md` Review cap section (owner approved the edit). Owner ruled that pending approved `-revision-N` requests count inside the cap. Not yet run on a real game; stages 4 and 5 not started.
 
+## Click sync
+- The Mac sync (`tools/sync/sync.sh`) pushes only owner files: approvals, decisions, settings, inbox, notes, and now `studio/taskforce.json` and `studio/STOP` (the switch). Until the Mac pulls this change and restarts the sync, the switch stays on the Mac only. `games/status.json` (history line written by a click) is NOT synced because the Director edits it too; the click's effect is still recorded in approvals and decisions.
+
 ## Queued work
 - Task 011: dashboard live/interactive, three stages, branch `dashboard-interactive`. **Read the 2026-10-04 (evening) entry in `docs/plan/PROGRESS.md` first**: it has the owner's "click, then see the effect" requirement and the Step A/B/C plan.
 - Task 012: role-playing games in the pipeline (RPGs need a different playtest approach; say plainly what simulation cannot test).
