@@ -26,6 +26,17 @@ The owner is pinged only for the main steps (below), not for every stage.
 - **The owner is new to coding.** Plain language, exact commands, stop after each stage for review. Do not edit `dashboard/` beyond what each stage lists. Build and test against `dashboard/sample-data/`; never edit real files in `games/` while testing.
 - The Mac follows `main` (sync every 20 seconds). A runner that works in the owner's own checkout commits and pushes from there, so the side-branch merge problem goes away.
 
+## The Mac may sleep mid-run (owner, 2026-10-05: "it will be on when I start and stop; if it sleeps in the middle I am not sure")
+Treat sleep as **normal, not an error**. Design so that a sleep never loses work and never needs the owner to repair anything:
+- **Prevent idle sleep while running.** The runner starts under `caffeinate -i` (and `-s` when on power), so the Mac does not sleep from inactivity while the switch is on. Closing the lid on battery can still sleep it; that case is covered below. Releasing `caffeinate` on stop is automatic when the runner exits.
+- **Heartbeat.** The runner rewrites `heartbeat` in `studio/run-state.json` every 30 seconds. The dashboard shows "running" only if the heartbeat is fresh (under 2 minutes) and otherwise shows **"interrupted (the Mac may have slept)"** with the time of the last heartbeat.
+- **Sleep detection.** The loop compares the wall clock between iterations. A gap over 2 minutes means the Mac slept: any agent call that was in flight is treated as suspect (its connection is probably dead). The runner checks whether the step's expected output exists and is complete; if not it marks the step `to-redo`, and redoes it from the start.
+- **Safe redo.** Every step must be safe to repeat: rules edits happen in place, a playtest re-runs from scratch, the activity log gets a new `start` line after an unmatched one (the dashboard treats the earlier unmatched `start` as "interrupted"), and a commit is only made when the step finished. No step may leave a game in a half-written state that the next step trusts.
+- **Retry once on network errors,** then stop with `status: error` and a plain-English reason. (Answers the owner question below: retry once, then wait for the owner.)
+- **Resume.** On switch-on, if `status` is `running` with a stale heartbeat, the runner treats it as interrupted, records that in `activity.jsonl`, and redoes the step. No owner action needed.
+- **Test it:** stage 1 paper run includes a simulated sleep (kill the runner mid-step, resume, compare the result with an uninterrupted run); stage 3 includes a real test (start a step, close the lid for a minute, reopen).
+- **Cloud fallback (stage 5)** is the real answer for long unattended runs while the Mac is off; the local runner is for sessions where the owner is at the Mac.
+
 ## What it does
 
 **State files (plain files, all in the repo):**
@@ -57,7 +68,7 @@ The owner is pinged only for the main steps (below), not for every stage.
 - Write `docs/ops/taskforce-runbook.md`: the runner's loop, the stop reasons, the pause and resume rules, the `taskforce.json` and `run-state.json` formats, and what each agent prompt must contain (game slug, stage, files to read, "do not write activity lines or guess times").
 - Write `tools/runner/digest.py`: builds the one-page digest from the existing files. Unit tests with sample files.
 - Do a **paper run**: the builder plays the runner by hand on sample data to prove a stop and a resume work.
-- **Done when:** the runbook and digest exist, tests pass, and a stop-and-resume on sample data ends in the same state as an uninterrupted run.
+- **Done when:** the runbook and digest exist, tests pass, and a stop-and-resume (including a simulated sleep: kill mid-step, then resume) on sample data ends in the same state as an uninterrupted run.
 
 ### Stage 2: the switch and click records (dashboard, no runner)
 - Dashboard: an On/Off control, a pause-mode choice, and a status panel (active/paused/stopped, game, stage, step, why it stopped), reading `taskforce.json` and `run-state.json` live. The control writes `taskforce.json` through a small localhost endpoint (atomic write; refused in sample mode unless pointed at sample data).
@@ -91,7 +102,7 @@ The owner is pinged only for the main steps (below), not for every stage.
 - The owner is notified only for the main events.
 
 ## Questions for the owner (answer in the planning chat or `PROGRESS.md`)
-- Does the Mac usually stay on and awake while the taskforce runs?
+- ~~Does the Mac usually stay on and awake?~~ Answered 2026-10-05: not always; it is on when the owner starts and stops the run, and may sleep in between. See "The Mac may sleep mid-run".
 - Which notification channel: push, email, or both?
 - What daily or weekly usage limit should stop the runner, besides the guard?
-- After a stop on an error, should the runner retry once, or always wait for the owner?
+- After a stop on an error, should the runner retry once, or always wait for the owner? (Draft default: retry once on a network error, then wait.)
