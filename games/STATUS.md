@@ -11,7 +11,7 @@ archetypes | brief | - | Owner idea (personality-test RPG); researching
 grid-of-cards-area-control | critique | NEEDS-FIXES (2p only) / REVISE-MINOR (3.67) | good at 3-4 players; 2p stalls; revision request waiting
 heavenly-bodies | design | - | Owner idea; full design doc supplied; designer building the 96-card pile (36 COs + 60 AEs)
 heavenly-bodies | critique | NEEDS-FIXES (Bar Raiser veto) / REVISE-MAJOR (2.83) | owner rulings needed (G4 etc.); revision request waiting
-| standard-deck-engine-workshop | 4. Critique (revision 1) -> edit pass -> pitch | NEEDS-FIXES / REVISE-MINOR (3.67) | Fifty-Two Workshop: critic says pitch as multiplayer; small edit pass running |
+| standard-deck-engine-workshop | 5. Pitched (owner-review) | REVISE-MINOR (3.67) | Fifty-Two Workshop: pitch written; multiplayer, solo flagged unproven; waiting for the owner |
 | five-six-simultaneous-auction | 4. Critique | NEEDS-FIXES / REVISE-MAJOR (3.0) | Last Bid Standing: skill barely matters, Hype swamps scores; revision request waiting (recommend park) |
 | solo-nine-card-roguelike | 4. Critique | NEEDS-FIXES / REVISE-MINOR (3.33) | Nine Lives Dungeon: Ghosts uneven, 3 dead tricks; revision request waiting (recommend approve) |
 | two-player-hidden-movement-grid | 4. Critique | NEEDS-FIXES / REVISE-MAJOR (3.33) | Dead Reckoning: early luck, dead Sonar; revision request waiting (recommend approve) |

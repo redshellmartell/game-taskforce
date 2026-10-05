@@ -17,3 +17,4 @@
 {"time": "2026-10-05T12:49:20Z", "agent": "critic", "game": "standard-deck-engine-workshop", "event": "start", "message": "Revision 1: reviewing design and playtest"}
 {"time": "2026-10-05T12:50:09Z", "agent": "critic", "game": "standard-deck-engine-workshop", "event": "done", "message": "Revision 1 critic REVISE-MINOR avg 3.67; pitch as multiplayer with solo flagged; one small edit pass, no new loop"}
 {"time": "2026-10-05T12:50:09Z", "agent": "game-designer", "game": "standard-deck-engine-workshop", "event": "start", "message": "Edit pass (no new rules): Spade discount 3 + 2-point Spades, solo win line 40, ambiguities, Retool example"}
+{"time": "2026-10-05T12:51:56Z", "agent": "game-designer", "game": "standard-deck-engine-workshop", "event": "done", "message": "Edit pass done (rules v2.1); pitch written (multiplayer, solo flagged unproven); waiting for the owner"}

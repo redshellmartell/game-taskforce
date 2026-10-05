@@ -468,7 +468,7 @@
     {
       "slug": "standard-deck-engine-workshop",
       "title": "Fifty-Two Workshop",
-      "stage": "critique",
+      "stage": "owner-review",
       "revision": 1,
       "history": [
         {
@@ -524,6 +524,12 @@
           "time": "2026-10-05T12:50:09Z",
           "verdict": "REVISE-MINOR",
           "note": "Revision 1 critic REVISE-MINOR avg 3.67; pitch as multiplayer with solo flagged; one small edit pass, no new loop"
+        },
+        {
+          "stage": "owner-review",
+          "time": "2026-10-05T12:51:56Z",
+          "verdict": null,
+          "note": "Edit pass done (rules v2.1); pitch written (multiplayer, solo flagged unproven); waiting for the owner"
         }
       ],
       "verdicts": {
