@@ -2,6 +2,13 @@
 
 Written by Claude Code after each task, newest first. See `WORKFLOW.md` for the format.
 
+## 2026-10-05 — Task 014 stage 1: runbook, checkpoint logic and digest (stop for review)
+- **Built (free, no agents):** `docs/ops/taskforce-runbook.md` (the runner's loop, the stop reasons, pause and resume rules, sleep handling); `tools/runner/state.py` (the switch, the checkpoint, heartbeat, stop reasons, resume decision, atomic writes), `loop.py` (the loop logic with the agent call as a plug-in), `digest.py` (one-page digest from the existing files), and 12 unit tests (`python3 -m unittest tools/runner/test_runner.py`).
+- **Paper run (the stage's done-when):** the tests prove that a run killed mid-step by a simulated sleep, then resumed, ends in the same work and the same last-done step as an uninterrupted run; that a switch-off pauses after the running step and a switch-on carries on; and that a usage-guard stop prevents the next step.
+- **Not done:** no dashboard change, no runner, nothing starts agents. Stage 2 (the switch and click records in the dashboard) is next and waits for the owner's go-ahead. Stage 3 changes the "dashboard never starts agents" rule and needs the owner's explicit decision.
+- Task 014 status set to `in-progress` at the owner's request ("is 14 done? if not then do it").
+- Questions for the owner: confirm stage 1, then say whether to start stage 2. Still open from the brief: notification channel, and the daily or weekly limit that stops the runner.
+
 ## 2026-10-04 (evening) — Taskforce run: four banked 25+ ideas, plus pick-up notes for task 011
 - **Run (owner: "push through all banked games at least 25/30"):** greenlit and run to critique: Fifty-Two Workshop (27; critic REVISE-MAJOR 3.17), Last Bid Standing (25; REVISE-MAJOR 3.0, recommend park), Nine Lives Dungeon (25; REVISE-MINOR 3.33), Dead Reckoning (25; REVISE-MAJOR 3.33). Each has a `-revision-1` request pending. Duel Flip revision 2 also ran (REVISE-MINOR 3.42); `duelflip-revision-3` pending (last allowed loop). Playtester budget: Fifty-Two Workshop ran 6 configs against a limit of 5 (disclosed).
 - **Owner requirement for task 011 (the point of the dashboard):** "I want to click and then see the effects of that click in the UI", and the dashboard should become an independent tool. Nothing may depend on a Director session recording a click.
