@@ -3,8 +3,8 @@
     {
       "slug": "duelflip",
       "title": "Duel Flip",
-      "stage": "critique",
-      "revision": 2,
+      "stage": "owner-review",
+      "revision": 3,
       "history": [
         {
           "stage": "brief",
@@ -95,11 +95,17 @@
           "time": "2026-10-05T12:21:52Z",
           "verdict": null,
           "note": "Revision 3 playtest PASS (one known miss: runaway leader 74.0%); bait claim 8/9/10 now 65/39/17%; critique next"
+        },
+        {
+          "stage": "owner-review",
+          "time": "2026-10-05T12:22:52Z",
+          "verdict": "PASS",
+          "note": "Revision 3 critic PASS avg 3.67; pitch rewritten for v3; 3-loop limit reached; waiting for the owner"
         }
       ],
       "verdicts": {
-        "playtest": "NEEDS-FIXES",
-        "critic": "REVISE-MINOR"
+        "playtest": "PASS (runaway leader 74% known miss)",
+        "critic": "PASS"
       },
       "kill_reason": null
     },
