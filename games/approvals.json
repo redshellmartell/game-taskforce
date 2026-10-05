@@ -783,6 +783,35 @@
       "decision": "approve",
       "decided_at": "2026-10-05T11:41:50Z",
       "owner_notes": "Owner told the Director in chat: approve all open requests."
+    },
+    {
+      "id": "asymmetric-duel-tug-of-war-revision-2",
+      "gate": "revision",
+      "game": "asymmetric-duel-tug-of-war",
+      "time": "2026-10-05T12:14:49Z",
+      "status": "pending",
+      "summary": "Revision 1 playtest NEEDS-FIXES: pacing, clarity and centre endings are fixed, but the lead choice is still solved (always-lead 63%, always-give 43%; five variants tried), side gap 10.9 (target 5), lead changes 1.83, 31% of games end by round 3. Critic REVISE-MAJOR 3.33 (balance 2).",
+      "why_needed": "The critic calls it partly structural: the chooser-picks-lead plus extra card has failed in five variants, so a sixth retune is the same guess. A changed approach is cheap to test.",
+      "expected_outcome": "Remove the lead choice (the round loser always leads, or alternate) instead of tuning the bonus; then one lever at a time (Treasury cap or Spend bonus) to bring the side gap to 5 or less in the strategic mirror; double-move margin 6 to cut games ending by round 3 and reach 2+ lead changes; re-run all experiments on the fixed simulator. Critic: park the game if side gap stays above 8 or fun below 3.3 afterwards.",
+      "usage_estimate": "M",
+      "recommendation": "approve",
+      "options": [
+        {
+          "key": "approve",
+          "label": "Run revision 2 (designer, playtester, critic); park if side gap stays above 8"
+        },
+        {
+          "key": "park",
+          "label": "Park the game; no further work for now"
+        },
+        {
+          "key": "kill",
+          "label": "Kill it and record why"
+        }
+      ],
+      "decision": null,
+      "decided_at": null,
+      "owner_notes": null
     }
   ]
 }

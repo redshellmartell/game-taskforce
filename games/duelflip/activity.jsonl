@@ -23,3 +23,4 @@
 {"time": "2026-10-04T15:29:38Z", "agent": "playtester", "game": "duelflip", "event": "done", "message": "Revision 2 playtest NEEDS-FIXES: hurdle inert (claim 99%), runaway 74.8%"}
 {"time": "2026-10-04T15:30:49Z", "agent": "critic", "game": "duelflip", "event": "done", "message": "Revision 2 critique: REVISE-MINOR, average 3.42"}
 {"time": "2026-10-04T15:30:49Z", "agent": "director", "game": "duelflip", "event": "waiting", "message": "waiting for approval: duelflip-revision-3"}
+{"time": "2026-10-05T12:14:49Z", "agent": "game-designer", "game": "duelflip", "event": "start", "message": "Revision 3: hurdle fix only"}

@@ -1,40 +1,40 @@
-# Critique: Tug of Crowns (rules v1, first critique)
+# Critique: Tug of Crowns (rules v2, revision 1)
 
-**Verdict: REVISE-MAJOR**
+**Verdict: REVISE-MAJOR** (one last, narrowly scoped revision; see "Is another revision worth it?")
 
-Note: no panel-report.md exists (AI persona reviews not approved). Fun and Market fit are judged from `panel.json` (free bot predictions, no written reviews) plus the narrated play. Those are weaker evidence than real reviews.
+Note: no panel-report.md exists. Fun and Market fit rest on `panel.json` bot predictions (average fun 3.30, competitor 4.03, family 2.67) and the narrated play. Originality was not re-checked: the core mechanic did not change (closest game remains Tug of Roar, medium).
 
 ## Scores (1-5)
 
 | Area | Score | Reason |
 |---|---|---|
-| Originality | 3 | Round-by-round bidding that drags a shared track is a known pattern. Closest is Tug of Roar (medium similarity: asymmetric duel, tug track that makes the loser's cards costlier). Heave Ho! and Ironwood are further away. The Hush/Retort/Echo and Treasury/Spend pairing is a fresh mix, but nothing here is a hook on its own. No copied rules found. |
-| Clarity | 3 | The rules are well structured, but 8 ambiguities are listed in the playtest, and the Retort timing is fiddly. The panel's rules_simplicity is 0.025 for every persona, and all six hit a rules-overhead pet peeve. A "complexity 2" claim is optimistic: two keyword sets, 9 track cards with their own rules, a round chooser and margin thresholds. |
-| Fun | 3 | Panel fun averages 3.33 (competitor 3.96, strategist 3.67, Bar Raiser 3.80, but casual 2.91, family 2.86, story 2.78). The narrated game had one good moment (R1 Hush plus Retort) and then a dull middle where the Whisperer ran out of cards. The lead choice is a solved decision. |
-| Balance | 3 | Passes: side gap 2.2, skill gap +73, length 14.8 min, runaway leader 54.9%. Fails: lead changes 1.15 against a target of 2. Also 17-30% of games end dead-centre on a tiebreak, the margin rules are inert, and side strength flips with skill (Treasurer 63% random vs random, Whisperer 60% greedy vs greedy). |
-| Market fit | 3 | It matches the brief's gap (card-only, 15 minutes, asymmetric 2P). But the brief set "complexity 2/5, quick filler" and the design drifted heavier. The audience looks like competitive and strategist players only; the casual and family bots win 35-39%. The Bar Raiser veto is not active, and it would buy at $38. |
-| Production | 5 | 49 cards (40 plus 9 track) and 2 optional reference cards. No dice or board. A cheap prototype. Card variety is manageable (9 unique cards per deck). |
+| Originality | 3 | Unchanged from revision 0. Hush/Retort/Echo plus Treasury/Spend is a fresh mix on a known tug-track bidding pattern. |
+| Clarity | 4 | Up from 3. All 8 ambiguities resolved, Retort has its own section, margin rules deleted. Still two keyword sets and a chooser rule; panel rules_simplicity was very low last time and has not been shown to improve. |
+| Fun | 3 | Panel fun 3.30 (flat). The narrated game has one good round (three Hushes, 12-11 win), but a dull round 2, 15% of games end abruptly in round 2, and 31% by round 3. The lead choice is again a solved decision. |
+| Balance | 2 | Down from 3. Side gap 10.9 (target 5) and it flips with skill (Treasurer 58% random, about 38% greedy/strategic). Always-lead-self 63% vs always-give 43% (target 40-60). A greedy always-lead bot beats the strategic bot. Passing: skill gap +56, early leader 49%, centre endings 0%. Lead changes 1.83 (target 2, near miss). Experiments were not re-run after the coin bug fix. |
+| Market fit | 3 | Still on the brief's gap (cards only, 2P, asymmetric, short). Casual and family bots remain the weak audience. Average 12.7 min vs 15 target is acceptable. |
+| Production | 5 | 47 cards, no dice, no board. |
 
-**Average: 3.33** (below the 3.5 pitch bar).
+**Average: 3.33** (below the 3.5 pitch bar; same as revision 0, with Clarity up and Balance down).
 
 ## Biggest strength
-Balance between sides is already good (gap 2.2, strategic mirror about 50%) and skill matters (+73 points over random). That is normally the hardest part of an asymmetric design, and the brief flagged it as the main risk. Production is also very cheap.
+Revision 1 fixed the structural pacing problems from revision 0: no dead-centre endings, lead changes up from 1.15 to 1.83, zero ambiguities, and a skill gap of +56. The game now reaches decisive endings.
 
 ## Biggest weakness
-The game does not produce swings. The crown stalls at the centre (1.15 lead changes, up to 30% of strategic games decided by a tiebreak at position 0). The lead choice is solved: always hand the opponent the lead. Together these make the middle of the game dull and the ending arbitrary.
+The lead mechanic is unstable. Five variants each left one policy dominant (self 65%, balanced but meaningless, give 60%, self 59%, self 63%). The one variant with balanced policies (E2, no extra card) makes the choice barely matter and gives the Treasurer 62%. This shows the lead-bonus is a knife-edge lever, not a tuning-by-small-steps one.
 
-## Required changes (for REVISE-MAJOR)
+## Tuning or structural?
+Mixed. The track, pacing and clarity work is sound and only needs tuning (double-move margin 6 fixes early endings and probably the last 0.17 lead changes). The "chooser picks the lead, and the lead gets a card" idea is structural: it has failed in both of its forms (give it away, then take it). Another card-size tweak is a 6th guess at the same dial. The side gap (10.9, skill-dependent) is a second problem, largely independent, and cannot be tuned until the lead is fixed.
 
-1. **Remove or fix the lead choice.** Alternate the lead, or give the lead a real benefit. Today's rule is always "give it away". KPI: both sides' win rate when leading is 40-60% in the mirror; casual, family and story bot win rates rise from 35-46% towards 45-55%. Improves Fun and Balance.
-2. **Raise lead changes to at least 2 per game.** The playtester did not test stronger trailer draws, a leader bonus or a shorter track. The designer should pick one or two and have them tested. KPI: lead changes at least 2.0 with the side gap still at or under 5 and runaway leader at or under 65%. The double move at margin 4 was already tested and does not fix this.
-3. **Remove the dead-centre ending.** Make round 7 decisive (for example, sudden death or the round-7 winner takes it). KPI: ties at position 0 below 8% of games. Improves Fun and Balance.
-4. **Fix the margin rules.** Raise them to 3 and 4, or delete them to cut rules text. They are currently inert. KPI: rules text shorter or early-leader effect measurable. Improves Clarity.
-5. **Resolve all 8 listed ambiguities** in the rules (Hush on a Spend card, Retort after pass, margin-blocked win and the next chooser, Echo on ties, position-0 rules, whether the Whisperer may pass again after a Retort). KPI: zero ambiguities at pitch. Improves Clarity.
-6. **Cut rules weight.** Aim for one page of rules and a simpler Retort. Consider removing the margin rules and one keyword per side. KPI: panel rules_simplicity up from 0.025 and casual/family predicted fun up from about 2.9 towards 3.3 or more. Improves Clarity and Market fit.
-7. **Give the Whisperer a plan after the deck runs dry** (no reshuffle). It was the cause of the dull R3-R5 in the narrated game. Check the Treasurer's skill-dependent advantage in random play again after the changes. Improves Fun and Balance.
+## Required changes
+1. **Stop tuning the card bonus; remove the lead decision as a decision.** Either (a) the loser of the last round always leads (no choice, no extra card), or (b) the lead alternates, or (c) the playtester's non-card price (lead reveals one hand card, or plays first card face down) with the choice kept. Prefer (a) or (b): shortest rules, no solved choice. If E2-style (no bonus) is used, expect the Treasurer at about 62% and handle that in item 2. KPI: any fixed lead policy 40-60% (n/a if no choice); Balance 2 to 3+.
+2. **Close the side gap with one lever at a time, in the order of section 7:** after item 1, if the Treasurer is above 55% (random) or below 45% (strategic), adjust the Treasury cap or Spend bonus. Test side gap against random, greedy and strategic bots separately; require the gap at most 5 in the strategic mirror and no more than 10 across the skill ladder. KPI: side gap at most 5; improves Balance.
+3. **Double-move margin 6.** Target: games ending by round 3 below 20% (now 31%), lead changes at least 2.0, runaway leader at most 65%. Improves Fun and Balance.
+4. **Re-run all experiments on the fixed simulator** (the coin bug was found after the five experiments). KPI: numbers on the corrected sim only.
+5. **Optional, low:** drop The Whisper to 4 Influence or cut it to a single copy if it stays at +17 points. Improves Balance.
 
 ## Is another revision worth it?
-Yes: the sides are balanced and the sim and fixes are well diagnosed, so the remaining problems are rules-level changes the playtester can re-measure. The risk is that the casual and family audience stays low, so expect the result to be a game for competitive players.
+Yes, once and with a changed approach: delete the lead-choice dial instead of retuning it, since the other problems (pacing, clarity, no dead ends) are already fixed and measurable. If revision 2 still shows a side gap above 8 or fun below 3.3, park the game rather than use revision 3: it would then be a competitive-player niche filler, not a pitch.
 
-## Originality sources
-Searches: tug-of-war, asymmetric card duel (one search). Tug of Roar (frogames.it, kallax.io), Ironwood, Heave Ho! (boardgamematcher.com). Closest existing game: Tug of Roar, similarity medium.
+## Recommendation to the owner
+Do not pitch now (average 3.33, balance FAIL, no dominant-strategy-free lead). Revise once more with the changes above (usage M), or park. Pitch-as-is is not advised.
