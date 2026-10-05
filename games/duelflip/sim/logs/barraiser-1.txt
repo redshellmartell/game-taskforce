@@ -33,9 +33,9 @@ T9 P1 flips An9
 T9 P1 banks, leaves Ke10
 T10 P0 first Ur9 (bait Ke10)
 T10 P0 flips St3
-T10 P0 pile 12 vs bait Ke10: claims
+T10 P0 flips Ur5
+T10 P0 flips St8
+T10 P0 pile 25 vs bait Ke10: claims
 T10 P0 banks, leaves St3
-T11 P1 first Ur5 (bait St3)
-T11 P1 flips St8
-T11 P1 flips Sn7
-T11 P1 pile 20 vs bait St3: claims
+T11 P1 first Sn7 (bait St3)
+T11 P1 flips Cr5

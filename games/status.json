@@ -3,7 +3,7 @@
     {
       "slug": "duelflip",
       "title": "Duel Flip",
-      "stage": "playtest",
+      "stage": "critique",
       "revision": 2,
       "history": [
         {
@@ -89,6 +89,12 @@
           "time": "2026-10-05T12:18:23Z",
           "verdict": null,
           "note": "Revision 3 rules written: bait claim needs pile >= 2x bait, failed claim leaves no new bait; playtest next"
+        },
+        {
+          "stage": "critique",
+          "time": "2026-10-05T12:21:52Z",
+          "verdict": null,
+          "note": "Revision 3 playtest PASS (one known miss: runaway leader 74.0%); bait claim 8/9/10 now 65/39/17%; critique next"
         }
       ],
       "verdicts": {

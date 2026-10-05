@@ -28,7 +28,7 @@ def match(cfg, a, b, n, base=0):
         k = len(h) // 3
         if k and h[k] and w is not None: R["el3n"] += 1; R["el3"] += ((h[k] > 0) == (w == 0))
         s = st.stats
-        for key in ("busts", "bait_busts", "flips", "scout_discards", "claims", "claim_tries", "bait_turns", "forced_empty_end"): R["S"][key] += s[key]
+        for key in ("busts", "bait_busts", "flips", "scout_discards", "claims", "claim_tries", "bait_turns", "forced_empty_end", "fail_nobait"): R["S"][key] += s[key]
         R["S"]["buoys"] += sum(s["buoy_used"]); R["S"]["buoys_left"] += sum(st.buoys)
         R["left"] += s["left_vals"]; R["bust_pile"] += s["bust_pile"]; R["bank_pile"] += s["bank_pile"]
         for v in range(11): R["claim_by_val"][v] += s["claim_by_val"][v]; R["bait_by_val"][v] += s["bait_by_val"][v]
@@ -60,13 +60,17 @@ def leave_exps(n, cfg):
 
 if __name__ == "__main__":
     args = sys.argv[1:]; nums = [a for a in args if a.isdigit()]; n = int(nums[0]) if nums else 2000
-    cfg = Config()
+    mult = float(args[args.index("--mult") + 1]) if "--mult" in args else 2.0
+    nums = [a for a in nums if a != str(int(mult)) or "--mult" not in args]
+    cfg = Config(mult=mult)
     names, avg, mir, total, caps, pair = headline(n, cfg)
     S = mir["strategic"]; t = S["turns"]; mu = mean(t)
     gap = max(abs(100 * m["first"] / n - 50) for m in mir.values())
     seat1 = {k: round(m["first"] / n, 3) for k, m in mir.items()}
     el = S["el"] / max(1, S["eln"]); el3 = S["el3"] / max(1, S["el3n"])
+    B.Base.SMART_N = B.Base.SMART_NONLOW = B.Base.SMART_HIGH = 0
     exps = leave_exps(n, cfg) if "--exp" in args else {}
+    sm = (B.Base.SMART_NONLOW / max(1, B.Base.SMART_N), B.Base.SMART_HIGH / max(1, B.Base.SMART_N)) if exps else None
     ss = S["S"]
     res = dict(n=n, avg=avg, pair=pair, seat1_mirror=seat1, gap=gap, turns_mean=mu, turns_sd=sd(t), ties=S["ties"] / n,
                scoreties=S["scoreties"] / n, caps=caps, lc=mean(S["lc"]), el_half=el, el_third=el3, exps=exps,
@@ -75,7 +79,7 @@ if __name__ == "__main__":
                left_hist=dict(collections.Counter(S["left"])), scout_per_game=ss["scout_discards"] / n,
                claim_by_val=[round(S["claim_by_val"][v] / S["bait_by_val"][v], 3) if S["bait_by_val"][v] else None for v in range(11)],
                bait_by_val=S["bait_by_val"], avg_bust_pile=mean(S["bust_pile"]), forced_end=ss["forced_empty_end"] / n,
-               hist=sorted(collections.Counter(t).items()), total=total)
+               nonlowest_rate=sm, mult=mult, fail_nobait_per_game=ss['fail_nobait'] / n, hist=sorted(collections.Counter(t).items()), total=total)
     json.dump(res, open(os.path.join(HERE, "results.json"), "w"), indent=1)
     print("n=%d/pairing, %d games total" % (n, total))
     print("bot avg win%%: " + ", ".join("%s %.1f" % (k, 100 * v) for k, v in avg.items()))
@@ -86,6 +90,7 @@ if __name__ == "__main__":
     print("bait: present on %.0f%% of turns, claimed %.0f%% of tries; busts/g %.2f (bait busts %.2f); buoys/g %.2f; avg bust pile %.1f"
           % (100 * res["bait_turn_rate"], 100 * res["claim_rate"], res["busts_per_game"], res["bait_busts_per_game"], res["buoys_per_game"], res["avg_bust_pile"]))
     print("claim rate by bait value 1-10: " + " ".join("%s" % ("-" if x is None else "%.2f" % x) for x in res["claim_by_val"][1:]))
+    if sm: print("smart leaver (during leave experiments): non-lowest card left %.1f%%, highest left %.1f%%; failed claims/g %.2f; mult %.1f" % (100 * sm[0], 100 * sm[1], res["fail_nobait_per_game"], mult))
     for k, v in exps.items(): print("leave exp  %-34s first wins %.1f%%" % (k, 100 * v))
     if "--json" in args:
         path = args[args.index("--json") + 1]
