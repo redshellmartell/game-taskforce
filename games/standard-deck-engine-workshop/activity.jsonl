@@ -9,3 +9,5 @@
 {"time": "2026-10-04T17:56:25Z", "agent": "critic", "game": "standard-deck-engine-workshop", "event": "start", "message": "Reviewing design and playtest"}
 {"time": "2026-10-04T17:57:20Z", "agent": "critic", "game": "standard-deck-engine-workshop", "event": "done", "message": "Critic REVISE-MAJOR avg 3.17; waiting for approval: revision (standard-deck-engine-workshop-revision-1)"}
 {"time": "2026-10-05T12:23:03Z", "agent": "game-designer", "game": "standard-deck-engine-workshop", "event": "start", "message": "Revision 1: rewriting rules.md from critique and playtest"}
+{"time": "2026-10-05T12:28:59Z", "agent": "game-designer", "game": "standard-deck-engine-workshop", "event": "done", "message": "Revision 1 rules written (Spade discount 4, Retool, solo rework, stall guarantee, 11 ambiguities closed); playtest next"}
+{"time": "2026-10-05T12:28:59Z", "agent": "playtester", "game": "standard-deck-engine-workshop", "event": "start", "message": "Revision 1: updating the simulation and re-running"}

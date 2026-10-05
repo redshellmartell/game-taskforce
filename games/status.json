@@ -468,7 +468,7 @@
     {
       "slug": "standard-deck-engine-workshop",
       "title": "Fifty-Two Workshop",
-      "stage": "critique",
+      "stage": "playtest",
       "revision": 0,
       "history": [
         {
@@ -506,6 +506,12 @@
           "time": "2026-10-05T11:41:50Z",
           "verdict": null,
           "note": "standard-deck-engine-workshop-revision-1 approved by owner; queued"
+        },
+        {
+          "stage": "playtest",
+          "time": "2026-10-05T12:28:59Z",
+          "verdict": null,
+          "note": "Revision 1 rules written (Spade discount 4, Retool, solo rework, stall guarantee, 11 ambiguities closed); playtest next"
         }
       ],
       "verdicts": {
