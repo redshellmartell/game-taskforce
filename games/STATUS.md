@@ -2,7 +2,7 @@
 
 | Game | Stage | Verdict | Note |
 |---|---|---|---|
-| duelflip | 4. Critique (revision 2 done) | REVISE-MINOR 3.42 (critic); playtest NEEDS-FIXES | bait still inert, runaway leader 74.8%; revision 3 request waiting (duelflip-revision-3) |
+| duelflip | 3. Playtest (revision 3) | - | Duel Flip: revision 3 rules written (2x bait hurdle); playtester working |
 three-player-trick-taker | critique | NEEDS-FIXES (minor) / REVISE-MINOR (3.67) | revision 2 done; pitch-or-revise decision waiting; was: Playtest NEEDS-FIXES, critic 3.0; waiting for revision approval
 asymmetric-duel-tug-of-war | critique | NEEDS-FIXES / REVISE-MAJOR (3.33) | balanced, but lead changes low and lead choice solved; revision request waiting
 silent-duo-deduction-coop | critique | NEEDS-FIXES / REVISE-MAJOR (3.5) | too easy (73%); anti-code unproven; revision request waiting
