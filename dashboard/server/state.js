@@ -114,7 +114,7 @@ function extractSection(text, name) {
 function titleFromSlug(slug) { return slug.split('-').map((w) => w[0]?.toUpperCase() + w.slice(1)).join(' '); }
 
 // Which agent would run the gated step (a request may name one in an optional `agent` field).
-const GATE_AGENT = { scan: 'market-researcher', greenlight: 'game-designer', revision: 'game-designer', 'panel-research': 'market-researcher', 'deep-research': 'market-researcher', 'panel-reviews': 'playtester', budget: 'playtester', 'free-api': 'playtester' };
+const GATE_AGENT = { scan: 'market-researcher', greenlight: 'game-designer', revision: 'game-designer', 'review-cap': 'game-designer', 'panel-research': 'market-researcher', 'deep-research': 'market-researcher', 'panel-reviews': 'playtester', budget: 'playtester', 'free-api': 'playtester' };
 const EXPIRE_DAYS = 14;
 const DAY_MS = 24 * 3600 * 1000;
 // Requests the Director wrote to games/approvals.json (see "Approval gates" in CLAUDE.md), with what the owner needs to decide.

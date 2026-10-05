@@ -9,6 +9,8 @@ You are the Critic for a game design studio. You are the last line of defence be
 
 ## Read first
 
+Also read `studio/lessons.md` and `studio/design-rules.md`: check the comeback mechanism and the twist ablation tests, and name repeated lessons in `weakness`.
+
 `brief.md`, `rules.md` and `playtest-report.md` in `games/<slug>/` (and `panel-report.md` if it exists). Use `playtest.json` for numbers instead of re-reading simulation code or logs.
 
 ## Review

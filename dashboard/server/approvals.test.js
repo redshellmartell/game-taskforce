@@ -30,6 +30,13 @@ test('any other option records a declined step with that decision', () => {
   const f = setup(); decideApproval(f, 'r1', 'park', '', NOW);
   const r = read(f).requests[0]; assert.equal(r.status, 'declined'); assert.equal(r.decision, 'park'); assert.equal(r.owner_notes, null);
 });
+test('review-cap: continue counts as approved, park and kill do not', () => {
+  const f = setup(); const d = read(f);
+  d.requests.push({ id: 'cap', gate: 'review-cap', game: 'g', time: '2026-10-03T09:00:00Z', status: 'pending', options: [{ key: 'continue', label: 'More cycles' }, { key: 'kill', label: 'Kill' }], decision: null, decided_at: null, owner_notes: null });
+  fs.writeFileSync(f, JSON.stringify(d));
+  assert.equal(decideApproval(f, 'cap', 'continue', '', NOW).status, 'approved');
+  assert.equal(decideApproval(f, 'r1', 'park', '', NOW).status, 'declined');
+});
 test('refusals: unknown id 404, unknown option 400, already decided 409, expired 409, notes too long 400, no file 404', () => {
   const f = setup();
   assert.equal(code(() => decideApproval(f, 'nope', 'approve', '', NOW)), 404);

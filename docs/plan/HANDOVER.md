@@ -40,6 +40,9 @@ Read this first in a fresh session, after `CLAUDE.md`. It holds context that is 
 - `duelflip-revision-3` (recommend approve: bait hurdle fix only; revision 2 left playtest NEEDS-FIXES, critic REVISE-MINOR 3.42, runaway leader 74.8% to be documented). Last allowed loop.
 - Unread owner note `games/_notes/20261004T122552Z-game-designer.md` (Heavenly Bodies comparables: Bang!, Smash Up, Fluxx, Exploding Kittens, Sushi Go; MTG/Dominion rejected; Love Letter/Coup/Munchkin brackets). Pass it to the designer, critic and Bar Raiser, then move it to `games/_notes/_done/` with a Director's reply.
 
+## Task 013 (learning loop), in progress
+- Built: scoreboard (`python3 tools/learning/scoreboard.py`), `studio/lessons.md`, `studio/design-rules.md`, agent read-lines, `review_cap` settings, dashboard `review-cap` gate, and the `CLAUDE.md` Review cap section (owner approved the edit). Owner ruled that pending approved `-revision-N` requests count inside the cap. Not yet run on a real game; stages 4 and 5 not started.
+
 ## Queued work
 - Task 011: dashboard live/interactive, three stages, branch `dashboard-interactive`. **Read the 2026-10-04 (evening) entry in `docs/plan/PROGRESS.md` first**: it has the owner's "click, then see the effect" requirement and the Step A/B/C plan.
 - Task 012: role-playing games in the pipeline (RPGs need a different playtest approach; say plainly what simulation cannot test).

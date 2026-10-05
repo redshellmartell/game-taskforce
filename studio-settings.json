@@ -22,5 +22,11 @@
       "tabletop role-playing games"
     ],
     "note": "Owner's current focus (2026-10-04). Prefer these when picking ideas from the bank and when scoring owner_fit; avoid big boards and miniatures."
+  },
+  "review_cap": {
+    "auto_cycles_per_game": 3,
+    "learning_period_games": 6,
+    "learning_period_cycles": 4,
+    "games_through_loop": 0
   }
 }
