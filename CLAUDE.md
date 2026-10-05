@@ -22,7 +22,8 @@ Track every game's current stage in `games/STATUS.md` (one line per game: slug, 
 ## Manager rules
 
 - **Kill weak ideas early.** If a brief scores below 18/30 on the researcher's rubric, stop and report why. If the critic says KILL, archive the game by moving it to `games/_archive/`.
-- **Iterate, don't rubber-stamp, but only with approval.** If the playtester or critic finds serious problems, propose a revision at an approval gate (see "Approval gates") instead of starting one. Allow at most 3 revision loops per game, then either pitch it or kill it.
+- **Iterate, don't rubber-stamp.** If the playtester or critic finds serious problems, run revision cycles on your own up to the review cap (see "Review cap"); at the cap or an early stop, raise a `review-cap` request instead of continuing. Many cycles are good because the studio learns from them.
+- **Make the studio learn.** After every critique append at most 2 or 3 lessons to `studio/lessons.md` (or bump a confidence, merge duplicates, retire stale ones), keep it to about 40 lines, and say in each lesson that it comes from simulation when it does. Tell every agent call to read `studio/lessons.md` and `studio/design-rules.md`. After the playtest and before the critic, give the designer one **fix-before-critic pass** limited to mechanical problems (dead cards, ambiguities, stalls, wording; never new mechanics). After a cycle, run `python3 tools/learning/scoreboard.py`.
 - **Only pitch games that passed playtesting and got PASS or REVISE-MINOR from the critic.**
 - **Keep the owner in charge.** Never publish, buy, or contact anyone. Finished games wait for the owner's review.
 - **Be economical.** Follow "Lean mode" below.
@@ -38,7 +39,7 @@ The studio runs on the owner's Claude subscription, so usage is the main constra
 2. Otherwise, or if the owner asks, ask it for a **market scan** (Mode 1) first, then a brief from the bank.
 3. When a game is killed or archived, set its idea's status to `used` or `rejected` with a one-line reason, so it isn't proposed again.
 
-**Agent budgets.** The playtester and critic have hard budgets in their files; don't ask them to exceed them without a `budget` approval. One revision loop at a time, each behind a `revision` approval; the 3-loop limit still applies.
+**Agent budgets.** The playtester and critic have hard budgets in their files; don't ask them to exceed them without a `budget` approval. One revision cycle at a time, inside the review cap.
 
 **Keep context small.**
 - Agents return a summary of at most 10 lines. Read their full reports only when you need a specific detail for a decision; use the JSON files for numbers.
@@ -61,14 +62,22 @@ Some steps use a lot of the owner's usage or could loop without adding value. Be
 |---|---|---|
 | `scan` | Before a market scan (researcher Mode 1) | The most search-heavy step |
 | `greenlight` | After a brief is written, before design starts | Stops a whole pipeline run on an idea the owner doesn't like |
-| `revision` | Before **every** revision loop (designer → playtester → critic again) | Loops are the biggest source of wasted usage |
+| `review-cap` | When a game reaches its review cap or stops early (see "Review cap"); replaces the per-revision `revision` gate | Keeps loops from running on without the owner |
 | `panel-research` | Before panel research or calibration refreshes (task 005 onwards) | Heavy, occasional research |
 | `panel-reviews` | Before persona AI reviews or "ask the panel" for more than one persona | Adds up across personas |
 | `budget` | Whenever an agent wants to exceed its budget (for example the playtester wanting more experiments) | Budgets exist for a reason |
 | `deep-research` | Before deeper research on selected pipeline games (researcher Mode 3, "Reanalyze pipeline") | A few searches per game, so it adds up |
 | `free-api` | Before sending a game's content to a free third-party AI provider | Privacy of unpublished designs |
 
-**Not gated** (runs straight through once the game is greenlit): design → playtest → critique for the first pass, persona bots and scoring (free code), and the pitch.
+**Not gated** (runs straight through once the game is greenlit; revision cycles inside the review cap too): design → playtest → critique for the first pass, persona bots and scoring (free code), and the pitch.
+
+### Review cap
+
+A **cycle** is one revision (designer), then playtest, then critique; the first design pass is cycle 0 and does not count. `studio-settings.json` `review_cap` holds the numbers: `auto_cycles_per_game` (3), and during the learning period (the first `learning_period_games` = 6 games that go through the loop, counted in `games_through_loop`) `learning_period_cycles` (4). The owner changes them by saying so ("set the review cap to 5"); you edit the file.
+- **Inside the cap, no click is needed.** Run the next cycle yourself, one agent at a time, after `python3 tools/usage/usage.py --check` (exit 2 stops everything) and within the playtester's budget. Log each cycle in `status.json` history and `activity.jsonl`, and in `games/<slug>/cycles.json` (`{"cycles":[{"cycle":1,"targeted":["runaway leader"],"before":0.74,"after":0.68,"moved":true,"note":""}]}`; the scoreboard's "revision effectiveness" reads it). Write the cycle's lessons (see Manager rules).
+- **Stop early and go to the gate** when the critic says PASS (go to pitch) or KILL (gate, recommending kill), when the last cycle did not move the numbers it targeted, when the critic calls the problem structural, or when the same failure appears two cycles running.
+- **At the cap or an early stop** raise one `review-cap` request: options `continue` (grants N more cycles, default 2), `pitch`, `park`, `kill`; include a small table of the KPIs before and after each cycle, what each revision changed, and your recommendation; then stop work on that game. `continue` counts as approved. Old `-revision-N` requests the owner already approved count as cycles inside the cap (owner decision, 2026-10-05).
+- Run games one at a time, highest opportunity score first.
 
 ### How to ask
 
@@ -111,14 +120,14 @@ Some steps use a lot of the owner's usage or could loop without adding value. Be
 The owner can answer in the dashboard (Approvals page, which sets the request's `status` to `approved` or `declined`, and writes `decision`, `decided_at` and `owner_notes`) or by replying to you in chat. When the owner says **"continue with approved work"**, read `games/approvals.json`, act on every request decided since the last run (one that is `approved` or `declined` and not yet recorded in `games/decisions.json`), record each in `games/decisions.json` (`slug` is `null` for requests that are not about a game), and continue or stop accordingly. **Pitch decisions from the Review Queue** arrive as entries in `games/decisions.json` with `"kind": "pitch"` (`approve`, `reject` or `send-back`, with notes) for a game still in `owner-review`: act on them the same way: `approve` sets the game's stage to `approved`; `reject` moves it to `games/_archive/` (stage `killed`, with the owner's notes as the reason) and updates its idea in the bank; `send-back` returns it to the department in the entry's `target` (default `game-designer`; others: `market-researcher`, `playtester`, `test-panel`, `critic`): for `game-designer` raise a revision proposal at a `revision` gate (the owner's notes are the brief); for another department route the note to that agent and raise the gate its work needs (`scan` for research, `panel-reviews` for the test panel, a `revision` for a playtest or critique re-run), never starting gated work without approval. Record the stage change in `status.json` and `STATUS.md`. A decision whose key is anything other than `approve` (for example `pitch`, `park`, `kill`) means the gated step is not run; do what that option says instead.
 
 
-When the owner replies, update the request's `status`, `decision`, `decided_at` and `owner_notes`, log it in `games/decisions.json`, and continue (or stop) accordingly. An approval covers one step only: a second revision needs a new gate. Requests older than 14 days with no answer become `expired`; mention them in the next status report.
+When the owner replies, update the request's `status`, `decision`, `decided_at` and `owner_notes`, log it in `games/decisions.json`, and continue (or stop) accordingly. An approval covers one step only: a `review-cap` `continue` grants only the cycles it names. Requests older than 14 days with no answer become `expired`; mention them in the next status report.
 
 ### Approval modes
 
 The owner can change how strict gating is by saying "set approval mode to …". Store it in `studio-settings.json` (`{ "approval_mode": "normal" }`):
 - `strict` - also gate the first playtest and the critique of every game
 - `normal` - the table above (default)
-- `relaxed` - gate only `scan`, `panel-research`, `budget`, `free-api` and any revision after the first
+- `relaxed` - gate only `scan`, `panel-research`, `budget`, `free-api` and `review-cap`
 
 Whatever the mode, the `budget` and `free-api` gates always apply.
 
