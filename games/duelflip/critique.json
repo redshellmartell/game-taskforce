@@ -1,14 +1,9 @@
-{ "verdict": "REVISE-MINOR", "revision": 2,
-  "scores": { "originality": 2.5, "clarity": 4, "fun": 3, "balance": 3, "market_fit": 3, "production": 5 },
-  "average": 3.42,
-  "strength": "Clean, fast, fair 2-player push-your-luck loop with unambiguous rules, balanced seats (gap 1.2), and trivial production cost.",
-  "weakness": "The bait hurdle is inert (claimed 99% of the time), so 'leave lowest' is still correct and the game's only differentiator from Port Royal and Flip 7 does not show in play. Runaway leader is 74.8% against a 65% target.",
+{ "verdict": "PASS", "revision": 3,
+  "scores": { "originality": 3, "clarity": 4, "fun": 3.5, "balance": 3, "market_fit": 3.5, "production": 5 },
+  "average": 3.67,
+  "strength": "The 2x bait hurdle now makes leaving a card a real, public decision (non-lowest left in 27.9% of choices, leave-lowest 44.7% and leave-highest 46.5% vs a smart leaver), on a fair, fast, nearly free 60-card build.",
+  "weakness": "Runaway leader is 74.0% against a 65% target, unchanged over three revisions, and the bait gain is modest and measured only against a one-step bot.",
   "closest_existing_game": { "name": "Port Royal", "similarity": "medium" },
-  "required_changes": [
-    "Make the bait hurdle bind (claim needs pile >= 2x bait, or a failed claimer pays a pile card). Target: smart leaver deviates from leave-lowest in 25%+ of choices, with leave-lowest and leave-highest both under 60%.",
-    "Runaway leader: accept and document 74.8%, or test one catch-up rule (trailing player claims bait on pile >= bait). Target: halfway leader at 65% or less, seat gap 5 or less.",
-    "Delete stale design notes (unchecked-originality line, considered-but-not-adopted paragraph) so panel readers do not copy them.",
-    "Before any physical prototype, do a plain web check for existing leave-one-card-as-bait games; the pitch must not call the shared river new."
-  ],
-  "revision_worth_it": true,
-  "revision_reason": "Yes, narrowly: the hurdle fix is a clear one-line testable change aimed at the only differentiator, but if it fails, park or pitch as a plain filler." }
+  "required_changes": [],
+  "revision_worth_it": false,
+  "revision_reason": "No: the 3-loop limit is reached, the bait is fixed, and the remaining runaway-leader miss has resisted three revisions and is better judged by human play." }

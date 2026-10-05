@@ -1,8 +1,8 @@
-# Duel Flip - Rules (revision 2)
+# Duel Flip - Rules (revision 3)
 
 ## 1. Overview
 - **Title:** Duel Flip
-- **Hook:** Two tide-pool scavengers flip cards into one shared, visible river. Push for a bigger haul, but flip a value already in the river and your rival takes everything in it. When you bank, you leave one card behind as **bait**. Your rival can claim it only by banking a pile worth more than it. If they bust trying, it comes back to you with their pile.
+- **Hook:** Two tide-pool scavengers flip cards into one shared, visible river. Push for a bigger haul, but flip a value already in the river and your rival takes everything in it. When you bank, you leave one card behind as **bait**. Your rival claims it only by banking a pile worth **at least twice** its value. If they fall short, the bait comes back to you, but they bank their whole pile and leave you no bait. If they bust trying, the bait comes back to you with their pile.
 - **Players:** 2 (designed for 2 only).
 - **Play time:** 10-15 minutes. One game, no rounds.
 - **Age:** 8+
@@ -49,10 +49,11 @@ All information is public: the river, both hauls, the discard pile and both Life
   - You may choose to bust even if your Lifebuoy is ready.
 
 **2. Bank phase** (only if you did not bust). Do these two steps in order.
-- **a. Claim the bait (only if there is one).** Compare your pile total with the bait's value.
-  - If your pile total is **greater than** the bait's value, take the bait into your haul.
-  - Otherwise (equal or lower), the bait goes into its owner's haul.
-- **b. Leave your new bait.**
+- **a. Claim the bait (only if there is one).** Compare your pile total with **twice** the bait's value (bait value x 2). This is automatic; you do not choose.
+  - **Claim succeeds:** if your pile total is **equal to or greater than** twice the bait's value, take the bait into your haul. Then do step b.
+  - **Claim fails:** if your pile total is **lower than** twice the bait's value, the bait goes into its owner's haul. Then take **all** your pile cards into your haul. You leave no bait; the river is empty. Skip step b.
+  - Examples: a 4 bait needs a pile total of 8 or more. A 10 bait needs 20 or more.
+- **b. Leave your new bait** (only if there was no bait, or your claim succeeded).
   - If your pile has 2 or more cards, choose exactly one of them and leave it in the river as your bait. Take all your other pile cards into your haul.
   - If your pile has exactly 1 card, take it into your haul. You leave no bait, and the river is empty.
 
@@ -64,8 +65,9 @@ All information is public: the river, both hauls, the discard pile and both Life
   - During the second or a later flip: you cannot flip from an empty deck. Go to the Bank phase with the pile you have.
   - After any turn ends with the deck empty, the game ends.
 - **Bait at game end:** if a bait is in the river when the game ends, it goes into its owner's haul. (So the last banker effectively keeps their whole pile.)
-- **Lifebuoy on a clash with the bait:** allowed. Discard the clashing card; the bait stays in the river. In the Bank phase you claim it only if your pile total is greater than its value; otherwise it goes to its owner.
-- **One-card pile:** if you spend your Lifebuoy on a clash on your second flip, your pile is your single first card. Claim the bait (or not) with that card's value as your pile total, then take that card. You leave no bait.
+- **Lifebuoy on a clash with the bait:** allowed. Discard the clashing card; the bait stays in the river. In the Bank phase run the claim test as normal (pile total at least twice the bait's value). If it fails, the bait goes to its owner, you take your whole pile and leave no bait.
+- **One-card pile:** if you spend your Lifebuoy on a clash on your second flip, your pile is your single first card. Run the claim test with that card's value as your pile total, then take that card. You leave no bait, whether the claim succeeded or failed.
+- **Bait summary (where the bait goes):** claim succeeds (pile total >= 2 x bait) -> banker's haul. Claim fails (pile total < 2 x bait) -> owner's haul, and the banker leaves no new bait. Banker busts -> owner's haul, together with the buster's pile. Game ends with a bait in the river -> owner's haul.
 - **Clashing card:** always discarded. It never enters the river or a haul.
 - **No duplicate values in the river:** any card that would duplicate a river value is either discarded on the scout or causes a clash, so the river never holds two cards of the same value.
 - **Lifebuoys** are used once per game. They are never refunded and score nothing.
@@ -79,17 +81,27 @@ All information is public: the river, both hauls, the discard pile and both Life
 
 ## 7. Design notes
 - **Core loop:** each turn you decide "one more flip?" against a visible river, then decide which card to leave as bait. This shared-row, duplicate-busts structure is close to existing games, especially Port Royal (shared display, duplicate ends the turn) and Flip 7 (duplicate number busts). The shared river is **not** claimed as new.
-- **The intended twist: the bait hurdle.** The card you leave is a target your rival must beat. A low bait is a small, certain gift. A high bait is a bet: your rival claims it only by banking a pile worth more than it, which usually means a third or fourth flip, and every extra flip risks a bust that hands you the bait and their pile. So the leave decision depends on the river and your rival's Lifebuoy: leave low to give little away, or leave high to force them to push. The originality of this rule has not been checked against a game database.
+- **The intended twist: the bait hurdle.** The card you leave is a target your rival must reach: a pile total of at least twice its value. A low bait (1-3) is a small, near-certain gift. A high bait (7-10) needs a pile of 14-20, which usually means a fourth or fifth flip with the bait's value as an extra clash risk. Your rival then has three outcomes: push and claim it (you lose a big card), push and bust (you get the bait and their pile), or bank short (you get the bait back, but they bank their whole pile and you get no bait to claim next turn). So a high bait is a bet, not a safe deposit: it pays when your rival busts or gives up, and costs you when they make it. The decision turns on the river, the rival's Lifebuoy (a ready Lifebuoy makes the push much safer) and the gap between your pile cards.
+- **Why the "no new bait" clause matters.** Without it, a high bait the rival cannot reach would come back to you for free, and "leave highest" would become a free banking trick. Losing your next bait claim is the price of setting a hurdle the rival declines.
 - **Strategies:**
   - Cautious banker: take the two mandatory flips and bank, leaving a low bait.
-  - Hurdle setter: leave a high card when the rival's Lifebuoy is spent, so beating the bait means a risky push.
-  - Hurdle jumper: against a high bait, push for a pile total above it, and spend the Lifebuoy to lock in a pile that already beats it.
-  - Poison values: the bait's value is the one value your rival's later flips can clash with at the start of their turn.
+  - Hurdle setter: leave a high card when the rival's Lifebuoy is spent, so reaching twice the bait means a risky push.
+  - Hurdle jumper: against a high bait, push for twice its value, and spend the Lifebuoy to lock in a pile that already reaches it.
+  - Shortfall banker: against a bait you cannot reach safely, bank short on purpose; you hand the bait back but keep your whole pile and deny your rival a bait.
+  - Poison values: the bait's value is one more value your flips can clash with.
 - **Not take-that:** every swing comes from the player who chooses to push.
-- **Balance knobs for re-testing:** second-player bonus (+2 to +4); bait claim test "greater than" versus "greater than or equal"; whether a bust gives the bait to its owner (as written) or leaves it in the river. Watch for "leave highest" becoming dominant (the opposite of the v2 problem).
-- **Considered but not adopted:** a free Lifebuoy save on a one-card pile (panel suggestion, to soften 1-card busts). Left out to keep the rules short; worth testing if 1-card busts still feel like a tax.
+- **Known risk: runaway leader.** The halfway leader wins about 75% of simulated games (rev 2: 74.8%; rev 1 about the same), against a 65% target. Scoring only accumulates and busts are small, so an early lead tends to hold. This revision does not try to fix it. For a 10-15 minute filler this may be acceptable; human playtests should check whether trailing players feel out of it.
+- **Balance knobs for re-testing:** claim multiplier (2x as written; 1.5x, rounded up, if "leave highest" passes 60%); second-player bonus (+2 to +4).
 
 ## 8. Changelog (revision notes)
+
+**Revision 3 notes** (last allowed loop; from critique.md required changes 1 and 3, playtest-report.md problem 1). One rule change, untested.
+
+| # | Change | Why (feedback) | KPI or target it is meant to move |
+|---|---|---|---|
+| 1 | **Claim test is now pile total >= 2 x bait value** (was "greater than the bait"). **A failed claim** sends the bait to its owner, the banker takes their whole pile and leaves no new bait. Updated in sections 1, 4 (step 2), 5 and 7. | The bait was claimed 99% of the time, so "leave lowest" was right 19 times in 20 and the twist was inert (a +3 hurdle still gave 98%). The "no new bait" clause stops a high bait from becoming a free deposit when the rival declines to push (critic's over-correction risk). | Smart leaver picks a non-lowest card in at least 25% of choices; leave-lowest and leave-highest both under 60% against a smart leaver; claim rate for 8-10 baits well below 99%. |
+| 2 | **Runaway leader documented, not fixed** (design notes, "Known risk"). | Critic required change 2, option (a); two revisions have not moved it. | None; kept visible for the pitch. |
+| 3 | **Stale design-note lines deleted:** "originality has not been checked against a game database" and the "considered but not adopted" paragraph. Old balance knobs ("greater than" versus "greater than or equal", bust-bait handling) removed. | Critic required change 3. | Cleaner panel input. |
 
 **Revision 2** (from critique.md required changes, playtest-report.md fix list, panel-report.md suggested changes). Every change below is untested and needs a sim re-run.
 

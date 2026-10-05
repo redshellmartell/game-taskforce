@@ -1,8 +1,8 @@
 {
   "title": "Duel Flip",
-  "hook": "Two tide-pool scavengers flip cards into one shared, visible river. Push for a bigger haul, but flip a value already in the river and the pile you flipped washes over to your rival.",
+  "hook": "Flip cards into a shared river, push for a bigger haul, and bank. Leave a bait card behind that your rival can only claim if their pile is twice its value.",
   "players": "2",
-  "minutes": 12.5,
+  "minutes": 12,
   "age": "8+",
   "complexity": 1.5,
   "components": [
@@ -19,6 +19,6 @@
       "count": 1
     }
   ],
-  "estimated_prototype_cost_usd": null,
-  "prototype_ready": false
+  "estimated_prototype_cost_usd": 10,
+  "prototype_ready": true
 }

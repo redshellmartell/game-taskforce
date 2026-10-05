@@ -12,3 +12,14 @@
 {"time":"2026-10-04T11:35:00Z","agent":"critic","game":"grid-of-cards-area-control","event":"step","message":"1 web search for originality (closest: Contactics, low); scored from playtest.json and panel.json (no panel-report.md)"}
 {"time":"2026-10-04T11:40:00Z","agent":"critic","game":"grid-of-cards-area-control","event":"done","message":"REVISE-MINOR, average 3.67; good at 3-4p, 2p fails lead changes and runaway; revision worth it"}
 {"time": "2026-10-04T11:25:36Z", "agent": "manager", "game": "grid-of-cards-area-control", "event": "waiting", "message": "waiting for approval: revision (grid-of-cards-area-control-revision-1)"}
+{"time": "2026-10-05T11:42:01Z", "agent": "director", "game": "grid-of-cards-area-control", "event": "step", "message": "Owner approved revision 1; briefing designer"}
+{"time": "2026-10-05T11:42:01Z", "agent": "game-designer", "game": "grid-of-cards-area-control", "event": "start", "message": "Revision 1: rewriting rules.md from critique and playtest"}
+{"time": "2026-10-05T11:44:26Z", "agent": "game-designer", "game": "grid-of-cards-area-control", "event": "done", "message": "Revision 1 rules written (storm, neutral tiebreak, gaps closed, shorter 3-4p); playtest next"}
+{"time": "2026-10-05T11:44:26Z", "agent": "playtester", "game": "grid-of-cards-area-control", "event": "start", "message": "Revision 1: updating the simulation and re-running"}
+{"time": "2026-10-05T12:04:59Z", "agent": "playtester", "game": "grid-of-cards-area-control", "event": "step", "message": "Updated sim to v2 rules (storm, tiebreaks, 3 cards removed at 3-4p); headline 2,000/pairing run done"}
+{"time": "2026-10-05T12:04:59Z", "agent": "playtester", "game": "grid-of-cards-area-control", "event": "step", "message": "Experiments: 2p 10k mirror, sandbag exploit probe, 2p card removal; panel rotation and scoring run"}
+{"time": "2026-10-05T12:04:59Z", "agent": "playtester", "game": "grid-of-cards-area-control", "event": "done", "message": "Revision 1 playtest: NEEDS-FIXES (minor): 2p early-leader 66.4% vs 65, 2p ~24 min; 3-4p pass; storm exploit not found"}
+{"time": "2026-10-05T12:05:18Z", "agent": "playtester", "game": "grid-of-cards-area-control", "event": "done", "message": "Revision 1 playtest NEEDS-FIXES (minor): 3-4p passes all KPIs; 2p early-leader 66.4% (target 65), 2p ~24 min; critique next"}
+{"time": "2026-10-05T12:05:18Z", "agent": "critic", "game": "grid-of-cards-area-control", "event": "start", "message": "Revision 1: reviewing design and playtest"}
+{"time": "2026-10-05T12:06:04Z", "agent": "critic", "game": "grid-of-cards-area-control", "event": "done", "message": "Revision 1 critic PASS avg 3.83; 3-4p pass; 2p weaker mode; pitch as 3-4 player game"}
+{"time": "2026-10-05T12:06:40Z", "agent": "director", "game": "grid-of-cards-area-control", "event": "done", "message": "Pitch written (3-4 player game, 2p flagged); three wording fixes applied to rules.md"}

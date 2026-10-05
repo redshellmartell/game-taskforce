@@ -1,41 +1,39 @@
 # Pitch: Duel Flip (`duelflip`)
 
-> **Feasibility-test pitch.** Per the owner's instruction, this was pushed to pitch after 1 revision loop (rules v2). The latest playtest verdict was NEEDS-FIXES (minor), not a clean pass, which is outside the usual "only pitch games that passed playtesting" rule. The critic's verdict is REVISE-MINOR.
-
 ## 1. Title and hook
-**Duel Flip.** Two tide-pool scavengers flip cards into one shared, visible river. Push for a bigger haul, but flip a value already in the river and the pile you flipped washes over to your rival.
+**Duel Flip.** Two tide-pool scavengers flip cards into one shared, visible river. Push for a bigger haul, but flip a value already in the river and the pile you flipped washes over to your rival. When you bank, you must leave a card behind as bait, and your rival can only claim it if their pile is at least twice its value.
 
 ## 2. Stats
-- Players: 2 (optional 3-4 variant, untested)
-- Play time: 10-15 minutes
+- Players: 2
+- Play time: about 12 minutes
 - Age: 8+
 - Complexity: 1.5 / 5
 
 ## 3. Why it's worth making
-Push-your-luck card games are at peak demand (Flip 7, Sea Salt & Paper). Reviewers of Flip 7 complain about no dedicated 2-player mode, heavy luck and take-that swings. Duel Flip is 2-player-first, uses fully public information and has no take-that. Caveat from the brief: gap evidence is thin (Gamefound and Rain City pages were blocked, BGG was not checked), so the market-gap score is a moderate 3/5. Brief score: 26/30.
+Push-your-luck card games are at peak demand (Flip 7, Sea Salt & Paper). Reviewers of Flip 7 complain about no dedicated 2-player mode, heavy luck and take-that swings. Duel Flip is 2-player-first, uses fully public information and has no take-that. It costs almost nothing to prototype (60 index cards and two coins). Brief score 26/30; the market-gap evidence is thin (moderate 3/5). The critic is clear that the base loop is close to Port Royal plus Flip 7, so the pitch does not call the river new.
 
 ## 4. How it plays
-Players alternate turns flipping cards from a 60-card deck into a shared river. The first flip is a safe scout. A second flip is mandatory, then you choose to keep flipping or bank. Flipping a value already in the river is a clash: you bust and your opponent takes the pile you flipped, unless you spend your single Lifebuoy. When you bank, you take your pile but must leave one of your own cards in the river as bait. The game ends when the deck runs out. Score is card values, plus 8 per species where you hold a strict majority, plus 3 for the second player.
+Players alternate turns flipping cards from a 60-card deck into a shared river. The first flip is a safe scout; a second flip is mandatory; then you choose to keep flipping or bank. Flipping a value already in the river is a clash: you bust and your rival takes the pile you flipped, unless you spend your single Lifebuoy. When you bank you take your pile, but you must leave one of your own cards in the river as bait. Your rival claims the bait only if their pile total at banking is at least twice its value; if they cannot, the bait goes back to you and they leave no new bait. High baits are therefore a real decision. The game ends when the deck runs out. Score is card values, plus 3 for the second player.
 
 ## 5. Playtest highlights
-- About 100k bot games on v1 and thousands on v2 across 7 bots.
-- v2 fixes that worked: seat 1 wins 50.6-51.9% (v1: second seat won about 57%), dead turns went from 9-12% to 0%, strategic bot averages 23.5 turns with no cap hits.
-- Decisions matter: strategic beats random 82-85% and every other bot 58-63%. Bank-early does not dominate (36% vs strategic).
-- Biggest fix: making the first flip a safe scout, plus equalising Lifebuoys and giving seat 2 +3 points.
+- Three revisions. Revision 3: 72,000 bot games across the bot pairings, plus leave-strategy matchups.
+- Biggest fix (revision 3): the 2x bait hurdle. Bait claim rates for 8, 9 and 10 baits fell from 99% to 65%, 39% and 17%. "Leave lowest" (44.7%) and "leave highest" (46.5%) both score under 60% against a smart leaver, and a non-lowest card is left in 27.9% of choices.
+- Seat gap 2.0 points; strategic beats random by 38 points; about 12 minutes; 2.8 lead changes; no dead cards; no rule ambiguities found.
+- Critic: PASS (narrow), average 3.67 (originality 3, clarity 4, fun 3.5, balance 3, market fit 3.5, production 5). Panel predicted fun 3.60; no Bar Raiser veto.
 
 ## 6. Remaining risks
-- **Inert twists:** "leave your lowest card" is still the dominant bait play, the species bonus decides only about 5% of games, and the Lifebuoy refund fires about 0.56 times per game. As written it plays like a generic shared-row duplicate-bust game and does not feel like the pitch.
-- **Originality:** critic scores 2.5/5 and sees it as close to Port Royal. No copied text found, but the originality search was thin.
-- **Rules contradiction:** bait wording differs between section 4 ("opponent takes the leftover") and the hook and section 5 ("leaver gets it back"). The 1-card-river banking case is undefined, and there is dead "other leftovers" text.
-- **Untested:** the 3-4 player variant. Flag or cut it.
-- **Deep pushing is not rewarded:** pusher targets of 4-20 all score 35-40%.
-- Suggested untested fixes: bigger bait payoff, species bonus about 12 or by margin, drop or rework the refund (refund at 3 cards needs seat 2 +4).
+- **Runaway leader 74.0%** against a 65% target. It was unchanged over three revisions and is a known, unfixed weakness.
+- **Bait payoff is modest** (the leave choice is worth only a few points) and was measured only against a one-step bot, so humans may claim 9-10 baits more often, which would favour leaving the lowest card again.
+- **Originality is thin:** the critic scores 3/5, closest game Port Royal (medium similarity); one plain web search found no "leave a bait the rival must double" game, which is a weak signal, not proof. BoardGameGeek was not checked.
+- **Family players:** panel fun 3.60 overall but weakest for the Family persona.
+- **Untested with humans:** the 2x arithmetic may not be fun or readable, and a trailing player may feel out of the game.
+- The 3-4 player variant was removed.
 
 ## 7. Components
-- 60 species cards (6 species x values 1-10)
+- 60 species cards (6 species x values 1-10; species are art only)
 - 2 Lifebuoy tokens
 - 1 rules sheet
 - Target retail about $10-15
 
-## 8. Suggested next step
-Do not prototype v2 as written. First do one short rules pass: fix the bait wording contradiction, add the 1-card-river rule, delete dead text and flag or cut the 3-4 player variant. Then try the bigger bait payoff and species bonus, re-simulate, and only then print a paper prototype (60 index cards plus 2 coins). Rules and sim code are in `games/duelflip/`.
+## 8. Suggested next step for a physical prototype
+Print or write 60 index cards (6 species x 1-10) and use two coins as Lifebuoys. Play at least five 2-player games and record each session in `human-playtests.json` (fun, replay, clarity, player type). Watch whether players read the 2x bait rule easily and whether the leader runs away. Rules and sim code are in `games/duelflip/`.

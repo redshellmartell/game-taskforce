@@ -1,54 +1,49 @@
-# Playtest report: Nine Fields (rules v1, revision 0)
+# Nine Fields - Playtest report (revision 1)
 
-**Verdict: NEEDS-FIXES.** Seat balance, skill and length are fine at 3-4 players. At 2 players the game mostly ends on the stall limit, not the deck, and fails two KPIs (lead changes, runaway leader).
+**Verdict: NEEDS-FIXES (minor).** 3-4 players pass every KPI. The 2-player game misses one KPI by about 1.4 points (early-leader wins) and sits at the top of the length band. Everything below is bot simulation; no human has played it.
 
-Method: Python sim in `sim/` (game.py, bots.py, run.py, panel_run.py). 2,000 games per set, fixed seeds, 28,000 headline games plus experiments. The brief gives 2-4 players with no single main count, so I treated 3 as the headline and report 2 and 4 too. Seat rates come from strategic-bot mirror games.
+## Key numbers (2,000 games per bot pairing; strategic mirror unless stated)
 
-## Key numbers
+| Metric | 2p | 3p | 4p | Target |
+|---|---|---|---|---|
+| Seat gap (points from fair) | 0.1 (1.7 at 10k) | 2.6 | 2.7 | <= 5 PASS |
+| Strategic vs random | 100 | 57.4 | 37.7 | >= 20 PASS |
+| Mean turns / est. minutes | 60.7 / 24 | 48.5 / 20 | 48.4 / 19.9 | ~20 +-20% (2p at the edge) |
+| Lead changes | 2.77 | 3.15 | 3.28 | >= 2 PASS |
+| Early-leader wins | 64.9% (66.4% at 10,000) | 55.5% | 48.9% | <= 65% (2p FAIL by 1.4) |
+| Storms per game | 0.99 | 0.05 | 0.00 | - |
+| Score ties before tiebreaks / shared wins | 5.9% / 1.2% | 12.7% / ~2% | 19.2% / ~2.5% | - |
+| Turn-cap hits | 0 | 0 | 0 | 0 PASS |
 
-| Players | Seat win rates (gap to fair) | Strategic-vs-random gap | Floods per game | Turns (sd) / est. minutes | Lead changes | Early leader wins | Score ties | Ended by stall limit |
-|---|---|---|---|---|---|---|---|---|
-| 2 | 48.7 / 51.2 (1.3) | 97.3 | 14.5 of 22 | 41.8 (17.6) / 16.8 | 1.77 (KPI fail) | 68.7% (KPI fail) | 7.5% | 58% |
-| 3 | 31.9 / 32.9 / 35.2 (1.9) | 59.6 | 21.4 | 54.2 (8.5) / 22.2 | 3.37 | 53.6% | 11.4% | 5% |
-| 4 | 22.2 / 24.4 / 25.2 / 28.2 (3.2) | 37.9 | 22.0 | 55.3 (5.4) / 22.6 | 3.69 | 43.2% | 17.4% | 0% |
+Length uses an assumed pace (15 s/turn, 20 s/flood, 90 s setup). Games now always run the full deck (22 floods at 2p, 19 at 3-4p); sd of turns 8.1 / 6.6 / 5.0 (v1 2p sd was 17.6).
 
-- Turn cap (600) hits: 0. Greedy and random mirrors are also within 5 points at every count except 3p greedy seat 1 at 28.1% (about 5 points under fair; greedy-only).
-- Length against 20 min: 3p +11%, 4p +13%, 2p -16%. All inside the 20% band, but the minutes rest on an assumed pace (15 s per turn, 20 s per flood, 90 s setup).
-- Skill: strategic beats greedy 83% at 2p and greedy beats random 94%. A 2-ply bot beats the 1-ply strategic 68% at 2p (depth is rewarded).
-- Actions: Land 34% / 49% / 62% of actions at 2 / 3 / 4 players (rest is Sail), so both actions are used.
-- Island classes (3p claimer win-rate vs fair): v1 cap2 -4.5, v2 cap2 +1.6, v2 cap3 +1.7, v3 cap3 +8.5, v3 cap4 +6.7, v4 cap4 +13.4. No dead or dominant card class.
+## Problems, by severity
 
-## Experiments (4 experiments, 6 runs)
+1. **Medium - 2p runaway leader just over the KPI, and 2p length at the top of the band.** Early leader wins 66.4% over 10,000 games (KPI 65); ~24 min vs 20 target (+20%, cap 25). The designer's expected 19-21 min for 2p was optimistic: 2p takes 2.76 turns per flood, not 2.3-2.6. Shortening makes runaway worse (experiment: remove 3 cards at 2p -> 52.7 turns, early leader 69.8%; remove 6 -> 44.9 turns, 74.9%). Fix options (untested): 2p storm threshold 2 x players; or accept as noise and check in a human 2p game. Do not cut cards at 2p.
+2. **Low - storm exploit does not work.** A sandbag bot (avoids trophies in the first half to hold the storm direction and plays calm) wins 48.2% vs a strategic bot at 2p, 33.3% vs two at 3p, 23.3% vs three at 4p (all at or under fair). The designer's flagged risk is not borne out. Caveat: a bot only tests one way of sandbagging; and the storm hardly fires at 3-4p (0.05 and 0.00 per game), so the rule is effectively a 2p rule.
+3. **Low - late 2p game is a flood engine.** In sample games the same island floods 5+ times by Sailing the same pawns (only 33% of 2p actions are Lands). Fair, but it may read as pawn shuffling. Watch in human play.
+4. **Low - shared wins and score ties.** Ties on score are common at 4p (19%); the new tiebreaks resolve nearly all (shared wins 1-2.5%) without seat bias.
+5. **Info - skill depth.** A 2-ply bot beats the 1-ply strategic bot 84% at 2p, but at 3p it ties (33.4% vs 33.3% each). Smarter 2p play also increases runaway (2-ply vs 1-ply: early leader wins 82%, lead changes 1.62), so the 2p runaway KPI will probably be worse with expert humans than the 1-ply number.
 
-1. Staller (avoids every flood when ahead) vs strategic: loses (42.9% at 2p, 28.6% vs 35.7% at 3p). No stalling exploit, but it pushed 2p stall-ends to 73%.
-2. 2p stall limit 6 x players: stall-end falls to 37%, length 51 turns (sd 15.4), lead changes 2.16, but runaway stays 69.4%. Not a fix on its own.
-3. 2-ply vs 1-ply: 67.7% at 2p. At 3p the 2-ply bot (41.3%) is level with greedy (40.3%) and 1-ply gets 18.4%.
-4. Expert (barraiser bot) vs strategic at 2p: 68.0%; 88% of those games end on the stall limit.
+Dead cards: none. Island classes claimed 1.7-6.4 times per game at 3p; the weakest (value 1, cap 2) shows -3.3 points win correlation, the strongest (value 4) +11.6. No class flagged. Score of v3 cap 4 cards (+6.8) is fine.
 
-Untested suggestions: a "storm" flood on stall instead of ending; a neutral last tiebreak; fewer islands dealt (18) if humans run long.
+## Rule ambiguities (all minor)
+- Phase 2 step 5 says the turned island "stays full", but a storm island need not be full.
+- A storm flood can end the game (deck empty); rules imply it but do not say it.
+- A shared win is still possible after all tiebreaks; one line should say so.
+- Tie breaks for the storm island and storm player are clear as written (implemented as stated). The six v1 gaps are closed; I hit none of them.
 
-## Problems, ranked
+## How it felt (one 2p game, strategic bots, seed 4242, 58 turns, final 28-29)
+- Turns 3-9 are quick and clear: each Land is a pressure decision. Fun: the first flood and the choice of direction.
+- Turns 13-33: the same two islands (Crown-type cards) flood again and again via Sails. Scores swing 14-9 to 14-14 to 14-17; lead changed several times, so it felt tense but slightly samey.
+- Turn 42: a storm after six quiet turns handed seat 2 (fewest trophies) the direction; it felt like a natural "someone must break the standoff" moment, better than v1's abrupt stall ending. Downtime is low (one action per turn).
+- Confusing: working out which island is the storm target (fewest open spaces) needs a scan of all nine cards; players may forget to track the calm count.
 
-1. **High: 2-player games end on the stall limit.** Only about 14.5 of 22 floods happen, so a third of the deck never appears and length swings (sd 17.6 turns). Lead changes 1.77 and early-leader wins 68.7% both miss KPI. The leader can sit back, and the trailing player cannot easily force a flood. Fix (untested): on a stall, a storm floods the fullest island and the next player picks the direction, so the deck always completes. Lengthening the limit alone does not fix it (experiment 2).
-2. **Medium: ties and thin margins.** 7.5% / 11.4% / 17.4% of games tie on points; average winning margin is 4.5 / 3.0 / 2.2 pearls. Ties go to most trophy cards, then the later seat. Consider a neutral last tiebreak.
-3. **Medium: length at 3-4 players is 22 minutes against a 20 target** (cap 25), on an assumed pace. Levers: deal 18 islands, or stall limit 2 x players.
-4. **Low: depth barely helps at 3p against greedy** (experiment 3). Could be a bot limit; confirm with humans.
-5. **Low: v1 cap2 islands are the weakest class, v4 the strongest.** Nothing is dead.
+## What simulation cannot test
+Whether stalling humans bluff or table-talk, the kingmaking feel of direction choice at 3-4p (bots pick by score, not by spite), whether the card-turning/axis reading is clear in real hands (rotation by quarter turn, the "ROW/COLUMN" print), real pace (minutes are an assumption), and whether the flood engine feels boring. A human 2p and a human 3p test are the next real checks.
 
-## Rule ambiguities found (resolve in rules.md)
+## Panel (free bots)
+Average predicted fun 3.60 (spread 1.93). Best fit: competitor 4.52 (strategist 4.08, barraiser 4.09, no veto). Worst fit: family 2.59 (would not buy). Casual 3.10, story 3.22.
 
-- "Full" vs "floods": I read flood as the pawn count becoming equal to capacity; a full island can never be Landed on.
-- Flooded island that itself falls off: no turn (it is gone). Rules imply this but never say it.
-- Stall counter: I count passes and non-flood turns; opening pawns do not count. Rules do not say whether the game ends before or after the 3 x players-th turn is played.
-- Final tide scores in reading order with pile sizes updated as each island is claimed, so order matters for the fewest-trophies tiebreak. Easy to miss.
-- Two tied players with equal pile sizes: nobody claims, island removed. Rare but unspecified for the final tide.
-- Hidden trophy values plus "count is public": bots needed an estimate; humans will have to bluff or guess. Not a rule problem, but the table talk rule ("no asking") is untestable in a sim.
-- The flooded island stays full after turning. Crown Island (card 29) was seen to flood three times in 6 turns in the narrated game, because pawns return to the supply and are re-Landed on a still-full-minus-one island. Not a bug, but worth a rules example.
-
-## Narrated play (one 3-player game stepped through from the sim log, reasoning as a player; 20 turns)
-
-Opening: I (seat 1, placed last) took the centre. The first four turns were calm Landing. Turn 4 was the first real decision: Landing on the 3-capacity island floods, and I had to choose which end falls. Working out which line moves from the card's axis, then which end falls, is the step a new player will stumble on (reasoned from the log, not played at a table). Fun moment: turn 8, a value-4 island dropped to seat 2 on a flood they triggered by Landing, a clear swing. Boring: turns 12 to 19 in this game were Sail-shuffling between cells 3 and 6 with no flood, until the stall limit ended it at 20 turns with four floods, scores 8-7-9. That was the 2p problem showing up at 3p as well: nobody wanted to be the one to trigger. Frustrating: the final tide gave the winner about half their points, so the middle game barely mattered. Downtime was low: one decision a turn, rarely two.
-
-## Panel
-
-50 tables (15 at 2p, 20 at 3p, 15 at 4p), seats rotated, 200 games per seating, 16,000 games per persona, no filler bots. Average predicted fun 3.82. Best fit: competitor 4.52 (strategist 4.09, barraiser 4.17). Worst fit: family 3.11 (story 3.43, casual 3.61). **Bar Raiser veto: not active** (fun 4.17; seat gap, originality and dominant-strategy limits not crossed). Casual, family and story bots win only 6-15% of games because their noisy play loses to the planners, which says depth is rewarded but also that mixed tables are hard on casual players. Details in `panel.json`; sample logs in `sim/logs/`.
+## Experiments used (3 of 5)
+1. 2p mirror at 10,000 games (runaway within 2 points of KPI). 2. Sandbag exploit probe at 2/3/4p. 3. Remove 3 / 6 cards at 2p. Plus a 2-ply check at 2p and 3p. Not run: 2p storm threshold 2 x players; "just-flooded island cannot be Sailed onto next turn".

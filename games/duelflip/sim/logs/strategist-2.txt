@@ -1,4 +1,4 @@
-Duel Flip: strategist (seat 1) vs competitor (seat 2), table 'worst' for strategist. Cards are species+value (Cr St Ur An Sn Ke).
+Duel Flip: strategist (seat 1) vs barraiser (seat 2), table 'worst' for strategist. Cards are species+value (Cr St Ur An Sn Ke).
 T0 P0 first An7
 T0 P0 flips An5
 T0 P0 flips Ke2
@@ -16,26 +16,26 @@ T2 P0 pile 14 vs bait An3: claims
 T2 P0 banks, leaves St5
 T3 P1 first Ke1 (bait St5)
 T3 P1 flips Ke7
-T3 P1 pile 8 vs bait St5: claims
+T3 P1 flips An2
+T3 P1 pile 10 vs bait St5: claims
 T3 P1 banks, leaves Ke1
-T4 P0 first An2 (bait Ke1)
-T4 P0 flips St8
-T4 P0 pile 10 vs bait Ke1: claims
-T4 P0 banks, leaves An2
-T5 P1 first Ur10 (bait An2)
-T5 P1 flips An10 CLASH -> BUST, opp takes ['An2', 'Ur10']
-T6 P0 first Sn2
-T6 P0 flips St4
-T6 P0 flips An8
-T6 P0 banks, leaves Sn2
-T7 P1 first Sn5 (bait Sn2)
-T7 P1 flips Cr10
-T7 P1 pile 15 vs bait Sn2: claims
-T7 P1 banks, leaves Sn5
-T8 P0 first An6 (bait Sn5)
-T8 P0 flips Sn7
-T8 P0 pile 13 vs bait Sn5: claims
-T8 P0 banks, leaves An6
-T9 P1 first Ke3 (bait An6)
-T9 P1 flips Ur7
-T9 P1 pile 10 vs bait An6: claims
+T4 P0 first St8 (bait Ke1)
+T4 P0 flips Ur10
+T4 P0 pile 18 vs bait Ke1: claims
+T4 P0 banks, leaves St8
+T5 P1 first An10 (bait St8)
+T5 P1 flips Sn2
+T5 P1 flips St4
+T5 P1 pile 16 vs bait St8: claims
+T5 P1 banks, leaves Sn2
+T6 P0 first An8 (bait Sn2)
+T6 P0 flips Sn5
+T6 P0 pile 13 vs bait Sn2: claims
+T6 P0 banks, leaves Sn5
+T7 P1 first Cr10 (bait Sn5)
+T7 P1 flips An6
+T7 P1 pile 16 vs bait Sn5: claims
+T7 P1 banks, leaves Cr10
+T8 P0 first Sn7 (bait Cr10)
+T8 P0 flips Ke3
+T8 P0 pile 10 vs bait Cr10: fails, bait returns

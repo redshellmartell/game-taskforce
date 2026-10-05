@@ -1,17 +1,15 @@
-{ "verdict": "REVISE-MAJOR", "revision": 0,
-  "scores": { "originality": 3, "clarity": 3, "fun": 3, "balance": 3, "market_fit": 3, "production": 5 },
+{ "verdict": "REVISE-MAJOR", "revision": 1,
+  "scores": { "originality": 3, "clarity": 4, "fun": 3, "balance": 2, "market_fit": 3, "production": 5 },
   "average": 3.33,
-  "strength": "Sides are already balanced (gap 2.2 points, skill gap +73) and the game is very cheap to make (49 cards).",
-  "weakness": "The crown stalls (1.15 lead changes, up to 30% of games decided by a tiebreak at the centre) and the lead choice is solved, so the middle is dull and the ending arbitrary.",
+  "strength": "Pacing and clarity problems from revision 0 are fixed: no centre endings, lead changes 1.83, zero ambiguities, skill gap +56, 47 cheap cards.",
+  "weakness": "The lead-choice-plus-bonus mechanic is unstable: five variants each left one lead policy dominant (43-65%), and the side gap is 10.9 and flips with bot skill.",
   "closest_existing_game": { "name": "Tug of Roar", "similarity": "medium" },
   "required_changes": [
-    "Remove or fix the lead choice (alternate the lead or make leading valuable). KPI: lead-side win rate 40-60% in the mirror; casual/family/story bot win rates up toward 45-55%.",
-    "Raise lead changes to at least 2 per game (try stronger trailer draws, a leader bonus or a shorter track) while keeping the side gap at or under 5 and runaway leader at or under 65%.",
-    "Make round 7 decisive so under 8% of games are decided by a tiebreak at position 0.",
-    "Raise the margin rules to 3 and 4 or delete them (they are currently inert).",
-    "Resolve all 8 listed ambiguities (Hush on Spend, Retort after pass, margin-blocked win and the next chooser, Echo on ties, position-0 tiebreak, passing again after Retort). KPI: zero ambiguities.",
-    "Cut rules weight to about one page (panel rules_simplicity is 0.025); casual/family predicted fun up from about 2.9 toward 3.3.",
-    "Give the Whisperer a plan once the deck runs dry (no reshuffle), and recheck the skill-dependent side balance."
+    "Remove the lead choice as a decision (loser always leads, or alternate the lead) instead of tuning the extra card again. KPI: no dominant lead policy (all 40-60%); Balance up to 3+.",
+    "After that, one lever at a time (Treasury cap or Spend bonus) to bring the strategic-mirror side gap to 5 or less and 10 or less across the skill ladder. KPI: side gap.",
+    "Double-move margin 6: games ending by round 3 under 20% (now 31%), lead changes at least 2.0, runaway leader at most 65%.",
+    "Re-run all experiments on the corrected simulator (coin bug fixed after the five experiments).",
+    "Optional: cut The Whisper to 4 Influence or one copy if still above +15 points."
   ],
   "revision_worth_it": true,
-  "revision_reason": "Side balance and skill expression already pass and the problems are rules-level and well diagnosed, so a revision can realistically fix lead changes and the lead choice; expect a game for competitive players rather than casual ones." }
+  "revision_reason": "Yes, once: the remaining problems are narrow and measurable once the lead dial is removed rather than retuned; if the side gap stays above 8 or fun below 3.3 after revision 2, park the game." }

@@ -1,4 +1,4 @@
-Duel Flip: story (seat 1) vs barraiser (seat 2), table 'worst' for story. Cards are species+value (Cr St Ur An Sn Ke).
+Duel Flip: story (seat 1) vs competitor (seat 2), table 'worst' for story. Cards are species+value (Cr St Ur An Sn Ke).
 T0 P0 first An7
 T0 P0 flips An5
 T0 P0 flips Ke2
@@ -32,10 +32,10 @@ T6 P0 pile 21 vs bait Sn2: claims
 T6 P0 banks, leaves Cr10
 T7 P1 first Sn7 (bait Cr10)
 T7 P1 flips Ke3
-T7 P1 flips Ur7 CLASH -> BUST, opp takes ['Cr10', 'Sn7', 'Ke3']
-T8 P0 first Cr6
+T7 P1 pile 10 vs bait Cr10: fails, bait returns
+T7 P1 banks whole pile, no bait
+T8 P0 first Ur7
+T8 P0 flips Cr6
 T8 P0 flips Sn3
 T8 P0 flips Ur5
-T8 P0 flips St1
-T8 P0 flips Sn1 CLASH -> Lifebuoy
-T8 P0 banks, leaves St1
+T8 P0 banks, leaves Sn3

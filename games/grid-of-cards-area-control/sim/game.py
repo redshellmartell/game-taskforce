@@ -1,4 +1,4 @@
-"""Nine Fields rules v1. State, legal actions, flood resolution, scoring. Standard library only.
+"""Nine Fields rules v2 (revision 1). State, legal actions, flood resolution, scoring. Standard library only.
 Interpretations are listed in AMBIGUITIES at the bottom."""
 import random
 
@@ -12,7 +12,8 @@ for v, c, ax in _spec:
         CARDS.append((_i, v, c, 0 if a == "R" else 1))
 assert len(CARDS) == 30 and sum(c[1] for c in CARDS) == 65
 
-STALL_MULT = 3   # rules: stall limit = 3 x players
+STALL_MULT = 3   # storm threshold = 3 x players
+REMOVE = {2: 0, 3: 3, 4: 3}
 ADJ = [[] for _ in range(9)]
 for _c in range(9):
     r, k = divmod(_c, 3)
@@ -23,14 +24,14 @@ for _c in range(9):
 
 class State:
     __slots__ = ("n", "card", "axis", "pw", "supply", "tn", "tv", "deck", "dp", "since", "floods", "over",
-                 "turn", "log", "tcards", "stall_end", "hist", "dec", "inter", "acts")
+                 "turn", "log", "tcards", "stall_end", "hist", "dec", "inter", "acts", "storms")
     def clone(self):
         s = State.__new__(State)
         s.n = self.n; s.card = self.card[:]; s.axis = self.axis[:]; s.pw = [l[:] for l in self.pw]
         s.supply = self.supply[:]; s.tn = self.tn[:]; s.tv = self.tv[:]; s.deck = self.deck; s.dp = self.dp
         s.since = self.since; s.floods = self.floods; s.over = self.over; s.turn = self.turn
         s.log = None; s.tcards = None; s.stall_end = self.stall_end; s.hist = None
-        s.dec = None; s.inter = None; s.acts = None
+        s.dec = None; s.inter = None; s.acts = None; s.storms = self.storms
         return s
     def nxt(self): return self.deck[self.dp] if self.dp < len(self.deck) else None
     def full(self, c): return sum(self.pw[c]) >= self.card[c][2]
@@ -38,9 +39,10 @@ class State:
 def new_game(n, seed, log=False):
     rng = random.Random(seed)
     deck = CARDS[:]; rng.shuffle(deck)
-    s = State(); s.n = n
+    s = State(); s.n = n; s.storms = 0
     s.card = deck[:9]; s.axis = [c[3] for c in s.card]; s.pw = [[0] * n for _ in range(9)]
     s.supply = [4] * n; s.tn = [0] * n; s.tv = [0] * n; s.deck = deck; s.dp = 9
+    if REMOVE[n]: del deck[9:9 + REMOVE[n]]      # unseen cards removed at setup
     s.since = 0; s.floods = 0; s.over = False; s.turn = 0; s.stall_end = False
     s.log = [] if log else None
     s.tcards = [[] for _ in range(n)]; s.hist = []; s.dec = [0] * n; s.inter = [0] * n
@@ -156,16 +158,37 @@ def play(n, bots, seed, log=False, cap=600):
                 lead_hist.append(_leader(st))
                 if st.floods == 11: mid = _leader(st)
             if st.since >= STALL_MULT * n and not st.over:
-                st.over = True; st.stall_end = True
+                storm(st, p, bots, log, turns)
+                lead_hist.append(_leader(st))
         p = (p + 1) % n
     hit_cap = (turns >= cap and not st.over)
+    pawns_left = [sum(st.pw[c][q] for c in range(9)) for q in range(n)]
     final_tide(st)
     sc = st.tv[:]
-    order = sorted(range(n), key=lambda q: (sc[q], st.tn[q], q), reverse=True)
-    top = sc[order[0]]
+    key = lambda q: (sc[q], st.tn[q], -pawns_left[q])
+    best = max(key(q) for q in range(n))
+    ws = [q for q in range(n) if key(q) == best]
+    top = max(sc)
     tie = sum(1 for q in range(n) if sc[q] == top) > 1
-    return {"st": st, "winner": order[0], "scores": sc, "turns": turns, "tie": tie, "cap": hit_cap,
-            "stall": st.stall_end, "floods": st.floods, "leads": lead_hist, "mid": mid}
+    wts = [1.0 / len(ws) if q in ws else 0.0 for q in range(n)]
+    return {"st": st, "winner": ws[0], "w": wts, "shared": len(ws) > 1, "scores": sc, "turns": turns, "tie": tie, "cap": hit_cap,
+            "stall": st.stall_end, "storms": st.storms, "floods": st.floods, "leads": lead_hist, "mid": mid}
+
+def storm(st, p, bots, log, turns):
+    """Phase 3 storm. p = player who just moved. Island with fewest open spaces; fewest-trophies player picks direction."""
+    n = st.n
+    cells = [c for c in range(9) if st.card[c] is not None]
+    c = min(cells, key=lambda c: (st.card[c][2] - sum(st.pw[c]), -sum(st.pw[c]), c))
+    m = min(st.tn)
+    tied = [q for q in range(n) if st.tn[q] == m]
+    sp = min(tied, key=lambda q: (q - (p + 1)) % n)
+    d = bots[sp].direction(st, sp, c)
+    cid = st.card[c][0]
+    w, val, fellid, order = resolve(st, sp, c, d)
+    for pos in order:
+        if st.card[pos] is not None and st.card[pos][0] == cid: st.axis[pos] ^= 1
+    st.floods += 1; st.since = 0; st.storms += 1
+    if log: st.log.append("t%d STORM on cell %d: seat %d picks dir %d; card %d value %d falls to %s" % (turns, c, sp + 1, d, fellid, val, "nobody" if w is None else "seat %d" % (w + 1)))
 
 def _leader(st):
     m = max(st.tv)
@@ -176,13 +199,10 @@ def _fmt(st, a):
     return "lands on cell %d" % a[1] if a[0] == "L" else "sails cell %d -> %d" % (a[1], a[2])
 
 AMBIGUITIES = [
- "'Floods' triggers when count BECOMES equal to capacity. Opening pawns can never fill an island (capacity >= 2, one pawn each). I treat 'full' as count >= capacity.",
- "The flooded island is turned only if it did not fall off; I find it by card identity after the slide.",
- "Stall limit counts passes and non-flood turns; opening placements do not count. It ends the game on the turn the counter hits 3 x players.",
- "Final tide is scored in reading order, pile sizes updated as each island is claimed (used for the fewest-trophies tiebreak).",
- "Rules do not say whether a flooded island that is also the last in line (falls off) still counts as 'flooded island still in grid' - it does not; no turn.",
- "'Fewest trophy cards' tiebreak: if tied players have equal pile sizes nobody claims; island is removed (no refill difference).",
- "First player is random; I always make seat 1 the first player and the result is the same as random assignment.",
- "Pawns on the falling island return to supply even for players with no majority (stated), so supply can exceed 4 never; pawns are conserved.",
- "Not stated: whether Land is allowed onto an island that is already flooded-full - no (not full is required).",
+ "Remaining (minor): Phase 2 step 5 says the turned island 'stays full', but a storm island need not be full; I turn it and leave its pawns as they are.",
+ "Remaining (minor): rules do not say how many floods can occur if the storm itself empties the deck and ends the game; I let a storm flood end the game exactly like a normal flood.",
+ "Remaining (minor): a shared win is possible after all three tiebreaks (1-2.5% of games); the rules allow it, but the dashboard/KPI 'ties' number counts score ties before tiebreaks.",
+ "Interpretation: storm-island tie 'most pawns, then reading order' applied as written; storm-player tie 'first clockwise from the next player' where next = the seat after the player who just moved.",
+ "Interpretation: opening pawns are placed by bots choosing among pawn-free islands; the first player is always seat 1 (equivalent to a random first player).",
+ "Interpretation: the 'next island' is public, so bots may use it; hidden trophy values are modelled as pile size x 2.17 average.",
 ]

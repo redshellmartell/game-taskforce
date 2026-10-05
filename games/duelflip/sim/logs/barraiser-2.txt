@@ -1,4 +1,4 @@
-Duel Flip: barraiser (seat 1) vs competitor (seat 2), table 'worst' for barraiser. Cards are species+value (Cr St Ur An Sn Ke).
+Duel Flip: barraiser (seat 1) vs family (seat 2), table 'worst' for barraiser. Cards are species+value (Cr St Ur An Sn Ke).
 T0 P0 first An7
 T0 P0 flips An5
 T0 P0 flips Ke2
@@ -7,7 +7,6 @@ T0 P0 flips St2 CLASH -> Lifebuoy
 T0 P0 banks, leaves Ke2
 T1 P1 first Ur6 (bait Ke2)
 T1 P1 flips An3
-T1 P1 flips St3 CLASH -> Lifebuoy
 T1 P1 pile 9 vs bait Ke2: claims
 T1 P1 banks, leaves An3
 T2 P0 first St5 (bait An3)
@@ -16,21 +15,22 @@ T2 P0 pile 14 vs bait An3: claims
 T2 P0 banks, leaves St5
 T3 P1 first Ke1 (bait St5)
 T3 P1 flips Ke7
-T3 P1 pile 8 vs bait St5: claims
-T3 P1 banks, leaves Ke1
-T4 P0 first An2 (bait Ke1)
+T3 P1 pile 8 vs bait St5: fails, bait returns
+T3 P1 banks whole pile, no bait
+T4 P0 first An2
 T4 P0 flips St8
-T4 P0 pile 10 vs bait Ke1: claims
+T4 P0 flips Ur10
 T4 P0 banks, leaves An2
-T5 P1 first Ur10 (bait An2)
-T5 P1 flips An10 CLASH -> BUST, opp takes ['An2', 'Ur10']
-T6 P0 first Sn2
-T6 P0 flips St4
+T5 P1 first An10 (bait An2)
+T5 P1 flips Sn2 CLASH -> Lifebuoy
+T5 P1 pile 10 vs bait An2: claims
+T5 P1 banks single card
+T6 P0 first St4
 T6 P0 flips An8
-T6 P0 banks, leaves Sn2
-T7 P1 first Sn5 (bait Sn2)
+T6 P0 banks, leaves St4
+T7 P1 first Sn5 (bait St4)
 T7 P1 flips Cr10
-T7 P1 pile 15 vs bait Sn2: claims
+T7 P1 pile 15 vs bait St4: claims
 T7 P1 banks, leaves Sn5
 T8 P0 first An6 (bait Sn5)
 T8 P0 flips Sn7
@@ -38,4 +38,4 @@ T8 P0 pile 13 vs bait Sn5: claims
 T8 P0 banks, leaves An6
 T9 P1 first Ke3 (bait An6)
 T9 P1 flips Ur7
-T9 P1 pile 10 vs bait An6: claims
+T9 P1 pile 10 vs bait An6: fails, bait returns

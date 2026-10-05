@@ -1,4 +1,4 @@
-"""Duel Flip rules engine, revision 2 rules (bait hurdle, bust gives whole river, no species, no refund).
+"""Duel Flip rules engine, revision 3 rules (claim needs pile >= mult x bait; failed claim = whole pile, no new bait).
 Bot interface (all get (st, p)):
   keep_flipping(st,p)        after 2nd flip and later flips: True = flip again
   on_clash(st,p,card,hit_bait) -> 'buoy' or 'bust'   (only asked if Lifebuoy ready)
@@ -8,8 +8,11 @@ st.bait = the bait card at turn start (or None); st.pile = this turn's cards; st
 import random
 
 class Config:
-    def __init__(self, second_pts=3, claim_ge=False, extra=0, cap=500, log=False):
-        self.second_pts = second_pts; self.claim_ge = claim_ge; self.extra = extra; self.cap = cap; self.log = log
+    def __init__(self, second_pts=3, mult=2.0, cap=500, log=False):
+        self.second_pts = second_pts; self.mult = mult; self.cap = cap; self.log = log
+
+import math
+def need(cfg, b): return math.ceil(cfg.mult * b - 1e-9)
 
 class State:
     def __init__(self, cfg, rng):
@@ -21,7 +24,7 @@ class State:
         self.turn = 0; self.player = 0
         self.stats = dict(busts=0, bait_busts=0, buoy_used=[0, 0], flips=0, scout_discards=0,
                           bust_pile=[], bank_pile=[], left_vals=[], claims=0, claim_tries=0, bait_turns=0,
-                          forced_empty_end=0, claim_by_val=[0]*11, bait_by_val=[0]*11)
+                          forced_empty_end=0, fail_nobait=0, claim_by_val=[0]*11, bait_by_val=[0]*11)
         self.history = []; self.log = []
     def river_values(self): return {v for _, v in self.river}
     def deck_count(self, v): return sum(1 for _, x in self.deck if x == v)
@@ -73,13 +76,16 @@ def play(cfg, bots, seed):
             total = sum(v for _, v in st.pile)
             if st.bait:
                 S["claim_tries"] += 1; S["bait_by_val"][st.bait[1]] += 1
-                ok = total >= st.bait[1] if cfg.claim_ge else total > st.bait[1] + cfg.extra
+                ok = total >= need(cfg, st.bait[1])
                 st.river.remove(st.bait)
                 if ok:
                     st.haul[p].append(st.bait); S["claims"] += 1; S["claim_by_val"][st.bait[1]] += 1
                 else: st.haul[o].append(st.bait)
                 st.say("T%d P%d pile %d vs bait %s: %s" % (st.turn, p, total, fmt(st.bait), "claims" if ok else "fails, bait returns"))
-            if len(st.pile) == 1:
+            if st.bait and not ok:
+                st.haul[p].extend(st.river); st.river = []; S["fail_nobait"] += 1  # failed claim: whole pile, no new bait
+                st.say("T%d P%d banks whole pile, no bait" % (st.turn, p))
+            elif len(st.pile) == 1:
                 st.haul[p].append(st.river.pop()); st.say("T%d P%d banks single card" % (st.turn, p))
             else:
                 i = bot.leave(st, p, list(range(len(st.river))))

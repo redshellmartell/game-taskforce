@@ -1,157 +1,168 @@
 {
  "n": 2000,
  "avg": {
-  "random": 0.2845,
-  "greedy": 0.6085499999999999,
-  "bank_early": 0.547,
-  "pusher": 0.33940000000000003,
-  "hoarder": 0.47939999999999994,
-  "strategic": 0.7277499999999999
+  "random": 0.35609999999999997,
+  "greedy": 0.5884,
+  "bank_early": 0.4705500000000001,
+  "pusher": 0.3506,
+  "hoarder": 0.47625,
+  "strategic": 0.7366999999999999
  },
  "pair": {
-  "random v greedy": 0.224,
-  "random v bank_early": 0.253,
-  "random v pusher": 0.499,
-  "random v hoarder": 0.306,
-  "random v strategic": 0.141,
-  "greedy v random": 0.775,
-  "greedy v bank_early": 0.565,
-  "greedy v pusher": 0.693,
-  "greedy v hoarder": 0.623,
-  "greedy v strategic": 0.387,
-  "bank_early v random": 0.737,
-  "bank_early v greedy": 0.432,
-  "bank_early v pusher": 0.703,
-  "bank_early v hoarder": 0.557,
-  "bank_early v strategic": 0.306,
-  "pusher v random": 0.478,
-  "pusher v greedy": 0.296,
-  "pusher v bank_early": 0.298,
-  "pusher v hoarder": 0.384,
-  "pusher v strategic": 0.24,
-  "hoarder v random": 0.684,
-  "hoarder v greedy": 0.388,
-  "hoarder v bank_early": 0.441,
-  "hoarder v pusher": 0.602,
-  "hoarder v strategic": 0.282,
-  "strategic v random": 0.862,
-  "strategic v greedy": 0.607,
-  "strategic v bank_early": 0.693,
-  "strategic v pusher": 0.774,
-  "strategic v hoarder": 0.703
+  "random v greedy": 0.314,
+  "random v bank_early": 0.369,
+  "random v pusher": 0.496,
+  "random v hoarder": 0.4,
+  "random v strategic": 0.203,
+  "greedy v random": 0.679,
+  "greedy v bank_early": 0.624,
+  "greedy v pusher": 0.688,
+  "greedy v hoarder": 0.602,
+  "greedy v strategic": 0.349,
+  "bank_early v random": 0.618,
+  "bank_early v greedy": 0.372,
+  "bank_early v pusher": 0.66,
+  "bank_early v hoarder": 0.475,
+  "bank_early v strategic": 0.228,
+  "pusher v random": 0.474,
+  "pusher v greedy": 0.303,
+  "pusher v bank_early": 0.331,
+  "pusher v hoarder": 0.388,
+  "pusher v strategic": 0.257,
+  "hoarder v random": 0.602,
+  "hoarder v greedy": 0.4,
+  "hoarder v bank_early": 0.52,
+  "hoarder v pusher": 0.605,
+  "hoarder v strategic": 0.254,
+  "strategic v random": 0.787,
+  "strategic v greedy": 0.649,
+  "strategic v bank_early": 0.774,
+  "strategic v pusher": 0.733,
+  "strategic v hoarder": 0.74
  },
  "seat1_mirror": {
-  "random": 0.489,
-  "greedy": 0.496,
-  "bank_early": 0.499,
-  "pusher": 0.507,
-  "hoarder": 0.502,
-  "strategic": 0.512
+  "random": 0.502,
+  "greedy": 0.503,
+  "bank_early": 0.51,
+  "pusher": 0.505,
+  "hoarder": 0.51,
+  "strategic": 0.52
  },
- "gap": 1.2000000000000028,
- "turns_mean": 23.226,
- "turns_sd": 1.6489160075637668,
- "ties": 0.002,
- "scoreties": 0.0065,
+ "gap": 1.9750000000000014,
+ "turns_mean": 21.883,
+ "turns_sd": 1.5922659953663485,
+ "ties": 0.0015,
+ "scoreties": 0.004,
  "caps": 0,
- "lc": 3.4035,
- "el_half": 0.7475826972010178,
- "el_third": 0.6861648016276704,
- "exps": {},
- "claim_rate": 0.9925668979187314,
- "bait_turn_rate": 0.7640144665461122,
- "busts_per_game": 4.3425,
- "bait_busts_per_game": 1.7855,
+ "lc": 2.801,
+ "el_half": 0.7403651115618661,
+ "el_third": 0.6847715736040609,
+ "exps": {
+  "strategic:low v strategic:smart": 0.447,
+  "strategic:high v strategic:smart": 0.465,
+  "strategic:low v strategic:high": 0.51,
+  "strategic:rand v strategic:smart": 0.44
+ },
+ "claim_rate": 0.8217447436370343,
+ "bait_turn_rate": 0.6566055842434767,
+ "busts_per_game": 4.602,
+ "bait_busts_per_game": 1.673,
  "buoys_per_game": 2.0,
  "left_hist": {
-  "1": 7775,
-  "4": 4692,
-  "3": 5596,
-  "5": 3911,
-  "2": 6576,
-  "7": 2220,
-  "10": 709,
-  "6": 3020,
-  "8": 1481,
-  "9": 987
+  "1": 6229,
+  "4": 2740,
+  "3": 3913,
+  "10": 3749,
+  "5": 1755,
+  "9": 2539,
+  "2": 4937,
+  "6": 1303,
+  "7": 1307,
+  "8": 1664
  },
- "scout_per_game": 1.85,
+ "scout_per_game": 1.4915,
  "claim_by_val": [
   null,
   1.0,
-  0.999,
-  0.999,
-  0.997,
-  0.996,
-  0.989,
-  0.983,
-  0.965,
-  0.95,
-  0.891
+  0.998,
+  0.993,
+  0.987,
+  0.97,
+  0.909,
+  0.776,
+  0.647,
+  0.394,
+  0.172
  ],
  "bait_by_val": [
   0,
-  5970,
-  5123,
-  4386,
-  3577,
-  3002,
-  2296,
-  1679,
-  1074,
-  679,
-  466
+  4769,
+  3801,
+  2994,
+  2053,
+  1217,
+  821,
+  771,
+  1013,
+  1575,
+  2674
  ],
- "avg_bust_pile": 5.88957973517559,
- "forced_end": 0.0355,
+ "avg_bust_pile": 6.720556279878314,
+ "forced_end": 0.031,
+ "nonlowest_rate": [
+  0.27927347367416105,
+  0.26027495345839896
+ ],
+ "mult": 2.0,
+ "fail_nobait_per_game": 1.933,
  "hist": [
   [
-   17,
+   16,
    4
+  ],
+  [
+   17,
+   7
   ],
   [
    18,
-   9
+   33
   ],
   [
    19,
-   20
+   92
   ],
   [
    20,
-   76
+   240
   ],
   [
    21,
-   172
+   394
   ],
   [
    22,
-   333
+   505
   ],
   [
    23,
-   488
+   428
   ],
   [
    24,
-   461
+   225
   ],
   [
    25,
-   303
+   60
   ],
   [
    26,
-   101
+   11
   ],
   [
    27,
-   29
-  ],
-  [
-   28,
-   4
+   1
   ]
  ],
  "total": 72000

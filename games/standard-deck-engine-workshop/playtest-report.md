@@ -1,48 +1,50 @@
-# Playtest report: Fifty-Two Workshop (revision 0)
+# Playtest report: Fifty-Two Workshop, revision 1
 
-**Verdict: NEEDS-FIXES.** The core loop works and is well balanced across seats, but the solo mode is broken, the engine suits do not pay off as designed, and the rules contain an open no-progress loop.
+**Verdict: NEEDS-FIXES.** Multiplayer is sound (seats, length, runaway, no stalls). Solo still fails its main KPI, and the engine suit (Spades) still does not pay. 62,000 games in the headline run, plus 3 configurations (2,000 per pairing each) and one solo check. Bots: random, greedy, strategic, lookahead (reference bots of different strength), rush; 6 persona bots. Seeds fixed; code in `sim/`.
 
-Simulation: `sim/` (game.py, bots.py, run.py, panel_run.py). 46,000 headline games (2,000 per pairing or seating), 6 extra experiment configurations, 30,000 panel games. 0 turn-cap hits after one bot fix (see problem 3).
+## Key numbers (v2 as written)
+| KPI | Target | Result |
+|---|---|---|
+| Seat gap (2/3/4p) | <= 5 | 1.2 / 0.6 / 1.2 PASS |
+| Strategic v random | >= 20 pts | 67.8 pts (99.9% 2p head to head) PASS |
+| Strategic v greedy (2p) | >= 60% | 59.0% (lookahead v greedy 61.3%, lookahead v strategic 54.5%) MISS by 1 |
+| Spade / Club win correlation | >= 0 | Spades -0.035 FAIL; Clubs +0.049 ok (Hearts +0.098, Diamonds -0.026) |
+| Solo strategic / random win | 45-55% / < 15% | 98.8% / 0.6% FAIL (greedy 97.4%, lookahead 99.1%) |
+| Solo length | designer 7-8 min | 23.8 turns (12 builds, 12 gathers), 7.5 min by formula |
+| Turn-cap hits, bot patches | 0 | 0 in 62,000 games (and no patches), PASS |
+| Lead changes (2/3/4p) | >= 2.5 | 2.10 / 2.49 / 2.32 MISS (4p) |
+| Runaway leader (halfway) | <= 65% | 54.8 / 40.9 / 33.7% PASS |
+| 4p length | 20 min +-20% | 57.2 turns, 17.7 min (-11.5%) PASS; 3p 14.8 v 16, 2p 11.3 v 12 |
+| Ties | n/a | top-score ties 6.2 / 10.5 / 12.9%; shared wins < 1% |
+| Dead cards | 0 | none; K/A Clubs built 5%, Kings 10% (money) |
+| Ambiguities | 0 | 4 minor (see below) |
 
-## Key numbers
+## Configurations tried (3 of 5 budget, plus a solo check)
+| Config | Strat v greedy | Spade corr | Lead chg 4p | Solo strat / random |
+|---|---|---|---|---|
+| v2 as written | 59.0 | -0.035 | 2.32 | 98.8 / 0.6 |
+| Retool off | 51.1 | -0.040 | 2.29 | 88.5 / 4.7 |
+| Spade discount 3, 2 points | 61.2 | -0.015 | 2.61 | 99.3 / 1.5 |
+| ... plus 3-card Gear Gather | 60.9 | -0.020 | 2.46 | 99.3 / 1.7 |
+| Solo Rival takes 3 (solo only) | | | | strategic median 41 v 40: no change |
 
-| KPI | Target | Result | Status |
-|---|---|---|---|
-| Seat balance (max deviation, strategic mirrors) | <= 5 | 2p 4.0, 3p 3.9, 4p 3.3 (last seat favoured) | pass, trend |
-| Strategic vs random (2p avg win) | gap >= 20 | 72.1 pts (74.9% v 2.8%) | pass |
-| Strategic vs greedy (2p) | n/a | 53.1% | weak depth |
-| Length vs target (est. minutes) | within 20% | 2p 11.1/12, 3p 14.5/16, 4p 16.6/20 (-17%), solo 6.0/15 | pass multi, FAIL solo |
-| Turns (mean, sd) | | 2p 35.3 (3.3), 3p 46.5 (4.0), 4p 53.6 (4.1), solo 19.5 | |
-| Runaway leader (halfway leader wins) | <= 65% | 2p 59.5%, 3p 42.6%, 4p 36.4% | pass |
-| Lead changes per game | >= 2 | 2.03 / 2.31 / 2.08 | pass (on the floor) |
-| Score ties / shared wins | | 6.2-13.4% score ties, about 1% shared wins | ok |
-| Rush strategy (always build cheapest) | not dominant | wins 18% (2p v strategic), 11% (3p), 9% (4p) | pass |
-| Solo win rate (22+) | about 50% for strategic | strategic 98.6%, greedy 98.4%, random 68.0% | FAIL |
-| Dead cards | 0 | none dead (every card is also money); K-club built 4%, K-spade 7% | pass, see 2 |
-| Ambiguities | 0 | 11 listed in playtest.json | FAIL |
-
-Estimated minutes use the designer's 25 s per build and 10 s per Gather; not measured with humans.
+Retool is worth about 8 points of strategic-over-greedy skill and gives the lead-change lift; keep it. Spade correlation stays below 0 in every config, so it is not a numbers problem alone.
 
 ## Problems, ranked
+1. **High, solo is a free win.** 98.8% at line 31; greedy is almost as good as strategic (median 38 v 40). Rival taking 3 cards does nothing. Fix: win line to about 40 (strategic about 52%, greedy about 40%, random about 0%), rescale the ladder, and add real solo pressure (Rival also takes Diamonds/Hearts, or a smaller solo hand limit); re-test.
+2. **Medium, Spades do not pay** (-0.035; -0.015 even with 2 points). They are mostly spent as payment. Fix: Spade 3 + 2 points (+ Gear Gather) is the best of the three; if still below 0, accept Spades as the currency suit and drop "engine first is strongest". Bots do not plan trains, so a human test of the engine line is needed. The Story bot (long mixed trains, Hearts) still wins most in the panel (44%) v Strategist 34%, Competitor 33%, Barraiser 32%.
+3. **Medium, skill gap vs greedy 59.0%** (1 point short); the Spade 3 / 2-point config passes on both strategic (61.2) and lookahead (63.5).
+4. **Medium, 4p clock target 10 is vestigial:** 85% of 4p games end by the deck emptying (3p 2%, 2p 0%); Retool is used 0.4 times per game. Lead changes 2.32 at 4p. Fix: say "deck runs out" is the 4p end, or add deck pressure.
+5. **Low:** 3-4p top-score ties 10-13% (tiebreakers fine); solo 7.5 min by formula vs designer 10 (check with a human).
 
-1. **HIGH, solo mode is not a game yet.** Random wins 68% at the 22-point line, strategic 98.6% (average score 30.4). Ladder titles Journeyman to Grandmaster are meaningless. Solo also lasts about 19.5 turns (about 6 estimated minutes) against a 15-minute target. Fix (untested): win line about 31+, and a harsher Rival (2 cards per turn, or highest 2); re-measure for about 50% strategic.
-2. **MEDIUM, the engine does not pay.** Win correlation by suit: Spades -0.056 (K-spade -0.15), Clubs +0.031, Diamonds -0.013, Hearts +0.100. Spades are built 14% of the time, Clubs 11%, Diamonds 19%, Hearts 14%. Engine-heavy bots barely beat greedy (planner 55.6%, optimiser 57.6% v greedy, 2p), and in the panel rotation the Flavour bot (long mixed Heart trains) is the best persona bot (40.6% against 32-33% for Planner, Optimiser, Expert). "Engine first" is the pitch, but Hearts-in-a-long-train is the line that wins. Strategic beating greedy by only about 3-9 points means decisions beyond "most points now" are shallow (caveat: my heuristic bots are not optimal). Fix (untested, one at a time): Spade discount 4, or Spade worth 2 points; make Clubs pull 1 plus a 0-cost pull.
-3. **MEDIUM, rules allow a no-progress loop.** Gather, then hand-limit discards return the same cards to the Bench; the Bench stays at 5, the deck never shrinks and the clock never strikes. Before I fixed the strategic bot (a full hand now forces a build), 8 of 2,000 two-player games hit the 600-turn cap. Humans will rarely do it, but the rules have no breaker. Fix: remove the leftmost Bench card whenever the Bench holds more than 5 at end of turn, or forbid Gathering with a full hand.
-4. **LOW, last seat advantage.** 2p seat 2 wins 54.0%; 3p seat 3 37.2%; 4p seat 4 28.3%. Within the KPI, but it is consistent. If it grows after fixes, 4-card start for the last seats.
-5. **LOW, 4-player length** is close to the lower bound (-17%). Consider a target of 10 cards, or confirm with a human game.
-6. **LOW, lead changes are on the 2.0 floor** (2.03 at 2p). Recheck after fixing 2.
+## Rule ambiguities (4, minor)
+Retool Spade cost when the replaced card is a Spade (simulated: only the new card counts); hand-limit scrap can hit cards just taken by Gears; solo "24th turn" v "pile holds 24" wording; deck-empty clock when a trimmed card re-fills the deck. The 11 old ones are closed; the sim ran with 0 illegal actions.
 
-## Rule ambiguities (11, full list in playtest.json)
-Main ones: clock strike timing when it happens before the last seat; deck-empty strike after the refill; Apprentice on a tie for fewest (read literally: no bonus); Club pulls cannot make an otherwise illegal build legal (legality uses the hand before the pulls); no stall breaker (problem 3); "provisional score" has no live score on the table (lead changes are my measure).
-
-## What the panel bots say (free bots only, no AI reviews)
-Average predicted fun 3.99 (competitor 4.67, strategist 4.45, barraiser 4.36, story 3.74, casual 3.53, family 3.22). Best fit: competitor; worst fit: family. Barraiser veto not active. Interaction is real but mild: about 0.3-0.5 turns in 1 take a card a rival paid. Downtime (opponent decisions between my turns) is about 5.9 at the mixed tables, driven by 4-player tables.
-
-## How it felt (narrated, one simulated 2-player game, 40 turns)
-Early turns are Gather-heavy: first 4 turns each had only one cheap build. Fun moment: P1 built 8-spade then 7-spade (cost 1) in a 7-8-9 train, then 10-club pulled the K-spade off the Bench. Chain turns feel good. Moment of frustration: P1 held KH, KS, and 9H in a full hand and had to dump 3C to the Bench, which P2 took, so the hand limit gives away info and cards. Boring stretch: turns 20-30 were largely forced; each player has one real decision per turn and many of them are "which of 5 cards". Downtime is low at 2p (about 2 decisions between turns) and grows with players. The finish was close (29 to 23) with the leader never changing after the middle. I did not play a second game.
+## How it felt (one 4p game, strategic bots, seed 42; 56 turns)
+Opening was fast and clear (take two, pay a big card). Fun: the Bench flip, since every payment is public. Boring: Spades and Clubs were spent as payment immediately; no train longer than 3 appeared and no Retool happened; four players finished 18/18/17/18, a flat finish with no peak, and the game ended on an empty deck at 6-8 workshop cards, not at the printed target of 10. Frustrating: a 9-cost build burned a Queen because nothing cheaper fit. Downtime is low (about 5.6 opponent decisions between turns at 4p per the panel bot), turns take 1 decision.
 
 ## What simulation cannot test
-Whether trains and the cost maths are readable at the table (I count 11 ambiguities, humans will find more); real turn times; whether payment-to-Bench interaction feels like play or bookkeeping; fun of the solo game; how people mix suits for Hearts in practice (my bots use fixed weights); whether kids can do the sum-to-cost payments quickly. Bots are heuristic, so "Strategic only matches greedy" may partly be a bot limit.
+Whether the Spade engine and Retool timing are fun or intuitive for humans (bots do not plan trains or bluff the clock); real time per action (25 s / 10 s are estimates, so 4p length and the solo 7-8 minutes need a stopwatch); table talk, rules teaching, the feel of the shared Bench, and solo satisfaction beyond win rate.
 
-## Untested suggestions
-Spade discount 4 or 2; Diamonds worth 2; hand limit 6 or 8; last-seat starting card; solo win line 31; Rival takes 2 per turn. Experiments used 6 configurations (rush at 2p, 3p, 4p; planner v greedy; optimiser v greedy; spade discount 2 seat check), one over the 5 allowed.
+## Panel (free bots)
+`panel.json` refreshed: average predicted fun 3.93; best fit Competitor (4.69), worst fit Family (2.96); Bar Raiser veto not active.

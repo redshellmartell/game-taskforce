@@ -1,38 +1,30 @@
 AMBIGUITIES = [
- "Gather when picks are optional: taking from the deck is blind (top card goes straight to hand); simulated as such.",
- "Apprentice with a tie for fewest workshop cards: 'strictly fewer than every other player' read literally, so no bonus on a tie.",
- "Clock striking on the last-seat player's own turn ends the game at once; if it strikes earlier, play continues to the end of that round (seat n finishes). Interpreted as written.",
- "Deck-empty clock: checked after the refill, so the clock can strike the moment the last card is dealt to the Bench; the deck is NOT empty while any of those cards could still be drawn.",
- "Build legality counts only the other cards in hand BEFORE Gears pull; the rules say this explicitly, but a Club build that is illegal by hand total could be legal after Gears. Simulated as written.",
- "Cost 0 builds: paying is forbidden; no ambiguity, but a 0-cost build with Gears still pulls cards.",
- "Hand limit discards may be the cards just paid? No: discard is after payment; interpreted as discards happen after the build.",
- "Solo: Rival acts before refill and the clock is checked after refill; the 'deck empty' strike can come before 11 builds. Interpreted as written.",
- "Pass: only if neither Gather nor Build is legal (Bench and deck empty and no legal build). Counted in stats.",
- "Same-rank tiebreak sequence: score, workshop cards, longest train, then shared win (shared wins count as fractional wins).",
- "'Best' progress for lead changes: provisional score of the workshop at the end of each full round (the rules have no live score).",
+ "Retool spade cost: 'the replaced card is ignored' simulated as the replaced rank not counting its suit, only the new card does (a 6S replacing a 6D gets the new card's Spade discount, nothing from the old card). The text does not say this outright for the case where the replaced card is itself a Spade.",
+ "Hand-limit scrap happens after Gears and payment, so cards taken by Gears this turn can be scrapped; stated, but a player may think Gears cards are protected.",
+ "Solo: the Rival pile counts only the higher card each turn, so it reaches 24 only after 24 Rival actions; if the Bench ever held fewer than 2 cards the pile and the turn count would drift apart (never happened in 12,000 solo games, all ended on turn 22-25 by the pile, but the card-count and turn wording are both used: 'end of your 24th turn' versus 'pile holds 24').",
+ "Deck-empty clock: a Bench card slid under an empty deck in step 3 makes the deck non-empty, so the deck-empty clock only strikes when the deck is empty after the trim and refill. Stated in rules; simulated as written. Passes still occur 0.04% of 4p games after the strike.",
 ]
 
 VERDICT = "NEEDS-FIXES"
-REVISION = 0
+REVISION = 1
 PROBLEMS = [
- {"severity": "high", "problem": "Solo win line (22) is trivially met: a strategic or greedy bot wins about 98.5% and even the random bot wins 68%; the ladder titles above Apprentice mean nothing. Solo also runs about 19.5 turns (about 6 estimated minutes) against a 15-minute target.",
-  "evidence": "2,000 solo games per bot: random 68.0% (avg 23.9), greedy 98.4% (avg 30.9), strategic 98.6% (avg 30.4), rush 67.0%.",
-  "fix": "Raise the win line to about 31+ (untested: strategic average is 30.4, so aim for about 50% at 31); make the Rival take 2 cards per turn or the 2 highest cards so solo is longer and tighter; re-measure."},
- {"severity": "medium", "problem": "The engine suits do not pay. Spades have a negative win correlation (-0.06 overall, K-spade -0.15) and Hearts a strongly positive one (+0.10); Spades and Clubs are built only 14% and 11% of the time against 20% for Diamonds. The advertised 'engine first' strategy is not clearly the best line, and Strategic beats Greedy by only 3 to 9 points.",
-  "evidence": "Win correlation by suit in the 4-player strategic mirror (8,000 workshops): S -0.056, C +0.031, D -0.013, H +0.100. Strategic v greedy 53.1% (2p). Engine-heavy planner bot v greedy 55.6%, optimiser v greedy 57.6%. In the panel rotation the Flavour (story) bot, which just builds long mixed trains with Hearts, wins the most (40.6% over all tables, 16,000 games) against the engine-minded Planner (33.0%), Optimiser (32.4%) and Expert (31.8%).",
-  "fix": "Strengthen the engine: Spade discount 4 (knob in the notes) or give Spades 2 points; test one at a time. This is also a skill-ceiling issue: beyond not playing randomly, the decisions barely beat 'take the most points now'."},
- {"severity": "medium", "problem": "Rules allow a no-progress loop: Gather, then hand-limit discards put the same cards back on the Bench, the Bench stays at 5 so the deck never shrinks, and the clock never strikes. A cautious or threshold-based player can do this forever.",
-  "evidence": "Before a bot fix, 8 of 2,000 strategic 2-player games (0.4%) hit the 600-turn cap; the log shows two players swapping 6C/5C/3H endlessly with 7-card hands and 1 workshop card each. After the fix (a full hand forces a build) there were 0 cap hits in 46,000 games, so humans rarely hit it, but the rule is open.",
-  "fix": "Add a stall breaker: for example, discarded cards go to the Bench and then the leftmost Bench card is removed from the game whenever the Bench has more than 5 cards, or a player who Gathers with a full hand must Build."},
- {"severity": "low", "problem": "Last seat has a steady advantage (it sees the whole round and always gets a final turn).",
-  "evidence": "Strategic mirrors: 2p seat 2 wins 54.0%, 3p seat 3 37.2%, 4p seat 4 28.3%; max deviation from fair 4.0 / 3.9 / 3.3 points (KPI 5). Noise is about 1 point at 2,000 games.",
-  "fix": "No change needed now; if it grows after other fixes, give seats 3 and 4 a 4-card start (knob in the notes)."},
- {"severity": "low", "problem": "Length at 4 players is close to the lower limit and solo is far short; 2p and 3p are fine.",
-  "evidence": "Estimated minutes (25s per build, 10s per gather): 2p 11.1 vs 12 (-7%), 3p 14.5 vs 16 (-9%), 4p 16.6 vs 20 (-17%), solo about 6 vs 15.",
-  "fix": "Raise the 4-player target to 10 workshop cards, or accept; check against a human playtest because the time-per-action estimate is the designer's, not measured."},
- {"severity": "low", "problem": "Lead changes sit right on the 2.0 floor and score ties are common at 4 players.",
-  "evidence": "Lead changes 2.03 (2p), 2.31 (3p), 2.08 (4p). Exact score ties 6.2% / 9.0% / 13.4%; tiebreakers resolve all but about 1% (shared wins).",
-  "fix": "Watch after the engine fix; the tiebreakers (cards, then longest train) work."},
+ {"severity": "high", "problem": "Solo is still far too easy and no longer separates skill. Win line 31 is met by 98.8% (strategic), 99.1% (lookahead), 97.4% (greedy); random 0.6%. A greedy bot is as good as the best bot (median 38 vs 40-41), so the solo ladder (Journeyman to Grandmaster) is meaningless.",
+  "evidence": "2,000 solo games per bot, Rival takes 2 highest. Score quartiles (strategic) 36/40/44; greedy 35/38/42. Making the Rival take 3 per turn changes nothing (strategic >=36 82.8% vs 83.0% estimate). Win line at 40 gives strategic about 52%, greedy about 40%, random about 0%; strategic win rate by line 31:99 33:95 35:87.",
+  "fix": "Move the win line to 40 and rescale the ladder (about 32 Tinkerer, 40 Journeyman, 44 Master, 48 Grandmaster); and because greedy is only about 12 points below strategic, add a real solo pressure (for example the Rival also takes a Diamond or Heart from the Bench before the player's next turn, or a hand limit of 5 in solo). Re-test; solo is currently a puzzle with a free win."},
+ {"severity": "medium", "problem": "Spades still have a negative win correlation, so the engine is not the strongest line. Neither discount 4 nor 2-point Spades fixes it.",
+  "evidence": "Spades: -0.035 (v2 as written), -0.015 (discount 3, 2 points), -0.020 (adding the 3-card Gear Gather); Clubs +0.049 / +0.056 / +0.072; Hearts +0.098 throughout. Spades are built in 14% of workshops vs 22% for Diamonds. In the log Spades are mostly paid away as money. Fix is not just a number: a Spade only helps when it sits in a train next to two other engine cards, which one card per turn rarely gets.",
+  "fix": "Try 2-point Spades with discount 3 together with Gear Gather (the best of the three configs, lead changes 2.46-2.71) and re-measure Spade correlation; if still negative, give Spades the 'pay' role in the design (they are the best currency) and accept it, but then drop the claim that engine-first is the strongest line. A human test of the engine line is needed because the bots do not plan trains."},
+ {"severity": "medium", "problem": "Strategic beats greedy only 59.0% (KPI 60%), and a lookahead bot beats strategic 54.5% (so there is skill depth), but greedy is nearly as good as strategic everywhere except Retool.",
+  "evidence": "2p: strategic v greedy 59.0, lookahead v greedy 61.3, strategic v random 99.9 (gap 67.8 points). Retool off: strategic v greedy 51.1 (so Retool provides about 8 points of the skill gap and +0.06 lead changes). 4p mixed table: lookahead 37.8, strategic 33.5, greedy 28.6.",
+  "fix": "Keep Retool (the main source of skill). Spade discount 3 with 2-point Spades gave 61.2% for strategic and 63.5% for lookahead v greedy, so both reference bots pass 60%; adopt that if the Spade fix in problem 2 is wanted anyway (judged on both bots, not tuned to one)."},
+ {"severity": "medium", "problem": "In 4-player games the printed clock target (10 workshop cards) almost never ends the game: 85% of games end because the deck empties; Retool is used only 0.4 times per game, so it rarely matters.",
+  "evidence": "4p strategic mirror: deck-empty ends 85% (3p 2%, 2p 0%); retools 0.4/game (2p 0.6). With Retool on, lead changes 2.32 at 4p (KPI 2.5, miss) vs 2.29 with it off. Estimated 4p length 17.7 min vs 20 (-11.5%, inside the 20% band).",
+  "fix": "Either state the 4p end plainly as 'the deck runs out' (and drop the 4p card target from the rule card) or raise the deck pressure so Retool pays off; add a human check on 4p length. The 2.5 lead-change floor is met at 3p (2.49 as written, 2.71 with Spade 2 points)."},
+ {"severity": "low", "problem": "Exact score ties are common at 3-4 players (10.5% and 12.9% of games have a tied top score); tiebreakers resolve them, shared wins under 1%.",
+  "evidence": "Strategic mirror, 2,000 games per table size.", "fix": "None needed; keep the tiebreak chain."},
+ {"severity": "low", "problem": "Solo length is 24 turns, about 7.5 estimated minutes (25 s build, 10 s gather) against the designer's 10-minute figure.",
+  "evidence": "Real turn count 23.8 (strategic), 24.0 (greedy), 23.8 (random); 12 builds and 12 gathers per game.",
+  "fix": "Accept with a human timing check; solo turns have thinking time the formula omits."},
 ]
-ESTIMATED_MINUTES = 16.6
+ESTIMATED_MINUTES = 17.7
 TARGET_MINUTES = 20

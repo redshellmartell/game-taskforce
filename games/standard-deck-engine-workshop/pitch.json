@@ -1,0 +1,3 @@
+{ "title": "Fifty-Two Workshop", "hook": "Clockmakers share one workbench; every card in a standard deck is a part, and gear trains of adjacent ranks make builds cheaper and pull parts off the Bench.", "players": "1-4 (2-4 recommended)", "minutes": 16, "age": "10+", "complexity": 2,
+  "components": [{ "item": "standard 52-card deck", "count": 1 }, { "item": "printed rule card", "count": 1 }],
+  "estimated_prototype_cost_usd": 3, "prototype_ready": true }

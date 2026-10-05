@@ -1,40 +1,47 @@
-Fifty-Two Workshop: barraiser (seat 1) with casual, best table for barraiser. Cards: rank+suit (S Spring, C Gear, D Jewel, H Clock face).
-P1 gathers 5D AD
-P2 gathers 7C JS(deck)
+Fifty-Two Workshop: barraiser (seat 1) with casual, family, best table for barraiser. Cards: rank+suit (S Spring, C Gear, D Jewel, H Clock face).
+P1 gathers 5D JS
+P2 gathers 9D 8S(deck)
+P3 builds AD (train 1-1, cost 1) pays AC
 P1 builds 5D (train 5-5, cost 5) pays 9S
-P2 gathers 9S 2H AH
-P2 hand limit -> Bench: AH
-P1 builds AD (train 1-1, cost 1) pays 3S
-P2 builds 10H (train 10-10, cost 10) pays JC
-P1 gathers 9D JC
-P2 builds 7C (train 7-7, cost 7) gears take 9C pays 9C
-P1 builds 9D (train 9-9, cost 9) pays 10C
-P2 builds 9S (train 9-10, cost 6) pays JS
-P1 gathers 10C JS
-P2 gathers 9C AH
-P1 builds 10C (train 9-10, cost 10) gears take 8S pays JC
-P2 gathers JC 6S 3S
-P1 builds JS (train 9-11, cost 8) gears take KH pays 8S
-P2 builds JC (train 9-11, cost 8) gears take 8S pays 8S
-P1 gathers 8S 2C
-P2 builds 2H (train 2-2, cost 2) pays 3S
-P1 builds 8S (train 8-11, cost 2) gears take 6H pays 2C
-P2 gathers 3S KC AS
-P1 builds 6H (train 5-6, cost 6) pays KH
-P2 builds 3S (train 2-3, cost 0)
-P1 gathers 4D KH
-P2 builds AH (train 1-3, cost 0)
-P1 builds 4D (train 4-6, cost 4) pays KH
-P2 builds 4H (train 1-4, cost 1) pays AS
-P1 gathers 5C 3H
-P2 builds 6S (train 6-7, cost 3) gears take KH pays 9C
-P1 builds 3H (train 3-6, cost 3) pays 5C
-P2 gathers AC 9C
-P1 gathers 5C 2C
-P2 gathers 8D 10D
-P1 builds 2C (train 1-6, cost 2) gears take 7S pays 5C
-P2 builds 8D (train 6-11, cost 2) gears take 5H 5C pays 5C
-P1 builds 7S (train 1-11, cost 0) gears take 5S 5C
-THE CLOCK STRIKES (P1, 11 cards, deck 18)
-P2 gathers 10S KS KD(deck)
-P2 hand limit -> Bench: AC KC
+P2 builds 9D (train 9-9, cost 9) pays 10H
+P3 gathers 10H 9S
+P1 gathers 6S KC
+P2 builds 8S (train 8-9, cost 4) pays 4H
+P3 builds 2H (train 1-2, cost 2) pays 9S
+P1 builds 6S (train 5-6, cost 2) pays 3S
+P2 gathers KH 6H
+P3 gathers 4D 3S
+P1 gathers 4H 3H
+P2 gathers 5C KS(deck)
+P3 builds 3S (train 1-3, cost 0)
+P1 builds 4H (train 4-6, cost 0)
+P2 builds 6H (train 6-6, cost 6) pays JC
+P3 builds 4D (train 1-4, cost 0)
+P1 builds 3H (train 3-6, cost 0)
+P2 builds 5C (train 5-6, cost 5) gears take 7S pays 7S
+P3 gathers 8D 10D
+P1 gathers 7S 5H
+P2 gathers 4S 10S
+P3 gathers KD 2D(deck)
+P1 builds 7S (train 3-7, cost 0)
+P2 builds 4S (train 4-6, cost 0) gears take 3D
+P3 gathers JD 6D
+P1 gathers 8H 7D
+P2 builds 3D (train 3-6, cost 0) gears take 2S
+P3 builds 6D (train 6-6, cost 6) pays 8D
+P1 builds 8H (train 3-8, cost 0)
+P2 builds 2S (train 2-6, cost 0) gears take JH
+P3 gathers QD 6C
+P1 gathers 9H 5S
+P2 builds KH (train 13-13, cost 13) pays KS
+P3 builds 10D (train 10-10, cost 10) pays 10H
+P1 builds 9H (train 3-9, cost 1) pays 5H
+P2 gathers QC 10H
+P3 gathers 5H 7H
+P1 builds 10C (train 3-10, cost 2) gears take QS pays 5S
+P2 builds 10H (train 8-10, cost 6) pays 10S
+P3 builds 5H (train 1-6, cost 1) pays 2D
+P1 builds JS (train 3-11, cost 0) gears take 7C
+P2 builds JH (train 8-11, cost 7) pays QC
+THE CLOCK STRIKES (P2, 10 cards, deck 12)
+P3 builds 7H (train 1-7, cost 3) pays 6C

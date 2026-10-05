@@ -1,4 +1,5 @@
 import random
+from game import need
 
 def pv(st): return sum(v for _, v in st.pile)
 
@@ -7,7 +8,9 @@ def bait_val(st): return st.bait[1] if st.bait else 0
 def stop_value(st, total):
     """Swing for banking a pile worth `total` (one card is left behind at ~15% cost). Bait: claimed +b, else -b."""
     b = bait_val(st)
-    return total * 0.85 + ((b if total > b + st.cfg.extra else -b) if st.bait else 0)
+    if st.bait:
+        return (total * 0.85 + b) if total >= need(st.cfg, b) else (total - b - 1.0)  # failed claim: whole pile, bait lost, no new bait
+    return total * 0.85
 
 def clash_p(st):
     if not st.deck: return 0.0
@@ -22,17 +25,18 @@ def claim_prob(st, p, c, samples=30, rng=None):
     ok = 0; bust = 0
     for _ in range(samples):
         pile = []; seen = {c}
-        for _ in range(4):
+        for _ in range(5):
             x = rng.choice(cards)
             if x in seen:
                 if pile: bust += 1; pile = None
                 break
             seen.add(x); pile.append(x)
-            if len(pile) >= 2 and sum(pile) > c + st.cfg.extra: break
-        if pile and sum(pile) > c + st.cfg.extra: ok += 1
+            if len(pile) >= 2 and sum(pile) >= need(st.cfg, c): break
+        if pile and sum(pile) >= need(st.cfg, c): ok += 1
     return ok / samples
 
 class Base:
+    SMART_N = 0; SMART_NONLOW = 0; SMART_HIGH = 0
     name = "base"
     leave_mode = "low"
     def __init__(self, seed=0, leave_mode=None):
@@ -56,6 +60,7 @@ class Base:
             q = claim_prob(st, p, c, rng=self.rng)
             sc = (tot - c) + c * (1 - q) - c * q
             if sc > best: best, bi = sc, i
+        Base.SMART_N += 1; Base.SMART_NONLOW += (r[bi][1] > min(r[i][1] for i in cands)); Base.SMART_HIGH += (r[bi][1] == max(r[i][1] for i in cands) and len(set(r[i][1] for i in cands)) > 1)
         return bi
 
 class Random(Base):

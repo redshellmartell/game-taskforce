@@ -362,7 +362,7 @@
       "gate": "revision",
       "game": "silent-duo-deduction-coop",
       "time": "2026-10-04T11:06:35Z",
-      "status": "pending",
+      "status": "approved",
       "summary": "Playtest NEEDS-FIXES: honest teams win 73% (target 40-60%), Greedy beats Honest, 38% of turns are Trims, and the code attack gains +12.1 at Fog 16 (limit 10; Fog 12 untested). Critic REVISE-MAJOR, average 3.5. Strength: a simple new signal (offer two cards, one random reveal); random wins 0.6%.",
       "why_needed": "The core loop works and the problems are named and testable, but the game is too easy and the anti-code rule is unproven, which is the whole point of the design.",
       "expected_outcome": "Designer: raise difficulty (Fog around 12, retested for the code attack), make Trim a real decision (fewer waiting turns), reward careful play over greedy risk-taking, fix the 9 ambiguities. Then: honest 40-60%, code attack within 10 of honest, critic average 3.5 or more. The budget request silent-duo-deduction-coop-budget-1 supports this.",
@@ -382,16 +382,16 @@
           "label": "Kill it and record why"
         }
       ],
-      "decision": null,
-      "decided_at": null,
-      "owner_notes": null
+      "decision": "approve",
+      "decided_at": "2026-10-05T11:41:50Z",
+      "owner_notes": "Owner told the Director in chat: approve all open requests."
     },
     {
       "id": "archetypes-greenlight",
       "gate": "greenlight",
       "game": "archetypes",
       "time": "2026-10-04T11:20:09Z",
-      "status": "pending",
+      "status": "approved",
       "summary": "Your idea, researched: Archetypes, opportunity score 21/30 (demand 3, gap 4, originality 4, producibility 4, simulatability 2, owner fit 4). A questionnaire-driven role-playing game where players roleplay an archetype, not a character. Proposed defaults (yours to change): card deck plus a one-page questionnaire, 3-5 players, 45 min, GM-less, 3 avatars offered, 16 original archetypes.",
       "why_needed": "Six open questions are yours to decide (format, players and time, GM or GM-less, avatar count, what an archetype changes in play, audience); the brief lists options and proposals. The main risk: simulation can only test questionnaire reachability and the balance of the 16 outcomes, not whether roleplay is fun, so only human sessions can judge it.",
       "expected_outcome": "A rulebook and a limited simulation (questionnaire reachability, outcome balance, avatar rules, token economy). Honest limit: the Bar Raiser and critic cannot rate roleplay fun from numbers.",
@@ -415,9 +415,9 @@
           "label": "Reject the idea and record why"
         }
       ],
-      "decision": null,
-      "decided_at": null,
-      "owner_notes": null
+      "decision": "approve",
+      "decided_at": "2026-10-05T11:41:50Z",
+      "owner_notes": "Owner told the Director in chat: approve all open requests."
     },
     {
       "id": "grid-of-cards-area-control-revision-1",
@@ -457,7 +457,7 @@
       "gate": "revision",
       "game": "heavenly-bodies",
       "time": "2026-10-04T12:12:05Z",
-      "status": "pending",
+      "status": "approved",
       "summary": "Heavenly Bodies: playtest NEEDS-FIXES and the Bar Raiser VETO is active (7.4-point first-seat advantage in 2-player games, caused by one interpretation: gap G4, first player draws on turn 1). Critic REVISE-MAJOR, average 2.83 (originality 4, clarity 2, fun 3, balance 2, market fit 3, production 3). Strength: the orbit-as-clock rotation is a fresh, skill-rich core (strategic beats random by 77.7 points). Weakness: the two win paths are not co-equal (2 players 72/28 Star Destruction, 6 players 25/75 Critical Mass), HP outweighs Star ability, and 40 rule gaps remain. Most of this is your locked rules, not the card set.",
       "why_needed": "The studio may not change Rules v2. These are YOUR decisions (the critic's recommendation in brackets): (1) G4, first player skips the turn-1 draw [yes: gives a 50.2% seat split and clears the veto]; (2) make 2-player the primary mode and scale the Critical Mass threshold with player count [yes]; (3) buff the HP 5 Star abilities (ST08, ST10, ST11) rather than flatten the HP curve [yes]; (4) a free mulligan for an opening hand with no CO [yes]; (5) rule on G1, G4, G7, G8, G10, G12/13, G27 and G29 (the sim did not use the locked LIFO stack, G29); (6) reword the 'zero dead cards' target. Card-only fixes are cheap and clearly diagnosed (re-cost AE28 and AE25, more answers to Critical Mass, fewer dead AEs).",
       "expected_outcome": "After you answer decisions 1, 2 and 5, a revision re-costs and re-writes cards within your rules and the playtester re-runs the simulation with your rulings. Targets: seat gap 5 or less, win paths within about 40/60 at 2 and 4 players, critic average 3.5 or more, veto cleared.",
@@ -481,9 +481,9 @@
           "label": "Kill it and record why"
         }
       ],
-      "decision": null,
-      "decided_at": null,
-      "owner_notes": null
+      "decision": "approve",
+      "decided_at": "2026-10-05T11:41:50Z",
+      "owner_notes": "Owner told the Director in chat: approve all open requests."
     },
     {
       "id": "three-player-trick-taker-pitch-or-revise",
@@ -556,7 +556,7 @@
       "gate": "revision",
       "game": "duelflip",
       "time": "2026-10-04T15:30:49Z",
-      "status": "pending",
+      "status": "approved",
       "summary": "Revision 2 done. Playtest NEEDS-FIXES: seat gap 1.2, length and lead changes pass, but the new bait rule is inert (claimed 99% of the time, so 'leave lowest' is still right 19 times in 20) and the halftime leader wins 74.8% (target 65%; unchanged from v1). Critic REVISE-MINOR 3.42 (needs 3.5), originality 2.5, closest game Port Royal.",
       "why_needed": "The bait twist is the only thing that sets Duel Flip apart, and it still does nothing. The critic judges the fix clear and testable. This would be the last allowed loop (3 maximum).",
       "expected_outcome": "Hurdle change only: the banker needs pile >= 2x the bait value (or a failed claimer pays a pile card). Re-test that leave-lowest and leave-highest are both under 60% against a smart leaver, and that high bait is not a free gift. Runaway leader (74.8%) is documented as a known risk, not fixed. If the bait still fails, park it or pitch it as a plain filler.",
@@ -580,9 +580,9 @@
           "label": "Kill it and record why"
         }
       ],
-      "decision": null,
-      "decided_at": null,
-      "owner_notes": null
+      "decision": "approve",
+      "decided_at": "2026-10-05T11:41:50Z",
+      "owner_notes": "Owner told the Director in chat: approve all open requests."
     },
     {
       "id": "standard-deck-engine-workshop-greenlight",
@@ -673,7 +673,7 @@
       "gate": "revision",
       "game": "standard-deck-engine-workshop",
       "time": "2026-10-04T17:57:20Z",
-      "status": "pending",
+      "status": "approved",
       "summary": "Playtest NEEDS-FIXES: solo is trivial (98.6% win), the engine suits don't pay (Spades lose, Hearts win; strategic beats greedy by only 3 points), a Gather/discard loop can stall, 11 rule ambiguities. Critic REVISE-MAJOR, average 3.17. Multiplayer seat balance, runaway leader and skill gap already pass.",
       "why_needed": "The pitch is 'an engine-builder from a plain deck', and the engine currently doesn't beat simply building Hearts. Solo is a headline feature and is unplayable at this win line. Rules are heavier than the one-page promise.",
       "expected_outcome": "Test engine buffs one at a time (Spade discount 4, Spade worth 2 points, or a 0-cost Club pull; target Spade/Club win correlation at or above 0, strategic vs greedy 60%+). Solo: win line about 31, Rival takes 2 cards, target strategic wins 45-55% and random under 15%. Add a Bench-trim stall breaker (zero turn-cap hits). Resolve all 11 ambiguities and consider dropping Apprentice. Lead changes 2.5+. Critic says one revision only; kill it if the engine still doesn't beat Heart play.",
@@ -693,16 +693,16 @@
           "label": "Kill it and record why"
         }
       ],
-      "decision": null,
-      "decided_at": null,
-      "owner_notes": null
+      "decision": "approve",
+      "decided_at": "2026-10-05T11:41:50Z",
+      "owner_notes": "Owner told the Director in chat: approve all open requests."
     },
     {
       "id": "five-six-simultaneous-auction-revision-1",
       "gate": "revision",
       "game": "five-six-simultaneous-auction",
       "time": "2026-10-04T18:35:58Z",
-      "status": "pending",
+      "status": "approved",
       "summary": "Playtest NEEDS-FIXES: skill barely matters (strategic beats random by 17.5; only 0.8-2.3 at mixed tables; the casual bot beats the planner), Hype is 55-64% of points, players have no card to bid in 22% of rounds, 5-8 of 28 lots go unsold, 7 ambiguities. Panel fun 3.04. Critic REVISE-MAJOR, average 3.0 (fun 2, balance 2).",
       "why_needed": "The Hype-and-crash hook is distinctive and cheap, but the game currently rewards luck and passivity over skill. Seat balance and lead changes pass.",
       "expected_outcome": "One revision combining: income 2 per pass plus unsold-lot carry-over (empty-hand rounds 13% or less, unsold lots 5 or fewer); lot values 2-5 (Hype share 45-50%); bids 1-12 plus an information element (skill gap 20+ and mixed-table gap 5+); a single deterministic crash (last-round flips 20% or less); fix all 7 ambiguities. Critic: kill the game if the mixed-table skill gap stays under about 5 points.",
@@ -722,16 +722,16 @@
           "label": "Kill it and record why"
         }
       ],
-      "decision": null,
-      "decided_at": null,
-      "owner_notes": null
+      "decision": "approve",
+      "decided_at": "2026-10-05T11:41:50Z",
+      "owner_notes": "Owner told the Director in chat: approve all open requests."
     },
     {
       "id": "solo-nine-card-roguelike-revision-1",
       "gate": "revision",
       "game": "solo-nine-card-roguelike",
       "time": "2026-10-04T19:37:03Z",
-      "status": "pending",
+      "status": "approved",
       "summary": "Playtest NEEDS-FIXES: the designer's outline bot wins 19% and a lookahead bot 81% (target 40-60%), Claws is a knife edge, Ghost lift ranges +0 to +44, Moth/Spider/Carry tricks almost unused, 3-5 rule ambiguities. Critic REVISE-MINOR, average 3.33 (bar 3.5). The critic reads the win-rate spread as mostly a bot problem, not a design one.",
       "why_needed": "The core idea (nine fixed cards, hidden order, deaths turn killers into Ghosts) works and the diagnoses are clear and cheap to test. Three tricks are near-dead cards and Ghosts are uneven. 'Nine Lives: Rogue-and-Write' is an existing dice game with the same title.",
       "expected_outcome": "One targeted pass: rework Ghosts to +5 to +25 each; revive Glow, Silk and Carry (zero dead cards) and test Carry with a bot that models it; close all ambiguities; cut one rule (Thief is the candidate); rename the game; fix the reference bot and re-measure all 362,880 layouts. Keep base Claws 2. Critic and playtester both advise human solo sessions after this pass.",
@@ -751,16 +751,16 @@
           "label": "Kill it and record why"
         }
       ],
-      "decision": null,
-      "decided_at": null,
-      "owner_notes": null
+      "decision": "approve",
+      "decided_at": "2026-10-05T11:41:50Z",
+      "owner_notes": "Owner told the Director in chat: approve all open requests."
     },
     {
       "id": "two-player-hidden-movement-grid-revision-1",
       "gate": "revision",
       "game": "two-player-hidden-movement-grid",
       "time": "2026-10-04T20:02:56Z",
-      "status": "pending",
+      "status": "approved",
       "summary": "Playtest NEEDS-FIXES: runaway leader 0.79 (target 0.65), lead changes 1.5 (target 2), early fog-flip luck decides most games, Sonar ping is a dead card, about 75% of games hit the round-10 cap, 6 ambiguities. Seat gap 1.4 and skill gap 75 pass. Critic REVISE-MAJOR, average 3.33. Closest game: Creep in Silent (2021), medium similarity.",
       "why_needed": "The core loop is healthy and cheap, but early luck decides games, and reading the opponent's cooling row is worth only about 5 points, so the promised outguessing isn't there.",
       "expected_outcome": "Cut early luck (fewer Mines, more 1s and 2s, or setup peeks; runaway toward 0.65, lead changes 2+); add a comeback beyond torpedoes (torpedo spam still 50% or less); make Sonar matter (never-ping win rate 45% or less); stop leaders coasting at the round-10 cap (cap 12 or an early-end rule, 12-18 min); make cooling-row reading worth 10+ points; close all 6 ambiguities, trimming sub-rules such as the Reef bounce clash. Critic: park the game if runaway stays above 0.70 after this revision.",
@@ -770,6 +770,35 @@
         {
           "key": "approve",
           "label": "Run revision 1 (designer, playtester, critic); park if runaway stays above 0.70"
+        },
+        {
+          "key": "park",
+          "label": "Park the game; no further work for now"
+        },
+        {
+          "key": "kill",
+          "label": "Kill it and record why"
+        }
+      ],
+      "decision": "approve",
+      "decided_at": "2026-10-05T11:41:50Z",
+      "owner_notes": "Owner told the Director in chat: approve all open requests."
+    },
+    {
+      "id": "asymmetric-duel-tug-of-war-revision-2",
+      "gate": "revision",
+      "game": "asymmetric-duel-tug-of-war",
+      "time": "2026-10-05T12:14:49Z",
+      "status": "pending",
+      "summary": "Revision 1 playtest NEEDS-FIXES: pacing, clarity and centre endings are fixed, but the lead choice is still solved (always-lead 63%, always-give 43%; five variants tried), side gap 10.9 (target 5), lead changes 1.83, 31% of games end by round 3. Critic REVISE-MAJOR 3.33 (balance 2).",
+      "why_needed": "The critic calls it partly structural: the chooser-picks-lead plus extra card has failed in five variants, so a sixth retune is the same guess. A changed approach is cheap to test.",
+      "expected_outcome": "Remove the lead choice (the round loser always leads, or alternate) instead of tuning the bonus; then one lever at a time (Treasury cap or Spend bonus) to bring the side gap to 5 or less in the strategic mirror; double-move margin 6 to cut games ending by round 3 and reach 2+ lead changes; re-run all experiments on the fixed simulator. Critic: park the game if side gap stays above 8 or fun below 3.3 afterwards.",
+      "usage_estimate": "M",
+      "recommendation": "approve",
+      "options": [
+        {
+          "key": "approve",
+          "label": "Run revision 2 (designer, playtester, critic); park if side gap stays above 8"
         },
         {
           "key": "park",

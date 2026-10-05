@@ -3,8 +3,8 @@
     {
       "slug": "duelflip",
       "title": "Duel Flip",
-      "stage": "critique",
-      "revision": 2,
+      "stage": "owner-review",
+      "revision": 3,
       "history": [
         {
           "stage": "brief",
@@ -77,11 +77,35 @@
           "time": "2026-10-04T15:30:49Z",
           "verdict": "REVISE-MINOR",
           "note": "revision 2 done: playtest NEEDS-FIXES (bait claimed 99%, runaway leader 74.8%), critic 3.42; waiting for approval: revision (duelflip-revision-3)"
+        },
+        {
+          "stage": "critique",
+          "time": "2026-10-05T11:41:50Z",
+          "verdict": null,
+          "note": "duelflip-revision-3 approved by owner; queued"
+        },
+        {
+          "stage": "playtest",
+          "time": "2026-10-05T12:18:23Z",
+          "verdict": null,
+          "note": "Revision 3 rules written: bait claim needs pile >= 2x bait, failed claim leaves no new bait; playtest next"
+        },
+        {
+          "stage": "critique",
+          "time": "2026-10-05T12:21:52Z",
+          "verdict": null,
+          "note": "Revision 3 playtest PASS (one known miss: runaway leader 74.0%); bait claim 8/9/10 now 65/39/17%; critique next"
+        },
+        {
+          "stage": "owner-review",
+          "time": "2026-10-05T12:22:52Z",
+          "verdict": "PASS",
+          "note": "Revision 3 critic PASS avg 3.67; pitch rewritten for v3; 3-loop limit reached; waiting for the owner"
         }
       ],
       "verdicts": {
-        "playtest": "NEEDS-FIXES",
-        "critic": "REVISE-MINOR"
+        "playtest": "PASS (runaway leader 74% known miss)",
+        "critic": "PASS"
       },
       "kill_reason": null
     },
@@ -199,6 +223,12 @@
           "time": "2026-10-04T11:06:35Z",
           "verdict": "REVISE-MAJOR",
           "note": "critic REVISE-MAJOR avg 3.5; waiting for approval: revision"
+        },
+        {
+          "stage": "critique",
+          "time": "2026-10-05T11:41:50Z",
+          "verdict": null,
+          "note": "silent-duo-deduction-coop-revision-1 approved by owner; queued"
         }
       ],
       "verdicts": {
@@ -211,7 +241,7 @@
       "slug": "asymmetric-duel-tug-of-war",
       "title": "Tug of Crowns",
       "stage": "critique",
-      "revision": 0,
+      "revision": 1,
       "history": [
         {
           "stage": "brief",
@@ -248,6 +278,24 @@
           "time": "2026-10-04T18:32:00Z",
           "verdict": null,
           "note": "revision 1 approved; designer starts"
+        },
+        {
+          "stage": "playtest",
+          "time": "2026-10-05T12:09:27Z",
+          "verdict": null,
+          "note": "Revision 1 rules written (lead bonus, shorter track, 8 ambiguities fixed, reshuffle); playtest next"
+        },
+        {
+          "stage": "critique",
+          "time": "2026-10-05T12:13:55Z",
+          "verdict": null,
+          "note": "Revision 1 playtest NEEDS-FIXES: lead extra card too strong (self-lead 63%), side gap 10.9, lead changes 1.83, 31% end by round 3; critique next"
+        },
+        {
+          "stage": "critique",
+          "time": "2026-10-05T12:14:49Z",
+          "verdict": "REVISE-MAJOR",
+          "note": "Revision 1 critic REVISE-MAJOR avg 3.33; waiting for approval: revision (asymmetric-duel-tug-of-war-revision-2)"
         }
       ],
       "verdicts": {
@@ -259,8 +307,8 @@
     {
       "slug": "grid-of-cards-area-control",
       "title": "Nine Fields",
-      "stage": "critique",
-      "revision": 0,
+      "stage": "owner-review",
+      "revision": 1,
       "history": [
         {
           "stage": "brief",
@@ -297,11 +345,41 @@
           "time": "2026-10-04T18:32:00Z",
           "verdict": null,
           "note": "revision 1 approved; designer starts"
+        },
+        {
+          "stage": "design",
+          "time": "2026-10-05T11:42:01Z",
+          "verdict": null,
+          "note": "Owner approved revision 1; briefing designer"
+        },
+        {
+          "stage": "playtest",
+          "time": "2026-10-05T11:44:26Z",
+          "verdict": null,
+          "note": "Revision 1 rules written (storm, neutral tiebreak, gaps closed, shorter 3-4p); playtest next"
+        },
+        {
+          "stage": "critique",
+          "time": "2026-10-05T12:05:18Z",
+          "verdict": null,
+          "note": "Revision 1 playtest NEEDS-FIXES (minor): 3-4p passes all KPIs; 2p early-leader 66.4% (target 65), 2p ~24 min; critique next"
+        },
+        {
+          "stage": "critique",
+          "time": "2026-10-05T12:06:04Z",
+          "verdict": "PASS",
+          "note": "Revision 1 critic PASS avg 3.83; 3-4p pass; 2p weaker mode; pitch as 3-4 player game"
+        },
+        {
+          "stage": "owner-review",
+          "time": "2026-10-05T12:06:40Z",
+          "verdict": null,
+          "note": "Pitch written (3-4 player game, 2p flagged); three wording fixes applied to rules.md"
         }
       ],
       "verdicts": {
-        "playtest": "NEEDS-FIXES",
-        "critic": "REVISE-MINOR"
+        "playtest": "NEEDS-FIXES (minor, 2p only)",
+        "critic": "PASS"
       },
       "kill_reason": null
     },
@@ -323,6 +401,12 @@
           "time": "2026-10-04T11:20:09Z",
           "verdict": "21/30",
           "note": "brief written; waiting for approval: greenlight"
+        },
+        {
+          "stage": "brief",
+          "time": "2026-10-05T11:41:50Z",
+          "verdict": null,
+          "note": "archetypes-greenlight approved by owner; queued"
         }
       ],
       "verdicts": {
@@ -367,6 +451,12 @@
           "time": "2026-10-04T12:12:05Z",
           "verdict": "REVISE-MAJOR",
           "note": "critic REVISE-MAJOR avg 2.83; waiting for owner rulings and revision approval"
+        },
+        {
+          "stage": "critique",
+          "time": "2026-10-05T11:41:50Z",
+          "verdict": null,
+          "note": "heavenly-bodies-revision-1 approved by owner; queued"
         }
       ],
       "verdicts": {
@@ -378,8 +468,8 @@
     {
       "slug": "standard-deck-engine-workshop",
       "title": "Fifty-Two Workshop",
-      "stage": "critique",
-      "revision": 0,
+      "stage": "owner-review",
+      "revision": 1,
       "history": [
         {
           "stage": "brief",
@@ -410,11 +500,41 @@
           "time": "2026-10-04T17:57:20Z",
           "verdict": "REVISE-MAJOR",
           "note": "Critic REVISE-MAJOR avg 3.17; waiting for approval: revision (standard-deck-engine-workshop-revision-1)"
+        },
+        {
+          "stage": "critique",
+          "time": "2026-10-05T11:41:50Z",
+          "verdict": null,
+          "note": "standard-deck-engine-workshop-revision-1 approved by owner; queued"
+        },
+        {
+          "stage": "playtest",
+          "time": "2026-10-05T12:28:59Z",
+          "verdict": null,
+          "note": "Revision 1 rules written (Spade discount 4, Retool, solo rework, stall guarantee, 11 ambiguities closed); playtest next"
+        },
+        {
+          "stage": "critique",
+          "time": "2026-10-05T12:49:20Z",
+          "verdict": null,
+          "note": "Revision 1 playtest NEEDS-FIXES: multiplayer passes; solo trivial (98.8%), Spade engine still weak (-0.035), strategic beats greedy 59%; critique next"
+        },
+        {
+          "stage": "critique",
+          "time": "2026-10-05T12:50:09Z",
+          "verdict": "REVISE-MINOR",
+          "note": "Revision 1 critic REVISE-MINOR avg 3.67; pitch as multiplayer with solo flagged; one small edit pass, no new loop"
+        },
+        {
+          "stage": "owner-review",
+          "time": "2026-10-05T12:51:56Z",
+          "verdict": null,
+          "note": "Edit pass done (rules v2.1); pitch written (multiplayer, solo flagged unproven); waiting for the owner"
         }
       ],
       "verdicts": {
         "playtest": "NEEDS-FIXES",
-        "critic": "REVISE-MAJOR"
+        "critic": "REVISE-MINOR"
       },
       "kill_reason": null
     },
@@ -453,6 +573,12 @@
           "time": "2026-10-04T18:35:58Z",
           "verdict": "REVISE-MAJOR",
           "note": "Critic REVISE-MAJOR avg 3.0; waiting for approval: revision (five-six-simultaneous-auction-revision-1)"
+        },
+        {
+          "stage": "critique",
+          "time": "2026-10-05T11:41:50Z",
+          "verdict": null,
+          "note": "five-six-simultaneous-auction-revision-1 approved by owner; queued"
         }
       ],
       "verdicts": {
@@ -502,6 +628,12 @@
           "time": "2026-10-04T19:37:03Z",
           "verdict": "REVISE-MINOR",
           "note": "Critic REVISE-MINOR avg 3.33; waiting for approval: revision (solo-nine-card-roguelike-revision-1)"
+        },
+        {
+          "stage": "critique",
+          "time": "2026-10-05T11:41:50Z",
+          "verdict": null,
+          "note": "solo-nine-card-roguelike-revision-1 approved by owner; queued"
         }
       ],
       "verdicts": {
@@ -545,6 +677,12 @@
           "time": "2026-10-04T20:02:56Z",
           "verdict": "REVISE-MAJOR",
           "note": "Critic REVISE-MAJOR avg 3.33; waiting for approval: revision (two-player-hidden-movement-grid-revision-1)"
+        },
+        {
+          "stage": "critique",
+          "time": "2026-10-05T11:41:50Z",
+          "verdict": null,
+          "note": "two-player-hidden-movement-grid-revision-1 approved by owner; queued"
         }
       ],
       "verdicts": {

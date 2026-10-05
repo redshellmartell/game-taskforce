@@ -1,19 +1,18 @@
 {
-  "verdict": "REVISE-MAJOR",
-  "revision": 0,
-  "scores": { "originality": 3, "clarity": 2, "fun": 3, "balance": 2, "market_fit": 4, "production": 5 },
-  "average": 3.17,
-  "strength": "Near-zero production cost (one standard deck plus a rule card) with a clear hook, and solid multiplayer numbers: seat gap 4.0 or less, runaway 36-60%, skill gap 72 points.",
-  "weakness": "The advertised engine does not pay (Spades negative, Hearts-in-a-mixed-train wins, strategic barely beats greedy), solo is trivially won (98.6%), and the rules are heavier than the one-page brief with 11 ambiguities.",
+  "verdict": "REVISE-MINOR",
+  "revision": 1,
+  "scores": { "originality": 3, "clarity": 3, "fun": 3, "balance": 4, "market_fit": 4, "production": 5 },
+  "average": 3.67,
+  "strength": "Zero-cost physical product (one standard deck plus a rule card) with a clear hook, and multiplayer numbers that now pass: seat gap 1.2 or less, strategic beats random by 67.8, runaway 34-55%, no stalls, 4p length within 12%.",
+  "weakness": "The promised engine arc is not visible in the data: Spades still lose (-0.035), Retool is used 0.4 times per game, 85% of 4p games end on an empty deck before trains grow, and solo is a free win (98.8%).",
   "closest_existing_game": { "name": "Sprawlopolis (standard-style small-box adjacency puzzle)", "similarity": "low" },
   "required_changes": [
-    "Make the engine pay: test Spade discount 4 or Spade 2 points, or a 0-cost Club pull, one at a time; target Spade/Club win correlation >= 0 and strategic vs greedy >= 60% at 2p",
-    "Fix solo: raise the win line (about 31, re-measure), harsher Rival (2 cards per turn), longer solo; target strategic 45-55%, random under 15%, length 12-18 min",
-    "Close the stall loop with a Bench trim rule (remove leftmost Bench card when over 5 at end of turn); target zero turn-cap hits without bot patching",
-    "Resolve all 11 ambiguities and cut rules weight (consider dropping Apprentice, simplify Hearts bonus); target zero ambiguities and rules card on one side",
-    "Add decisions and interaction so the mid-game is not forced; target lead changes >= 2.5 and strategic vs greedy gap widened",
-    "Re-check 4-player length after engine changes (16.6 of 20 min); consider a 10-card target"
+    "Adopt the tested config: Spade discount 3 and Spades worth 2 points (strategic vs greedy 61.2%, 4p lead changes 2.61)",
+    "Solo win line 31 to about 40 with the ladder rescaled; re-run a short sim to confirm strategic about 52%, random under 15%",
+    "State plainly that 3-4p games normally end on the empty deck, with the 10-card target as an early finish",
+    "Close the 4 minor ambiguities and add a Retool worked example; target zero ambiguities",
+    "Drop the 'engine first is strongest' claim from the design notes; test it with humans"
   ],
-  "revision_worth_it": true,
-  "revision_reason": "Yes: failures have concrete testable fixes and multiplayer balance already passes, but limit to one revision and kill if the engine still does not outscore Heart play."
+  "revision_worth_it": false,
+  "revision_reason": "No: the remaining issues are small or untestable by simulation, Spade correlation stayed negative in every config, and a human playtest answers the open question better than another loop. Apply the tuning edit, then pitch as multiplayer with solo flagged."
 }
