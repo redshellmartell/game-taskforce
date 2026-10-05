@@ -2,6 +2,7 @@
 // JSON object the front end needs. Missing or half-written files are skipped.
 import fs from 'node:fs';
 import path from 'node:path';
+import { readTaskforce } from './taskforce.js';
 import { computeKpis, gameScorecard, stageFunnel, killRateByStage, cycleTimes, avgRevisionLoops, firstPassRate, stuckGames, roomStats, panelStats, milestones, ownerStats, reviewQueueItems, qualityLab, portfolio, opsStats, ideaBankStats, usageStats, approvalStats } from './kpis.js';
 import { listInbox } from './ideas.js';
 import { loadPanel } from './panel.js';
@@ -238,5 +239,5 @@ export function buildState({ repoRoot, dashboardDir, sample, now = Date.now() })
   };
   const review = { ...ownerStats(games, decisions), queue: reviewQueueItems(games, now) };
 
-  return { sample, generatedAt: new Date(now).toISOString(), agents, games, activity: activity.slice(0, 500), decisions, approvals, settings, inbox: listInbox(gamesDir), notes: listNotes(gamesDir), research: researchHints({ bank: bankStats, calibrated: panel?.calibrated || null, games, now, fileTimes: Object.fromEntries(games.map((g) => { const f = g.files.find((x) => x.name === 'research-update.md'); return [g.slug, f ? f.mtime : null]; })) }), panel: panel && { ...panel, stats: panelData }, kpis, pipeline, review, quality: qualityLab(games), market: { ...portfolio(games), ideaBank: bankFile && bankStats ? { ...bankStats, updated: bankFile.updated || null, ideas: bankFile.ideas } : null }, ops: { ...opsStats(games, agents, activity, now), usage: usageStats(usageSessions, games, now), guard, approvals: approvalStats(approvals.requests) }, waitingPitches: waitingPitches.map((g) => g.slug) };
+  return { sample, generatedAt: new Date(now).toISOString(), taskforce: readTaskforce(sample ? path.join(dashboardDir, 'sample-data', 'studio') : path.join(repoRoot, 'studio'), now), agents, games, activity: activity.slice(0, 500), decisions, approvals, settings, inbox: listInbox(gamesDir), notes: listNotes(gamesDir), research: researchHints({ bank: bankStats, calibrated: panel?.calibrated || null, games, now, fileTimes: Object.fromEntries(games.map((g) => { const f = g.files.find((x) => x.name === 'research-update.md'); return [g.slug, f ? f.mtime : null]; })) }), panel: panel && { ...panel, stats: panelData }, kpis, pipeline, review, quality: qualityLab(games), market: { ...portfolio(games), ideaBank: bankFile && bankStats ? { ...bankStats, updated: bankFile.updated || null, ideas: bankFile.ideas } : null }, ops: { ...opsStats(games, agents, activity, now), usage: usageStats(usageSessions, games, now), guard, approvals: approvalStats(approvals.requests) }, waitingPitches: waitingPitches.map((g) => g.slug) };
 }
