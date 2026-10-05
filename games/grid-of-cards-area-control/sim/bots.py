@@ -42,6 +42,17 @@ class Base:
     name = "base"
     def __init__(self, seed=0): self.rng = random.Random(seed)
     def opening(self, st, p, empty): return self.rng.choice(empty)
+    def direction(self, st, p, c):
+        return self.rng.randint(0, 1)
+    def _dir_eval(self, st, p, c, f):
+        best, bd = None, 0
+        for d in (0, 1):
+            s3 = st.clone(); cid = s3.card[c][0]; resolve(s3, p, c, d)
+            for q in range(9):
+                if s3.card[q] is not None and s3.card[q][0] == cid: s3.axis[q] ^= 1
+            v = f(s3) + self.rng.random() * 0.01
+            if best is None or v > best: best, bd = v, d
+        return bd
     def act(self, st, p, acts):
         a = self.rng.choice(acts); return a, self.rng.randint(0, 1)
 
@@ -60,12 +71,14 @@ class Greedy(Base):
                 elif v == best: pick.append((a, d))
         return self.rng.choice(pick)
     def opening(self, st, p, empty): return max(empty, key=lambda c: (st.card[c][1], self.rng.random()))
+    def direction(self, st, p, c): return self._dir_eval(st, p, c, lambda s: s.tv[p])
 
 class Strategic(Base):
     """One-ply lookahead on a heuristic: trophies plus majority potential on the board."""
     name = "strategic"
     wpot = 0.7; opp_max = 0.3; noise = 0.0; top_k = 0
     def score(self, s2, p): return evalv(s2, p, self.wpot, self.opp_max)
+    def direction(self, st, p, c): return self._dir_eval(st, p, c, lambda s: self.score(s, p))
     def act(self, st, p, acts):
         scored = []
         for a in acts:
@@ -132,6 +145,14 @@ class Flavour(Base):            # story: loves a big flood and a big island fall
                     if best is None or v > best: best, pick = v, [(a, d)]
             return pick[0]
         return Base.act(self, st, p, acts)
+
+class Sandbag(Strategic):
+    """Exploit probe: stays low on trophies in the first half so it holds the storm, and prefers calm moves."""
+    name = "sandbag"
+    def score(self, s2, p):
+        v = evalv(s2, p, self.wpot, self.opp_max)
+        if s2.floods < 11 and s2.tn[p] > min(s2.tn): v -= 1.5 * (s2.tn[p] - min(s2.tn))
+        return v
 
 PERSONA = {"strategist": Planner, "casual": Instinct, "competitor": Optimiser, "story": Flavour,
            "family": Cautious, "barraiser": Expert}

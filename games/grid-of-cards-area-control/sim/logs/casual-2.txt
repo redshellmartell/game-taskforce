@@ -1,4 +1,4 @@
-Nine Fields: seats 1.. = casual, barraiser; worst table for casual. Cells 0-8 in reading order; scores are trophy totals.
+Nine Fields: seats 1.. = casual, competitor; worst table for casual. Cells 0-8 in reading order; scores are trophy totals.
 open: seat 2 lands on cell 7
 open: seat 1 lands on cell 0
 t1 seat 1 lands on cell 1
@@ -8,34 +8,34 @@ t4 seat 2 lands on cell 5 floods card 2 (axis ?, dir 0): card 14 value 2 falls t
 t5 seat 1 lands on cell 3
 t6 seat 2 lands on cell 3 floods card 20 (axis ?, dir 1): card 1 value 1 falls to seat 2. scores [0, 3]
 t7 seat 1 sails cell 6 -> 3
-t8 seat 2 sails cell 2 -> 1
-t9 seat 1 sails cell 1 -> 2 floods card 2 (axis ?, dir 0): card 29 value 4 falls to seat 1. scores [4, 3]
-t10 seat 2 sails cell 7 -> 6 floods card 20 (axis ?, dir 1): card 5 value 1 falls to seat 2. scores [4, 4]
-t11 seat 1 sails cell 3 -> 6
+t8 seat 2 sails cell 7 -> 6 floods card 20 (axis ?, dir 1): card 5 value 1 falls to seat 2. scores [0, 4]
+t9 seat 1 sails cell 3 -> 4
+t10 seat 2 sails cell 7 -> 4 floods card 11 (axis ?, dir 1): card 4 value 1 falls to seat 2. scores [0, 5]
+t11 seat 1 sails cell 1 -> 4
 t12 seat 2 sails cell 7 -> 8
-t13 seat 1 sails cell 1 -> 4
-t14 seat 2 sails cell 7 -> 4 floods card 11 (axis ?, dir 1): card 4 value 1 falls to seat 2. scores [4, 5]
-t15 seat 1 sails cell 1 -> 4
-t16 seat 2 sails cell 0 -> 3
-t17 seat 1 sails cell 4 -> 1
-t18 seat 2 sails cell 5 -> 4
-t19 seat 1 sails cell 4 -> 5 floods card 11 (axis ?, dir 0): card 3 value 1 falls to seat 1. scores [5, 5]
-t20 seat 2 sails cell 4 -> 1 floods card 2 (axis ?, dir 1): card 20 value 3 falls to seat 2. scores [5, 8]
-t21 seat 1 sails cell 4 -> 1
-t22 seat 2 sails cell 5 -> 4 floods card 2 (axis ?, dir 1): card 30 value 4 falls to seat 2. scores [5, 12]
-t23 seat 1 sails cell 6 -> 7
-t24 seat 2 lands on cell 8
-t25 seat 1 sails cell 7 -> 4
-t26 seat 2 sails cell 5 -> 4
-t27 seat 1 sails cell 1 -> 4 floods card 25 (axis ?, dir 0): card 15 value 2 falls to seat 1. scores [7, 12]
-t28 seat 2 sails cell 3 -> 4 floods card 2 (axis ?, dir 0): card 24 value 3 falls to seat 2. scores [7, 15]
-t29 seat 1 sails cell 2 -> 5
-t30 seat 2 sails cell 1 -> 2 floods card 11 (axis ?, dir 0): card 23 value 3 falls to seat 2. scores [7, 18]
-t31 seat 1 sails cell 1 -> 0 floods card 2 (axis ?, dir 1): card 27 value 3 falls to seat 1. scores [10, 18]
-t32 seat 2 sails cell 3 -> 0
-t33 seat 1 sails cell 3 -> 0
-t34 seat 2 sails cell 1 -> 0 floods card 22 (axis ?, dir 1): card 12 value 2 falls to seat 2. scores [10, 20]
-t35 seat 1 sails cell 5 -> 2 floods card 11 (axis ?, dir 0): card 11 value 2 falls to seat 1. scores [12, 20]
-t36 seat 2 lands on cell 1 floods card 2 (axis ?, dir 1): card 16 value 2 falls to seat 2. scores [12, 22]
-t37 seat 1 lands on cell 8
-t38 seat 2 sails cell 5 -> 8 floods card 8 (axis ?, dir 0): card 9 value 2 falls to seat 2. scores [12, 24]
+t13 seat 1 sails cell 5 -> 8
+t14 seat 2 sails cell 5 -> 8
+t15 seat 1 sails cell 8 -> 7
+t16 seat 2 sails cell 8 -> 7 floods card 20 (axis ?, dir 0): card 23 value 3 falls to seat 2. scores [0, 8]
+t17 seat 1 sails cell 2 -> 5
+t18 seat 2 sails cell 2 -> 5 floods card 11 (axis ?, dir 1): card 30 value 4 falls to seat 2. scores [0, 12]
+t19 seat 1 sails cell 8 -> 5
+t20 seat 2 lands on cell 5 floods card 2 (axis ?, dir 0): card 12 value 2 falls to seat 2. scores [0, 14]
+t21 seat 1 sails cell 3 -> 0
+t22 seat 2 sails cell 4 -> 3 floods card 20 (axis ?, dir 1): card 24 value 3 falls to seat 2. scores [0, 17]
+t23 seat 1 sails cell 5 -> 8 floods card 11 (axis ?, dir 1): card 11 value 2 falls to seat 1. scores [2, 17]
+t24 seat 2 lands on cell 2
+t25 seat 1 lands on cell 0
+t26 seat 2 sails cell 4 -> 3
+t27 seat 1 sails cell 1 -> 4 floods card 20 (axis ?, dir 0): card 28 value 3 falls to seat 1. scores [5, 17]
+t28 seat 2 sails cell 3 -> 4
+t29 seat 1 lands on cell 4 floods card 3 (axis ?, dir 0): card 15 value 2 falls to seat 1. scores [7, 17]
+t30 seat 2 sails cell 2 -> 5
+t31 seat 1 sails cell 3 -> 6
+t32 seat 2 sails cell 3 -> 6 floods card 9 (axis ?, dir 1): card 25 value 3 falls to seat 2. scores [7, 20]
+t33 seat 1 sails cell 0 -> 3
+t34 seat 2 sails cell 7 -> 6
+t35 seat 1 sails cell 3 -> 4
+t36 seat 2 sails cell 5 -> 2
+t37 seat 1 sails cell 1 -> 0
+t38 seat 2 sails cell 2 -> 1 floods card 20 (axis ?, dir 1): card 21 value 3 falls to seat 2. scores [7, 23]

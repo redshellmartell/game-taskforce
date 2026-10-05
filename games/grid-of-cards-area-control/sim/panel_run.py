@@ -21,8 +21,8 @@ def one_game(table, seed, log=False):
     mid = r["mid"]; own_turns = r["turns"] / n; out = []
     for seat in range(n):
         trailed = mid is not None and mid >= 0 and mid != seat
-        out.append(dict(won=int(r["winner"] == seat), turns=own_turns, decisions=st.dec[seat], lead_changes=lc,
-                        trailed=int(trailed), comeback=int(trailed and r["winner"] == seat),
+        out.append(dict(won=r["w"][seat], turns=own_turns, decisions=st.dec[seat], lead_changes=lc,
+                        trailed=int(trailed), comeback=(r["w"][seat] if trailed else 0),
                         inter=st.inter[seat], opp_decisions=sum(st.dec) - st.dec[seat]))
     return out, st
 

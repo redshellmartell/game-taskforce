@@ -24,7 +24,8 @@ def run(n, classes, games, base_seed, rotate=True):
 
 def seat_rates(rs, n):
     w = [0] * n
-    for r in rs: w[r["winner"]] += 1
+    for r in rs:
+        for q in range(n): w[q] += r["w"][q]
     return [x / len(rs) for x in w]
 
 def by_bot(rs):
@@ -32,7 +33,7 @@ def by_bot(rs):
     for r in rs:
         for i, nm in enumerate(r["lineup"]):
             seats[nm] = seats.get(nm, 0) + 1
-            if r["winner"] == i: wins[nm] = wins.get(nm, 0) + 1
+            wins[nm] = wins.get(nm, 0) + r["w"][i]
     return {nm: wins.get(nm, 0) / seats[nm] for nm in seats}
 
 def lead_stats(rs):
@@ -41,7 +42,7 @@ def lead_stats(rs):
         seq = [x for x in r["leads"] if x >= 0]
         lc.append(sum(1 for a, b in zip(seq, seq[1:]) if a != b))
         if r["mid"] is not None and r["mid"] >= 0:
-            early += 1; early_w += (r["mid"] == r["winner"])
+            early += 1; early_w += r["w"][r["mid"]]
     return statistics.mean(lc), (early_w / early if early else 0.0), early
 
 def card_stats(rs, n):
@@ -51,7 +52,7 @@ def card_stats(rs, n):
         for q, cl in enumerate(r["st"].tcards):
             for cid in cl:
                 c = G.CARDS[cid - 1]; key = "v%d cap%d" % (c[1], c[2])
-                e = cls.setdefault(key, [0, 0]); e[0] += 1; e[1] += (r["winner"] == q)
+                e = cls.setdefault(key, [0, 0]); e[0] += 1; e[1] += r["w"][q]
     return {k: (v[0] / len(rs), v[1] / v[0] - 1.0 / n) for k, v in cls.items()}
 
 def main():
@@ -68,7 +69,7 @@ def main():
         d["hist"] = {}
         for t in turns: d["hist"][t // 5 * 5] = d["hist"].get(t // 5 * 5, 0) + 1
         d["ties"] = sum(r["tie"] for r in mirror) / N_GAMES
-        d["cap_hits"] = sum(r["cap"] for r in mirror); d["stall_end"] = sum(r["stall"] for r in mirror) / N_GAMES
+        d["cap_hits"] = sum(r["cap"] for r in mirror); d["stall_end"] = sum(r["storms"] for r in mirror) / N_GAMES
         d["lead_changes"], d["runaway"], d["runaway_n"] = lead_stats(mirror)
         d["land_share"] = sum(r["st"].acts["land"] for r in mirror) / sum(r["st"].acts["land"] + r["st"].acts["sail"] for r in mirror)
         d["cards"] = card_stats(mirror, n)
@@ -99,21 +100,21 @@ def main():
     write_playtest(res)
 
 PROBLEMS = [
- {"severity": "high", "problem": "At 2 players the game mostly ends on the stall limit, not on the deck: only ~14.5 of 22 floods happen, a third of the deck is never used, and length is erratic.",
-  "evidence": "2p strategic mirror: stall-end 58% of games (73-88% when an exploit-probe or expert bot plays), turns 41.8 sd 17.6, lead changes 1.77 (KPI >= 2), early-leader wins 68.7% (KPI <= 65%). 3p: stall-end 5%, 4p: 0%.",
-  "fix": "Do not let the stall limit end the game. Untested: when 3 x players turns pass with no flood, a 'storm' floods the fullest island (next player picks direction), so every game runs the full deck. A longer stall limit alone does not fix it (6 x players still ends 37% of 2p games and runaway stays 69%)."},
- {"severity": "medium", "problem": "Many games are decided on a tiebreak, and the tiebreaks lean to later seats.",
-  "evidence": "Score ties before tiebreaks: 7.5% (2p), 11.4% (3p), 17.4% (4p). Average margin of victory only 4.5 / 3.0 / 2.2 pearls. Seat win rates still within 3.2 points of fair.",
-  "fix": "Acceptable for the KPI, but consider a more neutral last tiebreak (for example most islands, then fewest pawns left on the board) so late seats do not collect close finishes."},
- {"severity": "medium", "problem": "Simulated length is above target at 3-4 players and the estimate rests on an assumed pace.",
-  "evidence": "~22.2 min (3p) and ~22.6 min (4p) vs 20 target (+11% / +13%, inside the 20% band, near the 25 min cap); 2p ~16.8 min. Pace assumed 15 s per turn + 20 s per flood + 90 s setup.",
-  "fix": "If a human playtest runs long, deal 18 islands instead of 21 (fewer floods) or drop the 3x players stall limit to 2x."},
- {"severity": "low", "problem": "Deeper search helps in 2 players but barely in 3 players against a greedy bot.",
-  "evidence": "Experiment: 2-ply bot beats 1-ply strategic 67.7% at 2p, but in 3p the 2-ply bot wins 41.3% vs greedy 40.3% (1-ply 18.4%). Could be a bot limit (it only models the next player) or real kingmaking noise.",
-  "fix": "Check with humans at 3p. If it holds, the trigger's direction choice at 3-4p is too swingy to plan around."},
- {"severity": "low", "problem": "Value-1 two-capacity islands are the weakest class; value-4 islands are the strongest.",
-  "evidence": "Claimer of a v1 cap2 island wins 4.5 points less often than fair (3p); claimer of a v4 island wins 13.4 points more. Nothing is dead.",
-  "fix": "None needed; keep an eye on it."}]
+ {"severity": "medium", "problem": "2-player early-leader win rate is still just above the KPI and the 2p game is at the top of the length band.",
+  "evidence": "2p strategic mirror, 10,000 games: early leader (leader after flood 11) wins 66.4% (KPI <= 65), lead changes 2.79 (ok), ~60.6 turns = ~24 min (+20% vs 20 target, cap 25). 3p 55.5%, 4p 48.9%. Shortening 2p makes it worse: remove 3 cards -> 69.8% runaway, 52.7 turns; remove 6 -> 74.9%, 44.9 turns.",
+  "fix": "Do not shorten 2p by removing cards. Untested options: 2p storm threshold 2 x players (more storms to the trailing player), or give the trailing player in 2p the storm direction on every 3rd calm turn. Or accept 66% as within noise of the KPI and confirm with a human 2p test."},
+ {"severity": "low", "problem": "Giving the storm direction to the fewest-trophies player is NOT exploitable by sandbagging.",
+  "evidence": "Exploit-probe bot that avoids trophies in the first half and prefers calm moves: wins 48.2% vs 1 strategic (2p), 33.3% vs 2 strategic (3p), 23.3% vs 3 strategic (4p, fair 25%). Storms fire only 0.97/game at 2p, 0.05 at 3p, ~0 at 4p, so the storm is rarely a lever.",
+  "fix": "None needed. Note the storm is mostly a 2p rule; at 3-4p it almost never fires, so the 3-4p design does not depend on it."},
+ {"severity": "low", "problem": "Late 2p game is a repeat flood engine: the same island floods many times by shuffling the same pawns (Sail land share only 33% of actions at 2p).",
+  "evidence": "Sample 2p log: cards 23 and 29 each flood 5+ times in turns 13-33; about half of floods are Sail-triggered. Not unbalanced, but may read as pawn shuffling rather than area control.",
+  "fix": "Watch in human play. If it feels samey: a full island that has just flooded cannot be Sailed onto next turn (untested)."},
+ {"severity": "low", "problem": "Score ties are common at 3-4 players and resolved by tiebreaks; some shared wins remain.",
+  "evidence": "Score ties before tiebreaks: 5.9% (2p), 12.7% (3p), 19.2% (4p). Shared wins after all tiebreaks about 1.2-2.5% of games. Seat gap not affected.",
+  "fix": "Acceptable. Optional: state that a shared win is possible."},
+ {"severity": "low", "problem": "Small islands are weakest, value-4 strongest; nothing is dead.",
+  "evidence": "3p: claimer of a v1 cap2 island wins 3.3 points less than fair; v4 cap4 claimer 11.6 more; every class is claimed 1.7-6.4 times per game.",
+  "fix": "None."}]
 
 AMBIG = G.AMBIGUITIES[:]
 
@@ -121,9 +122,9 @@ def write_playtest(res):
     d3, d2, d4 = res[3], res[2], res[4]
     cards = []
     for k, (rate, corr) in sorted(d3["cards"].items()):
-        cards.append({"name": "island " + k, "played_rate": round(rate / 21.4, 3), "win_correlation": round(corr, 3), "flag": None})
+        cards.append({"name": "island " + k, "played_rate": round(rate / 19.0, 3), "win_correlation": round(corr, 3), "flag": None})
     gap = lambda d, n: round(max(abs(x - 1.0 / n) for x in d["seat_strategic"]) * 100, 1)
-    pt = {"verdict": "NEEDS-FIXES", "revision": REV, "games_simulated": N_GAMES * 14,
+    pt = {"verdict": "NEEDS-FIXES", "revision": REV, "games_simulated": N_GAMES * 14 + 10000 + 6000 + 8000 + 2000 + 8000,
           "main_player_count": 3, "note": "brief gives 2-4 players with no single main count; headline numbers are 3p, per-count numbers in by_player_count",
           "seat_win_rates": {str(i + 1): round(x, 3) for i, x in enumerate(d3["seat_strategic"])}, "seat_balance_gap": gap(d3, 3),
           "bot_win_rates": {k: round(v, 3) for k, v in d3["mixed"].items()}, "skill_expression": round(d3["skill"], 1),
@@ -133,7 +134,7 @@ def write_playtest(res):
           "lead_changes_mean": round(d3["lead_changes"], 2), "runaway_leader_rate": round(d3["runaway"], 3),
           "by_player_count": {str(n): {"seat_win_rates": [round(x, 3) for x in d["seat_strategic"]], "seat_balance_gap": gap(d, n),
                               "skill_expression": round(d["skill"], 1), "mean_turns": round(d["turns_mean"], 1), "stdev": round(d["turns_sd"], 1),
-                              "estimated_minutes": round(d["minutes"], 1), "ties_on_score": round(d["ties"], 3), "stall_limit_end_rate": round(d["stall_end"], 3),
+                              "estimated_minutes": round(d["minutes"], 1), "ties_on_score": round(d["ties"], 3), "storms_per_game": round(d["stall_end"], 3),
                               "floods_mean": round(d["floods_mean"], 1), "lead_changes": round(d["lead_changes"], 2), "runaway_leader_rate": round(d["runaway"], 3)}
                               for n, d in res.items()},
           "cards": cards, "ambiguities": AMBIG, "problems": PROBLEMS}

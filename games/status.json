@@ -271,7 +271,7 @@
     {
       "slug": "grid-of-cards-area-control",
       "title": "Nine Fields",
-      "stage": "playtest",
+      "stage": "critique",
       "revision": 0,
       "history": [
         {
@@ -321,6 +321,12 @@
           "time": "2026-10-05T11:44:26Z",
           "verdict": null,
           "note": "Revision 1 rules written (storm, neutral tiebreak, gaps closed, shorter 3-4p); playtest next"
+        },
+        {
+          "stage": "critique",
+          "time": "2026-10-05T12:05:18Z",
+          "verdict": null,
+          "note": "Revision 1 playtest NEEDS-FIXES (minor): 3-4p passes all KPIs; 2p early-leader 66.4% (target 65), 2p ~24 min; critique next"
         }
       ],
       "verdicts": {

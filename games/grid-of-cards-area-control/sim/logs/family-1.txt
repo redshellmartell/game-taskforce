@@ -25,3 +25,17 @@ t21 seat 1 lands on cell 6
 t22 seat 2 lands on cell 0
 t23 seat 1 lands on cell 2
 t24 seat 2 sails cell 5 -> 4
+t24 STORM on cell 0: seat 2 picks dir 0; card 20 value 3 falls to seat 2
+t25 seat 1 sails cell 0 -> 3
+t26 seat 2 lands on cell 0
+t27 seat 1 sails cell 3 -> 0
+t28 seat 2 lands on cell 0 floods card 18 (axis ?, dir 1): card 11 value 2 falls to seat 2. scores [11, 11]
+t29 seat 1 sails cell 5 -> 4
+t30 seat 2 sails cell 3 -> 4 floods card 17 (axis ?, dir 0): card 18 value 2 falls to seat 2. scores [11, 13]
+t31 seat 1 sails cell 3 -> 0
+t32 seat 2 lands on cell 6
+t33 seat 1 lands on cell 6 floods card 13 (axis ?, dir 0): card 13 value 2 falls to seat 1. scores [13, 13]
+t34 seat 2 lands on cell 2
+t35 seat 1 lands on cell 0 floods card 6 (axis ?, dir 1): card 9 value 2 falls to seat 1. scores [15, 13]
+t36 seat 2 sails cell 7 -> 6 floods card 17 (axis ?, dir 1): card 17 value 2 falls to seat 2. scores [15, 15]
+t37 seat 1 lands on cell 2

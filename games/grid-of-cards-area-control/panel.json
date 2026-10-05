@@ -1,64 +1,62 @@
 {
-  "revision": 0,
+  "revision": 1,
   "stage": "scores",
   "personas": {
     "casual": {
-      "fun": 3.61,
-      "replay": 3.76,
+      "fun": 3.1,
+      "replay": 3.45,
       "would_buy": "maybe",
-      "price_usd": 16,
+      "price_usd": 11,
       "metrics": {
         "originality": 0.75,
         "skill_expression": 1.0,
         "length_fit": 1.0,
-        "rules_simplicity": 0.43,
+        "rules_simplicity": 0.0,
         "dominant_strategy_absent": 1.0,
-        "decisions_per_turn": 0.412,
-        "lead_changes": 0.493,
-        "catch_up": 0.038,
+        "decisions_per_turn": 0.41,
+        "lead_changes": 0.49,
+        "catch_up": 0.046,
         "interaction": 1.0
       },
       "pet_peeves_hit": [
         "A long or heavy rulebook and a teacher who needs ten minutes of explanation"
       ],
       "bot": {
-        "win_rate": 0.064,
-        "fell_behind_rate": 0.776,
-        "decisions_per_turn": 1.24,
-        "downtime": 3.34,
+        "win_rate": 0.059,
+        "fell_behind_rate": 0.84,
+        "decisions_per_turn": 1.23,
+        "downtime": 3.12,
         "games": 16000,
         "seat_win_rates": {
-          "1": 0.055,
-          "2": 0.063,
-          "3": 0.064
+          "1": 0.059,
+          "2": 0.07,
+          "3": 0.071
         }
       },
       "best_table": [
         "casual",
-        "family",
-        "strategist",
-        "barraiser"
+        "family"
       ],
       "worst_table": [
         "casual",
-        "barraiser"
+        "competitor"
       ],
       "review": null
     },
     "competitor": {
       "fun": 4.52,
-      "replay": 4.29,
+      "replay": 4.32,
       "would_buy": "yes",
-      "price_usd": 42,
+      "price_usd": 40,
       "metrics": {
         "originality": 0.75,
         "skill_expression": 1.0,
-        "length_fit": 0.733,
-        "rules_simplicity": 0.43,
+        "length_fit": 0.667,
+        "rules_simplicity": 0.0,
         "dominant_strategy_absent": 1.0,
-        "decisions_per_turn": 0.466,
-        "lead_changes": 0.47,
-        "catch_up": 0.399,
+        "decisions_per_turn": 0.46,
+        "lead_changes": 0.508,
+        "catch_up": 0.39,
         "interaction": 1.0
       },
       "pet_peeves_hit": [
@@ -67,42 +65,40 @@
         "Rubber-banding that makes a lead pointless (catch-up should create new decisions, not erase good play)"
       ],
       "bot": {
-        "win_rate": 0.537,
-        "fell_behind_rate": 0.313,
-        "decisions_per_turn": 1.4,
-        "downtime": 3.18,
+        "win_rate": 0.534,
+        "fell_behind_rate": 0.339,
+        "decisions_per_turn": 1.38,
+        "downtime": 2.84,
         "games": 16000,
         "seat_win_rates": {
-          "1": 0.558,
-          "2": 0.567,
-          "3": 0.567
+          "1": 0.553,
+          "2": 0.562,
+          "3": 0.541
         }
       },
       "best_table": [
-        "casual",
         "competitor",
-        "family",
         "barraiser"
       ],
       "worst_table": [
         "competitor",
-        "barraiser"
+        "story"
       ],
       "review": null
     },
     "family": {
-      "fun": 3.11,
-      "replay": 3.49,
-      "would_buy": "maybe",
-      "price_usd": 16,
+      "fun": 2.59,
+      "replay": 3.17,
+      "would_buy": "no",
+      "price_usd": null,
       "metrics": {
         "originality": 0.75,
         "skill_expression": 1.0,
         "length_fit": 1.0,
-        "rules_simplicity": 0.43,
+        "rules_simplicity": 0.0,
         "dominant_strategy_absent": 1.0,
-        "decisions_per_turn": 0.437,
-        "lead_changes": 0.523,
+        "decisions_per_turn": 0.435,
+        "lead_changes": 0.52,
         "catch_up": 0.099,
         "interaction": 1.0
       },
@@ -112,15 +108,15 @@
         "A child getting hopelessly behind with no way back, or busting round after round"
       ],
       "bot": {
-        "win_rate": 0.153,
-        "fell_behind_rate": 0.656,
-        "decisions_per_turn": 1.31,
-        "downtime": 3.26,
+        "win_rate": 0.151,
+        "fell_behind_rate": 0.705,
+        "decisions_per_turn": 1.3,
+        "downtime": 3.06,
         "games": 16000,
         "seat_win_rates": {
-          "1": 0.147,
-          "2": 0.148,
-          "3": 0.166
+          "1": 0.145,
+          "2": 0.153,
+          "3": 0.143
         }
       },
       "best_table": [
@@ -128,47 +124,47 @@
         "family"
       ],
       "worst_table": [
-        "family",
-        "barraiser"
+        "competitor",
+        "family"
       ],
       "review": null
     },
     "story": {
-      "fun": 3.43,
-      "replay": 3.61,
+      "fun": 3.22,
+      "replay": 3.47,
       "would_buy": "maybe",
-      "price_usd": 35,
+      "price_usd": 32,
       "metrics": {
         "originality": 0.75,
         "skill_expression": 1.0,
-        "length_fit": 0.489,
-        "rules_simplicity": 0.43,
+        "length_fit": 0.444,
+        "rules_simplicity": 0.0,
         "dominant_strategy_absent": 1.0,
-        "decisions_per_turn": 0.513,
-        "lead_changes": 0.44,
-        "catch_up": 0.027,
+        "decisions_per_turn": 0.508,
+        "lead_changes": 0.426,
+        "catch_up": 0.025,
         "interaction": 1.0
       },
       "pet_peeves_hit": [
         "Rules overhead and bookkeeping that pull people out of the world"
       ],
       "bot": {
-        "win_rate": 0.063,
-        "fell_behind_rate": 0.791,
-        "decisions_per_turn": 1.54,
-        "downtime": 3.05,
+        "win_rate": 0.064,
+        "fell_behind_rate": 0.827,
+        "decisions_per_turn": 1.52,
+        "downtime": 2.93,
         "games": 16000,
         "seat_win_rates": {
-          "1": 0.065,
-          "2": 0.062,
-          "3": 0.066
+          "1": 0.072,
+          "2": 0.059,
+          "3": 0.064
         }
       },
       "best_table": [
         "casual",
         "family",
         "story",
-        "barraiser"
+        "strategist"
       ],
       "worst_table": [
         "competitor",
@@ -177,34 +173,34 @@
       "review": null
     },
     "strategist": {
-      "fun": 4.09,
-      "replay": 4.04,
+      "fun": 4.08,
+      "replay": 4.06,
       "would_buy": "yes",
-      "price_usd": 34,
+      "price_usd": 33,
       "metrics": {
         "originality": 0.75,
         "skill_expression": 1.0,
-        "length_fit": 0.489,
-        "rules_simplicity": 0.43,
+        "length_fit": 0.444,
+        "rules_simplicity": 0.0,
         "dominant_strategy_absent": 1.0,
-        "decisions_per_turn": 0.471,
-        "lead_changes": 0.48,
-        "catch_up": 0.646,
+        "decisions_per_turn": 0.464,
+        "lead_changes": 0.517,
+        "catch_up": 0.616,
         "interaction": 1.0
       },
       "pet_peeves_hit": [
         "Dense, ambiguous rulebooks and scoring overload"
       ],
       "bot": {
-        "win_rate": 0.631,
-        "fell_behind_rate": 0.234,
-        "decisions_per_turn": 1.41,
-        "downtime": 3.16,
+        "win_rate": 0.63,
+        "fell_behind_rate": 0.264,
+        "decisions_per_turn": 1.39,
+        "downtime": 2.82,
         "games": 16000,
         "seat_win_rates": {
-          "1": 0.667,
-          "2": 0.683,
-          "3": 0.676
+          "1": 0.687,
+          "2": 0.693,
+          "3": 0.667
         }
       },
       "best_table": [
@@ -214,25 +210,26 @@
         "barraiser"
       ],
       "worst_table": [
-        "strategist",
-        "barraiser"
+        "casual",
+        "competitor",
+        "strategist"
       ],
       "review": null
     },
     "barraiser": {
-      "fun": 4.17,
-      "replay": 4.09,
+      "fun": 4.09,
+      "replay": 4.07,
       "would_buy": "yes",
-      "price_usd": 51,
+      "price_usd": 50,
       "metrics": {
         "originality": 0.75,
         "skill_expression": 1.0,
         "length_fit": 1.0,
-        "rules_simplicity": 0.43,
+        "rules_simplicity": 0.0,
         "dominant_strategy_absent": 1.0,
-        "decisions_per_turn": 0.453,
-        "lead_changes": 0.483,
-        "catch_up": 0.326,
+        "decisions_per_turn": 0.449,
+        "lead_changes": 0.517,
+        "catch_up": 0.335,
         "interaction": 1.0
       },
       "pet_peeves_hit": [
@@ -240,19 +237,19 @@
         "Ambiguous rules and missing edge cases"
       ],
       "bot": {
-        "win_rate": 0.426,
-        "fell_behind_rate": 0.411,
-        "decisions_per_turn": 1.36,
-        "downtime": 3.22,
+        "win_rate": 0.438,
+        "fell_behind_rate": 0.433,
+        "decisions_per_turn": 1.35,
+        "downtime": 2.87,
         "games": 16000,
         "seat_win_rates": {
-          "1": 0.474,
-          "2": 0.494,
-          "3": 0.477
+          "1": 0.485,
+          "2": 0.487,
+          "3": 0.488
         }
       },
       "best_table": [
-        "casual",
+        "competitor",
         "family",
         "barraiser"
       ],
@@ -286,141 +283,141 @@
       "a": "casual",
       "b": "competitor",
       "games": 400,
-      "a_win_rate": 0.068,
+      "a_win_rate": 0.003,
       "note": "",
-      "a_fun": 3.43,
-      "b_fun": 4.38
+      "a_fun": 2.95,
+      "b_fun": 4.41
     },
     {
       "a": "casual",
       "b": "family",
       "games": 400,
-      "a_win_rate": 0.352,
+      "a_win_rate": 0.212,
       "note": "",
-      "a_fun": 3.65,
-      "b_fun": 3.8
+      "a_fun": 3.2,
+      "b_fun": 3.49
     },
     {
       "a": "casual",
       "b": "story",
       "games": 400,
-      "a_win_rate": 0.55,
+      "a_win_rate": 0.54,
       "note": "",
-      "a_fun": 3.66,
-      "b_fun": 3.33
+      "a_fun": 3.18,
+      "b_fun": 3.2
     },
     {
       "a": "casual",
       "b": "strategist",
       "games": 400,
-      "a_win_rate": 0.095,
+      "a_win_rate": 0.01,
       "note": "",
-      "a_fun": 3.43,
-      "b_fun": 4.02
+      "a_fun": 2.98,
+      "b_fun": 4.08
     },
     {
       "a": "casual",
       "b": "barraiser",
       "games": 400,
-      "a_win_rate": 0.095,
+      "a_win_rate": 0.013,
       "note": "",
-      "a_fun": 3.43,
-      "b_fun": 4.25
+      "a_fun": 2.97,
+      "b_fun": 4.19
     },
     {
       "a": "competitor",
       "b": "family",
       "games": 400,
-      "a_win_rate": 0.895,
+      "a_win_rate": 0.981,
       "note": "",
-      "a_fun": 4.39,
-      "b_fun": 2.88
+      "a_fun": 4.45,
+      "b_fun": 2.43
     },
     {
       "a": "competitor",
       "b": "story",
       "games": 400,
-      "a_win_rate": 0.97,
+      "a_win_rate": 1.0,
       "note": "",
       "a_fun": 4.38,
-      "b_fun": 3.1
+      "b_fun": 2.93
     },
     {
       "a": "competitor",
       "b": "strategist",
       "games": 400,
-      "a_win_rate": 0.505,
+      "a_win_rate": 0.514,
       "note": "",
-      "a_fun": 4.33,
-      "b_fun": 3.8
+      "a_fun": 4.63,
+      "b_fun": 4.2
     },
     {
       "a": "competitor",
       "b": "barraiser",
       "games": 400,
-      "a_win_rate": 0.505,
+      "a_win_rate": 0.511,
       "note": "",
-      "a_fun": 4.33,
-      "b_fun": 4.13
+      "a_fun": 4.64,
+      "b_fun": 4.23
     },
     {
       "a": "family",
       "b": "story",
       "games": 400,
-      "a_win_rate": 0.815,
+      "a_win_rate": 0.843,
       "note": "",
-      "a_fun": 3.77,
-      "b_fun": 3.31
+      "a_fun": 3.37,
+      "b_fun": 3.18
     },
     {
       "a": "family",
       "b": "strategist",
       "games": 400,
-      "a_win_rate": 0.105,
+      "a_win_rate": 0.046,
+      "note": "",
+      "a_fun": 2.47,
+      "b_fun": 4.11
+    },
+    {
+      "a": "family",
+      "b": "barraiser",
+      "games": 400,
+      "a_win_rate": 0.028,
+      "note": "",
+      "a_fun": 2.44,
+      "b_fun": 4.21
+    },
+    {
+      "a": "story",
+      "b": "strategist",
+      "games": 400,
+      "a_win_rate": 0.005,
+      "note": "",
+      "a_fun": 2.95,
+      "b_fun": 4.04
+    },
+    {
+      "a": "story",
+      "b": "barraiser",
+      "games": 400,
+      "a_win_rate": 0.0,
       "note": "",
       "a_fun": 2.94,
-      "b_fun": 4.03
-    },
-    {
-      "a": "family",
-      "b": "barraiser",
-      "games": 400,
-      "a_win_rate": 0.11,
-      "note": "",
-      "a_fun": 2.87,
-      "b_fun": 4.25
-    },
-    {
-      "a": "story",
-      "b": "strategist",
-      "games": 400,
-      "a_win_rate": 0.025,
-      "note": "",
-      "a_fun": 3.11,
-      "b_fun": 4.03
-    },
-    {
-      "a": "story",
-      "b": "barraiser",
-      "games": 400,
-      "a_win_rate": 0.022,
-      "note": "",
-      "a_fun": 3.11,
-      "b_fun": 4.25
+      "b_fun": 4.18
     },
     {
       "a": "strategist",
       "b": "barraiser",
       "games": 400,
-      "a_win_rate": 0.49,
+      "a_win_rate": 0.519,
       "note": "",
-      "a_fun": 3.77,
-      "b_fun": 4.14
+      "a_fun": 4.19,
+      "b_fun": 4.23
     }
   ],
   "summary": {
-    "average_fun": 3.82,
-    "spread": 1.41,
+    "average_fun": 3.6,
+    "spread": 1.93,
     "best_fit": "competitor",
     "worst_fit": "family"
   }
