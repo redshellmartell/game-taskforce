@@ -133,6 +133,54 @@
       "time": "2026-10-04T18:32:00Z",
       "decision": "pitch",
       "notes": "three-player-trick-taker-pitch-or-revise (revision gate): owner chose pitch in the dashboard; no revision 3"
+    },
+    {
+      "slug": "silent-duo-deduction-coop",
+      "time": "2026-10-05T11:41:50Z",
+      "decision": "approve",
+      "notes": "silent-duo-deduction-coop-revision-1 (revision gate): owner approved in chat (all open requests)"
+    },
+    {
+      "slug": "archetypes",
+      "time": "2026-10-05T11:41:50Z",
+      "decision": "approve",
+      "notes": "archetypes-greenlight (greenlight gate): owner approved in chat (all open requests)"
+    },
+    {
+      "slug": "heavenly-bodies",
+      "time": "2026-10-05T11:41:50Z",
+      "decision": "approve",
+      "notes": "heavenly-bodies-revision-1 (revision gate): owner approved in chat (all open requests)"
+    },
+    {
+      "slug": "duelflip",
+      "time": "2026-10-05T11:41:50Z",
+      "decision": "approve",
+      "notes": "duelflip-revision-3 (revision gate): owner approved in chat (all open requests)"
+    },
+    {
+      "slug": "standard-deck-engine-workshop",
+      "time": "2026-10-05T11:41:50Z",
+      "decision": "approve",
+      "notes": "standard-deck-engine-workshop-revision-1 (revision gate): owner approved in chat (all open requests)"
+    },
+    {
+      "slug": "five-six-simultaneous-auction",
+      "time": "2026-10-05T11:41:50Z",
+      "decision": "approve",
+      "notes": "five-six-simultaneous-auction-revision-1 (revision gate): owner approved in chat (all open requests)"
+    },
+    {
+      "slug": "solo-nine-card-roguelike",
+      "time": "2026-10-05T11:41:50Z",
+      "decision": "approve",
+      "notes": "solo-nine-card-roguelike-revision-1 (revision gate): owner approved in chat (all open requests)"
+    },
+    {
+      "slug": "two-player-hidden-movement-grid",
+      "time": "2026-10-05T11:41:50Z",
+      "decision": "approve",
+      "notes": "two-player-hidden-movement-grid-revision-1 (revision gate): owner approved in chat (all open requests)"
     }
   ]
 }
