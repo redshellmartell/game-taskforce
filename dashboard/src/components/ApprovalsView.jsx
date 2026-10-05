@@ -6,7 +6,7 @@ import { CopyBox } from './IdeaForm.jsx';
 import { Help } from './Help.jsx';
 import { ago } from '../util.js';
 
-export const GATE_LABEL = { scan: 'Market scan', greenlight: 'Start design', revision: 'Revision loop', 'panel-research': 'Panel research', 'panel-reviews': 'Persona reviews', budget: 'Over budget', 'free-api': 'Free AI provider', 'deep-research': 'Deep research' };
+export const GATE_LABEL = { scan: 'Market scan', greenlight: 'Start design', revision: 'Revision loop', 'review-cap': 'Review cap reached', 'panel-research': 'Panel research', 'panel-reviews': 'Persona reviews', budget: 'Over budget', 'free-api': 'Free AI provider', 'deep-research': 'Deep research' };
 const USAGE = { S: ['S', 'a few short agent calls'], M: ['M', 'one agent pass, such as a revision or a brief'], L: ['L', 'a full stage with simulation work or research'], XL: ['XL', 'a market scan or panel research'] };
 const STATE_CLASS = { approved: 'v-good', declined: 'v-warn', expired: 'v-bad', pending: 'v-warn' };
 

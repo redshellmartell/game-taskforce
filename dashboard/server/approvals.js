@@ -17,7 +17,7 @@ export function decideApproval(file, id, key, notes, now = Date.now()) {
   if (!Array.isArray(req.options) || !req.options.some((o) => o.key === key)) fail(400, 'That is not one of this request\'s options.');
   const cleanNotes = notes == null ? '' : String(notes).trim();
   if (cleanNotes.length > MAX_NOTES) fail(400, `Notes are too long (max ${MAX_NOTES} characters).`);
-  req.status = key === 'approve' ? 'approved' : 'declined';   // any other option (pitch, park, kill, ...) means the gated step is not run
+  req.status = key === 'approve' || (req.gate === 'review-cap' && key === 'continue') ? 'approved' : 'declined';   // any other option (pitch, park, kill, ...) means the gated step is not run; 'continue' on a review-cap request grants more cycles
   req.decision = key;
   req.decided_at = new Date(now).toISOString();
   req.owner_notes = cleanNotes || null;

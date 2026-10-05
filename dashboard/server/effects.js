@@ -20,7 +20,7 @@ export function recordApprovalEffects({ approvalsFile, decisionsFile, statusFile
   const status = readJson(statusFile, null);
   const game = status && (status.games || []).find((g) => g.slug === req.game);
   if (game) {
-    (game.history = game.history || []).push({ stage: game.stage, time, verdict: null, note: req.decision === 'approve' ? `${id} approved by the owner (dashboard); queued` : `${id}: ${req.decision} chosen by the owner (dashboard)` });
+    (game.history = game.history || []).push({ stage: game.stage, time, verdict: null, note: req.status === 'approved' ? `${id} approved by the owner (dashboard); queued` : `${id}: ${req.decision} chosen by the owner (dashboard)` });
     writeAtomic(statusFile, status);
   }
   return entry;
