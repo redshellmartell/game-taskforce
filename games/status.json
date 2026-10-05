@@ -272,7 +272,7 @@
       "slug": "grid-of-cards-area-control",
       "title": "Nine Fields",
       "stage": "critique",
-      "revision": 0,
+      "revision": 1,
       "history": [
         {
           "stage": "brief",
@@ -327,11 +327,17 @@
           "time": "2026-10-05T12:05:18Z",
           "verdict": null,
           "note": "Revision 1 playtest NEEDS-FIXES (minor): 3-4p passes all KPIs; 2p early-leader 66.4% (target 65), 2p ~24 min; critique next"
+        },
+        {
+          "stage": "critique",
+          "time": "2026-10-05T12:06:04Z",
+          "verdict": "PASS",
+          "note": "Revision 1 critic PASS avg 3.83; 3-4p pass; 2p weaker mode; pitch as 3-4 player game"
         }
       ],
       "verdicts": {
-        "playtest": "NEEDS-FIXES",
-        "critic": "REVISE-MINOR"
+        "playtest": "NEEDS-FIXES (minor, 2p only)",
+        "critic": "PASS"
       },
       "kill_reason": null
     },

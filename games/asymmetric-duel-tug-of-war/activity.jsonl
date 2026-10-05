@@ -12,3 +12,4 @@
 {"time":"2026-10-04T11:02:00Z","agent":"critic","game":"asymmetric-duel-tug-of-war","event":"step","message":"Originality check: 1 search; closest Tug of Roar (medium)"}
 {"time":"2026-10-04T11:04:00Z","agent":"critic","game":"asymmetric-duel-tug-of-war","event":"done","message":"Verdict REVISE-MAJOR, average 3.33; revision worth it"}
 {"time": "2026-10-04T10:58:43Z", "agent": "manager", "game": "asymmetric-duel-tug-of-war", "event": "waiting", "message": "waiting for approval: revision (asymmetric-duel-tug-of-war-revision-1)"}
+{"time": "2026-10-05T12:06:05Z", "agent": "game-designer", "game": "asymmetric-duel-tug-of-war", "event": "start", "message": "Revision 1: rewriting rules.md from critique and playtest"}

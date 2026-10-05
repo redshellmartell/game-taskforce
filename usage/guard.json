@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-10-05T12:05:18Z",
+  "checked_at": "2026-10-05T12:06:04Z",
   "status": "warn",
   "stop_at_percent": 70,
   "warn_at_percent": 50,
@@ -7,17 +7,17 @@
     {
       "name": "5h",
       "hours": 5,
-      "used_tokens": 1273413,
+      "used_tokens": 1399657,
       "token_budget": 25287446,
-      "percent": 5.0,
+      "percent": 5.5,
       "status": "ok"
     },
     {
       "name": "7d",
       "hours": 168,
-      "used_tokens": 40928959,
+      "used_tokens": 41055203,
       "token_budget": 71300077,
-      "percent": 57.4,
+      "percent": 57.6,
       "status": "warn"
     }
   ]

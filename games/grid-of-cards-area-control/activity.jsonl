@@ -21,3 +21,4 @@
 {"time": "2026-10-05T12:04:59Z", "agent": "playtester", "game": "grid-of-cards-area-control", "event": "done", "message": "Revision 1 playtest: NEEDS-FIXES (minor): 2p early-leader 66.4% vs 65, 2p ~24 min; 3-4p pass; storm exploit not found"}
 {"time": "2026-10-05T12:05:18Z", "agent": "playtester", "game": "grid-of-cards-area-control", "event": "done", "message": "Revision 1 playtest NEEDS-FIXES (minor): 3-4p passes all KPIs; 2p early-leader 66.4% (target 65), 2p ~24 min; critique next"}
 {"time": "2026-10-05T12:05:18Z", "agent": "critic", "game": "grid-of-cards-area-control", "event": "start", "message": "Revision 1: reviewing design and playtest"}
+{"time": "2026-10-05T12:06:04Z", "agent": "critic", "game": "grid-of-cards-area-control", "event": "done", "message": "Revision 1 critic PASS avg 3.83; 3-4p pass; 2p weaker mode; pitch as 3-4 player game"}

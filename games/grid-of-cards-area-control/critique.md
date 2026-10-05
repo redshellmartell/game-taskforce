@@ -1,104 +1,78 @@
-# Critique: Nine Fields (rules v1, revision 0)
+# Critique: Nine Fields (rules v2, revision 1)
 
-**Verdict: REVISE-MINOR**
+**Verdict: PASS** (pitch as a 3-4 player game; 2p listed as a known weaker mode)
 
-Fun and market fit are judged from `panel.json` only. The AI persona reviews were not approved, so there is no `panel-report.md`. Those two scores rest on bot-predicted numbers and are less certain than a written panel review.
+Fun and market fit rest on the free bot panel (`panel.json`, average predicted fun 3.60) and the playtester's narrated game. No persona reviews were run, and no human has played it. Originality was not re-checked because the core mechanic did not change in this revision (closest game stays Contactics, similarity low).
 
 ## Scores (1-5)
 
-| Area | Score | Note |
-|---|---|---|
-| Originality | 4 | See below |
-| Rules clarity | 3 | One page, but several edge cases are unwritten |
-| Fun | 3 | Strong core decision; 2p and the stall endings drag it down |
-| Balance | 3 | 3-4p pass every KPI; 2p fails two |
-| Market fit | 4 | Matches the brief's gap; a hard sell to casual and family players |
-| Production | 5 | 30 cards and 16 pawns, nothing else |
-| **Average** | **3.67** | Above the 3.5 pitch bar, but only just |
+| Area | Rev 0 | Rev 1 | Note |
+|---|---|---|---|
+| Originality | 4 | 4 | Flood-by-crowding plus quarter-turn axis swap is still unmatched among the comparables |
+| Rules clarity | 3 | 4 | Six v1 gaps closed, worked example added; three minor wording gaps remain |
+| Fun | 3 | 3 | Stall endings gone, but the 2p flood engine is samey and the panel dropped (3.82 to 3.60) |
+| Balance | 3 | 4 | 3-4p pass everything; 2p misses two KPIs by small margins |
+| Market fit | 4 | 3 | Still on brief, but family would not buy (2.59) and casual/story are lukewarm (3.10 / 3.22) |
+| Production | 5 | 5 | 30 cards, 16 pawns, nothing else |
+| **Average** | 3.67 | **3.83** | Above the 3.5 pitch bar |
 
-## Originality (4)
+## Rules clarity (4)
 
-I ran one web search on top of the brief's comparables. It found Kahuna (12 islands joined by bridges, area control), Island of Gems (a 3x3 placement game with gems and patterns) and Contactics (static 3x3 area control). None of them uses overcrowding to push a row or column and drop an island off the edge. Shifting Stones is pattern scoring, as the brief says. Nothing here copies another game's rules or text.
+Zero ambiguities is a pitch KPI, and the playtester lists three minor ones. All are one-line wording fixes, not design changes:
+1. Phase 2 step 5 says the turned island "stays full", but a storm island need not be full. Say "keeps its pawns".
+2. State that a storm flood can end the game (deck empty, no next island to refill).
+3. State that a shared win is still possible after all tiebreaks.
 
-- **Closest existing game: Contactics (similarity low).** It shares the 3x3 grid and area control, but its board is static.
-- **Mild risk:** Kahuna gives the same "fight for island majorities with few pieces" feel. That is an acceptable overlap.
-- The flood-trigger choice (which end falls) and the quarter-turn axis swap are genuinely new.
-
-## Rules clarity (3)
-
-A new player could learn the loop from `rules.md`, because the turn is one action and a clear flood procedure. The weak spot is the flood step: finding the line from the card's axis and then choosing which end falls. The playtester flagged this as the likely stumbling block. The playtester's own ambiguity list shows the rules are not yet at "zero ambiguities", which is a pitch KPI. Gaps to close:
-
-1. State that a flooded island that itself falls off is not turned.
-2. State whether the stall limit ends the game before or after the 3 x players-th turn.
-3. State the final tide's reading-order scoring, and that pile sizes update as each island is scored. This affects the tiebreak.
-4. State what happens when two tied players have equal pile sizes at the final tide.
-5. Add a worked flood example. Crown Island flooding three times in six turns is a good one.
-6. Define "full" against "floods" in one line: full is count >= capacity, and a full island can never be Landed on.
-
-Casual and family bots hit the "rules overhead" peeve, and `rules_simplicity` scores 0.43. That is a warning for the weakest audiences, not a blocker.
+Also add a small aid for the storm: a reminder to track the calm count and a quick way to find the storm island (fewest open spaces). The playtester noted players may forget the count and need to scan all nine cards. The Director or designer can make these edits without another playtest loop.
 
 ## Fun (3)
 
-- **The best part.** The trigger player's binary choice is a good one: cash this island now, or push the far end off and keep a locked prize. The next island is visible, so play is tactical. The 2-ply bot beats the 1-ply bot 68% at 2p, so depth is rewarded.
-- **The weak part.** The narrated game was not fun in the middle. Turns 12 to 19 were Sail-shuffling because nobody wanted to trigger a flood. The game then ended on the stall limit with scores 8-7-9, and the final tide gave the winner about half their points. That is a poor ending: the middle game barely mattered and the end was a surprise only because values are hidden.
-- **Ties.** 11.4% of 3p games and 17.4% of 4p games tie on points before the tiebreaks, and average margins are 2-3 pearls. Outcomes feel close, but many games are decided on tiebreaks that favour later seats.
-- **Panel predictions** (from `panel.json`):
-  - Average fun is 3.82. Competitor is highest at 4.52, then Bar Raiser 4.17 and strategist 4.09.
-  - Family is lowest at 3.11, story 3.43, casual 3.61.
-  - Casual, family and story bots win only 6-15% of games, so mixed tables are hard on casual players.
-  - The Bar Raiser veto is not active.
-- This is a game for planners. It will not suit a family table.
+- The first-flood moment and the direction choice remain the best part. Downtime is low.
+- The storm is a good fix. In the narrated game it read as "someone must break the standoff", which beats v1's abrupt stall ending.
+- At 2p, 67% of actions are Sails and the same island floods 5+ times with the same pawns. The playtester calls it fair but possibly "pawn shuffling". That is the main fun risk and only a human can judge it.
+- At 3-4p the storm almost never fires (0.05 and 0.00 per game), so the stalling worry from the narrated 3p game is mostly gone in the sim. Human players may still stall more than bots do.
+- Mixed tables remain hard on casual players. Predicted fun: competitor 4.52, barraiser 4.09, strategist 4.08, story 3.22, casual 3.10, family 2.59. No veto.
 
-## Balance (3)
+## Balance (4)
 
-Against the KPI targets in `CLAUDE.md`:
-
-| KPI (target) | 2p | 3p | 4p |
+| KPI | 2p | 3p | 4p |
 |---|---|---|---|
-| Seat gap (<= 5) | 1.3 pass | 1.9 pass | 3.2 pass |
-| Strategic vs random (>= 20) | 97.3 pass | 59.6 pass | 37.9 pass |
-| Length within +/-20% of 20 min | 16.8, -16% pass | 22.2, +11% pass | 22.6, +13% pass |
-| Runaway leader (<= 65%) | 68.7% **fail** | 53.6% pass | 43.2% pass |
-| Lead changes (>= 2) | 1.77 **fail** | 3.37 pass | 3.69 pass |
+| Seat gap (<= 5) | 0.1 pass | 2.6 pass | 2.7 pass |
+| Strategic vs random (>= 20) | 100 pass | 57.4 pass | 37.7 pass |
+| Length (20 min +-20%) | ~24, edge of band | 20 pass | 19.9 pass |
+| Early-leader wins (<= 65%) | 64.9% at 2,000 games, 66.4% at 10,000, **fail** | 55.5% pass | 48.9% pass |
+| Lead changes (>= 2) | 2.77 pass | 3.15 pass | 3.28 pass |
 
-Other points on balance:
-- **2p root cause.** 58% of 2-player games end on the stall limit, with only 14.5 of 22 floods played. Length has a standard deviation of 17.6 turns, so the game is erratic.
-- **3p stall.** The narrated 3p game showed the same stalling at the table, even though the sim says only 5% of 3p games end that way. Human players may stall more than the bots do.
-- **Fix untested.** The playtester's "storm" fix has not been run. Experiment 2 showed that only lengthening the limit does not fix the runaway rate (69.4%).
-- **Pace is an assumption.** The minutes estimates rest on an assumed pace. 3-4p sit near the 25 minute cap.
-- **Cards.** No dead or dominant card class. Value-1 cap-2 islands are weakest and value-4 are strongest, which is acceptable.
-- **Tiebreaks.** The final tiebreak favours later seats. It is within KPI but the rule is not neutral.
-- **Direction choice at 3p.** The 2-ply bot barely beats greedy at 3p. This may be a bot limit, but it could be kingmaking noise in the direction choice. Human play is the only way to check.
+The sandbag/storm exploit probe found nothing (48.2% / 33.3% / 23.3%, all at or under fair). Turn-cap hits are 0 and there are no dead cards. Expert 2p play will make runaway worse (2-ply vs 1-ply: early leader 82%, lead changes 1.62), so the 2p number will not improve with skilled humans. The 2p miss is small now, but its cause is structural and the playtester's own experiments show shortening the game raises it.
 
-**Which player counts it is good for:**
-- **3-4 players:** good. All KPIs pass.
-- **2 players:** not good as written, until the stall problem is fixed.
-- If the revision is declined, the safe fallback is to pitch it as a 3-4 player game, or drop 2p from the box.
+## Market fit (3)
 
-## Market fit (4)
-
-The game still matches the brief: a micro area-control game on a 3x3 grid of cards, shifting islands, under 40 cards and 16 pawns, about 20 minutes. It has not drifted. Demand was always "moderate, not proven" in the brief. The panel numbers (average fun 3.82, would-buy "yes" for competitor, strategist and Bar Raiser, "maybe" for the other three) support a niche abstract-leaning audience, not a family one. The brief targeted hobby-light players, so a 3.1 family score is a real gap against that target. The 2p-fail makes the "2-4 players" box claim weak.
+Still matches the brief's gap (micro area control, 3x3 card grid, about 20 minutes, under 40 components). The audience is hobby-light planners and competitors; the brief's "hobby-light" target is only partly met because casual and family scores are low. "2-4 players" is overstated if 2p is the weak mode.
 
 ## Production (5)
 
-30 island cards and 16 pawns in 4 colours. Nothing else, and no hidden-information components beyond face-down trophy piles. Cheap and easy to prototype: the sheet can be cut from standard card stock and the pawns can be any cubes. The only awkward part is the quarter-turn mechanic, which needs cards that read clearly when turned. Axis arrows must be unambiguous on both orientations. Estimated prototype cost is low (about $10-15).
+30 cards and 16 pawns (cubes work). The only care point is printing ROW or COLUMN along the arrow so it reads right after a quarter turn. Prototype cost about $10-15.
 
 ## Biggest strength
 
-The flood-trigger decision. One simple action, and every Land creates a real dilemma over which end of the line falls, plus a visible next island to plan around. The quarter-turn axis swap adds foresight without adding rules. It is original and deep at 3-4 players (lead changes 3.4-3.7, strong skill expression).
+The trigger player's binary choice (cash this island now, or push the far end off and keep a locked prize turned to a new axis). It is simple, visible and deep at 3-4p (lead changes above 3, early-leader wins 49-56%).
 
 ## Biggest weakness
 
-The stall limit. When nobody wants to trigger a flood, the game stalls into pointless Sail-shuffling and then ends early. At 2 players this is the main cause of the two failed KPIs. The narrated 3p game shows it can also happen at the table with three players.
+The 2-player game: early-leader wins 66.4% at 10,000 games, about 24 minutes, and a Sail-heavy flood engine, with expert play making runaway worse. There is no human evidence at any player count.
 
-## Required changes (REVISE-MINOR)
+## The 2p question: one small fix or a flagged mode?
 
-1. **Replace the stall-limit ending with a storm.** After 3 x players turns without a flood, the fullest island floods and the next player picks the direction. The deck then always completes. Targets: 2p stall-end rate down from 58% toward 0%, 2p lead changes from 1.77 to 2 or more, 2p runaway from 68.7% to 65% or below, 2p length standard deviation down from 17.6. Re-check 3p stall-ends and length, which are near the 25 minute cap.
-2. **Test a neutral last tiebreak.** Use most islands, then fewest pawns left on the board, in place of the "later seat wins" rule. Target: keep the seat gap at or below 5 at all counts, and reduce wins decided on the seat tiebreak.
-3. **Fix the six rules gaps listed above and add a worked flood example.** Target: zero rule ambiguities at pitch, and a better clarity score.
-4. **Shorten 3-4p play if it stays near 22 minutes.** Options are dealing 18 islands, or a stall limit of 2 x players. Target: 3-4p length at or under 22 minutes, further from the 25 minute cap. Only do this if the storm change does not already lengthen the game.
-5. **Recommended, not required:** a human test at 3p, for the direction-choice kingmaking concern and the mid-game stall.
+The playtester's suggestion (2p storm threshold of 2 x players) is untested, so it is a guess, not a diagnosis. It would make storms fire more often at 2p (already 0.99 per game), which hands more free floods to the trailing player and could reduce runaway. It would also trim some calm turns, which could pull length down a little. But it could just as easily make the game feel more random. It could not be judged without another simulation. Because the miss is 1.4 points on one KPI and the 2p length is inside the +20% cap, this does not justify a full revision loop.
+
+Recommendation: pitch as a **3-4 player game**. List 2p as an experimental variant, "playable, runaway-prone, about 24 minutes". If the owner wants, the playtester can run the single 2p storm-threshold experiment as a cheap side check (free code, no designer pass), and it can be adopted only if it clearly helps. Do not cut cards at 2p.
+
+## Required changes before pitch (non-blocking, no revision loop)
+
+1. Fix the three wording gaps above (target: zero ambiguities at pitch; clarity stays at 4).
+2. In the pitch, state "best at 3-4 players; 2p is a known weaker mode" and list the 2p early-leader (66.4%) and length (~24 min) misses under Remaining risks.
+3. Suggest a first human test at 3 players, then a 2p test, to check kingmaking in direction choice, whether people stall, and whether the 2p flood engine feels like shuffling.
 
 ## Is another revision worth it?
 
-**Yes.** The problem is clearly diagnosed (stall endings), the fix is small and testable, and 3-4p already pass every KPI. One loop should move the 2p KPIs, and the average of 3.67 only has to rise a little to stay above 3.5. If a revision is declined, pitch it as a 3-4 player game only.
+**No.** 3-4p pass every KPI, the 2p misses are marginal and the fix is an untested guess; the next real information comes from a human prototype, not another bot loop. Pitch as a 3-4 player game.
