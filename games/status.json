@@ -469,7 +469,7 @@
       "slug": "standard-deck-engine-workshop",
       "title": "Fifty-Two Workshop",
       "stage": "critique",
-      "revision": 0,
+      "revision": 1,
       "history": [
         {
           "stage": "brief",
@@ -518,11 +518,17 @@
           "time": "2026-10-05T12:49:20Z",
           "verdict": null,
           "note": "Revision 1 playtest NEEDS-FIXES: multiplayer passes; solo trivial (98.8%), Spade engine still weak (-0.035), strategic beats greedy 59%; critique next"
+        },
+        {
+          "stage": "critique",
+          "time": "2026-10-05T12:50:09Z",
+          "verdict": "REVISE-MINOR",
+          "note": "Revision 1 critic REVISE-MINOR avg 3.67; pitch as multiplayer with solo flagged; one small edit pass, no new loop"
         }
       ],
       "verdicts": {
         "playtest": "NEEDS-FIXES",
-        "critic": "REVISE-MAJOR"
+        "critic": "REVISE-MINOR"
       },
       "kill_reason": null
     },
