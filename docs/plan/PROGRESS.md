@@ -2,6 +2,12 @@
 
 Written by Claude Code after each task, newest first. See `WORKFLOW.md` for the format.
 
+## 2026-10-05 — Task 014 done (stages 1 and 2); agents stay manual by owner decision
+- **Built:** the taskforce On/Off switch in the dashboard top bar (`studio/taskforce.json`), the checkpoint and resume logic with a simulated-sleep test (`tools/runner/state.py`, `loop.py`, `digest.py`, 12 tests), the runbook with a Manual mode section (`docs/ops/taskforce-runbook.md`), and click effects in the dashboard server (a gate click writes its `decisions.json` entry and history line; a pitch send-back to the designer raises its own pending revision request). The dashboard server now listens on `127.0.0.1` only. 88 dashboard tests plus the runner tests pass; the switch was checked in a real browser.
+- **Not built, by owner decision:** the unattended local runner (stage 3), notifications (stage 4) and the cloud heartbeat (stage 5). The safety classifier blocked the runner ("Create Unsafe Agents"). The half-written runner code was not committed. In manual mode the switch is a go/pause signal for Director sessions, and the dashboard never starts agents.
+- **How the owner uses it:** open the dashboard, click approvals and pitch decisions (each saves its own record), switch the taskforce ON, then tell a Claude Code session "run the taskforce". The Director follows the runbook until the switch goes off, a stop file appears, the usage guard says stop, or a decision is needed.
+- Questions for the owner: none open for this task. Task 013 (learning loop and review cap) is the next one to promote.
+
 ## 2026-10-05 — Task 014 stage 1: runbook, checkpoint logic and digest (stop for review)
 - **Built (free, no agents):** `docs/ops/taskforce-runbook.md` (the runner's loop, the stop reasons, pause and resume rules, sleep handling); `tools/runner/state.py` (the switch, the checkpoint, heartbeat, stop reasons, resume decision, atomic writes), `loop.py` (the loop logic with the agent call as a plug-in), `digest.py` (one-page digest from the existing files), and 12 unit tests (`python3 -m unittest tools/runner/test_runner.py`).
 - **Paper run (the stage's done-when):** the tests prove that a run killed mid-step by a simulated sleep, then resumed, ends in the same work and the same last-done step as an uninterrupted run; that a switch-off pauses after the running step and a switch-on carries on; and that a usage-guard stop prevents the next step.

@@ -27,6 +27,17 @@ For task 014. The runner (stage 3) follows this file. Until then a Director sess
 ## Sleep and interruptions
 Treat a sleep as normal. Run under `caffeinate -i`. The runner rewrites `heartbeat` every 30 seconds. A gap of more than 2 minutes between loop checks means the machine slept: check the in-flight step's output and redo the step from the start if it is incomplete. Every step must be safe to repeat (rules are edited in place, a playtest re-runs from scratch, a commit happens only when the step finished). On a network error retry once, then stop with `error` and a plain reason.
 
+## Manual mode (the owner's decision, 2026-10-05: "keep agents manual")
+No unattended runner is built. The safety classifier blocks one, and the owner chose to keep agents manual. The switch and the checkpoint are still used, with a Director session as the runner:
+- **The switch is a go / pause signal.** In a session the owner starts ("run the taskforce"), the Director reads `studio/taskforce.json`. If `active` is false it does nothing but report. If true it works through the loop below, one agent at a time, until the switch goes off, `studio/STOP` appears, the usage guard says stop, or a decision is needed.
+- **The dashboard never starts agents.** Turning the switch on records the owner's intent only. The status text says so.
+- **Clicks are recorded by the dashboard itself** (decision entry, history line, a send-back's revision request). The Director then acts on them; it does not need to be told "continue with approved work".
+- **The Director keeps the checkpoint:** write `studio/run-state.json` (`state.begin_step` / `finish_step` / `stop`) around each step, and log `start` and `done` lines in `games/<slug>/activity.jsonl` with real times. Agents without a shell never write their own activity lines.
+- **Which step is next** (derive it from `games/status.json` and `approvals.json`): a game in `brief` with an approved greenlight needs design; in `playtest` it needs the playtester; in `critique` with no verdict it needs the critic; with a verdict it needs a decision (PASS goes to the pitch; otherwise raise a revision request, or run the next revision if one is approved after the verdict); `owner-review` waits for the owner.
+- **A run ends** by writing the stop reason into `run-state.json`, committing and pushing. A later session resumes from the checkpoint; a step with a `start` line and no `done` line is redone.
+- **Sleep and interruptions** matter only for a local runner; in a session the Director just redoes an interrupted step.
+- **Not built:** the local runner and the notifications (stages 3 and 4 of task 014). Revisit only if the owner changes this decision and adds the permission rule in their own settings.
+
 ## What each agent prompt must contain
 The game slug, the stage, the files to read, the output files to write, "return a summary of at most 10 lines", and for agents without a shell (designer, critic, market researcher, panel player) "do not write activity lines or guess times". The runner writes those lines with the real time.
 

@@ -1,5 +1,5 @@
 ---
-status: in-progress
+status: done
 priority: high
 depends_on: []
 ---
@@ -89,6 +89,13 @@ Treat sleep as **normal, not an error**. Design so that a sleep never loses work
 
 ### Stage 5 (optional, later): a cloud heartbeat
 - A scheduled cloud routine that reads the same `taskforce.json` and does one step when the switch is on, for when the Mac is off. Only after the local runner has proved itself, and only with the owner's approval of the credit cost.
+
+
+## Outcome (2026-10-05): stages 1 and 2 built; stages 3 to 5 not built, by owner decision
+The owner decided to **keep agents manual**. The safety classifier blocked the unattended runner ("Create Unsafe Agents"), so stage 3 (the local runner), stage 4 (notifications, which depend on it) and stage 5 (a cloud heartbeat) were **not built**. Built and tested:
+- **Stage 1:** `docs/ops/taskforce-runbook.md` (including a "Manual mode" section), `tools/runner/state.py`, `loop.py`, `digest.py` and 12 tests (`python3 -m unittest tools/runner/test_runner.py`), including a simulated sleep and resume.
+- **Stage 2:** the On/Off switch in the dashboard top bar (writes `studio/taskforce.json` only), the status panel text, and click effects (a gate click writes its `decisions.json` entry and the game's history line; a pitch send-back to the designer raises its own pending revision request). The server now listens on `127.0.0.1` only. 88 dashboard tests pass.
+In manual mode the switch is a go/pause signal for Director sessions, and the dashboard never starts agents. If the owner later wants the runner, the draft design is in this brief and a draft implementation can be rewritten in a fresh session; the owner would add the permission rule in their own settings.
 
 ## Out of scope
 - Changing the approval gates. Greenlights, market scans, panel research, budget and free-API requests stay the owner's decisions. The review cap and learning loop belong to task 013.
