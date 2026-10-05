@@ -271,7 +271,7 @@
     {
       "slug": "grid-of-cards-area-control",
       "title": "Nine Fields",
-      "stage": "design",
+      "stage": "playtest",
       "revision": 0,
       "history": [
         {
@@ -315,6 +315,12 @@
           "time": "2026-10-05T11:42:01Z",
           "verdict": null,
           "note": "Owner approved revision 1; briefing designer"
+        },
+        {
+          "stage": "playtest",
+          "time": "2026-10-05T11:44:26Z",
+          "verdict": null,
+          "note": "Revision 1 rules written (storm, neutral tiebreak, gaps closed, shorter 3-4p); playtest next"
         }
       ],
       "verdicts": {
