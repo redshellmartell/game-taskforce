@@ -222,7 +222,7 @@
     {
       "slug": "asymmetric-duel-tug-of-war",
       "title": "Tug of Crowns",
-      "stage": "critique",
+      "stage": "playtest",
       "revision": 0,
       "history": [
         {
@@ -260,6 +260,12 @@
           "time": "2026-10-04T18:32:00Z",
           "verdict": null,
           "note": "revision 1 approved; designer starts"
+        },
+        {
+          "stage": "playtest",
+          "time": "2026-10-05T12:09:27Z",
+          "verdict": null,
+          "note": "Revision 1 rules written (lead bonus, shorter track, 8 ambiguities fixed, reshuffle); playtest next"
         }
       ],
       "verdicts": {
