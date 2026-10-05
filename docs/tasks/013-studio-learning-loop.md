@@ -10,6 +10,8 @@ depends_on: []
 ## Goal
 The point of the studio is to **grow and promote better and better games**, not to churn out games. Today each game is judged and then forgotten, and the same faults recur (see "Evidence"). Build a small learning loop so the **first-pass failure rate falls over time**, and so the owner's real playtests become the ground truth that keeps the bots honest.
 
+**Owner policy (2026-10-05):** many revisions and tests are good, because that is how the studio learns. So the loop runs **automatically up to a cap per game**; at the cap the owner decides, through an action gate, whether to continue or kill. The cap, and how the loop stops early, are Stage 3b below.
+
 **The one number that says it works:** share of games whose first playtest is PASS. Baseline (2026-10-04): **0 of 10** (all 10 first playtests were NEEDS-FIXES; first-pass critic average about 3.2).
 
 ## Conditions this must work in (design around them, do not fight them)
@@ -55,8 +57,20 @@ Seen across the first 10 games, from `games/*/critique.json`, `playtest.json` an
 
 ### Stage 3: wire it in
 - Add one line to each of `.claude/agents/game-designer.md`, `playtester.md` and `critic.md`: "Before starting, read `studio/lessons.md` and `studio/design-rules.md`." (Critic: also check the ablation test and the comeback mechanism; designer: run the self-check pass.) **If the safety classifier blocks editing these files, stop and ask the owner.**
-- Add to `CLAUDE.md` (Manager rules): after every critique append lessons; pass the playbook to every agent call; run the **fix-before-critic pass** (after the playtest, the designer gets one pass to fix only mechanical problems: dead cards, ambiguities, stalls, wording; never new mechanics) so the critic judges a cleaner draft. Do not change approval gates here; changing the approval mode is the owner's call (`set approval mode to relaxed`).
+- Add to `CLAUDE.md` (Manager rules): after every critique append lessons; pass the playbook to every agent call; run the **fix-before-critic pass** (after the playtest, the designer gets one pass to fix only mechanical problems: dead cards, ambiguities, stalls, wording; never new mechanics) so the critic judges a cleaner draft. Approval gates change only as described in Stage 3b.
 - **Done when:** the next game run (owner-approved) shows the agents citing the files, and the fix pass appears in its `activity.jsonl`.
+
+### Stage 3b: the review cap (autonomous loops, then an owner gate)
+This replaces the current rule "every revision needs an owner approval" in `CLAUDE.md` (Approval gates) for the **revision gate only**. All other gates stay (`scan`, `panel-research`, `panel-reviews`, `budget`, `deep-research`, `free-api`, `greenlight`).
+- **A cycle** = one revision (designer), then playtest, then critique. The first design pass is cycle 0 and does not count.
+- **Cap:** `studio-settings.json` gets `"review_cap": { "auto_cycles_per_game": 3, "learning_period_games": 6, "learning_period_cycles": 4 }`. During the learning period (the first 6 games that go through the loop after this task lands) the cap is 4 automatic cycles, afterwards 3. The owner can change the numbers by saying so ("set the review cap to 5"); the Director edits the file.
+- **Inside the cap, no click is needed.** The Director runs the next cycle on its own, one agent at a time, and records the cycle in `status.json` history and `activity.jsonl`. Playtester budgets (5 configurations) and the usage guard (`python3 tools/usage/usage.py --check`; exit 2 stops everything) still apply, and a `budget` request is still gated.
+- **Stop early, and go to the gate before the cap, when any of these is true:** the critic says PASS (go to pitch) or KILL (go to the gate with kill as the recommendation); the last cycle did not move the key numbers the revision targeted (no progress); the critic calls the problem structural; or the same failure appears two cycles in a row.
+- **At the cap (or an early stop) the Director raises one `review-cap` request** in `games/approvals.json`: options `continue` (grants N more cycles, default 2), `pitch` (as is, with risks listed), `park`, `kill`. The request shows the numbers per cycle (a small table of the KPIs before and after each cycle), what each revision changed, and the Director's recommendation. Then the Director stops working on that game.
+- **Every cycle must also feed learning:** the Director writes the lesson(s) (Stage 1 rule) and records, per cycle, which KPIs the revision targeted and whether they moved (`studio/scoreboard.md` gains "revision effectiveness": share of cycles that moved their target). This is how the studio learns which kinds of fix work.
+- **Order and usage:** run games one at a time, highest opportunity score first. A long run across several games can burn the usage window: check the guard before every agent call and stop cleanly (state is in the files) when it says stop.
+- **Dashboard:** until task 011, a `review-cap` request appears on the existing Approvals page like any other (its options come from the request). Make sure the request's `gate` value is one the page accepts, and add it to the gate labels in the dashboard (small change, with a test) if it is not; that is the only dashboard change in this task.
+- **Done when:** a test game runs two automatic cycles with no approval requests in between, then stops at the cap with a `review-cap` request, and the owner's `continue` or `kill` click is acted on (and recorded) the same way as any other decision; `docs/plan/PROGRESS.md` and `CLAUDE.md` describe the rule.
 
 ### Stage 4: the retrospective routine
 - Create `studio/retro-template.md` and the rule: after every **3 games** reach a verdict (or on the owner's request), the Director writes `studio/retros/YYYY-MM-DD.md` (one page): scoreboard now vs last time, what failed and why, proposed lesson and playbook changes, proposed agent-instruction changes, and which of the owner's decisions disagreed with the critic.
@@ -70,7 +84,8 @@ Seen across the first 10 games, from `games/*/critique.json`, `playtest.json` an
 - **Done when:** the script runs on the sample data, and the owner knows exactly what to record and how.
 
 ## Out of scope
-- Any dashboard code (a Learning page goes into task 011, Step B). The approval mode and gates. Market research or panel refreshes. Changing games already in the pipeline (they keep their current requests).
+- Dashboard code beyond adding the `review-cap` gate label (a Learning page goes into task 011, Step B). Any gate other than `revision`. Market research or panel refreshes.
+- Games already in the pipeline keep their pending `-revision-N` requests until the owner says whether to treat them as inside the cap (ask the owner; do not decide).
 
 ## Success measures (review at each retro; modest targets)
 - First-pass playtest PASS rate: from 0 of 10 to **at least 2 of the next 6 games**.
