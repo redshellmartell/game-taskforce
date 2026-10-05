@@ -1,0 +1,11 @@
+[noretool {"retool": false}] n per pairing/seating; 62000 games; turn-cap hits 0
+2p avg win%: random 1.9, greedy 62.7, strategic 65.0, lookahead 68.6; strat-random gap 63.1
+2p strat v random 97.4, v greedy 51.1, v lookahead 46.4; lookahead v greedy 55.5, v random 97.8
+3p mixed win%: greedy 49.4, random 0.6, strategic 50.0
+4p mixed win%: greedy 30.1, random 0.3, lookahead 37.3, strategic 32.3
+2p mirror: seats [0.518, 0.482] gap 1.8 | turns 35.7 sd 3.3 | 11.1 min (target 12) | lead chg 2.04 | runaway 57.2% | ties 6.0% | retools 0.0/g deck-end 0% | inter 0.19 | err 0 pass 0 cap 0
+3p mirror: seats [0.329, 0.333, 0.338] gap 0.5 | turns 47.0 sd 3.9 | 14.6 min (target 16) | lead chg 2.47 | runaway 40.0% | ties 10.1% | retools 0.0/g deck-end 2% | inter 0.27 | err 0 pass 0 cap 0
+4p mirror: seats [0.252, 0.251, 0.249, 0.248] gap 0.2 | turns 57.0 sd 4.5 | 17.6 min (target 20) | lead chg 2.29 | runaway 31.0% | ties 13.7% | retools 0.0/g deck-end 82% | inter 0.32 | err 0 pass 5 cap 0
+solo win% (31): random 4.7 (avg 22.6, 23.3 turns, 6.4 min), greedy 92.5 (avg 35.7, 23.9 turns, 7.0 min), strategic 88.5 (avg 35.5, 23.6 turns, 7.0 min), lookahead 87.5 (avg 35.3, 23.5 turns, 7.0 min), rush 30.3 (avg 27.6, 21.9 turns, 6.8 min)
+solo strat win by line: 27:98 28:97 29:95 30:92 31:89 32:82 33:75 34:66 35:59 | random: 27:19 28:14 29:10 30:7 31:5 32:3 33:2 34:1 35:1
+suit built-rate/win-corr: Spades 0.14/-0.040; Clubs 0.10/+0.038; Diamonds 0.22/-0.023; Hearts 0.16/+0.100

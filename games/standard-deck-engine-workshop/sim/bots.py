@@ -35,9 +35,9 @@ class Greedy:
     def __init__(self, seed, **kw): self.rng = random.Random(seed * 31 + 5)
     def gain(self, st, p, c):
         shop = st.shops[p]
-        if rk(c) in shop: return -1
+        if rk(c) in shop and shop[rk(c)] == su(c): return -1
         s2 = dict(shop); s2[rk(c)] = su(c)
-        return score_shop(s2, st.cfg.diamond) - score_shop(shop, st.cfg.diamond)
+        return score_shop(s2, st.cfg) - score_shop(shop, st.cfg)
     def action(self, st, p, builds):
         best = max(builds, key=lambda b: (self.gain(st, p, b[0]), -b[1]))
         return best[0] if self.gain(st, p, best[0]) > 0 else None
@@ -60,9 +60,13 @@ class Strategic:
     def bval(self, st, p, c, shop=None):
         """value of building card c into shop of player p (ignores payment)."""
         shop = st.shops[p] if shop is None else shop; r = rk(c)
-        if r in shop: return None
-        s2 = dict(shop); s2[r] = su(c); dia = st.cfg.diamond
+        s2 = dict(shop); s2[r] = su(c); dia = st.cfg
         gain = score_shop(s2, dia) - score_shop(shop, dia)
+        if r in shop:      # Retool: score change minus engine lost, scaled by share of game left
+            if not st.cfg.retool or shop[r] == su(c): return None
+            old = shop[r]
+            left = (st.cfg.rival_pile - len(st.rival)) / st.cfg.rival_pile if st.n == 1 else max(0, st.cfg.target - len(shop)) / st.cfg.target
+            return gain - (self.wS if old == S else self.wC if old == C else 0.0) * left
         tl = len(train_of(shop, r)); v = gain + self.wT * (tl - 1)
         if tl >= 2:
             if su(c) == S: v += self.wS
@@ -94,8 +98,8 @@ class Strategic:
             v = self.bval(st, p, c) - self.wP * self.pcards(st, p, c, cost)
             if self.safe: v -= 0.25 * cost
             if self.clock and len(st.shops[p]) + 1 >= st.cfg.target and st.n > 1:
-                mine = score_shop({**st.shops[p], rk(c): su(c)}, st.cfg.diamond)
-                opp = max(score_shop(st.shops[q], st.cfg.diamond) for q in range(st.n) if q != p)
+                mine = score_shop({**st.shops[p], rk(c): su(c)}, st.cfg)
+                opp = max(score_shop(st.shops[q], st.cfg) for q in range(st.n) if q != p)
                 if mine < opp - 2: v -= 3
             scored.append((v, c))
         v, c = max(scored)
@@ -115,10 +119,30 @@ class Strategic:
         return min(subs, key=lambda s: (len(s[0]), s[1], sum(self.hold(st, p, c, False) for c in s[0])))[0]
     def discard(self, st, p, k): return sorted(st.hands[p], key=lambda c: self.hold(st, p, c, False))[:k]
 
+class Lookahead(Strategic):
+    """Reference bot of different strength: Strategic plus a one-step lookahead on builds (value of the best follow-up build in hand)."""
+    def action(self, st, p, builds):
+        scored = []
+        for c, cost in builds:
+            v = self.bval(st, p, c) - self.wP * self.pcards(st, p, c, cost)
+            s2 = {**st.shops[p], rk(c): su(c)}; fol = 0.0
+            for d in set(st.hands[p]):
+                if d == c: continue
+                b = self.bval(st, p, d, shop=s2)
+                if b is not None and b > fol: fol = b
+            v += 0.5 * fol
+            if self.clock and st.n > 1 and len(st.shops[p]) + (0 if rk(c) in st.shops[p] else 1) >= st.cfg.target:
+                opp = max(score_shop(st.shops[q], st.cfg) for q in range(st.n) if q != p)
+                if score_shop(s2, st.cfg) < opp - 2: v -= 3
+            scored.append((v, c))
+        v, c = max(scored)
+        thr = self.thr if len(st.hands[p]) < st.cfg.hand_limit - 1 else -9
+        return c if v > thr else None
+
 class Rush(Strategic):
     """Clock rusher: always builds the cheapest legal build, gathers cheap unbuilt ranks (prefers Spades)."""
     def action(self, st, p, builds):
-        return min(builds, key=lambda b: (b[1], su(b[0]) not in (S, D), rk(b[0])))[0]
+        return min(builds, key=lambda b: (rk(b[0]) in st.shops[p], b[1], su(b[0]) not in (S, D), rk(b[0])))[0]
     def hold(self, st, p, c, check_rivals=True):
         r = rk(c)
         if r in st.shops[p] or any(rk(x) == r for x in st.hands[p]): return 0.1 * r
@@ -150,5 +174,5 @@ class Expert(Optimiser):       # barraiser: optimiser that also takes the rush l
         return super().action(st, p, builds)
 
 ALL = {"random": Random, "greedy": Greedy, "strategic": Strategic}
-EXTRA = {"rush": Rush}
+EXTRA = {"rush": Rush, "lookahead": Lookahead}
 PERSONA = {"strategist": Planner, "casual": Instinct, "competitor": Optimiser, "story": Flavour, "family": Cautious, "barraiser": Expert}

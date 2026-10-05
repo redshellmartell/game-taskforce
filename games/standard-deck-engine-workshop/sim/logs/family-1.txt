@@ -1,34 +1,38 @@
-Fifty-Two Workshop: family (seat 1) with strategist, best table for family. Cards: rank+suit (S Spring, C Gear, D Jewel, H Clock face).
+Fifty-Two Workshop: family (seat 1) with casual, best table for family. Cards: rank+suit (S Spring, C Gear, D Jewel, H Clock face).
 P1 gathers 5D AD
-P2 gathers 7C 2H
+P2 gathers 7C JS(deck)
 P1 builds AD (train 1-1, cost 1) pays 3S
-P2 gathers 9C AH 3S
-P2 hand limit -> Bench: 3S
+P2 gathers 9C 2H
 P1 builds 5D (train 5-5, cost 5) pays 9S
 P2 builds 10H (train 10-10, cost 10) pays JC
-P1 gathers 9D AC
-P2 builds 9C (train 9-10, cost 9) gears take JS pays JS
-P1 gathers JS 8S(deck)
-P2 gathers JC 6S
-P1 gathers KC 2C
-P2 builds JC (train 9-11, cost 11) gears take KH 6H pays KH
-P1 builds 2C (train 1-2, cost 2) gears take 4D pays 4D
-P2 builds 6H (train 6-6, cost 6) pays 6S
-P1 builds 9D (train 9-9, cost 9) pays 10C
-P2 builds 7C (train 6-7, cost 7) gears take KH pays KH
-P1 gathers 4D 10C 6S
-P2 gathers 5C KH
-P1 builds 4D (train 4-5, cost 4) pays 6S
-P2 builds 5C (train 5-7, cost 5) gears take 3H 10D pays 10D
-P1 gathers 6S 3S 10D
-P1 hand limit -> Bench: AC
-P2 builds 4H (train 4-7, cost 4) gears take 8D 9S pays 8D
-P1 builds 3S (train 1-5, cost 0) gears take 8D
-P2 builds 3H (train 3-7, cost 3) gears take KS 7S pays 7S
-P1 builds 6S (train 1-6, cost 0) gears take 7S
-P2 builds 2H (train 2-7, cost 2) gears take AS AC pays 9S
-P1 builds 7S (train 1-7, cost 0) gears take 9S
-P2 builds AS (train 1-7, cost 0) gears take 10S 5H
-P1 builds 8D (train 1-9, cost 0) gears take KD
-P2 builds KH (train 13-13, cost 13) pays KS
-THE CLOCK STRIKES (P2, 11 cards, deck 15)
+P1 gathers 9D 3S
+P2 builds JS (train 10-11, cost 7) pays 7C
+P1 gathers 6S 7C
+P2 builds 4H (train 4-4, cost 4) pays 9C
+P1 gathers KH JC
+P2 gathers 5C(deck) 9C
+P1 builds 3S (train 3-3, cost 0)
+P2 builds 9C (train 9-11, cost 5) gears take KC pays 5C
+P1 builds 6S (train 5-6, cost 2) pays 7C
+P2 gathers 5C 6H
+P1 gathers 8D 4D
+P2 builds 5C (train 4-5, cost 5) gears take 3H pays 6H
+P1 builds 4D (train 3-6, cost 0)
+P2 builds 3H (train 3-5, cost 3) gears take 6H pays 6H
+P1 gathers 6H 7S
+P2 builds 2H (train 2-5, cost 2) gears take 7C pays 7C
+P1 builds 7S (train 3-7, cost 0)
+P2 gathers 3D 5H
+P1 builds 8D (train 3-8, cost 0)
+P2 gathers 7C KS
+P1 builds 9D (train 3-9, cost 0)
+P2 gathers KD 10S
+P1 builds 10C (train 3-10, cost 0) gears take 2D
+P2 builds KD (train 13-13, cost 13) pays KC
+P1 builds 2D (train 1-10, cost 0) gears take 6D
+P2 gathers 5S JD
+P1 retools 6H (train 1-10, cost 0) gears take 8H
+P2 retools 3D (train 2-5, cost 3) gears take 7D pays 5H
+P1 builds JC (train 1-11, cost 3) gears take JH 5H pays 5H
+THE CLOCK STRIKES (P1, 11 cards, deck 16)
+P2 builds 7D (train 7-7, cost 7) pays 7C
