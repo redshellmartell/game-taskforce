@@ -3,434 +3,459 @@
  "revision": 1,
  "games_simulated": 20000,
  "seat_win_rates": {
-  "1": 0.511,
-  "2": 0.489
+  "1": 0.446,
+  "2": 0.554
  },
- "seat_balance_gap": 2.2,
+ "seat_balance_gap": 10.9,
  "bot_win_rates": {
-  "random": 0.268,
-  "greedy": 0.568,
-  "strategic": 0.664
+  "random": 0.338,
+  "greedy": 0.592,
+  "strategic": 0.57
  },
- "skill_expression": 73.2,
+ "skill_expression": 56.2,
  "length": {
-  "mean_turns": 46.1,
-  "stdev": 8.6,
-  "estimated_minutes": 14.8,
+  "mean_turns": 39.0,
+  "stdev": 16.1,
+  "estimated_minutes": 12.7,
   "target_minutes": 15
  },
  "length_histogram": [
   {
    "turns": 6,
-   "games": 7
-  },
-  {
-   "turns": 7,
-   "games": 4
-  },
-  {
-   "turns": 8,
-   "games": 1
-  },
-  {
-   "turns": 9,
-   "games": 11
-  },
-  {
-   "turns": 10,
-   "games": 8
-  },
-  {
-   "turns": 11,
-   "games": 23
-  },
-  {
-   "turns": 12,
-   "games": 41
-  },
-  {
-   "turns": 13,
-   "games": 58
-  },
-  {
-   "turns": 14,
-   "games": 59
-  },
-  {
-   "turns": 15,
-   "games": 69
-  },
-  {
-   "turns": 16,
-   "games": 72
-  },
-  {
-   "turns": 17,
-   "games": 71
-  },
-  {
-   "turns": 18,
-   "games": 74
-  },
-  {
-   "turns": 19,
-   "games": 71
-  },
-  {
-   "turns": 20,
-   "games": 79
-  },
-  {
-   "turns": 21,
-   "games": 69
-  },
-  {
-   "turns": 22,
-   "games": 87
-  },
-  {
-   "turns": 23,
-   "games": 78
-  },
-  {
-   "turns": 24,
-   "games": 48
-  },
-  {
-   "turns": 25,
-   "games": 87
-  },
-  {
-   "turns": 26,
-   "games": 51
-  },
-  {
-   "turns": 27,
    "games": 40
   },
   {
+   "turns": 7,
+   "games": 59
+  },
+  {
+   "turns": 8,
+   "games": 62
+  },
+  {
+   "turns": 9,
+   "games": 63
+  },
+  {
+   "turns": 10,
+   "games": 67
+  },
+  {
+   "turns": 11,
+   "games": 132
+  },
+  {
+   "turns": 12,
+   "games": 143
+  },
+  {
+   "turns": 13,
+   "games": 274
+  },
+  {
+   "turns": 14,
+   "games": 165
+  },
+  {
+   "turns": 15,
+   "games": 226
+  },
+  {
+   "turns": 16,
+   "games": 270
+  },
+  {
+   "turns": 17,
+   "games": 327
+  },
+  {
+   "turns": 18,
+   "games": 398
+  },
+  {
+   "turns": 19,
+   "games": 428
+  },
+  {
+   "turns": 20,
+   "games": 365
+  },
+  {
+   "turns": 21,
+   "games": 283
+  },
+  {
+   "turns": 22,
+   "games": 270
+  },
+  {
+   "turns": 23,
+   "games": 321
+  },
+  {
+   "turns": 24,
+   "games": 325
+  },
+  {
+   "turns": 25,
+   "games": 325
+  },
+  {
+   "turns": 26,
+   "games": 334
+  },
+  {
+   "turns": 27,
+   "games": 376
+  },
+  {
    "turns": 28,
-   "games": 48
+   "games": 390
   },
   {
    "turns": 29,
-   "games": 52
+   "games": 334
   },
   {
    "turns": 30,
-   "games": 44
+   "games": 316
   },
   {
    "turns": 31,
-   "games": 38
+   "games": 373
   },
   {
    "turns": 32,
-   "games": 52
+   "games": 342
   },
   {
    "turns": 33,
-   "games": 69
+   "games": 348
   },
   {
    "turns": 34,
-   "games": 80
+   "games": 352
   },
   {
    "turns": 35,
-   "games": 92
+   "games": 365
   },
   {
    "turns": 36,
-   "games": 112
+   "games": 360
   },
   {
    "turns": 37,
-   "games": 142
+   "games": 355
   },
   {
    "turns": 38,
-   "games": 147
+   "games": 312
   },
   {
    "turns": 39,
-   "games": 199
+   "games": 280
   },
   {
    "turns": 40,
-   "games": 237
+   "games": 240
   },
   {
    "turns": 41,
-   "games": 266
+   "games": 243
   },
   {
    "turns": 42,
-   "games": 370
+   "games": 231
   },
   {
    "turns": 43,
-   "games": 539
+   "games": 243
   },
   {
    "turns": 44,
-   "games": 808
+   "games": 261
   },
   {
    "turns": 45,
-   "games": 1079
+   "games": 207
   },
   {
    "turns": 46,
-   "games": 1298
+   "games": 273
   },
   {
    "turns": 47,
-   "games": 1496
+   "games": 218
   },
   {
    "turns": 48,
-   "games": 1620
+   "games": 235
   },
   {
    "turns": 49,
-   "games": 1629
+   "games": 262
   },
   {
    "turns": 50,
-   "games": 1474
+   "games": 273
   },
   {
    "turns": 51,
-   "games": 1337
+   "games": 334
   },
   {
    "turns": 52,
-   "games": 1096
+   "games": 380
   },
   {
    "turns": 53,
-   "games": 802
+   "games": 349
   },
   {
    "turns": 54,
-   "games": 580
+   "games": 420
   },
   {
    "turns": 55,
-   "games": 418
+   "games": 455
   },
   {
    "turns": 56,
-   "games": 310
+   "games": 492
   },
   {
    "turns": 57,
-   "games": 157
+   "games": 547
   },
   {
    "turns": 58,
-   "games": 131
+   "games": 525
   },
   {
    "turns": 59,
-   "games": 82
+   "games": 489
   },
   {
    "turns": 60,
-   "games": 42
+   "games": 414
   },
   {
    "turns": 61,
-   "games": 14
+   "games": 401
   },
   {
    "turns": 62,
-   "games": 22
+   "games": 332
   },
   {
    "turns": 63,
-   "games": 6
+   "games": 288
   },
   {
    "turns": 64,
-   "games": 2
+   "games": 198
   },
   {
    "turns": 65,
-   "games": 1
+   "games": 142
   },
   {
    "turns": 66,
+   "games": 89
+  },
+  {
+   "turns": 67,
+   "games": 48
+  },
+  {
+   "turns": 68,
+   "games": 17
+  },
+  {
+   "turns": 69,
+   "games": 10
+  },
+  {
+   "turns": 70,
+   "games": 3
+  },
+  {
+   "turns": 72,
    "games": 1
   }
  ],
- "ties": 0.419,
+ "ties": 0.015,
  "turn_cap_hits": 0,
- "lead_changes_mean": 1.15,
- "runaway_leader_rate": 0.549,
+ "lead_changes_mean": 1.83,
+ "runaway_leader_rate": 0.488,
  "cards": [
   {
    "name": "T: Chancellor's Seal",
-   "played_rate": 0.839,
-   "win_correlation": 0.214,
-   "flag": "strong"
+   "played_rate": 0.738,
+   "win_correlation": 0.146,
+   "flag": null
   },
   {
    "name": "T: Gold Purse",
-   "played_rate": 0.965,
-   "win_correlation": 0.058,
+   "played_rate": 0.878,
+   "win_correlation": 0.074,
    "flag": null
   },
   {
    "name": "T: Granary",
-   "played_rate": 0.954,
-   "win_correlation": 0.066,
+   "played_rate": 0.815,
+   "win_correlation": 0.08,
    "flag": null
   },
   {
    "name": "T: Ledger",
-   "played_rate": 0.958,
-   "win_correlation": 0.07,
+   "played_rate": 0.825,
+   "win_correlation": 0.079,
    "flag": null
   },
   {
    "name": "T: Mint Master",
-   "played_rate": 0.934,
-   "win_correlation": 0.065,
+   "played_rate": 0.844,
+   "win_correlation": 0.074,
    "flag": null
   },
   {
    "name": "T: Patron",
-   "played_rate": 0.944,
-   "win_correlation": 0.084,
-   "flag": null
-  },
-  {
-   "name": "T: Royal Loan",
-   "played_rate": 0.929,
-   "win_correlation": 0.03,
-   "flag": null
-  },
-  {
-   "name": "T: Tax Collector",
-   "played_rate": 0.959,
-   "win_correlation": 0.017,
-   "flag": null
-  },
-  {
-   "name": "T: Treasury Vault",
-   "played_rate": 0.865,
+   "played_rate": 0.771,
    "win_correlation": 0.083,
    "flag": null
   },
   {
+   "name": "T: Royal Loan",
+   "played_rate": 0.801,
+   "win_correlation": 0.007,
+   "flag": null
+  },
+  {
+   "name": "T: Tax Collector",
+   "played_rate": 0.873,
+   "win_correlation": 0.037,
+   "flag": null
+  },
+  {
+   "name": "T: Treasury Vault",
+   "played_rate": 0.691,
+   "win_correlation": 0.034,
+   "flag": null
+  },
+  {
    "name": "W: Courtier",
-   "played_rate": 0.966,
-   "win_correlation": 0.111,
+   "played_rate": 0.853,
+   "win_correlation": 0.13,
    "flag": null
   },
   {
    "name": "W: Eavesdropper",
-   "played_rate": 0.937,
-   "win_correlation": 0.015,
+   "played_rate": 0.82,
+   "win_correlation": -0.001,
    "flag": null
   },
   {
    "name": "W: False Witness",
-   "played_rate": 0.961,
-   "win_correlation": 0.081,
+   "played_rate": 0.87,
+   "win_correlation": 0.045,
    "flag": null
   },
   {
    "name": "W: Gossip",
-   "played_rate": 0.976,
-   "win_correlation": -0.009,
+   "played_rate": 0.886,
+   "win_correlation": 0.021,
    "flag": null
   },
   {
    "name": "W: Shadow Envoy",
-   "played_rate": 0.88,
-   "win_correlation": 0.023,
+   "played_rate": 0.766,
+   "win_correlation": 0.018,
    "flag": null
   },
   {
    "name": "W: Silencer",
-   "played_rate": 0.978,
-   "win_correlation": 0.106,
+   "played_rate": 0.913,
+   "win_correlation": 0.1,
    "flag": null
   },
   {
    "name": "W: Spymaster",
-   "played_rate": 0.936,
-   "win_correlation": 0.153,
-   "flag": "strong"
+   "played_rate": 0.802,
+   "win_correlation": 0.131,
+   "flag": null
   },
   {
    "name": "W: The Whisper",
-   "played_rate": 0.873,
-   "win_correlation": 0.244,
+   "played_rate": 0.791,
+   "win_correlation": 0.176,
    "flag": "strong"
   },
   {
    "name": "W: Veiled Threat",
-   "played_rate": 0.914,
-   "win_correlation": 0.058,
+   "played_rate": 0.786,
+   "win_correlation": 0.03,
    "flag": null
   }
  ],
- "ambiguities": [
-  "Hushing a card with Spend: bonus is lost, but the coins were already discarded (rules say so implicitly; assumed).",
-  "Retort: Whisperer who has passed but whose opponent then passes: contest ends. If T has passed and W has not, W keeps playing alone; assumed W may still pass afterwards.",
-  "Does a Retort card played after pass count as a decision when the Treasurer then passes? Assumed no Retort after T's pass (as written).",
-  "Court-rule margin applies to the leader at start of Phase 4; a leader who wins by 1 at pos 2/3 ties - the rules never say whether this counts as 'lost' for choosing the next lead chooser (assumed: tie -> same chooser).",
-  "Position 0 after round 7: 'most recent round that moved the crown' - assumed per rules; Echo 'tied' counts as not won (as written).",
-  "Lead change count and 'leader' at pos 0 for trailer draws: no extra draws at 0 (as written).",
-  "Draw pile exhaustion is routine (deck of 20, 6 start + 2/round + extras): rules do not say what happens to Whisperer's Echo-return cards when the game is already effectively out of cards (nothing; fine).",
-  "A player who passed with cards in hand may not re-enter (T), but W may via Retort only after T plays a card; T playing a card after W passed with no Retort in hand just continues."
+ "ambiguities": [],
+ "ambiguity_notes": [
+  "Lead draws its bonus card after the chooser decides (after Phase 1 extras); modelled that way.",
+  "Lead wins equal totals except 0-0 (a tie); a lead with an empty row and an empty opposing row ties.",
+  "Step counting from T1 toward the Whisperer: W1 (1 step), W2 (2 steps); the start card is never counted."
  ],
+ "lead_round_win_rate": 0.539,
+ "lead_policy_win_rates": {
+  "strat-self": 0.629,
+  "strat-give": 0.432
+ },
+ "reshuffles_per_game": {
+  "treasurer": 0.48,
+  "whisperer": 0.47
+ },
  "problems": [
   {
    "severity": "high",
-   "problem": "Lead changes below KPI: the crown rarely swings sides",
-   "evidence": "1.15 lead changes per game (strategic mirror 1.22; KPI >= 2). 17% of games end on a throne, 56% on round-7 leader, 17-30% crown back at position 0 so the tiebreak decides.",
-   "fix": "Make the court's catch-up bite harder at positions 1-2 (trailer +1 draw is too weak: make T1/W1 trailer draw 2 or let the trailer lead without choosing) and make a double move easier (margin 4+, tested: throne wins 17% to 23% but lead changes unchanged and Treasurer 57%). Needs a designer decision; lead changes may need a rule that rewards crossing the centre."
+   "problem": "The lead choice is solved again, now the other way: always lead yourself",
+   "evidence": "Fixed policy vs the evaluating bot (2,000 games, both sides): always-lead-self wins 63%, always-give-lead wins 43% (KPI: each 40-60%). Fixed-policy mirrors (Treasurer win): self(T) vs give(W) 80%, give(T) vs self(W) 35%. The extra card is the cause: with no extra card (experiment E2) the policies fall to 47% and 50% but the lead choice then barely matters. Lead round-win rate is 54% (random bots 56%, greedy 44%).",
+   "fix": "The extra card is too strong, no card is too weak. Untested ideas: the lead draws 1 card only when its hand is smaller (tested as E5: no better, self still 63%); try 'lead plays its first card face down' or 'lead reveals one hand card' as the price of last word instead of a card. Tested and rejected: no tie-win (E1, self 65%), ties to the second player (E4, self 59%), second player draws (E3, give 60% and Treasurer 85%)."
   },
   {
    "severity": "high",
-   "problem": "Choosing the lead is a solved decision: always give the opponent the lead (last word)",
-   "evidence": "Strategic mirror: a side that leads when it is the chooser wins only 26% (both-lead 26/74); both giving the lead away gives 50/50. Casual, family and story bots (who lead themselves) win 35-46% overall.",
-   "fix": "Remove the choice (alternate leads, loser leads) or make leading worth something (leader draws or gets +1 on the first card)."
+   "problem": "Side gap too large and it flips with skill and lead habits",
+   "evidence": "Equal-skill Treasurer win rate: random 57.8%, greedy 38.1%, strategic 37.9% (strategic mirror 36.6%, mixed pairings 27-41%). Headline seat gap 10.9 points (KPI 5). With fixed lead policies the strategic Treasurer wins 59% (both lead self) and 47% (both give). With no lead extra card (E2) the Treasurer wins 62%.",
+   "fix": "Retune after the lead rule is settled: the Whisperer is favoured by skilled play (Hush, Retort), the Treasurer by random play. Lever 2 or 3 (Spend bonus, Treasury cap) in the designer's list, one at a time."
   },
   {
    "severity": "medium",
-   "problem": "Margin rules at positions 2 and 3 are nearly inert",
-   "evidence": "Removing the margin-2 rule at position 2 changed nothing (Treasurer 50.2% either way, early-leader 41.7% vs 41.8%); bots simply aim for the required margin.",
-   "fix": "Raise to 3 at position 2 and 4 at position 3, or drop the rule and keep only the extra draws, to cut rules text."
+   "problem": "Games are short and often end in 2-3 rounds",
+   "evidence": "Over 6,000 equal-skill games 31% end by round 3 (15% in round 2), only 29% reach round 7; strategic mirror is 97% throne endings, mean 3.9 rounds. A margin of 5 or more at position 1 wins the game on the spot. Estimated 12.7 minutes against a 15 target (-15%, inside the 20% limit).",
+   "fix": "Raise the double-move margin to 6 or let the first throne approach be 4 steps (designer lever 9). The track is the main reason for lead changes landing at 1.8 not 2+."
   },
   {
    "severity": "medium",
-   "problem": "Skill levels shift side balance: Treasurer wins 63% random-vs-random, Whisperer wins 60% greedy-vs-greedy, 50% strategic-vs-strategic",
-   "evidence": "Equal-skill Treasurer win rate: random 62.7%, greedy 40.2%, strategic 50.4%. Real players of mixed skill will see one side feel better than the other. Seat gap at equal strong play is 1-2 points (passes KPI).",
-   "fix": "Retest after fixing lead choice; the Whisperer (Hush, Retort) is harder to play, so beginners may pick the Treasurer and win."
+   "problem": "Lead changes just below the KPI",
+   "evidence": "1.83 per game over all pairings (strategic mirror 1.70), target 2.0.",
+   "fix": "A longer track (shorter games fix and this together) or a bigger Murmurs draw; test double_at 6 first."
   },
   {
    "severity": "medium",
-   "problem": "Crown stalls: 17% (all bots) to 30% (strategic mirror) of games finish at position 0 and are decided by the tiebreak",
-   "evidence": "endings: leader 56%, tiebreak 17%, throne 17% (all pairings); strategic mirror 54/29/17 (leader/tiebreak/throne).",
-   "fix": "Dead-centre endings feel arbitrary; give round-7 to a decisive rule (for example winner of round 7 wins ties at 0, already almost the rule) or shorten the track."
+   "problem": "Strategic bot barely beats greedy, so deep decisions may be thin",
+   "evidence": "Strategic wins 57.0% of games overall against greedy 59.2% (greedy leads itself and wins 57% as Treasurer vs strategic); strategic beats greedy only 42.8% (below 50%). Strategic beats random by 56 points, so decisions matter, but a simple greedy bot out-scores the heuristic, mostly through the lead choice.",
+   "fix": "Fix the lead rule, then re-test with a smarter lead heuristic; may be bot weakness, not a design flaw."
   },
   {
    "severity": "low",
-   "problem": "Hush is blank in about a quarter of plays; Spend gets Hushed in 0.35 games per game",
-   "evidence": "5.2 Hush plays per game, 1.35 with no legal target (blank) over all pairings, 0.68 in the strategic mirror; coins lost to Hush 0.35 per game.",
-   "fix": "Fine as is; keep an eye on Steady count if Whisperer win rate drifts."
+   "problem": "The Whisper (5 Influence plus Hush) is the one outlier card",
+   "evidence": "Played in 79% of games, rounds with it won 17.6 points more than the Whisperer's average (flag: strong). No dead cards and no rarely played cards.",
+   "fix": "Leave it, or drop to 4 Influence if the Whisperer side gap needs trimming."
   },
   {
    "severity": "low",
-   "problem": "Rule ambiguities remain (KPI: zero at pitch)",
-   "evidence": "See ambiguities list: Retort after pass, ties and chooser, Spend vs Hush ordering.",
-   "fix": "Designer to clarify in v2."
+   "problem": "Rule ambiguities: none blocking, two minor interpretations",
+   "evidence": "All 8 old ambiguities are resolved in v2. Two notes: Retort is only ever possible after a Treasurer card (clear); the lead's extra card is drawn after the Phase 1 draws (clear from the phase order, but easy to forget at the table).",
+   "fix": "Optional: add a one-line reminder to the round summary."
   }
  ]
 }

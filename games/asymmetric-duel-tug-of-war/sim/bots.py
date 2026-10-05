@@ -50,26 +50,32 @@ class Greedy:
 class Strategic:
     """Cheapest-winning-play heuristic with stake-based budget. Parameters tune the persona variants."""
     name = "strategic"
-    def __init__(s, seed=0, noise=0.0, last_word=True, stake_bias=0.0, drama=0.0, caution=0.0, push=True):
+    def __init__(s, seed=0, noise=0.0, last_word=True, stake_bias=0.0, drama=0.0, caution=0.0, push=True, lead_policy=None):
         s.r = random.Random(seed); s.noise = noise; s.last_word = last_word
-        s.stake_bias = stake_bias; s.drama = drama; s.caution = caution; s.push = push
+        s.lead_policy = lead_policy; s.stake_bias = stake_bias; s.drama = drama; s.caution = caution; s.push = push
     def stake(s, st, p):
         """How many 'cost points' this round is worth to me."""
         mine = st.pos * (1 if p == 1 else -1)        # positive = crown toward my throne
         base = 4.0 + s.stake_bias
-        if mine >= 2: base += 3              # a push can end the game
-        if mine <= -3: base += 4             # I must stop the opponent's push
-        if mine <= -2: base += 1.5
+        if mine >= 1: base += 2.5            # a push can end the game
+        if mine >= 2: base += 1.5
+        if mine <= -2: base += 4             # I must stop the opponent's push
+        if mine <= -1: base += 1.0
         if st.rnd >= 6: base += 2.5
         if st.rnd == 7: base += 3
         # shortage of cards: spend freely if the draw piles are gone
         if len(st.hand[p]) > 7: base += 1.5
         return base
     def choose_lead(s, st, p):
+        if s.lead_policy == "self": return p
+        if s.lead_policy == "give": return 1 - p
         if s.r.random() < s.noise: return s.r.choice((0, 1))
-        if p == 1:   # whisperer likes last word only with retorts in hand
-            return 1 - p if s.last_word and not any("retort" in c[2] for c in st.hand[p]) else p
-        return 1 - p if s.last_word else p
+        if s.lead_policy is None and not s.last_word: return p       # gut-feel personas just lead
+        # evaluating policy: lead when short of cards or when a throne push is on; the Whisperer with Retorts leads
+        mine = st.pos * (1 if p == 1 else -1)
+        if len(st.hand[p]) + 1 < len(st.hand[1 - p]) or mine >= 1 or st.rnd == 7: return p
+        if p == 1 and any("retort" in c[2] for c in st.hand[p]): return p
+        return 1 - p
     def choose(s, st, p, acts, retort=False):
         plays = [a for a in acts if a[0] == "play"]
         passa = ("decline",) if retort else ("pass",)
@@ -79,8 +85,7 @@ class Strategic:
         m = margin(st, p); need = st.my_need(p)
         mine = st.pos * (1 if p == 1 else -1)
         want = need
-        if s.push and mine >= 2 and not retort: want = max(need, 5)   # a 2-step push wins the game
-        if s.push and mine >= -1 and mine < 2: want = max(need, 5) if s.r.random() < 0.0 else need
+        if s.push and mine == 1 and not retort: want = max(need, 5)   # a 2-step push wins the game
         opp_passed = st.passed[1 - p]
         stake = s.stake(s, st, p) if False else s.stake(st, p)
         ok = [a for a in plays if m + eff(st, p, a) >= want]
@@ -109,6 +114,12 @@ class Strategic:
         return passa
 
 # ----- persona bots (follow panel/personas/*.md "How they play")
+class StratSelf(Strategic):
+    name = 'strat-self'
+    def __init__(s, seed=0): super().__init__(seed, lead_policy='self')
+class StratGive(Strategic):
+    name = 'strat-give'
+    def __init__(s, seed=0): super().__init__(seed, lead_policy='give')
 class Planner(Strategic):      # strategist: plans ahead, banks coins, careful stakes
     name = "planner"
     def __init__(s, seed=0): super().__init__(seed, noise=0.0, last_word=True, stake_bias=-0.5)
@@ -136,4 +147,4 @@ class Expert(Strategic):       # barraiser: strongest line, tests exploits; slig
     def __init__(s, seed=0): super().__init__(seed, noise=0.0, last_word=True, stake_bias=0.5)
 
 PERSONA = {"strategist": Planner, "casual": Instinct, "competitor": Optimiser, "story": Flavour, "family": Cautious, "barraiser": Expert}
-ALL = {"random": Random, "greedy": Greedy, "strategic": Strategic}
+ALL = {"random": Random, "greedy": Greedy, "strategic": Strategic, "strat-self": StratSelf, "strat-give": StratGive}

@@ -1,46 +1,35 @@
-Tug of Crowns: barraiser (Treasurer) vs competitor (Whisperer), worst table for barraiser. Crown pos: negative = Treasurer side.
+Tug of Crowns: barraiser (Treasurer) vs casual (Whisperer), worst table for barraiser. Crown pos: negative = Treasurer side.
 R1 W plays Gossip
 R1 T plays Tax Collector
 R1 W plays Silencer hush #0
 R1 T plays Granary
+R1 W plays Eavesdropper
+R1 T plays Patron
 R1 W plays Courtier
 R1 T plays Ledger
 R1 W plays Courtier
 R1 T plays Mint Master
 R1 W plays Spymaster
-R1 T plays Patron
-R1 W plays Spymaster
 R1 T passes
-R1 W has no cards, passes
-R1 totals T13 W16 winner 1 pos 1
+R1 W passes
+R1 totals T13 W14 winner 1 pos 1
 R2 W plays Gossip
 R2 T plays Tax Collector
-R2 W plays Eavesdropper
-R2 T plays Granary
-R2 W has no cards, passes
+R2 W plays Gossip
+R2 T plays Treasury Vault
+R2 W passes
 R2 T passes
-R2 totals T5 W3 winner 0 pos 0
+R2 totals T3 W2 winner 0 pos -1
 R3 W plays Gossip
-R3 T plays Patron
-R3 W plays Veiled Threat
-R3 T plays Treasury Vault spend 1
-R3 W passes
 R3 T passes
-R3 totals T5 W4 winner 0 pos -1
-R4 W plays Gossip
-R4 T plays Royal Loan spend 1
-R4 W plays Courtier
-R4 T plays Ledger
+R3 W passes
+R3 totals T0 W1 winner 1 pos 1
+R4 T plays Royal Loan
 R4 W plays The Whisper hush #0
+R4 T plays Royal Loan
+R4 W plays Gossip
+R4 T plays Mint Master
+R4 W plays False Witness hush #2
 R4 T passes
 R4 W passes
-R4 totals T3 W9 winner 1 pos 1
-R5 W plays Gossip
-R5 T plays Tax Collector
-R5 W plays Shadow Envoy
-R5 T plays Royal Loan spend 1
-R5 W plays False Witness hush #1
-R5 T plays Gold Purse
-R5 W plays Veiled Threat
-R5 T plays Gold Purse
-R5 W has no cards, passes
+R4 totals T1 W7 winner 1 pos 3

@@ -1,46 +1,46 @@
-Tug of Crowns: story (Treasurer) vs casual (Whisperer), best table for story. Crown pos: negative = Treasurer side.
+Tug of Crowns: story (Treasurer) vs family (Whisperer), best table for story. Crown pos: negative = Treasurer side.
 R1 T plays Tax Collector
 R1 W plays Silencer hush #0
 R1 T plays Granary
 R1 W plays False Witness hush #1
-R1 T plays Mint Master
-R1 W plays Gossip
-R1 T passes
+R1 T plays Ledger
 R1 W plays Courtier
-R1 W passes
-R1 totals T5 W6 winner 1 pos 1
-R2 T plays Treasury Vault spend 2
+R1 T plays Gold Purse
+R1 W plays Veiled Threat
+R1 T plays Royal Loan
+R1 W plays Gossip
+R1 T plays Treasury Vault
+R1 W plays Gossip
+R1 T plays Mint Master
+R1 W has no cards, passes
+R1 T has no cards, passes
+R1 totals T14 W10 winner 0 pos -1
+R2 W plays Gossip
+R2 T plays Patron
 R2 W plays Gossip
 R2 T passes
 R2 W passes
-R2 totals T5 W1 winner 0 pos 0
-R3 W plays Gossip
-R3 T plays Patron
+R2 totals T2 W2 winner 1 pos 1
+R3 T plays Tax Collector
 R3 W plays Courtier
-R3 T plays Ledger
-R3 W plays Veiled Threat
+R3 T plays Tax Collector
+R3 W plays Shadow Envoy
 R3 T plays Ledger
 R3 W plays Spymaster
 R3 T plays Gold Purse
 R3 W plays Gossip
-R3 T plays Royal Loan
-R3 W plays Gossip
-R3 T plays Gold Purse
-R3 W has no cards, passes
 R3 T passes
-R3 totals T17 W13 winner 0 pos -1
-R4 W plays Gossip
+R3 W plays Eavesdropper
+R3 W passes
+R3 totals T11 W12 winner 1 pos 2
 R4 T plays Tax Collector
-R4 W plays Shadow Envoy
-R4 T plays Tax Collector
-R4 W plays Eavesdropper
-R4 T plays Gold Purse
-R4 W plays Gossip
-R4 T has no cards, passes
 R4 W plays Courtier
-R4 W passes
-R4 totals T8 W9 winner 1 pos 0
-R5 T plays Granary
-R5 W plays Spymaster
-R5 T plays Mint Master
+R4 T plays Patron
+R4 W plays Veiled Threat
+R4 T plays Granary
+R4 W plays Gossip
+R4 T passes
+R4 W has no cards, passes
+R4 totals T7 W7 winner 0 pos 1
 R5 W plays Gossip
+R5 T plays Royal Loan spend 2

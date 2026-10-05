@@ -222,7 +222,7 @@
     {
       "slug": "asymmetric-duel-tug-of-war",
       "title": "Tug of Crowns",
-      "stage": "playtest",
+      "stage": "critique",
       "revision": 0,
       "history": [
         {
@@ -266,6 +266,12 @@
           "time": "2026-10-05T12:09:27Z",
           "verdict": null,
           "note": "Revision 1 rules written (lead bonus, shorter track, 8 ambiguities fixed, reshuffle); playtest next"
+        },
+        {
+          "stage": "critique",
+          "time": "2026-10-05T12:13:55Z",
+          "verdict": null,
+          "note": "Revision 1 playtest NEEDS-FIXES: lead extra card too strong (self-lead 63%), side gap 10.9, lead changes 1.83, 31% end by round 3; critique next"
         }
       ],
       "verdicts": {
