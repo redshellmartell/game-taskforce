@@ -1,4 +1,4 @@
-"""Panel rotation for Nine Lives Dungeon (solo): each persona plays alone, 1,000 runs on random layouts (no Ghosts).
+"""Panel rotation for Whiskerdark (solo): each persona plays alone, 1,000 runs on random layouts (no Ghosts).
 competitor and barraiser use the slow lookahead bot, so they play 300 runs. Writes panel-results.json and logs/<persona>-1/2.txt.
 Solo proxies (read the report): lead_changes = swings of the Ready count between <=1 and >=3; comeback = win rate when
 Ready <=1 at the run's halfway turn; interaction and downtime are 0 (no opponent).
@@ -52,7 +52,7 @@ def main(runs=1000):
             if sd is None: continue
             r, _ = one(who, sd, log=True)
             open(os.path.join(HERE, "logs", "%s-%d.txt" % (who, j)), "w").write(
-                "Nine Lives Dungeon, solo, %s bot, seed %d (%s run). Solo game: one table per persona.\n" % (who, sd, "won" if j == 1 else "lost") + "\n".join(r.log) + "\n")
+                "Whiskerdark, solo, %s bot, seed %d (%s run). Solo game: one table per persona.\n" % (who, sd, "won" if j == 1 else "lost") + "\n".join(r.log) + "\n")
         print(who, "runs", n, "win %.3f" % raw["win_rate"], "dec/turn %.2f" % raw["decisions_per_turn"], flush=True)
     out = {"personas": personas, "matchups": [], "rotation": {"player_counts": [1], "tables": len(IDS), "seatings_per_table": 1,
            "games_per_seating": runs, "filler_bots": []}}

@@ -1,18 +1,17 @@
 {
   "verdict": "REVISE-MINOR",
-  "revision": 1,
+  "revision": 2,
   "scores": { "originality": 3, "clarity": 3, "fun": 3, "balance": 3, "market_fit": 3, "production": 5 },
   "average": 3.33,
-  "strength": "Skill gap moved from structural failure to a pass in simulation (lone 25.3, mixed 11.8 from 0.8-2.3, planner beats casual) while seat, runaway, lead changes, length and forced passes all pass, on a cheap distinctive hook.",
-  "weakness": "Twists are not shown to matter and Hype swamps printed lots: Hype share 56/64% (target 45-50, unchanged); two of four ablations fail (open income +2.7/+2.3, ignore-ties -7.0/+2.6) and ignore-hype is inconsistent (L1); greedy bot gap 14.8/9.8 and part of the gain is a better bot (L2, L6); 6p last-round flip 27% (L3/L8); 5p at 78 cards untested.",
+  "strength": "Structural KPIs are healthy and tunable with one clean knob: Hype share 48/48% via the +4 ceiling, seat gap 1.1/2.1, lead changes 3.3/3.6, runaway 48/45%, lone skill gap 31-37 for strategic/planner, at about $15 and 78 cards.",
+  "weakness": "The advertised twists do not demonstrably matter (L1): ignore-crash regressed from pass to fail at both counts (+3.0/-2.9 at 5p, -1.6/-2.5 at 6p) because the ceiling deflated the crash; ignore-hype and ignore-ties flip sign at 5p. Skill gap depends on bot depth (greedy 18.5/12.3, L2) and comes from general odds estimation, not the hook; 5p and 6p behave differently (L8); 6p last-round flip 25% (L3).",
   "closest_existing_game": { "name": "Burnout / Pairs (Crab Fragment Labs)", "similarity": "medium" },
   "required_changes": [
-    "Cap Hype per lot (at most +3) or count only top 3 burned cards per category; KPI Hype share 45-50% with lone gap >= 20 and mixed gap >= 5",
-    "Drop open income (or make it matter) and re-run ablations with a smarter full bot; KPI no-memory ablation >= +5 or rule removed and gap re-measured; settle ignore-ties and ignore-hype sign flips",
-    "Track crash tie-break totals live or freeze Hype before round 14; KPI last-round flip <= 20% at 6p",
-    "Re-run at final 78-card 1-11 config at 5p and 6p with greedy, no-memory, strategic and a spite bot; KPI gaps and seat gap at both counts",
-    "Trim rules text to about 100 lines and state teach time; KPI rule budget (L7)"
+    "Human table test (5-6 players, 2-3 games) before any further bot-only cycle; KPIs: human fun and replay, whether the crash and ties are noticed, teach time",
+    "If revised anyway, one change only: make the crash bite (e.g. crashed category loses printed value too); KPI ignore-crash at least +5 at both 5p and 6p with Hype share still 45-50%",
+    "Add running crash tie-break total or freeze Hype before round 14; KPI 6p last-round flip at most 20% (now 25%)",
+    "State that hands are revealed for tiebreakers and explain or drop round-14 income; KPI zero ambiguities at pitch"
   ],
-  "revision_worth_it": true,
-  "revision_reason": "Yes, one more cycle: remaining issues are mechanical and the skill gap already moved; target Hype share of points (56/64%, target 45-50%) and the two failed ablations; if they do not move, stop and test with humans or park."
+  "revision_worth_it": false,
+  "revision_reason": "No: the stop rule was Hype share and ablations must move; Hype share did, but ignore-crash regressed and ignore-hype/ignore-ties still flip at 5p, which is a structural question about the twists that only human play or a new mechanic can answer."
 }

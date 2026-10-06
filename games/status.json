@@ -560,7 +560,7 @@
       "slug": "five-six-simultaneous-auction",
       "title": "Last Bid Standing",
       "stage": "critique",
-      "revision": 1,
+      "revision": 2,
       "history": [
         {
           "stage": "brief",
@@ -603,6 +603,12 @@
           "time": "2026-10-06T14:13:46Z",
           "verdict": "REVISE-MINOR",
           "note": "Cycle 1 (revision 1): playtest NEEDS-FIXES (skill gap 25.3, Hype 56-64%, 2 ablations fail), fix pass v2.1, critic REVISE-MINOR avg 3.33; cycle 2 runs inside the cap"
+        },
+        {
+          "stage": "critique",
+          "time": "2026-10-06T14:42:48Z",
+          "verdict": "REVISE-MINOR",
+          "note": "Cycle 2 (revision 2): Hype share fixed (48/48%), crash lever now inert, ablations unstable; critic REVISE-MINOR avg 3.33 (flat), recommends a human table test or park; waiting for approval: review-cap (five-six-simultaneous-auction-review-cap-1)"
         }
       ],
       "verdicts": {

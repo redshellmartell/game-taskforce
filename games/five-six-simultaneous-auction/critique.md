@@ -1,59 +1,61 @@
-# Critique: Last Bid Standing (revision 1, rules v2.1, playtested at v2)
+# Critique: Last Bid Standing (revision 2, rules v3, playtested at v3)
 
-**Verdict: REVISE-MINOR** (bots only, unvalidated; no human has played it)
+**Verdict: REVISE-MINOR** (bots only, unvalidated; no human has played it). My own stop rule from the last critique now applies: stop designing and test with humans, or park.
 
 | Area | Score | Previous |
 |---|---|---|
 | Originality | 3 | 3 |
 | Rules clarity | 3 | 3 |
-| Fun | 3 | 2 |
-| Balance | 3 | 2 |
+| Fun | 3 | 3 |
+| Balance | 3 | 3 |
 | Market fit | 3 | 3 |
 | Production | 5 | 5 |
-| **Average** | **3.33** (target 3.5 at pitch) | 3.0 |
+| **Average** | **3.33** (target 3.5 at pitch) | 3.33 |
 
-## What changed since revision 0
-Skill gap 17.5 to 25.3 (lone bot; no-memory bot 23.1; greedy 12.3). Mixed 3+3 table gap 0.8-2.3 to 11.8. The planner now beats casual (23.4 v 14.9 at 5p). Forced passes 22% to 5%. Unsold lots 4.6-7.8 to 2.9. Lead changes 3.4, runaway 48%, seat gap 1.0. Ambiguities from v1 closed; v2.1 fixes the 6 new ones. The structural worry from the first critique (the planner loses to the casual bot) is gone in simulation. That is real progress.
+## What changed since revision 1
+- **Fixed:** Hype share 56/64% to 48/48% (target 45-50). The ceiling knob works cleanly (cap 3: 41%, cap 5: 53%). Mechanical, and it did not hurt the skill gap (lone strategic 31.2/32.5, planner 36.8/37.0).
+- **Fixed:** open income cut at no visible cost. Rule count and memory burden fall.
+- **Kept passing:** seat gap 1.1/2.1, runaway 48/45%, lead changes 3.3/3.6, length 18.5/19.7 min, forced passes 4.3/3.1%, no dead cards.
+- **Not fixed:** 6p last-round flip 25% (target 20%); 5p 19% passes.
+- **Got worse:** ignore-crash was the one twist that passed (+7.5/+5.5). It is now +3.0/-2.9 at 5p and -1.6/-2.5 at 6p. The ceiling made the crash worth at most 4 points a lot, so it is inert (L1). A revision that fixed one KPI broke the only twist that passed.
 
 ## Originality (3)
-Core mechanic unchanged, so no new search. Closest remains Burnout/Pairs (tied bids cancel, loser's bid goes to a reserve). The "losing bids become category value, hottest category crashes" hook still has no direct precedent I found. Similarity low to medium, no copying.
+Core mechanic unchanged, no new search. Closest remains Burnout/Pairs (tied bids cancel). Similarity low to medium, no copying. The Hype-from-losing-bids hook is the distinctive part, and it is also the part that is least tested.
 
 ## Rules clarity (3)
-v2.1 is tidy: income procedure, tie-breaks and edge cases are all defined, and the example is good. Remaining problems:
-- About 140 lines against a "one page" promise (L7); the teach is untimed.
-- Open income depends on players remembering 5 rivals' shown cards with no public record. Bots remember perfectly. This is the largest unproven human burden, and the ablation says it earns only about 2.5 points.
-- The crash tie-break needs adding three rows of printed bid values at the end. The narrated game found this arbitrary. Rows should be tracked live.
-- The 5-player 78-card configuration is untested, and E3 (bids 1-11) was measured only at 6p. The full KPI table was measured at 1-12.
+Clean: three special rules, defined income procedure, tie-breaks, edge cases, a worked example. Face-down income removes the memory burden. Remaining: about 85 player-facing lines and about 175 in the file against a one-page promise (L7), teach untimed. The playtester's 3 ambiguities are minor. Tiebreakers need hands revealed at the end (add one line). The round-14 income draw exists only to feed a tiebreaker, which is odd text. The crash tie-break still means adding up rows of printed values. The Bid-card/Paddle same-back trick works on paper but is unproven with real hands.
 
 ## Fun (3)
-Good moments exist: a carried-over rich block with a three-lot choice, bidding just under a known card, a close crash. Weak points: a quarter to a third of bids cancel (10.9 / 17.6 per game), and the mid-game pace dips while passers show two cards each. Last-round flips are 24% overall (27% at 6p, 20% at 5p) and end on an arbitrary tie-break sum. Hype is about 60% of points, so what you burn matters more than what you win, and the printed lots feel secondary. Table talk and bluffing cannot be tested by bots.
+Rounds 1-4 and the carried rich block are good moments. Weak points: a dud round where a tied 7 cancels and two lots sit; a thin mid-game when 3 players pass at once; and the narrated game says the winner was whoever took value 4-5 lots early, "not the one who steered the crash". The ceiling also made the crash reveal "a smaller surprise". So the hook (the bubble) is now a smaller part of the experience. Panel fun 3.44, worst fit family. Table talk and bluffing untestable.
 
 ## Balance (3)
-Seat balance, lead changes, runaway, length, forced passes and unsold lots all pass. Failures against the KPI targets and the playbook:
-- **Hype share 56% (5p) / 64% (6p) vs 45-50% target: FAIL, unchanged from v1.** The designer's own knob (lots 3-6, E1) does not fix it. The designer said the knob fails, so a different lever is required.
-- **L1, twist ablation: 2 of 4 fail.** Open income +2.7 / +2.3 (needs +5). Ignore-ties -7.0 / +2.6 (fails, sign flips). Ignore-hype -6.5 / +13.1 (inconsistent), so the central twist is not confirmed either. Only ignore-crash passes (+7.5 / +5.5). The full bot beating its ablations by pooled values (2.5, 3.3, 6.5, -2.2) means the skill comes from the Monte-Carlo odds estimate, not from the twists.
-- **L2, bot spread:** the 20-point headline rests on the two sampling bots; greedy 14.8 / 9.8 fails. Part of the gain is that v2's bot is a different, better bot (E5 income 1 gives the same gap), so the improvement is not purely a rule effect.
-- **L3, comeback:** the stated mechanism (pass for 2 cards, buy the rich block, push the leader's category into the crash) is plausible, and lead changes 3.4 and runaway 48% support it. No test isolates the pass-comeback effect. A 27% last-round flip at 6p shows the end is partly luck of the tie-break.
-- **L8, player count:** 6p fails the flip KPI and has the thinner skill margin (20.6 gap, just over target). 5p ablations flip sign. 5p at 78 cards is untested.
+Structural numbers are good. The design's claims are not:
+- **L1, ablations:** ignore-crash fails at both counts. Ignore-hype flips sign at 5p (-5.3 strategic, +10.5 planner) though +16/+21 at 6p. Ignore-ties wins at 5p (-6.9/-3.0) and passes only at 6p. Ignore-cap passes for strategic only. So at 5p the three advertised mechanisms (Hype, crash, ties) are not shown to be skill levers; at 6p only Hype and ties are. The skill gap (31-37) must then come from general odds estimation and lot choice, which nearly any auction has.
+- **L2, bot spread:** gap runs greedy 18.5/12.3, lite 26.6/22.8, strategic 31.2/32.5, planner 36.8/37.0. Greedy fails 20, and the spread shows skill is tied to bot depth. Mixed gap passes (14.1/11.2; planner 9.2/6.5).
+- **L3 comeback:** runaway and lead changes pass, but 6p last-round flip 25% and crash identity flipping in the last round 33% at 6p says the end is a late scramble.
+- **L8:** 5p and 6p behave differently on three ablations; the same deck being "built for both" is not borne out.
+- L10 respected this cycle (single-change configs), which is why I can read the results.
 
 ## Market fit (3)
-Still matches the brief (5-6 players, simultaneous, low downtime, cheap). No drift. Appeal depends on humans enjoying a probability-estimation strategy that only bots have been shown to use. The "strategist" audience may find the game noisy (cancels, tie-break end).
+No drift: 5-6 players, simultaneous, cheap, card-only. Appeal rests on humans enjoying probability estimation, and "family" is the worst-fit persona for a probability-estimation game with losing bids burned.
 
 ## Production (5)
-78 cards, no board, no tokens, roughly $15. Fits the owner's card focus. Nothing hard to make.
+78 cards, no board, no tokens, about $15. Nothing hard to make.
 
 ## Biggest strength
-The skill problem moved: gap 25.3 lone and 11.8 mixed (from 0.8-2.3), planner beats casual, with the other KPIs healthy, from a cheap and distinctive hook.
+The design is now tunable and well behaved on the structural KPIs (Hype share 48/48%, seat gap about 1-2, lead changes 3.3-3.6, runaway under 50%) with one clean knob, at a $15 card-only cost.
 
 ## Biggest weakness
-The twists are not shown to matter and Hype swamps the printed lots. Repeats L1 (two of four ablations fail; ignore-hype inconsistent), L2 (greedy bot misses 20, and the gain is partly a better bot) and L6 (skill is concentrated in the odds estimate, not the designed rules). Hype share is the same 60% it was in v1.
+The advertised twists do not demonstrably matter: ignore-crash fails at both counts, and ignore-hype and ignore-ties flip sign at 5p (L1, with L2 in the bot-dependent gap and L8 in the 5p/6p split). The ceiling that fixed Hype share also deflated the crash. The skill gap (31-37) is real in simulation but comes from general bidding skill, not the designed hook.
 
-## Required changes (one more revision, mechanical in nature)
-1. **Fix Hype dominance.** Cap Hype added per lot (for example at most +3) or count only the top 3 burned cards per category. KPI: Hype share of points 45-50% (now 56 / 64%), with the lone gap staying at least 20 and mixed gap at least 5.
-2. **Cut or strengthen open income.** It fails the ablation and is a human memory burden. Either drop shown income (draw face down; simpler, saves rules text) or make it matter. KPI: no-memory ablation at least +5, or the rule removed and the lone gap re-measured at both counts. Re-check ignore-ties and ignore-hype with a smarter full bot to settle the sign flips (L1).
-3. **Calm the end.** Keep a running crash-tie-break total on the Hype rows, or freeze Hype changes before round 14. KPI: last-round flip at most 20% at 6p (now 27%).
-4. **Re-run at the final 78-card 1-11 config at both 5p and 6p** with at least three reference bots (greedy, no-memory, strategic) plus a spite bot. KPI: gaps and seat gap at both counts (L2, L8).
-5. **Trim rules text.** KPI: rules about 100 lines or less, and the teach time stated (L7).
+## Mechanical vs structural
+- **Mechanical (small):** 6p flip 25% to 20% (running crash tie-break total or freeze Hype before round 14); add "hands revealed for tiebreaks"; drop or explain round-14 income; trim text.
+- **Structural:** the crash is inert under a ceiling, and the cap-and-crash pair pulls against each other (cap makes Hype safe to ignore, crash needs Hype to be worth fighting over). Ties are a skill lever only at 6p. These are design-level, not tweaks. Untested option: make the crash bite (crashed category's lots score 0 printed value or -2), which is a new mechanic and a guess.
+
+## Required changes (only if the owner wants one more step)
+1. Before any more cycles, a human table test of 5 or 6 players, 2-3 games, with the current v3 rules. KPIs: human fun and replay scores, whether players notice the crash and the ties, teach time. Bots cannot answer whether the hook works.
+2. If a revision is run anyway, one change only: make the crash bite (printed value reduction), re-measure ignore-crash at both counts (target at least +5) and Hype share (45-50%).
+3. Add the end-of-game hand reveal line (clarity), and a running crash tie-break (6p flip at most 20%).
 
 ## Is another revision worth it?
-**Yes, one more cycle: the issues are mechanical (a Hype cap, dropping or fixing open income, a visible tie-break) and the skill gap has already moved, so the next revision should target Hype share of points (now 56 / 64%, target 45-50%) and the two failed ablations.** If Hype share and the ablations do not move, stop and put the game in front of humans or park it, because the remaining problems would then be about the design itself.
+**No: the stop rule I set was "if Hype share and the ablations do not move, stop"; Hype share moved, but the ablations did not (ignore-crash regressed from pass to fail), and the remaining failures are about whether the central twists matter, which is structural (L9). Put the game in front of humans, or park it; do not spend a third bot-only cycle.**
