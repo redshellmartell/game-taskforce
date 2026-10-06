@@ -730,7 +730,7 @@
     {
       "slug": "four-player-partnership-climber",
       "title": "Ladder Pairs",
-      "stage": "brief",
+      "stage": "design",
       "revision": 0,
       "history": [
         {
@@ -744,6 +744,12 @@
           "time": "2026-10-06T18:03:15Z",
           "verdict": null,
           "note": "Brief scored 23/30 (demand 3, gap 3, originality 3, producibility 5, simulatability 4, owner fit 5); waiting for approval: greenlight (four-player-partnership-climber-greenlight)"
+        },
+        {
+          "stage": "design",
+          "time": "2026-10-06T18:51:31Z",
+          "verdict": null,
+          "note": "greenlight approved by owner; design started (learning test 1)"
         }
       ],
       "verdicts": {

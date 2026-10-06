@@ -187,6 +187,12 @@
       "time": "2026-10-06T13:43:21.745Z",
       "decision": "approve",
       "notes": "asymmetric-duel-tug-of-war-revision-2 (revision gate): owner decided in the dashboard"
+    },
+    {
+      "slug": "four-player-partnership-climber",
+      "time": "2026-10-06T18:51:31Z",
+      "decision": "approve",
+      "notes": "four-player-partnership-climber-greenlight (greenlight gate): owner approved in chat"
     }
   ]
 }
