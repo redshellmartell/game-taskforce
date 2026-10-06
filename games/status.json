@@ -730,7 +730,7 @@
     {
       "slug": "four-player-partnership-climber",
       "title": "Ladder Pairs",
-      "stage": "design",
+      "stage": "playtest",
       "revision": 0,
       "history": [
         {
@@ -750,6 +750,12 @@
           "time": "2026-10-06T18:51:31Z",
           "verdict": null,
           "note": "greenlight approved by owner; design started (learning test 1)"
+        },
+        {
+          "stage": "playtest",
+          "time": "2026-10-06T18:56:34Z",
+          "verdict": null,
+          "note": "rules.md v1 written (Ropes, Relay, Uphill); playtest next, using tools/sim-kit"
         }
       ],
       "verdicts": {

@@ -2,3 +2,4 @@
 {"time": "2026-10-06T18:03:15Z", "agent": "market-researcher", "game": "four-player-partnership-climber", "event": "done", "message": "Brief written from the bank: 23/30, originality risk medium-high (Tichu), recommends greenlight"}
 {"time": "2026-10-06T18:03:15Z", "agent": "director", "game": "four-player-partnership-climber", "event": "waiting", "message": "waiting for approval: greenlight (four-player-partnership-climber-greenlight)"}
 {"time": "2026-10-06T18:51:31Z", "agent": "game-designer", "game": "four-player-partnership-climber", "event": "start", "message": "Design pass 1 (learning test 1) after greenlight"}
+{"time": "2026-10-06T18:56:34Z", "agent": "game-designer", "game": "four-player-partnership-climber", "event": "done", "message": "rules.md v1: Ropes reveal hidden partners, Relay, Uphill comeback; Playbook check block present, self-check fixed 14 cases, 3 special rules, 51 lines"}
