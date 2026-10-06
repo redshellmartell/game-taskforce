@@ -149,14 +149,19 @@ def write_playtest(out, N):
     both = lambda k, f: (f(h["5p-" + k]) + f(h["6p-" + k])) / 2
     bw = {k: round((m5["bot"][k] + m6["bot"][k]) / 2, 3) for k in ("random", "greedy", "strategic")}
     skill = round(both("oneS", gapof), 1)
-    skill_mem = round(both("oneN", lambda r: gapof(r, "no-memory")), 1)
+    skill_p = round(both("oneP", lambda r: gapof(r, "planner")), 1)
+    skill_l = round(both("oneL", lambda r: gapof(r, "lite")), 1)
     skill_g = round(both("oneG", lambda r: gapof(r, "greedy")), 1)
     mixed_gap = round(both("SvR", gapof), 1)
-    abl = {nm: round(both("abl-" + k, lambda r: gapof(r, "strategic", nm)), 1) for k, nm in (("N", "no-memory"), ("H", "ignore-hype"), ("C", "ignore-crash"), ("T", "ignore-ties"))}
-    pvi = round(both("PvI", lambda r: gapof(r, "planner", "instinct")), 1)
+    mixed_gap_p = round(both("PvR", lambda r: gapof(r, "planner")), 1)
+    abl = {}
+    for n in (5, 6):
+        g = lambda k: h["%dp-%s" % (n, k)]
+        for k in "HCTA": abl["%s_%dp" % (ABL[k][0], n)] = [round(x, 1) for x in abl_gap(g, n, k)]
+    pvi = 0
     X6 = m6["X"]; ng = len(X6["win"])
     cards = [{"name": "Pass (Paddle)", "played_rate": round(sum(X6["pass"]) / (ng * 14), 3), "win_correlation": round(pearson(X6["pass"], X6["win"]), 3), "flag": None}]
-    for lo, hi in ((1, 3), (4, 6), (7, 9), (10, 12)):
+    for lo, hi in ((1, 3), (4, 6), (7, 9), (10, 11)):
         v = [sum(X6["bid"][x][i] for x in range(lo, hi + 1)) for i in range(ng)]
         cards.append({"name": "Bid value %d-%d" % (lo, hi), "played_rate": round(sum(v) / (ng * 14), 3), "win_correlation": round(pearson(v, X6["win"]), 3), "flag": None})
     for v in range(2, 6):
@@ -169,11 +174,11 @@ def write_playtest(out, N):
     nj = len(h) * N + len(out["experiments"]) * (N // 2)
     man = os.path.join(HERE, "manual_findings.json")
     M = json.load(open(man)) if os.path.exists(man) else {}
-    j = {"verdict": M.get("verdict", "NEEDS-FIXES (bots only, unvalidated)"), "revision": 1, "games_simulated": nj,
+    j = {"verdict": M.get("verdict", "NEEDS-FIXES (bots only, unvalidated)"), "revision": 2, "games_simulated": nj,
          "seat_win_rates": seat, "seat_balance_gap": round(max(spread(a5), spread(a6)), 1),
          "bot_win_rates": bw, "skill_expression": skill,
-         "skill_detail": {"lone_strategic_vs_5_random": skill, "lone_no_memory_vs_random": skill_mem, "lone_greedy_vs_random": skill_g,
-                          "mixed_3S_3R_gap": mixed_gap, "planner_minus_instinct_at_PvI_table": pvi, "ablation_full_minus_ablated_points": abl},
+         "skill_detail": {"lone_strategic": skill, "lone_planner": skill_p, "lone_lite": skill_l, "lone_greedy": skill_g,
+                          "mixed_3S_3R_gap": mixed_gap, "mixed_3P_3R_gap": mixed_gap_p, "ablation_[strategic, planner]_full_minus_ablated_points": abl},
          "length": {"mean_turns": 14.0, "stdev": 0.0, "estimated_minutes": round(mins), "target_minutes": TARGET_MIN},
          "length_histogram": [{"turns": 14, "games": nj}],
          "ties": round(both("allS", lambda r: r["ties"]), 3), "turn_cap_hits": 0,
@@ -183,7 +188,7 @@ def write_playtest(out, N):
          "forced_pass_rate": round(both("allS", lambda r: r["forced_pass_rate"]), 3),
          "unsold_lots_per_game": round(both("allS", lambda r: r["unsold_per_game"]), 2),
          "last_round_winner_flip": round(both("allS", lambda r: r["last_round_winner_flip"]), 3),
-         "cards": cards, "previous": ps.get("previous", {}),
+         "cards": cards, "previous": ps.get("previous", {}), "previous_v2": ps.get("previous_v2", {}),
          "ambiguities": M.get("ambiguities", []), "problems": M.get("problems", [])}
     json.dump(j, open(os.path.join(ROOT, "games", SLUG, "playtest.json"), "w"), indent=2)
     return j

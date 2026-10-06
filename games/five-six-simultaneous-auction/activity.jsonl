@@ -21,3 +21,6 @@
 {"time": "2026-10-06T14:16:05Z", "agent": "game-designer", "game": "five-six-simultaneous-auction", "event": "done", "message": "Cycle 2: rules v3, Hype ceiling +4 per lot as the one lever, open income cut (face-down income), tie rule kept"}
 {"time":"2026-10-06T14:19:29Z","agent":"playtester","game":"five-six-simultaneous-auction","event":"start","message":"Revision 2 playtest (rules v3)"}
 {"time":"2026-10-06T14:20:37Z","agent":"playtester","game":"five-six-simultaneous-auction","event":"step","message":"Sim updated to v3; running headline 2000 games x 17 table kinds x 2 counts + 5 experiments"}
+{"time":"2026-10-06T14:37:22Z","agent":"playtester","game":"five-six-simultaneous-auction","event":"step","message":"Headline + 5 experiments done; running panel bots"}
+{"time":"2026-10-06T14:41:41Z","agent":"playtester","game":"five-six-simultaneous-auction","event":"done","message":"Rev 2 playtest: NEEDS-FIXES (bots only, unvalidated); ignore-crash fails, Hype share 48% both counts"}
+{"time": "2026-10-06T14:41:46Z", "agent": "playtester", "game": "five-six-simultaneous-auction", "event": "done", "message": "Cycle 2 playtest NEEDS-FIXES: Hype share 48/48 (was 56/64, PASS), skill gaps pass, ignore-crash ablation now inert, ignore-hype sign flips at 5p, 6p last-round flip 25%"}

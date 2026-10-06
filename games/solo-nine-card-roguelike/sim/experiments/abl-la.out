@@ -1,1 +1,4 @@
 full      win 0.9715 n=912 med 9.0 use {'Moth': 0.5626, 'Mouse': 0.7794, 'Spider': 0.0817, 'Rat': 0.911, 'Crow': 0.0, 'Snake': 0.9457, 'Fox': 1.0}
+glow      win 0.9715 n=912 med 10.0 use {'Moth': 0.0, 'Mouse': 0.7926, 'Spider': 0.1354, 'Rat': 0.8867, 'Crow': 0.0, 'Snake': 0.9282, 'Fox': 0.9853}
+silk      win 0.9770 n=912 med 9.0 use {'Moth': 0.5367, 'Mouse': 0.7826, 'Spider': 0.0, 'Rat': 0.9114, 'Crow': 0.0, 'Snake': 0.9476, 'Fox': 1.0}
+carry     win 0.9715 n=912 med 9.0 use {'Moth': 0.5638, 'Mouse': 0.7794, 'Spider': 0.0817, 'Rat': 0.911, 'Crow': 0.0, 'Snake': 0.9454, 'Fox': 1.0}

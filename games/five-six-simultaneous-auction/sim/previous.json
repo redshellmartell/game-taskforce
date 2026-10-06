@@ -16,5 +16,14 @@
    "strategic": 0.203
   },
   "verdict": "NEEDS-FIXES"
+ },
+ "previous_v2": {
+  "lone_skill_gap": 25.3,
+  "mixed_gap": 11.8,
+  "hype_share": "0.56 (5p) / 0.64 (6p)",
+  "forced_pass_rate": 0.051,
+  "last_round_flip": "0.20 (5p) / 0.27 (6p)",
+  "verdict": "NEEDS-FIXES",
+  "ablations_v2": "ignore-hype -6.5/+13.1; ignore-crash +7.5/+5.5; ignore-ties -7.0/+2.6; open-income no-memory +2.7/+2.3"
  }
 }
