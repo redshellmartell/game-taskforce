@@ -1,0 +1,208 @@
+{
+ "config": {},
+ "step": 8,
+ "strategic": {
+  "runs": 45360,
+  "win_rate": 0.5775132275132275,
+  "turn_cap_hits": 0,
+  "mean_turns": 8.28670634920635,
+  "median_turns": 8.0,
+  "stdev_turns": 1.847518378983763,
+  "est_minutes": 8.279805996472664,
+  "drift_run_rate": 0.0,
+  "carry_swap_run_rate": 0.002843915343915344,
+  "length_hist": [
+   [
+    5,
+    2866
+   ],
+   [
+    6,
+    6100
+   ],
+   [
+    7,
+    6842
+   ],
+   [
+    8,
+    8782
+   ],
+   [
+    9,
+    8932
+   ],
+   [
+    10,
+    5965
+   ],
+   [
+    11,
+    4071
+   ],
+   [
+    12,
+    1440
+   ],
+   [
+    13,
+    362
+   ]
+  ],
+  "killers": {
+   "Crow": 0.0004,
+   "Owl": 0.0017,
+   "Snake": 0.0154,
+   "Fox": 0.3214,
+   "Hound": 0.6611
+  },
+  "first_shove": 0.3637566137566138,
+  "wins_feint": 0.015193159260955871,
+  "wins_hypno": 0.08818140174072378,
+  "wins_neither": 0.8966254389983204,
+  "beaten": {
+   "Moth": 0.8807,
+   "Mouse": 0.9425,
+   "Spider": 0.8946,
+   "Rat": 0.7875,
+   "Crow": 0.6754,
+   "Owl": 0.4005,
+   "Snake": 0.2518,
+   "Fox": 0.1007,
+   "Hound": 0.5775
+  },
+  "shoved": {
+   "Moth": 0.0226,
+   "Mouse": 0.0044,
+   "Spider": 0.0054,
+   "Rat": 0.1239,
+   "Crow": 0.3024,
+   "Owl": 0.4336,
+   "Snake": 0.5128,
+   "Fox": 0.5961,
+   "Hound": 0.4904
+  },
+  "thief_run_rate": 0.0,
+  "hunt_run_rate": 0.9716269841269841,
+  "trick_use_given_ready": {
+   "Moth": 0.7213,
+   "Mouse": 0.3984,
+   "Spider": 0.1655,
+   "Rat": 0.6542,
+   "Crow": 0.0042,
+   "Snake": 0.2022,
+   "Fox": 0.0871
+  },
+  "wise_change_rate": 0.925355058901244,
+  "owl_ready_rate": 0.40048500881834215
+ },
+ "lookahead": {
+  "runs": 192,
+  "win_rate": 0.9739583333333334,
+  "turn_cap_hits": 0,
+  "mean_turns": 9.119791666666666,
+  "median_turns": 9.0,
+  "stdev_turns": 2.126524932825984,
+  "est_minutes": 9.078993055555555,
+  "drift_run_rate": 0.0,
+  "carry_swap_run_rate": 0.0,
+  "length_hist": [
+   [
+    2,
+    1
+   ],
+   [
+    4,
+    1
+   ],
+   [
+    5,
+    5
+   ],
+   [
+    6,
+    17
+   ],
+   [
+    7,
+    22
+   ],
+   [
+    8,
+    27
+   ],
+   [
+    9,
+    34
+   ],
+   [
+    10,
+    28
+   ],
+   [
+    11,
+    28
+   ],
+   [
+    12,
+    25
+   ],
+   [
+    13,
+    3
+   ],
+   [
+    15,
+    1
+   ]
+  ],
+  "killers": {
+   "Spider": 0.2,
+   "Owl": 0.2,
+   "Snake": 0.2,
+   "Fox": 0.2,
+   "Hound": 0.2
+  },
+  "first_shove": 0.90625,
+  "wins_feint": 0.10160427807486631,
+  "wins_hypno": 0.18181818181818182,
+  "wins_neither": 0.7165775401069518,
+  "beaten": {
+   "Moth": 0.901,
+   "Mouse": 0.9896,
+   "Spider": 0.875,
+   "Rat": 0.9062,
+   "Crow": 0.349,
+   "Owl": 0.2552,
+   "Snake": 0.2135,
+   "Fox": 0.099,
+   "Hound": 0.974
+  },
+  "shoved": {
+   "Moth": 0.2396,
+   "Mouse": 0.2083,
+   "Spider": 0.276,
+   "Rat": 0.1615,
+   "Crow": 0.6615,
+   "Owl": 0.5,
+   "Snake": 0.6406,
+   "Fox": 0.6562,
+   "Hound": 0.2552
+  },
+  "thief_run_rate": 0.0,
+  "hunt_run_rate": 0.984375,
+  "trick_use_given_ready": {
+   "Moth": 0.5376,
+   "Mouse": 0.7789,
+   "Spider": 0.0774,
+   "Rat": 0.9195,
+   "Crow": 0.0,
+   "Snake": 0.9268,
+   "Fox": 1.0
+  },
+  "wise_change_rate": 1.0,
+  "owl_ready_rate": 0.2552083333333333,
+  "layout_step": 2000
+ },
+ "seconds": 30.827290773391724
+}

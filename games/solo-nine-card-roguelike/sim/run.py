@@ -1,4 +1,4 @@
-"""Nine Lives Dungeon headline simulation.
+"""Whiskerdark (rules v2) headline simulation.
 Usage: python3 run.py [--quick] [key=value config overrides]  (e.g. base_claws=3)
 Exhaustive over all 362,880 layouts for the empty Ghost set and each single-Ghost set (strategic bot), plus
 random and greedy bots on the empty set, sessions with Ghost carry-over, and a time model.
@@ -11,6 +11,12 @@ from game import Config, Run, play, NAMES, TRICKS
 import bots as B
 
 BOTS = {"random": B.Random, "greedy": B.Greedy, "strategic": B.Strategic, "lookahead": B.Lookahead}
+def make_bot(spec):
+    """'strategic' or 'strategic:off=glow+silk' (ablations) or 'lookahead:off=silk' -> factory(seed)."""
+    name, _, opt = spec.partition(":"); off = opt[4:].split("+") if opt.startswith("off=") else []
+    cls = BOTS[name]
+    if not off: return cls
+    return lambda seed: cls(seed, off=off)
 N = 362880
 
 def parse_cfg(args):
@@ -22,11 +28,11 @@ def parse_cfg(args):
 
 def work(job):
     bot, ghosts, start, stop, kw, step = job
-    cfg = Config(**kw); Bot = BOTS[bot]
+    cfg = Config(**kw); Bot = make_bot(bot)
     agg = dict(n=0, wins=0, caps=0, turns=Counter(), killers=Counter(), first=Counter(), win_feint=0, win_hypno=0,
                win_neither=0, beaten=Counter(), shoved=Counter(), thief_runs=0, used=Counter(), ever=Counter(),
                wise=0, wise_ready_runs=0, wise_changed_runs=0, owl_ever=0, trick_total=0, hunt=0, tricks_per_run=0,
-               first_shove_wins=0, thief_hit=0, ready_end=0)
+               first_shove_wins=0, thief_hit=0, ready_end=0, silk=0, carry_swap=0, drift=0, drift_runs=0, swap_runs=0, deaths_turn=0)
     for idx, pm in enumerate(itertools.islice(itertools.permutations(range(1, 10)), start, stop, step), start):
         r = play(pm, ghosts, Bot(idx), cfg)
         s = r.stats; a = agg
@@ -43,6 +49,7 @@ def work(job):
         if 6 in s["ever_ready"]:
             a["owl_ever"] += 1; a["wise_changed_runs"] += s["wise"] > 0
         a["trick_total"] += len(s["tricks"]); a["hunt"] += s["hunt"] > 0
+        a["drift_runs"] += s["drift"] > 0; a["swap_runs"] += s["carry_swap"] > 0
     return agg
 
 def merge(parts):
@@ -66,7 +73,7 @@ def summarise(a):
     deaths = n - w
     nm = lambda d: {NAMES[c]: round(v, 4) for c, v in sorted(d.items())}
     return dict(runs=n, win_rate=w / n, turn_cap_hits=a["caps"], mean_turns=tt, median_turns=med,
-                stdev_turns=statistics.pstdev(turns), est_minutes=mins,
+                stdev_turns=statistics.pstdev(turns), est_minutes=mins, drift_run_rate=a['drift_runs'] / n, carry_swap_run_rate=a['swap_runs'] / n,
                 length_hist=sorted(a["turns"].items()),
                 killers=nm({c: v / deaths for c, v in a["killers"].items()}) if deaths else {},
                 first_shove=a["first"]["shove"] / n,
@@ -116,7 +123,7 @@ def main(argv):
             print("ghosts", {k: round(v, 3) for k, v in res["ghost"].items()}, "%.0fs" % (time.time() - t0), flush=True)
     if "--noghost" not in argv:
         res["sessions"] = sessions(kw, 3000 if quick else 20000)
-        res["sessions_lookahead"] = sessions(kw, 100 if quick else 300, "lookahead")
+        res["sessions_lookahead"] = sessions(kw, 100 if quick else 150, "lookahead")
     res["seconds"] = time.time() - t0
     out = os.path.join(HERE, "results.json" if not kw and not quick else "experiments/res-%s.json" % ("_".join(a for a in argv if not a.startswith("--")).replace("=", "") or "quick"))
     json.dump(res, open(out, "w"), indent=1, default=str)

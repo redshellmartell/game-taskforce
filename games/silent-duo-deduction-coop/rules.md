@@ -1,11 +1,11 @@
-# Silent Duo - Rules v1
+# Silent Duo - Rules v2
 
 ## 1. Overview
 
 - **Title:** Silent Duo
-- **Hook:** Two lighthouse keepers guide ships through the fog without saying a word. You can see the ships off your partner's rocks but not your own, and the only way to tell your partner where a ship is: hand over two of your own lamps in the dark and let fate pick which one shines. Every lamp you spend on a signal is a lamp you can no longer use to guide your own ships.
+- **Hook:** Two lighthouse keepers guide ships through the fog without saying a word. You can see the ships off your partner's rocks but not your own, and the only way to tell your partner where a ship is: hand over two of your own lamps in the dark and let a flipped token pick which one shines. Every lamp you spend on a signal is a lamp you can no longer use to guide your own ships.
 - **Players:** 2-3 (best at 2). Fully co-operative: the team wins or loses together.
-- **Play time:** about 20 minutes (about 26-28 turns).
+- **Play time:** about 20 minutes (about 24-28 turns).
 - **Age:** 10+. **Complexity:** 2.5 / 5.
 
 ## 2. Components
@@ -14,7 +14,8 @@
 |---|---|---|
 | Lamp cards | 50 | Values 1 to 10, five copies of each value. No other markings (art only). |
 | Reference cards | 2 | Turn summary (no game function). |
-| Reef tokens | 3 | Identical tokens. Start on the "safe" side; one is flipped to its "wrecked" side for each missed light. |
+| Reef tokens | 2 | Identical tokens. Start on the "safe" side; one is flipped to its "wrecked" side for each missed light. |
+| Reveal token | 1 | Two-sided: one side "Low" (moon), the other "High" (sun). Flipped like a coin for every Offer. |
 
 **Lamp card list**
 
@@ -22,184 +23,205 @@
 |---|---|---|---|---|---|---|---|---|---|---|
 | Copies | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 |
 
-Lamp cards serve four roles during play, depending on where they are:
+Lamp cards serve five roles during play, depending on where they are:
 
 - **Ship** - a face-down card in front of a player; its value is the hidden number that player must find.
 - **Hand card** - a card held by a player.
 - **Fog pile** - face-down cards set aside at setup (nobody looks); a time reserve that Beacons can bring back.
-- **Draw deck** - the night clock. Every turn uses up one card.
-- **Night pile** - face-down cards discarded by the Trim action (nobody looks).
+- **Draw deck** - the night clock.
+- **Night pile** - face-down cards removed by Trim (only the trimmer has seen them; they never return).
 
 Total: 52 cards and 3 tokens. No board, no dice.
 
 ## 3. Setup
 
-1. **Choose a difficulty** by setting the Fog size F: Calm F = 4, Standard F = 8, Storm F = 12. (Standard is the default and the playtest target.)
+1. **Choose a difficulty** by setting the Fog size F: Calm F = 4, Standard F = 8, Storm F = 12. Standard is the default for both 2 and 3 players (provisional; see 7.6).
 2. Shuffle all 50 Lamp cards face-down.
-3. **Deal ships.** With 2 players, deal 3 cards face-down in a row in front of each player. With 3 players, deal 2 cards to each player. These are that player's **ships**. Number each player's ships from left to right as seen by their owner (Ship 1, Ship 2, Ship 3). **An owner may never look at their own ships.** Every other player may look at them now and at any time during the game (lift the card toward yourself, keeping it hidden from its owner).
+3. **Deal ships.** With 2 players, deal 3 cards face-down in a row in front of each player. With 3 players, deal 2 cards to each player. These are that player's **ships**, numbered left to right as seen by their owner (Ship 1, Ship 2, Ship 3). **An owner may never look at their own ships.** Every other player may look at them now and at any time (lift the card toward yourself, keeping it hidden from its owner).
 4. **Deal the Fog pile.** Deal F cards face-down to one side, without anyone looking.
 5. **Deal hands.** With 2 players, 5 cards each. With 3 players, 4 cards each. Players look at their own hand.
-6. The remaining cards are the **draw deck**, face-down (2 players, Standard: 26 cards; 3 players, Standard: 24 cards).
-7. Put the 3 Reef tokens safe side up in the middle.
+6. The remaining cards are the **draw deck**, face-down (2 players: 34 - F cards, so 26 at Standard; 3 players: 32 - F cards, so 24 at Standard).
+7. Put the 2 Reef tokens safe side up and the Reveal token in the middle.
 8. Choose the first player at random. Play passes clockwise.
-9. **From now on the Silence rule applies** (see section 5.1).
+9. **From now on the Silence rule applies** (section 5.1).
 
 Each ship has two signal rows next to it: the **Low row** on the owner's left and the **High row** on the owner's right.
 
+**Open range.** For every unlit ship, let L be the highest card in its Low row (0 if empty) and H the lowest card in its High row (11 if empty). The ship's value is one of the integers strictly between L and H. L and H are public.
+
 ## 4. Turn structure
 
-On your turn, do exactly these phases in order.
+On your turn, do these phases in order.
 
-### Phase 1: Choose and resolve exactly one action
+### Phase 1: Take exactly one action
 
-You must take one of the three actions below if any is legal. You may **Pass** only if none of the three is legal.
+If at least one of the actions below is legal, you must take one of them (your choice). If none is legal, your turn is **skipped**: you do nothing, do not draw, and play passes on. (Before the draw deck is empty this cannot happen, because Trim is always legal then.)
 
 **A. Offer (signal a ship)**
 - **Target:** one unlit ship that is *not* yours (so you can see its value V).
-- **Cost:** choose exactly **two** cards from your hand that meet both conditions:
-  - the two cards have **different values** from each other, and
-  - **neither** card's value equals V.
-- Place the two cards face-down beside the target ship.
-- **Random reveal:** the ship's owner (who cannot see V) picks up both face-down cards, shuffles them out of sight (behind their back or under the table) and turns exactly one face-up. Each card has a 50% chance. (Programs: choose one of the two uniformly at random.)
-- **Honest placement:** you (the offerer) place the revealed card in the target ship's **Low row** if its value is lower than V, or its **High row** if its value is higher than V. You have no choice; the side is fixed by the true comparison. (With 3 players, the third player may check.)
-- The unrevealed card goes back into your hand face-down. Nobody but you learns its value.
-- Meaning, guaranteed by the rules: V is strictly higher than every card in the ship's Low row, and strictly lower than every card in its High row.
+- **Cost:** choose exactly **two** cards from your hand such that:
+  - the two cards have **different values**,
+  - **neither** value equals V, and
+  - **both** values are **inside the ship's open range** (strictly greater than L and strictly less than H).
+  So an Offer is only possible on a ship whose open range still holds at least 3 values.
+- **Placement:** put both cards face-down beside the target ship, the **lower-value card on your left** and the higher-value card on your right.
+- **Random reveal:** the ship's owner flips the Reveal token. "Low": you turn the lower card (left) face-up. "High": you turn the higher card (right) face-up. (Programs: choose the lower or higher card with probability 1/2 each.)
+- **Honest placement:** you place the revealed card in the target ship's **Low row** if its value is lower than V, or its **High row** if it is higher. The side is fixed by the true comparison; you have no choice.
+- The unrevealed card goes back into your hand without being shown. Everyone knows only that it was higher (if "Low" was flipped) or lower (if "High" was flipped) than the revealed card.
+- Guaranteed meaning: V is strictly higher than every Low-row card and strictly lower than every High-row card, and every Offer narrows the open range.
 
 **B. Light (guide one of your own ships)**
 - **Target:** one of your own unlit ships.
-- Play one card from your hand face-up onto it.
-- **Resolver:** with 2 players, your partner; with 3 players, the player on your left. The resolver looks at the ship's value V and compares it with the played card's value C:
-  - **|C - V| <= 1 (lit):** turn the ship face-up. It is **lit**. The played card stays on it. Both cards are out of play.
-  - **C = V exactly (Beacon):** as lit, and also a **Beacon**: move the top 2 cards of the Fog pile (or all of them if fewer remain) face-down to the bottom of the draw deck, without looking at them. If the draw deck is already empty when the Beacon happens, the Beacon has no extra effect.
-  - **|C - V| >= 2 (miss):** the resolver places the played card in that ship's Low row (if C < V) or High row (if C > V), exactly like a signal. Flip one Reef token to its wrecked side. If that was the **third** wrecked Reef, the team loses immediately.
+- **Card:** play one card C from your hand face-up onto it. C must satisfy **L <= C <= H** for that ship (so C could light at least one value still in the open range). A card outside this window may not be played.
+- **Resolver:** with 2 players, your partner; with 3 players, the player on your left (the third player may check). The resolver looks at V and compares:
+  - **|C - V| <= 1 (lit):** the resolver turns the ship face-up. It is **lit**. The ship and C stay face-up in front of you for the rest of the game (public, out of play).
+  - **C = V exactly (Beacon):** lit as above, and also a **Beacon**: move the top 2 cards of the Fog pile (all of them if fewer than 2 remain) face-down to the bottom of the draw deck, without looking. If the draw deck is empty at that moment (only possible during the Last Watch), the Beacon moves nothing.
+  - **|C - V| >= 2 (miss):** the resolver places C in that ship's Low row (if C < V) or High row (if C > V). Flip one Reef token to wrecked. If both Reefs are now wrecked, the team loses immediately (no draw).
 
-**C. Trim (change your lamps in silence)**
+**C. Trim (change your lamps)**
 - Legal only while the draw deck has at least 1 card.
-- Discard one card from your hand face-down onto the Night pile. Nobody looks at it, ever.
-
-**Pass** - only if no action above is legal. Do nothing.
+- Discard one card from your hand face-down onto the Night pile, without showing it.
+- Then (instead of the normal Phase 2 draw) draw **2** cards from the draw deck, keep 1, and put the other face-down on the Night pile without showing it. If the deck has only 1 card, draw it and keep it.
 
 ### Phase 2: Draw
 
-- After Offer, Light or Trim, draw 1 card from the draw deck (if it is empty, do not draw). Your hand size therefore stays constant until the deck runs out (the unrevealed Offer card returns to your hand, so an Offer costs you exactly one card).
-- After a Pass, do not draw.
+- After an Offer or a Light (lit or miss, unless the game has ended), draw 1 card from the draw deck. If it is empty, do not draw.
+- After a Trim, the draw was already done in the Trim action. After a skipped turn, do not draw.
+- Hand size therefore stays constant until the deck runs out (an Offer costs exactly one card; the unrevealed card returns to your hand).
 
 ### Phase 3: Check the end
 
 - If every ship is lit, the team wins immediately.
-- If this turn emptied the draw deck, the **Last Watch** begins (see section 6).
+- If the draw deck became empty during this turn (by any draw, including a Trim), the **Last Watch** begins after this turn (section 6).
 
 ## 5. Special rules and timing
 
-### 5.1 The Silence rule (the communication model)
+### 5.1 The Silence rule and the communication model
 
-After setup step 9, players may not speak, write, gesture, time their plays on purpose, or otherwise communicate anything about cards, ships or plans. The only things that may be said are rules questions, "your turn", and the win or loss.
+After setup step 9, players may not speak, write, gesture, time their plays on purpose, or otherwise communicate about cards, ships or plans. Only rules questions, "your turn", and the win or loss may be said.
 
-The **only channels of information** between players are these public events, all of which are visible to every player:
+**Pre-game agreements are allowed.** Before setup step 9 players may agree any conventions they like. The communication model is therefore: the public events below, read in the light of any pre-game agreement. The rules do not ban codes; they make every public play carry one honest meaning and make extra coded meaning unreliable and costly (section 7.3).
+
+Public events, visible to every player:
 
 | Event | What every other player observes | What stays hidden |
 |---|---|---|
-| Offer | Who offered, which ship, the revealed card's value and its row (Low/High) | The unrevealed card's value |
-| Light (lit) | Who, which ship, the card's value, the ship's value, whether it was a Beacon | Nothing |
-| Light (miss) | Who, which ship, the card's value and its row; one Reef wrecked | The ship's exact value |
-| Trim | Who trimmed | Which card was discarded |
-| Pass | Who passed | - |
-| Draw | Deck size, Fog pile size, Night pile size | The drawn card |
+| Offer | Who offered, which ship, the Reveal token result, the revealed card's value and row | The unrevealed card's value (only that it is above or below the revealed one) |
+| Light (lit) | Who, which ship, C, the ship's value, whether it was a Beacon | Nothing |
+| Light (miss) | Who, which ship, C and its row; one Reef wrecked | The ship's exact value |
+| Trim | Who trimmed | Both cards sent to the Night pile |
+| Skip | Who was skipped | - |
+| Always | Draw deck, Fog pile and Night pile sizes | The cards in them |
 
-Each player additionally knows privately: their own hand, and the values of every ship that is not theirs. Nobody ever learns the values of their own unlit ships, the Fog pile, the Night pile, or another player's hand, except through the events above.
+Each player additionally knows privately: their own hand, the values of every ship that is not theirs, and any card they have sent to the Night pile. Nobody ever learns their own unlit ships' values, the Fog pile, or another player's hand except through these events.
 
-**Pre-game agreements.** Players may discuss strategy before setup step 9, but the rules give every play only one guaranteed meaning (the honest comparison above). The design (section 7) makes extra "code" meanings unreliable rather than banning them.
+### 5.2 Legality summary
 
-### 5.2 Legality checks
-
-- An Offer is illegal if you hold fewer than two cards of different values that are both different from the target ship's value. If no target ship allows a legal Offer, you cannot Offer.
-- A Light is illegal if you have no unlit ships or no cards in hand.
-- Trim is illegal when the draw deck is empty or your hand is empty.
-- Lit ships cannot be targeted by Offer or Light.
-- Values may repeat among ships (five copies of each value exist).
+- **Offer:** target is another player's unlit ship whose open range holds 2 or more legal values that are not V; you hold two cards of different values, both inside the open range, neither equal to V.
+- **Light:** you have an unlit ship and a card C with L <= C <= H for it.
+- **Trim:** the draw deck has at least 1 card (your hand is never empty then).
+- Lit ships cannot be targeted. Values may repeat among ships.
 
 ### 5.3 Resolution details
 
-- Signal rows only grow; cards in them are never removed or moved. A ship's possible values are always the integers strictly between the highest Low-row card (or 0 if empty) and the lowest High-row card (or 11 if empty).
-- If a ship is lit, its signal rows stay on the table; they no longer matter.
-- The resolver of a Light and the offerer in an Offer must follow the comparison exactly. There are no choices in resolving.
-- With 3 players, an Offer on a ship is always resolved by that ship's owner (reveal) and the offerer (placement); a Light is resolved by the player on the lighter's left.
-- Ties: none can arise (fully co-operative; all comparisons are strict or exact).
-- Simultaneous effects: a Light that is both lit and the last unlit ship wins at once; the Beacon is irrelevant then. A miss that wrecks the third Reef ends the game at once, before drawing.
+- Signal rows only grow; cards in them never move. Lit ships keep their rows on the table; they no longer matter.
+- The Offer reveal is decided only by the Reveal token, and Light results only by the comparison. Nobody chooses how anything resolves.
+- With 3 players, any player may Offer on any ship that is not their own; the ship's owner flips the Reveal token and the offerer places the card. A Light is resolved by the player on the lighter's left. The third player has no extra role.
+- Simultaneous effects: a Light that lights the last unlit ship wins at once (a Beacon then is irrelevant). A miss that wrecks the second Reef loses at once, before any draw.
+- No ties can arise: the game is co-operative and every comparison is strict or exact.
 
 ### 5.4 Empty decks
 
-- **Draw deck empty:** no more draws; Trim becomes illegal; the Last Watch runs (section 6). A Beacon after the deck is empty has no extra effect (the Fog cards stay in the Fog pile).
-- **Fog pile empty:** Beacons still light the ship but add no cards.
-- A player whose hand becomes empty during the Last Watch can only Pass.
+- **Draw deck empty:** no more draws; Trim is illegal; the Last Watch runs (section 6). A Beacon then moves nothing.
+- **Fog pile empty:** Beacons still light the ship but move nothing.
+- During the Last Watch a player with no legal Offer or Light is skipped.
 
 ## 6. End of game and scoring
 
 The game ends in exactly one of these ways:
 
 1. **Win:** all ships are lit (checked immediately after each Light).
-2. **Loss by reef:** the third Reef token is wrecked.
-3. **Loss by dawn:** the draw deck becomes empty (a player draws its last card). This starts the **Last Watch**: each player, beginning with the next player clockwise, takes exactly one more turn (so the player who drew the last card takes the final turn). If any ship is still unlit after the Last Watch, the team loses.
+2. **Loss by reef:** the second Reef token is wrecked.
+3. **Loss by dawn:** the draw deck becomes empty. After the turn in which it empties, the **Last Watch** begins: every player takes exactly one more turn, in clockwise order, starting with the player to the left of the one who emptied the deck and ending with that player. If any ship is still unlit after the Last Watch, the team loses.
 
-Turn count reference (Standard, no Beacons): 2 players, 26 drawing turns + 2 Last Watch turns = 28 turns. 3 players, 24 + 3 = 27 turns.
+**Termination and turn cap.** Before the Last Watch every turn removes at least 1 card from the draw deck, and Beacons can add at most F cards in total, so the game lasts at most (starting draw deck + F + number of players) turns: 2 players at Standard, 26 + 8 + 2 = 36. Simulations should use this as the turn cap; reaching it is a bug.
 
-**Score (for tracking and the simulation):** a win scores 10 + (cards left in the draw deck at the moment of winning). A loss scores the number of ships lit. There are no tiebreakers; the game is co-operative.
+**Score (for tracking and the simulation):** a win scores 10 + (cards left in the draw deck at the moment of winning). A loss scores the number of ships lit. No tiebreakers (co-operative).
 
 ## 7. Design notes
 
-### What the game is about
+### 7.1 What the game is about
 
-You hold the information your partner needs, and your partner holds the information you need. The core decision every turn is a three-way pull:
+You hold the information your partner needs, and your partner holds the information you need. Every turn is a three-way pull:
 
-- **Offer** - spend a card to narrow down a partner's ship. You choose which ship and which two cards, but chance chooses which of the two is shown. Good offers use two cards that both say something useful (for a ship worth 7: offer a 5 and a 6, so either one shows "higher than 5" or "higher than 6"). Bad offers waste a card.
-- **Light** - spend a card to guide your own ship, using what your partner has told you. Lighting only needs to be within 1, so a range of three values (for example "between 5 and 9", which means 6, 7 or 8) lets you play the middle value safely. Lighting earlier on a wider range risks a Reef.
-- **Trim** - say nothing and change a card. Silence is information: a Trim tells your partner "I had no good offer and no safe light", which hints at what your hand lacks.
+- **Offer** - spend a card to narrow a partner's ship. You choose the ship and the pair; the token chooses which is shown. Good pairs make both outcomes useful (ship 7, open range 1-10: offer 5 and 6, or 6 and 9 to bracket it).
+- **Light** - spend a card to guide your own ship. Within 1 is enough, so an open range of three values lets you play the middle safely. Lighting on a wider range risks a Reef, and with only one free miss that risk is serious.
+- **Trim** - fish for a better lamp at the price of extra time: a Trim burns 2 deck cards instead of 1. It is the right move when your hand fits nothing, and a costly one to repeat.
 
-### The twist: signals are paid for with the lamps you need
+### 7.2 The twist: signals are paid for with the lamps you need
 
-The cards you signal with are the same cards you will need to light your own ships, and you don't yet know which values you will need. Spending your only 7 on a signal might be the right move, or it might strand your own Ship 2. On top of that comes the **double-lamp offer**: you choose two cards, chance picks one. It is new to the genre and does two jobs. It gives a hidden-information decision with real skill (choosing a pair where both cards are useful) and is the main anti-code device (below).
+The cards you signal with are the cards you need to light your own ships, and you don't yet know which values you will need. On top of that, the **double-lamp offer**: you choose two cards, the token picks one. This gives a skilled hidden-information choice (a pair where both halves help) and is half of the anti-code design.
 
-### Why a pre-agreed code cannot collapse the game
+### 7.3 Why a pre-agreed code should not pay (to be confirmed by simulation)
 
-The brief's red flag is that "the card you play is the only signal" can turn into a fixed code. Silent Duo answers this structurally rather than by forbidding it:
+v1 claimed codes lose to honest play; the v1 simulation showed a hat-guessing code gaining +3.6 points at F = 8 and +12.1 at F = 16. v2 closes the free channels the code used:
 
-1. **Every public play has one meaning guaranteed by the rules, and it is honest.** An offered card's row is fixed by the true comparison; a Light's result is fixed by the resolver. A code can only add meaning through *which* card and ship were chosen, never through how they are placed.
-2. **The random reveal corrupts codes.** A code such as "the value I reveal on Ship 1 tells you Ship 2's value" only works if *both* offered cards carry the same coded message. Because the two cards must have different values, a coded message in one card is matched by noise in the other, chosen at random 50% of the time, and the receiver cannot tell which happened. Honest content is always true; coded content is wrong about half the time. Codes therefore lose to honest play over time.
-3. **There is no free face-up play.** The only play without a forced meaning (Trim) is face-down, so it carries one bit at most ("I trimmed").
-4. **Deliberately missing a Light as a code costs a Reef**, and only two Reefs can be spent before the third one loses. Each miss also burns a card and a turn.
-5. **Even perfect information does not guarantee a win.** The lighter still has to hold a card within 1 of the ship, and with about 28 turns for 6 ships, card supply and timing remain a puzzle after everything is known.
+1. **No free values.** Both offered cards must lie inside the ship's open range, so every offered card narrows that ship. A card chosen for its coded meaning must also be an honest signal, usually a poor one (far from V), so a coded offer costs honest information on the target ship. The open range shrinks after every offer, so the freedom to pick values shrinks too.
+2. **Neutral randomness.** The reveal is a token flip, not a human shuffle, so a team cannot agree on "always reveal the left card". A coded card is shown only half the time, and the receiver cannot tell when the honest half was shown.
+3. **No hopeless Lights.** A Light card must be within the window L..H, and a deliberate miss costs one of only two Reefs, so miss-codes are nearly unaffordable.
+4. **No free face-up play.** Trim and skips are face-down or empty; they carry at most "I trimmed".
 
-Natural conventions such as "I offer cards close to the ship" or "I offer two cards on the same side" are allowed and intended. They only sharpen the honest content and reward reading your partner.
+Natural reading ("my partner offered far from the edge, so they lacked closer cards") is intended skill, not a code.
 
-### Deduction depth
+### 7.4 Comeback and early luck
 
-- **Interval narrowing** from signal rows (shown on the table).
-- **Card counting:** there are five copies of each value. The ship values are drawn from the same deck, so visible ships, signals and lit cards tell you which values are scarce. Example: if you can see three 7s and hold two 7s, your own ship cannot be a 7.
-- **Reading choices:** a revealed 3 in the Low row of a ship your partner could have signalled more tightly suggests they did not hold a 4, 5 or 6. Their other ships, and what they kept, tell you what they need.
-- **Ships at the edges** (1, 2, 9, 10) can be pinned down by a single signal, and a Beacon (exact hit) buys two more turns from the Fog. That gives a real choice between lighting now on a range of three values and spending another turn to try for an exact hit.
+Co-op has no leader; the "comeback" question is whether a bad start can be recovered. A bad deal (hands far from the ships) is repaired by Trim selection (draw 2 keep 1); a late, precise team earns time back with Beacons; the first 4-6 turns are Offers, so round 1 decides nothing. Closeness KPI (v1: 74% of wins with 3 or fewer deck cards left, 77% of losses with one ship unlit; target about 30% or more each) should be re-checked.
 
-### Balance and catch-up
+### 7.5 Deduction depth and skill gap
 
-- The game is co-operative with symmetric roles, so seat balance is not a factor. No player can dictate, because each player alone holds the values of their partner's ships.
-- Tension curve: Reefs allow two risky lights. Beacons give back time to a team that plays precisely. The Last Watch makes the final round tense.
-- Difficulty dial: Fog size F (4/8/12) controls the number of turns without changing any rule.
+Interval narrowing; card counting (five of each value; ships, rows, lit cards, the Reveal token result and your own Night cards are all evidence); reading the partner's pair choice; and timing (light now on a 3-value range or wait for an exact Beacon). Skill gap target: Honest at least 20 points above Random (v1: 72 points).
 
-### Notes for the playtester (bot design and KPIs)
+### 7.6 Target band and the one tuning knob
 
-- **Bot observation** must be exactly the table in 5.1 plus that bot's private knowledge. The Offer reveal and all shuffles must use the RNG.
-- Suggested bot tiers:
-  - **Random:** a uniformly random legal action with random legal targets and cards.
-  - **Honest:** tracks each own ship's possible range plus card counting. Lights the middle of the range when the range has 3 or fewer values (or 4 or fewer with 2 Reefs safe and 4 or fewer deck cards left). Otherwise Offers the pair that best narrows the partner's widest-range ship, preferring cards it does not need for its own likely values. Trims its least useful card when no offer narrows a range.
-  - **Convention:** Honest plus agreed pair rules (for example, always offer two cards on the same side, as close to V as possible), with the receiver updating on that rule.
-  - **Code attack:** a hat-guessing style code, where (revealed value + ship index) mod 10 encodes another ship's value, plus deliberate-miss codes, to test the red flag.
-- **Targets:**
-  - Honest or Convention bots at Standard win 40-60%.
-  - Random wins at least 20 points less (expected under 5%).
-  - The Code attack bot must **not** beat the best Honest or Convention bot by more than 10 points. If it does, the anti-code design has failed.
-  - Average length is 26-28 turns (about 20 minutes).
-- Seat balance and lead changes do not apply to a co-op game. Instead, report **lateness**: the share of wins with 3 or fewer deck cards left, and the share of losses with all but one ship lit. Both should be substantial (around 30% or more) for the game to feel close.
-- **Tuning levers, in order:** Fog size F; the lighting tolerance (within 1); the number of Reefs; the Beacon bonus (2 cards).
+- **Band:** a competent team wins **40-60%** at Standard, at 2 players and at 3 players separately, judged on the spread of two bots (Honest and Greedy), never on one bot.
+- **Knob:** the Fog size F, set separately per player count if needed. Nothing else is tuned. Standard F = 8 is provisional for both counts: v2 makes the game harder than v1 (2 Reefs, Trim burns 2 cards, restricted Offers and Lights), so the v1 result (2p Honest 73% at F = 8) no longer applies. The Standard F for each count is chosen from the sweep in 7.7 after a human test, not from one bot.
+
+### 7.7 Notes for the playtester (bots, ablations, KPIs)
+
+- Bot observation is exactly the table in 5.1 plus private knowledge. The Reveal token and all shuffles use the RNG.
+- **Reference bots (two strengths):** Honest (range tracking and card counting; lights when its best card lights with at least about 0.95 probability, or at lower confidence when the deck has 4 or fewer cards and no Reef is wrecked); Greedy (lights at about 50% confidence, no card counting). Plus Random (uniform legal action). The Convention tier is dropped (v1: no value).
+- **Code attack:** the v1 hat-guessing code (revealed value + ship index) mod 10, restricted to legal v2 Offers, plus any legal miss-code. Test at F = 8 and F = 12, 2 players.
+- **Ablation bots (each must lose at least 5 points to Honest, else the feature is a dead rule):**
+  - Pair-blind: offers a random legal pair on the ship it would have chosen (tests the double-lamp choice).
+  - Trim-blind: on a Trim keeps a random one of the two drawn cards (tests the Trim choice).
+  - Beacon-blind: never delays a safe Light to try for an exact hit (tests the Beacon).
+  - No card counting (v1: 64% vs 73%, passed).
+- **Targets:** Honest and Greedy both in 40-60% at the chosen Standard F; Greedy no more than Honest + 5; Random at least 20 under Honest; Code attack no more than Honest + 10 at F = 8 and F = 12; Trim under 25% of turns with runs of 3+ consecutive Trims by one player in under 10% of games; Beacons about 2 or fewer per game; length 24-28 turns (20 minutes +-20%); zero turn-cap hits.
+- Report win rates for F in {4, 8, 12} at 2 and 3 players for Honest and Greedy (the knob sweep).
+
+### 7.8 Rule budget
+
+About 200 lines of rules text with 4 special rules (double-lamp Offer with the Reveal token, Light window and Beacon, Trim draw-2-keep-1, Last Watch). The teach is a one-page reference card's worth of actions but the rulebook is longer than one page (see Known gaps).
 
 ## 8. Changelog
 
-- v1 (2026-10-04): initial design from the brief. No revisions yet.
+- **v2 (revision 1).** Targeted fixes from `playtest-report.md` and `critique.md`; no new mechanics beyond what the fixes need.
+  - Code channel (critic change 1; playtest +12.1 at F = 16): both offered cards must be inside the open range; deliberate hopeless Lights are illegal (Light window L <= C <= H).
+  - Secret-shuffle trust gap (critic clarity): the owner's hidden shuffle is replaced by a flipped Reveal token choosing the lower or higher card (1 token added). Neutral randomness also stops "always reveal left" agreements.
+  - Make caution pay (critic change 3; Greedy 81.6% vs Honest 73%): Reefs 3 to 2; the second miss loses.
+  - Trim was a waiting action (critic change 4; 38% of turns, runs of 3-5): Trim now draws 2, keeps 1, Night-piles the other. It gives a real hand-fixing choice and costs double time, so runs of Trims are punished.
+  - Difficulty (critic change 2; Honest 73%): handled by the three changes above, which all make the game harder; Fog stays the single knob, Standard F = 8 provisional, band 40-60% per player count, no Fog chosen from one bot (L2).
+  - Pass flagged as dead: Pass removed as an action; a player with no legal action is skipped (only possible in the Last Watch).
+  - Convention tier dropped from the bot notes (critic change 6).
+  - Silence vs pre-game codes: decided; pre-game agreements are allowed and the design must withstand them (5.1, 7.3).
+  - Ambiguities fixed: Last Watch order (6); Beacon timing, Fog shortage and empty deck (4 B, 5.4); hopeless Lights (now illegal); forced bad moves and Pass (Phase 1); Offers that tell nothing (now illegal); 3-player roles (5.3); a miss draws unless the game ended (Phase 2); Trim with 1 card left (4 C, Phase 3); the played card stays face-up on a lit ship (4 B).
+- v1: initial design from the brief.
+
+## 9. Known gaps
+
+- **Anti-code claim unproven.** v2 restricts the code channel but it is not yet simulated. If Code attack still beats Honest by more than 10 points at F = 12, the fallback (a mechanic change, needs a revision decision) is to require both offered cards on the same side of V.
+- **Standard Fog not set by data.** F = 8 is provisional; human teams deduce worse than bots, so the critic's 2-session human test should set the final value per player count.
+- **Beacon may be a weak twist.** If the Beacon-blind ablation loses by under 5 points, the Beacon should be cut in a later revision.
+- **Rule budget (L7):** the rulebook is about 200 lines, over a one-page teach; untimed.
+- **3-player mode** tested less than 2-player (v1: 53% at F = 8); its band must be confirmed separately (L8).
+- **Audience drift:** bot-predicted family fun 3.3; not addressed in this revision.
