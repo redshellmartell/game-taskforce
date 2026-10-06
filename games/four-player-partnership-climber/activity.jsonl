@@ -7,3 +7,5 @@
 {"time": "2026-10-06T19:02:48Z", "agent": "playtester", "game": "four-player-partnership-climber", "event": "step", "message": "Sim built; Reader ~ Greedy after 3 debug attempts (experiments/e1.py); running headline 2000 games"}
 {"time": "2026-10-06T19:09:43Z", "agent": "playtester", "game": "four-player-partnership-climber", "event": "done", "message": "NEEDS-FIXES (bots only): hidden-partner twist inert (A1-A4 fail, Reader~Greedy), lead changes 1.13; panel.json written; wall-clock about 15 minutes"}
 {"time": "2026-10-06T19:10:00Z", "agent": "director", "game": "four-player-partnership-climber", "event": "step", "message": "Playtest cycle 0 done: NEEDS-FIXES, 4 of 4 ablations fail, 9 ambiguities, no dead cards, about 15 min wall-clock; fix pass next"}
+{"time": "2026-10-06T19:11:05Z", "agent": "game-designer", "game": "four-player-partnership-climber", "event": "done", "message": "Fix-before-critic pass: rules v1.1, 9 ambiguities closed, no mechanic or number changed"}
+{"time": "2026-10-06T19:11:05Z", "agent": "critic", "game": "four-player-partnership-climber", "event": "start", "message": "Cycle 0 critique (director-logged)"}
