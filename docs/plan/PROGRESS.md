@@ -2,6 +2,13 @@
 
 Written by Claude Code after each task, newest first. See `WORKFLOW.md` for the format.
 
+## 2026-10-06 — Learning session: items 2 to 5 built (shared sim kit, mechanics reference, checklists, one-time agent edit)
+- **Built:** `tools/sim-kit/` (stats, KPI table, `playtest.json` writer, template, README, 7 tests; checked on Duel Flip's real sim: it reproduced runaway 0.74, lead changes 2.7, length 22 turns and the bot ranking); `studio/mechanics.md` (37 lines, from our own results only); `studio/checklists.md` (designer, playtester, critic, including the 20-minute time box, the re-run-all-ablations rule and one shared critic stop rule); playbook rule 8. **One-time edit (owner-approved):** one sentence added to each of `game-designer.md`, `playtester.md`, `critic.md` pointing at these files. Not touched: `CLAUDE.md`, any other agent file.
+- **Not done by choice:** item 1 (human playtests) and item 6 (research on real games).
+- **Owner idea to keep (items 1 and 6 connected):** find public rules for real games and, where it is public and safe, the characteristics or personas of their reviewers; then feed that to the model, or run those real games through our playtest and correlate the simulated results with the reviews. Needs the `deep-research` gate, the no-BoardGameGeek rule (including datasets scraped from it unless their terms clearly allow this use), and no personal data about individual reviewers: use only aggregate review text and ratings from sources whose terms permit it. Questions for the owner when it is picked up: which sources count as safe (publisher rulebooks, open-licensed reviews, Reddit/Dice Tower/Meeple Mountain snippets), and how many games to correlate.
+- **Not tested:** the kit has run a toy game and Duel Flip only; the next playtest is its first real use. The agent edits are untested until an agent reads them.
+- Questions for the owner: none open for this task.
+
 ## 2026-10-06 — Task 013 first live run (taskforce, parallel agents, 1-hour window)
 - **Ran:** cycles for the auction (2), silent-duo (2), tug-of-war (cycle 2), hidden-movement grid (1) and Whiskerdark (1, critic pending), with up to 3 playtests at once at the owner's request. Four `review-cap` requests raised (stage 3b works: two automatic cycles for the auction with no click, then the request). Lessons L10 and L11 added; scoreboard and `cycles.json` kept per cycle; retro in `studio/retros/2026-10-06.md` (stage 4's first retro; its proposals await the owner).
 - **Result:** no game reached PASS. Critic: auction 3.33, silent-duo 3.33, tug-of-war 3.17, grid 3.00. Two games (auction, silent-duo) are recommended for a human playtest, two (grid, tug-of-war) for parking.

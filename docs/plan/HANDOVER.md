@@ -44,6 +44,7 @@ Read this first in a fresh session, after `CLAUDE.md`. It holds context that is 
 - Live on `main`: scoreboard, `studio/lessons.md` (L1-L11), `studio/design-rules.md`, review cap in `CLAUDE.md`, `review-cap` gate in the dashboard. First run done 2026-10-06 (see `studio/retros/2026-10-06.md`); the retro's proposed agent and playbook changes are NOT applied and need the owner's OK. Stage 5 (human ground truth) not started.
 - Waiting on the owner (all `review-cap` requests in `games/approvals.json`): hidden-movement grid (park), tug-of-war (park), silent-duo (pitch for a human test), auction (pitch for a human test). A pitch needs the owner's explicit decision because the playtest verdict is NEEDS-FIXES.
 - Next run: Whiskerdark (`solo-nine-card-roguelike`) needs its fix-before-critic pass and critic (playtest done: Carry dead, Silk negative, lookahead 96%, 7 ambiguities). `heavenly-bodies` still needs the owner's rulings; the pending designer note in `games/_notes/` is for it.
+- Learning session 2026-10-06: shared sim kit `tools/sim-kit/` (playtesters should use it), `studio/mechanics.md`, `studio/checklists.md`, one-line pointers added to the three agent files (owner's one-time OK). Owner idea parked: public real-game rules plus reviewer personas, to correlate with our playtests (see PROGRESS).
 - Usage guard was calibrated to the app (5h 7%, weekly 9% on 2026-10-06); recalibrate when it drifts.
 
 ## Click sync
