@@ -9,13 +9,16 @@ ROOT = os.path.abspath(os.path.join(HERE, "..", "..", ".."))
 SLUG = "five-six-simultaneous-auction"
 TARGET_MIN = 20
 
+CLS = {"S": B.Strategic, "R": B.Random, "G": B.Greedy, "N": B.NoMemory, "H": B.IgnoreHype, "C": B.IgnoreCrash,
+       "T": B.IgnoreTies, "P": B.Planner, "I": B.Instinct}
+KINDS = {"mixed": "SRGSRG", "SvR": "SRSRSR", "oneS": "SRRRRR", "oneN": "NRRRRR", "oneG": "GRRRRR", "NvR": "NRNRNR",
+         "allS": "SSSSSS", "allR": "RRRRRR", "allG": "GGGGGG", "PvI": "PIPIPI", "SvI": "SISISI", "PvS": "PSPSPS",
+         "abl-N": "SNSNSN", "abl-H": "SHSHSH", "abl-C": "SCSCSC", "abl-T": "STSTST"}
 def table(kind, n, g):
     """bot class list for a table; rotated by game index g so every bot meets every seat equally."""
-    S, R, G = B.Strategic, B.Random, B.Greedy
-    base = {"mixed": [S, R, G, S, R, G], "SvR": [S, R, S, R, S, R], "allS": [S] * 6, "allR": [R] * 6, "allG": [G] * 6,
-            "oneS": [S, R, R, R, R, R]}[kind][:n]
+    base = [CLS[ch] for ch in KINDS[kind]][:n]
     k = g % n
-    return base[k:] + base[:k]          # list index = seat; rotation shifts which seat each bot gets
+    return base[k:] + base[:k]
 
 def pearson(x, y):
     n = len(x); mx, my = sum(x) / n, sum(y) / n
@@ -26,9 +29,9 @@ def evaluate(cfg, kind, N, seed0=0, detail=False):
     n = cfg.players; seat = [0.0] * n; byb = {}; cnt = {}; ties = 0
     leadch = []; early = []; early10 = []; cap = 0
     unsold = canc = nodraw = resh = forced = 0; hype_pts = tot_pts = 0; lastflip = crashflip = 0
-    handavg = []; leftover = []; sec = []; crashed = [0] * CATS; crash_none = 0; margin = []
-    X = {"pass": [], "bid": [[] for _ in range(11)], "lotcat": [[] for _ in range(CATS)], "lotval": [[] for _ in range(6)],
-         "win": [], "plays": [[0, 0] for _ in range(11)]}
+    blk = []; handavg = []; leftover = []; sec = []; crashed = [0] * CATS; crash_none = 0; margin = []
+    X = {"pass": [], "bid": [[] for _ in range(cfg.bid_max + 1)], "lotcat": [[] for _ in range(CATS)], "lotval": [[] for _ in range(8)],
+         "win": [], "plays": [[0, 0] for _ in range(cfg.bid_max + 1)]}
     for g in range(N):
         classes = table(kind, n, g)
         bots = [c(seed0 + g * 7 + i) for i, c in enumerate(classes)]
@@ -46,7 +49,7 @@ def evaluate(cfg, kind, N, seed0=0, detail=False):
         for arr, idx in ((early, cfg.rounds // 2), (early10, cfg.rounds - 3)):
             l = st.leaders[idx - 1]
             if l >= 0: arr.append(1 if l in w else 0)
-        unsold += st.stats["unsold"]; canc += st.stats["cancelled"]; nodraw += st.stats["nodraw"]; resh += st.stats["reshuffles"]
+        blk.append(st.stats["block_sum"] / cfg.rounds); unsold += st.stats["unsold"]; canc += st.stats["cancelled"]; nodraw += st.stats["nodraw"]; resh += st.stats["reshuffles"]
         forced += st.stats["forced_pass"]; handavg.append(st.stats["hand_sum"] / st.stats["hand_obs"])
         leftover.append(sum(len(h) for h in st.hands) / n); sec.append(st.stats["sec"])
         sc, eff = r["scores"], r["eff"]
@@ -61,10 +64,10 @@ def evaluate(cfg, kind, N, seed0=0, detail=False):
                 X["pass"].append(st.plays[p]["pass_"])
                 for v in range(1, cfg.bid_max + 1): X["bid"][v].append(st.plays[p]["bid"][v])
                 for c in range(CATS): X["lotcat"][c].append(sum(1 for l in st.won[p] if l[0] == c))
-                for v in range(1, 6): X["lotval"][v].append(sum(1 for l in st.won[p] if l[1] - cfg.lot_bonus == v))
+                for v in range(1, 8): X["lotval"][v].append(sum(1 for l in st.won[p] if l[1] - cfg.lot_bonus == v))
             for v in range(1, cfg.bid_max + 1):
                 X["plays"][v][0] += sum(pl["bid"][v] for pl in st.plays); X["plays"][v][1] += st.lotwins_by_bid[v]
-    res = dict(n=n, N=N, seat={i + 1: seat[i] / N for i in range(n)}, bot={k: v[0] / v[1] for k, v in byb.items()},
+    res = dict(block_mean=sum(blk) / N, n=n, N=N, seat={i + 1: seat[i] / N for i in range(n)}, bot={k: v[0] / v[1] for k, v in byb.items()},
                ties=ties / N, lead_changes=sum(leadch) / N, runaway_half=sum(early) / max(1, len(early)),
                runaway_late=sum(early10) / max(1, len(early10)), unsold_per_game=unsold / N, cancelled_bids_per_game=canc / N,
                nodraw_per_game=nodraw / N, reshuffles=resh / N, forced_pass_rate=forced / (N * n * cfg.rounds),
@@ -78,103 +81,98 @@ def evaluate(cfg, kind, N, seed0=0, detail=False):
 def spread(res):  # max deviation of a seat from fair, in points
     return max(abs(v - 1 / res["n"]) for v in res["seat"].values()) * 100
 
+def _job(a):
+    key, n, kind, kw, N, seed0, detail = a
+    return key, evaluate(replace(Config(players=n), **kw), kind, N, seed0=seed0, detail=detail)
+
+def pct(x): return round(x * 100, 1)
+def gapof(r, a="strategic", b="random"): return (r["bot"][a] - r["bot"][b]) * 100
+
+# Configurations tried beyond the headline (max 5; the first pass is the headline itself). Edit EXP to change.
+EXP = {"E1 lots 3-6": dict(lot_bonus=1), "E2 hand5": dict(start_hand=5), "E3 bids1-11": dict(bid_max=11),
+       "E4 lots 4-7": dict(lot_bonus=2), "E5 income1": dict(income=1)}
+
 def main():
+    from multiprocessing import Pool
     N = int(sys.argv[1]) if len(sys.argv) > 1 and sys.argv[1].isdigit() else 2000
-    out = {"headline": {}, "experiments": {}}
+    jobs = []
     for n in (5, 6):
-        cfg = Config(players=n)
-        for kind in ("mixed", "SvR", "oneS", "allS", "allR", "allG"):
-            out["headline"]["%dp-%s" % (n, kind)] = evaluate(cfg, kind, N, seed0=n * 100000, detail=(kind == "mixed"))
-    # experiments (max 5), single change each, 6 players, 1000 games
-    EXP = {
-      "E1 lots+2": dict(lot_bonus=2), "E2 income2": dict(income=2), "E3 halve": dict(bubble="halve"),
-      "E4 bid1-12": dict(bid_max=12), "E5 hand5": dict(start_hand=5),
-    } if "--no-exp" not in sys.argv else {}
-    for name, kw in EXP.items():
-        for n in (6,):
-            for kind in ("oneS", "allS"):
-                out["experiments"]["%s %dp-%s" % (name, n, kind)] = evaluate(replace(Config(players=n), **kw), kind, N // 2, seed0=777000 + n)
-    for k, v in out["headline"].items():
-        v.pop("X", None) if k.endswith("mixed") and False else None
+        for kind in KINDS:
+            jobs.append(("%dp-%s" % (n, kind), n, kind, {}, N, n * 100000, kind == "mixed"))
+    if "--no-exp" not in sys.argv:
+        for name, kw in EXP.items():
+            for kind in ("oneS", "allS", "abl-N"):
+                jobs.append(("%s 6p-%s" % (name, kind), 6, kind, kw, N // 2, 777000, False))
+    with Pool(4) as p: res = dict(p.map(_job, jobs))
+    out = {"headline": {k: v for k, v in res.items() if k[:3] in ("5p-", "6p-")}, "experiments": {k: v for k, v in res.items() if k[:3] not in ("5p-", "6p-")}}
+    with open(os.path.join(HERE, "results.json"), "w") as f: json.dump(out, f, default=lambda o: o, indent=1)
     write_playtest(out, N)
-    with open(os.path.join(HERE, "results.json"), "w") as f:
-        json.dump(out, f, default=lambda o: o, indent=1)
-    h = out["headline"]; line = lambda r: "seatgap %.1f | bots %s | LC %.2f | runaway %.2f/%.2f | min %.1f | tie %.3f" % (
-        spread(r), {k: round(v * 100, 1) for k, v in r["bot"].items()}, r["lead_changes"], r["runaway_half"], r["runaway_late"], r["minutes"], r["ties"])
-    pass
-    out["headline"]["6p-allS"]  # baseline for comparison
-    ex = lambda r: "unsold %.1f hype%% %.0f forced%% %.0f tie %.3f LC %.2f run %.2f/%.2f flip %.2f min %.1f bots %s seatgap %.1f" % (
-        r["unsold_per_game"], r["hype_share_of_points"] * 100, r["forced_pass_rate"] * 100, r["ties"], r["lead_changes"], r["runaway_half"],
-        r["runaway_late"], r["last_round_winner_flip"], r["minutes"], {k: round(v * 100, 1) for k, v in r["bot"].items()}, spread(r))
-    print("--- baselines (6p) vs experiments (6p, %d games)" % (N // 2))
-    for k in ("6p-oneS", "6p-allS"): print("BASE", k, ex(h[k]))
-    for k, r in out["experiments"].items(): print(k, ex(r))
+    h = out["headline"]
+    print("Headline %d games per table kind (2 player counts x %d kinds)" % (N, len(KINDS)))
+    for n in (5, 6):
+        g = lambda k: h["%dp-%s" % (n, k)]
+        print("%dp seatgap(allS) %.1f | lone S %.1f vs R %.1f (gap %.1f) | lone NoMem gap %.1f | lone G gap %.1f | mixed S/R/G %s" % (
+            n, spread(g("allS")), pct(g("oneS")["bot"]["strategic"]), pct(g("oneS")["bot"]["random"]), gapof(g("oneS")), gapof(g("oneN"), "no-memory"),
+            gapof(g("oneG"), "greedy"), [pct(g("mixed")["bot"][k]) for k in ("strategic", "random", "greedy")]))
+        print("   3S+3R: S-R %.1f | 3N+3R: N-R %.1f | planner v instinct %s | S v instinct %s | planner v S %s" % (
+            gapof(g("SvR")), gapof(g("NvR"), "no-memory"), (pct(g("PvI")["bot"]["planner"]), pct(g("PvI")["bot"]["instinct"])),
+            (pct(g("SvI")["bot"]["strategic"]), pct(g("SvI")["bot"]["instinct"])), (pct(g("PvS")["bot"]["planner"]), pct(g("PvS")["bot"]["strategic"]))))
+        print("   ablation (full S minus ablated, points): " + ", ".join("%s %.1f" % (k[4:], gapof(g(k), "strategic", {"N": "no-memory", "H": "ignore-hype", "C": "ignore-crash", "T": "ignore-ties"}[k[4]])) for k in ("abl-N", "abl-H", "abl-C", "abl-T")))
+        a = g("allS")
+        print("   allS: hype%% %.0f forced%% %.1f unsold %.1f block %.1f cancelled %.1f LC %.2f runaway %.2f/%.2f flip %.2f min %.1f tie %.3f" % (
+            a["hype_share_of_points"] * 100, a["forced_pass_rate"] * 100, a["unsold_per_game"], a["block_mean"], a["cancelled_bids_per_game"],
+            a["lead_changes"], a["runaway_half"], a["runaway_late"], a["last_round_winner_flip"], a["minutes"], a["ties"]))
+    print("--- experiments (6p, %d games)" % (N // 2))
+    for name in EXP:
+        e = lambda k: out["experiments"]["%s 6p-%s" % (name, k)]
+        a = e("allS")
+        print("%s: loneS gap %.1f | N-abl S-N %.1f | allS hype%% %.0f forced%% %.1f unsold %.1f LC %.2f run %.2f flip %.2f seatgap %.1f" % (
+            name, gapof(e("oneS")), gapof(e("abl-N"), "strategic", "no-memory"), a["hype_share_of_points"] * 100, a["forced_pass_rate"] * 100,
+            a["unsold_per_game"], a["lead_changes"], a["runaway_half"], a["last_round_winner_flip"], spread(a)))
 
 def write_playtest(out, N):
-    h = out["headline"]; avg = lambda k, f: (f(h["5p-" + k]) + f(h["6p-" + k])) / 2
+    h = out["headline"]; ps = json.load(open(os.path.join(HERE, "previous.json")))
     m5, m6 = h["5p-mixed"], h["6p-mixed"]
-    bw = {}
-    for k in ("random", "greedy", "strategic"):
-        bw[k] = round((m5["bot"][k] + m6["bot"][k]) / 2, 3)
-    gap = lambda r: (r["bot"]["strategic"] - r["bot"]["random"]) * 100
-    skill = round((gap(h["5p-oneS"]) + gap(h["6p-oneS"])) / 2, 1)
-    X = m6["X"]; tot = lambda r: r["N"] * r["n"]
-    cards = []
-    def add(name, played, vals, flag=None):
-        cards.append({"name": name, "played_rate": round(played, 3), "win_correlation": round(pearson(vals, X6["win"]), 3), "flag": flag})
-    X6 = m6["X"]
-    cards.append({"name": "Pass (Paddle)", "played_rate": round(sum(X6["pass"]) / (len(X6["win"]) * 14), 3), "win_correlation": round(pearson(X6["pass"], X6["win"]), 3), "flag": None})
-    for lo, hi in ((1, 3), (4, 6), (7, 8), (9, 10)):
-        v = [sum(X6["bid"][x][i] for x in range(lo, hi + 1)) for i in range(len(X6["win"]))]
-        cards.append({"name": "Bid value %d-%d" % (lo, hi), "played_rate": round(sum(v) / (len(X6["win"]) * 14), 3), "win_correlation": round(pearson(v, X6["win"]), 3), "flag": None})
-    for v in range(1, 5):
-        cards.append({"name": "Lot printed value %d" % v, "played_rate": 1.0, "win_correlation": round(pearson(X6["lotval"][v], X6["win"]), 3),
-                      "flag": "weak: printed value is swamped by Hype (Hype is %.0f%% of all points)" % (m6["hype_share_of_points"] * 100) if v == 1 else None})
+    avg = lambda f: (f(h["5p-" ]) if False else 0)
+    both = lambda k, f: (f(h["5p-" + k]) + f(h["6p-" + k])) / 2
+    bw = {k: round((m5["bot"][k] + m6["bot"][k]) / 2, 3) for k in ("random", "greedy", "strategic")}
+    skill = round(both("oneS", gapof), 1)
+    skill_mem = round(both("oneN", lambda r: gapof(r, "no-memory")), 1)
+    skill_g = round(both("oneG", lambda r: gapof(r, "greedy")), 1)
+    mixed_gap = round(both("SvR", gapof), 1)
+    abl = {nm: round(both("abl-" + k, lambda r: gapof(r, "strategic", nm)), 1) for k, nm in (("N", "no-memory"), ("H", "ignore-hype"), ("C", "ignore-crash"), ("T", "ignore-ties"))}
+    pvi = round(both("PvI", lambda r: gapof(r, "planner", "instinct")), 1)
+    X6 = m6["X"]; ng = len(X6["win"])
+    cards = [{"name": "Pass (Paddle)", "played_rate": round(sum(X6["pass"]) / (ng * 14), 3), "win_correlation": round(pearson(X6["pass"], X6["win"]), 3), "flag": None}]
+    for lo, hi in ((1, 3), (4, 6), (7, 9), (10, 12)):
+        v = [sum(X6["bid"][x][i] for x in range(lo, hi + 1)) for i in range(ng)]
+        cards.append({"name": "Bid value %d-%d" % (lo, hi), "played_rate": round(sum(v) / (ng * 14), 3), "win_correlation": round(pearson(v, X6["win"]), 3), "flag": None})
+    for v in range(2, 6):
+        cards.append({"name": "Lot printed value %d" % v, "played_rate": 1.0, "win_correlation": round(pearson(X6["lotval"][v], X6["win"]), 3), "flag": None})
     for c, nm in enumerate(("Clocks", "Silver", "Paintings", "Books")):
         cards.append({"name": "Category lots: " + nm, "played_rate": 1.0, "win_correlation": round(pearson(X6["lotcat"][c], X6["win"]), 3), "flag": None})
-    mins = (m5["minutes"] + m6["minutes"]) / 2
-    seat = {str(k): round(v, 3) for k, v in h["6p-allS"]["seat"].items()}
-    P = [
-     {"severity": "high", "problem": "Skill barely shows when several players play well: decisions do not separate good from random play at a mixed table.",
-      "evidence": "3 strategic + 3 random (6p): strategic %.1f%% vs random %.1f%% per seat (5p: %.1f vs %.1f). A lone strategic bot among randoms wins %.1f%% (6p) / %.1f%% (5p), a gap of %.1f points, below the 20-point target. Best simple exploit found: pass 5 rounds then bid high, 26%% at 6p vs random, but banking en masse loses (3 bankers: 4-8%% each)." % (
-        h["6p-SvR"]["bot"]["strategic"] * 100, h["6p-SvR"]["bot"]["random"] * 100, h["5p-SvR"]["bot"]["strategic"] * 100, h["5p-SvR"]["bot"]["random"] * 100,
-        h["6p-oneS"]["bot"]["strategic"] * 100, h["5p-oneS"]["bot"]["strategic"] * 100, skill),
-      "fix": "Give players information or leverage to act on (public hand sizes already exist; add a visible count of Paddles passed, or a second bid card choice), and make the bubble target readable earlier. Re-test E4 (bid 1-12) which lifted the lone-strategic share to 33% at 6p."},
-     {"severity": "high", "problem": "Hype swamps printed lot values: lot value is a minor part of the score.",
-      "evidence": "Hype is %.0f%% (5p) / %.0f%% (6p) of all points after the crash; printed values are ~40%%. Lot value 1 has the weakest link to winning (corr %.2f vs %.2f for value 3). E1 (lots +2) lowers Hype share to 46-53%% but raises unsold lots with strong bots (9.9 per game) and forced passes (34%%)." % (
-        m5["hype_share_of_points"] * 100, m6["hype_share_of_points"] * 100, pearson(X6["lotval"][1], X6["win"]), pearson(X6["lotval"][3], X6["win"])),
-      "fix": "Raise printed lot values moderately (e.g. 2-5, not +2 across the board) together with income 2, or accept Hype-driven scoring and say so in the pitch. Retest as a pair."},
-     {"severity": "high", "problem": "Tied bids and empty hands leave many lots unsold; some rounds are dead.",
-      "evidence": "Unsold lots per game: %.1f (5p mixed), %.1f (6p mixed), %.1f (6p all-strategic) of 28; %.1f bids per game are cancelled by ties (6p mixed). In the narrated game rounds 11 and 13 had zero bids and two lots worth up to 4 were wasted. Forced-pass (empty hand) rate is %.0f%% of player-rounds; mean hand is %.1f cards." % (
-        m5["unsold_per_game"], m6["unsold_per_game"], h["6p-allS"]["unsold_per_game"], m6["cancelled_bids_per_game"], m6["forced_pass_rate"] * 100, m6["mean_hand"]),
-      "fix": "Income 2 per pass (E2): unsold 7.8 -> 6.4 and forced passes 22% -> 13% in the all-strategic table, last-round winner flips 29% -> 19%. Also consider unsold lots carrying to the next round."},
-     {"severity": "medium", "problem": "Last round decides a lot: the final burn decides which category crashes and flips the winner.",
-      "evidence": "The leader before round 14 loses in %.0f%% (5p) / %.0f%% (6p) of games; the crash category changes in round 14 in %.0f%% / %.0f%% of games. Kingmaking is possible (a player out of contention can burn into a category), but this sim did not model deliberate kingmaking bots." % (
-        m5["last_round_winner_flip"] * 100, m6["last_round_winner_flip"] * 100, m5["last_round_crash_flip"] * 100, m6["last_round_crash_flip"] * 100),
-      "fix": "Hide nothing new: keep the swing but reduce it with income 2 (E2 flips 19%) or hand 5 (E5 flips 11% at 6p all-strategic, but runaway late 0.65)."},
-     {"severity": "medium", "problem": "Ties in the final score are fairly common.", "evidence": "Shared/tied top score in %.1f%% (5p mixed) to %.1f%% (all-greedy 5p) of games, resolved by leftover cards." % (m5["ties"] * 100, h["5p-allG"]["ties"] * 100),
-      "fix": "Acceptable; tiebreaker is clear. E2 cuts ties to 0.2-1.2%."},
-     {"severity": "low", "problem": "Estimated length is at the low edge of the target.", "evidence": "Estimated %.1f min (14 rounds, my timing model: 25 s bid, 15 s reveal, 4 s per burned card, 6 s per lot, +3 min setup/scoring) vs 20 min target. With the designer's 70 s per round it would be 19.3 min. Real timing is untested." % mins,
-      "fix": "Time with humans; if short, nothing to change."},
-    ]
-    j = {"verdict": "NEEDS-FIXES", "revision": 0, "games_simulated": 12 * N + 5 * 2 * (N // 2),
-         "seat_win_rates": seat, "seat_balance_gap": round(spread(h["6p-allS"]), 1),
+    mins = both("mixed", lambda r: r["minutes"])
+    a5, a6 = h["5p-allS"], h["6p-allS"]
+    seat = {str(k): round(v, 3) for k, v in a6["seat"].items()}
+    nj = len(h) * N + len(out["experiments"]) * (N // 2)
+    man = os.path.join(HERE, "manual_findings.json")
+    M = json.load(open(man)) if os.path.exists(man) else {}
+    j = {"verdict": M.get("verdict", "NEEDS-FIXES (bots only, unvalidated)"), "revision": 1, "games_simulated": nj,
+         "seat_win_rates": seat, "seat_balance_gap": round(max(spread(a5), spread(a6)), 1),
          "bot_win_rates": bw, "skill_expression": skill,
+         "skill_detail": {"lone_strategic_vs_5_random": skill, "lone_no_memory_vs_random": skill_mem, "lone_greedy_vs_random": skill_g,
+                          "mixed_3S_3R_gap": mixed_gap, "planner_minus_instinct_at_PvI_table": pvi, "ablation_full_minus_ablated_points": abl},
          "length": {"mean_turns": 14.0, "stdev": 0.0, "estimated_minutes": round(mins), "target_minutes": TARGET_MIN},
-         "length_histogram": [{"turns": 14, "games": 12 * N}],
-         "ties": round((m5["ties"] + m6["ties"]) / 2, 3), "turn_cap_hits": 0,
-         "lead_changes_mean": round((m5["lead_changes"] + m6["lead_changes"]) / 2, 2),
-         "runaway_leader_rate": round((m5["runaway_half"] + m6["runaway_half"]) / 2, 3),
-         "cards": cards,
-         "ambiguities": [
-           "Which lot does a second bidder get if the first bidder takes one: the other (assumed, stated in rules).",
-           "Round with zero Paddle-passers and an empty deck+discard: assumed no draw and no error (never reached in practice).",
-           "Does 'nobody draws' apply to the income step of all passers or only when short: assumed all passers (happened in %.2f%% of 6p all-strategic games)." % (h["6p-allS"]["nodraw_per_game"] * 100),
-           "Reshuffle timing: assumed the discard is shuffled only when a player must draw from an empty deck (mid-draw, so some passers may draw before and some after).",
-           "Tiebreak 'bid value in hand' ties after cards-in-hand tie: shared win (assumed).",
-           "Hype tie for top category: all tied categories crash (as written); this happens in a visible share of games and is very swingy.",
-           "Bots treat hand sizes as public; Paddle vs Bid cards are indistinguishable face down, which does not matter in simulation."],
-         "problems": P}
+         "length_histogram": [{"turns": 14, "games": nj}],
+         "ties": round(both("allS", lambda r: r["ties"]), 3), "turn_cap_hits": 0,
+         "lead_changes_mean": round(both("mixed", lambda r: r["lead_changes"]), 2),
+         "runaway_leader_rate": round(both("mixed", lambda r: r["runaway_half"]), 3),
+         "hype_share_of_points": round(both("allS", lambda r: r["hype_share_of_points"]), 3),
+         "forced_pass_rate": round(both("allS", lambda r: r["forced_pass_rate"]), 3),
+         "unsold_lots_per_game": round(both("allS", lambda r: r["unsold_per_game"]), 2),
+         "last_round_winner_flip": round(both("allS", lambda r: r["last_round_winner_flip"]), 3),
+         "cards": cards, "previous": ps.get("previous", {}),
+         "ambiguities": M.get("ambiguities", []), "problems": M.get("problems", [])}
     json.dump(j, open(os.path.join(ROOT, "games", SLUG, "playtest.json"), "w"), indent=2)
     return j
 

@@ -4,8 +4,8 @@ from multiprocessing import Pool
 HERE = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, HERE)
 from game import Config, play
 import bots as B
-ALL = {c.name: c for c in (B.Random, B.Greedy, B.Strategic, B.Spammer, B.Camper, B.Blind, B.NoPing)}
-CFGKEYS = ("torp8", "max_rounds", "harbour_safe")
+ALL = {c.name: c for c in (B.Random, B.Greedy, B.Strategic, B.Spammer, B.Camper, B.Blind, B.NoPing, B.Mid, B.NoTorp, B.NoMiddle)}
+CFGKEYS = ("torp8", "max_rounds", "harbour_safe", "zoned", "ping_steps")
 
 def one(args):
     a, b, k, seed, cfgd = args
@@ -26,7 +26,7 @@ def one(args):
             ping=st.stats["pings"][seat], home=st.stats["harbour_rounds"][seat], blocked=st.stats["blocked"][seat],
             score=r["scores"][seat]))
     return dict(rounds=r["rounds"], lc=lc, early=early, tie=w is None, capped=r["capped"], coll=st.stats["collisions"], pg=pg,
-                winseat=w, diff=abs(r["scores"][0] - r["scores"][1]))
+                r1=(g.r1 if hasattr(g, 'r1') else 0), c1=st.stats.get('coll_r1', 0), winseat=w, diff=abs(r["scores"][0] - r["scores"][1]))
 
 def run_pair(a, b, n, cfgd=None, base=0, pool=None):
     cfgd = cfgd or {}
@@ -46,7 +46,8 @@ def corr(xs, ys):
     return sum((x - mx) * (y - my) for x, y in zip(xs, ys)) / (sx * sy) if sx and sy else 0.0
 
 def main(n=2000):
-    pairs = [("strategic", "random"), ("strategic", "greedy"), ("greedy", "random"), ("strategic", "strategic"), ("greedy", "greedy"), ("random", "random")]
+    pairs = [("strategic", "random"), ("strategic", "greedy"), ("greedy", "random"), ("strategic", "strategic"), ("greedy", "greedy"), ("random", "random"),
+             ("strategic", "mid"), ("mid", "greedy"), ("mid", "random"), ("mid", "mid")]
     res = {}; allrows = []
     with Pool(4) as pool:
         for i, (a, b) in enumerate(pairs):
@@ -92,8 +93,20 @@ def main(n=2000):
                  fired_per_game=statistics.mean(p["fired"] for p in pgs) * 2, pings_per_game=statistics.mean(p["ping"] for p in pgs) * 2,
                  collisions_per_game=statistics.mean(r["coll"] for r in strat), blocked_per_game=statistics.mean(p["blocked"] for p in pgs) * 2,
                  reef_found_per_game=statistics.mean(p["reef"] for p in pgs) * 2, mean_final_gap=statistics.mean(r["diff"] for r in strat))
-    json.dump(dict(pairings=out, seat1_mirror=seat_by, extra=extra, cards=cards), open(os.path.join(HERE, "results.json"), "w"), indent=1)
-    pt = dict(verdict="PENDING", revision=0, games_simulated=len(allrows), seat_win_rates={"1": round(seat1, 3), "2": round(1 - seat1, 3)},
+    def r1eff(rows):
+        d = [(r["r1"] > 0) == (r["winseat"] == 0) for r in rows if r["r1"] != 0 and r["winseat"] is not None]
+        return sum(d) / len(d) if d else 0
+    r1 = r1eff(strat); r1coll = statistics.mean(1 if r["c1"] > 0 else 0 for r in strat)
+    abl = {}
+    with Pool(4) as pool:
+        for i, (a, b, cf) in enumerate([("strategic", "blind", {}), ("strategic", "noping", {}), ("strategic", "notorp", {}), ("strategic", "nomiddle", {}),
+                                        ("strategic", "camper", {}), ("strategic", "strategic", {"zoned": False})]):
+            rows = run_pair(a, b, n, cf, base=900000 + 100000 * i, pool=pool)
+            s = summ(rows, a)
+            abl[b + ("-v1deal" if cf else "")] = dict(full_win=round(s["a_win"], 3), ablated_win=round(1 - s["a_win"], 3), runaway=round(s["runaway"], 3), lc=round(s["lc"], 2), rounds=round(s["rounds"], 2))
+    mixed = [r for key in ("strategic-v-mid", "mid-v-greedy", "mid-v-random", "strategic-v-greedy", "strategic-v-random") for r in res[key][2]]
+    json.dump(dict(pairings=out, seat1_mirror=seat_by, extra=extra, cards=cards, ablations=abl, r1_leader_wins=r1, r1_collision_rate=r1coll), open(os.path.join(HERE, "results.json"), "w"), indent=1)
+    pt = dict(verdict="PENDING", revision=1, mid_vs=dict(strategic_v_mid=out["strategic-v-mid"]["a_win"], mid_v_greedy=out["mid-v-greedy"]["a_win"], mid_v_random=out["mid-v-random"]["a_win"]), ablations=abl, r1_leader_wins=round(r1, 3), r1_collision_rate=round(r1coll, 3), games_simulated=len(allrows), seat_win_rates={"1": round(seat1, 3), "2": round(1 - seat1, 3)},
               seat_balance_gap=round(gap, 1), bot_win_rates={k: round(v, 3) for k, v in bw.items()}, skill_expression=round(skill, 1),
               strategic_vs_greedy=round(sg, 3),
               length=dict(mean_turns=round(mean_r, 2), stdev=round(statistics.pstdev(srounds), 2), estimated_minutes=est, target_minutes=15),
@@ -104,6 +117,8 @@ def main(n=2000):
     for k, v in out.items(): print("%-24s A win %.3f  rounds %.2f  ties %.3f runaway %.2f capped %.2f  lc %.2f" % (k, v["a_win"], v["rounds"], v["ties"], v["runaway"], v["capped"], v["lc"]))
     print("skill (S-v-R gap) %.1f pts | S-v-G %.3f | est %.1f min | runaway %.3f | lead changes %.2f | caps %d" % (skill, sg, est, runaway, lcm, cap))
     print({k: round(v, 2) for k, v in extra.items()})
+    print("r1 leader wins %.3f | r1 collision rate %.3f" % (r1, r1coll)); print("ablations", abl)
+    for kk in ("strategic-v-mid", "mid-v-greedy", "mid-v-random", "mid-v-mid"): print(kk, out[kk])
     for c in cards: print("%-28s played %.2f corr %+.2f per game %.2f %s" % (c["name"], c["played_rate"], c["win_correlation"], c["per_game"], c["flag"] or ""))
 
 if __name__ == "__main__":

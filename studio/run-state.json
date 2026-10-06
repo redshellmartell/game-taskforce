@@ -1,0 +1,16 @@
+{
+  "status": "running",
+  "game": "solo-nine-card-roguelike",
+  "stage": "design",
+  "step": "revision 1 (cycle 1): designer",
+  "agent": "game-designer",
+  "started": "2026-10-06T13:42:10Z",
+  "heartbeat": "2026-10-06T13:42:10Z",
+  "last_done": null,
+  "reason": "owner window: run hard until 2026-10-06T14:44:40Z; gates stay owner-only",
+  "queue": [
+    "silent-duo-deduction-coop:designer",
+    "two-player-hidden-movement-grid:designer",
+    "five-six-simultaneous-auction:designer"
+  ]
+}

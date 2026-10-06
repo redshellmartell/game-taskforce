@@ -1,4 +1,4 @@
-"""Nine Lives Dungeon: full rules (rules.md v1). Standard library only.
+"""Whiskerdark: full rules (rules.md v2). Standard library only.
 A run is fully determined by the deal permutation, the Ghost set and the bot's choices."""
 NAMES = ["", "Moth", "Mouse", "Spider", "Rat", "Crow", "Owl", "Snake", "Fox", "Hound"]
 NB = [[q for q in (p - 3, p + 3, p - 1 if p % 3 else -1, p + 1 if p % 3 < 2 else -1) if 0 <= q < 9] for p in range(9)]
@@ -7,9 +7,10 @@ READY, SPENT = 1, 2
 
 class Config:
     def __init__(self, base_claws=2, anger=2, hunt="soft", hypno_cap=4, dart=3, ghost_hound=7,
-                 hound_swap=True, escapes=2, cap=60):
+                 hound_swap=True, escapes=2, cap=20, ghost_drop=2, carry_cut=2, thief=False, glow_free=True):
         self.base_claws, self.anger, self.hunt, self.hypno_cap = base_claws, anger, hunt, hypno_cap
         self.dart, self.ghost_hound, self.hound_swap, self.escapes, self.cap = dart, ghost_hound, hound_swap, escapes, cap
+        self.ghost_drop, self.carry_cut = ghost_drop, carry_cut
 DEFAULT = Config()
 
 class Run:
@@ -23,7 +24,7 @@ class Run:
         self.known = [None] * 9                   # what the player knows about each position
         self.over = False; self.won = False; self.killer = None
         self.turns = 0; self.decisions = 0; self.log = [] if log else None
-        self.stats = dict(tricks=[], beaten=[], shoved=[], thief=0, hunt=0, first=None, wise=0, fights=0, ever_ready=set(),
+        self.stats = dict(tricks=[], beaten=[], shoved=[], thief=0, hunt=0, silk=0, carry_swap=0, drift=0, first=None, wise=0, fights=0, ever_ready=set(),
                           wise_ready_fights=0, ready_traj=[], feint_win=False, hypno_win=False, tricks_win=None)
         if cfg.hound_swap:
             i = self.g.index(9)
@@ -32,7 +33,7 @@ class Run:
                 self.known[i + 6] = 9
         self.islit = [False] * 10
         self.relight()
-        self.flags = {}
+        self.flags = {}; self.acted = False
     def clone(self):
         n = Run.__new__(Run); n.__dict__.update(self.__dict__)
         n.g = list(self.g); n.st = list(self.st); n.angry = list(self.angry); n.known = list(self.known); n.islit = list(self.islit)
@@ -58,10 +59,11 @@ class Run:
         if self.log is not None: self.log.append("T%d %s" % (self.turns, s))
     def ready(self): return sum(1 for c in range(1, 10) if self.st[c] == READY)
     def claws(self): return self.cfg.base_claws + self.ready() + (2 if self.st[6] == READY else 0)
-    def danger(self, c, dart=False, hypno=False):
-        d = (self.cfg.ghost_hound if c == 9 else 0) if self.ghost[c] else c
+    def danger(self, c, dart=False, hypno=False, carry=False):
+        d = max(c - self.cfg.ghost_drop, 0) if self.ghost[c] else c
         if self.angry[c]: d += self.cfg.anger
         if dart: d -= self.cfg.dart
+        if carry: d -= self.cfg.carry_cut
         d = max(d, 0)
         if hypno: d = min(d, self.cfg.hypno_cap)
         return d
@@ -87,27 +89,39 @@ class Run:
         if self.st[c] != READY or c not in TRICKS or self.flags.get(c): return False
         if c == 1: return bool(self.dark_cards())
         if c == 4: return bool(self.spent_others())
-        if c == 5: return sum(1 for x in self.g if x) >= 2
+        if c == 3: return bool(self.shovable()) and bool(self.dark_cards())
         return True
-    def _use(self, c):
-        self.spend(c); self.flags[c] = True; self.stats["tricks"].append(c); self.decisions += 1
+    def shovable(self): return [p for p in self.lit_cards() if not self.angry[self.g[p]]]
+    def _use(self, c, spend=True):
+        if spend: self.spend(c)
+        self.flags[c] = True; self.stats["tricks"].append(c); self.decisions += 1
     def glow(self, p):
-        self._use(1) if not self.flags.get(1) else None
-        self.known[p] = self.g[p]; self.L("Glow sees %s at %d" % (NAMES[self.g[p]], p))
-    def glow_more(self, p):  # second look of the same Glow
+        self._use(1, spend=False)
         self.known[p] = self.g[p]; self.L("Glow sees %s at %d" % (NAMES[self.g[p]], p))
     def dart(self): self._use(2); self.flags["dart"] = True
-    def silk(self): self._use(3); self.flags["silk"] = True
     def hypno(self): self._use(7); self.flags["hypno"] = True
     def feint(self): self._use(8); self.flags["feint"] = True
     def scavenge(self, cards):
         self._use(4)
         for c in cards[:2]: self.st[c] = READY
         self.L("Scavenge readies %s" % [NAMES[c] for c in cards[:2]])
-    def carry(self, p, q):
-        self._use(5)
-        self.g[p], self.g[q] = self.g[q], self.g[p]; self.known[p], self.known[q] = self.known[q], self.known[p]
-        self.relight(); self.L("Carry swaps %d,%d" % (p, q))
+    def silk(self, px, py):
+        """Free extra Shove (no Anger); Phase 2 action is still to come."""
+        self._use(3); self.stats["silk"] += 1
+        self._swap(px, py, anger=False); self.L("Silk shove %s into %d" % (NAMES[self.g[py]], py))
+    def carry(self, p=None, q=None):
+        """Spend the Crow; optional swap of two grid cards; then -2 on this turn's Fight."""
+        self._use(5); self.flags["carry"] = True
+        if p is not None:
+            self.stats["carry_swap"] += 1
+            self.g[p], self.g[q] = self.g[q], self.g[p]; self.known[p], self.known[q] = self.known[q], self.known[p]
+            self.relight(); self.L("Carry swaps %d,%d" % (p, q))
+    def drift(self, c):
+        p = self.pos_of(c); self.g[p] = 0; self.known[p] = None; self.st[c] = READY
+        self.stats["ever_ready"].add(c); self.stats["drift"] += 1; self.decisions += 1
+        self.relight(); self.L("Drift %s" % NAMES[c])
+    def driftable(self):
+        return [c for c in (1, 2, 3) if self.ghost[c] and self.st[c] == 0 and c in self.g and self.lit_pos(self.pos_of(c))]
     # ---- actions
     def pay(self, n, bot):
         for _ in range(n):
@@ -116,8 +130,8 @@ class Run:
         if self.ready():
             self.pay(1, bot); self.stats["thief"] += 1; self.L("Thief spends a trophy")
     def fight(self, p, bot):
-        c = self.g[p]; f = self.flags
-        d = self.danger(c, f.get("dart"), f.get("hypno")); cl = self.claws()
+        c = self.g[p]; f = self.flags; self.acted = True
+        d = self.danger(c, f.get("dart"), f.get("hypno"), f.get("carry")); cl = self.claws()
         w = 0 if f.get("feint") else max(0, d - cl)
         self.stats["fights"] += 1
         if self.stats["first"] is None: self.stats["first"] = "fight"
@@ -134,27 +148,27 @@ class Run:
             self.stats["feint_win"] = bool(f.get("feint")); self.stats["hypno_win"] = bool(f.get("hypno")); self.L("ESCAPE"); return
         self.g[p] = 0; self.known[p] = None; self.angry[c] = False; self.st[c] = READY; self.stats["ever_ready"].add(c)
         self.stats["beaten"].append(c)
-        for x in self.relight():
-            if x == 5 and not self.ghost[5]: self.thief(bot)
-    def shove(self, px, py, bot):
+        self.relight()
+    def _swap(self, px, py, anger):
         x, y = self.g[px], self.g[py]
-        if self.stats["first"] is None: self.stats["first"] = "shove"
-        self.decisions += 1
-        self.g[px], self.g[py] = y, x; self.known[px], self.known[py] = y, x   # player saw y and knows x
-        self.known[py] = x
-        if not self.flags.get("silk"): self.angry[x] = True
+        self.g[px], self.g[py] = y, x; self.known[px] = y; self.known[py] = x
+        if anger: self.angry[x] = True
         self.stats["shoved"].append(x)
-        self.L("Shove %s into %d, %s comes up" % (NAMES[x], py, NAMES[y]))
-        for z in self.relight():
-            if z == 5 and not self.ghost[5]: self.thief(bot)
+        self.relight()
+    def shove(self, px, py, bot):
+        if self.stats["first"] is None: self.stats["first"] = "shove"
+        self.decisions += 1; self.acted = True
+        self._swap(px, py, True); self.L("Shove into %d, %s comes up" % (py, NAMES[self.g[px]]))
     # ---- turn
     def turn(self, bot):
-        self.turns += 1; self.flags = {}
+        self.turns += 1; self.flags = {}; self.acted = False
         for c in range(1, 10):
             if self.st[c] == READY: self.stats["ever_ready"].add(c)
         self.stats["ready_traj"].append(self.ready())
         bot.act(self)
         if self.over: return
+        self.finish_turn(bot)
+    def finish_turn(self, bot):
         h = self.pos_of(9)
         if h >= 0 and not self.ghost[9] and self.lit_pos(h):
             if self.cfg.hunt == "lethal" and not self.ready():

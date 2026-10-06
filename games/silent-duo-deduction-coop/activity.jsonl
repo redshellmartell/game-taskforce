@@ -13,3 +13,5 @@
 {"time":"2026-10-04T11:24:00Z","agent":"critic","game":"silent-duo-deduction-coop","event":"step","message":"Originality searches done (closest: Hanabi, medium); using panel.json since no panel-report"}
 {"time":"2026-10-04T11:28:00Z","agent":"critic","game":"silent-duo-deduction-coop","event":"done","message":"REVISE-MAJOR, avg 3.5; code channel unproven at F=16, Standard too easy, Trim waiting"}
 {"time": "2026-10-04T11:06:35Z", "agent": "manager", "game": "silent-duo-deduction-coop", "event": "waiting", "message": "waiting for approval: revision (silent-duo-deduction-coop-revision-1)"}
+{"time": "2026-10-06T13:45:46Z", "agent": "director", "game": "silent-duo-deduction-coop", "event": "start", "message": "Cycle 1 (revision 1, inside review cap, owner-approved earlier): designer pass; owner asked for parallel agents"}
+{"time": "2026-10-06T13:49:50Z", "agent": "game-designer", "game": "silent-duo-deduction-coop", "event": "done", "message": "rules.md v2: legal-offer rule against codes, Reveal token, Reefs 3 to 2, Trim draw-2-keep-1, Pass and Convention tier removed; Fog 8 provisional, knob 7.6"}

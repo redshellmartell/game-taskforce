@@ -38,7 +38,7 @@ class Bot:
         return list(FULL) if getattr(self, "blind", False) else g.hands[1 - me]
     def rival_plans(self, g, me, known, k):
         rp = plans_for(self.rival_hand(g, me))
-        if known: rp = [p for p in rp if p[0] == known]
+        if known: rp = [p for p in rp if p[:len(known)] == tuple(known)]
         noop = ("X", "X", "X"); sc = []
         for p in rp:
             gr, _, _, rv, _ = simulate(g, 1 - me, p, noop)
@@ -71,6 +71,11 @@ class Strategic(Bot):
     def want_ping(self, g, me):
         if not self.ping: return False
         s = g.s; o = 1 - me
+        for i in range(10, 15):
+            if (s.grid[i] == 3 and s.fup[i]) or not s.fup[i]:
+                dm = abs(i % 5 - s.pos[me] % 5) + abs(i // 5 - s.pos[me] // 5)
+                do = abs(i % 5 - s.pos[o] % 5) + abs(i // 5 - s.pos[o] // 5)
+                if dm <= 3 and do <= 3: return True
         d = abs(s.pos[0] % 5 - s.pos[1] % 5) + abs(s.pos[0] // 5 - s.pos[1] // 5)
         for i in range(25):
             if s.grid[i] == 3 and s.fup[i]:
@@ -147,6 +152,33 @@ class Camper(Strategic):             # harbour camping: prefers plans that end a
                 gm, go, rv, _, s = simulate(g, me, p, rp)
                 tot += gm - go + 0.3 * rv + (2.0 if have and s.pos[me] == HARB[me] else 0)
             out.append((tot / len(rps) + self.rng.random() * 1e-3, p))
+        return max(out)[1]
+class Mid(Strategic):                # mid-strength reference: reads only the 2 likeliest rival plans
+    name = "mid"; K = 2
+class NoTorp(Strategic):             # never plots T
+    name = "notorp"
+    def plot(self, g, me, hand, known):
+        h = list(hand)
+        if "T" in h and len(h) > 3: h.remove("T")
+        return Strategic.plot(self, g, me, h, known)
+class NoMiddle(Strategic):           # never enters row 3 (solo-path check)
+    name = "nomiddle"
+    def plot(self, g, me, hand, known):
+        g.s.evp = ev_params(g.s); rps = self.rival_plans(g, me, known, self.K); o = 1 - me; out = []
+        for p in plans_for(hand):
+            pos = g.s.pos[me]; bad = False
+            for c in p:
+                if c in "NESW":
+                    dx, dy = {"N": (0, 1), "E": (1, 0), "S": (0, -1), "W": (-1, 0)}[c]
+                    x, y = pos % 5 + dx, pos // 5 + dy
+                    if 0 <= x < 5 and 0 <= y < 5: pos = y * 5 + x
+                    if pos // 5 == 2: bad = True
+            if bad: continue
+            vals = []
+            for rp in rps:
+                gm, go, rv, _, s = simulate(g, me, p, rp); vals.append(gm - go + 0.3 * rv)
+            out.append((sum(vals) / len(vals) + self.rng.random() * 1e-3, p))
+        if not out: return Strategic.plot(self, g, me, hand, known)
         return max(out)[1]
 class Blind(Strategic):              # strategic that ignores the cooling information (assumes rival holds all 9 cards)
     name = "blind"; blind = True

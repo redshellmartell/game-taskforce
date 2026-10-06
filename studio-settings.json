@@ -3,11 +3,11 @@
     "windows": {
       "5h": {
         "hours": 5,
-        "token_budget": 11300815
+        "token_budget": 12486141
       },
       "7d": {
         "hours": 168,
-        "token_budget": 71300077
+        "token_budget": 523294912
       }
     },
     "stop_at_percent": 70,

@@ -1,4 +1,4 @@
-"""Last Bid Standing simulation (rules v1). Standard library only.
+"""Last Bid Standing simulation (rules v2, revision 1). Standard library only.
 Interpretations (see report): lots are taken from a fixed shuffled deck two per round; the first bidder picks a lot;
 passers draw after resolution; the discard pile is reshuffled into the deck only when a draw is needed and the deck is empty.
 """
@@ -11,13 +11,13 @@ class Config:
     players: int = 6
     rounds: int = 14
     start_hand: int = 4
-    income: int = 1
-    bid_max: int = 10            # bid values 1..bid_max per category
+    income: int = 2
+    bid_max: int = 12            # bid values 1..bid_max per category
     lot_bonus: int = 0           # added to every printed lot value (tuning knob)
     bubble: str = "crash"        # "crash" or "halve"
     log: bool = False
 
-LOT_VALUES = [1, 1, 2, 2, 3, 3, 4]
+LOT_VALUES = [2, 2, 3, 3, 4, 4, 5]
 
 class State:
     def __init__(self, cfg, rng):
@@ -32,12 +32,13 @@ class State:
         self.hype = [[] for _ in range(CATS)]
         self.won = [[] for _ in range(self.n)]
         self.unsold = []
+        self.known = [[] for _ in range(self.n)]   # public: income cards drawn and still in hand
         self.round = 0
         self.block = []
         self.log = []
         self.leaders = []            # provisional unique leader (or -1) after each round
         self.stats = dict(cancelled=0, unsold=0, nodraw=0, reshuffles=0, forced_pass=0, passes=0, bids=0,
-                          burned=[0] * CATS, nostand_rounds=0, hand_sum=0, hand_obs=0, sec=0.0)
+                          burned=[0] * CATS, nostand_rounds=0, hand_sum=0, hand_obs=0, sec=0.0, block_sum=0)
         self.plays = [dict(pass_=0, bid=[0] * (cfg.bid_max + 1)) for _ in range(self.n)]
         self.lotwins_by_bid = [0] * (cfg.bid_max + 1)
         self.score_hist = []
@@ -49,8 +50,11 @@ class State:
         return [len(r) for r in self.hype]
 
     def crashed(self):
-        h = self.hype_counts(); m = max(h)
-        return {c for c in range(CATS) if h[c] == m and m > 0}
+        """Exactly one category crashes (rules 6.2): most Hype, then bid-value total, then highest cards, then fixed order."""
+        h = self.hype_counts()
+        if max(h) == 0: return set()
+        key = lambda c: (h[c], sum(v for _, v in self.hype[c]), sorted((v for _, v in self.hype[c]), reverse=True), -c)
+        return {max(range(CATS), key=key)}
 
     def scores(self):
         h = self.hype_counts(); cr = self.crashed()
@@ -62,11 +66,20 @@ class State:
         top = [i for i in range(self.n) if s[i] == m]
         return top[0] if len(top) == 1 else -1
 
-    def draw(self, p):
-        if not self.biddeck:
-            self.rng.shuffle(self.discard); self.biddeck, self.discard = self.discard, []
-            self.stats["reshuffles"] += 1
-        self.hands[p].append(self.biddeck.pop())
+    def income(self, passers):
+        """Rules 5 'Income procedure'. Returns (reshuffled, K). Drawn cards become public (st.known)."""
+        P = len(passers)
+        if P == 0: return False, 0
+        resh = False
+        if len(self.biddeck) < 2 * P:
+            self.biddeck = self.biddeck + self.discard; self.discard = []; self.rng.shuffle(self.biddeck)
+            self.stats["reshuffles"] += 1; resh = True
+        K = min(2, len(self.biddeck) // P)
+        if K == 0: self.stats["nodraw"] += 1
+        for _ in range(K):
+            for p in passers:
+                c = self.biddeck.pop(); self.hands[p].append(c); self.known[p].append(c)
+        return resh, K
 
 def play(cfg, bots, seed):
     rng = random.Random(seed); st = State(cfg, rng); n = st.n
@@ -74,7 +87,7 @@ def play(cfg, bots, seed):
         st.round = r + 1
         if r == cfg.rounds - 1:
             st.leader_before_last = st.provisional_leader(); st.crash_before_last = st.crashed()
-        st.block = [st.lotdeck.pop(), st.lotdeck.pop()]
+        st.block = st.block + [st.lotdeck.pop(), st.lotdeck.pop()]; st.stats['block_sum'] += len(st.block)
         choice = []
         for p in range(n):
             st.stats["hand_sum"] += len(st.hands[p]); st.stats["hand_obs"] += 1
@@ -91,6 +104,7 @@ def play(cfg, bots, seed):
                 st.plays[p]["bid"][card[1]] += 1; st.stats["bids"] += 1
         for p in sorted(played, reverse=True):      # remove from hands
             st.hands[p].pop(choice[p])
+            if played[p] in st.known[p]: st.known[p].remove(played[p])
         cnt = {}
         for p, (c, v) in played.items(): cnt[v] = cnt.get(v, 0) + 1
         stand = sorted([p for p, (c, v) in played.items() if cnt[v] == 1], key=lambda p: -played[p][1])
@@ -99,29 +113,24 @@ def play(cfg, bots, seed):
             if cnt[v] > 1: st.cancelled_by[p] += 1
         winners = stand[:2]
         lots = list(st.block)
-        if len(winners) >= 1:
-            p1 = winners[0]; k = bots[p1].pick(st, p1, lots)
-            st.won[p1].append(lots[k]); st.lotwins_by_bid[played[p1][1]] += 1; other = lots[1 - k]; lots = [other]
-            if len(winners) == 2:
-                p2 = winners[1]; st.won[p2].append(other); st.lotwins_by_bid[played[p2][1]] += 1; lots = []
-        else:
-            st.stats["nostand_rounds"] += 1
-        for l in lots: st.unsold.append(l); st.stats["unsold"] += 1
+        if len(winners) == 0: st.stats["nostand_rounds"] += 1
+        for p in winners:                                   # first picks any lot, then second picks any remaining
+            k = bots[p].pick(st, p, lots)
+            st.won[p].append(lots.pop(k)); st.lotwins_by_bid[played[p][1]] += 1
+        st.block = lots
         burned = 0
         for p, card in played.items():
             if p in winners: st.discard.append(card)
             else:
                 st.hype[card[0]].append(card); st.stats["burned"][card[0]] += 1; burned += 1
         passers = [p for p in range(n) if choice[p] is None]
-        for _ in range(cfg.income):
-            if passers and len(st.biddeck) + len(st.discard) < len(passers):
-                st.stats["nodraw"] += 1; break
-            for p in passers: st.draw(p)
-        st.stats["sec"] += 25 + 15 + 4 * burned + 6 * (2 - len(lots))
+        st.income(passers)
+        st.stats["sec"] += 25 + 15 + 4 * burned + 6 * len(winners) + 3 * 2 * len(passers)
         st.leaders.append(st.provisional_leader()); st.score_hist.append(st.scores()[0])
         if cfg.log:
             st.log.append("R%d lots %s bids %s -> winners %s, unsold %d, hype %s" % (
-                r + 1, st.block, {p + 1: played[p] for p in played}, [w + 1 for w in winners], len(lots), st.hype_counts()))
+                r + 1, st.block, {p + 1: played[p] for p in played}, [w + 1 for w in winners], len(st.block), st.hype_counts()))
+    st.stats["unsold"] = len(st.block)
     sc, eff = st.scores()
     # tiebreakers: cards in hand, then total value in hand
     key = [(sc[p], len(st.hands[p]), sum(v for _, v in st.hands[p])) for p in range(n)]
