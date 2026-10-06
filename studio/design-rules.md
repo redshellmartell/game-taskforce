@@ -9,6 +9,7 @@ Built only from lessons seen in three or more games (`studio/lessons.md`). Every
 4. **Target band and knob (L5, L8).** For each supported player count, and for solo or co-op, state the intended win rate or balance band and one tuning knob. Drop a player count you cannot support rather than ship it unbalanced.
 5. **Termination and length (L4).** Say why the game ends, give a turn cap, and give the expected length against the brief's target.
 6. **Rule budget (L7).** State the rules length (lines) and number of special rules against the brief's promise; teach text over budget is a known gap.
+8. **Re-run after lever changes (L10, L11).** After any cap, ceiling, legality or tie-break change, every ablation is re-run at every player count; a lever can silently make another one inert.
 7. **Skill gap (L6).** Say where good play beats random play (target gap at least 20 points) and which decisions carry it.
 
 ## Playtester: bot rules
