@@ -182,7 +182,7 @@ Natural reading ("my partner offered far from the edge, so they lacked closer ca
 
 ### 7.4 Comeback, early luck and pacing
 
-Co-op has no leader; the question is whether a bad start can be recovered. A bad deal (hands far from the ships) is repaired by Trim selection (draw 2 keep 1; trim-blind ablation -15.9 at v2); the first 4-6 turns are Offers, so round 1 decides nothing. v2's middle game stalled because a player often held only one fitting card and had to Trim (60% of Trims had no legal Offer). The v3 Single Offer turns that hand into a useful signal instead of a waiting turn. Trim stays the right move only when no card fits anything, or when a Pair Offer would waste the lamps you need.
+Co-op has no leader; the question is whether a bad start can be recovered. A bad deal (hands far from the ships) is repaired by Trim selection (draw 2 keep 1; trim-blind ablation -15.9 at v2); the first 4-6 turns are Offers, so round 1 decides nothing. v2's middle game stalled on forced Trims. The v3 Single Offer lets a hand with one fitting value signal, but it moved Trim share only from 29% to 25% (single-blind check); hands with no fitting card still Trim, and 3+ Trim runs remain common (Known gaps). Trim is the right move when no card fits anything, or when an Offer would waste the lamps you need.
 
 ### 7.5 Deduction depth and skill gap
 
@@ -191,15 +191,16 @@ Interval narrowing; card counting (five of each value; ships, rows, lit cards, y
 ### 7.6 Target band and the one tuning knob, per player count
 
 - **Knob:** the Fog size F, set per player count (section 3 table). Nothing else is tuned.
-- **2 players (standard game):** band **40-60%** for both Honest and Greedy at Standard, with Greedy no more than Honest + 5. Standard F = 6 is an estimate: cutting the Beacon removed about 4 returned cards per game (Beacons off at v2 F 8: Honest 44.6, Greedy 48.1), so F drops by about 2 to 3, and the Single Offer should make play slightly easier. If the sweep puts Standard outside the band, move F, not another rule.
-- **3 players (variant):** band **40-60%** for both bots at its Standard. Standard F = 2 is an estimate from v2 (F 6 with Beacons gave 43/53, about 4 more cards than F 2 without Beacons). The variant is labelled so because Greedy beat Honest by +9.4 at v2 (target at most 5), a gap the Fog does not close (+9.7 at F 6). The Single Offer may shrink it (less time pressure means less reward for risky Lights) but this is a hypothesis, not a fix; see Known gaps.
+- **2 players (standard game):** band **40-60%** for both bots at Standard. Measured v3 sweep: F 6 Honest 63.0 / Greedy 73.8; F 9 52.1 / 62.1; **F 10 48.6 / 56.2 (Standard)**, 21.0 turns, a little under the 22-26 target. Greedy beats Honest by about 8-11 at every F (target at most 5).
+- **3 players (variant):** measured F 2 61.9 / 72.9, F 6 45.8 / 60.4; **F 8 40.6 / 51.9 (Standard)**. Greedy +11 over Honest; see Known gaps.
+- Humans deduce worse than bots, so a human test should re-tune F; move F, not another rule.
 
 ### 7.7 Notes for the playtester (bots, ablations, KPIs)
 
 - Bot observation is exactly the table in 5.1 plus private knowledge. The Reveal token and all shuffles use the RNG.
 - **Reference bots (two strengths, L2):** Honest (range tracking and card counting; lights when its best card lights with at least about 0.95 probability, or at lower confidence when the deck has 4 or fewer cards and no Reef is wrecked); Greedy (lights at about 50% confidence, no card counting). Plus Random. Both bots use Single Offers when legal and useful by their own rule; no setting is tuned to one bot.
-- **Knob sweep (both bots):** 2p F in {3, 6, 10}; 3p F in {0, 2, 6}. Report win rates, turns and Trim KPIs per cell.
-- **Code attack:** the v1 hat-guessing code restricted to legal v3 Offers (Single Offers included) plus any legal miss-code, 2p at F = 6 and F = 10 (v3 Standard and Storm, which take the place of v2's F 8 and F 12). Must be no more than Honest + 10.
+- **Knob sweep (both bots):** 2p F in {7, 10, 13}; 3p F in {5, 8, 11} (v3 measured 2p F 3-10 and 3p F 0-8; see 7.6). Report win rates, turns and Trim KPIs per cell.
+- **Code attack:** the v1 hat-guessing code restricted to legal v3 Offers (Single Offers included) plus any legal miss-code, 2p. Must be no more than Honest + 10 (v3: +2.8 at F 6, +2.3 at F 10).
 - **Ablations (each must lose at least 5 points to Honest, 2p Standard and 3p Standard):** Pair-blind (random legal pair on the chosen ship); Trim-blind (keeps a random one of the two drawn cards); No card counting.
 - **Single-blind check (not a twist test):** a bot that never makes Single Offers, to show how much of any Trim drop comes from this rule (L10).
 - **Targets:** both bots in 40-60% at each count's Standard; Greedy no more than Honest + 5 (2p required; 3p reported); Random at least 20 under Honest; Code attack as above; Trim under 25% of turns and runs of 3+ consecutive Trims by one player in under 10% of games, at both counts; share of Trims made with no legal Offer; length 22-26 turns (20 minutes +-20%); zero turn-cap hits; close-game shares (wins with 3 or fewer deck cards left, losses with one ship unlit).
@@ -209,6 +210,8 @@ Interval narrowing; card counting (five of each value; ships, rows, lit cards, y
 About 200 lines of rules text with 3 special rules (double-lamp Offer with its Single fallback, Trim draw-2-keep-1, Last Watch); the Beacon cut removed one. The rulebook is longer than one page (see Known gaps).
 
 ## 8. Changelog
+
+- **v3.1 (edit pass after cycle 2 critique, no new mechanics).** Fog table reset from the v3 bot sweep (2p Standard F 10, 3p Standard F 8; critic change 1); the four Single Offer and Last Watch rulings written in (change 2); stale 7.4, 7.6 and Known gaps text updated to measured numbers, Trim stall listed as open (change 3).
 
 - **v3 (revision 2).** Targeted fixes from the cycle 1 `playtest-report.md` and `critique.md`; no new mechanics.
   - **Trim stall** (critic change 1; Trim 30% of turns, 3+ runs in 61% of 2p games, 60% of Trims with no legal Offer): added the **Single Offer**, legal only when all your fitting cards for a ship share one value. A hand with one fitting card now signals instead of waiting. Value choice stays at zero, so the code channel stays closed (7.3). Pair Offer legality is unchanged.
@@ -222,9 +225,11 @@ About 200 lines of rules text with 3 special rules (double-lamp Offer with its S
 
 ## 9. Known gaps
 
-- **Fog values are estimates.** v3 changes the time budget (no Beacons, Single Offers), so 2p F = 6 and 3p F = 2 come from v2 data, not a v3 run. The sweep in 7.7 sets them; a human test should then confirm (human teams deduce worse than bots).
-- **Trim stall may survive.** The Single Offer only helps hands with exactly one fitting value; hands with no fitting card still Trim, and late in the game (all partner ships lit) only Light or Trim remain. If Trim stays at 25% or more, the critic's rule applies: stop iterating on bots and take a human playtest.
-- **Anti-code re-check.** Code attack measured +1.0/+3.0 at v2; the Single Offer is argued safe (no value choice) but must be re-measured at F 6 and F 10.
-- **3-player variant unbalanced between bots:** Greedy beat Honest by +9.4 at v2 (target at most 5); not fixed by Fog. It stays a variant until it passes (L8).
+- **First human-playtest question: do Trim runs feel like downtime?**
+- **Trim stall is open (known structural problem).** Runs of 3+ Trims by one player happen in 54% of 2p games and 49% of 3p games (target under 10%); Trim is about 25% of turns. It comes from hands that fit no open range, which the anti-code Offer legality causes; bot cycles will not fix it. Next step is a human test, not another bot revision.
+- **Fog values are bot-tuned.** 2p F 10 and 3p F 8 come from the v3 sweep; humans deduce worse than bots, so expect to lower F after human play.
+- **Length:** 2p Standard runs about 21 turns in simulation, a little under the 22-26 target.
+- **Greedy beats Honest by about +11** (2p and 3p; target at most 5). Probably a bot artefact (Honest lights too cautiously), but unconfirmed. 3p stays a variant until it passes (L8).
+- **Anti-code holds:** code attack +2.8 (F 6) and +2.3 (F 10) at v3, limit 10.
 - **Rule budget (L7):** about 200 lines, over a one-page teach; untimed.
 - **Audience drift:** bot-predicted family fit 3.07; not addressed.
