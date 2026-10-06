@@ -10,3 +10,4 @@
 {"time": "2026-10-04T19:35:53Z", "agent": "playtester", "game": "solo-nine-card-roguelike", "event": "done", "message": "Playtest NEEDS-FIXES: outline bot wins 19%, lookahead 81% (target 40-60), Claws a knife edge, 3 ambiguities; critique next"}
 {"time": "2026-10-04T19:35:53Z", "agent": "critic", "game": "solo-nine-card-roguelike", "event": "start", "message": "Reviewing design and playtest"}
 {"time": "2026-10-04T19:37:03Z", "agent": "critic", "game": "solo-nine-card-roguelike", "event": "done", "message": "Critic REVISE-MINOR avg 3.33; waiting for approval: revision (solo-nine-card-roguelike-revision-1)"}
+{"time": "2026-10-06T13:42:10Z", "agent": "director", "game": "solo-nine-card-roguelike", "event": "start", "message": "Cycle 1 (revision 1, inside review cap): designer pass; owner said run the taskforce"}
