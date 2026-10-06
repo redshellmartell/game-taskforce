@@ -181,6 +181,12 @@
       "time": "2026-10-05T11:41:50Z",
       "decision": "approve",
       "notes": "two-player-hidden-movement-grid-revision-1 (revision gate): owner approved in chat (all open requests)"
+    },
+    {
+      "slug": "asymmetric-duel-tug-of-war",
+      "time": "2026-10-06T13:43:21.745Z",
+      "decision": "approve",
+      "notes": "asymmetric-duel-tug-of-war-revision-2 (revision gate): owner decided in the dashboard"
     }
   ]
 }
