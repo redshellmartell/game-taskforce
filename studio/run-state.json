@@ -7,6 +7,6 @@
   "started": "2026-10-06T13:42:10Z",
   "heartbeat": "2026-10-06T13:42:10Z",
   "last_done": null,
-  "reason": null,
+  "reason": "owner window: run hard until 2026-10-06T14:44:40Z; gates stay owner-only",
   "queue": []
 }
