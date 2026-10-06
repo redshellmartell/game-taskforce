@@ -1,7 +1,14 @@
-Nine Lives Dungeon, solo, story bot, seed 400000 (lost run). Solo game: one table per persona.
-T1 Shove Owl into 8, Spider comes up
-T2 Shove Crow into 8, Owl comes up
-T3 Shove Rat into 8, Crow comes up
-T4 Shove Spider into 8, Rat comes up
-T5 Fight Owl (danger 8, claws 2, wounds 6, ready 0)
-T5 DEAD, killed by Owl
+Whiskerdark, solo, story bot, seed 400000 (lost run). Solo game: one table per persona.
+T1 Shove into 3, Mouse comes up
+T2 Fight Mouse (danger 2, claws 2, wounds 0, ready 0)
+T3 Shove into 5, Hound comes up
+T3 Hunt spends a trophy
+T4 Shove into 6, Moth comes up
+T5 Fight Moth (danger 1, claws 2, wounds 0, ready 0)
+T6 Shove into 8, Spider comes up
+T7 Fight Spider (danger 3, claws 3, wounds 0, ready 1)
+T7 Hunt spends a trophy
+T8 Fight Rat (danger 4, claws 3, wounds 1, ready 1)
+T8 Hunt spends a trophy
+T9 Fight Hound (danger 11, claws 2, wounds 9, ready 0)
+T9 DEAD, killed by Hound

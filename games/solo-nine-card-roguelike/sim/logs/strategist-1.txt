@@ -1,12 +1,13 @@
-Nine Lives Dungeon, solo, strategist bot, seed 500001 (won run). Solo game: one table per persona.
-T1 Fight Mouse (danger 2, claws 2, wounds 0, ready 0)
-T2 Fight Moth (danger 1, claws 3, wounds 0, ready 1)
-T2 Thief spends a trophy
-T3 Shove Fox into 8, Spider comes up
-T4 Fight Spider (danger 3, claws 3, wounds 0, ready 1)
-T5 Fight Rat (danger 4, claws 4, wounds 0, ready 2)
-T6 Fight Crow (danger 5, claws 5, wounds 0, ready 3)
-T6 Hunt spends a trophy
-T7 Scavenge readies ['Spider', 'Moth']
-T7 Fight Hound (danger 9, claws 6, wounds 3, ready 4)
-T7 ESCAPE
+Whiskerdark, solo, strategist bot, seed 500000 (won run). Solo game: one table per persona.
+T1 Shove into 3, Rat comes up
+T2 Shove into 4, Fox comes up
+T3 Shove into 5, Crow comes up
+T4 Shove into 6, Mouse comes up
+T5 Fight Mouse (danger 2, claws 2, wounds 0, ready 0)
+T6 Fight Spider (danger 3, claws 3, wounds 0, ready 1)
+T7 Fight Rat (danger 4, claws 4, wounds 0, ready 2)
+T8 Fight Owl (danger 5, claws 4, wounds 1, ready 2)
+T8 Hunt spends a trophy
+T9 Scavenge readies ['Owl', 'Mouse']
+T9 Fight Hound (danger 6, claws 5, wounds 1, ready 1)
+T9 ESCAPE

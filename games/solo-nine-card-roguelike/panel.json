@@ -3,8 +3,8 @@
   "stage": "scores",
   "personas": {
     "casual": {
-      "fun": 2.12,
-      "replay": 2.5,
+      "fun": 2.17,
+      "replay": 2.57,
       "would_buy": "no",
       "price_usd": null,
       "metrics": {
@@ -13,9 +13,9 @@
         "length_fit": 0.83,
         "rules_simplicity": 0.0,
         "dominant_strategy_absent": 1.0,
-        "decisions_per_turn": 0.361,
-        "lead_changes": 0.037,
-        "catch_up": 0.018,
+        "decisions_per_turn": 0.381,
+        "lead_changes": 0.086,
+        "catch_up": 0.083,
         "interaction": 0.0
       },
       "pet_peeves_hit": [
@@ -23,13 +23,13 @@
         "Multiplayer solitaire is only a mild complaint; a calm, low-conflict game is fine for a relaxed night"
       ],
       "bot": {
-        "win_rate": 0.1,
-        "fell_behind_rate": 0.775,
-        "decisions_per_turn": 1.08,
+        "win_rate": 0.186,
+        "fell_behind_rate": 0.598,
+        "decisions_per_turn": 1.14,
         "downtime": 0.0,
         "games": 1000,
         "seat_win_rates": {
-          "1": 0.1
+          "1": 0.186
         }
       },
       "best_table": [
@@ -41,8 +41,8 @@
       "review": null
     },
     "competitor": {
-      "fun": 3.69,
-      "replay": 3.55,
+      "fun": 3.72,
+      "replay": 3.61,
       "would_buy": "maybe",
       "price_usd": 24,
       "metrics": {
@@ -51,8 +51,8 @@
         "length_fit": 0.277,
         "rules_simplicity": 0.0,
         "dominant_strategy_absent": 1.0,
-        "decisions_per_turn": 0.406,
-        "lead_changes": 0.173,
+        "decisions_per_turn": 0.444,
+        "lead_changes": 0.222,
         "catch_up": 1.0,
         "interaction": 0.0
       },
@@ -61,13 +61,13 @@
         "Ambiguous rules and missing errata"
       ],
       "bot": {
-        "win_rate": 0.72,
-        "fell_behind_rate": 0.22,
-        "decisions_per_turn": 1.22,
+        "win_rate": 0.93,
+        "fell_behind_rate": 0.07,
+        "decisions_per_turn": 1.33,
         "downtime": 0.0,
         "games": 300,
         "seat_win_rates": {
-          "1": 0.72
+          "1": 0.93
         }
       },
       "best_table": [
@@ -79,8 +79,8 @@
       "review": null
     },
     "family": {
-      "fun": 1.74,
-      "replay": 2.3,
+      "fun": 1.75,
+      "replay": 2.33,
       "would_buy": "no",
       "price_usd": null,
       "metrics": {
@@ -89,8 +89,8 @@
         "length_fit": 0.553,
         "rules_simplicity": 0.0,
         "dominant_strategy_absent": 1.0,
-        "decisions_per_turn": 0.34,
-        "lead_changes": 0.067,
+        "decisions_per_turn": 0.339,
+        "lead_changes": 0.1,
         "catch_up": 0.003,
         "interaction": 0.0
       },
@@ -99,13 +99,13 @@
         "A child getting hopelessly behind with no way back, or busting round after round"
       ],
       "bot": {
-        "win_rate": 0.108,
-        "fell_behind_rate": 0.735,
+        "win_rate": 0.222,
+        "fell_behind_rate": 0.598,
         "decisions_per_turn": 1.02,
         "downtime": 0.0,
         "games": 1000,
         "seat_win_rates": {
-          "1": 0.108
+          "1": 0.222
         }
       },
       "best_table": [
@@ -117,8 +117,8 @@
       "review": null
     },
     "story": {
-      "fun": 1.91,
-      "replay": 2.4,
+      "fun": 2.09,
+      "replay": 2.59,
       "would_buy": "no",
       "price_usd": null,
       "metrics": {
@@ -127,9 +127,9 @@
         "length_fit": 0.184,
         "rules_simplicity": 0.0,
         "dominant_strategy_absent": 1.0,
-        "decisions_per_turn": 0.354,
-        "lead_changes": 0.062,
-        "catch_up": 0.024,
+        "decisions_per_turn": 0.363,
+        "lead_changes": 0.174,
+        "catch_up": 0.237,
         "interaction": 0.0
       },
       "pet_peeves_hit": [
@@ -137,13 +137,13 @@
         "Multiplayer solitaire, because shared drama needs interaction"
       ],
       "bot": {
-        "win_rate": 0.155,
-        "fell_behind_rate": 0.749,
-        "decisions_per_turn": 1.06,
+        "win_rate": 0.313,
+        "fell_behind_rate": 0.477,
+        "decisions_per_turn": 1.09,
         "downtime": 0.0,
         "games": 1000,
         "seat_win_rates": {
-          "1": 0.155
+          "1": 0.313
         }
       },
       "best_table": [
@@ -155,34 +155,33 @@
       "review": null
     },
     "strategist": {
-      "fun": 3.22,
-      "replay": 3.16,
+      "fun": 3.47,
+      "replay": 3.45,
       "would_buy": "maybe",
-      "price_usd": 26,
+      "price_usd": 27,
       "metrics": {
         "originality": 0.5,
         "skill_expression": 1.0,
         "length_fit": 0.184,
         "rules_simplicity": 0.0,
         "dominant_strategy_absent": 1.0,
-        "decisions_per_turn": 0.358,
-        "lead_changes": 0.037,
-        "catch_up": 0.053,
+        "decisions_per_turn": 0.43,
+        "lead_changes": 0.207,
+        "catch_up": 0.6,
         "interaction": 0.0
       },
       "pet_peeves_hit": [
         "Multiplayer solitaire",
-        "Runaway leaders and kingmaking",
         "Dense, ambiguous rulebooks and scoring overload"
       ],
       "bot": {
-        "win_rate": 0.178,
-        "fell_behind_rate": 0.808,
-        "decisions_per_turn": 1.07,
+        "win_rate": 0.574,
+        "fell_behind_rate": 0.306,
+        "decisions_per_turn": 1.29,
         "downtime": 0.0,
         "games": 1000,
         "seat_win_rates": {
-          "1": 0.178
+          "1": 0.574
         }
       },
       "best_table": [
@@ -194,18 +193,18 @@
       "review": null
     },
     "barraiser": {
-      "fun": 3.47,
-      "replay": 3.46,
+      "fun": 3.5,
+      "replay": 3.49,
       "would_buy": "maybe",
-      "price_usd": 29,
+      "price_usd": 30,
       "metrics": {
         "originality": 0.5,
         "skill_expression": 1.0,
         "length_fit": 0.415,
         "rules_simplicity": 0.0,
         "dominant_strategy_absent": 1.0,
-        "decisions_per_turn": 0.413,
-        "lead_changes": 0.216,
+        "decisions_per_turn": 0.445,
+        "lead_changes": 0.235,
         "catch_up": 1.0,
         "interaction": 0.0
       },
@@ -213,13 +212,13 @@
         "Ambiguous rules and missing edge cases"
       ],
       "bot": {
-        "win_rate": 0.88,
-        "fell_behind_rate": 0.11,
-        "decisions_per_turn": 1.24,
+        "win_rate": 0.97,
+        "fell_behind_rate": 0.03,
+        "decisions_per_turn": 1.34,
         "downtime": 0.0,
         "games": 300,
         "seat_win_rates": {
-          "1": 0.88
+          "1": 0.97
         }
       },
       "best_table": [
@@ -246,8 +245,8 @@
   },
   "matchups": [],
   "summary": {
-    "average_fun": 2.69,
-    "spread": 1.95,
+    "average_fun": 2.78,
+    "spread": 1.97,
     "best_fit": "competitor",
     "worst_fit": "family"
   }

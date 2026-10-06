@@ -1,12 +1,13 @@
-Nine Lives Dungeon, solo, strategist bot, seed 500000 (lost run). Solo game: one table per persona.
-T1 Shove Snake into 8, Moth comes up
-T2 Fight Moth (danger 1, claws 2, wounds 0, ready 0)
-T3 Fight Spider (danger 3, claws 3, wounds 0, ready 1)
-T4 Glow sees Mouse at 6
-T4 Glow sees Crow at 5
-T4 Shove Fox into 8, Snake comes up
-T5 Shove Owl into 8, Fox comes up
-T6 Shove Fox into 8, Owl comes up
-T7 Shove Rat into 8, Fox comes up
-T8 Fight Fox (danger 10, claws 2, wounds 8, ready 0)
-T8 DEAD, killed by Fox
+Whiskerdark, solo, strategist bot, seed 500004 (lost run). Solo game: one table per persona.
+T1 Fight Mouse (danger 2, claws 2, wounds 0, ready 0)
+T2 Fight Spider (danger 3, claws 3, wounds 0, ready 1)
+T2 Hunt spends a trophy
+T3 Silk shove Hound into 8
+T3 Shove into 6, Fox comes up
+T4 Shove into 6, Snake comes up
+T5 Shove into 6, Fox comes up
+T6 Shove into 6, Owl comes up
+T7 Shove into 6, Crow comes up
+T8 Shove into 6, Rat comes up
+T9 Fight Fox (danger 10, claws 2, wounds 8, ready 0)
+T9 DEAD, killed by Fox
