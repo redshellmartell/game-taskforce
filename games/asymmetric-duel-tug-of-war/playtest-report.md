@@ -1,39 +1,39 @@
-# Playtest report: Tug of Crowns, revision 1
+# Playtest report: Tug of Crowns, revision 2 (rules v3)
 
-**Verdict: NEEDS-FIXES.** 20,000 headline games (2,000 per pairing of random/greedy/strategic, 3x3) plus 2,000-game lead-policy tests, plus 5 extra experiments of 1,000-game batches each. Code: `sim/game.py` (rules v2), `sim/bots.py`, `sim/run.py`, `sim/panel_run.py`.
+**Verdict: NEEDS-FIXES (bots only, unvalidated).** 20,000 headline games (2,000 per pairing x 9 pairings + mirrors), 2 reference bots of different strength (greedy, strategic) plus random and a stronger "plus" bot for ablations.
 
-## Key numbers vs KPI
-| Metric | Result | Target | |
-|---|---|---|---|
-| Seat/side gap (equal-skill Treasurer win: random 57.8, greedy 38.1, strategic 37.9) | 10.9 pts (strategic mirror 36.6% Treasurer) | <= 5 | FAIL |
-| Strategic vs random | 56 pts | >= 20 | pass |
-| Lead changes per game | 1.83 (mirror 1.70) | >= 2 | just below |
-| Early leader (after round 2) wins | 49% | <= 65% | pass |
-| Centre/tiebreak endings | 0% (throne 68%, round-7 leader 22%) | < 10% | pass |
-| Length | 39 actions, about 12.7 min, avg 4.4 rounds | 15 min +/-20% | pass (-15%) but see problem 3 |
-| Dead cards | none; The Whisper is strong (+17.6 pts) | 0 | pass |
-| Ambiguities | 0 blocking | 0 | pass |
-| Fixed lead policy vs evaluating bot | always-lead-self 63%, always-give 43% | each 40-60 | FAIL |
-| Lead's round-win rate | 54% (random 56%, greedy 44%, strat mirror 50%) | rules ask: report | ok |
-| Reshuffles per game | Treasurer 0.48, Whisperer 0.47 | report | equal, rare |
+| KPI | Target | Rev 1 | Rev 2 | Result |
+|---|---|---|---|---|
+| Treasurer win, strategic mirror | 45-55 (gap <= 5) | 37.9 | 40.5 (44.0 on a second seed run) | FAIL (gap ~11-19) |
+| Treasurer win, greedy mirror | gap <= 10 | 38.1 | 35.3 | FAIL |
+| Treasurer win, random mirror | gap <= 10 | 57.8 | 60.2 | FAIL |
+| Seat gap, 3-mirror average (2x deviation) | <= 5 / <= 10 | 10.9 | 9.3 | hides cancellation (+20, -29, -19) |
+| Games over by round 3 | < 20% | 31% | 18.5% all pairings (14.8% strategic mirror) | PASS |
+| Lead changes | >= 2 | 1.83 | 2.22 (strategic 2.5) | PASS |
+| Runaway leader (R2 leader wins) | <= 65% | n/a | 44.1% | PASS |
+| Skill gap strategic vs random | >= 20 | 56 | 45.4 (strategic beats greedy only 62%) | PASS |
+| Length | 15 min +-20% | 12.7 | 13.1 (5.7 rounds) | PASS |
+| Turn cap hits / ties | 0 | 0 | 0 / 2.8% 0-0 rounds | PASS |
 
-Ties 1% of rounds (0-0 only), no capped games. Panel: average fun 3.30, best fit competitor (4.03), worst fit family (2.67).
+Treasury cap sensitivity (mirror Treasurer win, random/greedy/strategic/plus): cap 2 = 57/35/41/42, cap 3 = 57/36/42/43. The "one knob" moves nothing. Other single levers: Whisper 5->4 = 62/35/46/43; Gold Purse 5 = 63/34/42/43.
+Court draws off: strategic lead changes 2.63 vs 2.54 on (+0.09, needs +0.3); greedy +0.57, random +0.57.
+
+Ablations (bot without the feature vs full "plus" bot, same side; must lose >= 5): never-Spend -0.1 FAIL; ignore-Steady -0.9 FAIL; no-Echo-throw -3.1 (does better) FAIL; random Hush target 3.1 FAIL; never-Retort 1.9 FAIL. All five keywords are weak or inert for bots.
+
+Dead cards: none unplayed. Outliers: The Whisper (+20 pts, played 81%), Chancellor's Seal (+23, 77%). Ambiguities hit in the sim: none new (v3 wording was enough); interpretation notes unchanged (step counting from T1, 0-0 ties).
 
 ## Problems (ranked)
-1. **High: the lead is solved again, now towards leading.** The extra card is too strong: always-lead-self beats always-give 63/43 against the evaluating bot, and 80/35 in fixed-policy mirrors. A greedy bot (always leads) beats the strategic bot overall (59% vs 57%). Experiments (all 1,000 games per cell): E1 no tie-win, self 65%; E2 no extra card, policies 47/50 (balanced but the choice barely matters; Treasurer then wins 62%); E3 second player draws, give dominates (60%, Treasurer 85%); E4 ties to the second player, self 59%; E5 lead draws only if its hand is not larger, self 63%. Fix idea (untested): make the lead pay a price that is not a card (reveal a hand card, or play first card face down), or give half a bonus (the lead draws 1 only in rounds 2, 4, 6).
-2. **High: side gap 10.9 points and it flips with skill and lead habits.** Treasurer wins 58% random, 38% greedy and strategic. The Whisperer's Hush/Retort rewards skill. Retune after problem 1 (Spend bonus or Treasury cap, one lever at a time).
-3. **Medium: games end early.** 31% end by round 3 (15% in round 2); only 29% reach round 7. A 5-plus margin from position 1 wins on the spot. Fix: double-move margin 6 or a 4-step track.
-4. **Medium: lead changes 1.83.** Probably fixed by the same change as problem 3.
-5. **Medium: strategic only beats greedy 43%** (mostly via lead choice). May be bot weakness; recheck after problem 1.
-6. **Low:** The Whisper is outlier (played 79% of games). No dead cards. Possibly drop it to 4.
+1. HIGH: side gap not fixed; flips with skill (Treasurer 60% random, 35% greedy, 40-44% strategic). See `playtest.json` for levers tried; Whisper 4 is the best single one (+4) but not enough alone.
+2. HIGH: Spend, Steady, Echo inert; Hush, Retort under 5 points. The twist keywords do not carry decisions.
+3. MEDIUM: the court draws do not create lead changes for skilled play; the track shape does. Comeback is real (R2 leader wins 44%) but not from the advertised mechanism.
+4. MEDIUM: feast-famine rounds (round 1 empties hands, rounds 2-4 decided by 1-2 points).
+5. LOW: outliers Whisper/Seal.
 
-Bug note: my first sim run put spent coins into the draw pile as blank cards; fixed (the five experiments ran before that fix; conclusions are expected to hold).
+## Narrated play (one logged game, plus vs plus)
+Round 1 was a 6-card dump on both sides (T 20, W 16): exciting auction, the Whisper hushing my Patron felt good. Then rounds 2-4 were flat: one Gossip against nothing, crown shifting by a point. I stopped caring about each round until round 5, when Whisperer played 3 cards for a double step. Retort never came up; the Treasurer had no meaningful Spend choice (Vault for 1). Downtime low, decisions mostly "play or pass".
 
-## Interpretations (not ambiguities)
-All 8 earlier ambiguities are resolved in v2. Remaining small notes: the lead's extra card comes after Phase 1 draws; Retort only follows a Treasurer card.
+## Cannot be tested by simulation
+Fun, readability, teaching time, whether Retort bluffing feels clever, how abrupt short games feel. The ablation bots are my heuristics; a human may use the keywords better. Bots only, unvalidated.
 
-## Narrated play (one bot-assisted game, seed 5, strategic Treasurer vs greedy Whisperer)
-Round 1 was a long, even grind: both sides played the whole hand (Treasurer 22, Whisperer 18) and the crown only moved one step, a fun slow start. Round 2 was boring: the Treasurer passed with 0, the Whisperer played one Echo and took the lead for 2 points. Round 3 had the best moment: three Hushes stripped three Treasurer cards, yet the Treasurer won 12-11 through a Spend. Then round 4 ended with a 7-point pass and a lead swing. Downtime is low (alternating single cards), but the passes feel flat when the leader gives up round 2 for nothing. 15% of games, as in an earlier seed, end in round 2 on a double move, which would feel abrupt.
-
-## What simulation can't test
-Whether bluffing with Retort feels clever, whether the lead choice is fun or a chore, how readable the keyword text is, hand-size memory for real players, and whether short 2-3 round games feel exciting or unsatisfying. The bots do not bluff or read the opponent's discard pile. A human playtest is needed.
+Panel: average fun 3.51 (best competitor 4.08, worst casual 3.05); Bar Raiser veto active (seat advantage 9.3).
+Untested suggestions: fewer Hush cards; Hush cannot target the highest card; Spend +3 per coin; hand limit; side-swap two-game format.
