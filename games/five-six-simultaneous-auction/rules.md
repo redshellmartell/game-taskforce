@@ -1,4 +1,4 @@
-# Last Bid Standing - Rules (v2, revision 1)
+# Last Bid Standing - Rules (v2.1, revision 1, fix-before-critic pass)
 
 ## 1. Overview
 
@@ -11,7 +11,7 @@
 
 ## 2. Components
 
-82 cards in total: 28 Lot cards, 48 Bid cards and 6 Paddle cards. Bid cards and Paddles have the **same card back** (see section 5, "Why the Paddle shares a back"). Lots have a different back. A pencil and paper are optional for scoring.
+78 cards in total: 28 Lot cards, 44 Bid cards and 6 Paddle cards. Bid cards and Paddles have the **same card back** (see section 5, "Why the Paddle shares a back"). Lots have a different back. A pencil and paper are optional for scoring.
 
 There are **four categories**, each with its own symbol: **Clocks**, **Silver**, **Paintings** and **Books**. Every Lot card and every Bid card shows one category.
 
@@ -26,14 +26,14 @@ There are **four categories**, each with its own symbol: **Clocks**, **Silver**,
 
 Per category the values total 23; the deck totals 92.
 
-**Bid cards (48): 12 per category**, with bid values 1 to 12, each value once per category (so each bid value exists 4 times in the deck).
+**Bid cards (44): 11 per category**, with bid values 1 to 11, each value once per category (so each bid value exists 4 times in the deck).
 
 | Category | Bid values | Count |
 |---|---|---|
-| Clocks | 1-12 | 12 |
-| Silver | 1-12 | 12 |
-| Paintings | 1-12 | 12 |
-| Books | 1-12 | 12 |
+| Clocks | 1-11 | 11 |
+| Silver | 1-11 | 11 |
+| Paintings | 1-11 | 11 |
+| Books | 1-11 | 11 |
 
 A Bid card's **value** decides who wins; its **category** decides which Hype row it joins if it loses.
 
@@ -43,11 +43,13 @@ A Bid card's **value** decides who wins; its **category** decides which Hype row
 
 1. Each player takes one Paddle. With 5 players, return Paddle 6 to the box.
 2. Shuffle the 28 Lot cards and place them as a **face-up** pile, the **Lot deck**. Its top card is always visible (the "preview").
-3. Shuffle the 48 Bid cards. Deal **4 face down to each player** as their hand. Place the rest face down as the **Bid deck**. Leave room for a face-up **discard pile** next to it.
+3. Shuffle the 44 Bid cards. Deal **4 face down to each player** as their hand. Place the rest face down as the **Bid deck**. Leave room for a face-up **discard pile** next to it.
 4. Leave room for the **block** (the lots for sale) and for four **Hype rows**, one per category. All start empty.
 5. There is no first player: every round is simultaneous. Paddle numbers are used only to order income draws (section 4, phase 5), which gives no advantage because the deck is shuffled.
 
 **Public information:** the number of cards in each hand, every card drawn as income (shown when drawn, section 4 phase 5), the discard pile, the Hype rows, the block, the Lot deck's top card and everyone's won lots. **Secret:** which cards are in each hand (only the 4 starting cards are never shown), and the card each player places in phase 2 until the reveal.
+
+**No public tableau.** A card drawn as income is shown, then goes into the drawer's hand like any other card; no public record of shown cards is kept, and players may not ask to see a rival's hand or re-show a card. Players must remember shown cards themselves. Every card that enters a hand after setup is drawn as income and therefore shown, including cards that were played earlier, discarded and reshuffled into the Bid deck: such a card is shown again when it is drawn again. A card stops being in a hand when it is played face up in phase 3.
 
 ## 4. Turn structure
 
@@ -64,7 +66,7 @@ The game lasts exactly **14 rounds**. Every round has these five phases, in orde
    5. **Burn:** every other Bid card played this round (lower bids and every cancelled bid) is **burned**: place it face up in the **Hype row of its own category**. Burned cards never return to play.
    6. Lots not taken **stay on the block** for the next round.
    7. Paddles return to their owners' hands.
-5. **Income.** Each player who played their Paddle this round draws **2 Bid cards** from the Bid deck, following the exact procedure in section 5 ("Income procedure"). Each drawn card is **shown to all players**, then added to the drawer's hand.
+5. **Income.** Each player who played their Paddle this round draws **2 Bid cards** from the Bid deck, following the exact procedure in section 5 ("Income procedure"). Each drawn card is **shown to all players**, then added to the drawer's hand. Income is drawn in **every** round, including round 14 (cards drawn in round 14 can matter only for the tiebreakers in section 6).
 
 After round 14, the game ends (section 6).
 
@@ -91,9 +93,10 @@ Timing and edge cases:
 - **Bid of any value can win.** A 1 that is the only standing bid takes a lot. There is no minimum bid and no reserve price.
 - **Income procedure** (replaces every other draw rule). Let P be the number of players who passed this round.
   1. If P = 0, skip income.
-  2. If the Bid deck holds fewer than 2 x P cards, first shuffle the discard pile together with all cards left in the Bid deck to form a new Bid deck. (Simulation: uniform random shuffle.) This is the only time the discard pile is ever shuffled.
-  3. Each passer draws K = the smaller of 2 and (Bid deck size divided by P, rounded down). Deal one card at a time to each passer in rising Paddle number, then a second round if K = 2. Cards left over stay in the deck.
+  2. If the Bid deck holds fewer than 2 x P cards, first shuffle the discard pile together with all cards left in the Bid deck to form a new Bid deck. (Simulation: uniform random shuffle.) This is the only time the discard pile is ever shuffled. If the discard pile is empty, this step simply shuffles the cards left in the Bid deck.
+  3. Using the Bid deck size after step 2, each passer draws K = the smaller of 2 and (Bid deck size divided by P, rounded down). Deal one card at a time to each passer in rising Paddle number, then a second round if K = 2. Cards left over stay in the deck.
   4. If K = 0 (deck plus discard held fewer cards than there are passers), nobody draws this round; the cards stay in the deck.
+  Example: 3 players pass, the Bid deck holds 4 cards and the discard pile is empty. Step 2 shuffles the 4 cards; K = the smaller of 2 and (4 / 3 rounded down = 1) = 1, so each passer draws 1 card and 1 card stays in the deck.
   Because the reshuffle happens before anyone draws and every passer draws the same number, Paddle order never gives one passer more cards than another.
 - **Why the Paddle shares a back.** At a real table players place their cards one after another. Matching backs mean a player who places late cannot see who has passed and who has bid, so placing last gives no information.
 - **No simultaneous conflicts:** all bids are chosen at the same time in phase 2; the only later choices are the first bidder's lot, then the second bidder's lot, always in that order.
@@ -106,7 +109,7 @@ Timing and edge cases:
 
 **Scoring.**
 1. **Hype:** count the Bid cards in each category's Hype row. That number is the category's Hype.
-2. **The bubble bursts:** the category with the highest Hype has its Hype set to **0**. Exactly one category crashes. If two or more categories tie for the highest Hype, the crash goes to the tied category whose Hype row has the **highest total of bid values** ("the most money wasted"). If still tied, the one holding the **highest single bid card**; if still tied, compare the next-highest card, and so on. If the rows are identical, the first in this order crashes: Clocks, Silver, Paintings, Books. If every row is empty, nothing crashes.
+2. **The bubble bursts:** the category with the highest Hype has its Hype set to **0**. Exactly one category crashes. If two or more categories tie for the highest Hype, the crash goes to the tied category whose Hype row has the **highest total of bid values**: add up the printed bid values (1-11) of every Bid card in that row; categories and lot values play no part ("the most money wasted"). If still tied, the one holding the **highest single bid value**; if still tied, compare the next-highest card, and so on. If the rows are identical, the first in this order crashes: Clocks, Silver, Paintings, Books. If every row is empty, nothing crashes.
 3. **Each lot** in your collection scores its **printed value + its category's Hype** (after step 2).
 4. Bid cards left in hand score nothing.
 
@@ -116,11 +119,11 @@ Example: final Hype is Clocks 7, Silver 7, Paintings 5, Books 3. Clocks and Silv
 
 ## 7. Design notes
 
-**The twist: sunk cost sets the price, and the hottest price crashes.** A losing bid becomes Hype for the category printed on the Bid card, not the lot being sold, so every card is two decisions: how much to bid, and which market you feed if you lose. The bubble stops snowballing: pump your own category too hard and it crashes, so the best place is the *second*-hottest market. In v2 the crash tie-break counts the bid values in the row, so *which* card you burn matters too: a burned 12 pushes a category toward the crash far more than a burned 1 does, even though both add 1 Hype.
+**The twist: sunk cost sets the price, and the hottest price crashes.** A losing bid becomes Hype for the category printed on the Bid card, not the lot being sold, so every card is two decisions: how much to bid, and which market you feed if you lose. The bubble stops snowballing: pump your own category too hard and it crashes, so the best place is the *second*-hottest market. In v2 the crash tie-break counts the bid values in the row, so *which* card you burn matters too: a burned 11 pushes a category toward the crash far more than a burned 1 does, even though both add 1 Hype.
 
 **Where skill comes from (revision 1 focus).** Playtest v1 showed blind simultaneous bids behaving like a lottery: careful bots lost to noisy ones. v2 adds leverage without a new mechanic:
-- *Open income:* every drawn card is shown, so after a few rounds most of each rival's hand is known (only their 4 starting cards stay hidden, and those thin out as they are played). A player who tracks which 11s and 12s are still out can avoid collisions, or deliberately collide with a rival's known top bid. All played cards are already face up, so the full count is available.
-- *Bids 1-12:* a wider range makes ties rarer by accident and more deliberate when they happen.
+- *Open income:* every drawn card is shown, so after a few rounds most of each rival's hand is known (only their 4 starting cards stay hidden, and those thin out as they are played). A player who tracks which 10s and 11s are still out can avoid collisions, or deliberately collide with a rival's known top bid. All played cards are already face up, so the full count is available.
+- *Bids 1-11:* a wider range than v1 makes ties rarer by accident and more deliberate when they happen (v2 used 1-12; playtest E3 showed 1-11 costs nothing).
 - *Carried-over lots:* the block grows when bids collide, so the first-bidder pick becomes a real choice among 3-4 lots, and a strong hand pays off in a rich round.
 - *Deterministic crash:* the crash is computable from public rows, so steering it is a plan, not a coin flip.
 
@@ -142,10 +145,10 @@ Example: final Hype is Clocks 7, Silver 7, Paintings 5, Books 3. Clocks and Silv
 
 **Rule budget (L7).** Still 3 special rules, as the brief allows. The rules run about 140 lines, well over "one page"; see Known gaps.
 
-**Four players (optional, untested):** remove Bid values 11 and 12 of every category (40 Bid cards) and deal 4 each; play all 14 rounds.
+**Four players (optional, untested):** remove Bid value 11 of every category (40 Bid cards) and deal 4 each; play all 14 rounds.
 
-**Bot hints for simulation.**
-- *Estimated Hype:* for each category, current Hype row count plus (rounds left x 0.5); the top estimated category (tie-break as in section 6) is treated as crashing.
+**Bot hints for simulation.** These are heuristics for coding bots only. **None of them is a rule of the game**; players never compute them and nothing in play depends on them.
+- *Estimated Hype (bot heuristic, not a rule):* for each category, current Hype row count plus (rounds left x 0.5); the top estimated category (tie-break as in section 6) is treated as crashing.
 - *Lot worth to me:* printed value + estimated Hype of its category (0 if it is the projected crash category).
 - *Known cards:* a strategic bot tracks every card a rival drew as income and has not yet played; a rival's unknown cards are drawn from the unseen pool (starting hands plus deck).
 - *Bid choice:* compare passing (worth about 2 cards) with each Bid card: (chance it stands first or second) x (worth of the best lot left for that slot) + (chance it burns) x (my lots in that card's category - 0.5 x rivals' lots in that category) - 1 for the card spent.
@@ -154,6 +157,8 @@ Example: final Hype is Clocks 7, Silver 7, Paintings 5, Books 3. Clocks and Silv
 - *Track per game:* lots left on the block at the end, cancelled bids, cards burned per category, which category crashed and whether by tie-break, forced passes, Hype share of points, and the provisional leader after each round.
 
 ## 8. Changelog
+
+**v2.1 (fix-before-critic pass, wording only).** Closed the 6 playtest ambiguities (round-14 income, no public tableau, reshuffled cards shown again, K with an empty discard, crash tie-break sums printed bid values, bot hint marked as not a rule) and cut bids to 1-11 (78 cards, within the brief) per playtest E3, which showed no cost; no balance changes.
 
 **v2 (revision 1).** Targets the playtest (NEEDS-FIXES) and critique (REVISE-MAJOR) of v1.
 - *Skill gap 17.5, mixed tables 0.8-2.3, planner loses to casual:* income cards are now shown when drawn (public information on rival hands); bids widened to 1-12 (E4 lifted the lone strategic bot from 28.6% to 33.2%); the crash is now deterministic and computable from public rows.
@@ -165,7 +170,7 @@ Example: final Hype is Clocks 7, Silver 7, Paintings 5, Books 3. Clocks and Silv
 ## Known gaps
 
 - **Skill gap is not shown to reach 20, nor 5 at mixed tables.** The v1 critic called it structural. v2 adds information and choice rather than a new mechanic. If the mixed-table gap stays under about 5 points, I do not think a small change will fix it, and the game should be killed or parked rather than redesigned.
-- **Component count is 82 cards, 2 over the brief's 60-80 target** (because bids now run 1-12). Fallback: bids 1-11 (78 cards).
+- **Component count is 78 cards**, inside the brief's 60-80 target since v2.1 (bids 1-11, playtest E3). The full KPI table was measured at bids 1-12; E3 measured 1-11 at 6 players only.
 - **Memory load of open income** is untested with humans; bots remember perfectly. Players may find tracking 5 rivals' cards tiring.
 - **Rule length about 140 lines** against a one-page promise (L7). The 3 special rules fit; the teach has not been timed.
 - **Last-round kingmaking/spite** is not simulated yet; the critic asked for a spite bot.
