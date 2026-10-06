@@ -1,9 +1,11 @@
-Nine Lives Dungeon, solo, barraiser bot, seed 600012 (lost run). Solo game: one table per persona.
-T1 Shove Owl into 8, Snake comes up
-T2 Shove Spider into 3, Rat comes up
-T3 Shove Snake into 5, Moth comes up
-T4 Shove Crow into 6, Hound comes up
-T5 Shove Hound into 6, Crow comes up
-T6 Fight Moth (danger 1, claws 2, wounds 0, ready 0)
-T7 Fight Crow (danger 7, claws 3, wounds 4, ready 1)
-T7 DEAD, killed by Crow
+Whiskerdark, solo, barraiser bot, seed 600015 (lost run). Solo game: one table per persona.
+T1 Shove into 4, Spider comes up
+T2 Shove into 5, Mouse comes up
+T3 Shove into 4, Moth comes up
+T4 Fight Mouse (danger 2, claws 2, wounds 0, ready 0)
+T5 Fight Spider (danger 3, claws 3, wounds 0, ready 1)
+T6 Fight Moth (danger 3, claws 4, wounds 0, ready 2)
+T6 Hunt spends a trophy
+T7 Glow sees Owl at 6
+T7 Fight Hound (danger 9, claws 4, wounds 5, ready 2)
+T7 DEAD, killed by Hound

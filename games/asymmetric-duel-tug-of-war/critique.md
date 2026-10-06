@@ -1,40 +1,49 @@
-# Critique: Tug of Crowns (rules v2, revision 1)
+# Critique: Tug of Crowns, revision 2 (cycle 2, rules v3)
 
-**Verdict: REVISE-MAJOR** (one last, narrowly scoped revision; see "Is another revision worth it?")
+All numbers are bot simulation; no human has played this game.
 
-Note: no panel-report.md exists. Fun and Market fit rest on `panel.json` bot predictions (average fun 3.30, competitor 4.03, family 2.67) and the narrated play. Originality was not re-checked: the core mechanic did not change (closest game remains Tug of Roar, medium).
+**Verdict: REVISE-MAJOR (recommend PARK, no further auto cycle). Average 3.17 (was 3.33).**
+
+## Bar Raiser veto (first)
+Veto is ACTIVE: seat advantage of 9.3 points. It stays in any pitch's "Remaining risks". The game must not be pitched without an explicit owner decision. The 9.3 is also flattering. It is an average of absolute gaps of +20 (random mirror, Treasurer 60.2%), -29 (greedy, 35.3%) and -19 (strategic, 40.5%, or 44.0% on a second run). Which side is stronger depends on which bot you ask. The two better bots both say the Whisperer is stronger, and the weaker bot says the opposite (L2).
+
+## Applying my own parking rule
+Last critique: "if the side gap stays above 8 or fun below 3.3 after revision 2, park the game." The side gap is 9.3 on the headline and 10-19 in the strategic mirror, which is above 8. Panel fun is 3.51, above 3.3. The gap condition fires, so the rule says park.
 
 ## Scores (1-5)
-
-| Area | Score | Reason |
+| Area | Score | Why |
 |---|---|---|
-| Originality | 3 | Unchanged from revision 0. Hush/Retort/Echo plus Treasury/Spend is a fresh mix on a known tug-track bidding pattern. |
-| Clarity | 4 | Up from 3. All 8 ambiguities resolved, Retort has its own section, margin rules deleted. Still two keyword sets and a chooser rule; panel rules_simplicity was very low last time and has not been shown to improve. |
-| Fun | 3 | Panel fun 3.30 (flat). The narrated game has one good round (three Hushes, 12-11 win), but a dull round 2, 15% of games end abruptly in round 2, and 31% by round 3. The lead choice is again a solved decision. |
-| Balance | 2 | Down from 3. Side gap 10.9 (target 5) and it flips with skill (Treasurer 58% random, about 38% greedy/strategic). Always-lead-self 63% vs always-give 43% (target 40-60). A greedy always-lead bot beats the strategic bot. Passing: skill gap +56, early leader 49%, centre endings 0%. Lead changes 1.83 (target 2, near miss). Experiments were not re-run after the coin bug fix. |
-| Market fit | 3 | Still on the brief's gap (cards only, 2P, asymmetric, short). Casual and family bots remain the weak audience. Average 12.7 min vs 15 target is acceptable. |
-| Production | 5 | 47 cards, no dice, no board. |
+| Originality | 3 | Core mechanic unchanged, so not re-searched. Closest is Tug of Roar (medium). Asymmetric decks plus a tug track is a known space; Hush, Retort and Echo are the only distinctive part, and bots cannot show that they matter. |
+| Clarity | 3 | Zero ambiguities and the wording is tidy. But the file is about 250 lines with 6 keywords plus Retort timing against the brief's "one page, 3 special rules" (L7). The panel's rules_simplicity metric is 0.0 for every persona and every persona hit the heavy-rulebook peeve. Retort timing (4.4) is hard to teach. |
+| Fun | 3 | Panel average 3.51, but casual 3.05, story 3.09 and family 3.25 sit below the 3.5 line. The playtester's narrated game says round 1 is a 6-card dump, rounds 2-4 are flat, decisions are mostly "play or pass", and Retort never came up. |
+| Balance | 2 | Side gap fails in all three mirrors, in opposite directions. The Treasury cap knob is inert (cap 2 vs 3 differs by 1-2 points). All five keyword ablations fail (L1). Whisper (+20) and Seal (+23) are outliers. |
+| Market fit | 3 | Still a 2-player, 15-minute, cheap card game as briefed. But the "asymmetric" promise rests on keywords that do not change best play, so the asymmetry is mostly a difference in card totals (58 vs 42). |
+| Production | 5 | 47 cards, no other parts, trivial cost. |
 
-**Average: 3.33** (below the 3.5 pitch bar; same as revision 0, with Clarity up and Balance down).
+Average (3+3+3+2+3+5)/6 = 3.17, below the 3.5 pitch bar.
+
+## Playbook check
+- **Comeback (L3): met.** Lead changes 2.22, runaway 44%, games over by round 3 18.5%, length 13.1 min (target 15 +-20%). Pacing is genuinely fixed. The playtester notes that the comeback comes from the track shape and not from the advertised court draws (draws off: +0.09 lead changes for strategic, needs +0.3).
+- **Twist ablation (L1): failed on every keyword.** never-Spend -0.1, ignore-Steady -0.9, no-Echo-throw -3.1, random Hush +3.1, never-Retort +1.9; each needs 5 or more. The designer wrote the ablation tests, which is good, and they ran, but they show the twists do nothing for these bots. This is the same failure as duelflip and the other games named in L1.
+- **Two or more bots (L2): done, and it shows the problem.** The side gap flips sign with bot strength.
+- **Target band and knob (L5, L8): knob inert.** The one declared knob moves nothing.
+- **Rule budget (L7): over.**
+- **Skill gap (L6): ok.** Strategic beats random by 45 points. Strategic beats greedy by only 62%.
 
 ## Biggest strength
-Revision 1 fixed the structural pacing problems from revision 0: no dead-centre endings, lead changes up from 1.15 to 1.83, zero ambiguities, and a skill gap of +56. The game now reaches decisive endings.
+Pacing and structure now meet the KPIs: lead changes 2.22, runaway 44%, early finishes 18.5%, length 13.1 minutes, no dead cards and no ambiguities, for a 47-card box. Cycle 2 did what it was meant to on those targets.
 
 ## Biggest weakness
-The lead mechanic is unstable. Five variants each left one policy dominant (self 65%, balanced but meaningless, give 60%, self 59%, self 63%). The one variant with balanced policies (E2, no extra card) makes the choice barely matter and gives the Treasurer 62%. This shows the lead-bonus is a knife-edge lever, not a tuning-by-small-steps one.
+The two decks are not balanced against each other, and the "asymmetric" keywords have no effect on best play. Revision 2 removed the lead dial (L9 mechanical part) and the gap just moved to a different place. Treasurer wins 60/35/40-44% by bot strength, no tuning lever (cap, Whisper 5 to 4, Gold Purse) moves the strategic mirror by more than about 4 points, and none of the five keywords passes ablation. This repeats L1 (inert twist), L2 (verdict depends on the bot) and L9 (mechanical fixes move scores, structural ones do not).
 
-## Tuning or structural?
-Mixed. The track, pacing and clarity work is sound and only needs tuning (double-move margin 6 fixes early endings and probably the last 0.17 lead changes). The "chooser picks the lead, and the lead gets a card" idea is structural: it has failed in both of its forms (give it away, then take it). Another card-size tweak is a 6th guess at the same dial. The side gap (10.9, skill-dependent) is a second problem, largely independent, and cannot be tuned until the lead is fixed.
+## Is the problem structural? Yes.
+Two cycles on the lead mechanic and two levers on the decks have left the gap at 9-19 points. Pacing improved, balance did not. The balance gap comes from two asymmetric decks whose power depends on how well each bot uses keywords, and the keywords are inert, so there is nothing to tune. Fixing it means redesigning the keyword layer (for example giving Hush and Spend real, testable stakes), and that is a new game, not a third cycle.
 
-## Required changes
-1. **Stop tuning the card bonus; remove the lead decision as a decision.** Either (a) the loser of the last round always leads (no choice, no extra card), or (b) the lead alternates, or (c) the playtester's non-card price (lead reveals one hand card, or plays first card face down) with the choice kept. Prefer (a) or (b): shortest rules, no solved choice. If E2-style (no bonus) is used, expect the Treasurer at about 62% and handle that in item 2. KPI: any fixed lead policy 40-60% (n/a if no choice); Balance 2 to 3+.
-2. **Close the side gap with one lever at a time, in the order of section 7:** after item 1, if the Treasurer is above 55% (random) or below 45% (strategic), adjust the Treasury cap or Spend bonus. Test side gap against random, greedy and strategic bots separately; require the gap at most 5 in the strategic mirror and no more than 10 across the skill ladder. KPI: side gap at most 5; improves Balance.
-3. **Double-move margin 6.** Target: games ending by round 3 below 20% (now 31%), lead changes at least 2.0, runaway leader at most 65%. Improves Fun and Balance.
-4. **Re-run all experiments on the fixed simulator** (the coin bug was found after the five experiments). KPI: numbers on the corrected sim only.
-5. **Optional, low:** drop The Whisper to 4 Influence or cut it to a single copy if it stays at +17 points. Improves Balance.
+## Required changes (only if the owner overrides the park)
+1. Rework the keyword layer so each of the five passes ablation by at least 5 points. KPI: all five ablations at 5 or more.
+2. Then rebalance with Whisper 5 to 4 and Seal 6 to 5 together, checked against three bots (random, greedy, strategic plus the plus bot). KPI: strategic mirror 45-55% and no mirror outside 40-60%.
+3. Cut the rules to six lines of keywords. KPI: rules file about 100 lines or less (L7); clarity score up.
+4. Cheap play-pattern fix to consider on its own: a two-game side-swap format (each player plays both sides, winner takes the better total margin). It would hide the side gap without fixing it, so it is a workaround and not a balance fix.
 
 ## Is another revision worth it?
-Yes, once and with a changed approach: delete the lead-choice dial instead of retuning it, since the other problems (pacing, clarity, no dead ends) are already fixed and measurable. If revision 2 still shows a side gap above 8 or fun below 3.3, park the game rather than use revision 3: it would then be a competitive-player niche filler, not a pitch.
-
-## Recommendation to the owner
-Do not pitch now (average 3.33, balance FAIL, no dominant-strategy-free lead). Revise once more with the changes above (usage M), or park. Pitch-as-is is not advised.
+No. The remaining problems are structural: the keywords are inert and the side gap flips with bot strength. The last two cycles fixed pacing but not balance, and my park condition (side gap above 8) is met. Recommend park; kill only if the owner wants the idea-bank entry closed.

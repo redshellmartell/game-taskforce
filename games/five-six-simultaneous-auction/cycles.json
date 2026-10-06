@@ -1,0 +1,48 @@
+{
+ "cycles": [
+  {
+   "cycle": 1,
+   "targeted": [
+    "skill gap (lone and mixed table)",
+    "Hype share of points",
+    "forced passes / dead rounds",
+    "ambiguities"
+   ],
+   "before": {
+    "skill_gap_lone": 17.5,
+    "skill_gap_mixed": 1.5,
+    "hype_share": "55-64%",
+    "forced_pass": 0.22,
+    "critic": 3.0
+   },
+   "after": {
+    "skill_gap_lone": 25.3,
+    "skill_gap_mixed": 11.8,
+    "hype_share": "56-64%",
+    "forced_pass": 0.051,
+    "critic": 3.33
+   },
+   "moved": true,
+   "note": "Skill gap, forced passes and ambiguities moved; Hype share and two ablations did not. Critic REVISE-MINOR 3.33."
+  },
+  {
+   "cycle": 2,
+   "targeted": [
+    "Hype share of points",
+    "open income / ablations"
+   ],
+   "before": {
+    "hype_share": "56/64%",
+    "ignore_crash_ablation": "+7.5/+5.5",
+    "critic": 3.33
+   },
+   "after": {
+    "hype_share": "48/48%",
+    "ignore_crash_ablation": "+3.0/-2.9 (5p), -1.6/-2.5 (6p)",
+    "critic": 3.33
+   },
+   "moved": true,
+   "note": "Hype ceiling fixed Hype share and face-down income cost nothing, but the ceiling made the crash inert (ignore-crash fails at both counts); ignore-hype/ignore-ties flip sign at 5p; 6p last-round flip 25%. Critic REVISE-MINOR 3.33 flat, no more bot cycles."
+  }
+ ]
+}

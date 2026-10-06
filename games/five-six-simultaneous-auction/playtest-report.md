@@ -1,57 +1,62 @@
-# Playtest report: Last Bid Standing (revision 0)
+# Playtest report: Last Bid Standing, rules v3 (revision 2)
 
-**Verdict: NEEDS-FIXES.** Mechanically sound (no crashes, 14 rounds always, fair seats, good lead changes), but decisions barely separate good from random play, Hype swamps printed values, and a quarter of lots go unsold when bots play carefully.
+**Verdict: NEEDS-FIXES (bots only, unvalidated).** 88,000 simulated games; 2,000 per table kind at 5 and 6 players, 1,000 per extra configuration. No human has played it.
 
-## Key numbers (24,000 headline games: 2,000 per table type at 5 and 6 players; 10,000 experiment games)
-| KPI | Target | Result | Status |
+## Key numbers (5p / 6p, targets from CLAUDE.md and rules v3)
+| KPI | Target | v3 5p / 6p | v2 |
 |---|---|---|---|
-| Seat balance gap | <= 5 pts | 1.4 (6p all-strategic); 0.7 to 2.5 across all tables | pass |
-| Strategic vs random gap | >= 20 pts | 17.5 mean for a lone strategic bot (20.7 at 5p, 14.3 at 6p). At a 50/50 mixed table only 0.8 (5p) and 2.3 (6p) | FAIL |
-| Length | 16-24 min | about 16 min by my timing model (19.3 with the designer's 70 s/round); 14 turns always | edge of pass, untested with humans |
-| Runaway leader (leader after round 7 wins) | <= 65% | 49% mean; 59-65% for the leader after round 11 | pass (late value at limit) |
-| Lead changes | >= 2 | 2.98 mean (2.5 to 3.5) | pass |
-| Dead cards | 0 | None fully dead; lot value 1 weak | pass, with a flag |
-| Ambiguities | 0 | 7 listed in playtest.json | FAIL |
-| Ties for first | low | 2.5% | ok |
-| Turn-cap hits | 0 | 0 | pass |
+| Hype share of points | 45-50% | 48% / 48% | 56% / 64% |
+| Lone strategic gap vs 5 random | >= 20 | S 31.2 / 32.5, Planner 36.8 / 37.0, Lite 26.6 / 22.8, greedy 18.5 / 12.3 | 25.3 |
+| Mixed 3+3 gap vs random | >= 5 | S 14.1 / 11.2, Planner 9.2 / 6.5 | 11.8 |
+| Seat gap (all-strategic) | <= 5 | 1.1 / 2.1 | - |
+| Runaway leader (half-way) | <= 65% | 48% / 45% (late 60%) | - |
+| Lead changes | >= 2 | 3.3 / 3.6 | - |
+| Length | 20 min +-20% | 18.5 / 19.7 min, 14 rounds fixed | 16 |
+| Forced passes | <= 13% | 4.3% / 3.1% | 5.1% |
+| Lots left on block | <= 5 | 3.9 / 4.0 | 2.9 |
+| Last-round winner flip | <= 20% | 19% / 25% | 20% / 27% |
+| Crash identity flips in last round | - | 17% / 33% | - |
+| Ties / turn cap hits | - | 0.1% / 0.5% / 0 | - |
 
-Bots, pooled mixed tables (fair is 16.7-20): strategic 20.3%, random 18.4%, greedy (always plays highest card) 16.4%.
+## Ablations (full bot win rate minus ablated bot, points; strategic / planner)
+| Ablation | 5p | 6p | Target >= +5 |
+|---|---|---|---|
+| ignore-hype | -5.3 / +10.5 | +16.1 / +20.9 | inconsistent at 5p (sign flip persists) |
+| ignore-crash | +3.0 / -2.9 | -1.6 / -2.5 | FAIL both (v2 +7.5/+5.5) |
+| ignore-ties (public counts only; income is face down) | -6.9 / -3.0 | +8.1 / +9.3 | pass 6p only; ignoring ties WINS at 5p |
+| ignore-cap | +8.5 / +5.8 | +5.9 / +1.4 | pass for strategic; planner marginal at 6p |
 
-## The designer's flagged risks
-- **Hype swamping lot values: confirmed.** Hype is 55% (5p) and 64% (6p) of all points after the crash. Lot value 1 correlates 0.13 with winning vs 0.27 for value 3.
-- **Tied bids leaving lots unsold: confirmed.** 5.2 (5p) / 4.6 (6p) of 28 lots go unsold with mixed bots, 7.8 (6p) with all-strategic bots. About 10-16 bids per game are cancelled by ties.
-- **Coin supply drying up: partly.** Mean hand is 1.6 cards; players have no card to bid in 22-23% of player-rounds. The "nobody draws" rule almost never fires (0 to 0.13 per game); the discard reshuffles 1-2 times a game. The real problem is empty hands, not an empty deck.
-- **Last-round kingmaking: swingy.** The leader before round 14 loses 26% (5p) / 31% (6p) of games; the crash category changes in round 14 in 41% / 49%. I did not build a deliberate kingmaking bot, so spite play is untested.
-- **Bubble:** each category crashes 34-39% of the time, so no category is a safe bet. Good.
+## Which change worked (single-change configs, L10)
+- **Ceiling +4 worked for Hype share.** No cap (face-down income, same everything else): 57% / 63%. Cap 3: 41%. Cap 4: 48% / 48%. Cap 5: 53% / 53%. Knob confirmed, cap 4 sits in band at both counts.
+- **The ceiling did not cut the skill gap**: lone S gap 28.1 / 28.7 without cap vs 31.2 / 32.5 with cap 4 (cap 3: 30.6 / 33.3; cap 5: 29.6 / 31.2).
+- **Ceiling lowered 6p last-round flip** 32% to 25%; 5p 20% to 19% (not enough at 6p).
+- Cutting open income cost nothing measurable: face-down lone gap is above v2's 25.3 (note the bots also changed: cap-aware valuation, so only the no-cap row is a clean comparison).
+- Hand 5 (E4): Hype share unchanged, forced passes 1.7% at 5p, flip 25% / 26%: no gain.
+- E5 "income 1" was a no-op: the sim hard-codes K=2, so it only shows seed noise (lone gap 30.3 / 32.0 against 31.2 / 32.5).
 
-## Problems (ranked)
-1. **High: skill expression.** Lone strategic bot 28.6-36.6% vs random 14-16%, but three strategic bots vs three random only 17.8% vs 15.5% at 6p. Passive play loses: in the persona rotation the noisy casual bot (30% win) and the story bot (27%) beat the planner (15%), cautious (11%) and optimiser (17%). The best simple line (pass 5 rounds, then bid high) scores 26% at 6p against randoms, yet three bankers get 4 to 8% each, so any pattern stops working once copied. Fix: add leverage or information (for example a public count of Paddles passed, or two bid cards per round), then retest. E4 (bids 1-12) lifted the lone-strategic share to 33% at 6p.
-2. **High: Hype swamps values.** Fix: raise printed values moderately (2-5), not +2 across the board (E1 cut Hype to 46-53% but unsold rose to 9.9 and forced passes to 34% at all-strategic).
-3. **High: unsold lots and empty hands.** Fix: income 2 per pass (E2: unsold 7.8 to 6.4, forced passes 22% to 13%, last-round flips 29% to 19%, ties 2.2% to 1.2%, seat gap 0.4 to 1.8). Alternatively carry unsold lots over.
-4. **Medium: last round decides too much** (see above). E2 and E5 (starting hand 5: flips 11% at 6p all-strategic) both reduce it.
-5. **Medium: ambiguities** (see playtest.json): reshuffle timing mid-draw, "nobody draws" scope, tied top-Hype categories all crash (very swingy: if the top two tie, both crash), tiebreak order, which lot the second bidder gets.
-6. **Low: length** near the low edge; real timing needs humans.
+## Problems, ranked
+1. **High. Ignore-crash fails at both counts (L1).** Evidence above. With a ceiling of +4 the crash costs at most 4 points a lot and bots that ignore it lose nothing. Fix: pick one: drop "steer the crash" from the skill claims, or make the crash bite (single change, then re-test).
+2. **Medium. Ignore-hype and ignore-ties are not stable across counts or bots (L2).** At 5p the strategic bot does better ignoring Hype (-5.3) and both bots do better ignoring ties; at 6p both ablations lose clearly. The tie rule is a skill lever at 6p only. Fix: state it as pacing only at 5p, or confirm with a third bot.
+3. **Medium. 6p last-round winner flip 25% against 20%, crash flips 33%.** Fix: shorten the Hype race or add a last-round rule; test as one change.
+4. **Low. Ceiling is mostly a score scaler** (ignore-cap +1.4 to +8.5). Acceptable per rules v3.
+5. **Low. Skill depends on bot depth:** greedy lone gap 15.4 (below 20), lite 24.7, strategic 31.8, planner 36.9. The 5/6 mixed gap of the planner (7.8) is above 5.
 
-## Experiments (5 of 5 used; 6 players, 1,000 games each, one change at a time)
-| Change | Hype share | Unsold (all-strat) | Forced pass | Last-round flip | Lone strategic share |
-|---|---|---|---|---|---|
-| Base | 61-66% | 7.8 | 22% | 29% | 28.6% |
-| E1 lot values +2 | 46-53% | 9.9 | 34% | 24% | 26.2% |
-| E2 income 2 | 66% | 6.4 | 13% | 19% | 29.5% |
-| E3 halve (not zero) on crash | 68-72% | 7.7 | 21% | 23% | 28.7%, runaway 0.55/0.66 (worse) |
-| E4 bids 1-12 | 60-66% | 6.9 | 17% | 26% | 33.2% |
-| E5 start hand 5 | 63-67% | 8.0 | 19% | 11% | 26.8% |
+## Dead cards
+None dead. Pass is played 30% of rounds and is neutral (win corr -0.04). Bid 1-3 shows negative correlation (-0.19), which reflects weak hands rather than a bad card; Bid 10-11 +0.18; lot values 4 and 5 correlate most with winning (0.37, 0.34), lot value 2 least (0.07, but still scores). No card is flagged.
 
-Best single fix: E2. Untested suggestions: E2 plus lot values 2-5 together; bids 1-12 with income 2; carry-over of unsold lots; a deliberate kingmaking bot.
+## Ambiguities hit
+1. Round-14 income still happens (only matters for tiebreakers).
+2. Tiebreakers 1 and 2 use hidden hands; rules do not say hands are revealed at the end (assumed yes).
+3. Income reshuffle step 2 with K rounding was implemented as written; no hole found.
+No new rule hole needed an interpretation beyond these.
 
-## Narrated play (one 6-player game, bots in four of the seats, read from the log)
-Rounds 1 to 4 felt lively: five or six bids a round, ties cancelling a 9 and a 10 early, and the burned cards piling into Clocks (5 Hype by round 3). Round 4 onward the table thinned: hands ran down to 1 or 2 cards and the rounds shrank to three bids or fewer. Round 9 had one bid (an unwanted unsold lot) and rounds 11 and 13 had no bids at all, so two lots worth up to 4 were wasted: dead rounds, boring and a little frustrating. The seat-4 player led from round 3 and still won, but round 14 pushed Silver to a tie with Clocks at 8 Hype, so both crashed and the final standings shuffled: the dramatic moment of the game, but it came from a lucky tie, not from planning. No downtime at all, and the rules are short. I did not play a second game.
-
-## Rule interpretations
-Second bidder takes the other lot; lots come off a pre-shuffled deck two per round; draws resolve one passer at a time, reshuffling only when the deck is empty at the moment of the draw; tie for first place is shared only after both tiebreakers tie. The length figure uses my own timing model (25 s bid, 15 s reveal, 4 s per burned card, 6 s per lot, 3 min setup and scoring).
+## How it felt (narrated play, 5p log, one game)
+Rounds 1-4 felt lively: four-way bids, 11 and 10 both taking lots, burns going into Clocks and Silver. Round 5 was a dud: two players bid 7 and cancelled, nobody took a lot, and two lots sat there. That was the fun spike (the rich block builds) but also a frustration for the two players who lost cards for nothing. Rounds 8-13 repeated a pattern: only 2-3 bids a round while three players passed to draw, so the table felt thin and the block grew to 4 lots, which made the later 8-11 bids feel like jackpots. Hype went 6/8/4/6 at the end, so Silver crashed and the +4 ceiling applied to the rest: the winner was the one who kept taking value-4 and 5 lots early, not the one who steered the crash. Decisions per turn: 3-4 real choices. Downtime is low (simultaneous). The crash reveal at the end was the right surprise; the +4 ceiling made it a smaller one.
 
 ## What simulation cannot test
-Reading opponents and bluffing (bots do not model psychology or table talk), human memory of what was burned, deliberate kingmaking, how the shared tie rule feels when your 10 is cancelled, real length, and whether the Paddle and Bid cards looking the same matters in play. Bots are simple; the "strategic" bot is my best effort, and a stronger human line may exist, so the skill gap may be understated.
+Fun, teach time, reading the rules, memory or table talk, whether people really like losing a 7 to a tie, spite and kingmaking in round 14, bluffing with real people, and whether the face-down Paddle trick works with real hands. All verdicts are bots only, unvalidated.
 
-## Panel (free bots only)
-Average predicted fun 3.04 (spread 0.85). Best fit: competitor (3.57). Worst fit: story (2.72). Family and strategist and story would-buy "no". No Bar Raiser veto active (fun 3.29), but its numbers hit the "runaway/kingmaking" and "ambiguous rules" peeves. Files: sim/panel-results.json, sim/logs/, panel.json.
+## Untested suggestions
+Crash penalty variant; end Hype one round early; a spite bot for round 14; bid range 1-12 at cap 4; a no-op income-1 config fixed to the sim.
+
+Panel (free bots, panel.json): average fun 3.44, best fit competitor, worst fit family.

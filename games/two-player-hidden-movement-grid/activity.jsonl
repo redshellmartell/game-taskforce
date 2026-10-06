@@ -14,3 +14,9 @@
 {"time": "2026-10-06T13:49:21Z", "agent": "game-designer", "game": "two-player-hidden-movement-grid", "event": "done", "message": "rules.md v2: zoned Sea cards, 2-step ping only for the trailing player, round cap 12, 6 ambiguities closed"}
 {"time":"2026-10-06T13:49:31Z","agent":"playtester","game":"two-player-hidden-movement-grid","event":"start","message":"Revision 1 playtest: updating sim to rules v2"}
 {"time":"2026-10-06T13:51:46Z","agent":"playtester","game":"two-player-hidden-movement-grid","event":"step","message":"Sim updated to rules v2; 200-game smoke run ok; headline 2000/pairing running"}
+{"time":"2026-10-06T14:18:57Z","agent":"playtester","game":"two-player-hidden-movement-grid","event":"done","message":"Rev 1 playtest: NEEDS-FIXES (runaway 0.83, Sonar dead); panel.json updated, avg fun 3.73"}
+{"time": "2026-10-06T14:19:15Z", "agent": "playtester", "game": "two-player-hidden-movement-grid", "event": "done", "message": "Cycle 1 playtest NEEDS-FIXES: runaway 0.831 (was 0.795), lead changes 1.50, Sonar still dead, 6 ambiguities; no progress on targeted KPIs"}
+{"time": "2026-10-06T14:20:13Z", "agent": "game-designer", "game": "two-player-hidden-movement-grid", "event": "done", "message": "Fix-before-critic pass: rules v2.1, 6 ambiguities closed, no balance changes"}
+{"time": "2026-10-06T14:20:13Z", "agent": "critic", "game": "two-player-hidden-movement-grid", "event": "start", "message": "Cycle 1 critique (director-logged)"}
+{"time": "2026-10-06T14:21:17Z", "agent": "critic", "game": "two-player-hidden-movement-grid", "event": "done", "message": "Cycle 1 critique: REVISE-MAJOR 3.00, structural, recommends park"}
+{"time": "2026-10-06T14:21:17Z", "agent": "director", "game": "two-player-hidden-movement-grid", "event": "waiting", "message": "waiting for approval: review-cap (two-player-hidden-movement-grid-review-cap-1)"}

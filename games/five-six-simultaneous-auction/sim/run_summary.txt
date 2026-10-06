@@ -1,13 +1,19 @@
---- baselines (6p) vs experiments (6p, 1000 games)
-BASE 6p-oneS unsold 2.9 hype% 61 forced% 12 tie 0.010 LC 3.25 run 0.51/0.60 flip 0.26 min 16.5 bots {'random': 14.3, 'strategic': 28.6} seatgap 1.7
-BASE 6p-allS unsold 7.8 hype% 66 forced% 22 tie 0.022 LC 2.86 run 0.48/0.59 flip 0.29 min 16.5 bots {'strategic': 16.7} seatgap 1.4
-E1 lots+2 6p-oneS unsold 2.9 hype% 46 forced% 14 tie 0.010 LC 3.50 run 0.47/0.61 flip 0.28 min 16.5 bots {'random': 14.8, 'strategic': 26.2} seatgap 2.3
-E1 lots+2 6p-allS unsold 9.9 hype% 53 forced% 34 tie 0.040 LC 2.60 run 0.49/0.62 flip 0.24 min 16.5 bots {'strategic': 16.7} seatgap 2.4
-E2 income2 6p-oneS unsold 2.2 hype% 66 forced% 8 tie 0.002 LC 3.48 run 0.49/0.61 flip 0.23 min 16.9 bots {'random': 14.1, 'strategic': 29.5} seatgap 0.4
-E2 income2 6p-allS unsold 6.4 hype% 67 forced% 13 tie 0.012 LC 3.17 run 0.47/0.62 flip 0.19 min 16.7 bots {'strategic': 16.7} seatgap 1.8
-E3 halve 6p-oneS unsold 2.8 hype% 68 forced% 12 tie 0.022 LC 3.10 run 0.55/0.66 flip 0.23 min 16.5 bots {'random': 14.3, 'strategic': 28.7} seatgap 1.8
-E3 halve 6p-allS unsold 7.7 hype% 72 forced% 21 tie 0.022 LC 2.67 run 0.55/0.67 flip 0.23 min 16.5 bots {'strategic': 16.7} seatgap 2.8
-E4 bid1-12 6p-oneS unsold 2.3 hype% 60 forced% 12 tie 0.009 LC 3.22 run 0.49/0.59 flip 0.25 min 16.5 bots {'strategic': 33.2, 'random': 13.4} seatgap 1.9
-E4 bid1-12 6p-allS unsold 6.9 hype% 66 forced% 17 tie 0.025 LC 2.76 run 0.49/0.62 flip 0.26 min 16.5 bots {'strategic': 16.7} seatgap 2.3
-E5 hand5 6p-oneS unsold 2.6 hype% 63 forced% 11 tie 0.004 LC 3.35 run 0.49/0.62 flip 0.20 min 16.7 bots {'strategic': 26.8, 'random': 14.6} seatgap 1.3
-E5 hand5 6p-allS unsold 8.0 hype% 67 forced% 19 tie 0.013 LC 2.78 run 0.51/0.65 flip 0.11 min 16.5 bots {'strategic': 16.7} seatgap 1.4
+write_playtest deferred: '5p-oneN'
+Headline 2000 games per table kind
+5p seatgap(allS) 1.1 | lone gap S 31.2 P 36.8 Lite 26.6 G 18.5 | S-R at 3S+3R 14.1, P-R 9.2 | mixed S/R/G [29.8, 10.2, 20.2]
+   ablation S-vs-ablated / P-vs-ablated (pts): hype -5.3/10.5, crash 3.0/-2.9, ties -6.9/-3.0, cap 8.5/5.8
+   allS: hype% 48 forced% 4.3 unsold 3.9 cancelled 14.1 LC 3.32 runaway 0.48/0.60 flip 0.19 crashflip 0.17 min 18.5 tie 0.001
+6p seatgap(allS) 2.1 | lone gap S 32.5 P 37.0 Lite 22.8 G 12.3 | S-R at 3S+3R 11.2, P-R 6.5 | mixed S/R/G [33.6, 7.7, 8.8]
+   ablation S-vs-ablated / P-vs-ablated (pts): hype 16.1/20.9, crash -1.6/-2.5, ties 8.1/9.3, cap 5.9/1.4
+   allS: hype% 48 forced% 3.1 unsold 4.0 cancelled 20.7 LC 3.62 runaway 0.45/0.60 flip 0.25 crashflip 0.33 min 19.7 tie 0.005
+--- experiments (1000 games)
+E1 cap3 5p: loneS gap 30.6 | hype% 41 forced% 4.3 unsold 3.9 LC 3.22 run 0.50 flip 0.15 seatgap 2.0
+E1 cap3 6p: loneS gap 33.3 | hype% 41 forced% 3.1 unsold 4.0 LC 3.56 run 0.47 flip 0.24 seatgap 1.4
+E2 cap5 5p: loneS gap 29.6 | hype% 53 forced% 4.3 unsold 3.9 LC 3.33 run 0.48 flip 0.18 seatgap 1.7
+E2 cap5 6p: loneS gap 31.2 | hype% 53 forced% 3.1 unsold 4.0 LC 3.76 run 0.46 flip 0.28 seatgap 1.8
+E3 nocap(v2-like, face-down) 5p: loneS gap 28.1 | hype% 57 forced% 4.3 unsold 3.9 LC 3.37 run 0.48 flip 0.20 seatgap 1.2
+E3 nocap(v2-like, face-down) 6p: loneS gap 28.7 | hype% 63 forced% 3.1 unsold 4.0 LC 3.89 run 0.45 flip 0.32 seatgap 1.9
+E4 hand5 5p: loneS gap 30.5 | hype% 48 forced% 1.7 unsold 3.9 LC 3.36 run 0.48 flip 0.25 seatgap 1.6
+E4 hand5 6p: loneS gap 34.0 | hype% 47 forced% 3.3 unsold 4.3 LC 3.49 run 0.45 flip 0.26 seatgap 2.2
+E5 income1 5p: loneS gap 30.3 | hype% 48 forced% 4.3 unsold 3.9 LC 3.28 run 0.49 flip 0.17 seatgap 2.1
+E5 income1 6p: loneS gap 32.0 | hype% 48 forced% 3.1 unsold 4.0 LC 3.70 run 0.46 flip 0.26 seatgap 1.3

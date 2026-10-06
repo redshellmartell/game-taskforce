@@ -812,6 +812,212 @@
       "decision": "approve",
       "decided_at": "2026-10-06T13:43:21.742Z",
       "owner_notes": null
+    },
+    {
+      "id": "two-player-hidden-movement-grid-review-cap-1",
+      "gate": "review-cap",
+      "game": "two-player-hidden-movement-grid",
+      "time": "2026-10-06T14:21:17Z",
+      "status": "pending",
+      "summary": "Cycle 1 made it worse: runaway leader 0.831 (target 0.65, was 0.795), lead changes 1.50 (target 2), Sonar still a dead card, 71% of strategic games coast to the round-12 cap. Critic REVISE-MAJOR 3.00 (was 3.33), structural. Early stop: the targeted numbers did not move.",
+      "why_needed": "The cap stops early because the last cycle did not move the key numbers and the critic calls the problem structural: every fix tried (zoned deal, trailer-only ping, 3-step ping, shorter cap) left runaway at 0.76-0.92. The game is a race to a finite pile with no catch-up tied to the score gap.",
+      "expected_outcome": "Park: no more usage on it, and the cooling-row and torpedo kernel (cooling-blind ablation 41%, torpedo 30%, middle row 29%, seat gap 1.8) stays available for reuse. Continue would need a new catch-up mechanic (untested ideas: 2-card steal, leader-only Mine penalty, cut Sonar), judged against runaway <= 0.65.",
+      "usage_estimate": "M",
+      "recommendation": "park",
+      "options": [
+        {
+          "key": "continue",
+          "label": "Run 1 more cycle (new catch-up mechanic; grants 1 cycle)"
+        },
+        {
+          "key": "park",
+          "label": "Park the game; keep the cooling-row/torpedo kernel for reuse"
+        },
+        {
+          "key": "kill",
+          "label": "Kill it, archive it and record why"
+        },
+        {
+          "key": "pitch",
+          "label": "Pitch as is (not recommended: runaway 0.83, Sonar dead)"
+        }
+      ],
+      "decision": null,
+      "decided_at": null,
+      "owner_notes": null,
+      "table": [
+        {
+          "cycle": 0,
+          "runaway": 0.795,
+          "lead_changes": 1.5,
+          "critic": 3.33
+        },
+        {
+          "cycle": 1,
+          "runaway": 0.831,
+          "lead_changes": 1.5,
+          "critic": 3.0
+        }
+      ]
+    },
+    {
+      "id": "asymmetric-duel-tug-of-war-review-cap-1",
+      "gate": "review-cap",
+      "game": "asymmetric-duel-tug-of-war",
+      "time": "2026-10-06T14:24:59Z",
+      "status": "pending",
+      "summary": "Cycle 2 fixed the pacing (lead changes 2.22, early endings 18.5%, runaway 44%) but not the twist: the Treasurer wins 60% / 35% / 41% against random / greedy / strategic (the 9.3 average gap hides +20, -29, -19), all five keyword ablations are inert, the Treasury cap knob is inert. Critic REVISE-MAJOR 3.17 (was 3.33), structural. Bar Raiser veto active on seat advantage.",
+      "why_needed": "Early stop: the critic's own parking rule (side gap above 8) is met and the problem is structural. Two cycles have now removed the lead choice and retuned the cap; the asymmetric twist still does not change best play (lessons L1, L2, L9).",
+      "expected_outcome": "Park: no more usage; the pacing fixes (round loser leads, margin 6) and the 47-card build stay available for reuse. Continue would need a different asymmetry (untested: fewer Hush cards, Hush barred from the highest card, Spend +3, hand limit, side-swap format) judged against side gap <= 8 and all ablations >= 5.",
+      "usage_estimate": "M",
+      "recommendation": "park",
+      "options": [
+        {
+          "key": "continue",
+          "label": "Run 1 more cycle (new asymmetry; grants 1 cycle)"
+        },
+        {
+          "key": "park",
+          "label": "Park the game; keep the pacing fixes for reuse"
+        },
+        {
+          "key": "kill",
+          "label": "Kill it, archive it and close its idea-bank entry"
+        },
+        {
+          "key": "pitch",
+          "label": "Pitch as is (not recommended: Bar Raiser veto, side gap flips)"
+        }
+      ],
+      "decision": null,
+      "decided_at": null,
+      "owner_notes": null,
+      "table": [
+        {
+          "cycle": 0,
+          "side_gap": null,
+          "lead_changes": 1.15,
+          "critic": 3.33
+        },
+        {
+          "cycle": 1,
+          "side_gap": 10.9,
+          "lead_changes": 1.83,
+          "critic": 3.33
+        },
+        {
+          "cycle": 2,
+          "side_gap": 9.3,
+          "lead_changes": 2.22,
+          "critic": 3.17
+        }
+      ]
+    },
+    {
+      "id": "silent-duo-deduction-coop-review-cap-1",
+      "gate": "review-cap",
+      "game": "silent-duo-deduction-coop",
+      "time": "2026-10-06T14:33:01Z",
+      "status": "pending",
+      "summary": "Cycle 2 closed the lying-card channel and kept all ablations passing, but the Trim stall is not fixed: 3+ Trim runs 54% at 2p and 49% at 3p (target under 10%), Trim share 25%. Critic REVISE-MINOR 3.33 (was 3.67, bar 3.5), calls the Trim stall structural and recommends a human playtest instead of more bot cycles. Early stop: the targeted numbers did not move enough.",
+      "why_needed": "The review cap stops here because the critic's own rule applies (if Trim stays at 25% or more, go to a human playtest) and bot cycles cannot show whether Trim runs feel like downtime. The Single Offer explained only about 4 points of the Trim drop. The Fog values were re-set from the sweep by a wording-only edit (2p F10, 3p F8), not simulated.",
+      "expected_outcome": "If you play it: a human session answers whether Trim runs feel like downtime and whether Fog 10/8 is right (record in games/silent-duo-deduction-coop/human-playtests.json). If you continue: one more bot cycle, aimed at Trim 3+ runs under 10%, not recommended.",
+      "usage_estimate": "S",
+      "recommendation": "pitch",
+      "options": [
+        {
+          "key": "pitch",
+          "label": "Pitch it for a human playtest, with the known risks listed (recommended)"
+        },
+        {
+          "key": "continue",
+          "label": "Run 1 more bot cycle on the Trim stall (grants 1 cycle; not recommended)"
+        },
+        {
+          "key": "park",
+          "label": "Park the game"
+        },
+        {
+          "key": "kill",
+          "label": "Kill it, archive it and record why"
+        }
+      ],
+      "decision": null,
+      "decided_at": null,
+      "owner_notes": null,
+      "table": [
+        {
+          "cycle": 0,
+          "honest_2p": 0.73,
+          "trim_runs_2p": null,
+          "critic": 3.5
+        },
+        {
+          "cycle": 1,
+          "honest_2p": 0.56,
+          "trim_runs_2p": 0.61,
+          "critic": 3.67
+        },
+        {
+          "cycle": 2,
+          "honest_2p": "0.63 at F6 (0.49 at F10)",
+          "trim_runs_2p": 0.54,
+          "critic": 3.33
+        }
+      ]
+    },
+    {
+      "id": "five-six-simultaneous-auction-review-cap-1",
+      "gate": "review-cap",
+      "game": "five-six-simultaneous-auction",
+      "time": "2026-10-06T14:42:48Z",
+      "status": "pending",
+      "summary": "Two cycles took it from critic 3.0 to 3.33 and fixed the Hype share (56/64% to 48/48%), the skill gap (17.5 to 31 lone, mixed tables 12 to 14) and forced passes. But the Hype ceiling made the crash lever inert (ignore-crash now fails at both player counts), ignore-hype and ignore-ties flip sign at 5 players, the 6-player last-round flip is 25% (target 20), and the skill gap comes from general odds estimation, not the designed hook. Critic REVISE-MINOR 3.33, flat across cycle 2.",
+      "why_needed": "Early stop: the critic's own stop rule (Hype share and the ablations must both move) is half met. The cap and the crash pull against each other, which is structural. Bots can't say whether the game is fun at a real 5-6 player table, which is where an auction game lives or dies.",
+      "expected_outcome": "If you play it: a 5-6 player table test (record in games/five-six-simultaneous-auction/human-playtests.json), starting with whether the crash and the Hype ceiling feel meaningful. If you continue: one change only, make the crash bite again, with ignore-crash at least +5 at both counts (not recommended before a human test).",
+      "usage_estimate": "S",
+      "recommendation": "pitch",
+      "options": [
+        {
+          "key": "pitch",
+          "label": "Pitch it for a human table test, with the known risks listed (recommended)"
+        },
+        {
+          "key": "continue",
+          "label": "Run 1 more bot cycle: make the crash bite (grants 1 cycle; not recommended)"
+        },
+        {
+          "key": "park",
+          "label": "Park the game"
+        },
+        {
+          "key": "kill",
+          "label": "Kill it, archive it and record why"
+        }
+      ],
+      "decision": null,
+      "decided_at": null,
+      "owner_notes": null,
+      "table": [
+        {
+          "cycle": 0,
+          "skill_gap_lone": 17.5,
+          "hype_share": "55-64%",
+          "critic": 3.0
+        },
+        {
+          "cycle": 1,
+          "skill_gap_lone": 25.3,
+          "hype_share": "56/64%",
+          "critic": 3.33
+        },
+        {
+          "cycle": 2,
+          "skill_gap_lone": "31-33",
+          "hype_share": "48/48%",
+          "critic": 3.33
+        }
+      ]
     }
   ]
 }

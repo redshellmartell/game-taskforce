@@ -1,4 +1,4 @@
-"""Tug of Crowns rules v2. Seat 0 = Treasurer, seat 1 = Whisperer. Crown pos: -3 (T throne) .. -1, start 0, +1 .. +3 (W throne); 0 never re-entered.
+"""Tug of Crowns rules v3 (fixed lead: round loser leads, cap 2, double at 6). Seat 0 = Treasurer, seat 1 = Whisperer. Crown pos: -3 (T throne) .. -1, start 0, +1 .. +3 (W throne); 0 never re-entered.
 Interpretations (ambiguities) are listed in AMBIGUITIES."""
 import random
 
@@ -17,7 +17,7 @@ NOTES = [
     "Lead wins equal totals except 0-0 (a tie); a lead with an empty row and an empty opposing row ties.",
     "Step counting from T1 toward the Whisperer: W1 (1 step), W2 (2 steps); the start card is never counted.",
 ]
-KNOB = {"double_at": 5, "lead_draw": 1, "lead_ties": True, "gates_draw": 2, "murmur_draw": 1, "second_draw": 0, "tie_to_second": False, "draw_if_fewer": False}
+KNOB = {"cap": 2, "court": 1, "double_at": 6, "lead_draw": 0, "lead_ties": True, "gates_draw": 2, "murmur_draw": 1, "second_draw": 0, "tie_to_second": False, "draw_if_fewer": False}
 
 def card_list(deck):
     out = []
@@ -111,10 +111,10 @@ def play(bots, seed, log=False, max_rounds=7):
         if r > 1:
             for p in (0, 1): st.draw_n(p, 2)
             tr = st.leader()
-            if tr is not None and abs(st.pos) in (1, 2):
+            if tr is not None and abs(st.pos) in (1, 2) and KNOB["court"]:
                 st.draw_n(1 - tr, KNOB["gates_draw"] if abs(st.pos) == 2 else KNOB["murmur_draw"])
         ch = st.chooser
-        lead = bots[ch].choose_lead(st, ch)
+        lead = ch
         st.lead = lead
         if not KNOB["draw_if_fewer"] or len(st.hand[lead]) <= len(st.hand[1 - lead]): st.draw_n(lead, KNOB["lead_draw"])
         st.draw_n(1 - lead, KNOB["second_draw"])
@@ -172,7 +172,7 @@ def play(bots, seed, log=False, max_rounds=7):
         # cleanup
         for e in st.row[0]:
             if "bank" in e["card"][2]:
-                if st.treasury < 3: st.tcards.append(e["card"])
+                if st.treasury < KNOB["cap"]: st.tcards.append(e["card"])
                 else: st.discard[0].append(e["card"]); stats["bank_lost"] += 1
             else: st.discard[0].append(e["card"])
         for e in st.row[1]:
@@ -182,7 +182,7 @@ def play(bots, seed, log=False, max_rounds=7):
         if abs(st.pos) == 3:
             stats["throne_win"] = 1
             return dict(st=st, winner=0 if st.pos < 0 else 1, turns=turns, rounds=r, capped=False, end="throne")
-        st.chooser = st.chooser if winner is None else (1 - winner)
+        st.chooser = st.chooser if winner is None else (1 - winner)   # loser leads next round
     # round 7 end
     if st.pos != 0:
         stats["round_end_win"] = 1

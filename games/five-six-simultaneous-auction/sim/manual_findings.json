@@ -1,0 +1,40 @@
+{
+ "verdict": "NEEDS-FIXES (bots only, unvalidated)",
+ "ambiguities": [
+  "Round-14 income: phase 5 still runs after the last round, so passers draw cards that matter only for Tiebreaker 1/2 (assumed yes; ties are 0.1-0.5% of games).",
+  "Tiebreakers 1 and 2 use hands that are secret until the end; the rules do not say hands are revealed at game end (assumed yes).",
+  "Income reshuffle step 2 with K rounding was implemented exactly as written; no hole found, but it is the longest rule in the file and untested with humans. Face-down income is not tracked by bots (no memory), so card counting uses public cards only, as the rules intend."
+ ],
+ "problems": [
+  {
+   "severity": "high",
+   "problem": "Ignore-crash ablation fails at both counts (L1): the crash lever no longer changes best play.",
+   "evidence": "Full strategic minus ignore-crash: 5p +3.0 (planner -2.9), 6p -1.6 (planner -2.5); target >= +5; v2 was +7.5/+5.5. With a +4 ceiling the crash costs at most 4 points per lot and bots that ignore it lose nothing.",
+   "fix": "Either drop the 'steering the crash' skill claim, or make the crash bite harder (for example crashed category scores -1 per lot, or the ceiling only applies to non-crashed categories while the crashed one loses its printed value to 1); test one change only."
+  },
+  {
+   "severity": "medium",
+   "problem": "Ignore-hype and ignore-ties flip sign between 5p and 6p and between the two reference bots (L2).",
+   "evidence": "Ignore-hype: strategic -5.3 / planner +10.5 at 5p, +16.1 / +20.9 at 6p. Ignore-ties: strategic -6.9 / planner -3.0 at 5p (ignoring ties wins), +8.1 / +9.3 at 6p. The tie rule's skill claim holds only at 6 players; at 5 players public-count collision modelling does not pay.",
+   "fix": "State the tie rule as pacing only at 5p or retire the claim; do not call Hype or ties a skill lever at 5p until a second bot confirms."
+  },
+  {
+   "severity": "medium",
+   "problem": "Last-round winner flip at 6p is 25% (target <= 20%); crash identity still flips in 33% of 6p games.",
+   "evidence": "allS 6p flip 0.25, crash flip 0.33; 5p 0.19 / 0.17. Cap lowered 6p flip from 0.32 (no cap) to 0.25.",
+   "fix": "Running crash tie-break would not help (flips are on the count, not ties); consider revealing nothing new: end the Hype race one round early, or let the final round be a pass-only income round."
+  },
+  {
+   "severity": "low",
+   "problem": "Ignore-cap passes for the strategic bot (+8.5/+5.9) but the planner shows only +5.8/+1.4; the ceiling is mainly a score scaler.",
+   "evidence": "Hype share 48% at both counts (target 45-50) with cap 4; cap 3 gives 41%, cap 5 gives 53%, no cap 57/63%.",
+   "fix": "Keep the ceiling at 4; accept the ceiling as a share knob; note the extra decision (stop feeding a full category) is only worth about 1-9 points."
+  },
+  {
+   "severity": "low",
+   "problem": "Skill gap is bot-dependent: lone gap 31.8 (strategic), 36.9 (planner), 24.7 (lite), only 15.4 (greedy).",
+   "evidence": "All bots except greedy clear 20; greedy, the weakest reference, does not (15.4) so part of the gap is search depth.",
+   "fix": "None needed beyond reporting the spread."
+  }
+ ]
+}

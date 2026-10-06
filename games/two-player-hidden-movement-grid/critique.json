@@ -1,20 +1,14 @@
-{
-  "verdict": "REVISE-MAJOR",
-  "revision": 0,
-  "scores": { "originality": 3, "clarity": 3, "fun": 3, "balance": 3, "market_fit": 3, "production": 5 },
-  "average": 3.33,
-  "strength": "Cheap, no-downtime two-player design with a clear hook (the visible cooling row), good seat balance (gap 1.4) and a large skill gap (75 points).",
-  "weakness": "Early fog-flip luck decides most games (runaway 0.79, 1.5 lead changes, coin-flip round 1), and the signature reading layer is worth only about 5 points, so the game does not yet deliver the outguess-your-rival experience.",
-  "closest_existing_game": { "name": "Creep in Silent (2021)", "similarity": "medium" },
+{ "verdict": "REVISE-MAJOR", "revision": 1,
+  "scores": { "originality": 3, "clarity": 3, "fun": 2, "balance": 2, "market_fit": 3, "production": 5 },
+  "average": 3.0,
+  "strength": "The cooling row now carries real skill (cooling-blind bot 41.4%, torpedo 29.9% and middle-row 29.2% ablations all pass) in a very cheap, no-downtime, seat-balanced (1.8) two-player package.",
+  "weakness": "Structural lack of comeback: runaway leader 0.831 (worse than 0.795), lead changes 1.50, flat across every bot pairing and untouched by the zoned deal, 3-step ping and shorter cap (repeats L3). The Sonar is still a dead card after rework (no-ping 49.4%; repeats L1), and 71% of games coast to the round-12 cap.",
+  "closest_existing_game": { "name": "Creep in Silent", "similarity": "medium" },
   "required_changes": [
-    "Reduce early-fog luck (more 1s and 2s, fewer Mines, or free peeks at setup) - runaway leader 0.79 toward 0.65, lead changes 1.5 toward 2",
-    "Add a real comeback beyond torpedoes (hit protection, trailer bonus) - lead changes >= 2 without making torpedo spam dominant (E1 stays <= 50%)",
-    "Make Sonar matter (reveal two steps or peek at a face-down card) - dead cards = 0, never-ping win rate <= 45%",
-    "Stop leaders coasting at the round-10 cap (cap 12 or early-end rule) - runaway leader, length within 12-18 min",
-    "Raise the value of reading the cooling row - blind-vs-reading gap above 10 points",
-    "Close all 6 ambiguities and cut sub-rules (consider removing Reef bounce clash and Sonar-as-points) - ambiguities = 0, panel rules_simplicity above 0.09",
-    "Compare against Creep in Silent and make differences explicit - originality score"
+    "Add a score-gap catch-up mechanism (two-card torpedo steal, leader-only Mine penalty or regrowing Salvage), tested one change at a time; KPI runaway <= 0.65 and lead changes >= 2",
+    "Cut the Sonar unless a version makes no-ping bot <= 45%; KPI dead cards = 0 and fewer rules",
+    "End decided games early instead of coasting to round 12; KPI length within +-20% of 15 min and cap-end rate down from 71%",
+    "Compare with Creep in Silent in one search before showing a prototype"
   ],
-  "revision_worth_it": true,
-  "revision_reason": "Yes: the core loop, seat balance and skill gap are healthy and each failure is narrow with a named KPI; if revision 1 does not bring runaway below 0.70, park it."
-}
+  "revision_worth_it": false,
+  "revision_reason": "No: the park threshold (runaway above 0.70) is hit, the failure is structural and flat across all bots, and the remaining fixes are guesses at a scoring-model rework rather than a diagnosed tweak." }

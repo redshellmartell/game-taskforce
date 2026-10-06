@@ -1,14 +1,13 @@
-Nine Lives Dungeon, solo, barraiser bot, seed 600000 (won run). Solo game: one table per persona.
-T1 Shove Fox into 4, Moth comes up
-T2 Shove Snake into 5, Mouse comes up
-T3 Shove Rat into 3, Crow comes up
-T4 Fight Moth (danger 1, claws 2, wounds 0, ready 0)
-T5 Fight Mouse (danger 2, claws 3, wounds 0, ready 1)
-T6 Fight Crow (danger 5, claws 4, wounds 1, ready 2)
-T7 Fight Rat (danger 3, claws 3, wounds 0, ready 1)
-T8 Fight Spider (danger 3, claws 4, wounds 0, ready 2)
-T9 Fight Owl (danger 6, claws 5, wounds 1, ready 3)
-T9 Hunt spends a trophy
-T10 Scavenge readies ['Mouse', 'Spider']
-T10 Fight Hound (danger 9, claws 7, wounds 2, ready 3)
-T10 ESCAPE
+Whiskerdark, solo, barraiser bot, seed 600000 (won run). Solo game: one table per persona.
+T1 Shove into 3, Crow comes up
+T2 Shove into 5, Mouse comes up
+T3 Fight Mouse (danger 2, claws 2, wounds 0, ready 0)
+T4 Shove into 4, Moth comes up
+T5 Fight Moth (danger 1, claws 3, wounds 0, ready 1)
+T6 Glow sees Spider at 6
+T6 Fight Rat (danger 4, claws 4, wounds 0, ready 2)
+T7 Fight Crow (danger 4, claws 4, wounds 0, ready 2)
+T7 Hunt spends a trophy
+T8 Scavenge readies ['Mouse', 'Crow']
+T8 Fight Hound (danger 6, claws 4, wounds 2, ready 2)
+T8 ESCAPE

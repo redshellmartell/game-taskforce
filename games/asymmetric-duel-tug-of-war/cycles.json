@@ -1,0 +1,27 @@
+{
+ "cycles": [
+  {
+   "cycle": 2,
+   "targeted": [
+    "lead choice removed",
+    "side gap",
+    "early endings",
+    "lead changes"
+   ],
+   "before": {
+    "side_gap": 10.9,
+    "lead_changes": 1.83,
+    "over_by_round_3": 0.31,
+    "critic": 3.33
+   },
+   "after": {
+    "side_gap": 9.3,
+    "lead_changes": 2.22,
+    "over_by_round_3": 0.185,
+    "critic": 3.17
+   },
+   "moved": true,
+   "note": "Pacing KPIs now pass; side gap flips with bot skill (+20,-29,-19 cancel), all five keyword ablations inert, Treasury cap knob inert. Critic: structural, park. Bar Raiser veto on seat advantage."
+  }
+ ]
+}

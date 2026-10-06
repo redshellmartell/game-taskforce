@@ -1,4 +1,4 @@
-"""Last Bid Standing simulation (rules v2, revision 1). Standard library only.
+"""Last Bid Standing simulation (rules v3, revision 2: face-down income, Hype ceiling +4). Standard library only.
 Interpretations (see report): lots are taken from a fixed shuffled deck two per round; the first bidder picks a lot;
 passers draw after resolution; the discard pile is reshuffled into the deck only when a draw is needed and the deck is empty.
 """
@@ -12,9 +12,10 @@ class Config:
     rounds: int = 14
     start_hand: int = 4
     income: int = 2
-    bid_max: int = 12            # bid values 1..bid_max per category
+    bid_max: int = 11            # bid values 1..bid_max per category
     lot_bonus: int = 0           # added to every printed lot value (tuning knob)
     bubble: str = "crash"        # "crash" or "halve"
+    hype_cap: int = 4            # v3: max Hype bonus per lot (0 = no cap)
     log: bool = False
 
 LOT_VALUES = [2, 2, 3, 3, 4, 4, 5]
@@ -59,6 +60,7 @@ class State:
     def scores(self):
         h = self.hype_counts(); cr = self.crashed()
         eff = [(0 if c in cr and self.cfg.bubble == "crash" else (h[c] // 2 if c in cr else h[c])) for c in range(CATS)]
+        if self.cfg.hype_cap: eff = [min(x, self.cfg.hype_cap) for x in eff]
         return [sum(v + eff[c] for c, v in w) for w in self.won], eff
 
     def provisional_leader(self):
@@ -78,7 +80,7 @@ class State:
         if K == 0: self.stats["nodraw"] += 1
         for _ in range(K):
             for p in passers:
-                c = self.biddeck.pop(); self.hands[p].append(c); self.known[p].append(c)
+                c = self.biddeck.pop(); self.hands[p].append(c)  # v3: face down, not public
         return resh, K
 
 def play(cfg, bots, seed):

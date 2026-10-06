@@ -1,0 +1,48 @@
+{
+ "cycles": [
+  {
+   "cycle": 1,
+   "targeted": [
+    "honest win rate too high (73%)",
+    "code attack",
+    "greedy vs honest",
+    "dull Trims",
+    "ambiguities"
+   ],
+   "before": {
+    "honest_2p_F8": 0.73,
+    "code_attack": 12.1,
+    "trim_share": 0.38,
+    "critic": 3.5
+   },
+   "after": {
+    "honest_2p_F8": 0.56,
+    "code_attack": 1.0,
+    "trim_share": 0.3,
+    "critic": 3.67
+   },
+   "moved": true,
+   "note": "Honest into band and code attack closed; Trim share and 3+ Trim runs still fail because the new Offer legality rule forces Trims; Beacon-blind ablation fails; 3p under band."
+  },
+  {
+   "cycle": 2,
+   "targeted": [
+    "Trim stall",
+    "Beacon not a decision",
+    "3p Fog band"
+   ],
+   "before": {
+    "trim_share": 0.3,
+    "trim_runs_2p": 0.61,
+    "critic": 3.67
+   },
+   "after": {
+    "trim_share": 0.25,
+    "trim_runs_2p": 0.54,
+    "critic": 3.33
+   },
+   "moved": false,
+   "note": "Beacon cut and code attack stayed closed, but Trim runs only 61% to 54% (target <10%), Single Offer explained ~4 points; Fog guess wrong (F6 out of band, F10/F8 in band); Greedy +11 over Honest unconfirmed. Critic: Trim stall structural, go to a human playtest, no more bot cycles."
+  }
+ ]
+}

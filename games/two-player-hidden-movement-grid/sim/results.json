@@ -1,237 +1,237 @@
 {
  "pairings": {
   "strategic-v-random": {
-   "n": 200,
-   "a_win": 0.94,
-   "seat1": 0.5,
-   "rounds": 11.9,
-   "ties": 0.0,
-   "runaway": 0.9231,
-   "capped": 0.905,
-   "lc": 1.18
+   "n": 2000,
+   "a_win": 0.9437,
+   "seat1": 0.5048,
+   "rounds": 11.9065,
+   "ties": 0.0015,
+   "runaway": 0.909,
+   "capped": 0.9265,
+   "lc": 1.2045
   },
   "strategic-v-greedy": {
-   "n": 200,
-   "a_win": 0.76,
-   "seat1": 0.48,
-   "rounds": 11.115,
-   "ties": 0.0,
-   "runaway": 0.7684,
-   "capped": 0.565,
-   "lc": 1.625
+   "n": 2000,
+   "a_win": 0.7885,
+   "seat1": 0.499,
+   "rounds": 11.141,
+   "ties": 0.002,
+   "runaway": 0.8015,
+   "capped": 0.627,
+   "lc": 1.6235
   },
   "greedy-v-random": {
-   "n": 200,
-   "a_win": 0.8375,
-   "seat1": 0.5375,
-   "rounds": 11.89,
-   "ties": 0.005,
-   "runaway": 0.8866,
-   "capped": 0.895,
-   "lc": 1.305
+   "n": 2000,
+   "a_win": 0.8922,
+   "seat1": 0.5128,
+   "rounds": 11.8975,
+   "ties": 0.0035,
+   "runaway": 0.8865,
+   "capped": 0.919,
+   "lc": 1.2895
   },
   "strategic-v-strategic": {
-   "n": 200,
+   "n": 2000,
    "a_win": 0.5,
-   "seat1": 0.4825,
-   "rounds": 11.025,
-   "ties": 0.005,
-   "runaway": 0.7946,
-   "capped": 0.555,
-   "lc": 1.79
+   "seat1": 0.483,
+   "rounds": 11.029,
+   "ties": 0.002,
+   "runaway": 0.7819,
+   "capped": 0.583,
+   "lc": 1.6625
   },
   "greedy-v-greedy": {
-   "n": 200,
+   "n": 2000,
    "a_win": 0.5,
-   "seat1": 0.475,
-   "rounds": 11.165,
-   "ties": 0.0,
-   "runaway": 0.7656,
-   "capped": 0.67,
-   "lc": 1.815
+   "seat1": 0.4938,
+   "rounds": 11.2315,
+   "ties": 0.0005,
+   "runaway": 0.7854,
+   "capped": 0.6645,
+   "lc": 1.743
   },
   "random-v-random": {
-   "n": 200,
+   "n": 2000,
    "a_win": 0.5,
-   "seat1": 0.5275,
-   "rounds": 11.995,
-   "ties": 0.005,
-   "runaway": 0.7366,
-   "capped": 0.995,
-   "lc": 1.645
+   "seat1": 0.4958,
+   "rounds": 11.998,
+   "ties": 0.0115,
+   "runaway": 0.7579,
+   "capped": 0.9985,
+   "lc": 1.638
   },
   "strategic-v-mid": {
-   "n": 200,
-   "a_win": 0.505,
-   "seat1": 0.455,
-   "rounds": 10.875,
-   "ties": 0.0,
-   "runaway": 0.7926,
-   "capped": 0.54,
-   "lc": 1.745
+   "n": 2000,
+   "a_win": 0.508,
+   "seat1": 0.487,
+   "rounds": 11.081,
+   "ties": 0.002,
+   "runaway": 0.7828,
+   "capped": 0.576,
+   "lc": 1.6705
   },
   "mid-v-greedy": {
-   "n": 200,
-   "a_win": 0.7775,
-   "seat1": 0.5025,
-   "rounds": 11.175,
-   "ties": 0.005,
-   "runaway": 0.8172,
-   "capped": 0.645,
-   "lc": 1.575
+   "n": 2000,
+   "a_win": 0.7772,
+   "seat1": 0.4988,
+   "rounds": 11.1465,
+   "ties": 0.0025,
+   "runaway": 0.7974,
+   "capped": 0.6485,
+   "lc": 1.622
   },
   "mid-v-random": {
-   "n": 200,
-   "a_win": 0.9225,
-   "seat1": 0.4925,
-   "rounds": 11.935,
-   "ties": 0.005,
-   "runaway": 0.9124,
-   "capped": 0.92,
-   "lc": 1.14
+   "n": 2000,
+   "a_win": 0.9245,
+   "seat1": 0.499,
+   "rounds": 11.9385,
+   "ties": 0.003,
+   "runaway": 0.9156,
+   "capped": 0.9455,
+   "lc": 1.1735
   },
   "mid-v-mid": {
-   "n": 200,
+   "n": 2000,
    "a_win": 0.5,
-   "seat1": 0.5525,
-   "rounds": 11.2,
-   "ties": 0.005,
-   "runaway": 0.7644,
-   "capped": 0.615,
-   "lc": 1.805
+   "seat1": 0.5092,
+   "rounds": 11.1715,
+   "ties": 0.0015,
+   "runaway": 0.7846,
+   "capped": 0.618,
+   "lc": 1.7645
   }
  },
  "seat1_mirror": {
-  "strategic-v-strategic": 0.4825,
-  "greedy-v-greedy": 0.475,
-  "random-v-random": 0.5275
+  "strategic-v-strategic": 0.483,
+  "greedy-v-greedy": 0.4938,
+  "random-v-random": 0.4958
  },
  "extra": {
-  "hits_per_game": 2.2683333333333335,
-  "mines_per_game": 2.5183333333333335,
-  "fired_per_game": 8.013333333333334,
-  "pings_per_game": 0.7616666666666667,
-  "collisions_per_game": 1.12,
-  "blocked_per_game": 7.601666666666667,
-  "reef_found_per_game": 2.703333333333333,
-  "mean_final_gap": 8.65
+  "hits_per_game": 2.2601666666666667,
+  "mines_per_game": 2.518,
+  "fired_per_game": 8.1065,
+  "pings_per_game": 0.7066666666666667,
+  "collisions_per_game": 1.0828333333333333,
+  "blocked_per_game": 7.6001666666666665,
+  "reef_found_per_game": 2.6936666666666667,
+  "mean_final_gap": 8.6985
  },
  "cards": [
   {
    "name": "Salvage 1",
-   "played_rate": 0.985,
-   "win_correlation": 0.272,
+   "played_rate": 0.981,
+   "win_correlation": 0.329,
    "flag": null,
-   "per_game": 2.63
+   "per_game": 2.6
   },
   {
    "name": "Salvage 2",
-   "played_rate": 0.981,
-   "win_correlation": 0.395,
+   "played_rate": 0.984,
+   "win_correlation": 0.38,
    "flag": null,
-   "per_game": 2.63
+   "per_game": 2.62
   },
   {
    "name": "Salvage 3",
-   "played_rate": 0.777,
-   "win_correlation": 0.53,
+   "played_rate": 0.784,
+   "win_correlation": 0.554,
    "flag": null,
-   "per_game": 1.43
+   "per_game": 1.44
   },
   {
    "name": "Mine",
-   "played_rate": 0.872,
-   "win_correlation": 0.06,
+   "played_rate": 0.861,
+   "win_correlation": 0.093,
    "flag": null,
    "per_game": 1.26
   },
   {
    "name": "Reef",
-   "played_rate": 0.874,
-   "win_correlation": 0.204,
+   "played_rate": 0.88,
+   "win_correlation": 0.178,
    "flag": null,
    "per_game": 1.35
   },
   {
    "name": "Sonar (taken)",
-   "played_rate": 0.773,
-   "win_correlation": 0.095,
+   "played_rate": 0.757,
+   "win_correlation": 0.151,
    "flag": null,
-   "per_game": 0.86
+   "per_game": 0.85
   },
   {
    "name": "Sonar ping (spent)",
-   "played_rate": 0.367,
-   "win_correlation": -0.207,
+   "played_rate": 0.345,
+   "win_correlation": -0.172,
    "flag": null,
-   "per_game": 0.38
+   "per_game": 0.35
   },
   {
    "name": "Torpedo (played)",
    "played_rate": 0.999,
-   "win_correlation": 0.065,
+   "win_correlation": 0.049,
    "flag": null,
-   "per_game": 4.15
+   "per_game": 4.19
   },
   {
    "name": "Torpedo hit",
-   "played_rate": 0.644,
-   "win_correlation": 0.349,
+   "played_rate": 0.649,
+   "win_correlation": 0.348,
    "flag": "strong link to winning",
    "per_game": 1.13
   },
   {
    "name": "Harbour (rounds ended home)",
-   "played_rate": 0.439,
-   "win_correlation": -0.063,
+   "played_rate": 0.456,
+   "win_correlation": -0.041,
    "flag": null,
-   "per_game": 0.75
+   "per_game": 0.76
   }
  ],
  "ablations": {
   "blind": {
-   "full_win": 0.635,
-   "ablated_win": 0.365,
-   "runaway": 0.794,
-   "lc": 1.62,
-   "rounds": 11.12
+   "full_win": 0.586,
+   "ablated_win": 0.414,
+   "runaway": 0.779,
+   "lc": 1.6,
+   "rounds": 11.1
   },
   "noping": {
-   "full_win": 0.497,
-   "ablated_win": 0.502,
-   "runaway": 0.798,
-   "lc": 1.71,
-   "rounds": 11.14
+   "full_win": 0.506,
+   "ablated_win": 0.494,
+   "runaway": 0.776,
+   "lc": 1.7,
+   "rounds": 11.04
   },
   "notorp": {
-   "full_win": 0.75,
-   "ablated_win": 0.25,
-   "runaway": 0.826,
-   "lc": 1.18,
-   "rounds": 11.21
+   "full_win": 0.701,
+   "ablated_win": 0.299,
+   "runaway": 0.843,
+   "lc": 1.34,
+   "rounds": 11.14
   },
   "nomiddle": {
-   "full_win": 0.718,
-   "ablated_win": 0.282,
-   "runaway": 0.768,
+   "full_win": 0.708,
+   "ablated_win": 0.292,
+   "runaway": 0.777,
    "lc": 1.71,
-   "rounds": 11.49
+   "rounds": 11.52
   },
   "camper": {
-   "full_win": 0.545,
-   "ablated_win": 0.455,
-   "runaway": 0.767,
-   "lc": 1.77,
-   "rounds": 11.29
+   "full_win": 0.512,
+   "ablated_win": 0.488,
+   "runaway": 0.776,
+   "lc": 1.63,
+   "rounds": 11.31
   },
   "strategic-v1deal": {
    "full_win": 0.5,
    "ablated_win": 0.5,
-   "runaway": 0.839,
-   "lc": 1.6,
-   "rounds": 10.95
+   "runaway": 0.794,
+   "lc": 1.69,
+   "rounds": 10.97
   }
  },
- "r1_leader_wins": 0.5483193277310925,
- "r1_collision_rate": 0.44166666666666665
+ "r1_leader_wins": 0.5824753099390628,
+ "r1_collision_rate": 0.4151666666666667
 }

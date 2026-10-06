@@ -1,4 +1,4 @@
-# Dead Reckoning - Rules (v2)
+# Dead Reckoning - Rules (v2.1)
 
 ## 1. Overview
 
@@ -25,7 +25,7 @@ Each Sea card shows a **zone mark** in one corner (B = Blue waters, M = Middle, 
 | Salvage 1 | 6 | 3 | 0 | 3 | Take the card into your score pile: worth 1 point. The square becomes open water. |
 | Salvage 2 | 6 | 3 | 0 | 3 | Same, worth 2 points. |
 | Salvage 3 | 3 | 0 | 3 | 0 | Same, worth 3 points. |
-| Mine | 3 | 1 | 1 | 1 | Remove the Mine from the game (the square becomes open water); your sub stays on the square. You lose your **lowest-value** Salvage card (it leaves the game; if you have none, you lose nothing). Your remaining steps this round are **cancelled**. |
+| Mine | 3 | 1 | 1 | 1 | Remove the Mine from the game (the square becomes open water); your sub stays on the square. You lose your **lowest-value** Salvage card (it leaves the game; if you have no Salvage card, you lose nothing, and you keep any Sonars). Your remaining steps this round are **cancelled** in every case, even when you lost nothing. |
 | Reef | 3 | 1 | 1 | 1 | Flip it face up and leave it on the grid for the rest of the game. Your sub **bounces**: it goes back to the square it started this step on. A face-up Reef can never be entered. |
 | Sonar | 2 | 1 | 0 | 1 | Take the card and keep it face up in front of you. Later you may spend it to **ping** (section 4, phase 1). It is worth **0 points**. The square becomes open water. |
 | **Total** | **23** | **9** | **5** | **9** | |
@@ -66,7 +66,7 @@ The game is played in **rounds**. Both players act at once in every round. A rou
 
 ### Phase 1 - Ping (optional)
 Only a player whose score is **strictly lower** than their rival's, and who holds a Sonar, may ping. If scores are tied, nobody may ping. So at most one player can ping in a round.
-- **Ping:** remove one of your Sonars from the game. Your rival plots first, alone: they place their 3 Helm cards (phase 2) and turn their **step-1 and step-2** cards face up. Those two cards are locked in. Their step-3 card stays face down. Only then do you plot.
+- **Ping:** say "Ping" aloud and remove one of your Sonars from the game. The ping is public: your rival knows about it **before** they plot. Your rival then plots first, alone: they place their 3 Helm cards (phase 2) and turn their **step-1 and step-2** cards face up. Those two cards are locked in: they cannot be changed for the rest of the round, and they resolve normally in phase 3 even if they turn out to be blocked (by an edge, a Reef or a collision) or cancelled (by a Mine). Their step-3 card stays face down. Only then do you plot.
 
 ### Phase 2 - Plot
 Each player chooses **exactly 3 Helm cards from their hand** and places them face down in a row: left card = step 1, middle = step 2, right = step 3. Without a ping, both players plot at the same time; when both have placed 3 cards, the plots are locked and cannot change.
@@ -74,14 +74,14 @@ Each player chooses **exactly 3 Helm cards from their hand** and places them fac
 ### Phase 3 - Run the course
 Resolve step 1, then step 2, then step 3. Each step runs A to E in order:
 
-- **A. Reveal.** Both players turn their card for this step face up (if it is not already). A cancelled step (after a Mine) is still turned face up, but has no effect.
+- **A. Reveal.** Both players turn their card for this step face up (if it is not already). A cancelled step (after a Mine) is still turned face up, but has no effect: a cancelled move card does not move, and a cancelled T card does **not** fire.
 - **B. Aim.** Work out each sub's **target** square:
   - Move card: the adjacent square in that direction. If that is off the grid or a face-up Reef, the target is the sub's **current** square (the sub is blocked).
   - T card, or a cancelled step: the target is the current square.
 - **C. Collision check.** If both targets are the same square, or each sub's target is the other sub's current square, the subs collide: **both** targets become their current squares. Nothing is entered, and a face-down card at a shared target stays face down and unseen.
 - **D. Move and enter.** Each sub moves to its target. A sub that moved onto a new square **enters** it and applies its effect from the grid card table (a face-down card is flipped face up first). The two subs are on different squares, so the two effects are independent.
   - **Reef bounce conflict:** if a sub bounces off a Reef and the square it bounces back to is now occupied by the other sub (which moved there this step), the other sub also returns to the square it started this step on. Neither sub gains anything from this, because both squares are open water.
-- **E. Fire.** Each player whose card this step is T (and not cancelled) fires a torpedo. If the rival sub is on any of the **8 squares surrounding** the firer's square (orthogonal or diagonal) and is not on its own Harbour, it is **hit**: the firer takes the **highest-value** Salvage card from the rival's score pile into their own. If both fire and both hit, work out both stolen cards first, then swap them. A hit on a rival with no Salvage takes nothing.
+- **E. Fire.** Each player whose card this step is T (and not cancelled) fires a torpedo. If the rival sub is on any of the **8 squares surrounding** the firer's square (orthogonal or diagonal) and is not on its own Harbour, it is **hit**: the firer takes the **highest-value** Salvage card from the rival's score pile into their own. If both fire and both hit, work out both stolen cards first, then swap them. A hit on a rival with no Salvage takes nothing. Fire always uses the score piles as they stand **after** step D of the same step, so a Salvage card the rival entered and took in this step can be stolen by a torpedo fired in this step (and is the card taken if it is their highest).
 
 ### Phase 4 - Cooling and round end
 1. Take back into your hand the Helm cards in your **Cooling row** (the ones you played last round).
@@ -111,7 +111,9 @@ Timing and edge cases:
 - **Order inside a step** is fixed: reveal, aim, collision check, move and enter (with Reef bounce conflict), fire.
 - **Moving onto the square the rival is leaving** is legal; it is a collision only if the rival moves onto your square at the same step.
 - **Blocked or cancelled moves** still use up the Helm card, and the card still goes to the Cooling row.
-- **Mines:** after a Mine, that player's later steps this round are cancelled; the rival's plan carries on. A sub that hit a Mine can still be torpedoed in that step or later steps.
+- **Mines:** after a Mine, that player's later steps this round are cancelled, including a T card (it does not fire); the rival's plan carries on. A sub that hit a Mine can still be torpedoed in that step or later steps. A Mine cancels steps even if its player had no Salvage to lose.
+- **Same-step take and steal:** entering (step D) always happens before firing (step E), so Salvage taken in a step can be stolen in that same step.
+- **Pinged cards** stay locked and face up even if they are later blocked or cancelled; they cool like any played card.
 - **Stealing and losing:** "highest" and "lowest" mean by value; between equal values it does not matter which card. Sonars can't be stolen or lost.
 - **Ping eligibility** is checked once, at the start of phase 1, using scores at that moment.
 - **Public information:** sub positions, face-up grid cards, score piles, Sonars held, both Helm hands and Cooling rows. Hidden: face-down Sea cards (the remaining mix in each zone is always known by counting) and each plot until it is revealed.
@@ -123,6 +125,8 @@ Timing and edge cases:
 - round 12 has just been played.
 
 Cards left on the grid score nothing.
+
+**Round-12 cap and stalemates.** There is no other ending: the game does not end early because the scores look decided or because no sub can reach any remaining Salvage, and players keep plotting full rounds until one of the two triggers above. At the end of round 12 the game ends at once, whatever is still on the grid, and the winner is decided by the scoring and tiebreakers below exactly as for any other ending.
 
 **Score:** the total value of the Salvage cards in your score pile. Sonars score nothing.
 
@@ -170,6 +174,8 @@ Config ablation for the zoned deal: rerun with the v1 single-shuffle deal (same 
 - *Log:* seat win rate, hits, rounds, lead changes (by score after each step), pings, Mines, cap-end rate, collisions in round 1.
 
 ## 8. Changelog
+
+**v2.1 (fix-before-critic, wording only).** Closed the 6 playtest ambiguities as the playtest interpreted them: Mine with no Salvage loses nothing but still cancels steps; a cancelled T does not fire; a ping is announced before the rival plots; Salvage taken in a step can be stolen by a torpedo in that step (D before E); pinged cards stay locked even if blocked or cancelled; the round-12 cap ends the game with normal scoring, with no early stalemate end. No mechanics, numbers or balance changed.
 
 **v2 (revision 1).** Fixes from `playtest-report.md` and `critique.md` (rev 0); no other changes.
 - **Early fog luck decides games (runaway 0.79, lead changes 1.5; critique change 1):** Sea cards are dealt in three zones; Blue and Red waters hold identical sets, and all three Salvage 3 cards are in the middle row. Card mix changed: one Mine became a Salvage 1, one Sonar became a Salvage 2 (Mines 4 to 3, Sonars 3 to 2, Salvage 13 to 15, 24 to 27 points).

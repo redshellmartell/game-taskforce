@@ -1,112 +1,87 @@
 {
- "verdict": "NEEDS-FIXES",
- "revision": 0,
- "games_simulated": 16000,
+ "verdict": "NEEDS-FIXES (bots only, unvalidated)",
+ "revision": 2,
+ "games_simulated": 48000,
  "mode": "co-operative; team win rates",
  "seat_win_rates": null,
  "seat_balance_gap": 0,
  "bot_win_rates": {
-  "random": 0.006,
-  "greedy": 0.816,
-  "honest": 0.73,
-  "convention": 0.68,
-  "code": 0.766
+  "random": 0.012,
+  "greedy": 0.738,
+  "honest": 0.63,
+  "code": 0.658
  },
- "skill_expression": 72.4,
+ "skill_expression": 61.8,
  "length": {
-  "mean_turns": 29.6,
-  "stdev": 3.2,
-  "estimated_minutes": 21.9,
+  "mean_turns": 23.1,
+  "stdev": 1.8,
+  "estimated_minutes": 17.8,
   "target_minutes": 20
  },
  "length_histogram": [
   {
-   "turns": 15,
+   "turns": 11,
    "games": 1
   },
   {
-   "turns": 16,
+   "turns": 13,
+   "games": 1
+  },
+  {
+   "turns": 14,
    "games": 2
   },
   {
-   "turns": 17,
-   "games": 5
+   "turns": 15,
+   "games": 4
   },
   {
-   "turns": 18,
-   "games": 6
-  },
-  {
-   "turns": 19,
+   "turns": 16,
    "games": 12
   },
   {
-   "turns": 20,
-   "games": 11
+   "turns": 17,
+   "games": 15
   },
   {
-   "turns": 21,
-   "games": 23
-  },
-  {
-   "turns": 22,
+   "turns": 18,
    "games": 22
   },
   {
+   "turns": 19,
+   "games": 46
+  },
+  {
+   "turns": 20,
+   "games": 61
+  },
+  {
+   "turns": 21,
+   "games": 96
+  },
+  {
+   "turns": 22,
+   "games": 253
+  },
+  {
    "turns": 23,
-   "games": 24
+   "games": 579
   },
   {
    "turns": 24,
-   "games": 31
+   "games": 553
   },
   {
    "turns": 25,
-   "games": 43
+   "games": 295
   },
   {
    "turns": 26,
-   "games": 47
+   "games": 56
   },
   {
    "turns": 27,
-   "games": 120
-  },
-  {
-   "turns": 28,
-   "games": 254
-  },
-  {
-   "turns": 29,
-   "games": 226
-  },
-  {
-   "turns": 30,
-   "games": 380
-  },
-  {
-   "turns": 31,
-   "games": 210
-  },
-  {
-   "turns": 32,
-   "games": 310
-  },
-  {
-   "turns": 33,
-   "games": 94
-  },
-  {
-   "turns": 34,
-   "games": 126
-  },
-  {
-   "turns": 35,
-   "games": 20
-  },
-  {
-   "turns": 36,
-   "games": 33
+   "games": 4
   }
  ],
  "ties": null,
@@ -114,245 +89,174 @@
  "lead_changes_mean": null,
  "runaway_leader_rate": null,
  "coop": {
-  "honest_win": 0.73,
-  "random_gap": 72.4,
-  "code_attack_gap_over_honest": 3.6,
-  "late_win_share": 0.739041095890411,
-  "near_loss_share": 0.7722222222222223,
-  "by_fog_honest": {
-   "8": 0.73,
-   "12": 0.575,
-   "16": 0.415
+  "win_by_config": {
+   "honest_2p_F3": 0.729,
+   "greedy_2p_F3": 0.846,
+   "honest_2p_F6": 0.63,
+   "greedy_2p_F6": 0.738,
+   "honest_2p_F10": 0.486,
+   "greedy_2p_F10": 0.562,
+   "random_2p_F6": 0.012,
+   "honest_3p_F0": 0.668,
+   "greedy_3p_F0": 0.796,
+   "honest_3p_F2": 0.619,
+   "greedy_3p_F2": 0.729,
+   "honest_3p_F6": 0.458,
+   "greedy_3p_F6": 0.604,
+   "random_3p_F2": 0.015,
+   "code_2p_F6": 0.658,
+   "code_2p_F10": 0.509,
+   "pair_blind_2p_F6": 0.561,
+   "trim_blind_2p_F6": 0.501,
+   "no_counting_2p_F6": 0.536,
+   "single_blind_2p_F6": 0.501,
+   "pair_blind_3p_F2": 0.558,
+   "trim_blind_3p_F2": 0.455,
+   "no_counting_3p_F2": 0.536,
+   "single_blind_3p_F2": 0.492
   },
-  "honest_3p": 0.532,
-  "tiers": {
-   "random": {
-    "win": 0.006,
-    "turns": 10.271,
-    "sd": 4.9545493236014915,
-    "caps": 0,
-    "late_win": 0.16666666666666666,
-    "near_loss": 0.012072434607645875,
-    "loss_reef": 0.9954728370221329,
-    "avg_score": 1.1695,
-    "beacons": 0.336,
-    "misses": 2.9865
-   },
-   "greedy": {
-    "win": 0.816,
-    "turns": 24.1845,
-    "sd": 6.010113122895442,
-    "caps": 0,
-    "late_win": 0.2647058823529412,
-    "near_loss": 0.6630434782608695,
-    "loss_reef": 0.7038043478260869,
-    "avg_score": 15.8005,
-    "beacons": 2.116,
-    "misses": 1.6645
-   },
-   "honest": {
-    "win": 0.73,
-    "turns": 29.629,
-    "sd": 3.1870611854810695,
-    "caps": 0,
-    "late_win": 0.739041095890411,
-    "near_loss": 0.7722222222222223,
-    "loss_reef": 0.06851851851851852,
-    "avg_score": 10.209,
-    "beacons": 2.1185,
-    "misses": 0.4505
-   },
-   "convention": {
-    "win": 0.6805,
-    "turns": 30.4495,
-    "sd": 2.799544561174192,
-    "caps": 0,
-    "late_win": 0.8486407053637032,
-    "near_loss": 0.7824726134585289,
-    "loss_reef": 0.10485133020344288,
-    "avg_score": 9.1845,
-    "beacons": 2.1835,
-    "misses": 0.602
-   },
-   "code": {
-    "win": 0.7665,
-    "turns": 29.217,
-    "sd": 3.576158693346815,
-    "caps": 0,
-    "late_win": 0.6868884540117417,
-    "near_loss": 0.7580299785867237,
-    "loss_reef": 0.25910064239828695,
-    "avg_score": 10.779,
-    "beacons": 2.242,
-    "misses": 1.0835
-   }
+  "code_gap_over_honest": {
+   "F6": 2.8,
+   "F10": 2.3
   },
-  "extras": {
-   "honest_storm_F12": {
-    "win": 0.575,
-    "turns": 26.154,
-    "sd": 2.6264584519843446,
-    "caps": 0,
-    "late_win": 0.7773913043478261,
-    "near_loss": 0.6752941176470588,
-    "loss_reef": 0.06823529411764706,
-    "avg_score": 8.673,
-    "beacons": 1.984,
-    "misses": 0.646
-   },
-   "honest_F16": {
-    "win": 0.415,
-    "turns": 22.564,
-    "sd": 2.2480889662110797,
-    "caps": 0,
-    "late_win": 0.8795180722891566,
-    "near_loss": 0.5811965811965812,
-    "loss_reef": 0.05128205128205128,
-    "avg_score": 7.134,
-    "beacons": 1.871,
-    "misses": 0.754
-   },
-   "honest_3p_standard": {
-    "win": 0.532,
-    "turns": 29.055,
-    "sd": 2.739703451105612,
-    "caps": 0,
-    "late_win": 0.8515037593984962,
-    "near_loss": 0.7435897435897436,
-    "loss_reef": 0.04700854700854701,
-    "avg_score": 8.115,
-    "beacons": 1.971,
-    "misses": 0.612
-   },
-   "honest_no_counting": {
-    "win": 0.644,
-    "turns": 29.52,
-    "sd": 3.303271106040193,
-    "caps": 0,
-    "late_win": 0.7220496894409938,
-    "near_loss": 0.7078651685393258,
-    "loss_reef": 0.042134831460674156,
-    "avg_score": 9.678,
-    "beacons": 2.014,
-    "misses": 0.511
-   },
-   "greedy_vs_cautious_light_p_0.99": {
-    "win": 0.468,
-    "turns": 29.342,
-    "sd": 3.2358980206428014,
-    "caps": 0,
-    "late_win": 0.6324786324786325,
-    "near_loss": 0.5789473684210527,
-    "loss_reef": 0.0,
-    "avg_score": 8.504,
-    "beacons": 1.911,
-    "misses": 0.282
-   },
-   "code_F16": {
-    "win": 0.536,
-    "turns": 21.925,
-    "sd": 3.3504290769989447,
-    "caps": 0,
-    "late_win": 0.8376865671641791,
-    "near_loss": 0.5646551724137931,
-    "loss_reef": 0.36853448275862066,
-    "avg_score": 7.997,
-    "beacons": 1.992,
-    "misses": 1.427
-   },
-   "honest_F16_again": {
-    "win": 0.415,
-    "turns": 22.564,
-    "sd": 2.2480889662110797,
-    "caps": 0,
-    "late_win": 0.8795180722891566,
-    "near_loss": 0.5811965811965812,
-    "loss_reef": 0.05128205128205128,
-    "avg_score": 7.134,
-    "beacons": 1.871,
-    "misses": 0.754
-   }
-  }
+  "ablation_loss_vs_honest_2p": {
+   "pair_blind": 6.9,
+   "trim_blind": 12.9,
+   "no_counting": 9.4,
+   "single_blind": 12.9
+  },
+  "ablation_loss_vs_honest_3p": {
+   "pair_blind": 6.0,
+   "trim_blind": 16.4,
+   "no_counting": 8.3,
+   "single_blind": 12.6
+  },
+  "trim_share_2p": 0.255,
+  "run3_2p": 0.539,
+  "trim_share_3p": 0.261,
+  "run3_3p": 0.491,
+  "greedy_minus_honest_3p_F2": 11.0,
+  "greedy_minus_honest_2p_F6": 10.7,
+  "mean_turns_3p_F2": 25.2
+ },
+ "previous": {
+  "verdict": "NEEDS-FIXES (bots only, unvalidated)",
+  "revision": 1,
+  "mean_turns": 23.5,
+  "coop": {
+   "honest_2p_F4": 0.641,
+   "greedy_2p_F4": 0.696,
+   "honest_2p_F8": 0.558,
+   "greedy_2p_F8": 0.584,
+   "honest_2p_F12": 0.42,
+   "greedy_2p_F12": 0.47,
+   "random_2p_F8": 0.013,
+   "honest_3p_F4": 0.485,
+   "greedy_3p_F4": 0.578,
+   "honest_3p_F8": 0.38,
+   "greedy_3p_F8": 0.474,
+   "honest_3p_F12": 0.269,
+   "greedy_3p_F12": 0.333,
+   "random_3p_F8": 0.008,
+   "honest_3p_F6": 0.43,
+   "greedy_3p_F6": 0.526,
+   "code_2p_F8": 0.569,
+   "code_2p_F12": 0.45,
+   "pair_blind_2p_F8": 0.47,
+   "trim_blind_2p_F8": 0.4,
+   "beacon_blind_2p_F8": 0.553,
+   "no_counting_2p_F8": 0.421,
+   "hunter_2p_F8": 0.549,
+   "pair_blind_2p_F12": 0.341,
+   "trim_blind_2p_F12": 0.3,
+   "beacon_blind_2p_F12": 0.411,
+   "no_counting_2p_F12": 0.32,
+   "hunter_2p_F12": 0.419
+  },
+  "ablation_F8": {
+   "pair_blind": 8.9,
+   "trim_blind": 15.9,
+   "beacon_blind": 0.5,
+   "no_counting": 13.8,
+   "hunter": 0.9
+  },
+  "code_gap_F8": 1.0,
+  "trim_share": 0.3,
+  "run3": 0.612,
+  "skill_expression": 54.6
  },
  "cards": [
   {
-   "name": "Offer",
-   "played_rate": 0.414,
-   "win_correlation": -0.109,
+   "name": "Pair Offer",
+   "played_rate": 0.405,
+   "win_correlation": 0.012,
+   "flag": null
+  },
+  {
+   "name": "Single Offer",
+   "played_rate": 0.079,
+   "win_correlation": 0.023,
    "flag": null
   },
   {
    "name": "Light (lit ship)",
-   "played_rate": 0.191,
-   "win_correlation": 0.881,
+   "played_rate": 0.237,
+   "win_correlation": 0.799,
    "flag": null
   },
   {
    "name": "Trim",
-   "played_rate": 0.38,
-   "win_correlation": -0.15,
-   "flag": "waiting action: over 30% of all turns are Trims"
-  },
-  {
-   "name": "Beacon (exact light)",
-   "played_rate": 0.072,
-   "win_correlation": 0.311,
-   "flag": "strongly tied to winning (time gift)"
+   "played_rate": 0.255,
+   "win_correlation": -0.277,
+   "flag": "Trim over 25% of turns"
   },
   {
    "name": "Miss (Reef)",
-   "played_rate": 0.015,
+   "played_rate": 0.017,
    "win_correlation": -0.609,
    "flag": null
-  },
-  {
-   "name": "Pass",
-   "played_rate": 0.0,
-   "win_correlation": -0.037,
-   "flag": "rare: only forced late"
   }
  ],
  "ambiguities": [
-  "Last Watch: rules say the player who drew the last card takes the final turn; read as 'n turns starting with the next player'. A Beacon during it adds nothing (deck empty), as written.",
-  "Beacon when the draw deck is non-empty but Fog is smaller than 2: moves what is left. Beacon timing is before the draw (Phase 1), so the added cards are at the bottom behind the draw.",
-  "Light is 'legal' with a card whose success is already impossible (e.g. a card that cannot be within 1 of any value in the ship's signal range). Nothing forbids it, so bots may waste Reefs deliberately; the resolver cannot refuse.",
-  "Pass is only legal when nothing else is; in the Last Watch a player with an empty hand and no legal offer/light passes. A player with a full hand but only Offers that tell nothing must still take an action (forced bad moves).",
-  "Offer needs the two cards to differ from each other and from V, but nothing stops an Offer that tells the owner nothing new (e.g. a card already outside the known range). That is legal and wastes a card.",
-  "The 3-player 'resolver' for a Light is the player on the lighter's left; Offers are resolved by the owner. The third player gets no role beyond watching.",
-  "Whether a Light that is a miss still draws a card: read as yes (Phase 2 follows Phase 1) unless the third Reef ended the game.",
-  "Trim when the draw deck has exactly 1 card is legal and draws that last card, starting the Last Watch (rules do not say).",
-  "Beacon text says 'lit and also Beacon' but does not say whether the played card of a lit-by-1 stays; read as it stays on the ship, both out of play."
+  "Rules 4 A says an Offer needs an open range of at least 3 values, 5.2 says 2 or more legal values that are not V. Coded as: both cards strictly inside (L,H), different, neither equal to V (so the range holds at least 3 values by construction).",
+  "Reveal token flip: 'Low' shows the lower card. Coded as a 50/50 pick; the rules do not say what happens when both offered cards are on the same side of V (the shown card then narrows only one side, the other may be useless). Legal and allowed.",
+  "Trim with exactly 1 card in the deck: draw it and keep it (stated). Trim that empties the deck starts the Last Watch (stated by Phase 3 'by any draw').",
+  "Trim cards are Night-piled face-down but the trimmer saw them: coded as private knowledge for card counting; the rules list this under 'each player additionally knows' only for cards sent to the Night pile, and it is unclear whether the kept/dumped Trim cards in 3-player games are visible to the third player (coded: no).",
+  "Beacon: 'top 2 cards of the Fog pile to the bottom of the draw deck'; a Beacon lit on the turn that empties the deck is impossible (Light draws after), coded as stated. Beacon during Light that is the last ship is irrelevant.",
+  "Last Watch: 'every player takes exactly one more turn, starting with the player to the left of the one who emptied the deck'. Coded as n turns, each Offer/Light/skip; a Trim is illegal (deck empty). Cannot tell if a win on the last turn needs the turn to finish: wins are immediate.",
+  "Light legality L <= C <= H allows C equal to L or H, i.e. a card equal to a value already ruled out by a signal. Allowed; it is a safe-looking but sometimes hopeless play (coded legal).",
+  "Rules 6 turn cap formula (26 + 8 + 2 = 36) assumes deck 26 at Standard; with Trim burning 2 per turn it is an upper bound. Not an issue in sim.",
+  "Offer legality when only one of the cards is inside the range: not legal; a player who has two in-range cards of different values may have none, so Offers are often unavailable late and Trim becomes the default (see findings).",
+  "3 players: the Light resolver (player on the left) is the only one who learns nothing extra; the third player sees the ship but the rules do not say whether they may stop a mis-resolve. Not coded.",
+  "v3: Single Offer legality is per ship; with exactly one distinct fitting value the player may only Single Offer (no pair possible). Coded: a hand with two copies of the same fitting value (e.g. 5,5) counts as one value, so Single is legal and Pair is not.",
+  "v3: Does a Single Offer card also count as a Pair-style 'narrowing' when equal to an existing L or H? Cannot happen: fitting means strictly inside (L,H).",
+  "v3: Is a Single Offer allowed when the player also has a legal Pair Offer on a DIFFERENT ship? Rules say yes (per ship); coded yes.",
+  "v3: 'Skip' when deck is empty and the hand has no legal Offer/Light: turn skipped, Last Watch counter still advances (coded)."
  ],
  "problems": [
   {
    "severity": "high",
-   "problem": "Standard (F=8) is too easy: Honest teams win above the 40-60% band, and Convention/Code attack as well.",
-   "evidence": "Honest 73.0%, Greedy (lights at 50% confidence) 81.6%, Convention 68.0%; Honest by Fog: F=8 73%, F=12 57%, F=16 42%.",
-   "fix": "Set 2-player Standard to Fog 12 (Honest 57.5%, in band) and keep 3-player near Fog 8 (Honest 3p at F=8 is 53.2%). Beacons fire 2.1 times per game and each buys two turns; cutting Beacons to 1 card needs less Fog. Human teams will deduce worse than the bots, so confirm with a human test before pushing difficulty."
-  },
-  {
-   "severity": "medium",
-   "problem": "Risk-taking beats the default careful play: the Greedy bot (lights at 50% confidence, no card counting) out-wins Honest, and Honest is hugely sensitive to its light threshold.",
-   "evidence": "Greedy 81.6% vs Honest 73.0%; Honest with light threshold 0.99 only 46.8%. Reefs (two free misses) are cheap relative to turns.",
-   "fix": "Make a miss cost more (two Reefs instead of three, or a miss also sends a Fog card to the Night pile). Needs a designer decision."
+   "problem": "Trim stall not fixed",
+   "evidence": "2p F6 Honest: Trim 25% of turns (target <25), 3+ Trim runs in 54% of games (target <10; was 61%). Greedy (trims only when no Offer legal) still Trims 18% of turns with 3+ runs in 40% of games. 3p F2: 26% / 49%. Single Offer explains only about 4 points of Trim share (single-blind 29% vs 25%). Honest's Trims are 66% voluntary (an Offer existed), Greedy's 100% forced.",
+   "fix": "Per the Known gaps rule, stop iterating on bots; take a human playtest. If one more bot-side change: make Trim cost-free-looking is not the issue, the issue is hands with no fitting card; consider a free Offer-less action (draw 1 without discarding) or a hand of 6."
   },
   {
    "severity": "high",
-   "problem": "The code attack beats Honest by more than 10 points once the game is made harder (F=16), so the anti-code design only holds at the easy Standard setting.",
-   "evidence": "At F=16: Code attack 53.6% vs Honest 41.5% (gap +12.1); at F=8 the gap is +3.6. The code (revealed value + ship index) mod 10 works because one offered card is always the coded one, revealed half the time, and a Bayesian receiver weights it by its posterior.",
-   "fix": "Weaken what a card value can carry. Options: only the Offer's row is revealed to the owner and the card value stays hidden until the end; or offered pairs must be adjacent values. Needs a designer decision; re-test Code attack at the new Fog before deciding (untested)."
+   "problem": "Fog Standard misses the band and the Greedy gap",
+   "evidence": "2p F6: Honest 63.0, Greedy 73.8 (band 40-60). 3p F2: 61.9 / 72.9. Greedy beats Honest by +10.8 (2p) and +11.0 (3p) vs target <=5 (2p required). Both bots in band only at 2p F10 (48.6/56.2) and 3p F8 (40.6/51.9); 2p F9 gives 52.1/62.1.",
+   "fix": "Move Standard to 2p F10, 3p F8 (but 2p length then 21.0 turns, below 22-26); Honest bot is probably too cautious, so the gap may be a bot artefact (L2): a human test must set F."
   },
   {
    "severity": "medium",
-   "problem": "Trim is a waiting action: Honest bots spend about a third of turns trimming.",
-   "evidence": "Trim played in 38% of turns, win correlation -0.15.",
-   "fix": "Give Trim a small upside (draw 2 keep 1, or the trimmed card goes face-up to the Night pile)."
+   "problem": "Length vs band conflict",
+   "evidence": "Honest 2p: F3 24.4, F6 23.1, F8 22.2, F9 21.7, F10 21.0 turns. The band-correct Fog is shorter than 22 turns.",
+   "fix": "Accept 21-22 turns (about 17 min) or restore a time source other than Fog."
   },
   {
    "severity": "low",
-   "problem": "Tension is fine (late wins and near-losses are common) but depends on Fog tuning.",
-   "evidence": "Wins with 3 or fewer deck cards left: 74%; losses with only one ship unlit: 77% (target about 30% each).",
-   "fix": "Re-check after any Fog change."
+   "problem": "Honest bot lights/offers conservatively",
+   "evidence": "Greedy with no counting out-wins Honest by 11 points at every F, in both counts.",
+   "fix": "Treat skill expression carefully; card counting ablation still loses 9.4/8.3, so counting does matter."
   }
  ]
 }

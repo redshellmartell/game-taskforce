@@ -1,16 +1,17 @@
-{ "verdict": "REVISE-MAJOR", "revision": 0,
-  "scores": { "originality": 3, "clarity": 3, "fun": 2, "balance": 2, "market_fit": 3, "production": 5 },
-  "average": 3.0,
-  "strength": "A distinctive, rules-light hook: losing bids feed a category's value (Hype) and the hottest category crashes. It is clear, cheap and new in combination.",
-  "weakness": "Decisions do not separate good play from random play: the mixed-table skill gap is 0.8-2.3 points and the planner bot loses to the casual bot.",
-  "closest_existing_game": { "name": "Burnout/Pairs (tie-cancel bidding); also Modern Art (hidden simultaneous bids)", "similarity": "low" },
+{
+  "verdict": "REVISE-MINOR",
+  "revision": 2,
+  "scores": { "originality": 3, "clarity": 3, "fun": 3, "balance": 3, "market_fit": 3, "production": 5 },
+  "average": 3.33,
+  "strength": "Structural KPIs are healthy and tunable with one clean knob: Hype share 48/48% via the +4 ceiling, seat gap 1.1/2.1, lead changes 3.3/3.6, runaway 48/45%, lone skill gap 31-37 for strategic/planner, at about $15 and 78 cards.",
+  "weakness": "The advertised twists do not demonstrably matter (L1): ignore-crash regressed from pass to fail at both counts (+3.0/-2.9 at 5p, -1.6/-2.5 at 6p) because the ceiling deflated the crash; ignore-hype and ignore-ties flip sign at 5p. Skill gap depends on bot depth (greedy 18.5/12.3, L2) and comes from general odds estimation, not the hook; 5p and 6p behave differently (L8); 6p last-round flip 25% (L3).",
+  "closest_existing_game": { "name": "Burnout / Pairs (Crab Fragment Labs)", "similarity": "medium" },
   "required_changes": [
-    "Make skill matter: combine income 2, bids 1-12 and a public information element or a two-card choice (KPI: strategic-vs-random gap at 20+ lone-bot and 8-10+ at mixed tables, now 0.8-2.3)",
-    "Raise lot values to 2-5 with income 2 to cut Hype share to 45-50% of points (now 55-64%) with unsold lots of 6 or fewer",
-    "Adopt income 2 per pass and test carry-over of unsold lots: forced passes at or below 13% (now 22%) and unsold lots of 5 or fewer (now 4.6-7.8)",
-    "Replace the all-tied-categories-crash rule with a deterministic single crash: last-round winner flips at or below 20% (now 26-31%)",
-    "Resolve all 7 ambiguities, fix the reshuffle timing so seat order cannot matter and drop or justify the identical Paddle/Bid backs (KPI: ambiguities at zero)",
-    "Re-run with a kingmaking/spite bot to test the late swing and the saboteur strategy"
+    "Human table test (5-6 players, 2-3 games) before any further bot-only cycle; KPIs: human fun and replay, whether the crash and ties are noticed, teach time",
+    "If revised anyway, one change only: make the crash bite (e.g. crashed category loses printed value too); KPI ignore-crash at least +5 at both 5p and 6p with Hype share still 45-50%",
+    "Add running crash tie-break total or freeze Hype before round 14; KPI 6p last-round flip at most 20% (now 25%)",
+    "State that hands are revealed for tiebreakers and explain or drop round-14 income; KPI zero ambiguities at pitch"
   ],
-  "revision_worth_it": true,
-  "revision_reason": "Yes, one revision only: the hook is worth keeping and the fixes are concrete, but if the mixed-table skill gap stays under about 5 points, kill it." }
+  "revision_worth_it": false,
+  "revision_reason": "No: the stop rule was Hype share and ablations must move; Hype share did, but ignore-crash regressed and ignore-hype/ignore-ties still flip at 5p, which is a structural question about the twists that only human play or a new mechanic can answer."
+}

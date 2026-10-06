@@ -1,17 +1,17 @@
-{ "verdict": "REVISE-MAJOR", "revision": 0,
-  "scores": { "originality": 3, "clarity": 3, "fun": 3, "balance": 3, "market_fit": 4, "production": 5 },
-  "average": 3.5,
-  "strength": "A new, simple card-only Offer (two cards, chance picks one) makes signalling cost the cards you need; Random wins 0.6% vs Honest 73% and endings are tense.",
-  "weakness": "The anti-code design is unproven and fails at harder Fog (Code beats Honest by +12.1 at F=16), Standard is too easy (73%), and about a third of turns are dull Trims.",
+{
+  "verdict": "REVISE-MINOR",
+  "revision": 2,
+  "scores": { "originality": 3, "clarity": 3, "fun": 3, "balance": 2, "market_fit": 4, "production": 5 },
+  "average": 3.33,
+  "strength": "The pair-or-single Offer puzzle with a closed code channel (code attack +2.3 to +2.8), all three twist ablations passing, a 62-point skill gap and a 52-card tuckbox.",
+  "weakness": "Trim stall unfixed after two cycles: 3+ Trim runs in 54% (2p) and 49% (3p) of games against under 10%, many forced; Standard Fog out of band and Greedy +11 over Honest. Repeats L11, L5, L10, L2 and L9.",
   "closest_existing_game": { "name": "Hanabi", "similarity": "medium" },
   "required_changes": [
-    "Close the code channel (show only row, or restrict offered pairs to adjacent values); retest Code attack at F=12 and F=16 for gap <= 10 points",
-    "Set 2-player Standard to Fog 12 or cut Beacon bonus; Honest win rate 40-60%",
-    "Make caution pay (2 Reefs or a miss costs a Fog card) so Greedy <= Honest + 5",
-    "Give Trim an upside (draw 2 keep 1 or reveal discard); Trim share under 25% of turns",
-    "Resolve all 9 rule ambiguities and specify a physical procedure for the secret Offer shuffle",
-    "Remove or redesign the Convention tier",
-    "Run two human playtests before fixing Fog"
+    "Reset Fog from the measured sweep: 2p Standard F10 (or F9), 3p Standard F8, recalibrate Calm and Storm; KPI: both bots in 40-60 win band (balance)",
+    "Write the four Single Offer rulings into rules.md and update stale 7.4, 7.6 and Known gaps text without growing the line count (clarity, L7)",
+    "Stop bot iteration on the Trim stall; record 54% / 49% 3+ runs in Known gaps and make it the first human playtest question (fun)",
+    "Optional, only after human feedback: no-discard draw action or hand size 6 instead of forced Trim (3+ Trim runs under 10%)"
   ],
-  "revision_worth_it": true,
-  "revision_reason": "Core loop and skill gap are strong and the problems have named, testable fixes; one revision is justified if the code-channel fix is retested at F=12." }
+  "revision_worth_it": false,
+  "revision_reason": "No for more bot cycles: the Trim stall is structural and moved about 4-7 points per cycle against a 15-45 point need. Make the cheap Fog and wording edit, then take a human playtest."
+}

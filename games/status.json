@@ -192,7 +192,7 @@
       "slug": "silent-duo-deduction-coop",
       "title": "Silent Duo",
       "stage": "critique",
-      "revision": 0,
+      "revision": 2,
       "history": [
         {
           "stage": "brief",
@@ -229,11 +229,23 @@
           "time": "2026-10-05T11:41:50Z",
           "verdict": null,
           "note": "silent-duo-deduction-coop-revision-1 approved by owner; queued"
+        },
+        {
+          "stage": "critique",
+          "time": "2026-10-06T14:21:43Z",
+          "verdict": "REVISE-MINOR",
+          "note": "Cycle 1 (revision 1): Honest 73% to 56%, code attack closed, Trim stall and Beacon fail; critic REVISE-MINOR avg 3.67, mechanical; cycle 2 runs inside the cap"
+        },
+        {
+          "stage": "critique",
+          "time": "2026-10-06T14:33:01Z",
+          "verdict": "REVISE-MINOR",
+          "note": "Cycle 2 (revision 2): Trim stall not fixed (structural), Fog values re-set from the sweep; critic REVISE-MINOR avg 3.33 (below 3.5), recommends a human playtest, no more bot cycles; waiting for approval: review-cap (silent-duo-deduction-coop-review-cap-1)"
         }
       ],
       "verdicts": {
         "playtest": "NEEDS-FIXES",
-        "critic": "REVISE-MAJOR"
+        "critic": "REVISE-MINOR"
       },
       "kill_reason": null
     },
@@ -241,7 +253,7 @@
       "slug": "asymmetric-duel-tug-of-war",
       "title": "Tug of Crowns",
       "stage": "critique",
-      "revision": 1,
+      "revision": 2,
       "history": [
         {
           "stage": "brief",
@@ -296,6 +308,12 @@
           "time": "2026-10-05T12:14:49Z",
           "verdict": "REVISE-MAJOR",
           "note": "Revision 1 critic REVISE-MAJOR avg 3.33; waiting for approval: revision (asymmetric-duel-tug-of-war-revision-2)"
+        },
+        {
+          "stage": "critique",
+          "time": "2026-10-06T14:24:59Z",
+          "verdict": "REVISE-MAJOR",
+          "note": "Cycle 2 (revision 2): pacing fixed, side gap flips with bot skill, keywords inert; critic REVISE-MAJOR avg 3.17, structural, recommends park; waiting for approval: review-cap (asymmetric-duel-tug-of-war-review-cap-1)"
         }
       ],
       "verdicts": {
@@ -542,7 +560,7 @@
       "slug": "five-six-simultaneous-auction",
       "title": "Last Bid Standing",
       "stage": "critique",
-      "revision": 0,
+      "revision": 2,
       "history": [
         {
           "stage": "brief",
@@ -579,11 +597,23 @@
           "time": "2026-10-05T11:41:50Z",
           "verdict": null,
           "note": "five-six-simultaneous-auction-revision-1 approved by owner; queued"
+        },
+        {
+          "stage": "critique",
+          "time": "2026-10-06T14:13:46Z",
+          "verdict": "REVISE-MINOR",
+          "note": "Cycle 1 (revision 1): playtest NEEDS-FIXES (skill gap 25.3, Hype 56-64%, 2 ablations fail), fix pass v2.1, critic REVISE-MINOR avg 3.33; cycle 2 runs inside the cap"
+        },
+        {
+          "stage": "critique",
+          "time": "2026-10-06T14:42:48Z",
+          "verdict": "REVISE-MINOR",
+          "note": "Cycle 2 (revision 2): Hype share fixed (48/48%), crash lever now inert, ablations unstable; critic REVISE-MINOR avg 3.33 (flat), recommends a human table test or park; waiting for approval: review-cap (five-six-simultaneous-auction-review-cap-1)"
         }
       ],
       "verdicts": {
         "playtest": "NEEDS-FIXES",
-        "critic": "REVISE-MAJOR"
+        "critic": "REVISE-MINOR"
       },
       "kill_reason": null
     },
@@ -646,7 +676,7 @@
       "slug": "two-player-hidden-movement-grid",
       "title": "Dead Reckoning",
       "stage": "critique",
-      "revision": 0,
+      "revision": 1,
       "history": [
         {
           "stage": "brief",
@@ -683,6 +713,12 @@
           "time": "2026-10-05T11:41:50Z",
           "verdict": null,
           "note": "two-player-hidden-movement-grid-revision-1 approved by owner; queued"
+        },
+        {
+          "stage": "critique",
+          "time": "2026-10-06T14:21:17Z",
+          "verdict": "REVISE-MAJOR",
+          "note": "Cycle 1 (revision 1): runaway 0.831 (was 0.795), lead changes 1.50, Sonar dead; critic REVISE-MAJOR avg 3.00, structural, recommends park; waiting for approval: review-cap (two-player-hidden-movement-grid-review-cap-1)"
         }
       ],
       "verdicts": {

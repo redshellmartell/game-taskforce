@@ -1,16 +1,16 @@
 {
- "generated": "2026-10-05T14:41:15Z",
+ "generated": "2026-10-06T14:48:26Z",
  "games_total": 11,
  "games_tested": 10,
  "first_pass_playtest_pass": 0,
  "first_pass_rate": 0.0,
  "critic_avg_first": 3.26,
- "critic_avg_latest": 3.42,
- "revisions_per_game": 0.8,
+ "critic_avg_latest": 3.38,
+ "revisions_per_game": 1.4,
  "director_calibration": {
-  "decided": 28,
-  "agreed": 25,
-  "rate": 0.89
+  "decided": 29,
+  "agreed": 26,
+  "rate": 0.9
  },
  "approvals_by_gate": {
   "panel-reviews": {
@@ -26,20 +26,22 @@
    "approved": 9
   },
   "revision": {
-   "approved": 12,
-   "declined": 1,
-   "pending": 1
+   "approved": 13,
+   "declined": 1
   },
   "panel-research": {
    "approved": 1
   },
   "budget": {
    "approved": 1
+  },
+  "review-cap": {
+   "pending": 4
   }
  },
  "decisions_by_kind": {
   "gate": {
-   "approve": 27,
+   "approve": 28,
    "decline": 1,
    "pitch": 1
   },
@@ -48,9 +50,9 @@
   }
  },
  "revision_effectiveness": {
-  "cycles": 0,
-  "moved_target": 0,
-  "rate": null
+  "cycles": 6,
+  "moved_target": 4,
+  "rate": 0.67
  },
  "human": {
   "sessions": 0,
@@ -62,7 +64,7 @@
   "per_game": {
    "three-player-trick-taker": 631920
   },
-  "unattributed": 44563795
+  "unattributed": 44981474
  },
  "games": [
   {
@@ -88,22 +90,91 @@
   {
    "slug": "silent-duo-deduction-coop",
    "stage": "critique",
-   "revisions": 0,
+   "revisions": 2,
    "first_playtest": "NEEDS-FIXES",
    "first_critic_avg": 3.5,
-   "latest_critic_avg": 3.5,
-   "latest_critic": "REVISE-MAJOR",
-   "cycles": []
+   "latest_critic_avg": 3.33,
+   "latest_critic": "REVISE-MINOR",
+   "cycles": [
+    {
+     "cycle": 1,
+     "targeted": [
+      "honest win rate too high (73%)",
+      "code attack",
+      "greedy vs honest",
+      "dull Trims",
+      "ambiguities"
+     ],
+     "before": {
+      "honest_2p_F8": 0.73,
+      "code_attack": 12.1,
+      "trim_share": 0.38,
+      "critic": 3.5
+     },
+     "after": {
+      "honest_2p_F8": 0.56,
+      "code_attack": 1.0,
+      "trim_share": 0.3,
+      "critic": 3.67
+     },
+     "moved": true,
+     "note": "Honest into band and code attack closed; Trim share and 3+ Trim runs still fail because the new Offer legality rule forces Trims; Beacon-blind ablation fails; 3p under band."
+    },
+    {
+     "cycle": 2,
+     "targeted": [
+      "Trim stall",
+      "Beacon not a decision",
+      "3p Fog band"
+     ],
+     "before": {
+      "trim_share": 0.3,
+      "trim_runs_2p": 0.61,
+      "critic": 3.67
+     },
+     "after": {
+      "trim_share": 0.25,
+      "trim_runs_2p": 0.54,
+      "critic": 3.33
+     },
+     "moved": false,
+     "note": "Beacon cut and code attack stayed closed, but Trim runs only 61% to 54% (target <10%), Single Offer explained ~4 points; Fog guess wrong (F6 out of band, F10/F8 in band); Greedy +11 over Honest unconfirmed. Critic: Trim stall structural, go to a human playtest, no more bot cycles."
+    }
+   ]
   },
   {
    "slug": "asymmetric-duel-tug-of-war",
    "stage": "critique",
-   "revisions": 1,
+   "revisions": 2,
    "first_playtest": "NEEDS-FIXES",
    "first_critic_avg": 3.33,
-   "latest_critic_avg": 3.33,
+   "latest_critic_avg": 3.17,
    "latest_critic": "REVISE-MAJOR",
-   "cycles": []
+   "cycles": [
+    {
+     "cycle": 2,
+     "targeted": [
+      "lead choice removed",
+      "side gap",
+      "early endings",
+      "lead changes"
+     ],
+     "before": {
+      "side_gap": 10.9,
+      "lead_changes": 1.83,
+      "over_by_round_3": 0.31,
+      "critic": 3.33
+     },
+     "after": {
+      "side_gap": 9.3,
+      "lead_changes": 2.22,
+      "over_by_round_3": 0.185,
+      "critic": 3.17
+     },
+     "moved": true,
+     "note": "Pacing KPIs now pass; side gap flips with bot skill (+20,-29,-19 cancel), all five keyword ablations inert, Treasury cap knob inert. Critic: structural, park. Bar Raiser veto on seat advantage."
+    }
+   ]
   },
   {
    "slug": "grid-of-cards-area-control",
@@ -148,12 +219,57 @@
   {
    "slug": "five-six-simultaneous-auction",
    "stage": "critique",
-   "revisions": 0,
+   "revisions": 2,
    "first_playtest": "NEEDS-FIXES",
    "first_critic_avg": 3.0,
-   "latest_critic_avg": 3.0,
-   "latest_critic": "REVISE-MAJOR",
-   "cycles": []
+   "latest_critic_avg": 3.33,
+   "latest_critic": "REVISE-MINOR",
+   "cycles": [
+    {
+     "cycle": 1,
+     "targeted": [
+      "skill gap (lone and mixed table)",
+      "Hype share of points",
+      "forced passes / dead rounds",
+      "ambiguities"
+     ],
+     "before": {
+      "skill_gap_lone": 17.5,
+      "skill_gap_mixed": 1.5,
+      "hype_share": "55-64%",
+      "forced_pass": 0.22,
+      "critic": 3.0
+     },
+     "after": {
+      "skill_gap_lone": 25.3,
+      "skill_gap_mixed": 11.8,
+      "hype_share": "56-64%",
+      "forced_pass": 0.051,
+      "critic": 3.33
+     },
+     "moved": true,
+     "note": "Skill gap, forced passes and ambiguities moved; Hype share and two ablations did not. Critic REVISE-MINOR 3.33."
+    },
+    {
+     "cycle": 2,
+     "targeted": [
+      "Hype share of points",
+      "open income / ablations"
+     ],
+     "before": {
+      "hype_share": "56/64%",
+      "ignore_crash_ablation": "+7.5/+5.5",
+      "critic": 3.33
+     },
+     "after": {
+      "hype_share": "48/48%",
+      "ignore_crash_ablation": "+3.0/-2.9 (5p), -1.6/-2.5 (6p)",
+      "critic": 3.33
+     },
+     "moved": true,
+     "note": "Hype ceiling fixed Hype share and face-down income cost nothing, but the ceiling made the crash inert (ignore-crash fails at both counts); ignore-hype/ignore-ties flip sign at 5p; 6p last-round flip 25%. Critic REVISE-MINOR 3.33 flat, no more bot cycles."
+    }
+   ]
   },
   {
    "slug": "solo-nine-card-roguelike",
@@ -168,12 +284,37 @@
   {
    "slug": "two-player-hidden-movement-grid",
    "stage": "critique",
-   "revisions": 0,
+   "revisions": 1,
    "first_playtest": "NEEDS-FIXES",
    "first_critic_avg": 3.33,
-   "latest_critic_avg": 3.33,
+   "latest_critic_avg": 3.0,
    "latest_critic": "REVISE-MAJOR",
-   "cycles": []
+   "cycles": [
+    {
+     "cycle": 1,
+     "targeted": [
+      "runaway leader",
+      "lead changes",
+      "Sonar dead card",
+      "coasting to round cap",
+      "ambiguities"
+     ],
+     "before": {
+      "runaway": 0.795,
+      "lead_changes": 1.5,
+      "sonar_no_ping_ablation": null,
+      "critic": 3.33
+     },
+     "after": {
+      "runaway": 0.831,
+      "lead_changes": 1.5,
+      "sonar_no_ping_ablation": 0.494,
+      "critic": 3.0
+     },
+     "moved": false,
+     "note": "Zoned deal, trailer-only 2-step ping and 12-round cap left runaway at 0.76-0.92 in every pairing; Sonar still dead; ambiguities closed by the fix pass. Critic: structural, park."
+    }
+   ]
   }
  ]
 }

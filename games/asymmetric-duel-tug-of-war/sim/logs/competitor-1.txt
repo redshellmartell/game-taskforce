@@ -1,46 +1,46 @@
-Tug of Crowns: competitor (Treasurer) vs family (Whisperer), best table for competitor. Crown pos: negative = Treasurer side.
-R1 W plays Gossip
+Tug of Crowns: competitor (Treasurer) vs strategist (Whisperer), best table for competitor. Crown pos: negative = Treasurer side.
 R1 T plays Tax Collector
-R1 W plays Gossip
-R1 T plays Treasury Vault
-R1 W plays Courtier
-R1 T plays Granary
 R1 W plays Silencer hush #0
+R1 T plays Granary
+R1 W plays False Witness hush #1
 R1 T plays Ledger
-R1 W plays Veiled Threat
-R1 T plays Gold Purse
-R1 W plays False Witness hush #2
-R1 T plays Mint Master
 R1 W plays Courtier
+R1 T plays Gold Purse
+R1 W plays Veiled Threat
+R1 T plays Treasury Vault
+R1 W plays Gossip
+R1 T plays Mint Master
+R1 W passes
 R1 T has no cards, passes
-R1 W has no cards, passes
-R1 totals T13 W13 winner 1 pos 1
-R2 W plays Gossip
-R2 T plays Patron
+R1 totals T13 W9 winner 0 pos -1
 R2 W plays Gossip
 R2 T plays Royal Loan
 R2 W passes
 R2 T passes
-R2 totals T3 W2 winner 0 pos -1
+R2 totals T1 W1 winner 1 pos 1
+R3 T plays Patron
 R3 W plays Gossip
 R3 T passes
 R3 W passes
-R3 totals T0 W1 winner 1 pos 1
-R4 T plays Tax Collector
-R4 W plays Courtier
-R4 T plays Tax Collector
-R4 W plays Shadow Envoy
-R4 T plays Granary
-R4 W plays Veiled Threat
-R4 T plays Ledger
-R4 W plays Spymaster
-R4 T plays Gold Purse
-R4 W plays Spymaster
-R4 T plays Gold Purse
+R3 totals T2 W1 winner 0 pos -1
 R4 W plays Gossip
 R4 T passes
-R4 W plays Eavesdropper
 R4 W passes
-R4 totals T18 W19 winner 1 pos 2
-R5 W plays Silencer hush #None
+R4 totals T0 W1 winner 1 pos 1
 R5 T plays Tax Collector
+R5 W plays Gossip
+R5 T passes
+R5 W plays Spymaster
+R5 W plays Shadow Envoy
+R5 W passes
+R5 totals T2 W7 winner 1 pos 2
+R6 T plays Royal Loan
+R6 W plays Silencer hush #0
+R6 T plays Tax Collector
+R6 W plays Silencer hush #1
+R6 T plays Granary
+R6 W plays Eavesdropper
+R6 T plays Tax Collector
+R6 W plays Eavesdropper
+R6 T plays Patron
+R6 W plays Courtier

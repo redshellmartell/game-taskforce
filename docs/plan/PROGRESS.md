@@ -2,6 +2,12 @@
 
 Written by Claude Code after each task, newest first. See `WORKFLOW.md` for the format.
 
+## 2026-10-06 — Task 013 first live run (taskforce, parallel agents, 1-hour window)
+- **Ran:** cycles for the auction (2), silent-duo (2), tug-of-war (cycle 2), hidden-movement grid (1) and Whiskerdark (1, critic pending), with up to 3 playtests at once at the owner's request. Four `review-cap` requests raised (stage 3b works: two automatic cycles for the auction with no click, then the request). Lessons L10 and L11 added; scoreboard and `cycles.json` kept per cycle; retro in `studio/retros/2026-10-06.md` (stage 4's first retro; its proposals await the owner).
+- **Result:** no game reached PASS. Critic: auction 3.33, silent-duo 3.33, tug-of-war 3.17, grid 3.00. Two games (auction, silent-duo) are recommended for a human playtest, two (grid, tug-of-war) for parking.
+- **Mistakes and fixes:** the unquoted heredoc once swallowed a backtick span in a lessons edit (repaired); the stop hook forced several mid-step commits (work in progress, all on the branch).
+- Questions for the owner: answer the four review-cap requests; OK or decline the retro's proposed agent and playbook changes; pick which game to prototype for a human playtest (stage 5).
+
 ## 2026-10-05 — Task 013 stages 0 to 3b (partly blocked: CLAUDE.md edit refused)
 - **Built:** stage 0 `tools/learning/scoreboard.py` (+3 tests; writes `studio/scoreboard.json` and `.md`; baseline **0 of 10 first-pass PASS**, critic average 3.26 first vs 3.42 latest, Director matched the owner on 25 of 28 decisions; per-game token attribution is mostly empty because sessions span several games). Stage 1 `studio/lessons.md` (9 lessons, each checked against the files; "stalls" and "length off target" dropped as they do not hold; first-draft rule gaps are 3 to 11, not 6 to 11). Stage 2 `studio/design-rules.md` (one page, built from lessons seen in 3+ games, with bot rules). Stage 3: one line each in `game-designer.md`, `playtester.md`, `critic.md`. Stage 3b: `review_cap` in `studio-settings.json`; dashboard `review-cap` gate label and `continue` counts as approved (89 dashboard tests pass).
 - **CLAUDE.md:** the classifier first refused the edit; the owner then approved it in chat ("option 2") and it was applied: review cap, learning rule and fix-before-critic pass are now in `CLAUDE.md`. Owner ruled that already-approved pending `-revision-N` requests count inside the cap.

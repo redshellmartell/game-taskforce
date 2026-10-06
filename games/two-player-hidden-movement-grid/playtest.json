@@ -1,192 +1,253 @@
 {
- "verdict": "PENDING",
+ "verdict": "NEEDS-FIXES",
  "revision": 1,
  "mid_vs": {
-  "strategic_v_mid": 0.505,
-  "mid_v_greedy": 0.7775,
-  "mid_v_random": 0.9225
+  "strategic_v_mid": 0.508,
+  "mid_v_greedy": 0.7772,
+  "mid_v_random": 0.9245
  },
  "ablations": {
   "blind": {
-   "full_win": 0.635,
-   "ablated_win": 0.365,
-   "runaway": 0.794,
-   "lc": 1.62,
-   "rounds": 11.12
+   "full_win": 0.586,
+   "ablated_win": 0.414,
+   "runaway": 0.779,
+   "lc": 1.6,
+   "rounds": 11.1
   },
   "noping": {
-   "full_win": 0.497,
-   "ablated_win": 0.502,
-   "runaway": 0.798,
-   "lc": 1.71,
-   "rounds": 11.14
+   "full_win": 0.506,
+   "ablated_win": 0.494,
+   "runaway": 0.776,
+   "lc": 1.7,
+   "rounds": 11.04
   },
   "notorp": {
-   "full_win": 0.75,
-   "ablated_win": 0.25,
-   "runaway": 0.826,
-   "lc": 1.18,
-   "rounds": 11.21
+   "full_win": 0.701,
+   "ablated_win": 0.299,
+   "runaway": 0.843,
+   "lc": 1.34,
+   "rounds": 11.14
   },
   "nomiddle": {
-   "full_win": 0.718,
-   "ablated_win": 0.282,
-   "runaway": 0.768,
+   "full_win": 0.708,
+   "ablated_win": 0.292,
+   "runaway": 0.777,
    "lc": 1.71,
-   "rounds": 11.49
+   "rounds": 11.52
   },
   "camper": {
-   "full_win": 0.545,
-   "ablated_win": 0.455,
-   "runaway": 0.767,
-   "lc": 1.77,
-   "rounds": 11.29
+   "full_win": 0.512,
+   "ablated_win": 0.488,
+   "runaway": 0.776,
+   "lc": 1.63,
+   "rounds": 11.31
   },
   "strategic-v1deal": {
    "full_win": 0.5,
    "ablated_win": 0.5,
-   "runaway": 0.839,
-   "lc": 1.6,
-   "rounds": 10.95
+   "runaway": 0.794,
+   "lc": 1.69,
+   "rounds": 10.97
   }
  },
- "r1_leader_wins": 0.548,
- "r1_collision_rate": 0.442,
- "games_simulated": 2000,
+ "r1_leader_wins": 0.582,
+ "r1_collision_rate": 0.415,
+ "games_simulated": 20000,
  "seat_win_rates": {
-  "1": 0.495,
-  "2": 0.505
+  "1": 0.491,
+  "2": 0.509
  },
- "seat_balance_gap": 1.0,
+ "seat_balance_gap": 1.8,
  "bot_win_rates": {
-  "random": 0.26,
-  "greedy": 0.46,
-  "strategic": 0.641
+  "random": 0.248,
+  "greedy": 0.465,
+  "strategic": 0.648
  },
- "skill_expression": 88.0,
- "strategic_vs_greedy": 0.76,
+ "skill_expression": 88.7,
+ "strategic_vs_greedy": 0.788,
  "length": {
-  "mean_turns": 11.35,
-  "stdev": 1.3,
+  "mean_turns": 11.36,
+  "stdev": 1.36,
   "estimated_minutes": 17.1,
   "target_minutes": 15
  },
  "length_histogram": [
   {
+   "turns": 5,
+   "games": 7
+  },
+  {
    "turns": 6,
-   "games": 3
+   "games": 35
   },
   {
    "turns": 7,
-   "games": 14
+   "games": 168
   },
   {
    "turns": 8,
-   "games": 20
+   "games": 216
   },
   {
    "turns": 9,
-   "games": 31
+   "games": 310
   },
   {
    "turns": 10,
-   "games": 41
+   "games": 303
   },
   {
    "turns": 11,
-   "games": 49
+   "games": 348
   },
   {
    "turns": 12,
-   "games": 442
+   "games": 4613
   }
  ],
- "ties": 0.0017,
- "turn_cap_hits": 405,
- "lead_changes_mean": 1.53,
- "runaway_leader_rate": 0.83,
+ "ties": 0.0018,
+ "turn_cap_hits": 0,
+ "lead_changes_mean": 1.5,
+ "runaway_leader_rate": 0.831,
  "cards": [
   {
    "name": "Salvage 1",
-   "played_rate": 0.985,
-   "win_correlation": 0.272,
+   "played_rate": 0.981,
+   "win_correlation": 0.329,
    "flag": null,
-   "per_game": 2.63
+   "per_game": 2.6
   },
   {
    "name": "Salvage 2",
-   "played_rate": 0.981,
-   "win_correlation": 0.395,
+   "played_rate": 0.984,
+   "win_correlation": 0.38,
    "flag": null,
-   "per_game": 2.63
+   "per_game": 2.62
   },
   {
    "name": "Salvage 3",
-   "played_rate": 0.777,
-   "win_correlation": 0.53,
+   "played_rate": 0.784,
+   "win_correlation": 0.554,
    "flag": null,
-   "per_game": 1.43
+   "per_game": 1.44
   },
   {
    "name": "Mine",
-   "played_rate": 0.872,
-   "win_correlation": 0.06,
+   "played_rate": 0.861,
+   "win_correlation": 0.093,
    "flag": null,
    "per_game": 1.26
   },
   {
    "name": "Reef",
-   "played_rate": 0.874,
-   "win_correlation": 0.204,
+   "played_rate": 0.88,
+   "win_correlation": 0.178,
    "flag": null,
    "per_game": 1.35
   },
   {
    "name": "Sonar (taken)",
-   "played_rate": 0.773,
-   "win_correlation": 0.095,
+   "played_rate": 0.757,
+   "win_correlation": 0.151,
    "flag": null,
-   "per_game": 0.86
+   "per_game": 0.85
   },
   {
    "name": "Sonar ping (spent)",
-   "played_rate": 0.367,
-   "win_correlation": -0.207,
-   "flag": null,
-   "per_game": 0.38
+   "played_rate": 0.345,
+   "win_correlation": -0.172,
+   "flag": "dead: never-ping bot wins 49.4% of games vs full bot",
+   "per_game": 0.35
   },
   {
    "name": "Torpedo (played)",
    "played_rate": 0.999,
-   "win_correlation": 0.065,
+   "win_correlation": 0.049,
    "flag": null,
-   "per_game": 4.15
+   "per_game": 4.19
   },
   {
    "name": "Torpedo hit",
-   "played_rate": 0.644,
-   "win_correlation": 0.349,
+   "played_rate": 0.649,
+   "win_correlation": 0.348,
    "flag": "strong link to winning",
    "per_game": 1.13
   },
   {
    "name": "Harbour (rounds ended home)",
-   "played_rate": 0.439,
-   "win_correlation": -0.063,
+   "played_rate": 0.456,
+   "win_correlation": -0.041,
    "flag": null,
-   "per_game": 0.75
+   "per_game": 0.76
   }
  ],
- "ambiguities": [],
- "problems": [],
+ "ambiguities": [
+  "Mine when the sub holds only Sonars/no salvage: loses nothing, steps still cancelled (rules say so; interpreted as written).",
+  "Ping when the trailer also has the choice: the rival 'plots first, alone' but the rival has no way to know a ping is coming (the ping is announced in phase 1, so the rival can adapt: interpreted as announced).",
+  "Mid-round Mine and own torpedo: a cancelled T step does not fire (interpreted from 'cancelled steps have no effect'); rules mention it only for moves.",
+  "Torpedo steals 'highest-value' card from a pile that holds only a card the thief just took that step (simultaneous entry + fire): resolved in order enter then fire, as written.",
+  "Ping reveal order for step 1-2 cards: a revealed card that is later blocked still stays locked (assumed).",
+  "Round-12 end with salvage still on the grid: the 12-round cap is not a bug but 71% of games end here; no rule says what happens if neither player can reach any salvage."
+ ],
+ "problems": [
+  {
+   "severity": "high",
+   "problem": "Runaway leader rate got worse, not better",
+   "evidence": "0.831 (strategic pairings) vs 0.795 previously, target <= 0.65; strategic mirror 0.78, mid-v-mid 0.78, greedy mirror 0.79, random mirror 0.76: every pairing is 0.76-0.92. Mirrored zoned deal barely moved it (v1 single-shuffle deal 0.794 vs v2 0.78 in S-v-S). Lead changes 1.50 vs 1.5 previously (target 2).",
+   "fix": "Structural: the game is a race to a finite pile of points with no catch-up that triggers on score gaps. Candidate levers: make a hit/steal bigger than the pile gap (steal 2 cards), a leader-only penalty (leader on a Mine loses highest card), or end the game on a shared pile so scores keep moving. Do not rely on the Sonar."
+  },
+  {
+   "severity": "high",
+   "problem": "Sonar is a dead card",
+   "evidence": "Never-ping bot wins 49.4% vs full strategic (must be <= 45%); with a 3-step reveal 52%. Pings 0.35 per player per game; ping spent has negative win correlation (-0.17, it is only available to the trailer).",
+   "fix": "Cut Sonar (replace by Salvage 1 or a Mine), or give the ping an effect a bot can use for guaranteed gain (e.g. the pinger also sees the rival 3rd card AND the rival cannot torpedo that round)."
+  },
+  {
+   "severity": "medium",
+   "problem": "Coasting: 71% of strategic games end on the round-12 cap; late rounds are empty",
+   "evidence": "In the narrated game P1 sat at 7-15 for the last 3 rounds with no route to salvage. Length 11.0 rounds (est 17.1 min at 85 s/round vs 15 target, +14%, inside +-20% but the per-round time is a guess).",
+   "fix": "Cap at 9-10 rounds or end the game when the gap exceeds remaining salvage value."
+  },
+  {
+   "severity": "medium",
+   "problem": "Round 1 is mostly a home-waters race, with a quarter of games having a first-round collision",
+   "evidence": "Round-1 collision in 41.5% of strategic games; the leader after round 1 wins 58.2% (down from coin-flip-like deal luck but still a +8 over fair). In the narrated game both subs went home and never met until R3.",
+   "fix": "None required for round 1 itself; the 3-point wrecks in row 3 did not pull subs together early enough."
+  },
+  {
+   "severity": "low",
+   "problem": "Reading layer is real but moderate; torpedo and middle are healthy",
+   "evidence": "Cooling-blind bot wins 41.4% (<=45 pass, previous reading value ~5 pts). No-torpedo bot 29.9%, no-middle bot 29.2%, camper 48.8% (<=55 pass), spammer 48.4% vs strategic (no exploit). Strategic v mid 50.8%: mid (K=2) is as good as strategic (K=6) so lookahead depth beyond 2 plans adds nothing.",
+   "fix": "None; note greedy -> mid is the real skill step (77.7%)."
+  }
+ ],
  "extra": {
-  "hits_per_game": 2.27,
+  "hits_per_game": 2.26,
   "mines_per_game": 2.52,
-  "fired_per_game": 8.01,
-  "pings_per_game": 0.76,
-  "collisions_per_game": 1.12,
+  "fired_per_game": 8.11,
+  "pings_per_game": 0.71,
+  "collisions_per_game": 1.08,
   "blocked_per_game": 7.6,
-  "reef_found_per_game": 2.7,
-  "mean_final_gap": 8.65
- }
+  "reef_found_per_game": 2.69,
+  "mean_final_gap": 8.7
+ },
+ "verdict_note": "bots only, unvalidated",
+ "previous": {
+  "revision": 0,
+  "seat_balance_gap": 1.4,
+  "skill_expression": 75.0,
+  "strategic_vs_greedy": 0.718,
+  "runaway_leader_rate": 0.795,
+  "lead_changes_mean": 1.5,
+  "length": {
+   "mean_turns": 9.74,
+   "stdev": 0.79,
+   "estimated_minutes": 14.8,
+   "target_minutes": 15
+  },
+  "ties": 0.0037,
+  "turn_cap_hits": 0
+ },
+ "round_cap_end_rate_strategic": 0.712,
+ "turn_cap_note": "no games failed to end; 71% of strategic-bot games (58% mirror) end on the round-12 cap with salvage left on the grid"
 }

@@ -41,7 +41,10 @@ Read this first in a fresh session, after `CLAUDE.md`. It holds context that is 
 - Unread owner note `games/_notes/20261004T122552Z-game-designer.md` (Heavenly Bodies comparables: Bang!, Smash Up, Fluxx, Exploding Kittens, Sushi Go; MTG/Dominion rejected; Love Letter/Coup/Munchkin brackets). Pass it to the designer, critic and Bar Raiser, then move it to `games/_notes/_done/` with a Director's reply.
 
 ## Task 013 (learning loop), in progress
-- Built: scoreboard (`python3 tools/learning/scoreboard.py`), `studio/lessons.md`, `studio/design-rules.md`, agent read-lines, `review_cap` settings, dashboard `review-cap` gate, and the `CLAUDE.md` Review cap section (owner approved the edit). Owner ruled that pending approved `-revision-N` requests count inside the cap. Not yet run on a real game; stages 4 and 5 not started.
+- Live on `main`: scoreboard, `studio/lessons.md` (L1-L11), `studio/design-rules.md`, review cap in `CLAUDE.md`, `review-cap` gate in the dashboard. First run done 2026-10-06 (see `studio/retros/2026-10-06.md`); the retro's proposed agent and playbook changes are NOT applied and need the owner's OK. Stage 5 (human ground truth) not started.
+- Waiting on the owner (all `review-cap` requests in `games/approvals.json`): hidden-movement grid (park), tug-of-war (park), silent-duo (pitch for a human test), auction (pitch for a human test). A pitch needs the owner's explicit decision because the playtest verdict is NEEDS-FIXES.
+- Next run: Whiskerdark (`solo-nine-card-roguelike`) needs its fix-before-critic pass and critic (playtest done: Carry dead, Silk negative, lookahead 96%, 7 ambiguities). `heavenly-bodies` still needs the owner's rulings; the pending designer note in `games/_notes/` is for it.
+- Usage guard was calibrated to the app (5h 7%, weekly 9% on 2026-10-06); recalibrate when it drifts.
 
 ## Click sync
 - The Mac sync (`tools/sync/sync.sh`) pushes only owner files: approvals, decisions, settings, inbox, notes, and now `studio/taskforce.json` and `studio/STOP` (the switch). Until the Mac pulls this change and restarts the sync, the switch stays on the Mac only. `games/status.json` (history line written by a click) is NOT synced because the Director edits it too; the click's effect is still recorded in approvals and decisions.

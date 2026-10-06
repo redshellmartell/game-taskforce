@@ -28,7 +28,7 @@ class Strategic:
     ties (models cancellation of equal bids)."""
     name = "strategic"
     cardval = 0.8; noise = 0.0; est_rate = 0.45; M = 16
-    memory = True; hype = True; crash = True; ties = True
+    memory = True; hype = True; crash = True; ties = True; cap = True
     spec = 0.0; fav = None
     def __init__(self, seed=0, **kw):
         self.rng = random.Random(seed); self.__dict__.update(kw)
@@ -39,6 +39,7 @@ class Strategic:
         if not self.hype: return [0.0] * CATS, set()
         key = lambda c: (e[c], sum(v for _, v in st.hype[c]), -c)
         top = {max(range(CATS), key=key)} if self.crash else set()
+        if self.cap: e = [min(x, 4.0) for x in e]
         return e, top
     def worth(self, st, p, lot, e, top):
         c, v = lot
@@ -103,7 +104,9 @@ class Strategic:
             p1, p2 = self.odds(st, p, samples, v)
             burn_val = 0.0
             if self.hype and c not in top:
-                burn_val = self.mine(st, p, c) - 0.7 * self.rivals(st, p, c)
+                full = self.cap and (len(st.hype[c]) >= 4)
+                if full: burn_val = 0.5 * (self.rivals(st, p, c) - self.mine(st, p, c))   # crash pressure only
+                else: burn_val = self.mine(st, p, c) - 0.7 * self.rivals(st, p, c)
             val = p1 * ws[0] + p2 * ws[1] + (1 - p1 - p2) * burn_val - self.costof(st, v)
             if self.noise: val += self.rng.gauss(0, self.noise)
             if val > best: best, besti = val, i
@@ -117,11 +120,14 @@ class Strategic:
 class IgnoreHype(Strategic):  name = "ignore-hype"; hype = False
 class IgnoreCrash(Strategic): name = "ignore-crash"; crash = False
 class IgnoreTies(Strategic):  name = "ignore-ties"; ties = False
+class IgnoreCap(Strategic):   name = "ignore-cap"; cap = False
+class Lite(Strategic):         # weaker reference: few samples, cruder valuation
+    name = "lite"; M = 5; cardval = 0.6; est_rate = 0.3; noise = 0.3
 class NoMemory(Strategic):    name = "no-memory"; memory = False
 
 # --- persona bots -----------------------------------------------------------
 class Planner(Strategic):         # strategist: patient banker, tracks cards, plays the long game
-    name = "planner"; cardval = 1.0; est_rate = 0.5
+    name = "planner"; cardval = 1.0; est_rate = 0.5; M = 24
 class Instinct(Strategic):        # casual: gut feel, noisy, never counts cards
     name = "instinct"; noise = 0.8; cardval = 0.6; memory = False
     def bid(self, st, p):
@@ -155,6 +161,10 @@ class Cautious(Strategic):        # family: safe, keeps a couple of cards, bids 
             if mids: return self.rng.choice(mids)
         return i
 
+class PIgnoreHype(Planner): name = "p-ignore-hype"; hype = False
+class PIgnoreCrash(Planner): name = "p-ignore-crash"; crash = False
+class PIgnoreTies(Planner): name = "p-ignore-ties"; ties = False
+class PIgnoreCap(Planner): name = "p-ignore-cap"; cap = False
 STANDARD = {"random": Random, "greedy": Greedy, "strategic": Strategic}
 PERSONA = {"strategist": Planner, "casual": Instinct, "competitor": Optimiser, "story": Flavour,
            "family": Cautious, "barraiser": Expert}

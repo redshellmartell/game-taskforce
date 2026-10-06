@@ -1,4 +1,4 @@
-"""Silent Duo rules engine (rules.md v1). Standard library only.
+"""Silent Duo rules engine (rules.md v3). Standard library only.
 Interpretations (ambiguities) are listed in AMBIGUITIES at the bottom."""
 import random
 from collections import Counter
@@ -12,7 +12,7 @@ class Obs:
 
 
 class Game:
-    def __init__(self, n=2, fog=8, seed=0, log=False, reefs=3):
+    def __init__(self, n=2, fog=6, seed=0, log=False, reefs=2):
         self.n, self.rng = n, random.Random(seed)
         self.logon, self.log = log, []
         cards = [v for v in range(1, 11) for _ in range(5)]
@@ -25,6 +25,7 @@ class Game:
         self.hands = [sorted(cards.pop() for _ in range(hand_n)) for _ in range(n)]
         self.deck = cards
         self.night = []
+        self.night_own = [Counter() for _ in range(n)]   # cards a player sent to the Night pile (they saw them)
         self.reefs_left = reefs
         self.wrecked = 0
         self.seen = Counter()          # public card values: signal rows, lit ships and the cards lit with
@@ -36,6 +37,8 @@ class Game:
         self.win = False
         self.stats = Counter()
         self.deck_at_end = len(self.deck)
+        self.lastk = [None] * n; self.trun = [0] * n; self.maxrun = 0
+        self.chooser = None            # callback(p, drawn) -> index of the Trim card to keep
         self.timeline = []             # per turn: (at_risk flag)
 
     # ------------------------------------------------------------ views
@@ -44,12 +47,14 @@ class Game:
         o.me, o.n, o.hand = p, self.n, list(self.hands[p])
         o.deck_n, o.fog_n, o.night_n, o.wrecked = len(self.deck), len(self.fog), len(self.night), self.wrecked
         o.last_watch = self.last_watch
+        o.reefs_left = self.reefs_left - self.wrecked
         o.ships = {}
         for q in range(self.n):
             o.ships[q] = [dict(lo=s["lo"], hi=s["hi"], lit=s["lit"], v=(s["v"] if (q != p or s["lit"]) else None)) for s in self.ships[q]]
         rem = [0] * 11
         vis = Counter(self.seen)
         for v in o.hand: vis[v] += 1
+        vis.update(self.night_own[p])
         for q in range(self.n):
             if q != p:
                 for s in self.ships[q]:
@@ -67,13 +72,15 @@ class Game:
             if q == p: continue
             for i, s in enumerate(self.ships[q]):
                 if s["lit"]: continue
-                ok = [c for c in vals if c != s["v"]]
+                ok = [c for c in vals if c != s["v"] and s["lo"] < c < s["hi"]]   # v2: both cards inside the open range
                 for a in range(len(ok)):
                     for b in range(a + 1, len(ok)):
                         acts.append(("offer", q, i, ok[a], ok[b]))
+                if len(ok) == 1: acts.append(("single", q, i, ok[0]))   # v3: Single Offer, only when all fitting cards share one value
         for i, s in enumerate(self.ships[p]):
             if not s["lit"]:
-                for c in vals: acts.append(("light", i, c))
+                for c in vals:
+                    if s["lo"] <= c <= s["hi"]: acts.append(("light", i, c))    # v2: Light window L <= C <= H
         if self.deck:
             for c in vals: acts.append(("trim", c))
         return acts or [("pass",)]
@@ -84,14 +91,15 @@ class Game:
         if len(acts) == 1: return 0
         d = 1 if len({a[0] for a in acts}) > 1 else 0
         same = [a for a in acts if a[0] == chosen[0]]
-        if chosen[0] == "offer":
+        if chosen[0] in ("offer", "single"):
+            same = [a for a in acts if a[0] in ("offer", "single")]
             if len({(a[1], a[2]) for a in same}) > 1: d += 1
             if len([a for a in same if a[1:3] == chosen[1:3]]) > 1: d += 1
         elif chosen[0] == "light":
             if len({a[1] for a in same}) > 1: d += 1
             if len([a for a in same if a[1] == chosen[1]]) > 1: d += 1
         elif chosen[0] == "trim":
-            if len(same) > 1: d += 1
+            d += 1 + (1 if len(same) > 1 else 0)   # which card to dump, which of the two drawn to keep
         return d
 
     def _ev(self, *e):
@@ -110,6 +118,8 @@ class Game:
         self.turns += 1
         kind = action[0]
         drew = True
+        self.trun[p] = self.trun[p] + 1 if (kind == 'trim' and self.lastk[p] == 'trim') else (1 if kind == 'trim' else 0)
+        self.maxrun = max(self.maxrun, self.trun[p]); self.lastk[p] = kind
         if kind == "offer":
             _, q, i, a, b = action
             s = self.ships[q][i]
@@ -123,6 +133,16 @@ class Game:
             self.seen[shown] += 1
             self.stats["offers"] += 1
             self._ev("offer", p, q, i, shown, row)
+        elif kind == "single":
+            _, q, i, a = action
+            s = self.ships[q][i]
+            hand.remove(a)
+            row = "low" if a < s["v"] else "high"
+            if row == "low": s["lo"] = max(s["lo"], a)
+            else: s["hi"] = min(s["hi"], a)
+            self.seen[a] += 1
+            self.stats["offers"] += 1; self.stats["singles"] += 1
+            self._ev("offer", p, q, i, a, row, "single")
         elif kind == "light":
             _, i, c = action
             s = self.ships[p][i]
@@ -131,12 +151,7 @@ class Game:
             if abs(c - s["v"]) <= 1:
                 s["lit"], s["card"] = True, c
                 self.seen[s["v"]] += 1
-                bea = c == s["v"]
-                if bea:
-                    self.stats["beacons"] += 1
-                    if self.deck:
-                        mv, self.fog = self.fog[:2], self.fog[2:]
-                        self.deck.extend(mv)
+                bea = False   # v3: Beacon cut
                 self.stats["lit"] += 1
                 self._ev("light", p, i, c, s["v"], bea)
             else:
@@ -151,9 +166,24 @@ class Game:
             if all(x["lit"] for q in self.ships for x in q):
                 return self._finish(True)
         elif kind == "trim":
-            hand.remove(action[1]); self.night.append(action[1])
+            hand.remove(action[1]); self.night.append(action[1]); self.night_own[p][action[1]] += 1
             self.stats["trims"] += 1
             self._ev("trim", p)
+            drawn = [self.deck.pop(0) for _ in range(min(2, len(self.deck)))]
+            if len(drawn) == 2:
+                k = self.chooser(p, drawn) if self.chooser else 0
+                keep, dump = drawn[k], drawn[1 - k]
+                self.night.append(dump); self.night_own[p][dump] += 1
+                hand.append(keep)
+            else:
+                hand.append(drawn[0])
+            hand.sort()
+            drew = False
+            if not self.deck and self.last_watch is None:
+                self.last_watch = self.n
+                self.cur = (p + 1) % self.n
+                self.timeline.append(self._risk())
+                return None
         else:
             drew = False
             self.stats["passes"] += 1
@@ -185,12 +215,17 @@ class Game:
 def play(game, bots, cap=200):
     """bots: list of bot objects with act(obs, legal) -> action. Returns the game. Counts decisions per player."""
     dec = [0] * game.n
+    game.chooser = lambda p, drawn: bots[p].keep(game.obs(p), drawn)
     while not game.over and game.turns < cap:
         p = game.cur
         acts = game.legal(p)
         a = bots[p].act(game.obs(p), acts) if len(acts) > 1 else acts[0]
         assert a in acts, (a, acts[:5])
         dec[p] += Game.decisions(acts, a)
+        if a[0] == "trim":
+            game.stats["trims_total"] += 1
+            if any(x[0] in ("offer", "single") for x in acts): game.stats["trims_with_offer"] += 1
+        if a[0] == "pass": pass
         game.step(a)
     game.dec = dec
     game.capped = not game.over
@@ -199,13 +234,21 @@ def play(game, bots, cap=200):
 
 
 AMBIGUITIES = [
-    "Last Watch: rules say the player who drew the last card takes the final turn; read as 'n turns starting with the next player'. A Beacon during it adds nothing (deck empty), as written.",
-    "Beacon when the draw deck is non-empty but Fog is smaller than 2: moves what is left. Beacon timing is before the draw (Phase 1), so the added cards are at the bottom behind the draw.",
-    "Light is 'legal' with a card whose success is already impossible (e.g. a card that cannot be within 1 of any value in the ship's signal range). Nothing forbids it, so bots may waste Reefs deliberately; the resolver cannot refuse.",
-    "Pass is only legal when nothing else is; in the Last Watch a player with an empty hand and no legal offer/light passes. A player with a full hand but only Offers that tell nothing must still take an action (forced bad moves).",
-    "Offer needs the two cards to differ from each other and from V, but nothing stops an Offer that tells the owner nothing new (e.g. a card already outside the known range). That is legal and wastes a card.",
-    "The 3-player 'resolver' for a Light is the player on the lighter's left; Offers are resolved by the owner. The third player gets no role beyond watching.",
-    "Whether a Light that is a miss still draws a card: read as yes (Phase 2 follows Phase 1) unless the third Reef ended the game.",
-    "Trim when the draw deck has exactly 1 card is legal and draws that last card, starting the Last Watch (rules do not say).",
-    "Beacon text says 'lit and also Beacon' but does not say whether the played card of a lit-by-1 stays; read as it stays on the ship, both out of play.",
+    "Rules 4 A says an Offer needs an open range of at least 3 values, 5.2 says 2 or more legal values that are not V. Coded as: both cards strictly inside (L,H), different, neither equal to V (so the range holds at least 3 values by construction).",
+    "Reveal token flip: 'Low' shows the lower card. Coded as a 50/50 pick; the rules do not say what happens when both offered cards are on the same side of V (the shown card then narrows only one side, the other may be useless). Legal and allowed.",
+    "Trim with exactly 1 card in the deck: draw it and keep it (stated). Trim that empties the deck starts the Last Watch (stated by Phase 3 'by any draw').",
+    "Trim cards are Night-piled face-down but the trimmer saw them: coded as private knowledge for card counting; the rules list this under 'each player additionally knows' only for cards sent to the Night pile, and it is unclear whether the kept/dumped Trim cards in 3-player games are visible to the third player (coded: no).",
+    "Beacon: 'top 2 cards of the Fog pile to the bottom of the draw deck'; a Beacon lit on the turn that empties the deck is impossible (Light draws after), coded as stated. Beacon during Light that is the last ship is irrelevant.",
+    "Last Watch: 'every player takes exactly one more turn, starting with the player to the left of the one who emptied the deck'. Coded as n turns, each Offer/Light/skip; a Trim is illegal (deck empty). Cannot tell if a win on the last turn needs the turn to finish: wins are immediate.",
+    "Light legality L <= C <= H allows C equal to L or H, i.e. a card equal to a value already ruled out by a signal. Allowed; it is a safe-looking but sometimes hopeless play (coded legal).",
+    "Rules 6 turn cap formula (26 + 8 + 2 = 36) assumes deck 26 at Standard; with Trim burning 2 per turn it is an upper bound. Not an issue in sim.",
+    "Offer legality when only one of the cards is inside the range: not legal; a player who has two in-range cards of different values may have none, so Offers are often unavailable late and Trim becomes the default (see findings).",
+    "3 players: the Light resolver (player on the left) is the only one who learns nothing extra; the third player sees the ship but the rules do not say whether they may stop a mis-resolve. Not coded.",
+]
+
+AMBIGUITIES += [
+    "v3: Single Offer legality is per ship; with exactly one distinct fitting value the player may only Single Offer (no pair possible). Coded: a hand with two copies of the same fitting value (e.g. 5,5) counts as one value, so Single is legal and Pair is not.",
+    "v3: Does a Single Offer card also count as a Pair-style 'narrowing' when equal to an existing L or H? Cannot happen: fitting means strictly inside (L,H).",
+    "v3: Is a Single Offer allowed when the player also has a legal Pair Offer on a DIFFERENT ship? Rules say yes (per ship); coded yes.",
+    "v3: 'Skip' when deck is empty and the hand has no legal Offer/Light: turn skipped, Last Watch counter still advances (coded).",
 ]

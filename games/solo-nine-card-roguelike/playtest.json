@@ -1,85 +1,70 @@
 {
  "verdict": "NEEDS-FIXES",
- "revision": 0,
- "games_simulated": 1172272,
+ "verdict_note": "bots only, unvalidated",
+ "revision": 1,
+ "games_simulated": 2531490,
  "seat_win_rates": {
   "1": 1.0
  },
  "seat_balance_gap": 0.0,
  "bot_win_rates": {
   "random": 0.0,
-  "greedy": 0.04949294532627866,
-  "strategic": 0.19148203262786595,
-  "lookahead": 0.8075440528634361
+  "greedy": 0.1119157848324515,
+  "strategic": 0.5709022266313933,
+  "lookahead": 0.9611784140969163
  },
- "skill_expression": 80.8,
- "skill_expression_outline": 19.1,
+ "skill_expression": 96.1,
+ "skill_expression_outline": 57.1,
+ "bot_spread_points": 39.0,
  "length": {
-  "mean_turns": 8.44,
-  "stdev": 2.45,
-  "estimated_minutes": 8.3,
+  "mean_turns": 9.22,
+  "stdev": 2.12,
+  "estimated_minutes": 9.2,
   "target_minutes": 10,
-  "outline_mean_turns": 6.68,
-  "outline_minutes": 6.4
+  "outline_mean_turns": 8.33,
+  "outline_minutes": 8.3,
+  "outline_median": 8.0,
+  "lookahead_median": 10.0
  },
  "length_histogram": [
   {
-   "turns": 1,
-   "games": 28
-  },
-  {
-   "turns": 2,
-   "games": 50
-  },
-  {
-   "turns": 3,
-   "games": 91
-  },
-  {
-   "turns": 4,
-   "games": 95
-  },
-  {
    "turns": 5,
-   "games": 199
+   "games": 19252
   },
   {
    "turns": 6,
-   "games": 288
+   "games": 42996
   },
   {
    "turns": 7,
-   "games": 374
+   "games": 53614
   },
   {
    "turns": 8,
-   "games": 500
+   "games": 69698
   },
   {
    "turns": 9,
-   "games": 579
+   "games": 85312
   },
   {
    "turns": 10,
-   "games": 682
+   "games": 54235
   },
   {
    "turns": 11,
-   "games": 508
+   "games": 28355
   },
   {
    "turns": 12,
-   "games": 193
+   "games": 8140
   },
   {
    "turns": 13,
-   "games": 38
-  },
-  {
-   "turns": 14,
-   "games": 7
+   "games": 1278
   }
  ],
+ "length_histogram_bot": "outline, 362,880 layouts",
  "ties": 0.0,
  "turn_cap_hits": 0,
  "lead_changes_mean": null,
@@ -90,255 +75,372 @@
    0.4,
    0.6
   ],
-  "outline_win_rate": 0.19148203262786595,
-  "lookahead_win_rate": 0.8075440528634361,
+  "outline_win_rate": 0.5709022266313933,
+  "lookahead_win_rate": 0.9611784140969163,
   "wins_feint": {
-   "outline": 0.020896596387709576,
-   "lookahead": 0.15683600409137402
+   "outline": 0.024009383643305706,
+   "lookahead": 0.099112002291607
   },
   "wins_hypno": {
-   "outline": 0.1497157659926603,
-   "lookahead": 0.21138765768837367
+   "outline": 0.09900129845681545,
+   "lookahead": 0.1956459467201375
   },
   "wins_neither": {
-   "outline": 0.8293876376196302,
-   "lookahead": 0.6317763382202523
+   "outline": 0.8769893178998789,
+   "lookahead": 0.7052420509882555
   },
   "first_action_shove": {
    "outline": 0.35714285714285715,
-   "lookahead": 0.9091409691629956
+   "lookahead": 0.8959251101321586
   },
   "killers": {
    "outline": {
-    "Crow": 0.0002,
-    "Owl": 0.0197,
-    "Snake": 0.1068,
-    "Fox": 0.3282,
-    "Hound": 0.5452
+    "Crow": 0.0017,
+    "Owl": 0.0068,
+    "Snake": 0.0334,
+    "Fox": 0.3093,
+    "Hound": 0.6488
    },
    "lookahead": {
-    "Moth": 0.0129,
-    "Mouse": 0.0029,
-    "Spider": 0.1545,
-    "Rat": 0.176,
-    "Crow": 0.1745,
-    "Owl": 0.1245,
-    "Snake": 0.1173,
-    "Fox": 0.1144,
-    "Hound": 0.123
+    "Moth": 0.0355,
+    "Mouse": 0.0355,
+    "Spider": 0.1489,
+    "Rat": 0.156,
+    "Crow": 0.0993,
+    "Owl": 0.1631,
+    "Snake": 0.1418,
+    "Fox": 0.1206,
+    "Hound": 0.0993
    }
   },
   "median_turns": {
-   "outline": 6.0,
-   "lookahead": 9.0
+   "outline": 8.0,
+   "lookahead": 10.0
   },
   "ghost_effect_points": {
-   "Moth": 0.0,
-   "Mouse": 0.1,
-   "Spider": 1.4,
-   "Rat": 21.2,
-   "Crow": 38.3,
-   "Owl": 43.7,
-   "Snake": 28.6,
-   "Fox": 42.5,
-   "Hound": 18.6
+   "Moth": 4.1,
+   "Mouse": 4.4,
+   "Spider": 1.9,
+   "Rat": -3.7,
+   "Crow": 14.8,
+   "Owl": 20.8,
+   "Snake": 13.9,
+   "Fox": 13.0,
+   "Hound": 39.0
   },
   "sessions": {
    "outline": {
     "score_dist": {
-     "2": 0.00035,
-     "3": 0.0064,
-     "4": 0.0242,
-     "5": 0.07265,
-     "6": 0.2116,
-     "7": 0.38475,
-     "8": 0.2644,
-     "9": 0.03565
+     "3": 5e-05,
+     "4": 0.00035,
+     "5": 0.00185,
+     "6": 0.0176,
+     "7": 0.1103,
+     "8": 0.5402,
+     "9": 0.32965
     },
-    "mean_runs": 4.12115,
-    "max_score_share": 0.38475,
+    "mean_runs": 2.82305,
+    "max_score_share": 0.5402,
     "session_win": 1.0,
     "win_by_ghosts": {
-     "0": 0.192,
-     "1": 0.481,
-     "2": 0.678,
-     "3": 0.753,
-     "4": 0.766,
-     "5": 0.828,
-     "6": 0.959,
-     "7": 1.0
+     "0": 0.574,
+     "1": 0.875,
+     "2": 0.89,
+     "3": 0.914,
+     "4": 0.869,
+     "5": 0.889,
+     "6": 1.0
     }
    },
    "lookahead": {
     "score_dist": {
-     "7": 0.013333333333333334,
-     "8": 0.26666666666666666,
-     "9": 0.72
+     "8": 0.04,
+     "9": 0.96
     },
-    "mean_runs": 2.2933333333333334,
-    "max_score_share": 0.72,
+    "mean_runs": 2.04,
+    "max_score_share": 0.96,
     "session_win": 1.0,
     "win_by_ghosts": {
-     "0": 0.848,
-     "1": 0.969,
-     "2": 1.0
+     "0": 0.98,
+     "1": 1.0
     }
    }
   },
-  "lookahead_sample": "3,632 layouts (every 100th of 362,880)"
+  "ablation": {
+   "outline_points_full_minus_ablated": {
+    "glow": 2.8,
+    "dart": 11.9,
+    "silk": -3.8,
+    "scav": 24.5,
+    "carry": 0.0,
+    "swap": 0.0,
+    "hypno": 3.6,
+    "feint": 0.9,
+    "drift": 0.0,
+    "owlfirst": 0.9,
+    "shove": 27.9
+   },
+   "outline_drift_with_ghosts_1_2_3": 13.0,
+   "outline_anger_off_points": -19.8,
+   "lookahead_points_full_minus_ablated": {
+    "glow": 0.0,
+    "silk": -0.5,
+    "carry": 0.0
+   },
+   "note": "needs >= +5; Glow, Silk, Carry, Carry-no-swap, Hypnotise, Feint, Owl-first fail; Dart, Scavenge, Shove, Drift pass; Anger off wins +19.8 so Anger is a real cost"
+  },
+  "hunt_lethal": {
+   "outline_every_8th": 0.564,
+   "lookahead_every_400th": 0.77
+  },
+  "lookahead_sample": "3,632 layouts (every 100th of 362,880); ablations every 400th (912 layouts); outline ablations every 4th layout"
+ },
+ "previous": {
+  "verdict": "NEEDS-FIXES",
+  "revision": 0,
+  "bot_win_rates": {
+   "random": 0.0,
+   "greedy": 0.04949294532627866,
+   "strategic": 0.19148203262786595,
+   "lookahead": 0.8075440528634361
+  },
+  "skill_expression": 80.8,
+  "skill_expression_outline": 19.1,
+  "length": {
+   "mean_turns": 8.44,
+   "stdev": 2.45,
+   "estimated_minutes": 8.3,
+   "target_minutes": 10,
+   "outline_mean_turns": 6.68,
+   "outline_minutes": 6.4
+  },
+  "solo_targets": {
+   "win_rate_band": [
+    0.4,
+    0.6
+   ],
+   "outline_win_rate": 0.19148203262786595,
+   "lookahead_win_rate": 0.8075440528634361,
+   "wins_feint": {
+    "outline": 0.020896596387709576,
+    "lookahead": 0.15683600409137402
+   },
+   "wins_hypno": {
+    "outline": 0.1497157659926603,
+    "lookahead": 0.21138765768837367
+   },
+   "wins_neither": {
+    "outline": 0.8293876376196302,
+    "lookahead": 0.6317763382202523
+   },
+   "first_action_shove": {
+    "outline": 0.35714285714285715,
+    "lookahead": 0.9091409691629956
+   },
+   "killers": {
+    "outline": {
+     "Crow": 0.0002,
+     "Owl": 0.0197,
+     "Snake": 0.1068,
+     "Fox": 0.3282,
+     "Hound": 0.5452
+    },
+    "lookahead": {
+     "Moth": 0.0129,
+     "Mouse": 0.0029,
+     "Spider": 0.1545,
+     "Rat": 0.176,
+     "Crow": 0.1745,
+     "Owl": 0.1245,
+     "Snake": 0.1173,
+     "Fox": 0.1144,
+     "Hound": 0.123
+    }
+   },
+   "median_turns": {
+    "outline": 6.0,
+    "lookahead": 9.0
+   },
+   "ghost_effect_points": {
+    "Moth": 0.0,
+    "Mouse": 0.1,
+    "Spider": 1.4,
+    "Rat": 21.2,
+    "Crow": 38.3,
+    "Owl": 43.7,
+    "Snake": 28.6,
+    "Fox": 42.5,
+    "Hound": 18.6
+   },
+   "sessions": {
+    "outline": {
+     "score_dist": {
+      "2": 0.00035,
+      "3": 0.0064,
+      "4": 0.0242,
+      "5": 0.07265,
+      "6": 0.2116,
+      "7": 0.38475,
+      "8": 0.2644,
+      "9": 0.03565
+     },
+     "mean_runs": 4.12115,
+     "max_score_share": 0.38475,
+     "session_win": 1.0,
+     "win_by_ghosts": {
+      "0": 0.192,
+      "1": 0.481,
+      "2": 0.678,
+      "3": 0.753,
+      "4": 0.766,
+      "5": 0.828,
+      "6": 0.959,
+      "7": 1.0
+     }
+    },
+    "lookahead": {
+     "score_dist": {
+      "7": 0.013333333333333334,
+      "8": 0.26666666666666666,
+      "9": 0.72
+     },
+     "mean_runs": 2.2933333333333334,
+     "max_score_share": 0.72,
+     "session_win": 1.0,
+     "win_by_ghosts": {
+      "0": 0.848,
+      "1": 0.969,
+      "2": 1.0
+     }
+    }
+   },
+   "lookahead_sample": "3,632 layouts (every 100th of 362,880)"
+  }
  },
  "cards": [
   {
    "name": "Moth",
-   "played_rate": 0.584,
-   "shoved_rate": 0.0,
-   "trick_use_given_ready_outline": 0.1759,
-   "trick_use_given_ready_lookahead": 0.0052,
-   "win_correlation": -0.078,
-   "flag": "weak trick: Glow used in 0.5% of strong-bot runs (info is not worth a Ready trophy)"
+   "played_rate": 0.88,
+   "shoved_rate": 0.03,
+   "trick_use_given_ready_outline": 0.7198,
+   "trick_use_given_ready_lookahead": 0.559,
+   "win_correlation": 0.175,
+   "flag": "Glow used 72% / 56% but ablation only +2.8 (outline) and 0.0 (lookahead)"
   },
   {
    "name": "Mouse",
-   "played_rate": 0.574,
-   "shoved_rate": 0.003,
-   "trick_use_given_ready_outline": 0.1966,
-   "trick_use_given_ready_lookahead": 0.817,
-   "win_correlation": 0.719,
+   "played_rate": 0.929,
+   "shoved_rate": 0.012,
+   "trick_use_given_ready_outline": 0.3606,
+   "trick_use_given_ready_lookahead": 0.7973,
+   "win_correlation": 0.355,
    "flag": null
   },
   {
    "name": "Spider",
-   "played_rate": 0.408,
-   "shoved_rate": 0.232,
-   "trick_use_given_ready_outline": 0.2498,
-   "trick_use_given_ready_lookahead": 0.0034,
-   "win_correlation": -0.59,
-   "flag": "weak trick: Silk used in 0.3% of strong-bot runs, 25% outline; Spider is only a stepping stone"
+   "played_rate": 0.891,
+   "shoved_rate": 0.02,
+   "trick_use_given_ready_outline": 0.1671,
+   "trick_use_given_ready_lookahead": 0.0749,
+   "win_correlation": -0.461,
+   "flag": "Silk used 16.7% (outline) / 7.5% (lookahead); removing Silk RAISES outline win by 3.8 points"
   },
   {
    "name": "Rat",
-   "played_rate": 0.195,
-   "shoved_rate": 0.529,
-   "trick_use_given_ready_outline": 0.7628,
-   "trick_use_given_ready_lookahead": 0.8634,
-   "win_correlation": -0.079,
+   "played_rate": 0.761,
+   "shoved_rate": 0.153,
+   "trick_use_given_ready_outline": 0.6246,
+   "trick_use_given_ready_lookahead": 0.914,
+   "win_correlation": 0.269,
    "flag": null
   },
   {
    "name": "Crow",
-   "played_rate": 0.148,
-   "shoved_rate": 0.568,
-   "trick_use_given_ready_outline": 0.0015,
-   "trick_use_given_ready_lookahead": 0.0,
-   "win_correlation": null,
-   "flag": "dead trick: Carry used in 0.15% of runs (outline) and never modelled by the lookahead bot; Thief is a pure tax"
+   "played_rate": 0.664,
+   "shoved_rate": 0.312,
+   "trick_use_given_ready_outline": 0.0069,
+   "trick_use_given_ready_lookahead": 0.0007,
+   "win_correlation": -0.615,
+   "flag": "dead trick: Carry used in 0.7% of outline and 0.07% of lookahead runs where Ready; ablation 0.0 points; swap never fires"
   },
   {
    "name": "Owl",
-   "played_rate": 0.093,
-   "shoved_rate": 0.549,
-   "win_correlation": 0.804,
-   "flag": null
+   "played_rate": 0.395,
+   "shoved_rate": 0.444,
+   "win_correlation": 0.117,
+   "flag": "spend-Owl-first ablation +0.9 (inert choice); Wise changes wounds in 92% of Owl runs"
   },
   {
    "name": "Snake",
-   "played_rate": 0.059,
-   "shoved_rate": 0.562,
-   "trick_use_given_ready_outline": 0.4818,
-   "trick_use_given_ready_lookahead": 0.9806,
-   "win_correlation": 0.144,
-   "flag": null
+   "played_rate": 0.236,
+   "shoved_rate": 0.516,
+   "trick_use_given_ready_outline": 0.2392,
+   "trick_use_given_ready_lookahead": 0.9404,
+   "win_correlation": 0.267,
+   "flag": "Hypnotise ablation +3.6 (outline), below the +5 bar"
   },
   {
    "name": "Fox",
-   "played_rate": 0.03,
-   "shoved_rate": 0.577,
-   "trick_use_given_ready_outline": 0.1345,
+   "played_rate": 0.106,
+   "shoved_rate": 0.587,
+   "trick_use_given_ready_outline": 0.1297,
    "trick_use_given_ready_lookahead": 1.0,
-   "win_correlation": 0.011,
-   "flag": "mandatory for strong play: Feint used in 100% of strong-bot runs where Ready"
+   "win_correlation": 0.012,
+   "flag": "Feint used 13.0% (outline, <15%), 100% (lookahead); outline ablation +0.9"
   },
   {
    "name": "Hound",
-   "played_rate": 0.192,
-   "shoved_rate": 0.471,
+   "played_rate": 0.571,
+   "shoved_rate": 0.53,
    "win_correlation": 1.0,
    "flag": null
   }
  ],
  "ambiguities": [
-  "Hound deep: the rules say you know where the Hound is, but only the swapped case gives you that (simulated that way); if it means always, the game gets much easier",
-  "A Ghost still has to be fought to gain its trophy (uses an action); the design notes call it 'a free trophy'",
-  "Scavenge can Ready a trick you already used this turn; implemented as still once per turn",
-  "Hound lit by a Shove is hunted in the same turn's Phase 3 (implemented as written)",
-  "Carry on a Lit card moving into the doorway or next to an empty space relights it; Lighting is derived from positions, so a face-down card can never stay face down there",
-  "Strategic outline step 5 'unless you would then have 4+ Ready' and step 6 'leaves 1 Ready' are unclear on counting the new trophy (simulated: step 6 counts Ready after paying wounds, without the new card)"
+  "Rule 5 Silk: 'Silk needs a Lit calm card and a Dark card' - implemented; whether Silk may Shove the same card twice in a turn (Silk then normal Shove of the same card X, now Dark/calm) is unstated; implemented as legal because Silk leaves it calm",
+  "Carry swap of two Dark cards: legal ('any two grid cards') but the player learns nothing; implemented as legal, bots only swap a known Hound",
+  "A Ghost Moth/Mouse/Spider that is Dark and is later turned face up by Lighting at Phase 3 / after a Fight: Drift is Phase 1 only, so it waits a turn (implemented as written); the Hound Hunt resolves first in the meantime",
+  "Drift takes the card 'Ready' but the rules do not say whether Drift can happen when the Ghost is Angry (implemented: yes, Angry resets on leaving the grid)",
+  "Scavenge readying a trophy whose trick was already used this turn: implemented as once per turn (rules v2 says so; closed)",
+  "Hunt when the Hound is lit by the Phase 1 Drift or a Silk Shove (closed in v2, implemented as written)",
+  "Old gaps still open: strategic outline step 'Hide' wording does not say that a normal Shove makes the Hound Angry (Danger 11), which in the sim makes a hidden Hound nearly unbeatable without Feint or Hypnotise"
  ],
  "problems": [
   {
    "severity": "high",
-   "problem": "Win rate hinges on solver skill, not on the rules: outline bot wins 19.1%, a lookahead bot 80.8%; the 40-60% band sits in a 60-point gap between them",
-   "evidence": "Exhaustive 362,880 layouts: outline 19.1%; lookahead (3,632 layouts, every 100th) 80.8%; random 0.0%; greedy 4.9%. Base Claws 3: outline 48.1%, lookahead 98.6%. Base Claws 1: 1.4% / 6.5%. A real player is somewhere between, so the true win rate is unknown",
-   "fix": "Keep Claws 2 and get 3 or more human sessions before touching numbers; if humans track the outline bot, use Claws 3 with Hunt lethal (untested together) so the strong player is not at 99%"
+   "problem": "Strong play is nearly free: lookahead bot wins 96.1% (sanity cap 90%); only the outline bot sits in a believable band (57.1%), at the top of the 25-60 band",
+   "evidence": "Exhaustive 362,880 layouts outline 57.1% (was 19.1%); lookahead 3,632 layouts 96.1% (was 80.8%); greedy 11.2%; random 0.0%. Lookahead sessions: 96% score 9. v2 removed Thief, softened Ghosts, freed Glow and Silk: everything made the game easier",
+   "fix": "Use the designer's knob: Hunt lethal (no Ready trophy at Hunt = dead). Tested: lookahead 96.1 to 77.0 (907 layouts), outline 57.1 to 56.4 (every 8th layout), spread 39 to 21 points. Re-run both bots after adopting it"
   },
   {
    "severity": "high",
-   "problem": "Outline strategic bot misses 4 of the designer's targets (win rate, median length, Feint share, killer spread)",
-   "evidence": "Median 6 turns (target 7-12); wins using Feint 2.1% (target >=10%); only 3 cards cause over 5% of deaths (Fox 33%, Snake 11%, Hound 55%); the lookahead bot meets Feint 15.7%, Hypnotise 21.1%, neither 63%, median 9 turns, 8.3 min",
-   "fix": "Treat the lookahead bot as the reference for variety targets; the outline loops (Shoves into the cell that holds the known Hound). A shove-target fix lifts it only to 24.7% in a 3,000-run check"
+   "problem": "Carry is still a dead card; Silk and Glow barely matter; Feint, Hypnotise and Owl-first fail the ablation bar",
+   "evidence": "Where Ready, Carry used 0.7% (outline) and 0.07% (lookahead); ablation 0.0 points both bots; Carry no-swap ablation identical (swap fired in 0.5% of outline runs, 0% lookahead). Silk: removing it gains the outline +3.8 points, lookahead +0.55. Glow +2.8 / 0.0. Hypnotise +3.6, Feint +0.9, Owl-first +0.9 (outline). Passing: Dart +12.0, Scavenge +24.5, Shove +28, Drift +13 (Ghosts 1,2,3), Anger off -19.8 (Anger is a real cost)",
+   "fix": "Cut Carry's swap or the whole Crow trick (it is -2 Danger for one trophy, always worse than Dart or just fighting); make Silk give something (for example no spend of the Spider) or cut it; accept Glow as flavour or tie it to the Hound. Test with a bot that models the changed card"
   },
   {
    "severity": "medium",
-   "problem": "Ghost effect is far outside the 5-25 point target and uneven",
-   "evidence": "Outline bot, one Ghost: Moth +0.0, Mouse +0.2, Spider +1.4, Rat +21, Hound +19, Snake +29, Crow +38, Fox +43, Owl +44 points. Ghost Moth/Mouse/Spider are nearly pointless; Ghost Owl/Fox/Crow nearly double the win rate",
-   "fix": "Give low-card Ghosts a real effect (for example the Ghost grants a Ready trophy at setup) and cap the Owl/Fox/Crow Ghosts (Ghost Danger 2 rather than 0)"
+   "problem": "Single-Ghost lift is uneven: tiny for small Ghosts, negative for Rat, too big for the Hound",
+   "evidence": "Outline, per Ghost: Moth +4.1, Mouse +4.4, Spider +1.9, Rat -3.7, Crow +14.8, Owl +20.7, Snake +13.9, Fox +13.0, Hound +39.0 (target +5 to +25; v1 was +0.0, +0.1, +1.4, +21, +38, +44, +29, +43, +19). Four of nine in band. The lookahead bot cannot show lifts (ceiling 96%). Rat negative is unexplained (untested guess: a Danger 2 Rat is fought early and wastes the Scavenge reserve)",
+   "fix": "Ghost Hound Danger 7 with no Hunt is worth 39 points: keep Danger 8 or keep Hunt for a Ghost Hound; let Drift apply to the Rat so that it matches the small Ghosts"
   },
   {
    "severity": "medium",
-   "problem": "Three tricks are close to dead and Carry is never tested by a strong bot",
-   "evidence": "Strong-bot trick use when Ready: Moth 0.5%, Spider 0.3%, Crow 0 (not modelled); outline: Crow 0.15%. Target is 15%. Mouse 82%, Rat 86%, Snake 98%, Fox 100% in strong play",
-   "fix": "Make Glow free of the Ready cost or let Silk also protect the Hound shove; rework Carry (swap plus a free Fight discount) and test it with a bot that models Carry"
+   "problem": "Variety targets missed: killer spread, Feint share and session shape",
+   "evidence": "Outline killers: Hound 64.9%, Fox 30.9%, all others under 3.4% (only 2 cards over 5%; target 4). Lookahead: Hound 9.9% (target 40-75%), 8 cards over 5%. Feint share of wins 2.4% / 9.9% (target >=10%); Hypnotise 9.9% / 19.6%. Sessions: outline 54% end on score 8 (target <=40%), lookahead 96% on score 9; mean 2.8 / 2.0 runs (target 3-4)",
+   "fix": "Hunt lethal should raise Hound deaths for the strong player; re-measure. Fox is the real gate for the outline bot (31% of deaths)"
   },
   {
    "severity": "medium",
-   "problem": "Opening is a grind of Shoves in about 36% of layouts and the doorway can leave no safe Fight",
-   "evidence": "Strategic bot's first action is a Shove in 35.7% of layouts (inside 20-60%) but the lookahead bot opens with a Shove in 90.9%; narrated play: three Shoves before the first Fight",
-   "fix": "Consider a free Peek at one Dark card at setup, or start with 1 Ready trophy"
+   "problem": "Grinding opening and the Angry Hound trap",
+   "evidence": "Outline: first action is a Fight on 63% of layouts; first Fight arrives on turn 3 or later in 24% and turn 4 or later in 13% (narrated seed 2: five Shoves in a row, then dead to an Angry Hound, Danger 11). Lookahead opens with a Shove 89.6% (target 20-60%). Hiding the Hound by a normal Shove makes it Danger 11",
+   "fix": "Say in the rules that Shoving the Hound angers it (+2); consider letting Silk be the only safe hide. Human sessions needed to judge the opening"
   },
   {
    "severity": "low",
-   "problem": "Run length for a competent player is below the 10-minute target",
-   "evidence": "Lookahead: mean 8.4 turns, 8.3 min (target 10, -17%, inside the +/-20% band); outline 6.4 min. Longest run 14 turns, no turn-cap hits in 700k runs",
-   "fix": "None needed unless human sessions run short; tally time and deliberation are not modelled"
+   "problem": "Length is inside the band but the strong bot is slower than the outline",
+   "evidence": "Outline mean 8.33 turns (median 8, 8.3 min); lookahead mean 9.22 (median 10, 9.2 min); target 10 min (-17% / -8%). Turn cap 20: 0 hits in ~1.1M runs. Previous: outline 6.68 turns (6.4 min), lookahead 8.44 (8.3 min)",
+   "fix": "None"
   }
- ],
- "experiments": [
-  {
-   "config": "base Claws 1",
-   "outline": 0.014,
-   "lookahead": 0.065
-  },
-  {
-   "config": "base Claws 3",
-   "outline": 0.481,
-   "lookahead": 0.986
-  },
-  {
-   "config": "Hunt lethal",
-   "outline": 0.191,
-   "lookahead": 0.603
-  },
-  {
-   "config": "Anger +3",
-   "outline": 0.191,
-   "lookahead": 0.671
-  },
-  {
-   "config": "Hound swap off",
-   "outline": 0.16,
-   "lookahead": 0.785
-  }
- ],
- "experiments_note": "Lookahead on 1,210 layouts (every 300th); outline exhaustive. Baseline: 0.191 / 0.808.",
- "card_win_correlation_caveat": "Trick win links are confounded: tricks get used when the cat is in trouble (Spider -0.59), so they read as negative."
+ ]
 }

@@ -1,0 +1,29 @@
+games 20000 | seat1 mirror 0.491 (gap 1.8 pts) {'strategic-v-strategic': 0.483, 'greedy-v-greedy': 0.4938, 'random-v-random': 0.4958}
+strategic-v-random       A win 0.944  rounds 11.91  ties 0.002 runaway 0.91 capped 0.93  lc 1.20
+strategic-v-greedy       A win 0.788  rounds 11.14  ties 0.002 runaway 0.80 capped 0.63  lc 1.62
+greedy-v-random          A win 0.892  rounds 11.90  ties 0.004 runaway 0.89 capped 0.92  lc 1.29
+strategic-v-strategic    A win 0.500  rounds 11.03  ties 0.002 runaway 0.78 capped 0.58  lc 1.66
+greedy-v-greedy          A win 0.500  rounds 11.23  ties 0.001 runaway 0.79 capped 0.66  lc 1.74
+random-v-random          A win 0.500  rounds 12.00  ties 0.011 runaway 0.76 capped 1.00  lc 1.64
+strategic-v-mid          A win 0.508  rounds 11.08  ties 0.002 runaway 0.78 capped 0.58  lc 1.67
+mid-v-greedy             A win 0.777  rounds 11.15  ties 0.003 runaway 0.80 capped 0.65  lc 1.62
+mid-v-random             A win 0.924  rounds 11.94  ties 0.003 runaway 0.92 capped 0.95  lc 1.17
+mid-v-mid                A win 0.500  rounds 11.17  ties 0.002 runaway 0.78 capped 0.62  lc 1.76
+skill (S-v-R gap) 88.7 pts | S-v-G 0.788 | est 17.1 min | runaway 0.831 | lead changes 1.50 | caps 4273
+{'hits_per_game': 2.26, 'mines_per_game': 2.52, 'fired_per_game': 8.11, 'pings_per_game': 0.71, 'collisions_per_game': 1.08, 'blocked_per_game': 7.6, 'reef_found_per_game': 2.69, 'mean_final_gap': 8.7}
+r1 leader wins 0.582 | r1 collision rate 0.415
+ablations {'blind': {'full_win': 0.586, 'ablated_win': 0.414, 'runaway': 0.779, 'lc': 1.6, 'rounds': 11.1}, 'noping': {'full_win': 0.506, 'ablated_win': 0.494, 'runaway': 0.776, 'lc': 1.7, 'rounds': 11.04}, 'notorp': {'full_win': 0.701, 'ablated_win': 0.299, 'runaway': 0.843, 'lc': 1.34, 'rounds': 11.14}, 'nomiddle': {'full_win': 0.708, 'ablated_win': 0.292, 'runaway': 0.777, 'lc': 1.71, 'rounds': 11.52}, 'camper': {'full_win': 0.512, 'ablated_win': 0.488, 'runaway': 0.776, 'lc': 1.63, 'rounds': 11.31}, 'strategic-v1deal': {'full_win': 0.5, 'ablated_win': 0.5, 'runaway': 0.794, 'lc': 1.69, 'rounds': 10.97}}
+strategic-v-mid {'n': 2000, 'a_win': 0.508, 'seat1': 0.487, 'rounds': 11.081, 'ties': 0.002, 'runaway': 0.7828, 'capped': 0.576, 'lc': 1.6705}
+mid-v-greedy {'n': 2000, 'a_win': 0.7772, 'seat1': 0.4988, 'rounds': 11.1465, 'ties': 0.0025, 'runaway': 0.7974, 'capped': 0.6485, 'lc': 1.622}
+mid-v-random {'n': 2000, 'a_win': 0.9245, 'seat1': 0.499, 'rounds': 11.9385, 'ties': 0.003, 'runaway': 0.9156, 'capped': 0.9455, 'lc': 1.1735}
+mid-v-mid {'n': 2000, 'a_win': 0.5, 'seat1': 0.5092, 'rounds': 11.1715, 'ties': 0.0015, 'runaway': 0.7846, 'capped': 0.618, 'lc': 1.7645}
+Salvage 1                    played 0.98 corr +0.33 per game 2.60 
+Salvage 2                    played 0.98 corr +0.38 per game 2.62 
+Salvage 3                    played 0.78 corr +0.55 per game 1.44 
+Mine                         played 0.86 corr +0.09 per game 1.26 
+Reef                         played 0.88 corr +0.18 per game 1.35 
+Sonar (taken)                played 0.76 corr +0.15 per game 0.85 
+Sonar ping (spent)           played 0.34 corr -0.17 per game 0.35 
+Torpedo (played)             played 1.00 corr +0.05 per game 4.19 
+Torpedo hit                  played 0.65 corr +0.35 per game 1.13 strong link to winning
+Harbour (rounds ended home)  played 0.46 corr -0.04 per game 0.76 
