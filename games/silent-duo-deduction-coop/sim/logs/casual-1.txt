@@ -14,20 +14,14 @@ T12 P0 light 0 1 6 5 False
 T13 P1 trim 1
 T14 P0 offer 0 1 0 9 high
 T15 P1 trim 1
-T16 P0 offer 0 1 0 7 high
+T16 P0 trim 0
 T17 P1 trim 1
-T18 P0 offer 0 1 0 8 high
+T18 P0 light 0 0 2 1 False
 T19 P1 trim 1
-T20 P0 offer 0 1 0 6 high
-T21 P1 trim 1
-T22 P0 light 0 0 1 1 True
+T20 P0 trim 0
+T21 P1 light 1 2 3 3 True
+T22 P0 offer 0 1 0 2 low
 T23 P1 trim 1
 T24 P0 trim 0
-T25 P1 trim 1
-T26 P0 offer 0 1 0 8 high
-T27 P1 trim 1
-T28 P0 offer 0 1 0 7 high
-T29 P1 light 1 2 2 3 False
-T30 P0 offer 0 1 0 3 low
-T31 P1 light 1 0 4 5 False
-Result: WIN after 31 turns
+T25 P1 miss 1 0 7 high
+Result: LOSS after 25 turns

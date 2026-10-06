@@ -1,4 +1,4 @@
-# Dead Reckoning - Rules (v2)
+# Dead Reckoning - Rules (v2.1)
 
 ## 1. Overview
 

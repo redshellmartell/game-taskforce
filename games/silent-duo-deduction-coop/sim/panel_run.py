@@ -13,7 +13,7 @@ SLUG = "silent-duo-deduction-coop"
 PERSONAS = S.load_personas(ROOT)
 IDS = ["casual", "competitor", "family", "story", "strategist", "barraiser"]
 BRIEF = json.load(open(os.path.join(ROOT, "games", SLUG, "brief.json")))
-FOG = {2: 8, 3: 8}      # rules.md Standard
+FOG = {2: 8, 3: 6}      # rules.md Standard
 
 def one(seats, seed, log=False):
     n = len(seats)

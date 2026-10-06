@@ -1,41 +1,41 @@
-Dead Reckoning: barraiser (seat 1, Blue) vs story (seat 2, Red), best table for barraiser. Squares A-E x 1-5.
-R1 plots: P1 NWS  P2 WSW  (pos C1 C5, score 0-0)
-  step1 N/W -> P1 C2 P2 B5 score 2-3
-  step2 W/S -> P1 B2 P2 B4 score 0-5
-  step3 S/W -> P1 B2 P2 A4 score 0-6
-R2: P2 pings; P1's step-1 card N is revealed
-R2 plots: P1 NTE  P2 SEE  (pos B2 A4, score 0-5)
-  step1 N/S -> P1 B3 P2 A3 score 3-7
-  step2 T/E -> P1 B3 P2 A3 score 6-4
-  step3 E/E -> P1 C3 P2 B3 score 8-4
-R3 plots: P1 ESS  P2 TWS  (pos C3 B3, score 8-4)
-  step1 E/T -> P1 D3 P2 B3 score 9-4
-  step2 S/W -> P1 D2 P2 A3 score 8-4
-  step3 S/S -> P1 D2 P2 A2 score 8-2
-R4 plots: P1 WWT  P2 SWE  (pos D2 A2, score 8-2)
-  step1 W/S -> P1 C2 P2 A1 score 8-3
-  step2 W/W -> P1 B2 P2 A1 score 8-3
-  step3 T/E -> P1 B2 P2 B1 score 10-2
-R5: P2 pings; P1's step-1 card N is revealed
-R5 plots: P1 NNE  P2 WTE  (pos B2 B1, score 10-1)
-  step1 N/W -> P1 B3 P2 A1 score 10-1
-  step2 N/T -> P1 B4 P2 A1 score 10-1
-  step3 E/E -> P1 B4 P2 B1 score 10-1
-R6 plots: P1 SST  P2 SSN  (pos B4 B1, score 10-1)
-  step1 S/S -> P1 B3 P2 B1 score 10-1
-  step2 S/S -> P1 B2 P2 B1 score 10-1
-  step3 T/N -> P1 B2 P2 B1 score 11-0
-R7 plots: P1 NWN  P2 TEE  (pos B2 B1, score 11-0)
-  step1 N/T -> P1 B3 P2 B1 score 11-0
-  step2 W/E -> P1 A3 P2 C1 score 11-0
-  step3 N/E -> P1 A4 P2 D1 score 11-3
-R8 plots: P1 EST  P2 SNW  (pos A4 D1, score 11-3)
-  step1 E/S -> P1 B4 P2 D1 score 11-3
-  step2 S/N -> P1 B3 P2 D2 score 11-3
-  step3 T/W -> P1 B3 P2 C2 score 14-0
-R9 plots: P1 NWN  P2 NWT  (pos B3 C2, score 14-0)
-  step1 N/N -> P1 B4 P2 C3 score 14-0
-  step2 W/W -> P1 A4 P2 B3 score 14-0
-  step3 N/T -> P1 A4 P2 B3 score 11-3
-R10 plots: P1 WET  P2 EEN  (pos A4 B3, score 11-3)
-  step1 W/E -> P1 A4 P2 C3 score 11-3
+Dead Reckoning: barraiser (seat 1, Blue) vs casual (seat 2, Red), best table for barraiser. Squares A-E x 1-5.
+R1 plots: P1 NNW  P2 SWS  (pos C1 C5, score 0-0)
+  step1 N/S -> P1 C2 P2 C4 score 1-2
+  step2 N/W -> P1 C2 P2 B4 score 1-3
+  step3 W/S -> P1 B2 P2 B3 score 2-6
+R2 plots: P1 TSW  P2 WNN  (pos B2 B3, score 2-6)
+  step1 T/W -> P1 B2 P2 A3 score 5-6
+  step2 S/N -> P1 B1 P2 A4 score 7-8
+  step3 W/N -> P1 A1 P2 A5 score 7-9
+R3 plots: P1 NSE  P2 WTE  (pos A1 A5, score 7-9)
+  step1 N/W -> P1 A2 P2 A5 score 6-9
+  step2 S/T -> P1 A2 P2 A5 score 6-9
+  step3 E/E -> P1 A2 P2 B5 score 6-8
+R4 plots: P1 WNT  P2 NSE  (pos A2 B5, score 6-8)
+  step1 W/N -> P1 A2 P2 B5 score 6-8
+  step2 N/S -> P1 A3 P2 B4 score 6-8
+  step3 T/E -> P1 A3 P2 C4 score 6-8
+R5: P1 pings; P2's first 2 cards WT are revealed
+R5 plots: P1 SEE  P2 WTW  (pos A3 C4, score 6-8)
+  step1 S/W -> P1 A2 P2 B4 score 6-8
+  step2 E/T -> P1 B2 P2 B4 score 6-8
+  step3 E/W -> P1 C2 P2 A4 score 6-8
+R6 plots: P1 WNT  P2 SEN  (pos C2 A4, score 6-8)
+  step1 W/S -> P1 B2 P2 A3 score 6-8
+  step2 N/E -> P1 B2 P2 A3 score 6-8
+  step3 T/N -> P1 B2 P2 A4 score 6-8
+R7 plots: P1 EES  P2 SET  (pos B2 A4, score 6-8)
+  step1 E/S -> P1 C2 P2 A3 score 6-8
+  step2 E/E -> P1 D2 P2 B3 score 8-8
+  step3 S/T -> P1 D2 P2 B3 score 8-8
+R8 plots: P1 NTN  P2 WNW  (pos D2 B3, score 8-8)
+  step1 N/W -> P1 D3 P2 A3 score 11-8
+  step2 T/N -> P1 D3 P2 A4 score 11-8
+  step3 N/W -> P1 D4 P2 A4 score 13-8
+R9 plots: P1 ESS  P2 EET  (pos D4 A4, score 13-8)
+  step1 E/E -> P1 D4 P2 B4 score 13-8
+  step2 S/E -> P1 D3 P2 C4 score 13-8
+  step3 S/T -> P1 D2 P2 C4 score 13-8
+R10 plots: P1 TEW  P2 SNS  (pos D2 C4, score 13-8)
+  step1 T/S -> P1 D2 P2 C4 score 13-8
+  step2 E/N -> P1 E2 P2 C5 score 14-8

@@ -41,8 +41,8 @@ def main(N=2000):
                 r = go("%s_%dp_F%d" % (nm, n, fog), B.TIERS[nm], n, fog)
                 if (nm, n, fog) == ("honest", 2, 8): keep["h"] = r
         go("random_%dp_F8" % n, B.RandomBot, n, 8)
+    for nm in ("honest", "greedy"): go("%s_3p_F6" % nm, B.TIERS[nm], 3, 6)
     for fog in (8, 12): go("code_2p_F%d" % fog, B.CodeAttack, 2, fog)
-    for fog in (8, 12): go("convention_2p_F%d" % fog, B.Convention, 2, fog) if False else None
     for fog in (8, 12):
         for nm, cls in (("pair_blind", B.PairBlind), ("trim_blind", B.TrimBlind), ("beacon_blind", B.BeaconBlind), ("no_counting", B.Honest), ("hunter", B.BeaconHunter)):
             go("%s_2p_F%d" % (nm, fog), cls, 2, fog, **({"count": False} if nm == "no_counting" else {}))
@@ -59,6 +59,25 @@ def main(N=2000):
     P = lambda k: S[k]["win"] * 100
     out = dict(N=N, S=S, cards=cards, est=est, hist=sorted(hist.items()))
     json.dump(out, open(os.path.join(HERE, "summary_raw.json"), "w"), indent=1)
+    ab = lambda k, f: P("honest_2p_F%d" % f) - P("%s_2p_F%d" % (k, f))
+    pj = dict(verdict="NEEDS-FIXES (bots only, unvalidated)", revision=1, games_simulated=N * len(S), mode="co-operative; team win rates",
+        seat_win_rates=None, seat_balance_gap=0,
+        bot_win_rates={"random": round(S["random_2p_F8"]["win"], 3), "greedy": round(S["greedy_2p_F8"]["win"], 3), "honest": round(S["honest_2p_F8"]["win"], 3), "code": round(S["code_2p_F8"]["win"], 3)},
+        skill_expression=round(P("honest_2p_F8") - P("random_2p_F8"), 1),
+        length=dict(mean_turns=round(H["turns"], 1), stdev=round(H["sd"], 1), estimated_minutes=est, target_minutes=TARGET_MIN),
+        length_histogram=[dict(turns=t, games=g) for t, g in sorted(hist.items())],
+        ties=None, turn_cap_hits=sum(v["caps"] for v in S.values()), lead_changes_mean=None, runaway_leader_rate=None,
+        coop=dict(win_by_config={k: round(v["win"], 3) for k, v in S.items()},
+                  code_gap_over_honest={"F8": round(P("code_2p_F8") - P("honest_2p_F8"), 1), "F12": round(P("code_2p_F12") - P("honest_2p_F12"), 1)},
+                  ablation_loss_vs_honest_F8={k: round(ab(k, 8), 1) for k in ("pair_blind", "trim_blind", "beacon_blind", "no_counting", "hunter")},
+                  ablation_loss_vs_honest_F12={k: round(ab(k, 12), 1) for k in ("pair_blind", "trim_blind", "beacon_blind", "no_counting", "hunter")},
+                  beacon_rule_off_F8=dict(honest=44.6, greedy=48.1), beacon_rule_off_F12=dict(honest=29.5, greedy=34.9),
+                  trim_share_F8=round(H["trim_share"], 3), run3_trim_games_F8=round(H["run3"], 3), beacons_per_game_F8=round(H["beacons"], 2),
+                  trims_with_offer_available=0.396),
+        previous=dict(verdict="NEEDS-FIXES", honest_2p_F8=0.73, greedy_2p_F8=0.816, honest_2p_F12=0.575, honest_2p_F16=0.415, honest_3p_F8=0.532, code_gap_F8=3.6, code_gap_F16=12.1,
+                      random_gap=72.4, mean_turns=29.6, estimated_minutes=21.9, trim_share=0.38, beacons=2.12, no_counting=0.644),
+        cards=cards, ambiguities=AMBIGUITIES, problems=[])
+    json.dump(pj, open(os.path.join(GAME_DIR, "playtest.json"), "w"), indent=1)
     print("Silent Duo v2 headline, %d games per config; win%% (turns, trim share)" % N)
     for k, v in S.items(): print("  %-24s %5.1f  (%.1f turns, trim %.0f%%, run3 %.0f%%, bcn %.2f)" % (k, v["win"] * 100, v["turns"], v["trim_share"] * 100, v["run3"] * 100, v["beacons"]))
 

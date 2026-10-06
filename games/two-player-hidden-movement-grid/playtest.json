@@ -1,5 +1,5 @@
 {
- "verdict": "PENDING",
+ "verdict": "NEEDS-FIXES",
  "revision": 1,
  "mid_vs": {
   "strategic_v_mid": 0.508,
@@ -106,7 +106,7 @@
   }
  ],
  "ties": 0.0018,
- "turn_cap_hits": 4273,
+ "turn_cap_hits": 0,
  "lead_changes_mean": 1.5,
  "runaway_leader_rate": 0.831,
  "cards": [
@@ -156,7 +156,7 @@
    "name": "Sonar ping (spent)",
    "played_rate": 0.345,
    "win_correlation": -0.172,
-   "flag": null,
+   "flag": "dead: never-ping bot wins 49.4% of games vs full bot",
    "per_game": 0.35
   },
   {
@@ -181,8 +181,46 @@
    "per_game": 0.76
   }
  ],
- "ambiguities": [],
- "problems": [],
+ "ambiguities": [
+  "Mine when the sub holds only Sonars/no salvage: loses nothing, steps still cancelled (rules say so; interpreted as written).",
+  "Ping when the trailer also has the choice: the rival 'plots first, alone' but the rival has no way to know a ping is coming (the ping is announced in phase 1, so the rival can adapt: interpreted as announced).",
+  "Mid-round Mine and own torpedo: a cancelled T step does not fire (interpreted from 'cancelled steps have no effect'); rules mention it only for moves.",
+  "Torpedo steals 'highest-value' card from a pile that holds only a card the thief just took that step (simultaneous entry + fire): resolved in order enter then fire, as written.",
+  "Ping reveal order for step 1-2 cards: a revealed card that is later blocked still stays locked (assumed).",
+  "Round-12 end with salvage still on the grid: the 12-round cap is not a bug but 71% of games end here; no rule says what happens if neither player can reach any salvage."
+ ],
+ "problems": [
+  {
+   "severity": "high",
+   "problem": "Runaway leader rate got worse, not better",
+   "evidence": "0.831 (strategic pairings) vs 0.795 previously, target <= 0.65; strategic mirror 0.78, mid-v-mid 0.78, greedy mirror 0.79, random mirror 0.76: every pairing is 0.76-0.92. Mirrored zoned deal barely moved it (v1 single-shuffle deal 0.794 vs v2 0.78 in S-v-S). Lead changes 1.50 vs 1.5 previously (target 2).",
+   "fix": "Structural: the game is a race to a finite pile of points with no catch-up that triggers on score gaps. Candidate levers: make a hit/steal bigger than the pile gap (steal 2 cards), a leader-only penalty (leader on a Mine loses highest card), or end the game on a shared pile so scores keep moving. Do not rely on the Sonar."
+  },
+  {
+   "severity": "high",
+   "problem": "Sonar is a dead card",
+   "evidence": "Never-ping bot wins 49.4% vs full strategic (must be <= 45%); with a 3-step reveal 52%. Pings 0.35 per player per game; ping spent has negative win correlation (-0.17, it is only available to the trailer).",
+   "fix": "Cut Sonar (replace by Salvage 1 or a Mine), or give the ping an effect a bot can use for guaranteed gain (e.g. the pinger also sees the rival 3rd card AND the rival cannot torpedo that round)."
+  },
+  {
+   "severity": "medium",
+   "problem": "Coasting: 71% of strategic games end on the round-12 cap; late rounds are empty",
+   "evidence": "In the narrated game P1 sat at 7-15 for the last 3 rounds with no route to salvage. Length 11.0 rounds (est 17.1 min at 85 s/round vs 15 target, +14%, inside +-20% but the per-round time is a guess).",
+   "fix": "Cap at 9-10 rounds or end the game when the gap exceeds remaining salvage value."
+  },
+  {
+   "severity": "medium",
+   "problem": "Round 1 is mostly a home-waters race, with a quarter of games having a first-round collision",
+   "evidence": "Round-1 collision in 41.5% of strategic games; the leader after round 1 wins 58.2% (down from coin-flip-like deal luck but still a +8 over fair). In the narrated game both subs went home and never met until R3.",
+   "fix": "None required for round 1 itself; the 3-point wrecks in row 3 did not pull subs together early enough."
+  },
+  {
+   "severity": "low",
+   "problem": "Reading layer is real but moderate; torpedo and middle are healthy",
+   "evidence": "Cooling-blind bot wins 41.4% (<=45 pass, previous reading value ~5 pts). No-torpedo bot 29.9%, no-middle bot 29.2%, camper 48.8% (<=55 pass), spammer 48.4% vs strategic (no exploit). Strategic v mid 50.8%: mid (K=2) is as good as strategic (K=6) so lookahead depth beyond 2 plans adds nothing.",
+   "fix": "None; note greedy -> mid is the real skill step (77.7%)."
+  }
+ ],
  "extra": {
   "hits_per_game": 2.26,
   "mines_per_game": 2.52,
@@ -192,5 +230,24 @@
   "blocked_per_game": 7.6,
   "reef_found_per_game": 2.69,
   "mean_final_gap": 8.7
- }
+ },
+ "verdict_note": "bots only, unvalidated",
+ "previous": {
+  "revision": 0,
+  "seat_balance_gap": 1.4,
+  "skill_expression": 75.0,
+  "strategic_vs_greedy": 0.718,
+  "runaway_leader_rate": 0.795,
+  "lead_changes_mean": 1.5,
+  "length": {
+   "mean_turns": 9.74,
+   "stdev": 0.79,
+   "estimated_minutes": 14.8,
+   "target_minutes": 15
+  },
+  "ties": 0.0037,
+  "turn_cap_hits": 0
+ },
+ "round_cap_end_rate_strategic": 0.712,
+ "turn_cap_note": "no games failed to end; 71% of strategic-bot games (58% mirror) end on the round-12 cap with salvage left on the grid"
 }

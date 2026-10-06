@@ -1,52 +1,47 @@
-# Dead Reckoning - Playtest report (revision 0)
+# Playtest report: Dead Reckoning, revision 1 (rules v2)
 
-**Verdict: NEEDS-FIXES.** The rules run cleanly and fit the length and seat targets, but the game fails two KPIs (runaway leader, lead changes) and one card (Sonar ping) does nothing measurable.
+**Verdict: NEEDS-FIXES (bots only, unvalidated).** Sim updated to rules v2; 20,000 headline games (2,000 per pairing, 10 pairings), 6 ablation runs of 2,000, 4 extra configs of 600 (`sim/experiments/exp-results.json`). Targets from CLAUDE.md.
 
-Code: `sim/` (game.py, bots.py, run.py, panel_run.py, finalize.py, experiments/exp.py). Runs are seeded and repeatable (checked by running the headline twice with identical output).
+## Key numbers (strategic-bot pairings unless noted)
+| KPI | Target | Rev 0 | Rev 1 | Result |
+|---|---|---|---|---|
+| Runaway leader (mid-game leader wins) | <= 0.65 | 0.795 | **0.831** (every pairing 0.76-0.92) | FAIL, worse |
+| Lead changes per game | >= 2 | 1.5 | **1.50** | FAIL, unchanged |
+| Seat balance gap (mirrors) | <= 5 | 1.4 | 1.8 | pass |
+| Strategic v random gap | >= 20 | 75 | 88.7 | pass |
+| Spread of reference bots | | | random < greedy < mid ~ strategic: S v G 78.8%, mid v G 77.7%, S v mid 50.8%, G v R 89.2% | skill step is greedy to mid; depth beyond 2 rival plans adds nothing |
+| Length | 15 min +-20% | 9.7 rounds, 14.8 min | 11.0 rounds, 17.1 min (+14%; 85 s/round is a guess) | pass |
+| Ties / turn-cap | | 0.4% / 0 | 0.2% / 0 non-ending; 71% of games (58% mirror) end on the round-12 cap | note |
+| Round 1 | | | collision in 41.5% of games; round-1 leader wins 58.2% | mild effect |
 
-## Key numbers (12,000 games: 6 bot pairings x 2,000, seats alternated)
-| Measure | Result | Target | Status |
-|---|---|---|---|
-| Seat 1 win rate (3 mirror pairings) | 49.3% (gap 1.4 pts) | gap <= 5 | OK |
-| Strategic vs random | 87.5% (gap 75 pts) | >= 20 | OK |
-| Strategic vs greedy / greedy vs random | 71.8% / 84.8% | - | OK |
-| Length | 9.6 rounds avg (sd ~0.9), est. 14.8 min | 15 +-20% | OK (assumes 85 s per round) |
-| Ties | 0.4% (strategic games) | - | OK |
-| Games that never end | 0. About 75% end at the round-10 cap with Salvage left | - | See problem 4 |
-| Lead changes per game | 1.50 | >= 2 | FAIL |
-| Runaway leader rate | 0.79 (mirror strategic 0.77) | <= 0.65 | FAIL |
-| Dead cards | Sonar ping has no measurable value | 0 | FAIL |
-| Rule ambiguities | 6 listed in playtest.json | 0 | FAIL (all minor) |
-
-Per game (strategic games): 1.9 torpedo hits, 6.8 torpedoes fired, 3.4 mines triggered, 2.6 reefs found, 6.1 blocked moves, 0.5 collisions, 1.4 pings.
-
-## Experiments (1,000 games each, A vs strategic)
-| Config | A wins | Reading |
+## Ablations (designer's table; ablated bot's win rate vs full strategic)
+| Feature | Must be | Result |
 |---|---|---|
-| E1 torpedo spammer | 47.8% | Not dominant |
-| E2 harbour camper (home 3.6 of 10 rounds) | 52.3% | Not punished; within noise (+-3) |
-| E3 strategic blind to cooling rows | 45.1% | Reading cooling info is worth only ~5 points |
-| E4 strategic that never pings | 50.0% | Ping is worthless |
-| E5 mirror, torpedo orthogonal only | seat 1 49.7% | Hits drop 1.9 to 1.1 per game; no balance effect |
+| Cooling-blind | <= 45% | 41.4% pass (reading worth ~17 pts, up from ~5) |
+| No ping | <= 45% | **49.4% FAIL** (52% with 3-step ping, X2) |
+| No torpedo | <= 45% | 29.9% pass |
+| No middle row | <= 45% | 29.2% pass |
+| Camper | <= 55% | 48.8% pass |
+| v1 single-shuffle deal | runaway "clearly higher" | 0.794 vs 0.78: **not clearly higher**; the zoned deal did almost nothing |
+Extra: torpedo-spam bot 48.4% vs strategic (no exploit); 8-round cap leaves runaway at 0.78; 3-step ping leaves runaway at 0.76.
 
-## Problems (worst first)
-1. **High - runaway leader and few lead changes.** 0.79 and 1.50 against targets of 0.65 and 2. First flips of face-down cards decide most games; the final score gap averages 7.4 of 24 points. Torpedo hits (the only comeback, 1.9 per game) are too rare. Fix ideas, one at a time: victim cannot be hit the round after a hit; fewer Mines or more 1-point Salvage so first flips swing less; a catch-up for the trailer beyond the ping order.
-2. **Medium - Sonar ping is dead.** E4: never pinging wins 50.0%. Fix: reveal two steps, or replace with "peek at one face-down card".
-3. **Medium - the simultaneous guessing is not where the skill is.** Route efficiency gives most of the skill (greedy beats random 85%). The blind bot loses only 55-45 to the reading bot, so the cooling row matters but modestly. Luck of the fog is the big noise. Humans may read much better than these bots.
-4. **Medium - the round cap, not Salvage, ends about 75% of games.** The designer expected Salvage to run out in rounds 8-10. Length is fine, but a leader can coast.
-5. **Low - Harbour camping and torpedo spam** are not dominant in these tests (E1, E2). Watch in human play.
+## Problems
+1. **HIGH: runaway leader 0.83 and lead changes 1.5.** Mirrored deal and middle 3s did not help; the result is flat across all bots, so this is the design (a race to a finite pile, no catch-up keyed to the score gap). Untried fixes: bigger steal (2 cards), leader-only Mine penalty, shared scoring that keeps moving. Critic's stop rule (park if runaway stays above 0.70) applies.
+2. **HIGH: Sonar is dead.** No-ping bot wins 49.4%; pings 0.35 per player per game; ping spent correlates -0.17 with winning (only trailers can ping, so it marks losing). Cut it or give it a stronger effect.
+3. **MEDIUM: coasting.** In the sampled game P1 sat at 7-15 for three rounds with nothing reachable. Shorten the cap to 9-10 or end when the gap exceeds remaining salvage.
+4. **MEDIUM: round 1 is a home-waters race.** Subs went home, grabbed their own mirrored 9 points and did not meet until round 3.
+5. Healthy: torpedo (hits link to winning, +0.35), middle row, cooling-read, no camper or spam exploit. Dead cards: Sonar only (Mine, Reef, Salvage all used 86-98% of games).
 
-## Ambiguities found
-Listed in playtest.json (6): Sonar counting for lead/ping order; reef bounce clash wording; cooling of cancelled cards; same face-down target; tiebreak counting after thefts; ping priority. None changes a headline number.
+## Ambiguities hit (6)
+Mine for a sub with no salvage; whether a cancelled T step fires (I assumed not); whether the rival is told a ping is coming before plotting (I assumed yes, announced in phase 1); steal timing when a salvage is taken and fired on in the same step (enter then fire); a revealed ping card that is later blocked stays locked; no rule for a round-12 stalemate when nobody can reach salvage.
 
-## How it felt (one narrated game, from the sample log strategist-1, no live human)
-Round 1 was a coin flip: Red entered three Salvage squares in three steps and led 6-0, while Blue's plan found nothing. Boring, since nothing either player did could change that. Round 2 felt good: Red pinged, I saw their step-1 card, and I used my own T plus a forced collision to take back 6 points in one round. That was the tense moment. Rounds 5-6 dulled: at 10-1 the trailer kept pinging into nothing and the leader walked away. Downtime was near zero (both plot at once). Confusing point: the ping cost (1 point) never felt worth it.
+## Narrated play (1 game, strategic bots, seed 42)
+Round 1: Blue went N N E, Red S S E; both grabbed home-water cards (2 and 1), no contact, a quiet start. Round 2 I took the east column while the rival did the same on its side: tidy, but it felt like two solitaire games on mirrored boards. Round 3 was the highlight: the trailing Red pinged, saw my two Norths, and torpedoed to reach 6-6. The hand-reading puzzle (their Torpedo is cooling, so I can walk past) is the real fun and I enjoyed it. Then by round 6 Red led 15-7 and I could not catch up: no wreck was near and I walked home for three rounds with no choices that mattered. Boring and frustrating late, which matches the runaway number. Rounds are simultaneous, so there is no downtime.
 
 ## What simulation cannot test
-Bluffing feel and table talk; whether the 6 visible helm cards are readable at a glance or tiring to track; whether the plotting feels like clever reading or a coin flip; real timing (the 85 s per round figure is the designer's estimate, not measured); fun and frustration of getting bounced off a Reef or Mined. The panel numbers are bot-derived and reward the bots' high skill gap (75 pts), which flatters the game. Only a human test settles these.
+Fun, teaching time (about 100 lines of teach text), real-player bluffing and table talk, whether the 85 s round estimate holds, the card layout readability, and whether humans read the open hands better or worse than bots.
 
-## Panel (free bots)
-15 tables x 400 games; average predicted fun 3.75, best fit competitor (4.45), worst fit family (2.91). No Bar Raiser veto triggered. Details in panel.json.
+## What worked / did not
+Worked: cooling-blind ablation (41%), torpedo and middle-row value, seat balance, skill gap, length. Did not work: zoned mirrored deal (runaway 0.83, not 0.65), trailer-only ping (Sonar dead), cap 12 (coasting rose to 71% of games ending on the cap).
 
-## Untested suggestions
-Cap of 12 rounds; fewer Mines; Mine penalty variants; a deeper strategic bot to see whether more reading raises the skill gap.
+BUDGET REQUEST: none needed; suggested untested ideas are listed under Problem 1.
