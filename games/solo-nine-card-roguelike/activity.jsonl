@@ -12,3 +12,5 @@
 {"time": "2026-10-04T19:37:03Z", "agent": "critic", "game": "solo-nine-card-roguelike", "event": "done", "message": "Critic REVISE-MINOR avg 3.33; waiting for approval: revision (solo-nine-card-roguelike-revision-1)"}
 {"time": "2026-10-06T13:42:10Z", "agent": "director", "game": "solo-nine-card-roguelike", "event": "start", "message": "Cycle 1 (revision 1, inside review cap): designer pass; owner said run the taskforce"}
 {"time": "2026-10-06T13:45:00Z", "agent": "director", "game": "solo-nine-card-roguelike", "event": "step", "message": "Owner calibrated usage (5h 7%, 7d 9%) and set a 1-hour work window until 14:44Z"}
+{"time": "2026-10-06T13:46:15Z", "agent": "game-designer", "game": "solo-nine-card-roguelike", "event": "done", "message": "rules.md v2 (retitled Whiskerdark): Ghost Danger-2 and Drift, Glow/Silk/Carry reworked, Thief cut, ambiguities closed"}
+{"time":"2026-10-06T13:46:27Z","agent":"playtester","game":"solo-nine-card-roguelike","event":"start","message":"Revision 1 playtest (rules v2)"}
