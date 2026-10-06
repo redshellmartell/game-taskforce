@@ -1,1 +1,3 @@
 {"time": "2026-10-06T18:02:11Z", "agent": "market-researcher", "game": "four-player-partnership-climber", "event": "start", "message": "Learning test 1: brief from the idea bank (Mode 2), owner said start the taskforce"}
+{"time": "2026-10-06T18:03:15Z", "agent": "market-researcher", "game": "four-player-partnership-climber", "event": "done", "message": "Brief written from the bank: 23/30, originality risk medium-high (Tichu), recommends greenlight"}
+{"time": "2026-10-06T18:03:15Z", "agent": "director", "game": "four-player-partnership-climber", "event": "waiting", "message": "waiting for approval: greenlight (four-player-partnership-climber-greenlight)"}

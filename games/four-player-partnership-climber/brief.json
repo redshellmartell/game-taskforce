@@ -1,0 +1,29 @@
+{
+  "slug": "four-player-partnership-climber",
+  "title": "Ladder Pairs",
+  "idea_id": "four-player-partnership-climber",
+  "players": "4",
+  "minutes": 25,
+  "complexity": 2,
+  "mechanics": ["climbing", "shedding", "partnerships", "hidden teams"],
+  "theme": "mountain hut relay",
+  "opportunity_score": 23,
+  "rubric": { "demand": 3, "gap": 3, "originality": 3, "producibility": 5, "simulatability": 4, "owner_fit": 5 },
+  "candidates": [
+    { "idea": "four-player-partnership-climber", "score": 23, "chosen": true },
+    { "idea": "solo-coop-micro-deckbuilder", "score": 22, "chosen": false },
+    { "idea": "party-trick-taker-4-6", "score": 20, "chosen": false }
+  ],
+  "comparables": [
+    { "name": "Tichu", "bgg_rating": 7.6, "crowdfunding": null, "difference": "Partners are hidden and re-chosen each hand, no calls or card passing, about 25 minutes instead of 60." },
+    { "name": "Haggis", "bgg_rating": null, "crowdfunding": null, "difference": "Four players with hidden partnerships rather than a 2-3 player Tichu-feel duel." },
+    { "name": "The Crew", "bgg_rating": 7.8, "crowdfunding": null, "difference": "Competitive climbing and shedding, not a co-op trick-taking mission game." }
+  ],
+  "sources": [
+    "https://boardgamematcher.com/game/tichu",
+    "https://meeplemountain.com/reviews/haggis",
+    "https://donteatthemeeples.substack.com/p/why-haggis-is-the-greatest-modern",
+    "https://www.boardgamequest.com/crowdfunding-campaigns-of-the-week-8-10-26/",
+    "https://boardgamematcher.com/game/skull-king"
+  ]
+}

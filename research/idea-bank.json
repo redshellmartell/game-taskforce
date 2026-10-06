@@ -903,8 +903,8 @@
         "https://www.boardgamequest.com/crowdfunding-campaigns-of-the-week-8-10-26/",
         "https://boardgamematcher.com/game/skull-king"
       ],
-      "status": "banked",
-      "game_slug": null,
+      "status": "in-pipeline",
+      "game_slug": "four-player-partnership-climber",
       "added": "2026-10-03",
       "scan": "2026-10-03",
       "source": "scan",

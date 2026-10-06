@@ -1018,6 +1018,35 @@
           "critic": 3.33
         }
       ]
+    },
+    {
+      "id": "four-player-partnership-climber-greenlight",
+      "gate": "greenlight",
+      "game": "four-player-partnership-climber",
+      "time": "2026-10-06T18:03:15Z",
+      "status": "pending",
+      "summary": "Brief written for Ladder Pairs (4-player card game, about 25 minutes): a climbing and shedding game where each round's partners are chosen by a secret card and revealed by a game event. Score 23/30 (banked 24; simulatability down to 4 because bots need a belief model). Learning test 1: the first new game through the upgraded pipeline.",
+      "why_needed": "Design is the next step and starts agent work (designer, then playtest and critic). Fits your focus (cards only, nothing else to make). Main risk: originality. Tichu is close by family (climb, beat same type, empty your hand, team scoring) and hidden called partners exist in Sheepshead and Skat; the twist (partners re-chosen each round, hidden, revealed by play) must change best play, proven by an ablation test.",
+      "expected_outcome": "A rules.md with a Playbook check block, a playtest using the shared kit in about 20 minutes, and a critique. We compare against the first ten games: first playtest PASS or near it, first critic average 3.5 or more, 2 or fewer rule gaps, no dead cards (see studio/learning-test-1.md).",
+      "usage_estimate": "L",
+      "recommendation": "approve",
+      "options": [
+        {
+          "key": "approve",
+          "label": "Greenlight: start design, then playtest and critique (learning test 1)"
+        },
+        {
+          "key": "decline",
+          "label": "Do not start; pick another idea from the bank"
+        },
+        {
+          "key": "park",
+          "label": "Park the idea for now"
+        }
+      ],
+      "decision": null,
+      "decided_at": null,
+      "owner_notes": null
     }
   ]
 }
