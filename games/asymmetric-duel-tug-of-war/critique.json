@@ -1,15 +1,14 @@
-{ "verdict": "REVISE-MAJOR", "revision": 1,
-  "scores": { "originality": 3, "clarity": 4, "fun": 3, "balance": 2, "market_fit": 3, "production": 5 },
-  "average": 3.33,
-  "strength": "Pacing and clarity problems from revision 0 are fixed: no centre endings, lead changes 1.83, zero ambiguities, skill gap +56, 47 cheap cards.",
-  "weakness": "The lead-choice-plus-bonus mechanic is unstable: five variants each left one lead policy dominant (43-65%), and the side gap is 10.9 and flips with bot skill.",
+{ "verdict": "REVISE-MAJOR", "revision": 2,
+  "scores": { "originality": 3, "clarity": 3, "fun": 3, "balance": 2, "market_fit": 3, "production": 5 },
+  "average": 3.17,
+  "strength": "Pacing and structure meet the KPIs: lead changes 2.22, runaway 44%, early finishes 18.5%, length 13.1 min, no dead cards or ambiguities, 47 cheap cards (bots only, unvalidated).",
+  "weakness": "Side gap 9.3 (Bar Raiser veto active) flips with bot skill (Treasurer 60/35/40-44%), the Treasury cap knob is inert and all five keyword ablations fail, so the asymmetric twist does not change best play (repeats L1, L2, L9).",
   "closest_existing_game": { "name": "Tug of Roar", "similarity": "medium" },
   "required_changes": [
-    "Remove the lead choice as a decision (loser always leads, or alternate the lead) instead of tuning the extra card again. KPI: no dominant lead policy (all 40-60%); Balance up to 3+.",
-    "After that, one lever at a time (Treasury cap or Spend bonus) to bring the strategic-mirror side gap to 5 or less and 10 or less across the skill ladder. KPI: side gap.",
-    "Double-move margin 6: games ending by round 3 under 20% (now 31%), lead changes at least 2.0, runaway leader at most 65%.",
-    "Re-run all experiments on the corrected simulator (coin bug fixed after the five experiments).",
-    "Optional: cut The Whisper to 4 Influence or one copy if still above +15 points."
+    "Rework the keyword layer so each of the five ablations loses at least 5 points (now -0.1 to 3.1). KPI: ablation margins.",
+    "Rebalance Whisper 5 to 4 and Seal 6 to 5 together, tested on three bots. KPI: strategic mirror 45-55%, no mirror outside 40-60%.",
+    "Cut rules to about 100 lines with six keyword lines. KPI: clarity score and rules_simplicity.",
+    "Optional workaround: two-game side-swap format (hides, does not fix, the side gap)."
   ],
-  "revision_worth_it": true,
-  "revision_reason": "Yes, once: the remaining problems are narrow and measurable once the lead dial is removed rather than retuned; if the side gap stays above 8 or fun below 3.3 after revision 2, park the game." }
+  "revision_worth_it": false,
+  "revision_reason": "No: the problems are structural (inert keywords, side gap flips with bot strength), two cycles fixed pacing but not balance, and the critic's own park condition (side gap above 8) is met." }

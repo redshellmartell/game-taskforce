@@ -22,3 +22,5 @@
 {"time": "2026-10-06T14:20:45Z", "agent": "critic", "game": "silent-duo-deduction-coop", "event": "start", "message": "Cycle 1 critique (director-logged)"}
 {"time": "2026-10-06T14:21:43Z", "agent": "critic", "game": "silent-duo-deduction-coop", "event": "done", "message": "Cycle 1 critique: REVISE-MINOR avg 3.67 (was 3.5), mechanical; cycle 2 aimed at Trim stall and Beacon"}
 {"time": "2026-10-06T14:21:43Z", "agent": "director", "game": "silent-duo-deduction-coop", "event": "start", "message": "Cycle 2 (inside review cap): designer pass on Trim stall, Beacon, 3p Fog"}
+{"time": "2026-10-06T14:24:28Z", "agent": "game-designer", "game": "silent-duo-deduction-coop", "event": "done", "message": "Cycle 2: rules v3, Single Offer added, Beacon cut, Fog per player count (2p standard F6, 3p labelled variant)"}
+{"time":"2026-10-06T14:24:36Z","agent":"playtester","game":"silent-duo-deduction-coop","event":"start","message":"Revision 2 playtest, rules v3"}
