@@ -33,7 +33,7 @@ class Run:
                 self.known[i + 6] = 9
         self.islit = [False] * 10
         self.relight()
-        self.flags = {}
+        self.flags = {}; self.acted = False
     def clone(self):
         n = Run.__new__(Run); n.__dict__.update(self.__dict__)
         n.g = list(self.g); n.st = list(self.st); n.angry = list(self.angry); n.known = list(self.known); n.islit = list(self.islit)
@@ -130,7 +130,7 @@ class Run:
         if self.ready():
             self.pay(1, bot); self.stats["thief"] += 1; self.L("Thief spends a trophy")
     def fight(self, p, bot):
-        c = self.g[p]; f = self.flags
+        c = self.g[p]; f = self.flags; self.acted = True
         d = self.danger(c, f.get("dart"), f.get("hypno"), f.get("carry")); cl = self.claws()
         w = 0 if f.get("feint") else max(0, d - cl)
         self.stats["fights"] += 1
@@ -157,16 +157,18 @@ class Run:
         self.relight()
     def shove(self, px, py, bot):
         if self.stats["first"] is None: self.stats["first"] = "shove"
-        self.decisions += 1
+        self.decisions += 1; self.acted = True
         self._swap(px, py, True); self.L("Shove into %d, %s comes up" % (py, NAMES[self.g[px]]))
     # ---- turn
     def turn(self, bot):
-        self.turns += 1; self.flags = {}
+        self.turns += 1; self.flags = {}; self.acted = False
         for c in range(1, 10):
             if self.st[c] == READY: self.stats["ever_ready"].add(c)
         self.stats["ready_traj"].append(self.ready())
         bot.act(self)
         if self.over: return
+        self.finish_turn(bot)
+    def finish_turn(self, bot):
         h = self.pos_of(9)
         if h >= 0 and not self.ghost[9] and self.lit_pos(h):
             if self.cfg.hunt == "lethal" and not self.ready():
