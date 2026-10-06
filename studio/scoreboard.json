@@ -1,15 +1,15 @@
 {
- "generated": "2026-10-06T14:48:26Z",
- "games_total": 11,
- "games_tested": 10,
+ "generated": "2026-10-06T19:12:13Z",
+ "games_total": 12,
+ "games_tested": 11,
  "first_pass_playtest_pass": 0,
  "first_pass_rate": 0.0,
  "critic_avg_first": 3.26,
  "critic_avg_latest": 3.38,
- "revisions_per_game": 1.4,
+ "revisions_per_game": 1.27,
  "director_calibration": {
-  "decided": 29,
-  "agreed": 26,
+  "decided": 30,
+  "agreed": 27,
   "rate": 0.9
  },
  "approvals_by_gate": {
@@ -23,7 +23,7 @@
    "approved": 2
   },
   "greenlight": {
-   "approved": 9
+   "approved": 10
   },
   "revision": {
    "approved": 13,
@@ -36,12 +36,12 @@
    "approved": 1
   },
   "review-cap": {
-   "pending": 4
+   "pending": 5
   }
  },
  "decisions_by_kind": {
   "gate": {
-   "approve": 28,
+   "approve": 29,
    "decline": 1,
    "pitch": 1
   },
@@ -64,7 +64,7 @@
   "per_game": {
    "three-player-trick-taker": 631920
   },
-  "unattributed": 44981474
+  "unattributed": 54638155
  },
  "games": [
   {
@@ -315,6 +315,16 @@
      "note": "Zoned deal, trailer-only 2-step ping and 12-round cap left runaway at 0.76-0.92 in every pairing; Sonar still dead; ambiguities closed by the fix pass. Critic: structural, park."
     }
    ]
+  },
+  {
+   "slug": "four-player-partnership-climber",
+   "stage": "critique",
+   "revisions": 0,
+   "first_playtest": "NEEDS-FIXES",
+   "first_critic_avg": 3.33,
+   "latest_critic_avg": 3.33,
+   "latest_critic": "REVISE-MAJOR",
+   "cycles": []
   }
  ]
 }

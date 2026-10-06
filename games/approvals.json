@@ -1047,6 +1047,49 @@
       "decision": "approve",
       "decided_at": "2026-10-06T18:51:31Z",
       "owner_notes": "owner replied \"approve\" in chat"
+    },
+    {
+      "id": "four-player-partnership-climber-review-cap-1",
+      "gate": "review-cap",
+      "game": "four-player-partnership-climber",
+      "time": "2026-10-06T19:12:13Z",
+      "status": "pending",
+      "game_stage": "critique",
+      "summary": "First critique of Ladder Pairs: REVISE-MAJOR 3.33. The hidden-partner twist is inert: all four ablations fail (partner-blind bot wins by 7, reveal-blind -1.2, Uphill-blind -0.4, Relay-blind -3.2) and the partner-reading bot does not beat Greedy (-2.5), because points come only from finishing order, so helping a partner earns nothing. Everything else is good: seat gap 0.9, runaway 0.40, no dead cards, 15-minute playtest. Not a KILL for originality (closest game is Tichu, medium similarity). The critic calls the problem structural, so the cap stops here for your decision.",
+      "why_needed": "Early stop under the review-cap rule: the critic calls the problem structural (it appears with all 9 Reader bot variants). A tuning cycle would not help; the critic recommends exactly one cycle, a scoring redesign that makes partner help pay (team credit for tricks won, or a bigger Relay), judged by two numbers.",
+      "expected_outcome": "Continue: one cycle (designer, playtest, critic) aimed at A1 partner-blind margin from -7.0 to +5 or more, and Reader minus Greedy from -2.5 to +5 or more, with all four ablations re-run together at every partner pairing. If those two numbers do not move, we park it or go to a human playtest. Park or kill: no more usage; the shared-kit sim and the 56-card build stay for reuse.",
+      "usage_estimate": "M",
+      "recommendation": "continue",
+      "options": [
+        {
+          "key": "continue",
+          "label": "Run 1 cycle: scoring redesign so partner help pays (grants 1 cycle; recommended)"
+        },
+        {
+          "key": "park",
+          "label": "Park the game"
+        },
+        {
+          "key": "kill",
+          "label": "Kill it, archive it and record why"
+        },
+        {
+          "key": "pitch",
+          "label": "Pitch as is (not recommended: the twist does no work)"
+        }
+      ],
+      "decision": null,
+      "decided_at": null,
+      "owner_notes": null,
+      "table": [
+        {
+          "cycle": 0,
+          "A1_partner_blind": -7.0,
+          "reader_minus_greedy": -2.5,
+          "lead_changes": 1.13,
+          "critic": 3.33
+        }
+      ]
     }
   ]
 }

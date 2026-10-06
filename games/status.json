@@ -762,11 +762,17 @@
           "time": "2026-10-06T19:10:00Z",
           "verdict": "NEEDS-FIXES",
           "note": "Playtest NEEDS-FIXES: hidden partners do not change best play (all 4 ablations fail), lead changes 1.13, 9 ambiguities, no dead cards, 15 min wall-clock"
+        },
+        {
+          "stage": "critique",
+          "time": "2026-10-06T19:12:13Z",
+          "verdict": "REVISE-MAJOR",
+          "note": "Critic REVISE-MAJOR avg 3.33: hidden-partner twist inert (all 4 ablations fail), structural; one scoring-redesign cycle recommended; waiting for approval: review-cap (four-player-partnership-climber-review-cap-1)"
         }
       ],
       "verdicts": {
         "playtest": "NEEDS-FIXES",
-        "critic": null
+        "critic": "REVISE-MAJOR"
       },
       "kill_reason": null
     }

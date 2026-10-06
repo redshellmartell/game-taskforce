@@ -1,0 +1,17 @@
+{
+  "verdict": "REVISE-MAJOR",
+  "revision": 0,
+  "scores": { "originality": 3, "clarity": 4, "fun": 2, "balance": 3, "market_fit": 3, "production": 5 },
+  "average": 3.33,
+  "strength": "Short, producible ruleset (56 cards, 3 special rules) with healthy seat balance (gap 0.9) and runaway leader (0.403), and an honest self-report of the failures.",
+  "weakness": "Hidden partners are inert (L1): all four ablations fail (A1 -7.0, A2 -1.2, A3 -0.4, A4 -3.2) and Reader does not beat Greedy (L6), because points come only from finishing order. Also repeats L3 (lead changes 1.13, Uphill is the only comeback), L11 (42% forced passes) and L7 (no teach timing). Structural per the stop rule; bots only, unvalidated.",
+  "closest_existing_game": { "name": "Tichu", "similarity": "medium" },
+  "required_changes": [
+    "Make partner help pay (team credit per trick won by either partner or a bigger Relay), then re-run all ablations, variants and bots together; targets: A1 margin >= +5 per bot and Reader minus Greedy >= +5 in 1 v 3 (fixes Fun, L1, L6)",
+    "Second comeback source or Uphill threshold 3; target lead changes >= 2 with runaway <= 65% (Balance, L3)",
+    "Reduce forced-pass dead turns, target under 30% of follow turns and under 1 run of 3+ per hand, as a separate single-change test (Fun, L11)",
+    "Time a real human hand to settle length 27 vs 37 minutes against the 20-30 band (Clarity, Balance)"
+  ],
+  "revision_worth_it": true,
+  "revision_reason": "Yes, one cycle only: the diagnosis is clear (partner help has no payoff) and the fix is a single scoring lever; KPI to move is A1 partner-blind margin from -7.0 to >= +5 and Reader minus Greedy from -2.5 to >= +5. If it does not move, park or go to a human playtest (structural per the stop rule)."
+}
