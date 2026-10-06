@@ -14,7 +14,7 @@ class Honest:
     name = "honest"
     P = dict(light_p=0.97, risky_p=0.7, press=3.0, lam=0.6, min_gain=0.12, noise=0.0, count=True,
              beacon_w=0.2, conv=False, code=False, miss_code=False, hand_w=0.4, late_p=0.5, reef_p=0.9,
-             pair_blind=False, trim_blind=False, beacon_wait=False)
+             pair_blind=False, trim_blind=False, beacon_wait=False, single_blind=False)
 
     def __init__(self, seed=0, **kw):
         self.rng = random.Random(seed)
@@ -28,9 +28,9 @@ class Honest:
     def sync(self, o):
         for e in o.events[self.ptr:]:
             if e[0] == "offer" and e[2] == o.me and e[1] != o.me:
-                _, off, q, i, shown, row = e
+                _, off, q, i, shown, row = e[:6]
                 self.lastrev[i] = (shown, row)
-                if self.p["code"] and o.n == 2:
+                if self.p["code"] and o.n == 2 and len(e) == 6:
                     js = [j for j, s in enumerate(o.ships[o.me]) if not s["lit"] and j != i]
                     if js: self.hints.append((js[0], ((shown + i) % 10) + 1, 0.4))
             elif e[0] == "miss" and e[1] != o.me and self.p["miss_code"] and o.n == 2:
@@ -69,6 +69,9 @@ class Honest:
     # ---------------------------------------------------------- decision
     def act(self, o, legal):
         self.sync(o)
+        if self.p["single_blind"]:
+            l2 = [a for a in legal if a[0] != "single"]
+            if l2: legal = l2
         if self.p["noise"] and self.rng.random() < self.p["noise"]:
             return self.rng.choice(legal)
         me = o.me
@@ -125,6 +128,17 @@ class Honest:
     def best_offer(self, o, legal, ws):
         me, best = o.me, None
         for a in legal:
+            if a[0] == "single":
+                _, q, i, x = a
+                s = o.ships[q][i]; V, lo, hi = s["v"], s["lo"], s["hi"]
+                m = hi - lo - 1
+                l2, h2 = (max(lo, x), hi) if x < V else (lo, min(hi, x))
+                g = self.u(m) - self.u(h2 - l2 - 1)
+                c = self.need(o, x, ws) if ws else 0.0
+                if o.hand.count(x) > 1: c *= 0.5
+                sc = g - self.p["lam"] * c
+                if best is None or sc > best[0]: best = (sc, a)
+                continue
             if a[0] != "offer": continue
             _, q, i, x, y = a
             s = o.ships[q][i]
@@ -148,7 +162,7 @@ class Honest:
                     xx = ((W - 2 - i) % 10) + 1
                     if xx in (x, y) and (o.ships[q][js[0]]["hi"] - o.ships[q][js[0]]["lo"] - 1) > 3: sc += 0.5
             if best is None or sc > best[0]: best = (sc, a)
-        if best is not None and self.p["pair_blind"]:
+        if best is not None and self.p["pair_blind"] and best[1][0] == "offer":
             q0, i0 = best[1][1], best[1][2]
             best = (best[0], self.rng.choice([a for a in legal if a[0] == "offer" and a[1] == q0 and a[2] == i0]))
         if best is None and self.p["conv"]:
@@ -190,6 +204,8 @@ class PairBlind(Honest):
     name = "pair_blind"; P = dict(pair_blind=True)
 class TrimBlind(Honest):
     name = "trim_blind"; P = dict(trim_blind=True)
+class SingleBlind(Honest):
+    name = "single_blind"; P = dict(single_blind=True)
 class BeaconBlind(Honest):
     name = "beacon_blind"; P = dict(beacon_w=0.0)
 class BeaconHunter(Honest):

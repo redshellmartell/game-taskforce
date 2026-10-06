@@ -15,3 +15,4 @@
 {"time": "2026-10-06T13:46:15Z", "agent": "game-designer", "game": "solo-nine-card-roguelike", "event": "done", "message": "rules.md v2 (retitled Whiskerdark): Ghost Danger-2 and Drift, Glow/Silk/Carry reworked, Thief cut, ambiguities closed"}
 {"time":"2026-10-06T13:46:27Z","agent":"playtester","game":"solo-nine-card-roguelike","event":"start","message":"Revision 1 playtest (rules v2)"}
 {"time":"2026-10-06T13:49:30Z","agent":"playtester","game":"solo-nine-card-roguelike","event":"step","message":"Sim updated to rules v2 (Drift, free Glow, Silk shove, Carry, no Thief); headline run started"}
+{"time":"2026-10-06T14:29:37Z","agent":"playtester","game":"solo-nine-card-roguelike","event":"step","message":"Headline done (outline 57.1%, lookahead 96.1%); outline ablations done; lookahead ablations running"}

@@ -1,4 +1,4 @@
-"""Silent Duo rules engine (rules.md v2). Standard library only.
+"""Silent Duo rules engine (rules.md v3). Standard library only.
 Interpretations (ambiguities) are listed in AMBIGUITIES at the bottom."""
 import random
 from collections import Counter
@@ -12,7 +12,7 @@ class Obs:
 
 
 class Game:
-    def __init__(self, n=2, fog=8, seed=0, log=False, reefs=2):
+    def __init__(self, n=2, fog=6, seed=0, log=False, reefs=2):
         self.n, self.rng = n, random.Random(seed)
         self.logon, self.log = log, []
         cards = [v for v in range(1, 11) for _ in range(5)]
@@ -76,6 +76,7 @@ class Game:
                 for a in range(len(ok)):
                     for b in range(a + 1, len(ok)):
                         acts.append(("offer", q, i, ok[a], ok[b]))
+                if len(ok) == 1: acts.append(("single", q, i, ok[0]))   # v3: Single Offer, only when all fitting cards share one value
         for i, s in enumerate(self.ships[p]):
             if not s["lit"]:
                 for c in vals:
@@ -90,7 +91,8 @@ class Game:
         if len(acts) == 1: return 0
         d = 1 if len({a[0] for a in acts}) > 1 else 0
         same = [a for a in acts if a[0] == chosen[0]]
-        if chosen[0] == "offer":
+        if chosen[0] in ("offer", "single"):
+            same = [a for a in acts if a[0] in ("offer", "single")]
             if len({(a[1], a[2]) for a in same}) > 1: d += 1
             if len([a for a in same if a[1:3] == chosen[1:3]]) > 1: d += 1
         elif chosen[0] == "light":
@@ -131,6 +133,16 @@ class Game:
             self.seen[shown] += 1
             self.stats["offers"] += 1
             self._ev("offer", p, q, i, shown, row)
+        elif kind == "single":
+            _, q, i, a = action
+            s = self.ships[q][i]
+            hand.remove(a)
+            row = "low" if a < s["v"] else "high"
+            if row == "low": s["lo"] = max(s["lo"], a)
+            else: s["hi"] = min(s["hi"], a)
+            self.seen[a] += 1
+            self.stats["offers"] += 1; self.stats["singles"] += 1
+            self._ev("offer", p, q, i, a, row, "single")
         elif kind == "light":
             _, i, c = action
             s = self.ships[p][i]
@@ -139,12 +151,7 @@ class Game:
             if abs(c - s["v"]) <= 1:
                 s["lit"], s["card"] = True, c
                 self.seen[s["v"]] += 1
-                bea = c == s["v"]
-                if bea:
-                    self.stats["beacons"] += 1
-                    if self.deck:
-                        mv, self.fog = self.fog[:2], self.fog[2:]
-                        self.deck.extend(mv)
+                bea = False   # v3: Beacon cut
                 self.stats["lit"] += 1
                 self._ev("light", p, i, c, s["v"], bea)
             else:
@@ -215,6 +222,10 @@ def play(game, bots, cap=200):
         a = bots[p].act(game.obs(p), acts) if len(acts) > 1 else acts[0]
         assert a in acts, (a, acts[:5])
         dec[p] += Game.decisions(acts, a)
+        if a[0] == "trim":
+            game.stats["trims_total"] += 1
+            if any(x[0] in ("offer", "single") for x in acts): game.stats["trims_with_offer"] += 1
+        if a[0] == "pass": pass
         game.step(a)
     game.dec = dec
     game.capped = not game.over
@@ -233,4 +244,11 @@ AMBIGUITIES = [
     "Rules 6 turn cap formula (26 + 8 + 2 = 36) assumes deck 26 at Standard; with Trim burning 2 per turn it is an upper bound. Not an issue in sim.",
     "Offer legality when only one of the cards is inside the range: not legal; a player who has two in-range cards of different values may have none, so Offers are often unavailable late and Trim becomes the default (see findings).",
     "3 players: the Light resolver (player on the left) is the only one who learns nothing extra; the third player sees the ship but the rules do not say whether they may stop a mis-resolve. Not coded.",
+]
+
+AMBIGUITIES += [
+    "v3: Single Offer legality is per ship; with exactly one distinct fitting value the player may only Single Offer (no pair possible). Coded: a hand with two copies of the same fitting value (e.g. 5,5) counts as one value, so Single is legal and Pair is not.",
+    "v3: Does a Single Offer card also count as a Pair-style 'narrowing' when equal to an existing L or H? Cannot happen: fitting means strictly inside (L,H).",
+    "v3: Is a Single Offer allowed when the player also has a legal Pair Offer on a DIFFERENT ship? Rules say yes (per ship); coded yes.",
+    "v3: 'Skip' when deck is empty and the hand has no legal Offer/Light: turn skipped, Last Watch counter still advances (coded).",
 ]

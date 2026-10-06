@@ -15,7 +15,7 @@ def team(cls, n, N, fog=8, seed0=0, **kw):
         g = Game(n, fog, seed)
         play(g, [cls(seed * 7 + k, **kw) for k in range(n)])
         rows.append(dict(win=int(g.win), turns=g.turns, deck=g.deck_at_end, lit=g.lit, total=sum(len(x) for x in g.ships),
-                         capped=int(g.capped), maxrun=g.maxrun, **{k: g.stats[k] for k in ("offers", "trims", "beacons", "misses", "passes")},
+                         capped=int(g.capped), maxrun=g.maxrun, **{k: g.stats[k] for k in ("offers", "trims", "beacons", "misses", "passes", "singles", "trims_total", "trims_with_offer")},
                          lights=g.stats["lit"]))
     return rows
 
@@ -34,52 +34,54 @@ def corr(xs, ys):
 def main(N=2000):
     S = {}; keep = {}
     def go(key, cls, n, fog, **kw):
-        r = team(cls, n, N, fog, seed0=0, **kw); S[key] = summ(r); return r
-    for n in (2, 3):
-        for fog in (4, 8, 12):
+        r = team(cls, n, N, fog, seed0=0, **kw); S[key] = summ(r); S[key]["trims_with_offer"] = sum(x["trims_with_offer"] for x in r) / max(1, sum(x["trims_total"] for x in r)); S[key]["single_share"] = sum(x["singles"] for x in r) / sum(x["turns"] for x in r); return r
+    TW = [0]
+    ST = {2: 6, 3: 2}
+    for n, fogs in ((2, (3, 6, 10)), (3, (0, 2, 6))):
+        for fog in fogs:
             for nm in ("honest", "greedy"):
                 r = go("%s_%dp_F%d" % (nm, n, fog), B.TIERS[nm], n, fog)
-                if (nm, n, fog) == ("honest", 2, 8): keep["h"] = r
-        go("random_%dp_F8" % n, B.RandomBot, n, 8)
-    for nm in ("honest", "greedy"): go("%s_3p_F6" % nm, B.TIERS[nm], 3, 6)
-    for fog in (8, 12): go("code_2p_F%d" % fog, B.CodeAttack, 2, fog)
-    for fog in (8, 12):
-        for nm, cls in (("pair_blind", B.PairBlind), ("trim_blind", B.TrimBlind), ("beacon_blind", B.BeaconBlind), ("no_counting", B.Honest), ("hunter", B.BeaconHunter)):
-            go("%s_2p_F%d" % (nm, fog), cls, 2, fog, **({"count": False} if nm == "no_counting" else {}))
+                if (nm, n, fog) == ("honest", 2, 6): keep["h"] = r
+                if (nm, n, fog) == ("honest", 3, 2): keep["h3"] = r
+        go("random_%dp_F%d" % (n, ST[n]), B.RandomBot, n, ST[n])
+    for fog in (6, 10): go("code_2p_F%d" % fog, B.CodeAttack, 2, fog)
+    for n in (2, 3):
+        for nm, cls in (("pair_blind", B.PairBlind), ("trim_blind", B.TrimBlind), ("no_counting", B.Honest), ("single_blind", B.SingleBlind)):
+            go("%s_%dp_F%d" % (nm, n, ST[n]), cls, n, ST[n], **({"count": False} if nm == "no_counting" else {}))
     json.dump({"N": N, "runs": S}, open(os.path.join(HERE, "results.json"), "w"), indent=1)
     h = keep["h"]; wins = [r["win"] for r in h]; Tt = sum(r["turns"] for r in h)
     cards = []
-    for nm, key in (("Offer", "offers"), ("Light (lit ship)", "lights"), ("Trim", "trims"), ("Beacon (exact light)", "beacons"), ("Miss (Reef)", "misses")):
-        xs = [r[key] for r in h]; c = corr(xs, wins); rate = sum(xs) / Tt; flag = None
+    for nm, key in (("Pair Offer", "offers"), ("Single Offer", "singles"), ("Light (lit ship)", "lights"), ("Trim", "trims"), ("Miss (Reef)", "misses")):
+        xs = [r[key] - (r["singles"] if key == "offers" else 0) for r in h]; c = corr(xs, wins); rate = sum(xs) / Tt; flag = None
         if key == "trims" and rate > 0.25: flag = "Trim over 25% of turns"
-        if key == "beacons" and c > 0.3: flag = "strongly tied to winning"
         cards.append(dict(name=nm, played_rate=round(rate, 3), win_correlation=round(c, 3), flag=flag))
-    H = S["honest_2p_F8"]; est = round(H["turns"] * MIN_PER_TURN, 1)
+    H = S["honest_2p_F6"]; est = round(H["turns"] * MIN_PER_TURN, 1)
     hist = Counter(r["turns"] for r in h)
     P = lambda k: S[k]["win"] * 100
-    out = dict(N=N, S=S, cards=cards, est=est, hist=sorted(hist.items()))
-    json.dump(out, open(os.path.join(HERE, "summary_raw.json"), "w"), indent=1)
-    ab = lambda k, f: P("honest_2p_F%d" % f) - P("%s_2p_F%d" % (k, f))
-    pj = dict(verdict="NEEDS-FIXES (bots only, unvalidated)", revision=1, games_simulated=N * len(S), mode="co-operative; team win rates",
+    ab = lambda k, n: P("honest_%dp_F%d" % (n, ST[n])) - P("%s_%dp_F%d" % (k, n, ST[n]))
+    prev = json.load(open(os.path.join(GAME_DIR, "playtest.json")))
+    prev_small = dict(verdict=prev["verdict"], revision=prev["revision"], mean_turns=prev["length"]["mean_turns"], coop=prev["coop"]["win_by_config"],
+                      ablation_F8=prev["coop"]["ablation_loss_vs_honest_F8"], code_gap_F8=prev["coop"]["code_gap_over_honest"]["F8"],
+                      trim_share=prev["coop"]["trim_share_F8"], run3=prev["coop"]["run3_trim_games_F8"], skill_expression=prev["skill_expression"])
+    json.dump(dict(N=N, S=S), open(os.path.join(HERE, "summary_raw.json"), "w"), indent=1)
+    pj = dict(verdict="NEEDS-FIXES (bots only, unvalidated)", revision=2, games_simulated=N * len(S), mode="co-operative; team win rates",
         seat_win_rates=None, seat_balance_gap=0,
-        bot_win_rates={"random": round(S["random_2p_F8"]["win"], 3), "greedy": round(S["greedy_2p_F8"]["win"], 3), "honest": round(S["honest_2p_F8"]["win"], 3), "code": round(S["code_2p_F8"]["win"], 3)},
-        skill_expression=round(P("honest_2p_F8") - P("random_2p_F8"), 1),
+        bot_win_rates={"random": round(S["random_2p_F6"]["win"], 3), "greedy": round(S["greedy_2p_F6"]["win"], 3), "honest": round(S["honest_2p_F6"]["win"], 3), "code": round(S["code_2p_F6"]["win"], 3)},
+        skill_expression=round(P("honest_2p_F6") - P("random_2p_F6"), 1),
         length=dict(mean_turns=round(H["turns"], 1), stdev=round(H["sd"], 1), estimated_minutes=est, target_minutes=TARGET_MIN),
         length_histogram=[dict(turns=t, games=g) for t, g in sorted(hist.items())],
         ties=None, turn_cap_hits=sum(v["caps"] for v in S.values()), lead_changes_mean=None, runaway_leader_rate=None,
         coop=dict(win_by_config={k: round(v["win"], 3) for k, v in S.items()},
-                  code_gap_over_honest={"F8": round(P("code_2p_F8") - P("honest_2p_F8"), 1), "F12": round(P("code_2p_F12") - P("honest_2p_F12"), 1)},
-                  ablation_loss_vs_honest_F8={k: round(ab(k, 8), 1) for k in ("pair_blind", "trim_blind", "beacon_blind", "no_counting", "hunter")},
-                  ablation_loss_vs_honest_F12={k: round(ab(k, 12), 1) for k in ("pair_blind", "trim_blind", "beacon_blind", "no_counting", "hunter")},
-                  beacon_rule_off_F8=dict(honest=44.6, greedy=48.1), beacon_rule_off_F12=dict(honest=29.5, greedy=34.9),
-                  trim_share_F8=round(H["trim_share"], 3), run3_trim_games_F8=round(H["run3"], 3), beacons_per_game_F8=round(H["beacons"], 2),
-                  trims_with_offer_available=0.396),
-        previous=dict(verdict="NEEDS-FIXES", honest_2p_F8=0.73, greedy_2p_F8=0.816, honest_2p_F12=0.575, honest_2p_F16=0.415, honest_3p_F8=0.532, code_gap_F8=3.6, code_gap_F16=12.1,
-                      random_gap=72.4, mean_turns=29.6, estimated_minutes=21.9, trim_share=0.38, beacons=2.12, no_counting=0.644),
-        cards=cards, ambiguities=AMBIGUITIES, problems=[])
+                  code_gap_over_honest={"F6": round(P("code_2p_F6") - P("honest_2p_F6"), 1), "F10": round(P("code_2p_F10") - P("honest_2p_F10"), 1)},
+                  ablation_loss_vs_honest_2p={k: round(ab(k, 2), 1) for k in ("pair_blind", "trim_blind", "no_counting", "single_blind")},
+                  ablation_loss_vs_honest_3p={k: round(ab(k, 3), 1) for k in ("pair_blind", "trim_blind", "no_counting", "single_blind")},
+                  trim_share_2p=round(H["trim_share"], 3), run3_2p=round(H["run3"], 3), trim_share_3p=round(S["honest_3p_F2"]["trim_share"], 3), run3_3p=round(S["honest_3p_F2"]["run3"], 3),
+                  greedy_minus_honest_3p_F2=round(P("greedy_3p_F2") - P("honest_3p_F2"), 1), greedy_minus_honest_2p_F6=round(P("greedy_2p_F6") - P("honest_2p_F6"), 1),
+                  mean_turns_3p_F2=round(S["honest_3p_F2"]["turns"], 1)),
+        previous=prev_small, cards=cards, ambiguities=AMBIGUITIES, problems=[])
     json.dump(pj, open(os.path.join(GAME_DIR, "playtest.json"), "w"), indent=1)
-    print("Silent Duo v2 headline, %d games per config; win%% (turns, trim share)" % N)
-    for k, v in S.items(): print("  %-24s %5.1f  (%.1f turns, trim %.0f%%, run3 %.0f%%, bcn %.2f)" % (k, v["win"] * 100, v["turns"], v["trim_share"] * 100, v["run3"] * 100, v["beacons"]))
+    print("Silent Duo v3 headline, %d games per config; win%% (turns, trim share, run3, trims-with-offer)" % N)
+    for k, v in S.items(): print("  %-22s %5.1f  (%.1f t, trim %.0f%%, run3 %.0f%%, caps %d)" % (k, v["win"] * 100, v["turns"], v["trim_share"] * 100, v["run3"] * 100, v["caps"]))
 
 if __name__ == "__main__":
     main(int(sys.argv[1]) if len(sys.argv) > 1 else 2000)

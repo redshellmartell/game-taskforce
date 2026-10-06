@@ -1,47 +1,46 @@
-# Playtest report: Silent Duo, revision 1 (rules v2)
+# Playtest report: Silent Duo, revision 2 (rules v3)
 
-**Verdict: NEEDS-FIXES, bots only, unvalidated.** Main numbers moved into band; Trim is still a waiting action and the Beacon is not a skill decision. 2,000 games per config, fixed seeds, sim in `sim/` (`run.py`).
+**Verdict: NEEDS-FIXES (bots only, unvalidated).** 2,000 games per configuration, 24 headline configs plus 3 Fog experiments (2p F8, F9; 3p F8). Reference bots: Honest (strong), Greedy (no counting, lights at 50%), Random. Nothing here tests human deduction, the silence rule, teaching or fun.
 
-## Key numbers (team win %, Honest / Greedy; target 40-60%)
-| Config | Honest | Greedy | Previous (v1) |
-|---|---|---|---|
-| 2p F4 | 64.1 | 69.6 | - |
-| 2p F8 (Standard) | 55.8 | 58.4 | 73.0 / 81.6 |
-| 2p F12 | 42.0 | 47.0 | 57.5 / - |
-| 3p F4 | 48.5 | 57.8 | - |
-| 3p F8 | 38.0 | 47.4 | 53.2 / - |
-| 3p F6 (extra) | 43.0 | 52.6 | - |
-| 3p F12 | 26.9 | 33.3 | - |
+## Key numbers (2p Standard F6 unless stated; previous = cycle 1 at F8)
+| KPI | Target | v3 | Previous | Met |
+|---|---|---|---|---|
+| Honest / Greedy 2p Standard | 40-60 | 63.0 / 73.8 | 55.8 / 58.4 (F8) | NO |
+| Honest / Greedy 3p Standard F2 | 40-60 | 61.9 / 72.9 | 38.0 / 47.4 (F8) | NO |
+| Greedy minus Honest 2p / 3p | <=5 / <=5 | +10.8 / +11.0 | +2.6 / +9.4 | NO |
+| Random gap (2p) | >=20 | 61.8 | 54.6 | yes |
+| Code attack minus Honest F6 / F10 | <=10 | +2.8 / +2.3 | +1.0 / +3.0 | yes |
+| Trim share 2p / 3p | <25% | 25% / 26% | 30% | borderline/NO |
+| 3+ Trim runs 2p / 3p | <10% | 54% / 49% | 61% | NO |
+| Length 2p / 3p (turns) | 22-26 | 23.1 / 25.2 | 23.5 | yes |
+| Turn-cap hits | 0 | 0 | 0 | yes |
 
-- Spread of two reference bots: 2p F8 56-58 (in band), 3p F8 38-47 (Honest under), 3p F6 43-53 (in band). Greedy minus Honest: +2.5 (2p), +9.4 (3p F8), +9.7 (3p F6); target <=5 fails at 3p.
-- Random: 1.2% (2p), 0.8% (3p); skill gap 54.7 points (target >=20, was 72).
-- Code attack (hat-guessing code, 2p): +1.0 at F8, +3.0 at F12 over Honest (previous +3.6 at F8, +12.1 at F16). Passes (<=10). F16 not re-run.
-- Ablations at F8 / F12 (points lost vs Honest, need >=5): Pair-blind 8.9 / 7.9 pass; Trim-blind 15.9 / 12.0 pass; No card counting 13.8 / 10.0 pass (was 8.6); Beacon-blind 0.5 / 0.9 FAIL. Beacon-hunter (waits for exact hits) -0.9/-0.1. Beacon rule removed outright: Honest 44.6 (-11.3) at F8, 29.5 at F12.
-- Trim: 30% of turns (previous 38%, target <25%); 3+ Trim runs in 61% of 2p games (target <10%); 60% of Trims happen with no legal Offer.
-- Beacons 2.0 per game (target about 2 or fewer). Length 23.5 turns (sd 2.2), about 18.1 min vs 20 (-9%). Turn cap hits 0 in about 50,000 games.
-- Close games: see sim/results.json (late-win and near-loss shares).
+Fog sweep (Honest / Greedy): 2p F3 72.9/84.5, F6 63.0/73.8, F8 57.4/65.8, F9 52.1/62.1, F10 48.6/56.2. 3p F0 66.8/79.6, F2 61.9/72.9, F6 45.8/60.4, F8 40.6/51.9. Length at 2p: F3 24.4, F6 23.1, F8 22.2, F9 21.7, F10 21.0.
 
-## Problems (ranked)
-1. HIGH Trim still waiting action (above). Cause is the v2 Offer legality, not bot taste: Greedy does it too. Fix: loosen Offer legality or allow Offer after Trim; re-test Code attack.
-2. MEDIUM 3p Standard F=8 Honest 38%; use F=6 (43/53). Greedy beats Honest by 9+ at 3p: risk-taking pays.
-3. MEDIUM Beacon is a flat time gift, not a decision (ablation 0.5-0.9). Reframe or cut and lower Fog.
-4. LOW Rules contradiction 4A vs 5.2 on Offer legality.
+## Ablations (loss vs Honest at Standard; need >=5)
+| Bot | 2p F6 | 3p F2 |
+|---|---|---|
+| Pair-blind | -6.9 | -6.0 |
+| Trim-blind | -12.9 | -16.4 |
+| No counting | -9.4 | -8.3 |
+| Single-blind (not a twist test) | -12.9 | -12.6 |
 
-## What worked
-Reefs 3 to 2, Trim draw-2-keep-1 and hopeless-Light ban moved Honest 73% to 56% at F8. The Trim keep choice and pair choice are real skills. Code attack no longer pays. Reveal token cannot be tested with bots beyond 50/50 randomness.
+All three required ablations pass. Single-blind shows the Single Offer is used and valuable, but it moves Trim share only 29% to 25% and 3+ runs 60% to 54% (2p), so it explains about 4 points of the Trim drop (L10).
 
-## Ambiguities hit (see playtest.json)
-Offer legality text (3 vs 2 values); same-side pair cases; Trim-with-1-card; Trim-card visibility in 3p; Beacon timing in Last Watch; Light window includes equal-to-edge cards; turn-cap formula; 3p third-player role.
-Dead cards: none (values 1-10 identical); Beacon (see 3) is the only near-dead rule.
+## Problems
+1. **High: Trim stall not fixed.** 3+ Trim runs in 54% (2p) and 49% (3p) of games against a <10% target. Greedy, which Trims only when no Offer is legal, still Trims 18% of turns with runs in 40% of games, so many Trims are forced (hands with no fitting card). Honest's Trims are 66% voluntary (an Offer existed but costs a needed lamp). The Known-gaps rule applies: stop bot-side iteration and take a human playtest.
+2. **High: Fog Standard values are wrong.** Both bots are in band only at 2p F10 and 3p F8; at F6/F2 Honest is 63/62 and Greedy 74/73. Greedy beats Honest by 11 at both counts, a gap Fog does not close (same at every F). Likely a cautious-Honest artefact (L2), but it means "decisions reward care" is unproven.
+3. **Medium: length conflicts with band.** The band-correct Fog (F10) gives 21.0 turns, below 22-26. F8 gives 22.2 turns but Honest 57/Greedy 66.
+4. **Low:** Beacon cut verified (no Beacon stat); no dead action: Pair, Single, Light, Trim all used; Single share and correlations in playtest.json `cards`.
 
-## Narrated play (one bot-assisted game, seed 3, 2p F8)
-T1-T9 are all Offers and two Lights: engaging, every offer feels like a puzzle (pair choice, which ship). T2 a Beacon lit early: a happy moment. T5 a miss on 9 (value 8): first Reef, tension rises. Then T11-T19: nine turns, seven are Trims; nothing legal to say, nothing to light: boring, repeated, and the game was decided by luck of the draw. Loss in the Last Watch with two forced misses on the same 10: frustrating and anticlimactic. Downtime is low (2p alternate). Feels good for 10 turns, flat for the rest.
+## Ambiguities hit (coded interpretation in sim/game.py AMBIGUITIES)
+Single Offer with two copies of one fitting value (counted as one value, Single legal); Single on one ship while Pair is legal on another (allowed); Single card equal to L or H (impossible by strictness); skip during Last Watch (counter still advances); plus the 10 v2 items. Dead cards: none; Beacon bonus weighting in Honest's light score is now a harmless tie-break toward exact hits.
 
-## Panel (free bots)
-Average predicted fun 3.98; best fit competitor (4.69), worst fit family (3.07). Panel Fog set to 2p F8, 3p F6.
+## Narrated play (seed 11, 2p F6, Honest vs Honest, lost on turn 24)
+Turns 1-7 were pleasant: both of us poured Offers on each other's ships, the range narrowing felt like real deduction. Turn 10 was the first Trim: I held cards that no longer fitted any partner ship; boring, a waiting turn. Turn 11 the Single Offer let my partner signal 4 with their lone fitting card, a good moment (no waste). Then turns 13, 16, 17, 19, 21 were Trims: five of the last 12 turns were "discard and hope", which felt like downtime with no decision of consequence. The loss came from a forced 10 Light on a wide range as the deck ran out (T24, second Reef). Frustrating, mid-game stall as the previous cycle warned. Single Offer is a fun moment but too rare to cure it.
 
 ## What simulation cannot test
-Fun, teaching time and rulebook readability (about 227 lines), table talk and how well humans deduce (human teams will do worse than Honest, so real win rates will be lower than shown), the Silence rule being kept, human-made codes beyond the one hat code, and the physical Reveal token flip.
+Whether humans can read pair choices or find a code under the silence rule, teach time (rules are ~200 lines), real Fog calibration (human teams deduce worse than bots), and fun of the Trim downtime. The code attack is only the hat-guessing family I coded. Untested suggestions: a no-discard draw action to replace forced Trims; hand size 6; a Honest variant with Greedy's Light threshold, to separate bot artefact from rule effect.
 
-## Untested suggestions
-Offer legality loosening; F=16 Code re-run; 3p third-player role; Pair-blind at 3p.
+## Panel bots
+Free panel run: average fun 3.99, best fit competitor, worst fit family (3.11); file panel.json.

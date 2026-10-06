@@ -247,7 +247,7 @@
       "slug": "asymmetric-duel-tug-of-war",
       "title": "Tug of Crowns",
       "stage": "critique",
-      "revision": 1,
+      "revision": 2,
       "history": [
         {
           "stage": "brief",
@@ -302,6 +302,12 @@
           "time": "2026-10-05T12:14:49Z",
           "verdict": "REVISE-MAJOR",
           "note": "Revision 1 critic REVISE-MAJOR avg 3.33; waiting for approval: revision (asymmetric-duel-tug-of-war-revision-2)"
+        },
+        {
+          "stage": "critique",
+          "time": "2026-10-06T14:24:59Z",
+          "verdict": "REVISE-MAJOR",
+          "note": "Cycle 2 (revision 2): pacing fixed, side gap flips with bot skill, keywords inert; critic REVISE-MAJOR avg 3.17, structural, recommends park; waiting for approval: review-cap (asymmetric-duel-tug-of-war-review-cap-1)"
         }
       ],
       "verdicts": {

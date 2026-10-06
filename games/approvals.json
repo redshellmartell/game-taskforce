@@ -859,6 +859,59 @@
           "critic": 3.0
         }
       ]
+    },
+    {
+      "id": "asymmetric-duel-tug-of-war-review-cap-1",
+      "gate": "review-cap",
+      "game": "asymmetric-duel-tug-of-war",
+      "time": "2026-10-06T14:24:59Z",
+      "status": "pending",
+      "summary": "Cycle 2 fixed the pacing (lead changes 2.22, early endings 18.5%, runaway 44%) but not the twist: the Treasurer wins 60% / 35% / 41% against random / greedy / strategic (the 9.3 average gap hides +20, -29, -19), all five keyword ablations are inert, the Treasury cap knob is inert. Critic REVISE-MAJOR 3.17 (was 3.33), structural. Bar Raiser veto active on seat advantage.",
+      "why_needed": "Early stop: the critic's own parking rule (side gap above 8) is met and the problem is structural. Two cycles have now removed the lead choice and retuned the cap; the asymmetric twist still does not change best play (lessons L1, L2, L9).",
+      "expected_outcome": "Park: no more usage; the pacing fixes (round loser leads, margin 6) and the 47-card build stay available for reuse. Continue would need a different asymmetry (untested: fewer Hush cards, Hush barred from the highest card, Spend +3, hand limit, side-swap format) judged against side gap <= 8 and all ablations >= 5.",
+      "usage_estimate": "M",
+      "recommendation": "park",
+      "options": [
+        {
+          "key": "continue",
+          "label": "Run 1 more cycle (new asymmetry; grants 1 cycle)"
+        },
+        {
+          "key": "park",
+          "label": "Park the game; keep the pacing fixes for reuse"
+        },
+        {
+          "key": "kill",
+          "label": "Kill it, archive it and close its idea-bank entry"
+        },
+        {
+          "key": "pitch",
+          "label": "Pitch as is (not recommended: Bar Raiser veto, side gap flips)"
+        }
+      ],
+      "decision": null,
+      "decided_at": null,
+      "owner_notes": null,
+      "table": [
+        {
+          "cycle": 0,
+          "side_gap": null,
+          "lead_changes": 1.15,
+          "critic": 3.33
+        },
+        {
+          "cycle": 1,
+          "side_gap": 10.9,
+          "lead_changes": 1.83,
+          "critic": 3.33
+        },
+        {
+          "cycle": 2,
+          "side_gap": 9.3,
+          "lead_changes": 2.22,
+          "critic": 3.17
+        }
+      ]
     }
   ]
 }
