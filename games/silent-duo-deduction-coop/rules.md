@@ -1,11 +1,11 @@
-# Silent Duo - Rules v3
+# Silent Duo - Rules v3.1
 
 ## 1. Overview
 
 - **Title:** Silent Duo
 - **Hook:** Two lighthouse keepers guide ships through the fog without saying a word. You can see the ships off your partner's rocks but not your own. The only way to tell your partner where a ship is: hand over two of your own lamps in the dark and let a flipped token pick which one shines. Every lamp you spend on a signal is a lamp you can no longer use to guide your own ships.
 - **Players:** 2 (the standard game). 3 players is a **variant** (section 7.6). Fully co-operative: the team wins or loses together.
-- **Play time:** about 20 minutes (about 22-26 turns).
+- **Play time:** about 20 minutes (about 21 turns at 2-player Standard in simulation).
 - **Age:** 10+. **Complexity:** 2.5 / 5.
 
 ## 2. Components
@@ -39,14 +39,16 @@ Total: 52 cards and 3 tokens. No board, no dice.
 
    | Players | Calm | Standard | Storm |
    |---|---|---|---|
-   | 2 | 3 | 6 | 10 |
-   | 3 (variant) | 0 | 2 | 6 |
+   | 2 | 7 | 10 | 13 |
+   | 3 (variant) | 5 | 8 | 11 |
+
+   Standard values come from the v3 bot sweep (both bots inside a 40-60% win rate); Calm and Storm are one 3-card step either side. Humans deduce worse than bots, so human play will need re-tuning.
 
 2. Shuffle all 50 Lamp cards face-down.
 3. **Deal ships.** With 2 players, deal 3 cards face-down in a row in front of each player. With 3 players, deal 2 cards to each player. These are that player's **ships**, numbered left to right as seen by their owner (Ship 1, Ship 2, Ship 3). **An owner may never look at their own ships.** Every other player may look at them now and at any time (lift the card toward yourself, keeping it hidden from its owner).
 4. **Deal the Fog.** Deal F cards face-down into the box, without anyone looking.
 5. **Deal hands.** With 2 players, 5 cards each. With 3 players, 4 cards each. Players look at their own hand.
-6. The remaining cards are the **draw deck**, face-down (2 players: 34 - F cards, so 28 at Standard; 3 players: 32 - F cards, so 30 at Standard).
+6. The remaining cards are the **draw deck**, face-down (2 players: 34 - F cards, so 24 at Standard; 3 players: 32 - F cards, so 24 at Standard).
 7. Put the 2 Reef tokens safe side up and the Reveal token in the middle.
 8. Choose the first player at random. Play passes clockwise.
 9. **From now on the Silence rule applies** (section 5.1).
@@ -70,8 +72,8 @@ If at least one of the actions below is legal, you must take one of them (your c
   - Put both face-down beside the target ship, the **lower-value card on your left** and the higher-value card on your right. They may both be lower than V, both higher, or one on each side.
   - The ship's owner flips the Reveal token. "Low": you turn the lower card face-up. "High": you turn the higher card face-up. (Programs: choose the lower or higher card with probability 1/2 each.)
   - The unrevealed card goes back into your hand without being shown. Everyone knows only that it was higher (if "Low" was flipped) or lower (if "High" was flipped) than the revealed card.
-- **Single Offer** (legal only if your fitting cards for that ship all have **the same value**, so no Pair Offer on that ship is possible):
-  - Play one fitting card face-up beside the target ship. No token flip. Because every fitting card you hold has that one value, you have no choice of value.
+- **Single Offer** (legal only if your fitting cards for that ship all have **the same value**, so no Pair Offer on that ship is possible; two or more copies of one value count as one value, so a hand with 5, 5 as its only fitting cards may Single Offer a 5 but not Pair Offer):
+  - Play one fitting card face-up beside the target ship. No token flip. Because every fitting card you hold has that one value, you have no choice of value. Since a fitting card is strictly inside (L, H), a Single card can never equal L or H.
 - **Honest placement (both kinds):** you place the revealed card in the target ship's **Low row** if its value is lower than V, or its **High row** if it is higher. The side is fixed by the true comparison; you have no choice.
 - Either kind of Offer costs exactly one card from your hand. Guaranteed meaning: V is strictly higher than every Low-row card and strictly lower than every High-row card, and every Offer narrows the open range.
 
@@ -126,7 +128,7 @@ Each player additionally knows privately: their own hand, the values of every sh
 - **Single Offer:** target is another player's unlit ship; you hold at least one fitting card and all your fitting cards for that ship have the same value.
 - **Light:** you have an unlit ship and a card C with L <= C <= H for it.
 - **Trim:** the draw deck has at least 1 card (your hand is never empty then).
-- Lit ships cannot be targeted. Values may repeat among ships. Whether a Pair or a Single Offer is legal is decided per target ship: you may Single-Offer on one ship while a Pair Offer is possible on another.
+- Lit ships cannot be targeted. Values may repeat among ships. Whether a Pair or a Single Offer is legal is decided per target ship: you may Single-Offer on one ship even while a Pair Offer is legal on another ship (your choice).
 
 ### 5.3 Resolution details
 
@@ -147,9 +149,9 @@ The game ends in exactly one of these ways:
 
 1. **Win:** all ships are lit (checked immediately after each Light).
 2. **Loss by reef:** the second Reef token is wrecked.
-3. **Loss by dawn:** after the turn in which the draw deck empties, the **Last Watch** begins: every player takes exactly one more turn, in clockwise order, starting with the player to the left of the one who emptied the deck and ending with that player. If any ship is still unlit after the Last Watch, the team loses. A win or a reef loss during the Last Watch ends the game at once.
+3. **Loss by dawn:** after the turn in which the draw deck empties, the **Last Watch** begins: every player takes exactly one more turn, in clockwise order, starting with the player to the left of the one who emptied the deck and ending with that player. A skipped turn counts as that player's Last Watch turn. If any ship is still unlit after the Last Watch, the team loses. A win or a reef loss during the Last Watch ends the game at once.
 
-**Termination and turn cap.** Before the Last Watch every turn removes at least 1 card from the draw deck and nothing ever adds cards to it, so the game lasts at most (starting draw deck + number of players) turns: 2 players at Standard 28 + 2 = 30; 3 players at Standard 30 + 3 = 33. Simulations use this as the turn cap; reaching it is a bug.
+**Termination and turn cap.** Before the Last Watch every turn removes at least 1 card from the draw deck and nothing ever adds cards to it, so the game lasts at most (starting draw deck + number of players) turns: 2 players at Standard 24 + 2 = 26; 3 players at Standard 24 + 3 = 27. Simulations use this as the turn cap; reaching it is a bug.
 
 **Score (for tracking and the simulation):** a win scores 10 + (cards left in the draw deck at the moment of winning). A loss scores the number of ships lit. No tiebreakers (co-operative).
 

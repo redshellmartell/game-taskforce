@@ -912,6 +912,59 @@
           "critic": 3.17
         }
       ]
+    },
+    {
+      "id": "silent-duo-deduction-coop-review-cap-1",
+      "gate": "review-cap",
+      "game": "silent-duo-deduction-coop",
+      "time": "2026-10-06T14:33:01Z",
+      "status": "pending",
+      "summary": "Cycle 2 closed the lying-card channel and kept all ablations passing, but the Trim stall is not fixed: 3+ Trim runs 54% at 2p and 49% at 3p (target under 10%), Trim share 25%. Critic REVISE-MINOR 3.33 (was 3.67, bar 3.5), calls the Trim stall structural and recommends a human playtest instead of more bot cycles. Early stop: the targeted numbers did not move enough.",
+      "why_needed": "The review cap stops here because the critic's own rule applies (if Trim stays at 25% or more, go to a human playtest) and bot cycles cannot show whether Trim runs feel like downtime. The Single Offer explained only about 4 points of the Trim drop. The Fog values were re-set from the sweep by a wording-only edit (2p F10, 3p F8), not simulated.",
+      "expected_outcome": "If you play it: a human session answers whether Trim runs feel like downtime and whether Fog 10/8 is right (record in games/silent-duo-deduction-coop/human-playtests.json). If you continue: one more bot cycle, aimed at Trim 3+ runs under 10%, not recommended.",
+      "usage_estimate": "S",
+      "recommendation": "pitch",
+      "options": [
+        {
+          "key": "pitch",
+          "label": "Pitch it for a human playtest, with the known risks listed (recommended)"
+        },
+        {
+          "key": "continue",
+          "label": "Run 1 more bot cycle on the Trim stall (grants 1 cycle; not recommended)"
+        },
+        {
+          "key": "park",
+          "label": "Park the game"
+        },
+        {
+          "key": "kill",
+          "label": "Kill it, archive it and record why"
+        }
+      ],
+      "decision": null,
+      "decided_at": null,
+      "owner_notes": null,
+      "table": [
+        {
+          "cycle": 0,
+          "honest_2p": 0.73,
+          "trim_runs_2p": null,
+          "critic": 3.5
+        },
+        {
+          "cycle": 1,
+          "honest_2p": 0.56,
+          "trim_runs_2p": 0.61,
+          "critic": 3.67
+        },
+        {
+          "cycle": 2,
+          "honest_2p": "0.63 at F6 (0.49 at F10)",
+          "trim_runs_2p": 0.54,
+          "critic": 3.33
+        }
+      ]
     }
   ]
 }

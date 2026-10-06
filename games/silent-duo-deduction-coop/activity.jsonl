@@ -26,3 +26,5 @@
 {"time":"2026-10-06T14:24:36Z","agent":"playtester","game":"silent-duo-deduction-coop","event":"start","message":"Revision 2 playtest, rules v3"}
 {"time":"2026-10-06T14:31:23Z","agent":"playtester","game":"silent-duo-deduction-coop","event":"done","message":"Rev 2 playtest: NEEDS-FIXES (bots only); Trim stall persists, Fog Standard off-band"}
 {"time": "2026-10-06T14:31:40Z", "agent": "playtester", "game": "silent-duo-deduction-coop", "event": "done", "message": "Cycle 2 playtest NEEDS-FIXES: Trim share 25% and 3+ Trim runs 54% not fixed, Fog F6/F2 out of band (in band at 2p F10, 3p F8), Greedy gap +10.8, code attack closed (+2.8), ablations pass; budget request for 2 more Fog points"}
+{"time": "2026-10-06T14:33:01Z", "agent": "critic", "game": "silent-duo-deduction-coop", "event": "done", "message": "Cycle 2 critique: REVISE-MINOR 3.33; Trim stall structural; recommends a human playtest"}
+{"time": "2026-10-06T14:33:01Z", "agent": "director", "game": "silent-duo-deduction-coop", "event": "waiting", "message": "waiting for approval: review-cap (silent-duo-deduction-coop-review-cap-1)"}

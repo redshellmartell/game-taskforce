@@ -192,7 +192,7 @@
       "slug": "silent-duo-deduction-coop",
       "title": "Silent Duo",
       "stage": "critique",
-      "revision": 1,
+      "revision": 2,
       "history": [
         {
           "stage": "brief",
@@ -235,6 +235,12 @@
           "time": "2026-10-06T14:21:43Z",
           "verdict": "REVISE-MINOR",
           "note": "Cycle 1 (revision 1): Honest 73% to 56%, code attack closed, Trim stall and Beacon fail; critic REVISE-MINOR avg 3.67, mechanical; cycle 2 runs inside the cap"
+        },
+        {
+          "stage": "critique",
+          "time": "2026-10-06T14:33:01Z",
+          "verdict": "REVISE-MINOR",
+          "note": "Cycle 2 (revision 2): Trim stall not fixed (structural), Fog values re-set from the sweep; critic REVISE-MINOR avg 3.33 (below 3.5), recommends a human playtest, no more bot cycles; waiting for approval: review-cap (silent-duo-deduction-coop-review-cap-1)"
         }
       ],
       "verdicts": {

@@ -1,18 +1,17 @@
 {
   "verdict": "REVISE-MINOR",
-  "revision": 1,
-  "scores": { "originality": 3, "clarity": 4, "fun": 3, "balance": 3, "market_fit": 4, "production": 5 },
-  "average": 3.67,
-  "strength": "The Fog knob now brings 2p Honest/Greedy into band (56/58, was 73/82) with a 54.7-point skill gap and a code attack that no longer pays (+1.0 at F8, +3.0 at F12); the double-lamp Offer is novel and cheap to make.",
-  "weakness": "Middle-game pacing: Trim is 30% of turns (target <25%) and 3+ Trim runs occur in 61% of 2p games (target <10%), 60% forced by the Offer legality rule; also Beacon-blind ablation fails (0.5/0.9, a flat time gift) and 3p is out of band with Greedy +9.4 over Honest. Repeats L3 (flat decided-by-luck stretch), L8 (3p) and L1 (inert Beacon).",
+  "revision": 2,
+  "scores": { "originality": 3, "clarity": 3, "fun": 3, "balance": 2, "market_fit": 4, "production": 5 },
+  "average": 3.33,
+  "strength": "The pair-or-single Offer puzzle with a closed code channel (code attack +2.3 to +2.8), all three twist ablations passing, a 62-point skill gap and a 52-card tuckbox.",
+  "weakness": "Trim stall unfixed after two cycles: 3+ Trim runs in 54% (2p) and 49% (3p) of games against under 10%, many forced; Standard Fog out of band and Greedy +11 over Honest. Repeats L11, L5, L10, L2 and L9.",
   "closest_existing_game": { "name": "Hanabi", "similarity": "medium" },
   "required_changes": [
-    "Loosen Offer legality or allow Offer after Trim so Trim stops being forced: Trim share <25% of turns, 3+ Trim runs <10% of games; re-run Code attack at F8 and F12 (<= Honest +10) and keep 2p in 40-60%",
-    "Make Beacon a real decision or cut it: Beacon-blind must lose >=5 points, or remove it and reconfirm the 2p band",
-    "Set 3p Standard F=6 and re-test (both bots 40-60, Greedy minus Honest <=5) or label 3p a variant",
-    "Update rules.md Known gaps and 7.3/7.6 text to measured results without growing the line count (L7)",
-    "Summarise close-game shares (late wins, near-losses) in the playtest report"
+    "Reset Fog from the measured sweep: 2p Standard F10 (or F9), 3p Standard F8, recalibrate Calm and Storm; KPI: both bots in 40-60 win band (balance)",
+    "Write the four Single Offer rulings into rules.md and update stale 7.4, 7.6 and Known gaps text without growing the line count (clarity, L7)",
+    "Stop bot iteration on the Trim stall; record 54% / 49% 3+ runs in Known gaps and make it the first human playtest question (fun)",
+    "Optional, only after human feedback: no-discard draw action or hand size 6 instead of forced Trim (3+ Trim runs under 10%)"
   ],
-  "revision_worth_it": true,
-  "revision_reason": "Yes, one more cycle: problems are mechanical (legality threshold, Beacon, 3p Fog), 2p is in band; target Trim share <25% and 3+ Trim runs <10% with Code attack still <= Honest +10. If Trim does not fall under 25%, stop and go to a human playtest."
+  "revision_worth_it": false,
+  "revision_reason": "No for more bot cycles: the Trim stall is structural and moved about 4-7 points per cycle against a 15-45 point need. Make the cheap Fog and wording edit, then take a human playtest."
 }

@@ -5,7 +5,7 @@
 | duelflip | 5. Pitched (owner-review) | PASS (3.67) | Duel Flip: revision 3 PASS; pitch rewritten; runaway leader 74% known risk; waiting for the owner |
 three-player-trick-taker | critique | NEEDS-FIXES (minor) / REVISE-MINOR (3.67) | revision 2 done; pitch-or-revise decision waiting; was: Playtest NEEDS-FIXES, critic 3.0; waiting for revision approval
 asymmetric-duel-tug-of-war | critique | NEEDS-FIXES / REVISE-MAJOR (3.17) | cycle 2: pacing fixed, twist inert (side gap flips with bot skill), Bar Raiser veto; review-cap request waiting (recommend park) |
-silent-duo-deduction-coop | critique | NEEDS-FIXES / REVISE-MINOR (3.67) | cycle 1 done: 2p in band, code attack closed; Trim stall and Beacon next; cycle 2 running inside the cap |
+silent-duo-deduction-coop | critique | NEEDS-FIXES / REVISE-MINOR (3.33) | cycle 2: code attack closed, Trim stall structural; critic wants a human playtest; review-cap request waiting (recommend pitch for a human test) |
 archetypes | brief | - | Owner idea (personality-test RPG); researching
 
 grid-of-cards-area-control | critique | NEEDS-FIXES (2p only) / REVISE-MINOR (3.67) | good at 3-4 players; 2p stalls; revision request waiting
