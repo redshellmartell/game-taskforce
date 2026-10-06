@@ -19,3 +19,4 @@
 {"time": "2026-10-05T12:13:55Z", "agent": "playtester", "game": "asymmetric-duel-tug-of-war", "event": "done", "message": "Revision 1 playtest NEEDS-FIXES: lead extra card too strong (self-lead 63%), side gap 10.9, lead changes 1.83, 31% end by round 3; critique next"}
 {"time": "2026-10-05T12:13:55Z", "agent": "critic", "game": "asymmetric-duel-tug-of-war", "event": "start", "message": "Revision 1: reviewing design and playtest"}
 {"time": "2026-10-05T12:14:49Z", "agent": "critic", "game": "asymmetric-duel-tug-of-war", "event": "done", "message": "Revision 1 critic REVISE-MAJOR avg 3.33; waiting for approval: revision (asymmetric-duel-tug-of-war-revision-2)"}
+{"time": "2026-10-06T13:57:09Z", "agent": "director", "game": "asymmetric-duel-tug-of-war", "event": "start", "message": "Cycle 2 (revision 2, owner approved in dashboard 13:43Z, inside review cap): designer pass"}
