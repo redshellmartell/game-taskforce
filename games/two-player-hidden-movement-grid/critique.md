@@ -1,76 +1,55 @@
-# Critique: Dead Reckoning (revision 0)
+# Critique: Dead Reckoning (revision 1, cycle 1; rules v2.1, playtested at v2)
 
-**Verdict: REVISE-MAJOR**
+**Verdict: REVISE-MAJOR (recommend park at the review-cap gate)**
 
-Average 3.33 (target 3.5 at pitch). The structure is sound and the seat and skill numbers are good. But two KPIs fail, one card is dead, and the core promise ("reading the rival beats luck") is not shown in the numbers.
+Average 3.00 (was 3.33; target 3.5 at pitch). All numbers are bots only, unvalidated. The revision fixed the cooling-read layer, but the failure I flagged as the stop condition got worse: runaway leader is 0.831 (rev 0 was 0.795; target 0.65; my own park line was 0.70). Lead changes are unchanged at 1.50. **The problem is structural.**
 
 ## Scores (1-5)
 | Area | Score | Note |
 |---|---|---|
-| Originality | 3 | Mechanic mix is familiar; see below |
-| Rules clarity | 3 | One-page goal missed; 6 ambiguities; many sub-rules |
-| Fun | 3 | Good peaks, dull middle; skill is mostly routing, not reading |
-| Balance | 3 | Seat and skill pass; runaway 0.79, lead changes 1.5, dead Sonar ping |
-| Market fit | 3 | Still a fast 2-player duel with no downtime, but a family fit of 2.91 |
-| Production | 5 | 25 grid cards + 18 helm cards + 2 tokens; trivial and cheap |
+| Originality | 3 | Core mechanic unchanged, not re-checked. Closest remains Creep in Silent (medium). Creep in Silent was still never compared (designer had no search access), so that check is open. |
+| Rules clarity | 3 | The 6 ambiguities are closed in v2.1, which is good. But about 100 lines of teach text, six sub-steps per step, and the Reef bounce conflict is still the likeliest rule to be played wrongly. The one-page promise is unmet (L7). |
+| Fun | 2 | The cooling-hand read is a real pleasure (narrated round 3), but the narrated game became two solitaire races, then three rounds of walking home with nothing to decide. 71% of strategic games end on the cap, so most games are decided and then coast. |
+| Balance | 2 | Seat 1.8, skill gap 88.7, length 17.1 min (+14%) pass. Runaway 0.831 and lead changes 1.50 fail, and the Sonar is still a dead card. |
+| Market fit | 3 | Still a cheap, no-downtime two-player duel. But the brief sold "outguess your rival" and delivers "race to a finite pile". Family fit (2.91 at rev 0) was not addressed. |
+| Production | 5 | 25 grid cards, 18 helm cards, 2 tokens, no board; about $15. |
 
-Average: 3.33.
+Average: (3+3+2+2+3+5)/6 = 3.00.
 
-## Originality
-- **Closest: Creep in Silent (2021)**, a two-player submarine game where each side lays three movement cards from a six-card hand and estimates the rival's position. Similarity is **medium**. Dead Reckoning differs in a few ways. It uses a shared grid of face-down salvage, it is a score race, and its cooling row makes both hands public. I only saw search snippets, so I can't compare the rules in detail. Check this before any prototype is shown to others.
-- **Submarine (wargame)**: simultaneous plotted movement, but a hidden position. Low similarity.
-- **Onitama**: shares only "a limited set of move cards, and what you played shapes what you can do next" (its cards rotate, so the idea is similar). It is open, alternating and deterministic, so similarity is **low-medium**. The "cards you used are visible and temporarily unavailable" idea is the nearest overlap, and is not unique to either game.
-- **Nine Fields**: the overlap is only "a grid of face-down cards". It is 2-4 players, alternating turns and area control. Dead Reckoning is a simultaneous duel with no area control. Similarity **low**; the brief's distinction holds.
-- No copied rules or text found, so no automatic KILL.
+## Playbook checks
+- **Comeback (L3):** the stated mechanisms were mirrored home waters, trailer-only ping, and the torpedo steal of the highest card. The data shows none working. Runaway rose to 0.831 and is 0.76-0.92 in every bot pairing. The zoned deal is no better than the old one (0.794 vs 0.78). The 3-step ping gives 0.76 and the 8-round cap gives 0.78. The round-1 leader wins only 58.2%, so round 1 is not the cause; the lead sets in the middle of the game, with no catch-up tied to the score gap. This repeats L3 for the third time in this studio.
+- **Ablations (L1):** they were run and are informative. Cooling-blind 41.4% passes (reading worth about 17 points, up from about 5; real progress). No-torpedo 29.9% and no-middle-row 29.2% pass. **No-ping 49.4% fails** (52% even with a 3-step ping), so the Sonar is a dead card for the second revision running. The ping is also used by trailers only, and the ping spent correlates -0.17 with winning, so it mostly marks a loss. Repeats L1.
+- **Two or more bots (L2):** met. Random, greedy, mid and strategic were used. The spread is real (greedy to mid is the skill step; extra depth adds nothing), and runaway is flat across every pairing, so this is not a bot artefact.
+- **Dead cards:** Sonar only.
+- **Bundled changes (L10):** v2 changed the deal, the card mix, the ping and the cap together. The playtester's single-change runs did isolate them, and they show those changes did not help runaway.
+- **Wording:** the designer's v2.1 pass is clean and added no mechanics.
 
-## Rules clarity
-A new player could learn the basic loop (plot three, resolve step by step), but not cleanly. Problems:
-- Step order has six sub-phases (reveal, aim, collision, move/enter, reef bounce clash, fire). The brief asked for a one-page rule set with at most 3 special rules. The "three special rules" label hides Mine cancellation, Reef bounce and its clash, Harbour immunity, Sonar scoring and ping order, and two tiebreakers.
-- The six ambiguities in `playtest.json` must be closed: Sonar counting for lead and ping order, Reef bounce clash wording, cooling of cancelled cards, same face-down target, tiebreak counts after thefts, and ping priority.
-- Scoring a held Sonar as 1 point while also letting it be spent makes "who is behind" unclear.
-- The panel's rules_simplicity metric is 0.09 for every persona, the lowest metric across the board.
-- The Reef bounce clash is the likeliest rule to be played wrongly at a table. It could be dropped (see changes).
+## Why it is structural
+This is a race to take a finite pile of 27 points, with a mid-game leader who simply keeps what they have. The only interaction that moves points is the torpedo (hits link to winning at +0.35), and it needs the subs to meet; but they play a mirrored solitaire race for the first rounds. Three different fixes (zoned deal, ping reach, cap length) each left runaway at 0.76-0.83. The playtester's untried ideas (a two-card steal, a leader-only Mine penalty, a scoring change that keeps moving) are real changes to the scoring model, not tuning. A scoring-model rework would be a new design (for example, points that are re-contested every round), not a revision, and nothing in the data says which would work (L9: structural problems do not move with mechanical fixes).
+
+## Rules clarity: remaining issues
+- Phase 1 ping asks the rival to plot first and show two cards; this is a unique, easily forgotten sub-procedure for a card that is a dead rule anyway. Cutting the Sonar would remove it (rules shorter, zero dead cards).
+- Reef bounce conflict, torpedoes on 8 neighbours, Harbour immunity, Mine cancellation and ordered steps A-E: too many edge cases for a 10+ family game.
+- The Known gaps section is honest and lists the unmet rule-budget and family-fit items (the playbook asks for this).
 
 ## Fun
-- **Strong:** no downtime; the torpedo plus forced-collision comeback in the narrated round 2 was a real tense moment; the cooling row is a neat, readable hook.
-- **Weak:** round 1 is a coin flip and sets the lead (the narrated game was 6-0 after round 1 with no decisions). About 75% of games end at the round-10 cap with Salvage still on the grid, so a leader coasts. Blind bots lose only 55-45 to bots that read the cooling row, so the signature mechanic is worth about 5 points. The playtester says the skill gap (75 points) comes from route efficiency, not from outguessing. That makes this a "pick the best path through fog" game with a light guessing layer, not the hidden-movement duel the brief promised.
-- The panel fun of 3.75 is inflated by the bots' skill gap. The casual, story and family scores (3.19, 3.26, 2.91) are the more honest ones for the 10+ audience in the brief, and those players lose to skilled players 67-75% of the time.
-
-## Balance (against KPI targets)
-| KPI | Result | Target | Status |
-|---|---|---|---|
-| Seat gap | 1.4 | <= 5 | pass |
-| Strategic vs random | 75 points | >= 20 | pass |
-| Length | 9.6 rounds, about 14.8 min (designer's 85 s per round estimate) | 12-18 min | pass, unmeasured |
-| Runaway leader | 0.79 | <= 0.65 | **fail** |
-| Lead changes | 1.50 | >= 2 | **fail** |
-| Dead cards | Sonar ping | 0 | **fail** (never pinging wins 50.0%) |
-| Ambiguities | 6 | 0 | **fail** (minor) |
-| Dominant strategy | none found | none | pass |
-
-Also note: the panel's family seat win rates are 48.7% vs 41.4%, so the seat gap may be larger with weak players. Not enough data to say more.
-
-## Market fit
-Still matches the gap: a two-player, simultaneous, low-downtime duel with a grid of cards and cheap parts. It drifted slightly. The brief wanted "a real rock-paper-scissors layer", but the sim shows luck of the fog and routing dominate. The family audience (brief: "adults and families 10+") is the worst fit (would not buy).
+The hand-reading puzzle is a genuine hook and now measurably matters. The no-downtime simultaneous play is good. But a game that is effectively decided by round 6 in 83% of cases, then runs to round 12, is not good, and the casual and family personas will feel it more than the bots do.
 
 ## Production
-About 45 cards and 2 tokens, no board. Needs two distinct card backs for the Harbours, two coloured helm decks, and clear icons for the 5 helm cards. Cost around $15. No hard-to-make parts.
+About 45 cards and 2 tokens. Two distinct card backs for Harbours; zone marks on the Sea cards (a corner mark, easy). Sort time about a minute.
 
 ## Biggest strength
-A very cheap, no-downtime two-player design with a clear hook (the visible cooling row) and good seat balance and skill gap.
+The cooling row now carries real skill (cooling-blind bot 41.4%, torpedo and middle row clearly valuable), in a very cheap, no-downtime, well-seat-balanced two-player package.
 
 ## Biggest weakness
-Early fog-flip luck decides most games (runaway 0.79, 1.5 lead changes, a round-1 coin flip), and the signature reading layer adds only about 5 points of skill. The game does not yet deliver the "outguess your rival" experience it is sold on.
+Runaway leader 0.831 with 1.50 lead changes, flat across every bot pairing and untouched by three separate fixes: a structural lack of comeback (repeats L3), plus a Sonar that is still a dead card after a rework (repeats L1).
 
-## Required changes
-Change one or two at a time and re-run the same experiments.
-1. **Reduce early-fog luck.** Options: make most Salvage worth 1 and 2 (for example 8x1, 4x2, 1x3), cut Mines from 4 to 2, or give each player a free peek at 2 face-down cards in setup. Aims to cut the runaway rate from 0.79 toward 0.65 and raise lead changes toward 2.
-2. **Fix the comeback gap.** For example a hit victim cannot be hit again until their next-but-one round, plus a rule that a trailer's first Salvage taken in a round scores +1. Must raise torpedo-driven lead changes without making torpedo spam dominant (E1 was 47.8%, so there is room). KPI: lead changes >= 2.
-3. **Make Sonar matter.** Replace the ping with "reveal two steps", or "peek at one face-down card", and re-run E4. KPI: dead cards = 0 (never-ping must fall to 45% or less).
-4. **Stop coasting on the cap.** Either raise the cap to 12 rounds or end the game when one player leads by 8 or more with no Salvage within reach. Keep length at 12-18 minutes. KPI: runaway leader and length within +-20%.
-5. **Raise the value of reading.** Test a deeper bot; if cooling-row reading is still under 10 points, let the cooling row also affect something visible, such as Salvage taken by a played card. KPI: blind-vs-reading gap above 10 points.
-6. **Close all 6 ambiguities** and cut sub-rules. Consider removing the Reef bounce clash (make the other sub simply stay) and the Sonar-counts-1-point rule. KPI: ambiguities = 0, rules_simplicity above 0.09 in the panel.
-7. **Find out about Creep in Silent.** Compare in one search. If the similarity is higher than medium, the differences must be made clearer in the rules.
+## Required changes (only if the owner chooses to continue)
+These are new design, not tuning, so treat them as a different game variant.
+1. **Score-gap catch-up** (runaway 0.83 to 0.65 or below, lead changes to 2 or more): for example the torpedo steals two cards, or the leader's Mine penalty takes the highest card instead of the lowest, or Salvage regrows. Test one change at a time with the playtester's single-change runs (L10).
+2. **Cut the Sonar** unless a version beats the no-ping ablation by 5 points (target no-ping at most 45%). Cutting it also removes the ping sub-procedure from the rules.
+3. **End decided games early** (71% reach the cap): for instance end when the lead exceeds the remaining Salvage in play. Target length within +-20% of 15 minutes.
+4. **Compare with Creep in Silent** in one search before any prototype is shown to others.
 
 ## Is another revision worth it?
-**Yes.** The core loop, seat balance and skill gap are healthy, the failures are narrow and measurable, and each fix has a named KPI. I expect it to reach REVISE-MINOR or PASS in one loop if luck and comeback are both fixed. If revision 1 does not move the runaway rate below 0.70, stop and park it.
+**No.** My rev-0 stop rule (park if runaway stays above 0.70) is triggered: it rose to 0.831 despite three targeted changes, it is flat across every bot, and the remaining fixes are guesses at a rework of the scoring model rather than a diagnosed tweak. Recommend **park** (keep the cooling-row-plus-torpedo kernel, which tested well, for reuse in another design). Kill is also defensible; I do not recommend a pitch.

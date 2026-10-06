@@ -21,3 +21,4 @@
 {"time": "2026-10-05T12:14:49Z", "agent": "critic", "game": "asymmetric-duel-tug-of-war", "event": "done", "message": "Revision 1 critic REVISE-MAJOR avg 3.33; waiting for approval: revision (asymmetric-duel-tug-of-war-revision-2)"}
 {"time": "2026-10-06T13:57:09Z", "agent": "director", "game": "asymmetric-duel-tug-of-war", "event": "start", "message": "Cycle 2 (revision 2, owner approved in dashboard 13:43Z, inside review cap): designer pass"}
 {"time": "2026-10-06T13:59:15Z", "agent": "game-designer", "game": "asymmetric-duel-tug-of-war", "event": "done", "message": "rules.md v3: lead choice removed (loser leads), Treasury cap 3 to 2 as the one lever, double-move margin 6, wording fixes"}
+{"time":"2026-10-06T14:20:09Z","agent":"playtester","game":"asymmetric-duel-tug-of-war","event":"start","message":"Revision 2 playtest: updating sim to rules v3"}

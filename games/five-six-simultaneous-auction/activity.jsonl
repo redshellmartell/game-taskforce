@@ -20,3 +20,4 @@
 {"time": "2026-10-06T14:13:56Z", "agent": "director", "game": "five-six-simultaneous-auction", "event": "start", "message": "Cycle 2 (inside review cap): designer pass on Hype share and open income"}
 {"time": "2026-10-06T14:16:05Z", "agent": "game-designer", "game": "five-six-simultaneous-auction", "event": "done", "message": "Cycle 2: rules v3, Hype ceiling +4 per lot as the one lever, open income cut (face-down income), tie rule kept"}
 {"time":"2026-10-06T14:19:29Z","agent":"playtester","game":"five-six-simultaneous-auction","event":"start","message":"Revision 2 playtest (rules v3)"}
+{"time":"2026-10-06T14:20:37Z","agent":"playtester","game":"five-six-simultaneous-auction","event":"step","message":"Sim updated to v3; running headline 2000 games x 17 table kinds x 2 counts + 5 experiments"}

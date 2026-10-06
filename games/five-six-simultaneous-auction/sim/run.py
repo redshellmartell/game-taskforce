@@ -10,11 +10,11 @@ SLUG = "five-six-simultaneous-auction"
 TARGET_MIN = 20
 
 CLS = {"S": B.Strategic, "R": B.Random, "G": B.Greedy, "N": B.NoMemory, "H": B.IgnoreHype, "C": B.IgnoreCrash,
-       "T": B.IgnoreTies, "P": B.Planner, "I": B.Instinct, "A": B.IgnoreCap, "L": B.Lite}
+       "T": B.IgnoreTies, "P": B.Planner, "I": B.Instinct, "A": B.IgnoreCap, "h": B.PIgnoreHype, "c": B.PIgnoreCrash, "t": B.PIgnoreTies, "a": B.PIgnoreCap, "L": B.Lite}
 KINDS = {"mixed": "SRGSRG", "mixedP": "PRGPRG", "SvR": "SRSRSR", "PvR": "PRPRPR", "LvR": "LRLRLR", "oneS": "SRRRRR", "oneP": "PRRRRR",
          "oneL": "LRRRRR", "oneG": "GRRRRR", "allS": "SSSSSS", "allR": "RRRRRR", "allG": "GGGGGG", "PvS": "PSPSPS",
-         "abl-H": "SHSHSH", "abl-C": "SCSCSC", "abl-T": "STSTST", "abl-A": "SASASA", "ablP-H": "PHPHPH", "ablP-C": "PCPCPC",
-         "ablP-T": "PTPTPT", "ablP-A": "PAPAPA"}
+         "abl-H": "SHSHSH", "abl-C": "SCSCSC", "abl-T": "STSTST", "abl-A": "SASASA", "ablP-H": "PhPhPh", "ablP-C": "PcPcPc",
+         "ablP-T": "PtPtPt", "ablP-A": "PaPaPa"}
 def table(kind, n, g):
     """bot class list for a table; rotated by game index g so every bot meets every seat equally."""
     base = [CLS[ch] for ch in KINDS[kind]][:n]
@@ -89,9 +89,17 @@ def _job(a):
 def pct(x): return round(x * 100, 1)
 def gapof(r, a="strategic", b="random"): return (r["bot"][a] - r["bot"][b]) * 100
 
-# Configurations tried beyond the headline (max 5; the first pass is the headline itself). Edit EXP to change.
-EXP = {"E1 lots 3-6": dict(lot_bonus=1), "E2 hand5": dict(start_hand=5), "E3 bids1-11": dict(bid_max=11),
-       "E4 lots 4-7": dict(lot_bonus=2), "E5 income1": dict(income=1)}
+RUN_KINDS = ["mixed", "SvR", "PvR", "oneS", "oneP", "oneL", "oneG", "allS", "allG", "abl-H", "abl-C", "abl-T", "abl-A",
+             "ablP-H", "ablP-C", "ablP-T", "ablP-A"]
+ABL = {"H": ("ignore-hype", "p-ignore-hype"), "C": ("ignore-crash", "p-ignore-crash"), "T": ("ignore-ties", "p-ignore-ties"), "A": ("ignore-cap", "p-ignore-cap")}
+# Extra configurations (max 5); all measured with lone S and all-S tables at both counts, N//2 games.
+EXP = {"E1 cap3": dict(hype_cap=3), "E2 cap5": dict(hype_cap=5), "E3 nocap(v2-like, face-down)": dict(hype_cap=0),
+       "E4 hand5": dict(start_hand=5), "E5 income1": dict(income=1)}
+
+def abl_gap(g, n, k):
+    base = "abl-" + k
+    r = g(base); r2 = g("ablP-" + k)
+    return gapof(r, "strategic", ABL[k][0]), gapof(r2, "planner", ABL[k][1])
 
 def main():
     if '--rewrite' in sys.argv:
@@ -100,38 +108,39 @@ def main():
     N = int(sys.argv[1]) if len(sys.argv) > 1 and sys.argv[1].isdigit() else 2000
     jobs = []
     for n in (5, 6):
-        for kind in KINDS:
+        for kind in RUN_KINDS:
             jobs.append(("%dp-%s" % (n, kind), n, kind, {}, N, n * 100000, kind == "mixed"))
     if "--no-exp" not in sys.argv:
         for name, kw in EXP.items():
-            for kind in ("oneS", "allS", "abl-N"):
-                jobs.append(("%s 6p-%s" % (name, kind), 6, kind, kw, N // 2, 777000, False))
-    with Pool(4) as p: res = dict(p.map(_job, jobs))
+            for n in (5, 6):
+                for kind in ("oneS", "allS"):
+                    jobs.append(("%s %dp-%s" % (name, n, kind), n, kind, kw, N // 2, 777000, False))
+    jobs.sort(key=lambda j: -j[4])
+    with Pool(4) as p: res = dict(p.map(_job, jobs, chunksize=1))
     out = {"headline": {k: v for k, v in res.items() if k[:3] in ("5p-", "6p-")}, "experiments": {k: v for k, v in res.items() if k[:3] not in ("5p-", "6p-")}}
     with open(os.path.join(HERE, "results.json"), "w") as f: json.dump(out, f, default=lambda o: o, indent=1)
-    write_playtest(out, N)
+    try: write_playtest(out, N)
+    except Exception as ex: print('write_playtest deferred:', ex)
     h = out["headline"]
-    print("Headline %d games per table kind (2 player counts x %d kinds)" % (N, len(KINDS)))
+    print("Headline %d games per table kind" % N)
     for n in (5, 6):
         g = lambda k: h["%dp-%s" % (n, k)]
-        print("%dp seatgap(allS) %.1f | lone S %.1f vs R %.1f (gap %.1f) | lone NoMem gap %.1f | lone G gap %.1f | mixed S/R/G %s" % (
-            n, spread(g("allS")), pct(g("oneS")["bot"]["strategic"]), pct(g("oneS")["bot"]["random"]), gapof(g("oneS")), gapof(g("oneN"), "no-memory"),
-            gapof(g("oneG"), "greedy"), [pct(g("mixed")["bot"][k]) for k in ("strategic", "random", "greedy")]))
-        print("   3S+3R: S-R %.1f | 3N+3R: N-R %.1f | planner v instinct %s | S v instinct %s | planner v S %s" % (
-            gapof(g("SvR")), gapof(g("NvR"), "no-memory"), (pct(g("PvI")["bot"]["planner"]), pct(g("PvI")["bot"]["instinct"])),
-            (pct(g("SvI")["bot"]["strategic"]), pct(g("SvI")["bot"]["instinct"])), (pct(g("PvS")["bot"]["planner"]), pct(g("PvS")["bot"]["strategic"]))))
-        print("   ablation (full S minus ablated, points): " + ", ".join("%s %.1f" % (k[4:], gapof(g(k), "strategic", {"N": "no-memory", "H": "ignore-hype", "C": "ignore-crash", "T": "ignore-ties"}[k[4]])) for k in ("abl-N", "abl-H", "abl-C", "abl-T")))
+        print("%dp seatgap(allS) %.1f | lone gap S %.1f P %.1f Lite %.1f G %.1f | S-R at 3S+3R %.1f, P-R %.1f | mixed S/R/G %s" % (
+            n, spread(g("allS")), gapof(g("oneS")), gapof(g("oneP"), "planner"), gapof(g("oneL"), "lite"), gapof(g("oneG"), "greedy"),
+            gapof(g("SvR")), gapof(g("PvR"), "planner"), [pct(g("mixed")["bot"][k]) for k in ("strategic", "random", "greedy")]))
+        print("   ablation S-vs-ablated / P-vs-ablated (pts): " + ", ".join("%s %.1f/%.1f" % (ABL[k][0][7:], *abl_gap(g, n, k)) for k in "HCTA"))
         a = g("allS")
-        print("   allS: hype%% %.0f forced%% %.1f unsold %.1f block %.1f cancelled %.1f LC %.2f runaway %.2f/%.2f flip %.2f min %.1f tie %.3f" % (
-            a["hype_share_of_points"] * 100, a["forced_pass_rate"] * 100, a["unsold_per_game"], a["block_mean"], a["cancelled_bids_per_game"],
-            a["lead_changes"], a["runaway_half"], a["runaway_late"], a["last_round_winner_flip"], a["minutes"], a["ties"]))
-    print("--- experiments (6p, %d games)" % (N // 2))
+        print("   allS: hype%% %.0f forced%% %.1f unsold %.1f cancelled %.1f LC %.2f runaway %.2f/%.2f flip %.2f crashflip %.2f min %.1f tie %.3f" % (
+            a["hype_share_of_points"] * 100, a["forced_pass_rate"] * 100, a["unsold_per_game"], a["cancelled_bids_per_game"],
+            a["lead_changes"], a["runaway_half"], a["runaway_late"], a["last_round_winner_flip"], a["last_round_crash_flip"], a["minutes"], a["ties"]))
+    print("--- experiments (%d games)" % (N // 2))
     for name in EXP:
-        e = lambda k: out["experiments"]["%s 6p-%s" % (name, k)]
-        a = e("allS")
-        print("%s: loneS gap %.1f | N-abl S-N %.1f | allS hype%% %.0f forced%% %.1f unsold %.1f LC %.2f run %.2f flip %.2f seatgap %.1f" % (
-            name, gapof(e("oneS")), gapof(e("abl-N"), "strategic", "no-memory"), a["hype_share_of_points"] * 100, a["forced_pass_rate"] * 100,
-            a["unsold_per_game"], a["lead_changes"], a["runaway_half"], a["last_round_winner_flip"], spread(a)))
+        for n in (5, 6):
+            e = lambda k: out["experiments"]["%s %dp-%s" % (name, n, k)]
+            a = e("allS")
+            print("%s %dp: loneS gap %.1f | hype%% %.0f forced%% %.1f unsold %.1f LC %.2f run %.2f flip %.2f seatgap %.1f" % (
+                name, n, gapof(e("oneS")), a["hype_share_of_points"] * 100, a["forced_pass_rate"] * 100,
+                a["unsold_per_game"], a["lead_changes"], a["runaway_half"], a["last_round_winner_flip"], spread(a)))
 
 def write_playtest(out, N):
     h = out["headline"]; ps = json.load(open(os.path.join(HERE, "previous.json")))

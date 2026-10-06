@@ -125,10 +125,6 @@ class Lite(Strategic):         # weaker reference: few samples, cruder valuation
     name = "lite"; M = 5; cardval = 0.6; est_rate = 0.3; noise = 0.3
 class NoMemory(Strategic):    name = "no-memory"; memory = False
 
-class PIgnoreHype(Planner): name = "p-ignore-hype"; hype = False
-class PIgnoreCrash(Planner): name = "p-ignore-crash"; crash = False
-class PIgnoreTies(Planner): name = "p-ignore-ties"; ties = False
-class PIgnoreCap(Planner): name = "p-ignore-cap"; cap = False
 # --- persona bots -----------------------------------------------------------
 class Planner(Strategic):         # strategist: patient banker, tracks cards, plays the long game
     name = "planner"; cardval = 1.0; est_rate = 0.5; M = 24
@@ -165,6 +161,10 @@ class Cautious(Strategic):        # family: safe, keeps a couple of cards, bids 
             if mids: return self.rng.choice(mids)
         return i
 
+class PIgnoreHype(Planner): name = "p-ignore-hype"; hype = False
+class PIgnoreCrash(Planner): name = "p-ignore-crash"; crash = False
+class PIgnoreTies(Planner): name = "p-ignore-ties"; ties = False
+class PIgnoreCap(Planner): name = "p-ignore-cap"; cap = False
 STANDARD = {"random": Random, "greedy": Greedy, "strategic": Strategic}
 PERSONA = {"strategist": Planner, "casual": Instinct, "competitor": Optimiser, "story": Flavour,
            "family": Cautious, "barraiser": Expert}

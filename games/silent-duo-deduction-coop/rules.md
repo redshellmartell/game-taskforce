@@ -1,4 +1,4 @@
-# Silent Duo - Rules v2
+# Silent Duo - Rules v2.1
 
 ## 1. Overview
 
@@ -63,7 +63,8 @@ If at least one of the actions below is legal, you must take one of them (your c
   - the two cards have **different values**,
   - **neither** value equals V, and
   - **both** values are **inside the ship's open range** (strictly greater than L and strictly less than H).
-  So an Offer is only possible on a ship whose open range still holds at least 3 values.
+  A card equal to L or H, or outside the range, may not be offered; if only one of your cards fits, you cannot Offer on that ship. Because the two cards and V are three different values strictly between L and H, an Offer is only possible on a ship whose open range still holds at least 3 values.
+  - The two cards may both be lower than V, both higher, or one on each side. All three cases are legal; the revealed card is placed by the honest-placement rule below either way.
 - **Placement:** put both cards face-down beside the target ship, the **lower-value card on your left** and the higher-value card on your right.
 - **Random reveal:** the ship's owner flips the Reveal token. "Low": you turn the lower card (left) face-up. "High": you turn the higher card (right) face-up. (Programs: choose the lower or higher card with probability 1/2 each.)
 - **Honest placement:** you place the revealed card in the target ship's **Low row** if its value is lower than V, or its **High row** if it is higher. The side is fixed by the true comparison; you have no choice.
@@ -72,16 +73,16 @@ If at least one of the actions below is legal, you must take one of them (your c
 
 **B. Light (guide one of your own ships)**
 - **Target:** one of your own unlit ships.
-- **Card:** play one card C from your hand face-up onto it. C must satisfy **L <= C <= H** for that ship (so C could light at least one value still in the open range). A card outside this window may not be played.
-- **Resolver:** with 2 players, your partner; with 3 players, the player on your left (the third player may check). The resolver looks at V and compares:
+- **Card:** play one card C from your hand face-up onto it. C must satisfy **L <= C <= H** for that ship (so C could light at least one value still in the open range). A card outside this window may not be played. C equal to L or to H is legal (it cannot equal V, but it can still light a value 1 away).
+- **Resolver:** with 2 players, your partner; with 3 players, the player on your left. The resolver looks at V and compares (results are applied in this order: lit or Beacon or miss, then the win/loss check, then Phase 2):
   - **|C - V| <= 1 (lit):** the resolver turns the ship face-up. It is **lit**. The ship and C stay face-up in front of you for the rest of the game (public, out of play).
-  - **C = V exactly (Beacon):** lit as above, and also a **Beacon**: move the top 2 cards of the Fog pile (all of them if fewer than 2 remain) face-down to the bottom of the draw deck, without looking. If the draw deck is empty at that moment (only possible during the Last Watch), the Beacon moves nothing.
+  - **C = V exactly (Beacon):** lit as above, and also a **Beacon**: move the top 2 cards of the Fog pile (all of them if fewer than 2 remain) face-down to the bottom of the draw deck, without looking. The Beacon resolves before the Phase 2 draw. If the draw deck is empty at that moment (only possible during the Last Watch), the Beacon moves nothing. If the Light lit the last unlit ship, the team has already won and the Beacon is ignored.
   - **|C - V| >= 2 (miss):** the resolver places C in that ship's Low row (if C < V) or High row (if C > V). Flip one Reef token to wrecked. If both Reefs are now wrecked, the team loses immediately (no draw).
 
 **C. Trim (change your lamps)**
 - Legal only while the draw deck has at least 1 card.
 - Discard one card from your hand face-down onto the Night pile, without showing it.
-- Then (instead of the normal Phase 2 draw) draw **2** cards from the draw deck, keep 1, and put the other face-down on the Night pile without showing it. If the deck has only 1 card, draw it and keep it.
+- Then (instead of the normal Phase 2 draw) draw **2** cards from the draw deck, keep 1, and put the other face-down on the Night pile without showing it. If the deck has only 1 card, draw it and keep it. Only the trimmer sees the discarded, drawn, kept and Night-piled cards; no other player (including the third player in a 3-player game) sees any of them.
 
 ### Phase 2: Draw
 
@@ -113,12 +114,12 @@ Public events, visible to every player:
 | Skip | Who was skipped | - |
 | Always | Draw deck, Fog pile and Night pile sizes | The cards in them |
 
-Each player additionally knows privately: their own hand, the values of every ship that is not theirs, and any card they have sent to the Night pile. Nobody ever learns their own unlit ships' values, the Fog pile, or another player's hand except through these events.
+Each player additionally knows privately: their own hand, the values of every ship that is not theirs, every card they have sent to the Night pile (both the discarded card and the drawn card not kept on each of their own Trims), and the value of the unrevealed card in each of their own Offers. Nobody else learns these, in 2 or 3 players. Nobody ever learns their own unlit ships' values, the Fog pile, or another player's hand except through these events.
 
 ### 5.2 Legality summary
 
-- **Offer:** target is another player's unlit ship whose open range holds 2 or more legal values that are not V; you hold two cards of different values, both inside the open range, neither equal to V.
-- **Light:** you have an unlit ship and a card C with L <= C <= H for it.
+- **Offer:** target is another player's unlit ship; you hold two cards of different values, **both** strictly inside its open range (L < card < H), neither equal to V. (This is the same rule as 4 A; it implies the open range holds at least 3 values.) Same-side pairs are legal.
+- **Light:** you have an unlit ship and a card C with L <= C <= H for it (edge values L and H included).
 - **Trim:** the draw deck has at least 1 card (your hand is never empty then).
 - Lit ships cannot be targeted. Values may repeat among ships.
 
@@ -126,7 +127,7 @@ Each player additionally knows privately: their own hand, the values of every sh
 
 - Signal rows only grow; cards in them never move. Lit ships keep their rows on the table; they no longer matter.
 - The Offer reveal is decided only by the Reveal token, and Light results only by the comparison. Nobody chooses how anything resolves.
-- With 3 players, any player may Offer on any ship that is not their own; the ship's owner flips the Reveal token and the offerer places the card. A Light is resolved by the player on the lighter's left. The third player has no extra role.
+- With 3 players, any player may Offer on any ship that is not their own; the ship's owner flips the Reveal token and the offerer places the card. A Light is resolved by the player on the lighter's left. Resolution must be correct: if any player who can see the ship notices a wrong result (wrong row, lit/miss error), they may point it out as a rules question and it is corrected before the next turn begins. The third player has no other role. (Programs: every resolution is correct.)
 - Simultaneous effects: a Light that lights the last unlit ship wins at once (a Beacon then is irrelevant). A miss that wrecks the second Reef loses at once, before any draw.
 - No ties can arise: the game is co-operative and every comparison is strict or exact.
 
@@ -134,7 +135,8 @@ Each player additionally knows privately: their own hand, the values of every sh
 
 - **Draw deck empty:** no more draws; Trim is illegal; the Last Watch runs (section 6). A Beacon then moves nothing.
 - **Fog pile empty:** Beacons still light the ship but move nothing.
-- During the Last Watch a player with no legal Offer or Light is skipped.
+- During the Last Watch a player with no legal Offer or Light is skipped. Last Watch turns are Offer, Light or skip only (Trim is illegal) and nobody draws.
+- A Trim or a Phase 2 draw that takes the last card of the draw deck empties it; the Last Watch then begins after that turn.
 
 ## 6. End of game and scoring
 
@@ -142,9 +144,9 @@ The game ends in exactly one of these ways:
 
 1. **Win:** all ships are lit (checked immediately after each Light).
 2. **Loss by reef:** the second Reef token is wrecked.
-3. **Loss by dawn:** the draw deck becomes empty. After the turn in which it empties, the **Last Watch** begins: every player takes exactly one more turn, in clockwise order, starting with the player to the left of the one who emptied the deck and ending with that player. If any ship is still unlit after the Last Watch, the team loses.
+3. **Loss by dawn:** the draw deck becomes empty. After the turn in which it empties, the **Last Watch** begins: every player takes exactly one more turn, in clockwise order, starting with the player to the left of the one who emptied the deck and ending with that player. If any ship is still unlit after the Last Watch, the team loses. A win or a reef loss during the Last Watch ends the game at once, as at any other time.
 
-**Termination and turn cap.** Before the Last Watch every turn removes at least 1 card from the draw deck, and Beacons can add at most F cards in total, so the game lasts at most (starting draw deck + F + number of players) turns: 2 players at Standard, 26 + 8 + 2 = 36. Simulations should use this as the turn cap; reaching it is a bug.
+**Termination and turn cap.** Before the Last Watch every turn removes at least 1 card from the draw deck (a Trim removes 2), and Beacons can add at most F cards in total, so the game lasts at most (starting draw deck + F + number of players) turns. This is an upper bound, not an expected length: 2 players at Standard, 26 + 8 + 2 = 36; 3 players at Standard, 24 + 8 + 3 = 35. Simulations should use this as the turn cap; reaching it is a bug.
 
 **Score (for tracking and the simulation):** a win scores 10 + (cards left in the draw deck at the moment of winning). A loss scores the number of ships lit. No tiebreakers (co-operative).
 
@@ -204,6 +206,8 @@ Interval narrowing; card counting (five of each value; ships, rows, lit cards, t
 About 200 lines of rules text with 4 special rules (double-lamp Offer with the Reveal token, Light window and Beacon, Trim draw-2-keep-1, Last Watch). The teach is a one-page reference card's worth of actions but the rulebook is longer than one page (see Known gaps).
 
 ## 8. Changelog
+
+- **v2.1 (fix-before-critic, wording only).** Closed the 10 playtest ambiguities with no rule or balance change: 5.2 Offer legality now matches 4 A (both cards strictly inside the range, as simulated); same-side pairs, edge-value Lights, Trim card privacy in 3 players, Beacon-before-draw, Last Watch actions and immediate wins, the 3-player turn cap, and correcting a mis-resolved Light are stated explicitly.
 
 - **v2 (revision 1).** Targeted fixes from `playtest-report.md` and `critique.md`; no new mechanics beyond what the fixes need.
   - Code channel (critic change 1; playtest +12.1 at F = 16): both offered cards must be inside the open range; deliberate hopeless Lights are illegal (Light window L <= C <= H).
