@@ -1,0 +1,46 @@
+Ladder Pairs: seats 0-3 = ['casual', 'competitor', 'family', 'strategist']; table 'worst' for family. S@n = single rank n, P pair, T triple, R run (n cards, top rank); Rope = rank 14/15.
+t1 seat2 leads R6@9
+t1 seat3 passes
+t1 seat0 passes
+t1 seat1 passes
+t2 seat2 leads P2@2
+t2 seat3 plays P2@3
+t2 seat0 plays P2@12
+t2 seat1 passes
+t2 seat2 passes
+t2 seat3 passes
+t3 seat0 leads R3@8
+t3 seat1 passes
+t3 seat2 passes
+t3 seat3 passes
+t4 seat0 leads P2@1
+t4 seat1 plays P2@6
+t4 seat2 passes
+t4 seat3 plays P2@7
+t4 seat0 plays P2@13
+t4 seat1 passes
+t4 seat2 passes
+t4 seat3 passes
+t5 seat0 leads S1@11
+t5 seat1 plays S1@13
+t5 seat2 passes
+t5 seat3 passes
+t5 seat0 plays S1@15 (Rope Sun)
+  seat0 is OUT (#1)
+t5 seat1 passes
+t5 seat2 passes
+t5 seat3 passes
+  RELAY: seat0's partner seat1 leads
+t6 seat1 leads R3@3
+t6 seat2 passes
+t6 seat3 passes
+t7 seat1 leads S1@5
+t7 seat2 plays S1@9
+t7 seat3 passes
+t7 seat1 plays S1@10
+t7 seat2 plays S1@14 (Rope Moon)
+t7 seat3 passes
+t7 seat1 passes
+t8 seat2 leads S1@1
+  seat2 is OUT (#2)
+HAND 1 end: out order [0, 2], pts [3, 3, 1, 1], scores [3, 3, 1, 1]

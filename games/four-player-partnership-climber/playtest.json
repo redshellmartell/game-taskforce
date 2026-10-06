@@ -1,0 +1,692 @@
+{
+  "verdict": "NEEDS-FIXES",
+  "revision": 0,
+  "games_simulated": 2000,
+  "seat_win_rates": {
+    "1": 0.259,
+    "2": 0.2465,
+    "3": 0.2495,
+    "4": 0.245
+  },
+  "seat_balance_gap": 0.9,
+  "bot_win_rates": {
+    "random": 0.063,
+    "greedy": 0.6925,
+    "strategic": 0.811
+  },
+  "skill_expression": 74.8,
+  "length": {
+    "mean_turns": 324.08,
+    "stdev": 23.58,
+    "estimated_minutes": 27.3,
+    "target_minutes": 25
+  },
+  "length_histogram": [
+    {
+      "turns": 245,
+      "games": 1
+    },
+    {
+      "turns": 249,
+      "games": 1
+    },
+    {
+      "turns": 253,
+      "games": 1
+    },
+    {
+      "turns": 254,
+      "games": 1
+    },
+    {
+      "turns": 256,
+      "games": 2
+    },
+    {
+      "turns": 259,
+      "games": 1
+    },
+    {
+      "turns": 260,
+      "games": 1
+    },
+    {
+      "turns": 261,
+      "games": 2
+    },
+    {
+      "turns": 262,
+      "games": 2
+    },
+    {
+      "turns": 263,
+      "games": 2
+    },
+    {
+      "turns": 266,
+      "games": 2
+    },
+    {
+      "turns": 267,
+      "games": 5
+    },
+    {
+      "turns": 268,
+      "games": 1
+    },
+    {
+      "turns": 269,
+      "games": 1
+    },
+    {
+      "turns": 270,
+      "games": 2
+    },
+    {
+      "turns": 271,
+      "games": 1
+    },
+    {
+      "turns": 272,
+      "games": 1
+    },
+    {
+      "turns": 273,
+      "games": 4
+    },
+    {
+      "turns": 274,
+      "games": 3
+    },
+    {
+      "turns": 275,
+      "games": 3
+    },
+    {
+      "turns": 277,
+      "games": 5
+    },
+    {
+      "turns": 278,
+      "games": 4
+    },
+    {
+      "turns": 279,
+      "games": 6
+    },
+    {
+      "turns": 280,
+      "games": 5
+    },
+    {
+      "turns": 281,
+      "games": 7
+    },
+    {
+      "turns": 282,
+      "games": 10
+    },
+    {
+      "turns": 283,
+      "games": 8
+    },
+    {
+      "turns": 284,
+      "games": 4
+    },
+    {
+      "turns": 285,
+      "games": 9
+    },
+    {
+      "turns": 286,
+      "games": 13
+    },
+    {
+      "turns": 287,
+      "games": 9
+    },
+    {
+      "turns": 288,
+      "games": 7
+    },
+    {
+      "turns": 289,
+      "games": 10
+    },
+    {
+      "turns": 290,
+      "games": 9
+    },
+    {
+      "turns": 291,
+      "games": 14
+    },
+    {
+      "turns": 292,
+      "games": 13
+    },
+    {
+      "turns": 293,
+      "games": 15
+    },
+    {
+      "turns": 294,
+      "games": 19
+    },
+    {
+      "turns": 295,
+      "games": 22
+    },
+    {
+      "turns": 296,
+      "games": 19
+    },
+    {
+      "turns": 297,
+      "games": 15
+    },
+    {
+      "turns": 298,
+      "games": 21
+    },
+    {
+      "turns": 299,
+      "games": 30
+    },
+    {
+      "turns": 300,
+      "games": 18
+    },
+    {
+      "turns": 301,
+      "games": 18
+    },
+    {
+      "turns": 302,
+      "games": 25
+    },
+    {
+      "turns": 303,
+      "games": 33
+    },
+    {
+      "turns": 304,
+      "games": 19
+    },
+    {
+      "turns": 305,
+      "games": 29
+    },
+    {
+      "turns": 306,
+      "games": 25
+    },
+    {
+      "turns": 307,
+      "games": 21
+    },
+    {
+      "turns": 308,
+      "games": 24
+    },
+    {
+      "turns": 309,
+      "games": 29
+    },
+    {
+      "turns": 310,
+      "games": 24
+    },
+    {
+      "turns": 311,
+      "games": 24
+    },
+    {
+      "turns": 312,
+      "games": 28
+    },
+    {
+      "turns": 313,
+      "games": 34
+    },
+    {
+      "turns": 314,
+      "games": 26
+    },
+    {
+      "turns": 315,
+      "games": 29
+    },
+    {
+      "turns": 316,
+      "games": 40
+    },
+    {
+      "turns": 317,
+      "games": 34
+    },
+    {
+      "turns": 318,
+      "games": 48
+    },
+    {
+      "turns": 319,
+      "games": 28
+    },
+    {
+      "turns": 320,
+      "games": 31
+    },
+    {
+      "turns": 321,
+      "games": 22
+    },
+    {
+      "turns": 322,
+      "games": 24
+    },
+    {
+      "turns": 323,
+      "games": 29
+    },
+    {
+      "turns": 324,
+      "games": 32
+    },
+    {
+      "turns": 325,
+      "games": 38
+    },
+    {
+      "turns": 326,
+      "games": 36
+    },
+    {
+      "turns": 327,
+      "games": 31
+    },
+    {
+      "turns": 328,
+      "games": 30
+    },
+    {
+      "turns": 329,
+      "games": 37
+    },
+    {
+      "turns": 330,
+      "games": 33
+    },
+    {
+      "turns": 331,
+      "games": 30
+    },
+    {
+      "turns": 332,
+      "games": 27
+    },
+    {
+      "turns": 333,
+      "games": 25
+    },
+    {
+      "turns": 334,
+      "games": 30
+    },
+    {
+      "turns": 335,
+      "games": 29
+    },
+    {
+      "turns": 336,
+      "games": 36
+    },
+    {
+      "turns": 337,
+      "games": 35
+    },
+    {
+      "turns": 338,
+      "games": 37
+    },
+    {
+      "turns": 339,
+      "games": 30
+    },
+    {
+      "turns": 340,
+      "games": 30
+    },
+    {
+      "turns": 341,
+      "games": 24
+    },
+    {
+      "turns": 342,
+      "games": 23
+    },
+    {
+      "turns": 343,
+      "games": 20
+    },
+    {
+      "turns": 344,
+      "games": 18
+    },
+    {
+      "turns": 345,
+      "games": 25
+    },
+    {
+      "turns": 346,
+      "games": 19
+    },
+    {
+      "turns": 347,
+      "games": 16
+    },
+    {
+      "turns": 348,
+      "games": 28
+    },
+    {
+      "turns": 349,
+      "games": 12
+    },
+    {
+      "turns": 350,
+      "games": 22
+    },
+    {
+      "turns": 351,
+      "games": 18
+    },
+    {
+      "turns": 352,
+      "games": 14
+    },
+    {
+      "turns": 353,
+      "games": 14
+    },
+    {
+      "turns": 354,
+      "games": 18
+    },
+    {
+      "turns": 355,
+      "games": 14
+    },
+    {
+      "turns": 356,
+      "games": 18
+    },
+    {
+      "turns": 357,
+      "games": 14
+    },
+    {
+      "turns": 358,
+      "games": 7
+    },
+    {
+      "turns": 359,
+      "games": 12
+    },
+    {
+      "turns": 360,
+      "games": 10
+    },
+    {
+      "turns": 361,
+      "games": 11
+    },
+    {
+      "turns": 362,
+      "games": 17
+    },
+    {
+      "turns": 363,
+      "games": 13
+    },
+    {
+      "turns": 364,
+      "games": 14
+    },
+    {
+      "turns": 365,
+      "games": 10
+    },
+    {
+      "turns": 366,
+      "games": 8
+    },
+    {
+      "turns": 367,
+      "games": 7
+    },
+    {
+      "turns": 368,
+      "games": 5
+    },
+    {
+      "turns": 369,
+      "games": 2
+    },
+    {
+      "turns": 370,
+      "games": 4
+    },
+    {
+      "turns": 371,
+      "games": 2
+    },
+    {
+      "turns": 372,
+      "games": 3
+    },
+    {
+      "turns": 373,
+      "games": 3
+    },
+    {
+      "turns": 374,
+      "games": 7
+    },
+    {
+      "turns": 375,
+      "games": 3
+    },
+    {
+      "turns": 376,
+      "games": 3
+    },
+    {
+      "turns": 377,
+      "games": 3
+    },
+    {
+      "turns": 378,
+      "games": 4
+    },
+    {
+      "turns": 379,
+      "games": 2
+    },
+    {
+      "turns": 380,
+      "games": 4
+    },
+    {
+      "turns": 381,
+      "games": 1
+    },
+    {
+      "turns": 382,
+      "games": 1
+    },
+    {
+      "turns": 384,
+      "games": 1
+    },
+    {
+      "turns": 385,
+      "games": 1
+    },
+    {
+      "turns": 387,
+      "games": 1
+    },
+    {
+      "turns": 388,
+      "games": 2
+    },
+    {
+      "turns": 389,
+      "games": 2
+    },
+    {
+      "turns": 401,
+      "games": 1
+    }
+  ],
+  "ties": 0.002,
+  "turn_cap_hits": 0,
+  "lead_changes_mean": 1.13,
+  "runaway_leader_rate": 0.403,
+  "cards": [
+    {
+      "name": "Rope (14/15)",
+      "played_rate": 0.884,
+      "win_correlation": 0.163,
+      "flag": null
+    },
+    {
+      "name": "Run lead/follow",
+      "played_rate": 0.497,
+      "win_correlation": 0.178,
+      "flag": null
+    },
+    {
+      "name": "Triple",
+      "played_rate": 0.092,
+      "win_correlation": 0.055,
+      "flag": null
+    },
+    {
+      "name": "Pair",
+      "played_rate": 0.561,
+      "win_correlation": 0.032,
+      "flag": null
+    },
+    {
+      "name": "Single (number)",
+      "played_rate": 0.985,
+      "win_correlation": 0.028,
+      "flag": null
+    }
+  ],
+  "ambiguities": [
+    "Hand-ending tie for the Ropes: which Rope shows when the Relay partner 'shows their Rope (if still in hand)' - Relay only matters for knowledge if the partner's Rope was unplayed; chosen: leader's colour becomes public (equal to the out player's, who had to play a Rope to go out).",
+    "'Players ranked by fewest cards left' for the turn cap is unreachable (max ~176 turns); implemented but never hit.",
+    "Four of a kind is not a type: a pair+pair split is the only way to play it (as stated in the playbook, not in the rules text sections 1-6).",
+    "Who counts as 'first player out' when the second player out ends the hand mid-trick: first = earlier out; no points for non-going-out players beyond team share (as stated).",
+    "Uphill threshold uses scores at the START of the hand ('4 or more below the highest score'); a player exactly 4 below is Uphill (>=4).",
+    "Final tie-break step 3 'better finish in hand 6' is applied to tied players; players still tied after it share the win. Sim resolves a shared win by a random pick and reports the shared-win rate as ties.",
+    "'You cannot go out without playing your Rope' is a consequence, not a restriction: the Rope is a card in hand and the hand empties only when it is played. Needs no extra rule text.",
+    "Is passing allowed for the leader after a Relay (lead goes to partner): not allowed (must lead), as for any leader.",
+    "Passed player may play again in the same trick: trick ends only after every other in-hand player passes consecutively since the last play (a pass-then-play is possible once someone else plays)."
+  ],
+  "problems": [
+    {
+      "severity": "high",
+      "problem": "The hidden-partner twist does not change best play: partner-reading bots do not beat simple ones.",
+      "evidence": "Reader (belief bot) vs Greedy: -1.5 (2+2) and -2.5 (1+3) points. A1 partner-blind BEATS Reader by 7.0 pts per bot (Reader loses by trying to help partners). A2 reveal-blind -1.2, A3 Uphill-blind -0.4, A4 Relay-blind -3.2: all four ablations fail the >=5 loss test. 9 Reader variants (experiments/e1.py) topped out at +1.7 over Greedy; the best variant never passes for a partner unless certain. Passing a trick to a partner earns nothing because points come only from going-out order, and passing costs tempo.",
+      "fix": "Give partner help a payoff: e.g. count each trick won by a partner pair towards the team (1 point per 3 tricks), or let the partner's pass-and-lead (Relay) apply to any trick the partner wins while the other is out of cards, or make the first out player's partner score also if they go out within the next trick. Re-run all ablations after any change (L10)."
+    },
+    {
+      "severity": "high",
+      "problem": "Skill expression only shows against Random; strategic is not better than Greedy (L6 repeat).",
+      "evidence": "Reader minus Random: 74.8 pts (1 vs 3), 36.7 (2 vs 2) but Reader minus Greedy -2.5 / -1.5; Greedy minus Random 59.0. The gap is 'play legal sensible cards vs random', not partner reading, timing or sequencing. ReaderBest ties Greedy (0.0).",
+      "fix": "Same lever as above: add decisions whose best answer differs from 'shed lowest'. Untested: a second scoring source (tricks or card points), and 11-card deal with 8 set aside (less luck)."
+    },
+    {
+      "severity": "medium",
+      "problem": "Lead changes below target.",
+      "evidence": "Mean 1.13 between hands (target >= 2; max possible 5). Greedy mirror 1.12. Runaway 0.40 (after hand 4) / 0.32 (after hand 3) passes. With Uphill off runaway rises to 0.66 (+26 pts) and lead changes fall to 0.53, so Uphill is carrying the whole comeback load.",
+      "fix": "Uphill threshold 4 -> 3 (knob), or let Uphill also apply +1 when 2 behind; re-test runaway does not collapse (lead changes may rise by making leads cheaper to lose)."
+    },
+    {
+      "severity": "medium",
+      "problem": "Dead turns: many forced passes.",
+      "evidence": "42% of follow turns have no legal play; 1.9 runs of 3+ consecutive forced passes per hand (Reader mirror), 54 turns per hand with about 20 of them forced. In the sample hand seat 0 passed 11 times in a row across tricks 2-3.",
+      "fix": "Untested: a player who has passed twice in a row may start the next trick when the holder is not their (likely) partner, or deal 9 cards each so hands are shorter. Needs a human feel check before changing (L11)."
+    },
+    {
+      "severity": "low",
+      "problem": "First-lead team scores 3+ in 61.0% of hands (band 50-60%).",
+      "evidence": "Reader mirror 0.610 over 12000 hands (about +-0.9); by pairing left 0.620, across 0.622, right 0.586 (spread 3.6, inside 5). Greedy mirror 0.569.",
+      "fix": "Knob first-out points is not the lever; the lowest scorer leading is. Option: leader rotates with dealer in hands 2-6 (loses some comeback)."
+    },
+    {
+      "severity": "low",
+      "problem": "Length depends heavily on the minutes-per-turn assumption.",
+      "evidence": "54 turns per hand (34 real decisions). At 6 s per decision, 2 s per quick turn and 0.5 min per hand overhead: 27.3 min (target 25, window 20-30). At 8 s / 3 s / 0.7: about 37 min. Hands are 4.6 min vs the designer's 4.",
+      "fix": "Time one real hand. If slow, deal 9 cards each (set aside 16)."
+    },
+    {
+      "severity": "low",
+      "problem": "Code attack check is weak.",
+      "evidence": "Gain -0.1 pts (passes, limit 3), but because partner knowledge barely pays (A1 beats Reader) a bot gets nothing from a code; this does not show the rules resist signalling by humans.",
+      "fix": "Re-run after the partner-payoff fix; consider Open Rope if gain exceeds 3."
+    }
+  ],
+  "validation": "bots only, unvalidated",
+  "ablations": {
+    "A1_partner_blind": {
+      "reader": 0.215,
+      "ablated": 0.285,
+      "margin_per_bot_pts": -7.0,
+      "margin_pair_share_pts": -14.0,
+      "passes": false
+    },
+    "A2_reveal_blind": {
+      "reader": 0.2438,
+      "ablated": 0.2562,
+      "margin_per_bot_pts": -1.2,
+      "margin_pair_share_pts": -2.5,
+      "passes": false
+    },
+    "A3_uphill_blind": {
+      "reader": 0.248,
+      "ablated": 0.252,
+      "margin_per_bot_pts": -0.4,
+      "margin_pair_share_pts": -0.8,
+      "passes": false
+    },
+    "A4_relay_blind": {
+      "reader": 0.234,
+      "ablated": 0.266,
+      "margin_per_bot_pts": -3.2,
+      "margin_pair_share_pts": -6.4,
+      "passes": false
+    }
+  },
+  "code_attack": {
+    "code": 0.2493,
+    "honest": 0.2508,
+    "gain_pair_share_pts": -0.1,
+    "passes": true
+  },
+  "skill_gaps_pts": {
+    "reader_minus_random_1v3": 74.8,
+    "reader_minus_random_2v2": 36.7,
+    "reader_minus_greedy_1v3": -2.5,
+    "reader_minus_greedy_2v2": -1.5,
+    "readerbest_minus_random_1v3": 67.7,
+    "readerbest_minus_greedy_2v2": -0.0,
+    "greedy_minus_random_1v3": 59.0
+  },
+  "bot_spread_note": "bot averages from 1+3 tables vs Random; see sim/results.json"
+}

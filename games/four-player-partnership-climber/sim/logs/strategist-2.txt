@@ -1,0 +1,46 @@
+Ladder Pairs: seats 0-3 = ['casual', 'competitor', 'story', 'strategist']; table 'worst' for strategist. S@n = single rank n, P pair, T triple, R run (n cards, top rank); Rope = rank 14/15.
+t1 seat2 leads R6@9
+t1 seat3 passes
+t1 seat0 passes
+t1 seat1 passes
+t2 seat2 leads S1@14 (Rope Moon)
+t2 seat3 passes
+t2 seat0 plays S1@15 (Rope Sun)
+t2 seat1 passes
+t2 seat2 passes
+t2 seat3 passes
+t3 seat0 leads R3@8
+t3 seat1 passes
+t3 seat2 passes
+t3 seat3 passes
+t4 seat0 leads R3@13
+t4 seat1 passes
+t4 seat2 passes
+t4 seat3 passes
+t5 seat0 leads P2@1
+t5 seat1 passes
+t5 seat2 plays P2@2
+t5 seat3 passes
+t5 seat0 passes
+t5 seat1 plays P2@6
+t5 seat2 passes
+t5 seat3 plays P2@7
+t5 seat0 passes
+t5 seat1 plays P2@10
+t5 seat2 passes
+t5 seat3 plays P2@11
+t5 seat0 passes
+t5 seat1 passes
+t5 seat2 passes
+t6 seat3 leads R3@4
+t6 seat0 passes
+t6 seat1 passes
+t6 seat2 passes
+t7 seat3 leads S1@3
+t7 seat0 plays S1@12
+t7 seat1 passes
+t7 seat2 passes
+t7 seat3 plays S1@15 (Rope Moon)
+t7 seat0 passes
+t7 seat1 passes
+t7 seat2 passes

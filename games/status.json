@@ -730,7 +730,7 @@
     {
       "slug": "four-player-partnership-climber",
       "title": "Ladder Pairs",
-      "stage": "playtest",
+      "stage": "critique",
       "revision": 0,
       "history": [
         {
@@ -756,10 +756,16 @@
           "time": "2026-10-06T18:56:34Z",
           "verdict": null,
           "note": "rules.md v1 written (Ropes, Relay, Uphill); playtest next, using tools/sim-kit"
+        },
+        {
+          "stage": "playtest",
+          "time": "2026-10-06T19:10:00Z",
+          "verdict": "NEEDS-FIXES",
+          "note": "Playtest NEEDS-FIXES: hidden partners do not change best play (all 4 ablations fail), lead changes 1.13, 9 ambiguities, no dead cards, 15 min wall-clock"
         }
       ],
       "verdicts": {
-        "playtest": null,
+        "playtest": "NEEDS-FIXES",
         "critic": null
       },
       "kill_reason": null

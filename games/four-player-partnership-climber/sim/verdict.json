@@ -1,0 +1,47 @@
+{
+ "verdict": "NEEDS-FIXES",
+ "problems": [
+  {
+   "severity": "high",
+   "problem": "The hidden-partner twist does not change best play: partner-reading bots do not beat simple ones.",
+   "evidence": "Reader (belief bot) vs Greedy: -1.5 (2+2) and -2.5 (1+3) points. A1 partner-blind BEATS Reader by 7.0 pts per bot (Reader loses by trying to help partners). A2 reveal-blind -1.2, A3 Uphill-blind -0.4, A4 Relay-blind -3.2: all four ablations fail the >=5 loss test. 9 Reader variants (experiments/e1.py) topped out at +1.7 over Greedy; the best variant never passes for a partner unless certain. Passing a trick to a partner earns nothing because points come only from going-out order, and passing costs tempo.",
+   "fix": "Give partner help a payoff: e.g. count each trick won by a partner pair towards the team (1 point per 3 tricks), or let the partner's pass-and-lead (Relay) apply to any trick the partner wins while the other is out of cards, or make the first out player's partner score also if they go out within the next trick. Re-run all ablations after any change (L10)."
+  },
+  {
+   "severity": "high",
+   "problem": "Skill expression only shows against Random; strategic is not better than Greedy (L6 repeat).",
+   "evidence": "Reader minus Random: 74.8 pts (1 vs 3), 36.7 (2 vs 2) but Reader minus Greedy -2.5 / -1.5; Greedy minus Random 59.0. The gap is 'play legal sensible cards vs random', not partner reading, timing or sequencing. ReaderBest ties Greedy (0.0).",
+   "fix": "Same lever as above: add decisions whose best answer differs from 'shed lowest'. Untested: a second scoring source (tricks or card points), and 11-card deal with 8 set aside (less luck)."
+  },
+  {
+   "severity": "medium",
+   "problem": "Lead changes below target.",
+   "evidence": "Mean 1.13 between hands (target >= 2; max possible 5). Greedy mirror 1.12. Runaway 0.40 (after hand 4) / 0.32 (after hand 3) passes. With Uphill off runaway rises to 0.66 (+26 pts) and lead changes fall to 0.53, so Uphill is carrying the whole comeback load.",
+   "fix": "Uphill threshold 4 -> 3 (knob), or let Uphill also apply +1 when 2 behind; re-test runaway does not collapse (lead changes may rise by making leads cheaper to lose)."
+  },
+  {
+   "severity": "medium",
+   "problem": "Dead turns: many forced passes.",
+   "evidence": "42% of follow turns have no legal play; 1.9 runs of 3+ consecutive forced passes per hand (Reader mirror), 54 turns per hand with about 20 of them forced. In the sample hand seat 0 passed 11 times in a row across tricks 2-3.",
+   "fix": "Untested: a player who has passed twice in a row may start the next trick when the holder is not their (likely) partner, or deal 9 cards each so hands are shorter. Needs a human feel check before changing (L11)."
+  },
+  {
+   "severity": "low",
+   "problem": "First-lead team scores 3+ in 61.0% of hands (band 50-60%).",
+   "evidence": "Reader mirror 0.610 over 12000 hands (about +-0.9); by pairing left 0.620, across 0.622, right 0.586 (spread 3.6, inside 5). Greedy mirror 0.569.",
+   "fix": "Knob first-out points is not the lever; the lowest scorer leading is. Option: leader rotates with dealer in hands 2-6 (loses some comeback)."
+  },
+  {
+   "severity": "low",
+   "problem": "Length depends heavily on the minutes-per-turn assumption.",
+   "evidence": "54 turns per hand (34 real decisions). At 6 s per decision, 2 s per quick turn and 0.5 min per hand overhead: 27.3 min (target 25, window 20-30). At 8 s / 3 s / 0.7: about 37 min. Hands are 4.6 min vs the designer's 4.",
+   "fix": "Time one real hand. If slow, deal 9 cards each (set aside 16)."
+  },
+  {
+   "severity": "low",
+   "problem": "Code attack check is weak.",
+   "evidence": "Gain -0.1 pts (passes, limit 3), but because partner knowledge barely pays (A1 beats Reader) a bot gets nothing from a code; this does not show the rules resist signalling by humans.",
+   "fix": "Re-run after the partner-payoff fix; consider Open Rope if gain exceeds 3."
+  }
+ ]
+}

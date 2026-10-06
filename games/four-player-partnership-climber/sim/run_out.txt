@@ -1,0 +1,15 @@
+2000 games per config. Reader mirror: seat wins [0.259, 0.2465, 0.2495, 0.245] gap 0.9; length 324.08 turns (54.0/hand) ~27.3 min (assumed 6s/decision, 2s quick turn, 0.5 min/hand overhead)
+  Greedy mirror: seat gap 0.45; runaway 0.418; lead changes 1.12
+  runaway (after hand 4 / hand 3): 0.403 / 0.324; lead changes 1.13; shared-win ties 0.002; caps 0
+  first-lead team 3+: 0.61 by pairing {'left_adjacent': 0.62, 'across': 0.622, 'right_adjacent': 0.586}; greedy 0.569 {'left_adjacent': 0.567, 'across': 0.578, 'right_adjacent': 0.563}
+  Rope first trick median 3 IQR [2, 4]; no Rope in 0.0 of hands; ropes/hand 3.54; relays/hand 0.334
+  forced-pass rate 0.418; runs of 3+ forced per hand 1.935; uphill share 0.257 pts uphill vs not [4.31, 1.95]
+  skill gaps (pts): {'reader_minus_random_1v3': 74.8, 'reader_minus_random_2v2': 36.7, 'reader_minus_greedy_1v3': -2.5, 'reader_minus_greedy_2v2': -1.5, 'readerbest_minus_random_1v3': 67.7, 'readerbest_minus_greedy_2v2': -0.0, 'greedy_minus_random_1v3': 59.0}
+  tables: {'1R_v_3Random': {'reader': 0.811, 'random': 0.063}, '1R_v_3Greedy': {'reader': 0.231, 'greedy': 0.2563}, '1G_v_3Random': {'greedy': 0.6925, 'random': 0.1025}, '2R_v_2Random': {'reader': 0.4333, 'random': 0.0668}, '2R_v_2Greedy': {'reader': 0.2425, 'greedy': 0.2575}, '2G_v_2Random': {'greedy': 0.4258, 'random': 0.0742}, '1RB_v_3Random': {'reader': 0.7575, 'random': 0.0808}, '2RB_v_2Greedy': {'reader': 0.2497, 'greedy': 0.2502}, '2RB_v_2Reader': {'reader': 0.2642, 'abl': 0.2358}}
+  FAIL A1_partner_blind: reader 0.215 vs abl 0.285 (per-bot margin -7.0, pair-share margin -14.0)
+  FAIL A2_reveal_blind: reader 0.2438 vs abl 0.2562 (per-bot margin -1.2, pair-share margin -2.5)
+  FAIL A3_uphill_blind: reader 0.248 vs abl 0.252 (per-bot margin -0.4, pair-share margin -0.8)
+  FAIL A4_relay_blind: reader 0.234 vs abl 0.266 (per-bot margin -3.2, pair-share margin -6.4)
+  code attack: pair share 0.499 gain -0.1 pts (PASS)
+  Uphill off: runaway 0.663 (delta 26.0 pts), lead changes 0.53; Relay off: sweep 0.361 vs 0.423
+wrote ../playtest.json
