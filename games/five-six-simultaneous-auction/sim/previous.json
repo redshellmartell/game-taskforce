@@ -1,0 +1,20 @@
+{
+ "previous": {
+  "skill_expression": 17.5,
+  "mixed_table_gap": "0.8-2.3",
+  "hype_share_of_points": "0.55-0.64",
+  "forced_pass_rate": 0.22,
+  "unsold_lots_per_game": "4.6-7.8",
+  "seat_balance_gap": 1.4,
+  "estimated_minutes": 16,
+  "lead_changes_mean": 2.98,
+  "runaway_leader_rate": 0.489,
+  "ties": 0.025,
+  "bot_win_rates": {
+   "random": 0.184,
+   "greedy": 0.164,
+   "strategic": 0.203
+  },
+  "verdict": "NEEDS-FIXES"
+ }
+}
