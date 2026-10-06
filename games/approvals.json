@@ -812,6 +812,53 @@
       "decision": "approve",
       "decided_at": "2026-10-06T13:43:21.742Z",
       "owner_notes": null
+    },
+    {
+      "id": "two-player-hidden-movement-grid-review-cap-1",
+      "gate": "review-cap",
+      "game": "two-player-hidden-movement-grid",
+      "time": "2026-10-06T14:21:17Z",
+      "status": "pending",
+      "summary": "Cycle 1 made it worse: runaway leader 0.831 (target 0.65, was 0.795), lead changes 1.50 (target 2), Sonar still a dead card, 71% of strategic games coast to the round-12 cap. Critic REVISE-MAJOR 3.00 (was 3.33), structural. Early stop: the targeted numbers did not move.",
+      "why_needed": "The cap stops early because the last cycle did not move the key numbers and the critic calls the problem structural: every fix tried (zoned deal, trailer-only ping, 3-step ping, shorter cap) left runaway at 0.76-0.92. The game is a race to a finite pile with no catch-up tied to the score gap.",
+      "expected_outcome": "Park: no more usage on it, and the cooling-row and torpedo kernel (cooling-blind ablation 41%, torpedo 30%, middle row 29%, seat gap 1.8) stays available for reuse. Continue would need a new catch-up mechanic (untested ideas: 2-card steal, leader-only Mine penalty, cut Sonar), judged against runaway <= 0.65.",
+      "usage_estimate": "M",
+      "recommendation": "park",
+      "options": [
+        {
+          "key": "continue",
+          "label": "Run 1 more cycle (new catch-up mechanic; grants 1 cycle)"
+        },
+        {
+          "key": "park",
+          "label": "Park the game; keep the cooling-row/torpedo kernel for reuse"
+        },
+        {
+          "key": "kill",
+          "label": "Kill it, archive it and record why"
+        },
+        {
+          "key": "pitch",
+          "label": "Pitch as is (not recommended: runaway 0.83, Sonar dead)"
+        }
+      ],
+      "decision": null,
+      "decided_at": null,
+      "owner_notes": null,
+      "table": [
+        {
+          "cycle": 0,
+          "runaway": 0.795,
+          "lead_changes": 1.5,
+          "critic": 3.33
+        },
+        {
+          "cycle": 1,
+          "runaway": 0.831,
+          "lead_changes": 1.5,
+          "critic": 3.0
+        }
+      ]
     }
   ]
 }

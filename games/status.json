@@ -192,7 +192,7 @@
       "slug": "silent-duo-deduction-coop",
       "title": "Silent Duo",
       "stage": "critique",
-      "revision": 0,
+      "revision": 1,
       "history": [
         {
           "stage": "brief",
@@ -229,11 +229,17 @@
           "time": "2026-10-05T11:41:50Z",
           "verdict": null,
           "note": "silent-duo-deduction-coop-revision-1 approved by owner; queued"
+        },
+        {
+          "stage": "critique",
+          "time": "2026-10-06T14:21:43Z",
+          "verdict": "REVISE-MINOR",
+          "note": "Cycle 1 (revision 1): Honest 73% to 56%, code attack closed, Trim stall and Beacon fail; critic REVISE-MINOR avg 3.67, mechanical; cycle 2 runs inside the cap"
         }
       ],
       "verdicts": {
         "playtest": "NEEDS-FIXES",
-        "critic": "REVISE-MAJOR"
+        "critic": "REVISE-MINOR"
       },
       "kill_reason": null
     },
@@ -652,7 +658,7 @@
       "slug": "two-player-hidden-movement-grid",
       "title": "Dead Reckoning",
       "stage": "critique",
-      "revision": 0,
+      "revision": 1,
       "history": [
         {
           "stage": "brief",
@@ -689,6 +695,12 @@
           "time": "2026-10-05T11:41:50Z",
           "verdict": null,
           "note": "two-player-hidden-movement-grid-revision-1 approved by owner; queued"
+        },
+        {
+          "stage": "critique",
+          "time": "2026-10-06T14:21:17Z",
+          "verdict": "REVISE-MAJOR",
+          "note": "Cycle 1 (revision 1): runaway 0.831 (was 0.795), lead changes 1.50, Sonar dead; critic REVISE-MAJOR avg 3.00, structural, recommends park; waiting for approval: review-cap (two-player-hidden-movement-grid-review-cap-1)"
         }
       ],
       "verdicts": {

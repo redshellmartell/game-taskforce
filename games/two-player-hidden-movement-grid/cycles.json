@@ -1,0 +1,28 @@
+{
+ "cycles": [
+  {
+   "cycle": 1,
+   "targeted": [
+    "runaway leader",
+    "lead changes",
+    "Sonar dead card",
+    "coasting to round cap",
+    "ambiguities"
+   ],
+   "before": {
+    "runaway": 0.795,
+    "lead_changes": 1.5,
+    "sonar_no_ping_ablation": null,
+    "critic": 3.33
+   },
+   "after": {
+    "runaway": 0.831,
+    "lead_changes": 1.5,
+    "sonar_no_ping_ablation": 0.494,
+    "critic": 3.0
+   },
+   "moved": false,
+   "note": "Zoned deal, trailer-only 2-step ping and 12-round cap left runaway at 0.76-0.92 in every pairing; Sonar still dead; ambiguities closed by the fix pass. Critic: structural, park."
+  }
+ ]
+}

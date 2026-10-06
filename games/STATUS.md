@@ -5,7 +5,7 @@
 | duelflip | 5. Pitched (owner-review) | PASS (3.67) | Duel Flip: revision 3 PASS; pitch rewritten; runaway leader 74% known risk; waiting for the owner |
 three-player-trick-taker | critique | NEEDS-FIXES (minor) / REVISE-MINOR (3.67) | revision 2 done; pitch-or-revise decision waiting; was: Playtest NEEDS-FIXES, critic 3.0; waiting for revision approval
 asymmetric-duel-tug-of-war | critique | NEEDS-FIXES / REVISE-MAJOR (3.33) | balanced, but lead changes low and lead choice solved; revision request waiting
-silent-duo-deduction-coop | critique | NEEDS-FIXES / REVISE-MAJOR (3.5) | too easy (73%); anti-code unproven; revision request waiting
+silent-duo-deduction-coop | critique | NEEDS-FIXES / REVISE-MINOR (3.67) | cycle 1 done: 2p in band, code attack closed; Trim stall and Beacon next; cycle 2 running inside the cap |
 archetypes | brief | - | Owner idea (personality-test RPG); researching
 
 grid-of-cards-area-control | critique | NEEDS-FIXES (2p only) / REVISE-MINOR (3.67) | good at 3-4 players; 2p stalls; revision request waiting
@@ -14,4 +14,4 @@ heavenly-bodies | critique | NEEDS-FIXES (Bar Raiser veto) / REVISE-MAJOR (2.83)
 | standard-deck-engine-workshop | 5. Pitched (owner-review) | REVISE-MINOR (3.67) | Fifty-Two Workshop: pitch written; multiplayer, solo flagged unproven; waiting for the owner |
 | five-six-simultaneous-auction | 4. Critique | NEEDS-FIXES / REVISE-MINOR (3.33) | Last Bid Standing: cycle 1 done (skill gap 25, Hype 56-64% still high); cycle 2 running inside the review cap |
 | solo-nine-card-roguelike | 4. Critique | NEEDS-FIXES / REVISE-MINOR (3.33) | Nine Lives Dungeon: Ghosts uneven, 3 dead tricks; revision request waiting (recommend approve) |
-| two-player-hidden-movement-grid | 4. Critique | NEEDS-FIXES / REVISE-MAJOR (3.33) | Dead Reckoning: early luck, dead Sonar; revision request waiting (recommend approve) |
+| two-player-hidden-movement-grid | critique | NEEDS-FIXES / REVISE-MAJOR (3.00) | Dead Reckoning: cycle 1 left runaway at 0.83, structural; review-cap request waiting (recommend park) |

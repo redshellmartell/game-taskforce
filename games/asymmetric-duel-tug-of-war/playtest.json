@@ -1,48 +1,48 @@
 {
  "verdict": "NEEDS-FIXES",
- "revision": 1,
+ "revision": 2,
  "games_simulated": 20000,
  "seat_win_rates": {
-  "1": 0.446,
-  "2": 0.554
+  "1": 0.454,
+  "2": 0.546
  },
- "seat_balance_gap": 10.9,
+ "seat_balance_gap": 9.3,
  "bot_win_rates": {
-  "random": 0.338,
-  "greedy": 0.592,
-  "strategic": 0.57
+  "random": 0.352,
+  "greedy": 0.531,
+  "strategic": 0.617
  },
- "skill_expression": 56.2,
+ "skill_expression": 45.4,
  "length": {
-  "mean_turns": 39.0,
-  "stdev": 16.1,
-  "estimated_minutes": 12.7,
+  "mean_turns": 40.3,
+  "stdev": 13.2,
+  "estimated_minutes": 13.1,
   "target_minutes": 15
  },
  "length_histogram": [
   {
    "turns": 6,
-   "games": 40
+   "games": 7
   },
   {
    "turns": 7,
-   "games": 59
+   "games": 10
   },
   {
    "turns": 8,
-   "games": 62
+   "games": 9
   },
   {
    "turns": 9,
-   "games": 63
+   "games": 24
   },
   {
    "turns": 10,
-   "games": 67
+   "games": 24
   },
   {
    "turns": 11,
-   "games": 132
+   "games": 49
   },
   {
    "turns": 12,
@@ -50,352 +50,320 @@
   },
   {
    "turns": 13,
-   "games": 274
+   "games": 268
   },
   {
    "turns": 14,
-   "games": 165
+   "games": 190
   },
   {
    "turns": 15,
-   "games": 226
+   "games": 188
   },
   {
    "turns": 16,
-   "games": 270
+   "games": 221
   },
   {
    "turns": 17,
-   "games": 327
+   "games": 256
   },
   {
    "turns": 18,
-   "games": 398
+   "games": 271
   },
   {
    "turns": 19,
-   "games": 428
-  },
-  {
-   "turns": 20,
-   "games": 365
-  },
-  {
-   "turns": 21,
-   "games": 283
-  },
-  {
-   "turns": 22,
-   "games": 270
-  },
-  {
-   "turns": 23,
-   "games": 321
-  },
-  {
-   "turns": 24,
-   "games": 325
-  },
-  {
-   "turns": 25,
-   "games": 325
-  },
-  {
-   "turns": 26,
-   "games": 334
-  },
-  {
-   "turns": 27,
-   "games": 376
-  },
-  {
-   "turns": 28,
-   "games": 390
-  },
-  {
-   "turns": 29,
-   "games": 334
-  },
-  {
-   "turns": 30,
-   "games": 316
-  },
-  {
-   "turns": 31,
-   "games": 373
-  },
-  {
-   "turns": 32,
-   "games": 342
-  },
-  {
-   "turns": 33,
-   "games": 348
-  },
-  {
-   "turns": 34,
-   "games": 352
-  },
-  {
-   "turns": 35,
-   "games": 365
-  },
-  {
-   "turns": 36,
-   "games": 360
-  },
-  {
-   "turns": 37,
-   "games": 355
-  },
-  {
-   "turns": 38,
-   "games": 312
-  },
-  {
-   "turns": 39,
-   "games": 280
-  },
-  {
-   "turns": 40,
-   "games": 240
-  },
-  {
-   "turns": 41,
-   "games": 243
-  },
-  {
-   "turns": 42,
-   "games": 231
-  },
-  {
-   "turns": 43,
-   "games": 243
-  },
-  {
-   "turns": 44,
-   "games": 261
-  },
-  {
-   "turns": 45,
-   "games": 207
-  },
-  {
-   "turns": 46,
-   "games": 273
-  },
-  {
-   "turns": 47,
-   "games": 218
-  },
-  {
-   "turns": 48,
-   "games": 235
-  },
-  {
-   "turns": 49,
-   "games": 262
-  },
-  {
-   "turns": 50,
-   "games": 273
-  },
-  {
-   "turns": 51,
-   "games": 334
-  },
-  {
-   "turns": 52,
-   "games": 380
-  },
-  {
-   "turns": 53,
-   "games": 349
-  },
-  {
-   "turns": 54,
-   "games": 420
-  },
-  {
-   "turns": 55,
-   "games": 455
-  },
-  {
-   "turns": 56,
-   "games": 492
-  },
-  {
-   "turns": 57,
-   "games": 547
-  },
-  {
-   "turns": 58,
-   "games": 525
-  },
-  {
-   "turns": 59,
-   "games": 489
-  },
-  {
-   "turns": 60,
-   "games": 414
-  },
-  {
-   "turns": 61,
-   "games": 401
-  },
-  {
-   "turns": 62,
-   "games": 332
-  },
-  {
-   "turns": 63,
-   "games": 288
-  },
-  {
-   "turns": 64,
    "games": 198
   },
   {
-   "turns": 65,
+   "turns": 20,
+   "games": 222
+  },
+  {
+   "turns": 21,
+   "games": 297
+  },
+  {
+   "turns": 22,
+   "games": 326
+  },
+  {
+   "turns": 23,
+   "games": 308
+  },
+  {
+   "turns": 24,
+   "games": 250
+  },
+  {
+   "turns": 25,
+   "games": 231
+  },
+  {
+   "turns": 26,
+   "games": 186
+  },
+  {
+   "turns": 27,
+   "games": 165
+  },
+  {
+   "turns": 28,
+   "games": 235
+  },
+  {
+   "turns": 29,
+   "games": 257
+  },
+  {
+   "turns": 30,
+   "games": 298
+  },
+  {
+   "turns": 31,
+   "games": 301
+  },
+  {
+   "turns": 32,
+   "games": 324
+  },
+  {
+   "turns": 33,
+   "games": 261
+  },
+  {
+   "turns": 34,
+   "games": 247
+  },
+  {
+   "turns": 35,
+   "games": 253
+  },
+  {
+   "turns": 36,
+   "games": 262
+  },
+  {
+   "turns": 37,
+   "games": 275
+  },
+  {
+   "turns": 38,
+   "games": 286
+  },
+  {
+   "turns": 39,
+   "games": 300
+  },
+  {
+   "turns": 40,
+   "games": 278
+  },
+  {
+   "turns": 41,
+   "games": 259
+  },
+  {
+   "turns": 42,
+   "games": 293
+  },
+  {
+   "turns": 43,
+   "games": 365
+  },
+  {
+   "turns": 44,
+   "games": 372
+  },
+  {
+   "turns": 45,
+   "games": 455
+  },
+  {
+   "turns": 46,
+   "games": 513
+  },
+  {
+   "turns": 47,
+   "games": 684
+  },
+  {
+   "turns": 48,
+   "games": 771
+  },
+  {
+   "turns": 49,
+   "games": 848
+  },
+  {
+   "turns": 50,
+   "games": 908
+  },
+  {
+   "turns": 51,
+   "games": 996
+  },
+  {
+   "turns": 52,
+   "games": 964
+  },
+  {
+   "turns": 53,
+   "games": 871
+  },
+  {
+   "turns": 54,
+   "games": 727
+  },
+  {
+   "turns": 55,
+   "games": 580
+  },
+  {
+   "turns": 56,
+   "games": 408
+  },
+  {
+   "turns": 57,
+   "games": 290
+  },
+  {
+   "turns": 58,
    "games": 142
   },
   {
-   "turns": 66,
-   "games": 89
+   "turns": 59,
+   "games": 79
   },
   {
-   "turns": 67,
-   "games": 48
+   "turns": 60,
+   "games": 33
   },
   {
-   "turns": 68,
-   "games": 17
+   "turns": 61,
+   "games": 12
   },
   {
-   "turns": 69,
-   "games": 10
+   "turns": 62,
+   "games": 7
   },
   {
-   "turns": 70,
+   "turns": 63,
    "games": 3
-  },
-  {
-   "turns": 72,
-   "games": 1
   }
  ],
- "ties": 0.015,
+ "ties": 0.028,
  "turn_cap_hits": 0,
- "lead_changes_mean": 1.83,
- "runaway_leader_rate": 0.488,
+ "lead_changes_mean": 2.22,
+ "runaway_leader_rate": 0.441,
  "cards": [
   {
    "name": "T: Chancellor's Seal",
-   "played_rate": 0.738,
-   "win_correlation": 0.146,
-   "flag": null
+   "played_rate": 0.765,
+   "win_correlation": 0.228,
+   "flag": "strong"
   },
   {
    "name": "T: Gold Purse",
-   "played_rate": 0.878,
-   "win_correlation": 0.074,
+   "played_rate": 0.882,
+   "win_correlation": 0.075,
    "flag": null
   },
   {
    "name": "T: Granary",
-   "played_rate": 0.815,
-   "win_correlation": 0.08,
+   "played_rate": 0.874,
+   "win_correlation": 0.067,
    "flag": null
   },
   {
    "name": "T: Ledger",
-   "played_rate": 0.825,
-   "win_correlation": 0.079,
+   "played_rate": 0.882,
+   "win_correlation": 0.077,
    "flag": null
   },
   {
    "name": "T: Mint Master",
-   "played_rate": 0.844,
-   "win_correlation": 0.074,
+   "played_rate": 0.832,
+   "win_correlation": 0.087,
    "flag": null
   },
   {
    "name": "T: Patron",
-   "played_rate": 0.771,
-   "win_correlation": 0.083,
+   "played_rate": 0.857,
+   "win_correlation": 0.086,
    "flag": null
   },
   {
    "name": "T: Royal Loan",
-   "played_rate": 0.801,
-   "win_correlation": 0.007,
+   "played_rate": 0.867,
+   "win_correlation": 0.025,
    "flag": null
   },
   {
    "name": "T: Tax Collector",
-   "played_rate": 0.873,
-   "win_correlation": 0.037,
+   "played_rate": 0.922,
+   "win_correlation": 0.015,
    "flag": null
   },
   {
    "name": "T: Treasury Vault",
-   "played_rate": 0.691,
-   "win_correlation": 0.034,
+   "played_rate": 0.757,
+   "win_correlation": 0.035,
    "flag": null
   },
   {
    "name": "W: Courtier",
-   "played_rate": 0.853,
-   "win_correlation": 0.13,
+   "played_rate": 0.901,
+   "win_correlation": 0.113,
    "flag": null
   },
   {
    "name": "W: Eavesdropper",
-   "played_rate": 0.82,
-   "win_correlation": -0.001,
+   "played_rate": 0.85,
+   "win_correlation": 0.042,
    "flag": null
   },
   {
    "name": "W: False Witness",
-   "played_rate": 0.87,
-   "win_correlation": 0.045,
+   "played_rate": 0.894,
+   "win_correlation": 0.066,
    "flag": null
   },
   {
    "name": "W: Gossip",
-   "played_rate": 0.886,
-   "win_correlation": 0.021,
+   "played_rate": 0.936,
+   "win_correlation": -0.003,
    "flag": null
   },
   {
    "name": "W: Shadow Envoy",
-   "played_rate": 0.766,
-   "win_correlation": 0.018,
+   "played_rate": 0.797,
+   "win_correlation": 0.035,
    "flag": null
   },
   {
    "name": "W: Silencer",
-   "played_rate": 0.913,
-   "win_correlation": 0.1,
+   "played_rate": 0.936,
+   "win_correlation": 0.104,
    "flag": null
   },
   {
    "name": "W: Spymaster",
-   "played_rate": 0.802,
-   "win_correlation": 0.131,
+   "played_rate": 0.857,
+   "win_correlation": 0.14,
    "flag": null
   },
   {
    "name": "W: The Whisper",
-   "played_rate": 0.791,
-   "win_correlation": 0.176,
+   "played_rate": 0.809,
+   "win_correlation": 0.203,
    "flag": "strong"
   },
   {
    "name": "W: Veiled Threat",
-   "played_rate": 0.786,
-   "win_correlation": 0.03,
+   "played_rate": 0.82,
+   "win_correlation": 0.047,
    "flag": null
   }
  ],
@@ -405,14 +373,11 @@
   "Lead wins equal totals except 0-0 (a tie); a lead with an empty row and an empty opposing row ties.",
   "Step counting from T1 toward the Whisperer: W1 (1 step), W2 (2 steps); the start card is never counted."
  ],
- "lead_round_win_rate": 0.539,
- "lead_policy_win_rates": {
-  "strat-self": 0.629,
-  "strat-give": 0.432
- },
+ "lead_round_win_rate": 0.517,
+ "lead_policy_win_rates": {},
  "reshuffles_per_game": {
-  "treasurer": 0.48,
-  "whisperer": 0.47
+  "treasurer": 0.41,
+  "whisperer": 0.33
  },
  "problems": [
   {

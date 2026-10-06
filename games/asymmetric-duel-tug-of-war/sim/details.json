@@ -1,58 +1,174 @@
 {
- "lead_policy_win_vs_strategic": {
-  "strat-self": 0.629,
-  "strat-give": 0.432
- },
- "lead_round_win": 0.5387506611300541,
+ "lead_policy_win_vs_strategic": {},
+ "lead_round_win": 0.5166788215431032,
  "reshuffles_per_game_T_W": [
-  0.47755555555555557,
-  0.4652777777777778
+  0.4131666666666667,
+  0.3303888888888889
  ],
  "mirror": {
-  "T_win": 0.3665,
-  "lead_changes": 1.695,
+  "r3": 0.1485,
+  "r2": 0.1075,
+  "rounds": 5.663,
+  "T_win": 0.4395,
+  "lead_changes": 2.5015,
   "ends": {
-   "throne": 1941,
-   "leader": 59
+   "leader": 819,
+   "throne": 1181
   },
-  "early": 0.4650571791613723,
-  "turns": 29.481,
-  "hush_blank": 0.6965,
-  "hush": 3.6895,
+  "early": 0.3630252100840336,
+  "turns": 42.1015,
+  "hush_blank": 0.3295,
+  "hush": 4.726,
   "tie_rounds": 0.0,
-  "dbl": 1.2495
+  "dbl": 0.54
  },
  "pair_T_win": {
-  "random(T) vs random(W)": 0.578,
-  "random(T) vs greedy(W)": 0.163,
-  "random(T) vs strategic(W)": 0.142,
-  "greedy(T) vs random(W)": 0.572,
-  "greedy(T) vs greedy(W)": 0.381,
-  "greedy(T) vs strategic(W)": 0.409,
-  "strategic(T) vs random(W)": 0.705,
-  "strategic(T) vs greedy(W)": 0.266,
-  "strategic(T) vs strategic(W)": 0.379
+  "random(T) vs random(W)": 0.602,
+  "random(T) vs greedy(W)": 0.227,
+  "random(T) vs strategic(W)": 0.195,
+  "greedy(T) vs random(W)": 0.66,
+  "greedy(T) vs greedy(W)": 0.353,
+  "greedy(T) vs strategic(W)": 0.169,
+  "strategic(T) vs random(W)": 0.648,
+  "strategic(T) vs greedy(W)": 0.416,
+  "strategic(T) vs strategic(W)": 0.405
  },
- "mirror_strategic_T_win": 0.3665,
- "strategic_vs_greedy": 0.42825,
- "greedy_vs_random": 0.7045,
+ "mirror_strategic_T_win": 0.4395,
+ "strategic_vs_greedy": 0.624,
+ "greedy_vs_random": 0.71675,
  "ends": {
-  "leader": 4368,
-  "throne": 13632
+  "leader": 6478,
+  "throne": 11522
  },
  "nomove_tiebreak": 0,
  "extra": {
-  "hush_blank": 21336,
-  "hush": 88484,
-  "retort": 21959,
-  "spend": 25985,
-  "hushed_spend": 5615,
-  "bank_lost": 9313,
-  "echo": 37551,
-  "dbl": 24319,
-  "tie_rounds": 262
+  "hush_blank": 17935,
+  "hush": 86307,
+  "retort": 11707,
+  "spend": 21633,
+  "hushed_spend": 4371,
+  "bank_lost": 28169,
+  "echo": 43797,
+  "dbl": 15515,
+  "tie_rounds": 507
  },
- "mean_actions": 39.015055555555556,
+ "mean_actions": 40.29127777777778,
  "mean_rounds": null,
- "tie_round_rate": null
+ "tie_round_rate": null,
+ "ablations": {
+  "plus_mirror_T": 0.389,
+  "abl-nospend": {
+   "side": "T",
+   "abl_win": 0.39,
+   "full_win": 0.389,
+   "drop_pts": -0.1
+  },
+  "abl-nosteady": {
+   "side": "T",
+   "abl_win": 0.398,
+   "full_win": 0.389,
+   "drop_pts": -0.9
+  },
+  "abl-nohush": {
+   "side": "W",
+   "abl_win": 0.58,
+   "full_win": 0.611,
+   "drop_pts": 3.1
+  },
+  "abl-noretort": {
+   "side": "W",
+   "abl_win": 0.592,
+   "full_win": 0.611,
+   "drop_pts": 1.9
+  },
+  "abl-noecho": {
+   "side": "W",
+   "abl_win": 0.642,
+   "full_win": 0.611,
+   "drop_pts": -3.1
+  }
+ },
+ "variants": {
+  "cap3": {
+   "strategic mirror": {
+    "T": 0.422,
+    "lc": 2.46,
+    "r3": 0.176,
+    "rounds": 5.56
+   },
+   "plus mirror": {
+    "T": 0.429,
+    "lc": 2.55,
+    "r3": 0.18,
+    "rounds": 5.57
+   },
+   "greedy mirror": {
+    "T": 0.363,
+    "lc": 1.89,
+    "r3": 0.119,
+    "rounds": 5.93
+   },
+   "random mirror": {
+    "T": 0.574,
+    "lc": 2.08,
+    "r3": 0.321,
+    "rounds": 4.87
+   }
+  },
+  "court_off": {
+   "strategic mirror": {
+    "T": 0.384,
+    "lc": 2.63,
+    "r3": 0.166,
+    "rounds": 5.59
+   },
+   "plus mirror": {
+    "T": 0.399,
+    "lc": 2.8,
+    "r3": 0.165,
+    "rounds": 5.7
+   },
+   "greedy mirror": {
+    "T": 0.372,
+    "lc": 1.32,
+    "r3": 0.267,
+    "rounds": 5.06
+   },
+   "random mirror": {
+    "T": 0.608,
+    "lc": 1.52,
+    "r3": 0.387,
+    "rounds": 4.51
+   }
+  },
+  "cap2_base": {
+   "strategic mirror": {
+    "T": 0.41,
+    "lc": 2.54,
+    "r3": 0.139,
+    "rounds": 5.69
+   },
+   "plus mirror": {
+    "T": 0.42,
+    "lc": 2.67,
+    "r3": 0.146,
+    "rounds": 5.74
+   },
+   "greedy mirror": {
+    "T": 0.353,
+    "lc": 1.89,
+    "r3": 0.124,
+    "rounds": 5.91
+   },
+   "random mirror": {
+    "T": 0.566,
+    "lc": 2.09,
+    "r3": 0.321,
+    "rounds": 4.88
+   }
+  }
+ },
+ "r3_by_pairing_all": null,
+ "by_round3_all": 0.18488888888888888,
+ "by_round2_all": 0.07133333333333333
 }

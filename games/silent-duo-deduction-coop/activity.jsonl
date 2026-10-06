@@ -20,3 +20,5 @@
 {"time": "2026-10-06T14:19:47Z", "agent": "playtester", "game": "silent-duo-deduction-coop", "event": "done", "message": "Cycle 1 playtest NEEDS-FIXES: 2p Honest 56% at F8 (was 73), code attack +1.0, Trim share 30% and 3+ Trim runs fail, Beacon-blind ablation fails, 10 ambiguities"}
 {"time": "2026-10-06T14:20:45Z", "agent": "game-designer", "game": "silent-duo-deduction-coop", "event": "done", "message": "Fix-before-critic pass: rules v2.1, 10 ambiguities closed, no balance changes"}
 {"time": "2026-10-06T14:20:45Z", "agent": "critic", "game": "silent-duo-deduction-coop", "event": "start", "message": "Cycle 1 critique (director-logged)"}
+{"time": "2026-10-06T14:21:43Z", "agent": "critic", "game": "silent-duo-deduction-coop", "event": "done", "message": "Cycle 1 critique: REVISE-MINOR avg 3.67 (was 3.5), mechanical; cycle 2 aimed at Trim stall and Beacon"}
+{"time": "2026-10-06T14:21:43Z", "agent": "director", "game": "silent-duo-deduction-coop", "event": "start", "message": "Cycle 2 (inside review cap): designer pass on Trim stall, Beacon, 3p Fog"}
