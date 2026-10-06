@@ -93,6 +93,8 @@ EXP = {"E1 lots 3-6": dict(lot_bonus=1), "E2 hand5": dict(start_hand=5), "E3 bid
        "E4 lots 4-7": dict(lot_bonus=2), "E5 income1": dict(income=1)}
 
 def main():
+    if '--rewrite' in sys.argv:
+        out = json.load(open(os.path.join(HERE, 'results.json'))); write_playtest(out, 2000); return
     from multiprocessing import Pool
     N = int(sys.argv[1]) if len(sys.argv) > 1 and sys.argv[1].isdigit() else 2000
     jobs = []
