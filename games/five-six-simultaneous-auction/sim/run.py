@@ -10,10 +10,11 @@ SLUG = "five-six-simultaneous-auction"
 TARGET_MIN = 20
 
 CLS = {"S": B.Strategic, "R": B.Random, "G": B.Greedy, "N": B.NoMemory, "H": B.IgnoreHype, "C": B.IgnoreCrash,
-       "T": B.IgnoreTies, "P": B.Planner, "I": B.Instinct}
-KINDS = {"mixed": "SRGSRG", "SvR": "SRSRSR", "oneS": "SRRRRR", "oneN": "NRRRRR", "oneG": "GRRRRR", "NvR": "NRNRNR",
-         "allS": "SSSSSS", "allR": "RRRRRR", "allG": "GGGGGG", "PvI": "PIPIPI", "SvI": "SISISI", "PvS": "PSPSPS",
-         "abl-N": "SNSNSN", "abl-H": "SHSHSH", "abl-C": "SCSCSC", "abl-T": "STSTST"}
+       "T": B.IgnoreTies, "P": B.Planner, "I": B.Instinct, "A": B.IgnoreCap, "L": B.Lite}
+KINDS = {"mixed": "SRGSRG", "mixedP": "PRGPRG", "SvR": "SRSRSR", "PvR": "PRPRPR", "LvR": "LRLRLR", "oneS": "SRRRRR", "oneP": "PRRRRR",
+         "oneL": "LRRRRR", "oneG": "GRRRRR", "allS": "SSSSSS", "allR": "RRRRRR", "allG": "GGGGGG", "PvS": "PSPSPS",
+         "abl-H": "SHSHSH", "abl-C": "SCSCSC", "abl-T": "STSTST", "abl-A": "SASASA", "ablP-H": "PHPHPH", "ablP-C": "PCPCPC",
+         "ablP-T": "PTPTPT", "ablP-A": "PAPAPA"}
 def table(kind, n, g):
     """bot class list for a table; rotated by game index g so every bot meets every seat equally."""
     base = [CLS[ch] for ch in KINDS[kind]][:n]
