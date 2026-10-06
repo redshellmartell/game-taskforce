@@ -12,6 +12,6 @@ grid-of-cards-area-control | critique | NEEDS-FIXES (2p only) / REVISE-MINOR (3.
 heavenly-bodies | design | - | Owner idea; full design doc supplied; designer building the 96-card pile (36 COs + 60 AEs)
 heavenly-bodies | critique | NEEDS-FIXES (Bar Raiser veto) / REVISE-MAJOR (2.83) | owner rulings needed (G4 etc.); revision request waiting
 | standard-deck-engine-workshop | 5. Pitched (owner-review) | REVISE-MINOR (3.67) | Fifty-Two Workshop: pitch written; multiplayer, solo flagged unproven; waiting for the owner |
-| five-six-simultaneous-auction | 4. Critique | NEEDS-FIXES / REVISE-MAJOR (3.0) | Last Bid Standing: skill barely matters, Hype swamps scores; revision request waiting (recommend park) |
+| five-six-simultaneous-auction | 4. Critique | NEEDS-FIXES / REVISE-MINOR (3.33) | Last Bid Standing: cycle 1 done (skill gap 25, Hype 56-64% still high); cycle 2 running inside the review cap |
 | solo-nine-card-roguelike | 4. Critique | NEEDS-FIXES / REVISE-MINOR (3.33) | Nine Lives Dungeon: Ghosts uneven, 3 dead tricks; revision request waiting (recommend approve) |
 | two-player-hidden-movement-grid | 4. Critique | NEEDS-FIXES / REVISE-MAJOR (3.33) | Dead Reckoning: early luck, dead Sonar; revision request waiting (recommend approve) |

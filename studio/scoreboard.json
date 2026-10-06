@@ -1,16 +1,16 @@
 {
- "generated": "2026-10-05T14:41:15Z",
+ "generated": "2026-10-06T14:13:56Z",
  "games_total": 11,
  "games_tested": 10,
  "first_pass_playtest_pass": 0,
  "first_pass_rate": 0.0,
  "critic_avg_first": 3.26,
- "critic_avg_latest": 3.42,
- "revisions_per_game": 0.8,
+ "critic_avg_latest": 3.45,
+ "revisions_per_game": 0.9,
  "director_calibration": {
-  "decided": 28,
-  "agreed": 25,
-  "rate": 0.89
+  "decided": 29,
+  "agreed": 26,
+  "rate": 0.9
  },
  "approvals_by_gate": {
   "panel-reviews": {
@@ -26,9 +26,8 @@
    "approved": 9
   },
   "revision": {
-   "approved": 12,
-   "declined": 1,
-   "pending": 1
+   "approved": 13,
+   "declined": 1
   },
   "panel-research": {
    "approved": 1
@@ -39,7 +38,7 @@
  },
  "decisions_by_kind": {
   "gate": {
-   "approve": 27,
+   "approve": 28,
    "decline": 1,
    "pitch": 1
   },
@@ -48,9 +47,9 @@
   }
  },
  "revision_effectiveness": {
-  "cycles": 0,
-  "moved_target": 0,
-  "rate": null
+  "cycles": 1,
+  "moved_target": 1,
+  "rate": 1.0
  },
  "human": {
   "sessions": 0,
@@ -62,7 +61,7 @@
   "per_game": {
    "three-player-trick-taker": 631920
   },
-  "unattributed": 44563795
+  "unattributed": 44981474
  },
  "games": [
   {
@@ -148,12 +147,38 @@
   {
    "slug": "five-six-simultaneous-auction",
    "stage": "critique",
-   "revisions": 0,
+   "revisions": 1,
    "first_playtest": "NEEDS-FIXES",
    "first_critic_avg": 3.0,
-   "latest_critic_avg": 3.0,
-   "latest_critic": "REVISE-MAJOR",
-   "cycles": []
+   "latest_critic_avg": 3.33,
+   "latest_critic": "REVISE-MINOR",
+   "cycles": [
+    {
+     "cycle": 1,
+     "targeted": [
+      "skill gap (lone and mixed table)",
+      "Hype share of points",
+      "forced passes / dead rounds",
+      "ambiguities"
+     ],
+     "before": {
+      "skill_gap_lone": 17.5,
+      "skill_gap_mixed": 1.5,
+      "hype_share": "55-64%",
+      "forced_pass": 0.22,
+      "critic": 3.0
+     },
+     "after": {
+      "skill_gap_lone": 25.3,
+      "skill_gap_mixed": 11.8,
+      "hype_share": "56-64%",
+      "forced_pass": 0.051,
+      "critic": 3.33
+     },
+     "moved": true,
+     "note": "Skill gap, forced passes and ambiguities moved; Hype share and two ablations did not. Critic REVISE-MINOR 3.33."
+    }
+   ]
   },
   {
    "slug": "solo-nine-card-roguelike",

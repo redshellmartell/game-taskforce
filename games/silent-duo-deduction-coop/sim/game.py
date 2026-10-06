@@ -37,6 +37,7 @@ class Game:
         self.win = False
         self.stats = Counter()
         self.deck_at_end = len(self.deck)
+        self.lastk = [None] * n; self.trun = [0] * n; self.maxrun = 0
         self.chooser = None            # callback(p, drawn) -> index of the Trim card to keep
         self.timeline = []             # per turn: (at_risk flag)
 
@@ -115,6 +116,8 @@ class Game:
         self.turns += 1
         kind = action[0]
         drew = True
+        self.trun[p] = self.trun[p] + 1 if (kind == 'trim' and self.lastk[p] == 'trim') else (1 if kind == 'trim' else 0)
+        self.maxrun = max(self.maxrun, self.trun[p]); self.lastk[p] = kind
         if kind == "offer":
             _, q, i, a, b = action
             s = self.ships[q][i]

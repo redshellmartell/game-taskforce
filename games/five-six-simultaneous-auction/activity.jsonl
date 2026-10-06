@@ -16,3 +16,5 @@
 {"time": "2026-10-06T14:11:32Z", "agent": "playtester", "game": "five-six-simultaneous-auction", "event": "done", "message": "Revision 1 playtest done: NEEDS-FIXES (bots only, unvalidated); lone gap 25.3, mixed 11.8, Hype 60%, ablations 2 of 4 fail; panel avg fun 3.32"}
 {"time": "2026-10-06T14:12:53Z", "agent": "game-designer", "game": "five-six-simultaneous-auction", "event": "done", "message": "Fix-before-critic pass: rules v2.1, 6 ambiguities closed, deck 78 cards; no balance changes"}
 {"time": "2026-10-06T14:12:54Z", "agent": "critic", "game": "five-six-simultaneous-auction", "event": "start", "message": "Cycle 1 critique (director-logged)"}
+{"time": "2026-10-06T14:13:56Z", "agent": "critic", "game": "five-six-simultaneous-auction", "event": "done", "message": "Cycle 1 critique: REVISE-MINOR avg 3.33 (was 3.0); cycle 2 aimed at Hype share and open income"}
+{"time": "2026-10-06T14:13:56Z", "agent": "director", "game": "five-six-simultaneous-auction", "event": "start", "message": "Cycle 2 (inside review cap): designer pass on Hype share and open income"}
