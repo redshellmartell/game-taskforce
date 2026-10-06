@@ -1,67 +1,42 @@
 {
- "E1 spammer(A) v strategic": {
-  "n": 1000,
-  "a_win": 0.478,
-  "seat1": 0.503,
-  "rounds": 9.661,
-  "ties": 0.004,
-  "runaway": 0.752,
-  "capped": 0.741,
-  "lc": 1.66,
-  "hits": 2.01,
-  "fired": 8.04,
-  "home_a": 0.46
+ "X1 strategic mirror, ping reveals 3 steps": {
+  "n": 600,
+  "a_win": 0.5,
+  "seat1": 0.536,
+  "rounds": 11.042,
+  "ties": 0.002,
+  "runaway": 0.762,
+  "capped": 0.578,
+  "lc": 1.675
  },
- "E2 camper(A) v strategic": {
-  "n": 1000,
-  "a_win": 0.523,
-  "seat1": 0.512,
-  "rounds": 9.776,
-  "ties": 0.005,
-  "runaway": 0.8,
-  "capped": 0.835,
-  "lc": 1.52,
-  "hits": 1.96,
-  "fired": 7.14,
-  "home_a": 3.59
+ "X2 strategic(A) v noping, ping reveals 3 steps": {
+  "n": 600,
+  "a_win": 0.52,
+  "seat1": 0.472,
+  "rounds": 11.12,
+  "ties": 0.003,
+  "runaway": 0.778,
+  "capped": 0.607,
+  "lc": 1.65
  },
- "E3 blind-to-cooling(A) v strategic": {
-  "n": 1000,
-  "a_win": 0.451,
-  "seat1": 0.496,
-  "rounds": 9.608,
-  "ties": 0.006,
-  "runaway": 0.777,
-  "capped": 0.725,
-  "lc": 1.58,
-  "hits": 1.88,
-  "fired": 6.87,
-  "home_a": 0.86
+ "X3 spammer(A) v strategic": {
+  "n": 600,
+  "a_win": 0.484,
+  "seat1": 0.521,
+  "rounds": 11.347,
+  "ties": 0.002,
+  "runaway": 0.772,
+  "capped": 0.667,
+  "lc": 1.655
  },
- "E4 noping(A) v strategic": {
-  "n": 1000,
+ "X4 strategic mirror, 8-round cap": {
+  "n": 600,
   "a_win": 0.5,
   "seat1": 0.524,
-  "rounds": 9.599,
-  "ties": 0.004,
-  "runaway": 0.781,
-  "capped": 0.735,
-  "lc": 1.49,
-  "hits": 2.02,
-  "fired": 6.87,
-  "home_a": 0.63
- },
- "E5 strategic mirror, torpedo orthogonal only": {
-  "n": 1000,
-  "a_win": 0.5,
-  "seat1": 0.497,
-  "rounds": 9.546,
-  "ties": 0.006,
-  "runaway": 0.799,
-  "capped": 0.726,
-  "lc": 1.4,
-  "hits": 1.14,
-  "fired": 6.3,
-  "home_a": 0.99
+  "rounds": 7.93,
+  "ties": 0.008,
+  "runaway": 0.778,
+  "capped": 0.888,
+  "lc": 1.575
  }
 }

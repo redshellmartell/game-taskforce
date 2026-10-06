@@ -1,6 +1,6 @@
 {
  "N": 2000,
- "runs": {
+ "S": {
   "honest_2p_F4": {
    "win": 0.641,
    "turns": 25.337,
@@ -339,5 +339,120 @@
    "late_win": 0.9261025029797377,
    "near_loss": 0.5452196382428941
   }
- }
+ },
+ "cards": [
+  {
+   "name": "Offer",
+   "played_rate": 0.441,
+   "win_correlation": 0.085,
+   "flag": null
+  },
+  {
+   "name": "Light (lit ship)",
+   "played_rate": 0.226,
+   "win_correlation": 0.773,
+   "flag": null
+  },
+  {
+   "name": "Trim",
+   "played_rate": 0.3,
+   "win_correlation": -0.058,
+   "flag": "Trim over 25% of turns"
+  },
+  {
+   "name": "Beacon (exact light)",
+   "played_rate": 0.086,
+   "win_correlation": 0.367,
+   "flag": "strongly tied to winning"
+  },
+  {
+   "name": "Miss (Reef)",
+   "played_rate": 0.022,
+   "win_correlation": -0.615,
+   "flag": null
+  }
+ ],
+ "est": 18.1,
+ "hist": [
+  [
+   10,
+   3
+  ],
+  [
+   11,
+   2
+  ],
+  [
+   12,
+   1
+  ],
+  [
+   13,
+   4
+  ],
+  [
+   14,
+   1
+  ],
+  [
+   15,
+   5
+  ],
+  [
+   16,
+   8
+  ],
+  [
+   17,
+   13
+  ],
+  [
+   18,
+   20
+  ],
+  [
+   19,
+   29
+  ],
+  [
+   20,
+   41
+  ],
+  [
+   21,
+   139
+  ],
+  [
+   22,
+   239
+  ],
+  [
+   23,
+   403
+  ],
+  [
+   24,
+   468
+  ],
+  [
+   25,
+   364
+  ],
+  [
+   26,
+   165
+  ],
+  [
+   27,
+   78
+  ],
+  [
+   28,
+   16
+  ],
+  [
+   29,
+   1
+  ]
+ ]
 }
