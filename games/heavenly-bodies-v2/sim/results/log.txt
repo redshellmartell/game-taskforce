@@ -42,3 +42,6 @@ switches shield_off_3p done 26 s
 switches shield_off_4p done 30 s
 switches cm15_everywhere_2p done 2 s
 switches cm15_everywhere_3p done 5 s
+switches cm15_everywhere_4p done 7 s
+switches rainbow_off_2p done 2 s
+switches rainbow_off_3p done 5 s
