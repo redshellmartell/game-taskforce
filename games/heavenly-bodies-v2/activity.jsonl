@@ -15,3 +15,5 @@
 {"time": "2026-10-10T11:31:59Z", "agent": "manager", "game": "heavenly-bodies-v2", "event": "waiting", "message": "waiting for approval: review-cap (heavenly-bodies-v2-review-cap-1), cycle 1 did not improve the critic average"}
 {"time": "2026-10-10T11:34:30Z", "agent": "manager", "game": "heavenly-bodies-v2", "event": "step", "message": "review-cap continue approved; cycle 2 starting with a playtester sweep"}
 {"time":"2026-10-10T11:35:06Z","agent":"playtester","game":"heavenly-bodies-v2","event":"start","message":"Cycle 2 sweep: shield variants at opening 0, crosses"}
+{"time":"2026-10-10T11:56:40Z","agent":"playtester","game":"heavenly-bodies-v2","event":"done","message":"Cycle 2 sweep done: sweep-report.md; no cell in band at all counts"}
+{"time": "2026-10-10T11:56:55Z", "agent": "manager", "game": "heavenly-bodies-v2", "event": "waiting", "message": "Cycle 2 sweep done; paused by owner before the designer step"}

@@ -204,5 +204,492 @@
    "recall": 0.06,
    "mn": 13
   }
+ },
+ "c4_spin_o0": {
+  "cfg": {
+   "opening": 0,
+   "shield_mode": "spin"
+  },
+  "2p": {
+   "turns": 8.77,
+   "minutes": 3.5,
+   "caps": 2.51,
+   "ln": 0.0,
+   "share": {
+    "mass": 0.236,
+    "const": 0.515,
+    "align": 0.249
+   },
+   "gap": 2.6,
+   "runaway": 0.817,
+   "lead": 2.62,
+   "stdev": 1.56,
+   "g_turns": 8.49,
+   "g_caps": 2.16,
+   "g_gap": 0.3,
+   "sv_greedy_pts": -16.9,
+   "recall": 0.01,
+   "mn": 7
+  },
+  "3p": {
+   "turns": 17.76,
+   "minutes": 7.1,
+   "caps": 5.09,
+   "ln": 0.026,
+   "share": {
+    "mass": 0.302,
+    "const": 0.495,
+    "align": 0.203
+   },
+   "gap": 4.77,
+   "runaway": 0.405,
+   "lead": 6.41,
+   "stdev": 6.58,
+   "g_turns": 14.73,
+   "g_caps": 4.6,
+   "g_gap": 2.17,
+   "sv_greedy_pts": -11.3,
+   "recall": 0.04,
+   "mn": 10
+  },
+  "4p": {
+   "turns": 21.11,
+   "minutes": 8.4,
+   "caps": 5.22,
+   "ln": 0.07,
+   "share": {
+    "mass": 0.375,
+    "const": 0.397,
+    "align": 0.229
+   },
+   "gap": 20.3,
+   "runaway": 0.337,
+   "lead": 7.64,
+   "stdev": 5.82,
+   "g_turns": 19.04,
+   "g_caps": 5.54,
+   "g_gap": 3.5,
+   "sv_greedy_pts": -9.8,
+   "recall": 0.03,
+   "mn": 13
+  }
+ },
+ "c3big_x_open1": {
+  "cfg": {
+   "opening": 1,
+   "shield_mode": "big"
+  },
+  "2p": {
+   "turns": 9.13,
+   "minutes": 3.7,
+   "caps": 4.21,
+   "ln": 0.0,
+   "share": {
+    "mass": 0.393,
+    "const": 0.455,
+    "align": 0.152
+   },
+   "gap": 4.2,
+   "runaway": 0.834,
+   "lead": 1.83,
+   "stdev": 3.52,
+   "g_turns": 8.89,
+   "g_caps": 4.88,
+   "g_gap": 1.1,
+   "sv_greedy_pts": -4.1,
+   "recall": 0.05,
+   "mn": 5
+  },
+  "3p": {
+   "turns": 27.64,
+   "minutes": 11.1,
+   "caps": 12.43,
+   "ln": 0.391,
+   "share": {
+    "mass": 0.406,
+    "const": 0.48,
+    "align": 0.114
+   },
+   "gap": 6.87,
+   "runaway": 0.563,
+   "lead": 9.27,
+   "stdev": 10.89,
+   "g_turns": 14.44,
+   "g_caps": 7.79,
+   "g_gap": 3.47,
+   "sv_greedy_pts": -10.6,
+   "recall": 0.09,
+   "mn": 7
+  },
+  "4p": {
+   "turns": 28.28,
+   "minutes": 11.3,
+   "caps": 11.89,
+   "ln": 0.607,
+   "share": {
+    "mass": 0.419,
+    "const": 0.412,
+    "align": 0.169
+   },
+   "gap": 12.3,
+   "runaway": 0.465,
+   "lead": 10.72,
+   "stdev": 7.3,
+   "g_turns": 17.95,
+   "g_caps": 8.9,
+   "g_gap": 2.1,
+   "sv_greedy_pts": -15.9,
+   "recall": 0.07,
+   "mn": 9
+  }
+ },
+ "c3big_x_cm1": {
+  "cfg": {
+   "opening": 0,
+   "shield_mode": "big",
+   "mass_plus": 1
+  },
+  "2p": {
+   "turns": 10.82,
+   "minutes": 4.3,
+   "caps": 4.1,
+   "ln": 0.0,
+   "share": {
+    "mass": 0.309,
+    "const": 0.539,
+    "align": 0.151
+   },
+   "gap": 2.4,
+   "runaway": 0.783,
+   "lead": 2.44,
+   "stdev": 3.46,
+   "g_turns": 11.04,
+   "g_caps": 4.78,
+   "g_gap": 2.2,
+   "sv_greedy_pts": -4.3,
+   "recall": 0.03,
+   "mn": 7
+  },
+  "3p": {
+   "turns": 28.3,
+   "minutes": 11.3,
+   "caps": 11.06,
+   "ln": 0.346,
+   "share": {
+    "mass": 0.347,
+    "const": 0.492,
+    "align": 0.161
+   },
+   "gap": 5.07,
+   "runaway": 0.518,
+   "lead": 9.62,
+   "stdev": 9.65,
+   "g_turns": 17.63,
+   "g_caps": 7.54,
+   "g_gap": 0.97,
+   "sv_greedy_pts": -11.5,
+   "recall": 0.06,
+   "mn": 10
+  },
+  "4p": {
+   "turns": 29.93,
+   "minutes": 12.0,
+   "caps": 10.63,
+   "ln": 0.661,
+   "share": {
+    "mass": 0.369,
+    "const": 0.471,
+    "align": 0.161
+   },
+   "gap": 13.7,
+   "runaway": 0.446,
+   "lead": 11.09,
+   "stdev": 5.37,
+   "g_turns": 21.51,
+   "g_caps": 8.21,
+   "g_gap": 1.6,
+   "sv_greedy_pts": -16.9,
+   "recall": 0.05,
+   "mn": 13
+  }
+ },
+ "c3big_x_draw2": {
+  "cfg": {
+   "opening": 0,
+   "shield_mode": "big",
+   "last_draw2": true
+  },
+  "2p": {
+   "turns": 11.37,
+   "minutes": 4.5,
+   "caps": 4.41,
+   "ln": 0.0,
+   "share": {
+    "mass": 0.456,
+    "const": 0.431,
+    "align": 0.113
+   },
+   "gap": 1.7,
+   "runaway": 0.744,
+   "lead": 2.75,
+   "stdev": 3.4,
+   "g_turns": 10.89,
+   "g_caps": 4.64,
+   "g_gap": 6.2,
+   "sv_greedy_pts": -12.7,
+   "recall": 0.03,
+   "mn": 7
+  },
+  "3p": {
+   "turns": 29.73,
+   "minutes": 11.9,
+   "caps": 11.81,
+   "ln": 0.475,
+   "share": {
+    "mass": 0.412,
+    "const": 0.472,
+    "align": 0.115
+   },
+   "gap": 8.07,
+   "runaway": 0.484,
+   "lead": 10.7,
+   "stdev": 8.89,
+   "g_turns": 17.57,
+   "g_caps": 7.48,
+   "g_gap": 4.17,
+   "sv_greedy_pts": -14.9,
+   "recall": 0.08,
+   "mn": 10
+  },
+  "4p": {
+   "turns": 29.84,
+   "minutes": 11.9,
+   "caps": 10.76,
+   "ln": 0.707,
+   "share": {
+    "mass": 0.456,
+    "const": 0.354,
+    "align": 0.19
+   },
+   "gap": 20.8,
+   "runaway": 0.319,
+   "lead": 11.46,
+   "stdev": 4.37,
+   "g_turns": 21.18,
+   "g_caps": 8.08,
+   "g_gap": 3.7,
+   "sv_greedy_pts": -17.5,
+   "recall": 0.04,
+   "mn": 13
+  }
+ },
+ "c4spin_x_open1": {
+  "cfg": {
+   "opening": 1,
+   "shield_mode": "spin"
+  },
+  "2p": {
+   "turns": 6.83,
+   "minutes": 2.7,
+   "caps": 2.52,
+   "ln": 0.0,
+   "share": {
+    "mass": 0.244,
+    "const": 0.504,
+    "align": 0.252
+   },
+   "gap": 10.2,
+   "runaway": 0.743,
+   "lead": 1.51,
+   "stdev": 1.67,
+   "g_turns": 6.75,
+   "g_caps": 2.39,
+   "g_gap": 1.6,
+   "sv_greedy_pts": -13.8,
+   "recall": 0.04,
+   "mn": 5
+  },
+  "3p": {
+   "turns": 13.93,
+   "minutes": 5.6,
+   "caps": 4.55,
+   "ln": 0.01,
+   "share": {
+    "mass": 0.304,
+    "const": 0.514,
+    "align": 0.182
+   },
+   "gap": 7.77,
+   "runaway": 0.545,
+   "lead": 4.43,
+   "stdev": 6.82,
+   "g_turns": 11.51,
+   "g_caps": 4.83,
+   "g_gap": 4.37,
+   "sv_greedy_pts": -7.9,
+   "recall": 0.06,
+   "mn": 7
+  },
+  "4p": {
+   "turns": 17.29,
+   "minutes": 6.9,
+   "caps": 5.46,
+   "ln": 0.048,
+   "share": {
+    "mass": 0.367,
+    "const": 0.395,
+    "align": 0.237
+   },
+   "gap": 19.4,
+   "runaway": 0.293,
+   "lead": 6.1,
+   "stdev": 6.47,
+   "g_turns": 14.67,
+   "g_caps": 5.72,
+   "g_gap": 2.8,
+   "sv_greedy_pts": -9.3,
+   "recall": 0.06,
+   "mn": 9
+  }
+ },
+ "c4spin_x_cm1": {
+  "cfg": {
+   "opening": 0,
+   "shield_mode": "spin",
+   "mass_plus": 1
+  },
+  "2p": {
+   "turns": 8.74,
+   "minutes": 3.5,
+   "caps": 2.48,
+   "ln": 0.0,
+   "share": {
+    "mass": 0.147,
+    "const": 0.59,
+    "align": 0.264
+   },
+   "gap": 1.4,
+   "runaway": 0.832,
+   "lead": 2.49,
+   "stdev": 1.48,
+   "g_turns": 8.98,
+   "g_caps": 2.42,
+   "g_gap": 1.4,
+   "sv_greedy_pts": -12.8,
+   "recall": 0.02,
+   "mn": 7
+  },
+  "3p": {
+   "turns": 17.71,
+   "minutes": 7.1,
+   "caps": 5.05,
+   "ln": 0.023,
+   "share": {
+    "mass": 0.214,
+    "const": 0.533,
+    "align": 0.252
+   },
+   "gap": 5.27,
+   "runaway": 0.41,
+   "lead": 6.24,
+   "stdev": 6.56,
+   "g_turns": 15.09,
+   "g_caps": 4.81,
+   "g_gap": 2.47,
+   "sv_greedy_pts": -8.4,
+   "recall": 0.04,
+   "mn": 10
+  },
+  "4p": {
+   "turns": 21.43,
+   "minutes": 8.6,
+   "caps": 5.26,
+   "ln": 0.103,
+   "share": {
+    "mass": 0.277,
+    "const": 0.54,
+    "align": 0.183
+   },
+   "gap": 21.9,
+   "runaway": 0.315,
+   "lead": 7.8,
+   "stdev": 6.12,
+   "g_turns": 19.15,
+   "g_caps": 5.6,
+   "g_gap": 3.0,
+   "sv_greedy_pts": -10.1,
+   "recall": 0.04,
+   "mn": 13
+  }
+ },
+ "c4spin_x_draw2": {
+  "cfg": {
+   "opening": 0,
+   "shield_mode": "spin",
+   "last_draw2": true
+  },
+  "2p": {
+   "turns": 8.77,
+   "minutes": 3.5,
+   "caps": 2.44,
+   "ln": 0.0,
+   "share": {
+    "mass": 0.26,
+    "const": 0.515,
+    "align": 0.225
+   },
+   "gap": 0.9,
+   "runaway": 0.819,
+   "lead": 2.69,
+   "stdev": 1.44,
+   "g_turns": 8.53,
+   "g_caps": 2.19,
+   "g_gap": 4.4,
+   "sv_greedy_pts": -20.3,
+   "recall": 0.02,
+   "mn": 7
+  },
+  "3p": {
+   "turns": 17.91,
+   "minutes": 7.2,
+   "caps": 5.15,
+   "ln": 0.029,
+   "share": {
+    "mass": 0.289,
+    "const": 0.519,
+    "align": 0.192
+   },
+   "gap": 1.17,
+   "runaway": 0.383,
+   "lead": 6.62,
+   "stdev": 6.57,
+   "g_turns": 14.77,
+   "g_caps": 4.6,
+   "g_gap": 0.97,
+   "sv_greedy_pts": -12.4,
+   "recall": 0.03,
+   "mn": 10
+  },
+  "4p": {
+   "turns": 21.35,
+   "minutes": 8.5,
+   "caps": 5.34,
+   "ln": 0.107,
+   "share": {
+    "mass": 0.371,
+    "const": 0.386,
+    "align": 0.243
+   },
+   "gap": 19.2,
+   "runaway": 0.296,
+   "lead": 7.81,
+   "stdev": 5.81,
+   "g_turns": 18.82,
+   "g_caps": 5.47,
+   "g_gap": 2.8,
+   "sv_greedy_pts": -12.0,
+   "recall": 0.02,
+   "mn": 13
+  }
  }
 }

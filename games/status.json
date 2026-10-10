@@ -793,6 +793,12 @@
           "time": "2026-10-10T11:31:59Z",
           "verdict": "REVISE-MAJOR",
           "note": "cycle 1 critic 3.00 (was 3.17): did not improve; waiting for approval: review-cap"
+        },
+        {
+          "stage": "playtest",
+          "time": "2026-10-10T11:56:55Z",
+          "verdict": null,
+          "note": "cycle 2 sweep done (no cell in band at all counts); paused by owner before the designer step"
         }
       ],
       "verdicts": {
