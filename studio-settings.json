@@ -12,7 +12,11 @@
     },
     "stop_at_percent": 70,
     "warn_at_percent": 50,
-    "cache_read_weight": 0.1
+    "cache_read_weight": 0.1,
+    "paused": {
+      "since": "2026-10-10T09:20:39Z",
+      "note": "Owner paused the usage guard for the Heavenly Bodies project session (2026-10-10). Still run usage.py --record at the end."
+    }
   },
   "approval_mode": "normal",
   "focus": {
@@ -27,6 +31,11 @@
     "auto_cycles_per_game": 3,
     "learning_period_games": 6,
     "learning_period_cycles": 4,
-    "games_through_loop": 0
+    "games_through_loop": 0,
+    "per_game": {
+      "heavenly-bodies": 5,
+      "heavenly-bodies-v2": 5
+    },
+    "per_game_note": "Owner 2026-10-10: up to 5 cycles each, continue only while each cycle improves the targeted KPIs."
   }
 }

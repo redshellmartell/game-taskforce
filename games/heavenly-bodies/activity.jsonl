@@ -10,3 +10,4 @@
 {"time": "2026-10-04T12:13:51Z", "agent": "critic", "game": "heavenly-bodies", "event": "step", "message": "Originality check (2 searches): no close match; read rules, playtest, panel.json (no panel-report.md)", "time_estimated": true}
 {"time": "2026-10-04T12:13:51Z", "agent": "critic", "game": "heavenly-bodies", "event": "done", "message": "REVISE-MAJOR, average 2.83; critique.md and critique.json written; 6 decisions for the owner", "time_estimated": true}
 {"time": "2026-10-04T12:12:05Z", "agent": "manager", "game": "heavenly-bodies", "event": "waiting", "message": "waiting for approval: revision (heavenly-bodies-revision-1); owner rulings needed"}
+{"time": "2026-10-10T09:20:50Z", "agent": "manager", "game": "heavenly-bodies", "event": "step", "message": "Owner rulings recorded; review cap 5; revision 1 starting"}

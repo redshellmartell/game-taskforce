@@ -475,6 +475,12 @@
           "time": "2026-10-05T11:41:50Z",
           "verdict": null,
           "note": "heavenly-bodies-revision-1 approved by owner; queued"
+        },
+        {
+          "stage": "design",
+          "time": "2026-10-10T09:20:50Z",
+          "verdict": null,
+          "note": "owner rulings given (G4 skip, mulligan, open rules with change log); review cap 5; revision 1 starting"
         }
       ],
       "verdicts": {
@@ -724,6 +730,26 @@
       "verdicts": {
         "playtest": "NEEDS-FIXES",
         "critic": "REVISE-MAJOR"
+      },
+      "kill_reason": null
+    },
+    {
+      "slug": "heavenly-bodies-v2",
+      "title": "Heavenly Bodies v2",
+      "source": "owner",
+      "stage": "brief",
+      "revision": 0,
+      "history": [
+        {
+          "stage": "brief",
+          "time": "2026-10-10T09:20:50Z",
+          "verdict": null,
+          "note": "owner idea (kinetic spin-off of Heavenly Bodies); focused comparables check running"
+        }
+      ],
+      "verdicts": {
+        "playtest": null,
+        "critic": null
       },
       "kill_reason": null
     }

@@ -187,6 +187,18 @@
       "time": "2026-10-06T13:43:21.745Z",
       "decision": "approve",
       "notes": "asymmetric-duel-tug-of-war-revision-2 (revision gate): owner decided in the dashboard"
+    },
+    {
+      "slug": "heavenly-bodies",
+      "time": "2026-10-10T09:20:39Z",
+      "decision": "approve",
+      "notes": "Owner 2026-10-10: heavenly-bodies-revision-1 plus review cap 5. Rulings: G4 skip first-player turn-1 draw (yes); mulligan for a hand with no CO (yes); designer may change rules but must log each change; other gaps (G1,G7,G8,G10,G12/13,G27,G29) designer proposes provisional readings, owner reviews. Usage guard paused for the session."
+    },
+    {
+      "slug": "heavenly-bodies-v2",
+      "time": "2026-10-10T09:20:39Z",
+      "decision": "approve",
+      "notes": "Owner 2026-10-10: create v2 (kinetic card game: rotation, orbit in/out, cards moving and changing owners, alternate win conditions, simple and fun, less ability-heavy). Market comparables check approved (focused, not a full scan); greenlight given; review cap 5."
     }
   ]
 }
