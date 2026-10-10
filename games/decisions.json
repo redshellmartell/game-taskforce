@@ -205,6 +205,12 @@
       "time": "2026-10-10T09:24:42Z",
       "decision": "approve",
       "notes": "Owner 2026-10-10: run heavenly-bodies and heavenly-bodies-v2 agents in parallel for this project (exception to one-at-a-time). Only the Manager writes shared files (lessons.md, learning log, status, approvals)."
+    },
+    {
+      "slug": "heavenly-bodies",
+      "time": "2026-10-10T10:05:17Z",
+      "decision": "approve",
+      "notes": "Owner 2026-10-10: pause v1 (heavenly-bodies) after the cycle 2 design pass, before its next playtest. Continue v2."
     }
   ]
 }
