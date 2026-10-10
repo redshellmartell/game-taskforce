@@ -1,60 +1,37 @@
-# Handover (written 2026-10-04)
+# Handover (written 2026-10-10)
 
-Read this first in a fresh session, after `CLAUDE.md`. It holds context that is not stated elsewhere in the repo.
+Read this first in a fresh session, after `CLAUDE.md`. It holds context that is not stated elsewhere in the repo. Then read `games/STATUS.md`, `games/approvals.json` and the retro `studio/retros/2026-10-06.md`.
 
 ## How the owner works
-- The owner is new to coding: plain language, short steps, exact terminal commands to copy.
-- Cloud credits are "free" (~$70 left, expire Nov 5). The plan usage meter shows 0%, so cloud sessions bill credits, not the plan. The usage guard (`tools/usage/usage.py --check`) can read STOP in a long session; it is an estimate and needs recalibrating (review-session item).
-- Long sessions cost more per step. Prefer a fresh session per task or batch.
+- New to coding: plain language, short steps, exact Terminal commands to copy. Cloud credits are limited (about $70 at the last count, expiring Nov 5). One task per session; long sessions cost more per step.
+- **Usage guard** (`python3 tools/usage/usage.py --check`) was calibrated on 2026-10-06 to the Claude app's own percentages; it drifts, so recalibrate when it disagrees with the app ("calibrate usage: 5h=X 7d=Y"). Exit 2 means stop all agent work.
+- Agents are run by hand: the owner says "run the taskforce" (the dashboard switch is only a signal; the dashboard never starts agents). Parallel agents are allowed only when the owner asks (up to 3 playtests at once worked fine).
 
-## Standing decisions (and why)
-- **No BoardGameGeek / RPGGeek / VideoGameGeek fetching or API use.** Owner chose to skip anything that might violate terms. Web-search snippets are fine. Details in `CLAUDE.md` "Research rules".
-- **No unattended agent runner.** The safety classifier blocked it, and the owner has not decided. Options offered: run by hand, an owner-allowed permission rule, or a scheduled cloud run. Task 011 stage 3 needs the owner's explicit go-ahead.
-- **Free third-party AI API declined** (task 009 blocked). A local Ollama test on the owner's Mac is optional and was not run.
-- **Dashboard never starts agents.** Its only writes are listed in `CLAUDE.md` "Dashboard project".
-- **Pitch decisions need `"kind": "pitch"`** in `games/decisions.json`; without it an old gate "approve" hid Duel Flip from the Review Queue.
+## Standing decisions
+- No BoardGameGeek / RPGGeek / VideoGameGeek fetching or API use (snippets are fine). Free third-party AI API declined. No unattended runner (the classifier blocked one; a click-to-fire cloud routine was discussed and dropped: the owner chose manual).
+- **Review cap** (in `CLAUDE.md`): revision cycles run without a click up to the cap (4 per game during the learning period); at the cap or an early stop (critic says structural, or no movement) the Director raises a `review-cap` request. The owner counted older approved `-revision-N` requests inside the cap.
+- Agent files are edited only with the owner's explicit OK. One-time edit done 2026-10-06: a pointer sentence in `game-designer.md`, `playtester.md`, `critic.md`. `CLAUDE.md` was edited once with the owner's approval (review cap).
 
-## Owner's Mac setup
-- The dashboard runs locally and syncs with GitHub through `tools/sync/` (pulls every 20s, pushes only the owner's files).
-- Pushing from the Mac needs a GitHub personal access token (not the password). The owner has made one.
-- `tools/sync/repair.py` fixes the `games/approvals.json` conflicts that happened after pulls.
-- Untested on a real Mac: `install-mac.sh` (background install) and auto-restart. Treat them as unverified.
-- Dashboard fixes only reach the Mac after it pulls and the dashboard restarts.
-- **The Mac must stay on `main`.** On 2026-10-04 it was left on an old `claude/...` branch, so it never saw merged work and the Approvals buttons looked missing. Cloud sessions work on their own branch; the owner merges the pull request into `main`, then the Mac catches up within about 20s.
-- `claude/quirky-rubin-3ooa5m` (Review Queue pitch-decision change plus a sync box) is unmerged and 52 commits behind `main`; it conflicts with `main` in `dashboard/package.json`, `dashboard/server/index.js` and `ReviewQueueView.jsx`. Update it before any merge.
+## What exists for learning (task 013, in progress)
+- `studio/lessons.md` (L1-L12), `studio/design-rules.md`, `studio/mechanics.md`, `studio/checklists.md`, `studio/scoreboard.md` (run `python3 tools/learning/scoreboard.py`), `studio/retros/2026-10-06.md`, `studio/learning-test-1.md`.
+- `tools/sim-kit/` shared simulation kit (template, README, 7 tests; validated on Duel Flip). Playtesters should use it.
+- Stage 4 (retros) has one retro; stage 5 (human ground truth) not started. **No human has played any game; every number is from bots.**
+- Retro proposal 4 (a human playtest slot after cycle 2) needs a `CLAUDE.md` edit and the owner's OK. Proposed next checklist tweak (the designer shows a worked example where the twist pays in the scoring; lesson L12) is a studio-file edit I can make without agent-file edits.
+- Owner idea parked: find public real-game rules and aggregate reviewer characteristics, then correlate with our playtests (see PROGRESS 2026-10-06). Needs the `deep-research` gate, the no-BGG rule and no personal data.
 
-## Known gaps and half-finished items
-- Panel calibration is thin (snippets only, no BGG). Mean error 0.38, trusted at low confidence.
-- Bar Raiser veto thresholds are untuned. Heavenly Bodies has an active veto (G4 first-player draw).
-- Agents' guessed timestamps: the dashboard clamps future times and marks them `~`; `tools/activity/fix_future_times.py` repairs the logs. Agents without a shell must not write their own times.
-- Several playtesters exceeded the 5-config budget (6-7 configs); this was disclosed to the owner. Keep to the budget.
-- Review-session list (panel-player improvements, billing plan vs credits, veto tuning, RPG scope, evidence refresh) is in `docs/plan/PROGRESS.md`.
+## Game status (see `games/STATUS.md`)
+- Five `review-cap` requests are pending (all in `games/approvals.json`): `two-player-hidden-movement-grid` (recommend park), `asymmetric-duel-tug-of-war` (park), `silent-duo-deduction-coop` (pitch for a human playtest), `five-six-simultaneous-auction` (pitch for a human table test), `four-player-partnership-climber` (continue: one scoring-redesign cycle). A pitch needs the owner's explicit decision because the playtest verdicts are NEEDS-FIXES.
+- `solo-nine-card-roguelike` (retitled **Whiskerdark**): playtest done, needs its fix-before-critic pass and critic. `heavenly-bodies` waits for the owner's design rulings (G1, G4, G7, G8, G10, G12/13, G27, G29); the unread designer note in `games/_notes/` is for it. `archetypes` waits for the owner's answers. `duelflip`, `grid-of-cards-area-control`, `standard-deck-engine-workshop` are in owner review.
+- Learning test 1 (`four-player-partnership-climber`, Ladder Pairs): process improved (15-minute playtest, no dead cards, checklists followed) but the twist was inert again; critic 3.33. See `studio/learning-test-1.md`.
 
-## Pending owner decisions (check `games/approvals.json` for the live list)
-- Revisions approved by the owner on the dashboard, not yet run: `grid-of-cards-area-control-revision-1`, `asymmetric-duel-tug-of-war-revision-1` (recorded in `decisions.json`). Pitch chosen for `three-player-trick-taker`: `pitch.md` not yet written.
-- `silent-duo-deduction-coop-revision-1`
-- New `-revision-1` requests after the 25+/30 run: `standard-deck-engine-workshop` (recommend approve), `five-six-simultaneous-auction` (recommend park), `solo-nine-card-roguelike` (recommend approve), `two-player-hidden-movement-grid` (recommend approve)
-- `heavenly-bodies-revision-1`: recommend the owner answers the design rulings first (G1, G4, G7, G8, G10, G12/13, G27, G29)
-- `archetypes-greenlight`: recommend answering its six open questions first
-- `three-player-trick-taker-pitch-or-revise` (pitch recommended)
-- `duelflip-revision-3` (recommend approve: bait hurdle fix only; revision 2 left playtest NEEDS-FIXES, critic REVISE-MINOR 3.42, runaway leader 74.8% to be documented). Last allowed loop.
-- Unread owner note `games/_notes/20261004T122552Z-game-designer.md` (Heavenly Bodies comparables: Bang!, Smash Up, Fluxx, Exploding Kittens, Sushi Go; MTG/Dominion rejected; Love Letter/Coup/Munchkin brackets). Pass it to the designer, critic and Bar Raiser, then move it to `games/_notes/_done/` with a Director's reply.
+## Owner's Mac
+- The dashboard syncs with GitHub through `tools/sync/` (pulls every 20s, pushes owner files incl. `studio/taskforce.json`). **The Mac must stay on `main`.** A sync conflict happened in `games/status.json` (a dashboard click edits it while the Director does too); fix: `cp games/status.json /tmp/x; git reset -q games/status.json; git checkout -- games/status.json`, then restart the sync. Offered but not built: stop clicks writing `status.json`.
+- If the Pipeline tab shows fewer than all games, the Mac has not pulled (check `git status --short` for `UU`).
 
-## Task 013 (learning loop), in progress
-- Live on `main`: scoreboard, `studio/lessons.md` (L1-L11), `studio/design-rules.md`, review cap in `CLAUDE.md`, `review-cap` gate in the dashboard. First run done 2026-10-06 (see `studio/retros/2026-10-06.md`); the retro's proposed agent and playbook changes are NOT applied and need the owner's OK. Stage 5 (human ground truth) not started.
-- Waiting on the owner (all `review-cap` requests in `games/approvals.json`): hidden-movement grid (park), tug-of-war (park), silent-duo (pitch for a human test), auction (pitch for a human test). A pitch needs the owner's explicit decision because the playtest verdict is NEEDS-FIXES.
-- Next run: Whiskerdark (`solo-nine-card-roguelike`) needs its fix-before-critic pass and critic (playtest done: Carry dead, Silk negative, lookahead 96%, 7 ambiguities). `heavenly-bodies` still needs the owner's rulings; the pending designer note in `games/_notes/` is for it.
-- Learning session 2026-10-06: shared sim kit `tools/sim-kit/` (playtesters should use it), `studio/mechanics.md`, `studio/checklists.md`, one-line pointers added to the three agent files (owner's one-time OK). Owner idea parked: public real-game rules plus reviewer personas, to correlate with our playtests (see PROGRESS).
-- Usage guard was calibrated to the app (5h 7%, weekly 9% on 2026-10-06); recalibrate when it drifts.
-
-## Click sync
-- The Mac sync (`tools/sync/sync.sh`) pushes only owner files: approvals, decisions, settings, inbox, notes, and now `studio/taskforce.json` and `studio/STOP` (the switch). Until the Mac pulls this change and restarts the sync, the switch stays on the Mac only. `games/status.json` (history line written by a click) is NOT synced because the Director edits it too; the click's effect is still recorded in approvals and decisions.
-
-## Queued work
-- Task 011: dashboard live/interactive, three stages, branch `dashboard-interactive`. **Read the 2026-10-04 (evening) entry in `docs/plan/PROGRESS.md` first**: it has the owner's "click, then see the effect" requirement and the Step A/B/C plan.
-- Task 012: role-playing games in the pipeline (RPGs need a different playtest approach; say plainly what simulation cannot test).
+## Unmerged on this branch at handover
+- Branch `claude/busy-cannon-ujcja7` holds the learning-test-1 work (Ladder Pairs brief, rules v1.1, playtest, critique, five `review-cap` requests on the dashboard side, lesson L12). Main stops at PR #14. **Ask the owner to merge a pull request first**, so the dashboard shows the requests.
 
 ## First moves for a new session
-1. Read `CLAUDE.md`, this file, `games/STATUS.md`.
-2. Read pending notes in `games/_notes/`.
-3. Ask whether the owner wants "continue with approved work". Do not start gated work or research without approval.
+1. Read `CLAUDE.md`, this file, `games/STATUS.md`, `games/approvals.json`, pending notes in `games/_notes/`.
+2. Fetch main; if the branch was merged, restart it from `origin/main`.
+3. Do not start gated work without approval; check the usage guard before any agent call.
