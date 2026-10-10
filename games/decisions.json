@@ -199,6 +199,12 @@
       "time": "2026-10-10T09:20:39Z",
       "decision": "approve",
       "notes": "Owner 2026-10-10: create v2 (kinetic card game: rotation, orbit in/out, cards moving and changing owners, alternate win conditions, simple and fun, less ability-heavy). Market comparables check approved (focused, not a full scan); greenlight given; review cap 5."
+    },
+    {
+      "slug": null,
+      "time": "2026-10-10T09:24:42Z",
+      "decision": "approve",
+      "notes": "Owner 2026-10-10: run heavenly-bodies and heavenly-bodies-v2 agents in parallel for this project (exception to one-at-a-time). Only the Manager writes shared files (lessons.md, learning log, status, approvals)."
     }
   ]
 }
