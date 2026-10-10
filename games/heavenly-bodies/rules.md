@@ -1,337 +1,236 @@
-# Heavenly Bodies: Rules (cycle 1)
+# Heavenly Bodies: Rules (cycle 2)
 
-> **Owner-supplied game, studio revision 1.** Built from the owner's **Rules v2** (Part 1 of `source-design-doc.md`). The owner opened all rules for this cycle; **every change to a previously locked, open or provisional rule is listed in section 8 (Change log) with its reason and the KPI it should move, so the owner can veto it.** All 40 rule gaps (G1-G40) from revision 0 are now answered (table in 5.10). Answers that move results are marked **PROVISIONAL**. Card list: `cards.md` (machine-readable: `cards.json`).
+> **Owner-supplied game, studio revision 2.** Built from the owner's **Rules v2** (Part 1 of `source-design-doc.md`). Cycle 2 is a **simplifying** revision: it cuts rules the simulation showed to be inert and fixes the Star outliers. **Every change is listed in section 8 (Change log) with its reason and KPI so the owner can veto it.** Answers that move results stay marked **PROVISIONAL**. Card list: `cards.md` (machine-readable: `cards.json`). Gap rulings: Appendix A (reference, not part of the teach).
 
 ---
 
 ## 1. Overview
 
 - **Title:** Heavenly Bodies (working title).
-- **Hook:** each player is a **Star** with a ring of four orbital positions. Your planets and moons (**Celestial Objects**, COs) **rotate one step every turn, and you choose which way**, so your board is a clock you steer: what sits in your exposed North position, and what lands on a bonus position, is decided every turn. Win by destroying an opposing Star, or by building enough Size in orbit and holding it for a full round (**Critical Mass**).
+- **Hook:** each player is a **Star** with a ring of four orbital positions. At the start of every turn your planets and moons (**Celestial Objects**, COs) **turn one step clockwise**, like a clock. Where you place a CO decides where it will be next round, and the CO in your **North** position is exposed to your opponents. Win by destroying an opposing Star, or by building enough Size in orbit and holding it for a full round (**Critical Mass**).
 - **Players:** 2 to 6. 1v1 and free-for-all (3+ players, last Star standing) use the same rules.
-- **Play time:** about 10-15 minutes at 2 players, 25-35 minutes at 6 (owner's targets are flexible).
+- **Play time:** about 10-15 minutes at 2 players, 25-35 minutes at 6.
 - **Age:** 12+ (studio proposal).
-
----
 
 ## 2. Components
 
 | Component | Count | Notes |
 |---|---|---|
-| Star cards | 12 | HP 8/7/6/5, three of each (cycle 1; was 9/8/8/7/7/7/6/6/6/5/5/5). Not shuffled into the deck. Full list in `cards.md` section 1. |
+| Star cards | 12 | HP 8 (x3), 7 (x2), 6 (x5), 5 (x2). Not in the deck. List in `cards.md` section 1. |
 | Celestial Object (CO) cards | 36 | Size 1-5, Stability 1-5, all unique. |
-| Astronomical Event (AE) cards | 60 | 22 Augmentations, 38 Direct Effects, all unique. |
-| **Total cards** | **108** | 12 Stars + 96-card draw pile. |
+| Astronomical Event (AE) cards | 60 | 16 Augmentations, 44 Direct Effects, all unique. |
+| **Total cards** | **108** | 12 Stars + 96-card draw deck. |
 | HP trackers | 6 | A d10 or 0-9 dial per player. |
-| Countdown markers | 6 | Placed on your Star card when you announce Critical Mass. |
+| Countdown markers | 6 | Put on your Star when you announce Critical Mass. |
 | First-player marker | 1 | |
 
-No board. Your Star card sits in front of you; your four positions are the spaces directly above (**North**), right (**East**), below (**South**) and left (**West**) of it.
+No board. Your four positions are the spaces directly above (**North**), right (**East**), below (**South**) and left (**West**) of your Star card.
 
-**Zones.** *Draw deck* (shared, face down). *Discard pile* (shared, face up; anyone may look through it at any time). *Out of Orbit zone* (shared, face up, no size limit, no owners). *Orbit* (each player's 4 positions; at most 1 CO per position once any Collision has resolved). *Hand* (hidden; the number of cards is public).
-
----
+**Zones.** *Draw deck* (shared, face down). *Discard pile* (shared, face up, public). *Out of Orbit zone* (shared, face up, public, no owners). *Orbit* (your 4 positions, at most 1 CO each). *Hand* (hidden; the number of cards is public).
 
 ## 3. Setup
 
-1. Choose the first player at random (any fair method). Play passes **clockwise** (to the left).
-2. **Choose Stars**, using one of two variants (the table picks):
-   - *Draft:* lay out all 12 Stars face up. Players pick one each in **reverse turn order** (the last player picks first).
-   - *Deal 2, keep 1:* deal 2 random Stars to each player; each keeps 1 secretly, then all reveal. Unkept Stars go back to the box.
-   No two players have the same Star.
-3. Set your HP tracker to your Star's printed HP. This is also your **maximum HP**.
-4. Note the table's **Critical Mass threshold** from the number of players at setup: **2p: 14, 3p: 15, 4p: 16, 5p: 17, 6p: 16.** (2-5 players: 12 + the number of players; 6 players is set to 16 from the playtest.) It does not change when players are eliminated.
+1. Choose the first player at random. Play passes clockwise (to the left).
+2. **Choose Stars** (the table picks one variant). *Draft:* lay out all 12 Stars face up; players pick one each in **reverse turn order**. *Deal 2, keep 1:* deal 2 random Stars to each player; each keeps 1 secretly, then all reveal; the rest go back to the box.
+3. Set your HP tracker to your Star's printed HP. This is also your maximum HP.
+4. **Critical Mass threshold** by the number of players at setup: **2p 14, 3p 15, 4p 16, 5p 17, 6p 16.** It never changes during the game.
 5. Shuffle the 96 COs and AEs into the draw deck. Deal 5 cards to each player.
-6. **Mulligan:** in turn order, each player whose 5-card hand contains **no CO** may reveal it, shuffle it into the draw deck and draw 5 new cards. Each player may do this once; the new hand is kept even if it has no CO.
-7. All orbits, the discard pile and the Out of Orbit zone start empty.
-
----
+6. **Mulligan:** in turn order, a player whose 5 cards include **no CO** may reveal them, shuffle them into the deck and draw 5 new cards, once. The new hand is kept.
 
 ## 4. Turn structure
 
-Each turn has four phases in this order.
-
 ### 4.1 Start of Turn
-1. Your "at the start of your turn" triggers resolve (see 5.5).
+1. Your "at the start of your turn" triggers resolve.
 2. Draw 2 cards. **The first player skips this draw on the first turn of the game only.**
 
 ### 4.2 Rotation Phase
-1. **Choose a direction: clockwise (North to East to South to West to North) or counter-clockwise.** Every CO in your orbit moves one step that way at the same time, including into empty positions. **PROVISIONAL (G1).**
-2. Exceptions printed on cards: a CO that "does not move during your Rotation Phase" stays put; a CO that "moves one step in the opposite direction" moves one step against your chosen direction.
-3. Plain rotation is a permutation and never causes a Collision. A Collision happens only when an exception puts two COs on one position; resolve it as in 5.2 (rotation Collisions).
-4. Other players' orbits do not rotate in your Rotation Phase.
+Every CO in your orbit moves one step **clockwise** (North to East, East to South, South to West, West to North) at the same time. Rotation never causes a Collision. Other players' orbits do not move. Then your "at the end of your Rotation Phase" triggers resolve (CO27).
 
 ### 4.3 Play Phase
-Make **up to 2 plays**, in any order. Playing 0 or 1 is allowed. Each play is one of:
+Make **up to 2 plays** in any order (0 or 1 is allowed). Each play is one of:
 
-**A. Place a CO** from your hand into **your own** orbit (G9).
-- Choose any position that meets the CO's printed restriction (for example "Must enter North"). Placing on an occupied position is legal and causes a Collision (5.2); the placed CO is incoming.
-- **CO cap:** at most **1 CO may enter each player's orbit per turn**, from any source (placement, reclaim, or a card that places). A CO that enters and then loses its Collision still used the cap. Moving a CO within an orbit and rotation are not "entering" and do not use the cap. Only ST09 and AE46 ignore the cap. **PROVISIONAL (G10).**
-- The placed CO has **entered orbit** even if it loses its Collision: its enters-orbit trigger resolves first, then it is knocked out.
+**A. Place a CO** from your hand into **your own** orbit, on any position its printed restriction allows ("Must enter North"). An occupied position is legal: a Collision follows (5.2) and the placed CO is incoming. Its enters-orbit trigger resolves first, even if it then loses the Collision.
+- **CO cap (PROVISIONAL):** at most **1 CO may enter each orbit per turn**, from any source (placing, reclaiming, a card that places). A CO that enters and loses its Collision still used it. Moving and rotating are not entering. Only ST09 and AE46 ignore the cap.
 
 **B. Play an AE.**
-- **Augmentation:** attach it to a CO in orbit that its text allows ("Attach to ..."; with no host named, the default is "one of your COs"). It stays until that CO leaves orbit, then is discarded. A CO may carry any number of Augmentations. An Augmentation with no legal host is illegal. Its attach condition is checked only when it is played, not when it is later moved (G21, G22).
+- **Augmentation:** attach it to a CO in orbit its text allows (no host named = one of your COs). It stays until that CO leaves orbit, then is discarded. No legal host = cannot be played. Its condition is checked only when played.
 - **Direct Effect:** resolve it, then discard it.
-- **Legality.** A Direct Effect with no "Choose" in it is always legal. Otherwise it is legal only if **every "Choose" in it** (in the option you picked, for "Choose one" cards) has at least one legal choice. An option with no "Choose" in it (such as "or draw 1 card" on AE32, AE42, AE44, AE50, AE52) can always be picked, so such a card is always legal. "Play only if ..." conditions must be true. Other parts do as much as they can. An illegal card cannot be played; if played by mistake it returns to hand and uses no play (G23-G25).
-- **Hard costs** ("Cost: ...") must be payable in full, and are paid **before** the effect. A self-damage cost can eliminate you; if it does, the effect does not resolve (G26).
-- **Targeting:** "an opponent" means the acting player's choice of opponent. Any Star may be targeted, including one with a running countdown.
+- **Legality:** a card is legal only if every "Choose" in it (in the option you pick, for "Choose one" cards) has a legal choice and every "Play only if" is true. An option without "Choose" (such as "or draw 1 card") is always legal. Other parts do as much as they can. An illegal card played by mistake returns to hand and uses no play.
+- **Costs** ("Cost: ...") must be paid in full, before the effect. A self-damage cost can eliminate you; then the effect does not happen.
+- **Targets:** "an opponent" is the acting player's choice. Any Star may be targeted.
 
-**C. Recycle:** discard 1 card from your hand, then draw 1 card. You may Recycle twice in a turn (using both plays). Recycle cannot be chosen while the draw deck and the discard pile are both empty.
+**Active abilities (not a play).** A sentence marked "Active", or a "Once per turn, you may ..." sentence with no "when", "whenever" or "at the start/end of", may be used in your own Play Phase between plays, **once per turn per source**. A reclaim this way uses the CO cap unless the text says otherwise.
 
-**Not a play: Active abilities.** A sentence marked "Active", or a "Once per turn, you may ..." sentence with no "when", "whenever" or "at the start/end of" condition (those are triggers, 5.5; for example ST06), on your Star or on your COs/Augmentations may be used during your own Play Phase, between plays, **once per turn per source**. It does not use a play. Reclaiming through such an ability does use the CO cap unless the ability says otherwise.
-
-There is no instant-speed play: you never play cards on another player's turn. There is no generic reclaim action; reclaims only happen through a card or ability that says "reclaim".
+No card is ever played on another player's turn. Reclaims happen only through cards that say "reclaim".
 
 ### 4.4 End of Turn
-In this order (G6):
 1. Your "at the end of your turn" triggers resolve.
-2. **Critical Mass check (your own total only, at your own End of Turn; PROVISIONAL, G7):**
-   a. If your countdown is running and this is its deadline turn, and your total Size is still at or above your threshold, **you win**.
-   b. Otherwise, if no countdown of yours is running and your total Size is at or above your threshold, **announce Critical Mass**: put your countdown marker on your Star. Its deadline is the end of **your next turn**.
-3. **Hand limit:** if you hold more than 7 cards, discard down to 7 (you choose which).
-4. "This turn" effects end (5.8).
+2. **Critical Mass (your own total only; PROVISIONAL):** (a) if your countdown is running and this is its deadline turn, and your total Size is at or above your threshold, **you win**; (b) otherwise, if no countdown of yours is running and your total is at or above your threshold, **announce**: put your countdown marker on your Star. Its deadline is the end of your **next** turn.
+3. **Hand limit:** discard down to 7 (your choice).
+4. "This turn" effects end.
 
-Play passes clockwise to the next player still in the game.
-
----
+Play passes to the next player still in the game.
 
 ## 5. Special rules and timing
 
-### 5.1 Size, Stability and effective values
-- **Effective** value = printed value plus all active modifiers, then floored at 0. Add all modifiers first, then apply the floor once (G15). Effective values may exceed 5 (G19). Every check uses effective values.
-- **Stability 0:** the CO is **knocked out** (moved to the Out of Orbit zone) whenever its effective Stability is 0 after any change, including when a bonus ends (G16).
-- **Size 0:** the CO is **discarded** (not knocked out) whenever its effective Size is 0. If Size and Stability reach 0 together, it is discarded (G18).
-- **COs outside orbit** (hand, Out of Orbit zone, deck) have no modifiers: any check on them ("a CO with Size 3 or less" for ST11 or AE45) uses **printed** values.
-- **A CO leaving orbit as a cost or effect** (for example AE28 "if that CO had Size 4 or more"): use its **effective** values at the moment just before it left.
+### 5.1 Size and Stability
+- **Effective value** = printed value plus all modifiers, floored at 0 (sum first, then floor). It may exceed 5. Every check uses effective values.
+- **Stability 0:** the CO is **knocked out** (to the Out of Orbit zone) at once, including when a bonus ends.
+- **Size 0:** the CO is **discarded** at once. If Size and Stability are both 0, it is discarded.
+- COs outside orbit have no modifiers: checks on them use printed values (AE45 "Size 3 or less").
+- A CO leaving orbit as a cost or effect is judged by its effective values just before it left (AE28).
 
 ### 5.2 Collisions and movement
-A **Collision** happens whenever two COs would occupy one position. Resolve it:
-1. The CO with **lower effective Stability** is knocked out.
-2. If tied, the CO with **smaller effective Size** is knocked out.
-3. If still tied, the **incoming** CO wins and the CO already there is knocked out.
-4. A card may change this only if its text says so. If both COs have an effect saying they win, ignore both and use steps 1-3 (G14).
+A **Collision** happens whenever two COs would occupy one position (placing, reclaiming or moving; never rotating). The CO with **lower effective Stability** is knocked out; if tied, the **smaller effective Size**; if still tied, the CO already there (the incoming CO wins). A card changes this only if it says so; if both COs say they win, ignore both. Collisions happen only inside one orbit.
 
-Collisions only happen inside one orbit; there are no cross-player Collisions.
+**Moving a CO** within an orbit (by a card or ability) is not entering: no enters-orbit trigger, no CO cap. If the destination is occupied, a Collision follows and the moved CO is incoming.
 
-**Rotation Collisions (PROVISIONAL, G12, G13).** In a Rotation Phase all COs move at once; two COs that swap positions pass each other without colliding. Then, for each position holding 2 or more COs, using effective values in the new positions:
-- the CO that did not move (if any) is the occupant; the CO that moved in your chosen direction collides with it first (and is incoming); a CO that moved in the opposite direction then collides with the winner (and is incoming);
-- if no CO stayed, the CO that moved in your chosen direction is the occupant and the opposite mover is incoming.
-After all Collisions, check every CO for Stability 0 and Size 0.
-
-**Moving a CO within an orbit** (by a card or ability) is not entering orbit: no enters-orbit trigger, no CO cap. If the destination is occupied, a Collision occurs and the moved CO is incoming (G11).
-
-**Anchors only stop the Rotation Phase.** "Does not move during ... Rotation Phase" (CO27, AE14, AE16) and "moves one step in the opposite direction" (CO21, AE15) apply **only** in a Rotation Phase. A card or ability that moves COs (AE38, AE60, CO06, AE18, a card rotation) moves an anchored or retrograde CO like any other. For AE60, the Collision in North uses each CO's effective values in North.
-
-**"Rotate an orbit one step"** on a card: the acting player chooses the direction and every CO in that orbit moves one step at once, ignoring "does not move" and "opposite direction" effects (those apply only in a Rotation Phase). It never causes a Collision.
+**"Rotate an orbit one step"** on a card: every CO in that orbit moves one step clockwise at once, as in 4.2 (no Collision, no "end of Rotation Phase" triggers).
 
 ### 5.3 Out of Orbit zone and ownership
-- Knocked-out COs go here and stay until reclaimed or removed. Their Augmentations are discarded.
-- Any player may **reclaim** any CO from here into **their own** orbit (by a card or ability that says "reclaim"). It follows placement rules (restriction, Collision if occupied, CO cap). It can never fail for lack of a position. Its enters-orbit trigger fires. The reclaim has happened even if the CO then loses its Collision, so "whenever you reclaim" triggers (ST11) still resolve.
-- A CO's **owner** is always the player whose orbit it is in (G20). An Augmentation's "you" is the player who played it. "Your COs" are the COs in your orbit.
-- "**Knocked out**" always means moved from an orbit to the Out of Orbit zone. Discarding a CO (Size 0, AE40) and returning it to hand remove it from orbit but are **not** knockouts (G17).
+- Knocked-out COs go here and stay until reclaimed or removed. Their Augmentations are discarded. **Knocked out** always means leaving an orbit this way; discarding (Size 0, AE40) and returning to hand are not knockouts. If a card sends a knocked-out CO elsewhere (ST11), it still counts as knocked out.
+- Any player may **reclaim** any CO from here into their own orbit, through a card or ability that says "reclaim". It follows placement rules (restriction, Collision, CO cap) and fires its enters-orbit trigger.
+- A CO's **owner** is the player whose orbit it is in. An Augmentation's "you" is the player who played it.
 
-### 5.4 Enters-orbit triggers
-A CO's enters-orbit trigger fires whenever it enters an orbit from hand, by a card that places it, or by reclaim, even if it then loses its Collision (trigger first, then knockout).
+### 5.4 Triggers (PROVISIONAL)
+- "When", "whenever" and "at the start/end of" abilities are **triggers**; they work on any player's turn. A "you may" choice is made when the trigger resolves. A trigger marked "once per turn" can fire once in **each player's turn**.
+- If several fire at once, the active player stacks theirs in any order, then each other player in turn order; the **last stacked resolves first**, and a new trigger goes on top. Each item fully resolves (Collisions and knockouts included) before the next.
 
-### 5.5 Triggers and the stack (PROVISIONAL, G27, G29)
-- Only triggered and passive abilities already in play act outside the Play Phase or on other players' turns.
-- "Whenever ...", "When ...", "At the start/end of ..." abilities are **triggers**. A "you may" choice is made when the trigger resolves.
-- A trigger marked "once per turn" can fire once during **each player's turn**.
-- **LIFO stack:** when one or more triggers fire at the same moment, the **active player** puts all of theirs on the stack in any order they choose, then each other player in turn order does the same. Resolve the stack **top first** (the last one put on resolves first). A trigger that fires while the stack is resolving goes on top and resolves next. The order a player picks among their own simultaneous triggers is free; with the current cards (for example AE09, AE11, CO23, AE20 at the start or end of your turn) it never changes the outcome.
-- A card or ability fully resolves (including any Collision and knockouts it causes) before the next stack item.
+### 5.5 Deck, hand and information
+- Empty deck: when a card must be drawn or looked at, shuffle the discard pile into a new deck. If both are empty, skip the rest. The Out of Orbit zone is never shuffled in.
+- "Look at the top N": if the deck holds fewer than N, look at what is there.
+- A Star never goes above its printed HP.
 
-### 5.6 Hand, deck and information
-- Starting hand 5; draw 2 per turn; up to 2 plays per turn; hand limit 7, checked only at End of Turn. Same at every player count.
-- **Empty deck:** the moment the draw deck is empty and a card must be drawn or looked at, shuffle the discard pile to form a new deck and continue. If both are empty, the remaining draws are skipped. The Out of Orbit zone never returns to the deck (G35).
-- **"Look at the top N cards"** (AE48, AE49, CO33): if the deck is empty, reshuffle first as above. If the deck holds fewer than N cards, look at only the cards it holds (do not reshuffle to make up the number).
-- Hands are hidden; hand sizes, the discard pile and the Out of Orbit zone are public (G37).
-- A Star never goes above its maximum (printed) HP (G36).
+### 5.6 Elimination
+- A Star at 0 HP is eliminated at once. Its orbit, hand and all Augmentations its player put on other COs are discarded; its countdown ends.
+- If the active player is eliminated, their turn ends and their pending triggers are removed.
+- Several Stars reaching 0 together are eliminated together; if none would remain, the active player wins.
 
-### 5.7 Elimination
-- A Star at 0 HP is eliminated at once, whatever the source (including its own cost).
-- The eliminated player's orbit and hand are discarded, and so are all Augmentations they played onto other players' COs (G31). Their countdown ends. The Out of Orbit zone is untouched.
-- If the **active** player is eliminated, their turn ends at once; stack items they control are removed (G30). Stack items that would affect only an eliminated player are removed.
-- If one effect brings several Stars to 0, they are eliminated together. If that would leave no player, the active player wins (G33).
+### 5.7 Timing words
+- "**This turn**" effects end at End of Turn step 4. "**Until the start of your next turn**" effects end at the start of that turn, before triggers, or when that player is eliminated.
+- "**Since your last turn**" means since the end of your previous turn (on your first turn, since the game began).
+- **Next to:** North and South are each next to East and West (not to each other).
 
-### 5.8 Durations and timing words
-- "**This turn**" effects end in step 4 of End of Turn (after the hand limit) (G32).
-- "**Until the start of your next turn**" effects end in step 1 of that player's Start of Turn, before triggers. If that player is eliminated first, the effect ends then.
-- "**Since your last turn**" / "since the end of your last turn" means since the end of your previous turn; on your first turn, since the start of the game (G28).
-- Order inside Start of Turn: triggers, then draw (G5).
+## 6. End of game
 
-### 5.9 Glossary
-- **Next to:** North is next to East and West; East to North and South; South to East and West; West to South and North (G38).
-- **Wins a Collision:** stays in its position while the other CO is knocked out (G39).
-- **Entered orbit:** placed from hand, placed by a card, or reclaimed (not moved or rotated).
-- **North (the exposed position):** several cards hit only an opponent's North CO (AE22, AE41, AE55, AE60); others reward your own North (AE20, AE28, CO25).
+The game ends the instant a player wins. No points.
 
-### 5.10 Gap rulings (all 40 answered)
-P = PROVISIONAL (moves results; owner may change).
+**Star Destruction.** When a Star reaches 0 HP: at 2 players the other player wins; at 3+ the player is eliminated (5.6) and the **last player remaining wins**.
 
-| Gap | Ruling | Where |
-|---|---|---|
-| G1 (P) | Active player chooses rotation direction each Rotation Phase; card rotations: acting player chooses | 4.2, 5.2 |
-| G2 | Random first player; play passes clockwise; draft in reverse turn order | 3 |
-| G3 | Stars chosen first, then hands dealt; unkept Stars go to the box | 3 |
-| G4 | First player skips the turn-1 draw (owner ruling) | 4.1 |
-| G5 | Start triggers, then draw | 5.8 |
-| G6 | End triggers, Critical Mass win check, announce, hand limit, "this turn" ends | 4.4 |
-| G7 (P) | Only the active player's own total, only at their own End of Turn | 4.4 |
-| G8 (P) | Cancel checked after each play, each Active ability, the Rotation Phase, the Start of Turn triggers and at End of Turn step 2, on any turn; a dip inside one play does not count; cancel line = your threshold | 6.2 |
-| G9 | COs from hand go only into your own orbit | 4.3 |
-| G10 (P) | 1 CO enters each orbit per turn from any source; losing its Collision still uses it; moves do not | 4.3 |
-| G11 | Moving within an orbit: no trigger, no cap, mover is incoming | 5.2 |
-| G12, G13 (P) | Simultaneous move; swaps pass; occupant, then same-direction mover, then opposite mover; stat-0 checks after all Collisions | 5.2 |
-| G14 | Two "wins every Collision" effects cancel out | 5.2 |
-| G15, G16 | Floor after summing; knocked out whenever Stability is 0, including when a bonus ends | 5.1 |
-| G17 | "Knocked out" = to the Out of Orbit zone only | 5.3 |
-| G18, G19 | Size 0 wins (discard); effective values may exceed 5 | 5.1 |
-| G20 | Owner = orbit holder; Augmentation's "you" = who played it | 5.3 |
-| G21, G22 | Default host "one of your COs"; no host = illegal; attach condition checked only when played | 4.3 |
-| G23-G25 | No "Choose" = always legal; every "Choose" needs a legal choice; "Play only if" is legality | 4.3 |
-| G26 | Costs fully payable, paid first; self-damage can eliminate you | 4.3 |
-| G27 (P) | "Once per turn" triggers: once per each player's turn; Active abilities only in your Play Phase | 4.3, 5.5 |
-| G28 | First turn counts from the start of the game | 5.8 |
-| G29 (P) | LIFO stack; active player stacks first, then others in turn order; top resolves first | 5.5 |
-| G30, G31 | Active player eliminated: turn ends; their Augmentations on others' COs are discarded | 5.7 |
-| G32 | "This turn" ends after the hand limit; "until your next turn" ends at its start or on elimination | 5.8 |
-| G33 | Simultaneous zero: eliminated together; if none remain, active player wins | 5.7 |
-| G34 | You choose your hand-limit discards | 4.4 |
-| G35 | Reshuffle mid-draw; skip if both empty; Out of Orbit never reshuffled | 5.6 |
-| G36 | HP never above printed HP | 5.6 |
-| G37 | Hands hidden, sizes public; discard and Out of Orbit public | 2, 5.6 |
-| G38, G39 | Defined | 5.9 |
-| G40 | Age 12+ | 1 |
+**Critical Mass.** **Total Size** = the sum of the effective Size of the COs in your orbit. **Threshold:** 2p 14, 3p 15, 4p 16, 5p 17, 6p 16 (ST10: 2 lower). Announce and win only at your own End of Turn (4.4); earliest win is your 4th turn.
+- **Cancel (PROVISIONAL):** after each play, Active ability, Start of Turn and Rotation Phase has fully resolved (on any player's turn), and at End of Turn step 2, a running countdown whose owner's total is below their threshold is cancelled. To announce again you must reach the threshold at a later End of Turn.
+- A countdown gives no protection. Ties cannot happen: the first win check that is true ends the game.
 
----
-
-## 6. End of game and scoring
-
-No points. The game ends the instant a player wins.
-
-### 6.1 Star Destruction
-- Checked immediately whenever a Star reaches 0 HP, at any moment of any turn.
-- **1v1:** the other player wins. **Free-for-all:** the eliminated player leaves (5.7); the **last player remaining wins**.
-
-### 6.2 Critical Mass
-- **Total Size** = the sum of the effective Size of the COs in your orbit. The Out of Orbit zone never counts.
-- **Threshold** by the number of players at setup: 2p 14, 3p 15, 4p 16, 5p 17, **6p 16**. ST10's threshold is 2 lower.
-- **Announce** and **win** only at your own End of Turn (4.4). Earliest announcement: your 3rd turn (CO cap); earliest win: your 4th.
-- **Cancel (PROVISIONAL, G8):** the cancel check is made at these moments only, on any player's turn: (1) after each **play** has fully resolved, including every trigger, Collision and knockout it caused (a trigger inside a play is not a separate check); (2) after each **Active ability** has fully resolved; (3) after the **Rotation Phase**; (4) after the **Start of Turn** triggers; (5) at **End of Turn** step 2, before the win check. At each check, every player whose countdown is running and whose total is below their threshold has the countdown cancelled (remove the marker). You must reach the threshold again at an End of Turn to announce a new one, whose deadline is always your **next** turn, never the current one.
-- A countdown gives no protection; a player with a running countdown can be targeted and eliminated.
-- **Ties cannot happen:** turns are sequential and both win checks happen as soon as they are true, so the first true check ends the game.
-
-### 6.3 Turn cap
-None in play. The simulation uses a cap of 30 rounds (a draw) and must report any hits; none occurred in revision 0.
+**Turn cap:** none in play. The simulation uses 30 rounds (a draw) and reports any hits.
 
 ---
 
 ## 7. Design notes
 
 ### 7.1 Intent
-- **The twist: a clock you steer.** Every turn your whole orbit turns one step and you choose the direction. North is the exposed position (AE22, AE41, AE55, AE60 hit it), East, South and West carry bonuses for some cards (CO07, AE05, CO16), and anchors and retrograde movers (CO21, CO27, AE14, AE15, AE16) create Collisions you can predict. "Where do I put this, and which way do I turn" is the decision every turn.
-- **Two co-equal win paths:** Star Destruction (immediate) and Critical Mass (a held state with a one-round window for counterplay). The threshold scales with player count because damage is split across more opponents in big games, while Critical Mass is a solo race (owner's own precedent: "scale deck composition or thresholds instead", Rules v2 §8).
-- **No mana.** Throttles are 2 plays, 1 CO entering per turn, and per-card costs.
-- **Free-for-all dogpiles** on a Critical Mass leader are intended.
+- **The twist: a clock you plan.** Your orbit turns one fixed step every turn, so every CO visits North once every four of your turns. North is exposed (AE22, AE41, AE55, AE60 hit only an opponent's North) and also pays (AE07, AE16, AE20, AE28, CO21, CO25, CO27 reward your own North). East, West and South carry bonuses for a few cards (CO07, CO16, AE05). The decision is **where to place** each CO, knowing what the clock will bring into North next round: a big CO in North pays you and is a target for everyone.
+- **Two co-equal win paths:** Star Destruction (immediate) and Critical Mass (a held state with a one-round window for counterplay). The threshold scales with player count because damage spreads over more opponents in big games.
+- **No mana.** Throttles: 2 plays, 1 CO entering per turn, per-card costs.
 
 ### 7.2 Comeback
-Catch-up damage (AE30 if the target has more COs, AE35 if you have less HP, AE31 and ST07 after taking damage); five cheap answers to a countdown (AE23, AE41, AE43, AE55, AE60) plus AE32, AE52, AE53 and ST12; and AE32's 2 damage against a 12+ Size orbit. KPI: runaway leader at most 65% (was 63.4%), lead changes at least 2 (was 3.1). Round 1 cannot decide the game: no Critical Mass win before your 4th turn, and the fastest kill took 4.4 own turns.
+Catch-up damage (AE30, AE35, AE31, ST07), catch-up draw (AE08), cheap countdown answers (AE23, AE41, AE43, AE55, AE60 plus AE32, AE52, AE53, ST12), and free-for-all dogpiles on a Critical Mass leader. KPI: runaway leader at most 65% (cycle 1: 60.7), lead changes at least 2 (3.78). No Critical Mass win before your 4th turn.
 
 ### 7.3 Target bands and knobs
 | Measure | Band | Knob |
 |---|---|---|
-| Win path split, each player count | each path 40-60% (2p was 72/28 Star; 6p 25/75) | Critical Mass threshold per player count (±1) |
-| Seat gap, 2p | at most 5 points (was 7.4) | first-player draw (now skipped) |
-| Star round-robin | every Star 40-60% (was 33-71%) | that Star's HP (±1) |
-| Critical Mass cancel share | 45-55% of announcements (was 41%) | number of cheap answers |
-| Rotation-trick cards | each played in 5%+ of games | North-hitting card count |
+| Win path split, each count | each path 40-60% | threshold per count (±1) |
+| Seat gap, 2p | at most 5 points | first-player turn-1 draw |
+| Star round-robin, 2p | every Star 40-60% | that Star's HP (±1) |
+| HP 5 Stars at 4p (two targeting bots) | each 15%+ (fair 25) | ST10/ST12 HP 5 to 6 |
+| Cancel share | 45-55% at every count | AE23's Stability option (cut it if 4p+ stays above 55) |
+| Dead cards per 7-card hand | under 3 | count of host-needing Augmentations |
 
 ### 7.4 Skill
-Good play shows in the rotation choice (what is in North when the opponent acts, which CO lands on its bonus position, whether an anchor collides), in holding an answer for a countdown, and in choosing when to switch from building to damage. Revision 0 gap: 77.7 points (strategic vs random); target at least 20.
+Good play shows in placement (what the clock brings into North and when), holding an answer for a countdown, choosing when to switch from building to damage, and target choice at big tables. Cycle 1 gap: 88.7 points (strategic vs random); target at least 20.
 
 ---
 
 ## 8. Change log
 
-### Cycle 1 (revision 1)
-Responds to `critique.md` (REVISE-MAJOR, 2.83) and `playtest-report.md` (NEEDS-FIXES). Rules changes first (the owner may veto any), then cards.
+### Cycle 2 (revision 2): simplify
+Responds to `critique.md` revision 1 (REVISE-MAJOR, 3.17, required changes 1-7) and `playtest-report.md` revision 1. **The owner may veto any row.** Bundled changes (L10): each row names its single-change test.
 
-| # | Change | Was | Status before | Reason (feedback) | KPI it should move |
-|---|---|---|---|---|---|
-| R1 | First player skips the turn-1 draw | gap G4 | gap | Owner ruling; critic decision 1 | 2p seat gap 7.4 to about 0 (playtest: 50.2%); clears Bar Raiser veto |
-| R2 | Free mulligan of a no-CO opening hand, once | none | none | Owner ruling; playtest (e) 3.4% CO-less hands | Turns with no CO in hand; dead-start rate |
-| R3 | **Rotation direction is the active player's choice** each Rotation Phase | clockwise in original notes | `[OPEN]` | Critic change 3 and owner's ask "rotation should matter more": rotation Collisions 0.48/game, 8 rotation cards under 5% | Ablation: always-clockwise bot loses by 5+ points; rotation-trick cards 5%+; strategic beats greedy by more than 53.5% |
-| R4 | **Critical Mass threshold = 12 + players, max 17** (was 15 at every count); ST10 = 2 lower | 15 | `[LOCKED]` | Critic weakness: path split flips with count (2p 72/28, 4p 39/61, 6p 25/75); one card-count change cannot fix both ends (playtest f) | Path split within 40-60 at 2p, 4p and 6p |
-| R5 | Cancel is checked after each resolution, not mid-resolution | "drops below at any point" | `[LOCKED]` wording, gap G8 | G8 flagged result-moving; humans cannot track mid-card dips | Rule ambiguity count; small rise in Critical Mass share |
-| R6 | **Recycle** play: discard 1, draw 1, costs a play | optional End-of-Turn swap | `[OPEN, deferred]` | Playtest (e): 3.4 dead cards per 7-card hand, clogged hands; deferred item said "revisit if playtesting shows a need" | Turns with no legal play to 0; hand clog |
-| R7 | ST01 HP 9 to 8 (curve now 3/3/3/3 over HP 8-5, mean 6.5) | 9 | `[LOCKED]` curve | Critic decision 3: HP 9 wins 70.6% | ST01 round-robin into 40-60% |
-| R8 | ST08, ST10, ST11, ST12 abilities buffed (see `cards.md`) | roster | working list | Critic: buff abilities first; HP 5 Stars 33-45%; ST12 had no denial | Each into 40-60% |
-| R9 | All gaps G1-G40 answered (5.10); LIFO stack ordering defined | gaps | gaps | Critic decision 5; target zero ambiguities | Ambiguity count 40 to 0 |
-| R10 | Eliminated player's Augmentations on others' COs are discarded | gap G31 | gap | Cleaner exit (no dangling AE11 owner) | Ambiguities |
-| R11 | Draft picks in reverse turn order | "in turn order" | `[LOCKED]` | Gives later seats the better Star, a second seat-balance lever | Seat gap at 3p+ |
-| R12 | **6-player threshold 16** (was 17); 2-5p unchanged (14/15/16/17) | 17 | cycle 1 (R4) | Fix-before-critic pass; playtest problem 3: 6p CM share 38.0% at 17, 50.2% at 16 (single-change test) | 6p path split into 40-60 |
-
-**Cards (all 108 kept, same IDs, `cards.json` format unchanged plus a `changed` flag):**
-| Card | Change | Feedback | KPI |
-|---|---|---|---|
-| AE28 | Sacrifice must be your **North** CO; 2 damage, 3 only if it had Size 4+ | Critic change 1 (winning link +0.42) | Winning link under 0.2 |
-| AE25 | Self-damage cost 1 to 2 | Critic change 1 (+0.26) | Winning link under 0.2 |
-| AE23 | Modal: 1 damage **or** -1 Stability to an opponent's CO | Change 2 (cheap answers) | Cancel share 45-55% |
-| AE41 | Hits only opponents' North COs, draws 1 | Change 2, 3, 5 (0.4% played, self-harming) | Played 5%+; legal on empty board |
-| AE43 | Any opponent's CO: strip Augmentations, -1 Size | Change 2, 3 (2.2%) | Played 5%+; cancels |
-| AE55 | **Denial card:** bounce an opponent's North CO to hand | Change 2, 3 (0%) | Played 5%+; cancels |
-| AE60 | Forced Collision at an opponent's North | Change 2, 3 (0.65%) | Played 5%+; cancels |
-| AE57 | Draw 1, then rotate your orbit either way | Change 3, 5 (0.1%) | Played 5%+; legal on empty board |
-| AE45 | Draw 1 first, then optional small reclaim | Change 3, 5 (2.4%) | Played 5%+; legal on empty board |
-| AE49 | Look at top 4, take a CO | Change 5 (4.5%, dead early) | Legal on empty board; fewer CO droughts |
-| CO14 | Draws 1 on entering, then the free Augmentation | Change 3 (4.75%) | Played 5%+ |
-| CO24 | Neighbours also get +1 Size | Change 3 (5.05%, negative link) | Played 5%+ |
-| AE16 | Anchor also gives +1 Size | Playtest: under 5% | Played 5%+ |
-
-### Cycle 1 fix-before-critic pass (mechanical only)
-Responds to `playtest-report.md` revision 1 (ambiguities list, problem 3, problem 5). No new mechanics. Not touched on purpose (left for the Manager, cycle 2): rotation direction, ST11, the HP curve, AE25, AE28.
-
-| # | Change | Where | Feedback | KPI |
+| # | Change | Was | Reason (feedback) | KPI it should move |
 |---|---|---|---|---|
-| F1 | 6p threshold 17 to 16 (R12 above) | 3, 6.2, `cards.json` | Problem 3 | 6p CM share 38.0 to about 50 |
-| F2 | Anchors and retrograde only act in a Rotation Phase; card moves (AE60, AE38, CO06, AE18) move anchored COs; AE60 Collision uses effective values in North | 5.2 | Ambiguity "AE60 anchored CO" (sim coded yes: no change to results) | Ambiguities |
-| F3 | "Look at the top N" with fewer than N in the deck: look at what is there; reshuffle only if empty | 5.6 | Ambiguity AE49 (matches sim) | Ambiguities |
-| F4 | COs outside orbit use printed values (ST11, AE45 "Size 3 or less") | 5.1 | Ambiguity (matches sim) | Ambiguities |
-| F5 | A reclaim that loses its Collision still counts as a reclaim; ST11 still deals damage | 5.3 | Ambiguity (matches sim) | Ambiguities |
-| F6 | Cancel check moments listed exactly: after each play (triggers inside a play are not separate checks), after each Active ability, after the Rotation Phase, after Start of Turn triggers, at End of Turn step 2. Still PROVISIONAL (G8) | 6.2, 5.10 | Ambiguity "per card/trigger vs per play" (sim coded per play, Rotation Phase, End of Turn; **sim: add the check after Active abilities and Start of Turn triggers** if missing; expected effect near nil, since Start of Turn triggers only deal damage) | Ambiguities |
-| F7 | A leaving CO's condition (AE28 "had Size 4 or more") uses effective values just before it left (card text unchanged) | 5.1 | Ambiguity (matches sim) | Ambiguities |
-| F8 | Recycle not allowed while deck and discard are both empty | 4.3 C | Ambiguity (matches sim) | Ambiguities |
-| F9 | Order among your own simultaneous triggers is free and never matters with current cards | 5.5 | Ambiguity (matches sim). G29 stays PROVISIONAL | Ambiguities |
-| F10 | "Choose one" option with no "Choose" is always legal (stated with examples) | 4.3 B | Supports F11 | Dead cards |
-| F11 | Six Direct Effects that were dead on an empty board and among the least played get a **"draw 1 card" option** (AE42, AE44, AE50, AE52, AE32) or move their draw first (AE59). Their main effect is unchanged. | `cards.md`, `cards.json` | Problem 5 (3.31 dead cards per 7-card hand); play rates AE59 5.1%, AE42 8.1%, AE52 10.6%, AE50 13.1%, AE44 14.6%, AE32 15.4% | Dead cards per hand: 45 to 39 dead of 96 on an empty board, so about 3.3 to 2.85 |
+| C2-R1 | **Rotation is always clockwise**; the direction choice is removed. Card rotations are clockwise too. (Restores the owner's original note.) | Active player chooses (R3, G1) | Critic change 1: always-clockwise bot lost by only 0.9 (2p) / 2.4 (4p); L12 | Rule lines down 15+ with seat and path KPIs held; placement-blind bot loses by 5+ (new test) |
+| C2-R2 | **Anchors and retrograde removed**: CO21, CO27, AE16 lose them; AE14, AE15 replaced. Rotation can never cause a Collision, so the rotation-Collision rules and the anchor exception are deleted | G12, G13, F2 | Critic changes 1 and 5 (inert rule weight); AE14 1.5%, AE15 5.1% played | Rule lines; ambiguities to 0 |
+| C2-R3 | **Recycle removed** | R6 | Never-Recycle bot won 54.9% (critic change 5) | Rule lines; win rates unchanged |
+| C2-R4 | ST11: **HP 5 to 6**, new ability (capture: an opponent's knocked-out CO may go to your hand); the reclaim-damage loop is gone | HP 5, reclaim loop (R8) | Critic change 2: ST11 29.7%, ability-off +2.4 (inert) | ST11 40-60 at 2p; 15%+ at 4p |
+| C2-R5 | ST05: **HP 7 to 6** (HP curve now 8x3, 7x2, 6x5, 5x2, mean still 6.5) | 7 | ST05 65.4% at 2p, above band | ST05 into 40-60 |
+| C2-R6 | **Six low-use Augmentations become host-free Direct Effects** (same IDs): AE04, AE07, AE08, AE14, AE15, AE17. Augmentations 22 to 16 | Augmentations | Critic change 4 (AE14 1.5, AE17 3.3, AE04 4.2, AE08 4.9, AE07 5.0%); playtest problem 5 | Dead cards per hand under 3 (estimate 2.85 to about 2.5); each new card played 5%+ |
+| C2-R7 | **AE41 hits one opponent's North**, not every opponent; **AE60 always moves clockwise** | each opponent; chosen direction | Critic change 6: cancel share 58-68% at 4p+; AE41 was the only answer that scaled with opponents | Cancel share at 4p+ toward 45-55 |
+| C2-R8 | Rules text compressed; gap table moved to Appendix A; cancel moments in one sentence (same five moments) | about 160 playable lines | Critic change 5, L7 | Playable rules (sections 1-6): 121 lines with blanks, about 90 of text |
+| - | **Kept on purpose:** mulligan (owner ruling R2; inert in the sim but costs 2 lines), first-player skip (G4), 6p threshold 16 and the F11 draw options (not yet re-simulated; critic said do not change) | | | |
 
-**Why F11 does not raise power:** "play this card to draw 1 card" is exactly a Recycle of that card (one play, hand size unchanged, the card goes to the discard pile), which every player could already do; it is never better than the card's main effect when a target exists. AE59 always drew 1 when it was playable, so drawing first changes only that it is now legal with an empty Out of Orbit zone. Rotation cards (AE14, AE15, AE55, AE60) were left alone because rotation is a cycle-2 question. **Honest caveat:** this lowers the dead-card count, but the felt hand clog comes mostly from the 22 Augmentations that need a host (playtest: structural); bots do not feel clog, so a human check is still needed.
+**Cards changed in cycle 2 (14, details in `cards.md`):**
+| Card | New text (short) | Why |
+|---|---|---|
+| ST05 | HP 6 | Above band |
+| ST11 | HP 6; "Once per turn, when an opponent's CO is knocked out, you may put it into your hand instead." | Inert loop; weakest Star |
+| CO21 | "While this CO is in your North position, it has +2 Size." | Retrograde removed; North pays and exposes |
+| CO27 | "At the end of your Rotation Phase, if this CO is in your North position, draw 1 card." | Anchor removed; clock payoff |
+| AE16 | Augmentation: +1 Size, or +2 Size while in your North | Anchor removed; kept its popular +Size |
+| AE04 | Direct Effect: one of your COs gets +2 Stability and cannot be chosen by opponents until your next turn | Replaces AE04 + AE17 protection as a one-shot |
+| AE07 | Draw 1; draw 2 instead if your North CO has Size 4+ | Host-free; North payoff |
+| AE08 | Draw 1; draw 2 instead if an opponent has more COs than you | Host-free; catch-up |
+| AE14 | Draw 1; then you may swap two of your COs | Host-free; position control without a direction rule |
+| AE15 | Prevent the first 2 damage from opponents until your next turn; draw 1 | Host-free; helps low-HP Stars at big tables |
+| AE17 | Draw 2, then discard 1 | Host-free; hand filter (replaces Recycle's job) |
+| AE41 | One opponent's North CO -1 Stability; draw 1 | Cancel share at 4p+ |
+| AE57 | "in either direction" removed | C2-R1 |
+| AE60 | Moves clockwise (no direction choice) | C2-R1; trims a cheap answer |
+
+### Cycle 2: three candidates for the main problem (rotation inert)
+1. **Simplifying cut (picked):** fixed clockwise, remove anchors and retrograde. The clock stays as a planning layer (placement decides what reaches North) and the rules lose the direction choice, the rotation-Collision order and the anchor exception.
+2. **Rotation central, "North burns":** keep the direction choice and give North an intrinsic stake: the CO that ends your Rotation Phase in North gets -1 Stability until your next turn. A wrong direction would cost a CO, so the ablation would surely pass. **Lost:** 11 of 36 COs have Stability 1 (locked grid), so it kills them on arrival in North and would gut Critical Mass (the 2p split took a cycle to reach 50/50, L13); it adds a rule while the critic asks for fewer; and choosing direction every turn for a penalty is bookkeeping, not fun.
+3. **Cross-pollinated from v2, "Spin any orbit":** the Rotation Phase rotates any one orbit (yours or an opponent's), as in Gearbox. **Lost:** in v2 a spin is an attack because touching orbits crash; v1 orbits do not touch, so a spin only matters through position cards again, the same card-payoff fix that failed in cycle 1 (L12). It also adds a decision with up to 6 targets at 6p.
+
+**Second problem (Stars):** ST11 options were (a) HP 6 only, (b) a damage ability, (c) HP 6 plus a capture ability. (b) lost because it pushes 2p toward Star Destruction; (a) alone leaves an inert ability on the card; (c) adds card value, not damage, and gets stronger at big tables, where HP 5 Stars are weakest.
+
+**What I would try next if this works:** a human teach test of the shortened rules, timed; then cut the Out of Orbit "reclaim by anyone" breadth if humans find it fiddly.
+**What I suspect is still wrong:** (1) rotation may now be pure flavour: if the placement-blind bot also loses by under 5, the owner should decide whether the clock is theme only; (2) ST10 and ST12 (HP 5) may still be under 15% at 4p; (3) AE04 and AE15 are defensive and could drop the 2p cancel share below 45 or slow 2p games; (4) the extra draw on five new cards may shorten games slightly; (5) ST11's capture could be strong at 6p (many knockouts per round).
+
+### Cycle 1 (revision 1) and fix-before-critic pass, for reference
+R1 first player skips turn-1 draw (owner ruling, kept); R2 mulligan (owner ruling, kept); R3 direction choice (**reverted by C2-R1**); R4/R12 threshold 12 + players, max 17, 6p 16 (kept); R5/F6 cancel checked after each resolution (kept, compressed); R6 Recycle (**cut by C2-R3**); R7 ST01 HP 9 to 8 (kept); R8 ST08/ST10/ST11/ST12 buffs (ST11 **replaced by C2-R4**); R9 gaps answered (Appendix A); R10 eliminated player's Augmentations discarded (kept); R11 reverse-order draft (kept); F2 anchors in Rotation Phase only (**obsolete**, anchors removed); F3-F5, F7, F9, F10 rulings (kept, F5 obsolete with ST11's new text); F8 Recycle legality (**obsolete**); F11 draw options on AE32, AE42, AE44, AE50, AE52, AE59 (kept). Cards reworked in cycle 1: AE16, AE23, AE25, AE28, AE41, AE43, AE45, AE49, AE55, AE57, AE60, CO14, CO24 (see `cards.json` `previous_text`).
 
 ---
 
-## 9. Design notes, cycle 1
+## Appendix A. Gap rulings (reference for the playtester; not part of the teach)
+P = PROVISIONAL (moves results; owner may change).
 
-**Biggest problem:** the win path flips with player count (Star Destruction 72% at 2p, Critical Mass 75% at 6p). Three candidate fixes:
-1. **Threshold scales with player count (12 + players, max 17).** One number per count, a natural knob, matches the owner's own note that thresholds (not hand economy) should scale. Each count is tuned without touching the others.
-2. **Bold: "kill shot" free-for-all.** The first Star destroyed ends the game and the player who dealt the final damage wins. Removes player elimination and makes damage worth as much at 6p as at 2p. **Lost** because it concentrates fire on the HP 5 Stars (HP already dominates ability), invites sniping a softened Star, and replaces the owner's last-Star-standing pillar.
-3. **Bold: "impact damage."** Whenever an opponent's effect knocks out your CO, your Star takes 1 damage, tying the two paths together. **Lost** because it adds damage at 2p, where Star Destruction is already 72%, and blurs the two paths the owner wants distinct.
-
-**Picked: 1**, with the 2p threshold lowered to 14 and two of the strongest damage cards weakened, so 2p moves toward Critical Mass while 4-6p move toward Star Destruction. The cheap answers pull 2p back toward Star Destruction, so the 2p number is the one to watch.
-
-**Rotation (second problem), three candidates:** (a) cards only: give the 8 named cards payoffs; (b) **bold: choose the direction each turn** (picked; it adds a real decision every turn and makes every position card reachable, and it settles the open G1); (c) "North flare": the CO rotating into North deals damage (lost: adds damage at 2p). I did (a) and (b) together, with North as the shared target, so the twist has one readable focus.
-
-**What I would try next if this works:** cut rule weight. Fold CO21, CO27, AE14 and AE15 into fewer rotation exceptions, and turn the North theme into a printed icon so the teach shrinks. Then tune the threshold per count from the playtest numbers.
-
-**What I suspect is still wrong:** (1) ST12's free -1 Stability every turn may be too strong against the 11 Stability-1 Size 4-5 COs and could choke Critical Mass at 2p, undoing R4. (2) The ST11 loop (knock out a small CO, reclaim it for 1 damage) may be too strong. (3) 17 at 5-6p may overshoot into a Star Destruction majority. (4) This cycle bundles many changes (lesson L10); only single-change experiments can show which one moved what. (5) The rules are about 300 lines, too long to teach in one sitting (L7).
+| Gap | Ruling | Where |
+|---|---|---|
+| G1 | Rotation always clockwise (cycle 2) | 4.2 |
+| G2, G3 | Random first player, play clockwise, reverse-order draft; Stars before hands; unkept Stars to the box | 3 |
+| G4 | First player skips turn-1 draw (owner ruling) | 4.1 |
+| G5, G6 | Start triggers then draw; End: triggers, Critical Mass, hand limit, "this turn" ends | 4.1, 4.4 |
+| G7 (P) | Only your own total, only at your own End of Turn | 4.4 |
+| G8 (P) | Cancel after each play, Active ability, Start of Turn and Rotation Phase, and at End of Turn step 2; dips inside a play do not count | 6 |
+| G9, G11 | COs from hand only into your own orbit; moves: no trigger, no cap, mover incoming | 4.3, 5.2 |
+| G10 (P) | 1 CO enters each orbit per turn, any source; a loser still used it | 4.3 |
+| G12, G13 | Retired: rotation never causes a Collision (cycle 2) | 4.2 |
+| G14-G19 | Two "wins" effects cancel; floor after summing; Stability 0 knocks out (also when a bonus ends); Size 0 discards and wins ties; "knocked out" = to Out of Orbit; values may exceed 5 | 5.1-5.3 |
+| G20-G26 | Owner = orbit holder; default host; legality of "Choose" and "Play only if"; costs paid first | 4.3, 5.3 |
+| G27 (P), G29 (P) | "Once per turn" triggers once in each player's turn; stack: active player first, last stacked resolves first | 5.4 |
+| G28, G32 | "Since your last turn"; "this turn" and "until your next turn" end points | 5.7 |
+| G30, G31, G33 | Elimination of the active player; their Augmentations discarded; simultaneous zero | 5.6 |
+| G34-G37 | Hand-limit discards chosen; reshuffle rules; HP cap; public zones | 4.4, 5.5, 2 |
+| G38-G40 | "Next to", "wins a Collision", age 12+ | 5.7, 5.2, 1 |
+| New (cycle 2) | ST11 capture still counts as a knockout (ST03 and ST06 trigger; AE34 does not count it, it is not in the zone). AE14 swap: both move at once, no Collision. AE15 prevention applies after CO31's reduction. AE04: "cannot be chosen" covers Direct Effects and Augmentations that name it; AE52 (which chooses a player) can still remove it | 5.3, `cards.md` |
 
 ---
 
-## 10. Playbook check
-1. **Family:** `studio/mechanics.md` "Asymmetric roles" (12 asymmetric Stars) plus "All families". Its trap: a side gap that depends on the bot, and keyword abilities that do not change best play. Hence the per-Star ability ablations below.
-2. **Comeback:** catch-up damage (AE30, AE35, AE31, ST07), five new cheap countdown answers, AE32 against big orbits, free-for-all dogpiles. KPI: runaway at most 65% (was 63.4), lead changes at least 2 (was 3.1).
-3. **Ablations (each at 2p and 4p, must lose by 5+ points):** (a) always-clockwise bot against the direction-choosing bot; (b) a bot that ignores North exposure when choosing direction and placing; (c) never-Recycle bot; (d) never-mulligan bot (expected small, report it); (e) ability-off versions of ST08, ST10, ST11, ST12; (f) lever check: flat threshold 15 vs scaled, path split at 2p, 3p, 4p, 6p.
-4. **Self-check:** fixed 40 gaps (5.10). Dead or near-dead cards reworked: AE41, AE43, AE45, AE49, AE55, AE57, AE60, CO14, CO24, AE16. AE41 no longer hurts its player. AE60 no longer needs a "table-wide" reading. Undefined cases now covered: empty deck (5.6), ties (6.2), simultaneous triggers (5.5), simultaneous zero (5.7), elimination mid-turn (5.7). Still to watch: AE04 and AE17 (rarely played, high winning link; possibly bot blindness). Fix-before-critic pass: the 8 ambiguities from the revision-1 playtest are ruled (F2-F9); six dead-on-empty-board Direct Effects gained a Recycle-equivalent draw option (F11); expected dead cards about 2.85 per 7-card hand. Re-run for this pass: dead cards per hand, 6p path split at 16, and play rates of AE32, AE42, AE44, AE50, AE52, AE59.
-5. **Band and knob:** see 7.3. Win path 40-60 at each count (knob: threshold); Stars 40-60 (knob: HP); seat gap at most 5 (knob: turn-1 draw).
-6. **Ends:** Star Destruction or Critical Mass; each player turn adds cards to orbits or deals damage, and the reshuffle prevents deck stalls. Simulation cap 30 rounds (0 hits in revision 0). Expected 2p about 9-10 player turns, about 12 minutes; 6p 25-35 minutes; the owner's targets are flexible.
-7. **Budget:** about 300 lines including notes and the gap table; about 160 lines of playable rules (sections 1-6). Special rules: rotation with direction choice, Collisions, CO cap, Out of Orbit zone, Critical Mass countdown, stack (6). No brief promise exists (owner-supplied); over a one-page teach (L7, known gap).
-8. **Re-run list:** the threshold (a ceiling) and the legality, cap and stack rulings changed, so re-run **all** ablations above at 2p, 3p, 4p and 6p, plus the revision-0 headline set (seat, path split, Star round-robin, card play rates, winning links for AE25 and AE28, cancel share).
+## Playbook check
+1. **Family:** `studio/mechanics.md` "Asymmetric roles" plus "All families". Trap: keyword abilities that do not change best play, and a side gap that depends on the bot; hence ability-off tests for the reworked Stars and a second targeting bot.
+2. **Comeback:** catch-up damage (AE30, AE35, AE31, ST07), catch-up draw (AE08), cheap countdown answers, damage shield for low-HP Stars (AE15), dogpiles. KPI: runaway at most 65% (cycle 1: 60.7), lead changes at least 2 (3.78).
+3. **Ablations (2p, 3p, 4p, 6p; each must lose by 5+):** (a) **placement-blind bot** (places COs on a random legal position, ignores where the clock moves them; tests the clock); (b) **rule ablation:** no Rotation Phase at all, report path split and position-card play rates (if nothing moves, rotation is theme only; owner's call); (c) ST11 ability off; (d) never-mulligan (expected small, owner ruling); (e) **two targeting bots at 4p and 6p** (focus-lowest-HP and leader-targeting) for the Star round-robin; (f) single-change tests: ST05 HP 7 vs 6, AE41 old vs new (cancel share 4p/6p).
+4. **Self-check:** fixed in this pass: rotation Collision order (deleted), anchor/retrograde exceptions (deleted), Recycle legality (deleted), ST11 reclaim-damage ruling F5 (obsolete), AE60 direction (fixed), AE57 direction (fixed), "knocked out to hand" for ST11 (ruled in 5.3), AE14 swap (no Collision, on card), AE15 with CO31 (Appendix A), AE04 vs AE52 (Appendix A). New dead-card risk: AE04 needs one of your COs (5 of 6 new cards always legal). Undefined cases: empty deck (5.5), ties (6), simultaneous triggers (5.4), simultaneous zero (5.6).
+5. **Band and knob:** section 7.3. Path split 40-60 each count (threshold); Stars 40-60 at 2p (HP); HP 5 Stars 15%+ at 4p (ST10/ST12 HP); cancel share 45-55 (AE23 option); seat gap at most 5 (turn-1 draw).
+6. **Ends:** Star Destruction or Critical Mass; the reshuffle prevents deck stalls; sim cap 30 rounds (0 hits so far). Expected 2p about 9-10 player turns, about 12 minutes; 6p 25-35 minutes.
+7. **Budget:** playable rules (sections 1-6) are 121 lines including blank lines, about 90 lines of text (was about 160; critic target under 130). Special rules: rotation (fixed), Collisions, CO cap, Out of Orbit zone, Critical Mass countdown, trigger stack (6, was 8 with direction choice and Recycle). No brief promise (owner-supplied); a one-page teach is still not met (L7, known gap). Never timed with a human.
+8. **Re-run list:** legality (Recycle cut), rotation and card changes, so re-run **all** ablations at every count plus the headline set: seat gap, path split per count (including 6p at 16), Star round-robin (2p 1,100 games each; 4p with both targeting bots), dead cards per hand, cancel share per count, play rates of the 14 changed cards and of the six F11 cards, runaway, lead changes, length.

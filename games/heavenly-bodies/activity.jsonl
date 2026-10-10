@@ -18,3 +18,4 @@
 {"time":"2026-10-10T09:56:10Z","agent":"playtester","game":"heavenly-bodies","event":"done","message":"Rev 1 playtest NEEDS-FIXES; report, playtest.json, panel.json written"}
 {"time": "2026-10-10T10:01:26Z", "agent": "game-designer", "game": "heavenly-bodies", "event": "done", "message": "Fix-before-critic pass F1-F11 written"}
 {"time": "2026-10-10T10:01:26Z", "agent": "critic", "game": "heavenly-bodies", "event": "done", "message": "REVISE-MAJOR avg 3.17 (was 2.83); cycle 2 should cut rotation direction choice, fix ST11"}
+{"time": "2026-10-10T10:09:38Z", "agent": "game-designer", "game": "heavenly-bodies", "event": "done", "message": "Cycle 2 revision written (simplifying: always clockwise, Recycle cut, ST11/ST05 changed, 6 host-free cards); PAUSED by owner before playtest"}
