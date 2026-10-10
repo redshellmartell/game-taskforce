@@ -1,6 +1,6 @@
 """Bots for Heavenly Bodies: random, greedy, strategic, plus one bot per test-panel persona (PERSONA)."""
 import random
-from game import total_size, card_value
+from game import total_size, card_value, rot_value, eval_orbit, gen_one
 
 
 def keepv(c):
@@ -22,12 +22,26 @@ class Random:
         return opts[k][0] if k < len(opts) else None
     def pick_opp(self, st, i, ops, why): return self.rng.choice(ops)
     def discard_pick(self, st, i, pool): return self.rng.choice(pool)
+    def rot_dir(self, st, i, q=None): return self.rng.choice((1, -1))      # q None = own Rotation Phase; else a card rotation of orbit q
+
+
+def dead_cards(st, i):
+    return [c for c in st.P[i].hand if c["type"] == "AE" and not gen_one(st, i, c)]
 
 
 class Greedy(Random):
     name = "greedy"
+    w_north = 0.0
+    def rot_dir(self, st, i, q=None):
+        own = q is None or q == i
+        qq = i if q is None else q
+        vp, vm = rot_value(st, qq, 1, q is not None, self.w_north if own else 0.0), rot_value(st, qq, -1, q is not None, self.w_north if own else 0.0)
+        if not own: vp, vm = -vp, -vm
+        if abs(vp - vm) < 1e-9: return self.rng.choice((1, -1))
+        return 1 if vp > vm else -1
     def score(self, st, i, a):
         f = a["fx"]
+        if a["kind"] == "recycle": return 0.6 if dead_cards(st, i) else 0.0
         if f["kill"]: return 1000
         v = 3 * f["dmg"] + f["size"] + 1.5 * f["knock"] - 3 * f["self_dmg"] - f["lose"] + 0.5 * f["draw"] - 0.5 * f["cost"] + 0.2 * f["stab"] + f["fut"] + 1.0 * f["heal"]
         return v
@@ -46,7 +60,7 @@ class Greedy(Random):
 class Strategic(Greedy):
     name = "strategic"
     w_dmg = 1.0; w_cm = 1.0; w_def = 1.0; w_self = 1.0; eps = 0.0; w_card = 1.0; thresh = 0.3; w_flair = 0.0; w_cost = 1.0
-    soften = False
+    soften = False; w_north = 0.35; recycle_ok = True
     def __init__(self, seed=0, **kw):
         super().__init__(seed)
         for k, v in kw.items(): setattr(self, k, v)
@@ -58,6 +72,13 @@ class Strategic(Greedy):
     def score(self, st, i, a):
         f = a["fx"]; p = st.P[i]; v = 0.0
         t = f["tgt"]
+        if a["kind"] == "recycle":
+            if not self.recycle_ok: return -1.0
+            return 1.0 if dead_cards(st, i) else (0.45 if len(p.hand) >= 6 else 0.0)
+        pos = a["params"].get("pos") if a["params"] else None
+        if pos == 0 and self.w_north and a["kind"] in ("co", "ae"):       # placing into the exposed North position
+            cc = a["card"] if a["card"] and a["card"]["type"] == "CO" else a["params"].get("co")
+            if isinstance(cc, dict) and cc.get("type") == "CO": v -= self.w_north * cc["size"] * (1.0 if cc["stability"] <= 2 else 0.4)
         if f["kill"] and not self.soften: return 1000
         if f["dmg"] and t is not None:
             hp = st.P[t].hp
@@ -130,5 +151,38 @@ class Expert(Strategic):        # bar raiser: strongest line, probes for degener
     name = "expert"; w_dmg = 1.15; w_cm = 1.15; w_def = 1.4; w_card = 1.2
 
 
+class AlwaysCW(Strategic):      # ablation: always rotates clockwise (rotation direction is never a decision)
+    name = "always_cw"
+    def rot_dir(self, st, i, q=None): return 1
+
+
+class IgnoreNorth(Strategic):   # ablation: ignores North exposure (direction and placement)
+    name = "ignore_north"; w_north = 0.0
+
+
+class NoRecycle(Strategic):     # ablation: never uses Recycle
+    name = "no_recycle"; recycle_ok = False
+
+
+class NoMull(Strategic):        # ablation: never takes the free mulligan
+    name = "no_mull"; mull = False
+
+
+class NoBurst(Strategic):       # ablation: never plays AE25 / AE28 (tests whether their winning link is causal)
+    name = "no_burst"
+    def choose_action(self, st, i, acts):
+        acts = [a for a in acts if not (a["card"] and a["card"]["id"] in ("AE25", "AE28"))]
+        return Strategic.choose_action(self, st, i, acts) if acts else None
+
+
+class CMFirst(Strategic):       # sensitivity: builds Critical Mass first
+    name = "cm_first"; w_cm = 1.7; w_dmg = 0.6
+
+
+class DmgFirst(Strategic):      # sensitivity: damage first
+    name = "dmg_first"; w_cm = 0.6; w_dmg = 1.7
+
+
 PERSONA = {"strategist": Planner, "casual": Instinct, "competitor": Optimiser, "story": Flavour, "family": Cautious, "barraiser": Expert}
 STANDARD = {"random": Random, "greedy": Greedy, "strategic": Strategic}
+ABL = {"always_cw": AlwaysCW, "ignore_north": IgnoreNorth, "no_recycle": NoRecycle, "no_mull": NoMull, "no_burst": NoBurst, "cm_first": CMFirst, "dmg_first": DmgFirst}

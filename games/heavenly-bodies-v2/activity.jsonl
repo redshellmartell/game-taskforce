@@ -2,3 +2,4 @@
 {"time": "2026-10-10T09:21:47Z", "agent": "market-researcher", "game": "heavenly-bodies-v2", "event": "done", "message": "Focused comparables check (7 searches); brief 26/30; 5 mechanic directions"}
 {"time": "2026-10-10T09:33:40Z", "agent": "game-designer", "game": "heavenly-bodies-v2", "event": "done", "message": "First design pass: Gearbox, 56 cards, 3 full-orbit wins + Long Night; playtest started"}
 {"time":"2026-10-10T09:34:00Z","agent":"playtester","game":"heavenly-bodies-v2","event":"start","message":"First playtest, coding sim"}
+{"time":"2026-10-10T09:39:42Z","agent":"playtester","game":"heavenly-bodies-v2","event":"step","message":"Sim coded; probe shows pattern wins almost never survive a round (oracle 1% safe). Running headline 2000 + ablations/variants"}

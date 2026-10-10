@@ -14,7 +14,11 @@ AUG_IDS = [c["id"] for c in DATA["cards"] if c["subtype"] == "Augmentation"]
 
 
 class Config:
-    def __init__(self, n=2, stars=None, log=False, round_cap=60, extra_dmg=0, swap_dmg=0, first=None, deck_ids=None, first_draw=2):
+    def __init__(self, n=2, stars=None, log=False, round_cap=60, extra_dmg=0, swap_dmg=0, first=None, deck_ids=None, first_draw=0,
+                 thr=None, abil_off=(), feat_off=(), mull=True):
+        # rev 1: first_draw=0 (first player skips the turn-1 draw). thr: None = 12+n max 17, or a function n -> threshold (ablations).
+        # abil_off: player indices whose Star ability is switched off (ablation); feat_off: global switches such as "st12", "st11".
+        self.thr, self.abil_off, self.feat_off, self.mull = thr, set(abil_off), set(feat_off), mull
         self.n, self.stars, self.log, self.round_cap = n, stars, log, round_cap
         self.extra_dmg = extra_dmg      # experiment: +N damage on every direct-damage AE
         self.swap_dmg = swap_dmg        # experiment: replace N low-value AEs with plain 1-damage copies
@@ -42,7 +46,7 @@ class Player:
         self.alive = True; self.cm = False; self.dmg_flag = False
         self.entered = 0; self.used = set(); self.plays = 0
         self.st12 = -1; self.st06 = -1
-        self.thr = 13 if self.sid == "ST10" else 15
+        self.thr = 15
         self.turns = 0
 
 
@@ -71,6 +75,11 @@ class State:
 
 
 # ================================================================== stats
+def abil(st, i, sid=None):
+    """True if player i's Star ability is on (ablation switch) and (optionally) the Star is sid."""
+    return i not in st.cfg.abil_off and (sid is None or st.P[i].sid == sid)
+
+
 def has_aug(co, aid): return any(a.id == aid for a in co.augs)
 
 
@@ -85,10 +94,13 @@ def eff_size(st, co):
     for a in co.augs:
         i = a.id
         if i == "AE02" or i == "AE03": s += 1
+        elif i == "AE16": s += 1
         elif i == "AE06" or i == "AE21": s += 2
         elif i == "AE08" and n >= 3: s += 2
         elif i == "AE13" and can_reduce(co, a.src): s -= 1
-    if p.sid == "ST08" and n >= 2: s += 1
+    if p.sid == "ST08" and n >= 1 and abil(st, co.owner): s += 1       # rev 1: 1 or more Augmentations
+    for o in p.orbit:
+        if o is not None and o is not co and o.id == "CO24" and (o.pos - co.pos) % 4 in (1, 3): s += 1   # rev 1: CO24 gives neighbours +1 Size
     for t in co.temps:
         if t["size"] and (t["size"] > 0 or can_reduce(co, t["src"])): s += t["size"]
     return max(0, s)   # INTERP G15: floor applied to the final total; G19: values above 5 are allowed
@@ -118,6 +130,7 @@ def eff_stab(st, co):
         elif o.id == "CO25" and o.pos == 0: s += 1
         elif o.id == "CO35" and o.augs: s += 1
     if p.sid == "ST04" and total_size(st, co.owner) >= 10: s += 1
+    if p.sid == "ST10" and p.cm and abil(st, co.owner): s += 1          # rev 1: +1 Stability while the countdown runs
     for t in co.temps:
         if t["stab"] and (t["stab"] > 0 or can_reduce(co, t["src"])): s += t["stab"]
     return max(0, s)
@@ -155,7 +168,12 @@ def eliminate(st, i):
             for a in c.augs: st.discard.append(a.card)
     p.orbit = [None] * 4
     st.discard.extend(p.hand); p.hand = []
-    # INTERP G31: Augmentations the eliminated player attached to other players' COs stay in place
+    # rev 1 R10 (G31): Augmentations the eliminated player attached to other players' COs are discarded
+    for q in st.P:
+        for c in q.orbit:
+            if c and q.i != i:
+                for a in list(c.augs):
+                    if a.src == i: c.augs.remove(a); st.discard.append(a.card)
     st.say("P%d (%s) ELIMINATED" % (i, p.sid))
     al = st.alive()
     if len(al) == 1:
@@ -190,10 +208,6 @@ def leave_triggers(st, i, dest, cause):
     if not p.alive or st.over: return
     if dest == "ooo" and p.sid == "ST03":
         draw(st, i, 1)       # may -> always yes
-    if p.sid == "ST12" and p.st12 != st.turn_no:   # INTERP G27: 'once per turn' counts every player's turn (resets each turn); G17: any removal from orbit
-        p.st12 = st.turn_no
-        ops = st.opps(i)
-        if ops: dmg(st, i, pick_opp(st, i, "dmg") if len(ops) > 1 else ops[0], 1)
     if p.sid == "ST06" and cause is not None and cause != i and p.st06 != st.turn_no and st.P[cause].alive:
         p.st06 = st.turn_no
         dmg(st, i, cause, 1)
@@ -212,8 +226,12 @@ def settle(st):
                 elif eff_stab(st, c) == 0:     # INTERP G16: any time effective Stability is 0 it is knocked out (also if a bonus ends)
                     remove_co(st, c, "ooo", st.actor); ch = True
         if not ch: break
+
+
+def cm_check(st):
+    """rev 1 R5 / G8: Critical Mass cancel is checked only after a card, ability, trigger or Rotation Phase has finished resolving."""
     for p in st.P:
-        if p.alive and p.cm and total_size(st, p.i) < p.thr:   # INTERP G8: continuous check; a dip inside one resolution cancels
+        if p.alive and p.cm and total_size(st, p.i) < p.thr:
             p.cm = False; st.stats["cm_cancel"] += 1; st.cm_cancelled_players.add(p.i); st.cm_cancel_by.append("opp" if st.actor not in (None, p.i) else "self")
             st.say("P%d Critical Mass CANCELLED" % p.i)
 
@@ -291,6 +309,7 @@ def on_enter(st, i, co, losing=False):
     elif cid == "CO11":
         for q in st.opps(i): draw(st, q, 1)
     elif cid == "CO14":
+        draw(st, i, 1)       # rev 1: draw 1 on entering, then the free Augmentation
         opts = []
         hosts = [c for c in p.orbit if c and c is not co] if losing else [c for c in p.orbit if c]
         for card in p.hand:
@@ -305,7 +324,7 @@ def on_enter(st, i, co, losing=False):
     elif cid == "CO18":
         opts = [(q, rotation_harm(st, q)) for q in st.opps(i)]
         ch = b.pick(st, i, "rot_opp", opts, may=True) if opts else None
-        if ch is not None: rotate_orbit(st, ch, actor=i)
+        if ch is not None: rotate_orbit(st, ch, actor=i, d=b.rot_dir(st, i, ch), plain=True)
     elif cid == "CO20":
         opts = [(c, card_value(c)) for c in st.discard if c["subtype"] == "Augmentation"]
         if opts:
@@ -329,9 +348,9 @@ def on_enter(st, i, co, losing=False):
             p.hand.append(ch); top.remove(ch)
             for c in top: st.deck.insert(0, c)
     elif cid == "CO34":
-        opts = [(True, rotation_gain(st, i))]
+        opts = [(True, max(rot_value(st, i, 1, True), rot_value(st, i, -1, True)) - eval_orbit(st, i))]
         ch = b.pick(st, i, "rot_self", opts, may=True)
-        if ch: rotate_orbit(st, i, actor=None)
+        if ch: rotate_orbit(st, i, actor=None, d=b.rot_dir(st, i, i), plain=True)
     settle(st)
 
 
@@ -395,17 +414,21 @@ def aug_hosts(st, i, card):
     return mine
 
 
-def rotate_orbit(st, q, actor, dry=False):
-    """Rotate orbit q one step clockwise. Simultaneous; collisions only where a stopped CO or a reverse CO is in the way.
-    INTERP G12: contenders at one position are ordered stationary (incumbent), normal-direction mover, reverse mover; each later one is the 'incoming'.
-    Swapping neighbours do not collide. INTERP G13: all moves are simultaneous, collisions are resolved after the whole rotation."""
+def rot_outcome(st, q, d, plain):
+    """Plan one rotation step of orbit q in direction d (+1 clockwise N->E->S->W, -1 counter-clockwise).
+    plain=True: card-effect rotation ("rotate an orbit one step"): every CO moves, ignoring 'does not move' / 'opposite' effects, never collides.
+    plain=False: Rotation Phase: anchors (CO27, AE16, AE14) stay, retrograde movers (CO21, AE15) move against d.
+    INTERP G12: contenders at one position are ordered stationary (incumbent), mover in the chosen direction, then opposite mover (each later one is incoming).
+    Returns (winners {pos: CO}, losers [CO])."""
     p = st.P[q]; plan = {}
     for c in p.orbit:
         if c is None: continue
-        stat = c.id == "CO27" or has_aug(c, "AE16") or has_aug(c, "AE14")
-        rev = c.id == "CO21" or has_aug(c, "AE15")
-        d = 0 if stat else (-1 if rev else 1)
-        plan[c] = ((c.pos + d) % 4, 0 if stat else (2 if rev else 1))
+        if plain: stat = rev = False
+        else:
+            stat = c.id == "CO27" or has_aug(c, "AE16") or has_aug(c, "AE14")
+            rev = c.id == "CO21" or has_aug(c, "AE15")
+        step = 0 if stat else (-d if rev else d)
+        plan[c] = ((c.pos + step) % 4, 0 if stat else (2 if rev else 1))
     groups = {}
     for c, (dst, order) in plan.items(): groups.setdefault(dst, []).append((order, c))
     losers, winners = [], {}
@@ -414,21 +437,26 @@ def rotate_orbit(st, q, actor, dry=False):
         g.sort(key=lambda t: t[0])
         cur = g[0][1]
         for _, c in g[1:]:
-            old = (cur.pos, c.pos); cur.pos = c.pos = dst
+            cur.pos = c.pos = dst
             w = coll_winner(st, c, cur)
             cur.pos, c.pos = saved[cur], saved[c]
             if w is c: losers.append(cur); cur = c
             else: losers.append(c)
         winners[dst] = cur
-    if dry: return losers
-    for c in plan: c.pos = saved[c]
+    return winners, losers, groups
+
+
+def rotate_orbit(st, q, actor, d=1, plain=True):
+    """Rotate orbit q one step in direction d. See rot_outcome. The Rotation Phase passes plain=False."""
+    p = st.P[q]
+    winners, losers, groups = rot_outcome(st, q, d, plain)
     cause = actor if actor is not None and actor != q else None
     if losers: st.stats['rot_collisions'] = st.stats.get('rot_collisions', 0) + len(losers)
     newo = [None] * 4
     for dst, c in winners.items(): newo[dst] = c
     for dst, c in winners.items(): c.pos = dst
     p.orbit = newo
-    st.say("P%d orbit rotates%s" % (q, " (collision: %s out)" % ",".join(c.id for c in losers) if losers else ""))
+    st.say("P%d orbit rotates %s%s" % (q, "cw" if d > 0 else "ccw", " (collision: %s out)" % ",".join(c.id for c in losers) if losers else ""))
     for c in losers:
         for a in c.augs: st.discard.append(a.card)
         c.augs = []; c.temps = []
@@ -438,6 +466,31 @@ def rotate_orbit(st, q, actor, dry=False):
         if len(groups[dst]) > 1: win_triggers(st, c)
     settle(st)
     return losers
+
+
+def rot_value(st, q, d, plain, north=0.0):
+    """Value of orbit q after rotating in direction d (bots use it to choose a direction). north = weight on the exposed North position."""
+    p = st.P[q]; winners, losers, _ = rot_outcome(st, q, d, plain)
+    lsum = sum(eff_size(st, c) for c in losers)
+    old = list(p.orbit); olds = {c: c.pos for c in old if c}
+    newo = [None] * 4
+    for dst, c in winners.items(): newo[dst] = c
+    for dst, c in winners.items(): c.pos = dst
+    p.orbit = newo
+    v = eval_orbit(st, q) - 1.5 * lsum
+    c0 = newo[0]
+    if c0 is not None and north:
+        v -= north * eff_size(st, c0) * (1.0 if eff_stab(st, c0) <= 2 else 0.4)
+        if any(a.id == "AE20" for a in c0.augs) or c0.id == "CO25": v += 1.0
+    for c, ps in olds.items(): c.pos = ps
+    p.orbit = old
+    return v
+
+
+def rotation_harm(st, q):
+    """Size an opponent's orbit would lose in a best-for-me rotation: zero for plain card rotations except position-bonus loss."""
+    base = eval_orbit(st, q)
+    return max(0.0, base - min(rot_value(st, q, 1, True), rot_value(st, q, -1, True)))
 
 
 # ================================================================== valuation helpers used by the engine for bots' option scores
@@ -451,25 +504,6 @@ def orbit_gain(st, i, co, newpos):
     after = eval_orbit(st, i)
     p.orbit[newpos] = None; p.orbit[old] = co; co.pos = old
     return after - before
-
-
-def rotation_gain(st, i):
-    if rotation_harm(st, i) > 0: return -1
-    p = st.P[i]; before = eval_orbit(st, i)
-    old = list(p.orbit); olds = {c: c.pos for c in old if c}
-    for c in old:
-        if c: c.pos = (c.pos + 1) % 4
-    p.orbit = [None] * 4
-    for c in old:
-        if c: p.orbit[c.pos] = c
-    after = eval_orbit(st, i)
-    for c, ps in olds.items(): c.pos = ps
-    p.orbit = old
-    return after - before
-
-
-def rotation_harm(st, q):
-    return sum(eff_size(st, c) for c in rotate_orbit(st, q, None, dry=True))
 
 
 def card_value(c):
@@ -500,7 +534,19 @@ def setup(st, bots):
         for k in range(n): sids.append(pool[2 * k + st.rng.randrange(2)])
     st.P = [Player(i, STARS[sids[i]]) for i in range(n)]
     for p in st.P: p.hand = [st.deck.pop() for _ in range(5)]   # INTERP G3: hands dealt after Stars chosen
+    # rev 1 R4: threshold = 12 + players, max 17 (cfg.thr overrides for ablations); ST10 is 2 lower
+    for p in st.P:
+        t = cfg.thr(n) if callable(cfg.thr) else (cfg.thr if cfg.thr else min(17, 12 + n))
+        p.thr = t - (2 if p.sid == "ST10" and abil(st, p.i) else 0)
+    # rev 1 R2: free mulligan once, only if the opening 5 has no CO (in turn order starting with the first player)
+    first = cfg.first if cfg.first is not None else None
+    st.mulligans = 0
     st.cur = cfg.first if cfg.first is not None else st.rng.randrange(n)  # INTERP G2: random first player, clockwise seats
+    if cfg.mull:
+        for k in range(n):
+            p = st.P[(st.cur + k) % n]
+            if not any(c["type"] == "CO" for c in p.hand) and getattr(bots[p.i], "mull", True):
+                st.deck.extend(p.hand); st.rng.shuffle(st.deck); p.hand = [st.deck.pop() for _ in range(5)]; st.mulligans += 1
     st.actor = None; st.turn_over = False
 
 
@@ -509,28 +555,38 @@ def start_turn(st, i):
     p.entered = 0; p.used = set(); p.plays = 2; p.turns += 1
     for c in st.all_cos():
         c.temps = [t for t in c.temps if t["until"] != ("start", i)]
-    # INTERP G5: start-of-turn triggers first, then the draw
+    # INTERP G5: start-of-turn triggers first, then the draw. rev 1 G29: the triggers go on a LIFO stack, so they resolve in reverse of the order they were put on.
+    stack = []
     for c in list(st.all_cos()):
         for a in list(c.augs):
-            if a.src != i or not p.alive or st.over: continue
-            if a.id == "AE09" and st.opps(i): dmg(st, i, pick_opp(st, i), 1, "AE")
-            elif a.id == "AE11" and st.P[c.owner].alive and c.owner != i: dmg(st, i, c.owner, 1, "AE")
+            if a.src != i: continue
+            if a.id == "AE09": stack.append(("AE09", a, c))
+            elif a.id == "AE11": stack.append(("AE11", a, c))
+    for kind, a, c in reversed(stack):
+        if not p.alive or st.over: return
+        if kind == "AE09" and st.opps(i) and a.host is c and c.owner is not None: dmg(st, i, pick_opp(st, i), 1, "AE")
+        elif kind == "AE11" and c.owner is not None and st.P[c.owner].alive and c.owner != i and a.host is c: dmg(st, i, c.owner, 1, "AE")
     if st.over or not p.alive: return
-    draw(st, i, st.cfg.first_draw if st.turn_no == 1 else 2)   # INTERP G4: first player also draws on turn 1, no compensation for later seats
+    draw(st, i, st.cfg.first_draw if st.turn_no == 1 else 2)   # rev 1 R1 / G4: the first player skips the turn-1 draw (first_draw=0)
     st.say("P%d (%s) starts with %d cards" % (i, p.sid, len(p.hand)))
-    rotate_orbit(st, i, None)
+    rotate_orbit(st, i, None, d=b.rot_dir(st, i, None), plain=False)    # rev 1 R3: the active player chooses the direction
+    cm_check(st)
 
 
 def end_turn(st, i):
     p = st.P[i]
+    stack = []     # G29: end-of-turn triggers on a LIFO stack
     for c in list(st.cos(i)):
-        if st.over: return
-        if c.id == "CO23" and c.augs and st.opps(i): dmg(st, i, pick_opp(st, i), 1)
+        if c.id == "CO23" and c.augs: stack.append(("dmg", c))
         for a in c.augs:
-            if a.id == "AE20" and a.src == i and c.pos == 0: draw(st, i, 1)
+            if a.id == "AE20" and a.src == i and c.pos == 0: stack.append(("draw", c))
+    for kind, c in reversed(stack):
+        if st.over: return
+        if kind == "dmg" and st.opps(i) and c.owner == i: dmg(st, i, pick_opp(st, i), 1)
+        elif kind == "draw": draw(st, i, 1)
     for c in st.all_cos():
         c.temps = [t for t in c.temps if t["until"] != "eot"]
-    settle(st)
+    settle(st); cm_check(st)
     if st.over or not p.alive: return
     # INTERP G6/G7: order = triggers, Critical Mass (own total only, own end of turn), hand limit
     ts = total_size(st, i)
@@ -640,6 +696,8 @@ def gen_actions(st, i):
     if p.plays > 0:
         for c in p.hand:
             out.extend(gen_one(st, i, c))
+        if p.hand and (st.deck or st.discard):       # rev 1 R6: Recycle = discard 1, draw 1, costs a play
+            out.append(act("recycle", None, {}, fxd(draw=1), play=True, name="RECYCLE"))
     out.extend(gen_free(st, i))
     return out
 
@@ -679,20 +737,27 @@ def gen_one(st, i, card):
         for q in ops:
             f = fxd(tgt=q, dmg=k, kill=(k >= st.P[q].hp), **kw)
             out.append(act("ae", card, dict(tgt=q), f))
-    if cid == "AE23": dm(1)
+    if cid == "AE23":
+        dm(1)    # rev 1: modal; second option = -1 Stability this turn to an opponent's CO (offered when it knocks the CO out)
+        for q in ops:
+            for c in st.cos(q):
+                if choosable(st, i, c) and can_reduce(c, i) and eff_stab(st, c) <= 1:
+                    out.append(act("ae", card, dict(tgt=q, co=c, mode="stab"), fxd(tgt=q, knock=1, osize=-eff_size(st, c))))
     elif cid == "AE24":
         if len(mine) >= 2: dm(2)
     elif cid == "AE25":
-        if len(p.hand) >= 1: dm(3, self_dmg=1)
+        if p.hp > 2: dm(3, self_dmg=2)      # rev 1: self-damage cost 2 (a cost that would eliminate you is never worth paying, so not offered)
     elif cid == "AE26":
         out.append(act("ae", card, {}, fxd(dmg=len(ops), tgt=min(ops, key=lambda q: st.P[q].hp), kill=any(st.P[q].hp <= 1 for q in ops))))
     elif cid == "AE27":
         k = min(3, sum(1 for c in mine if eff_size(st, c) >= 4))
         if k: dm(k)
-    elif cid == "AE28":
-        for c in mine:
+    elif cid == "AE28":      # rev 1: the sacrificed CO must be the one in your North position; 2 damage, 3 if it had Size 4+
+        c = p.orbit[0]
+        if c is not None:
+            dd = 3 if eff_size(st, c) >= 4 else 2
             for q in ops:
-                out.append(act("ae", card, dict(tgt=q, co=c), fxd(tgt=q, dmg=3, kill=3 >= st.P[q].hp, lose=eff_size(st, c))))
+                out.append(act("ae", card, dict(tgt=q, co=c), fxd(tgt=q, dmg=dd, kill=dd >= st.P[q].hp, lose=eff_size(st, c))))
     elif cid == "AE29":
         for q in ops:
             for c in st.cos(q):
@@ -732,33 +797,46 @@ def gen_one(st, i, card):
             for c in st.all_cos():
                 if c.owner == i or choosable(st, i, c):
                     out.append(act("ae", card, dict(co=c), fxd(cost=2, knock=1 if c.owner != i else 0, lose=eff_size(st, c) if c.owner == i else 0, osize=-eff_size(st, c) if c.owner != i else 0, tgt=c.owner)))
-    elif cid == "AE41":
-        mine_n = sum(1 for c in mine if c.pos == 0); opp_k = sum(1 for q in ops for c in st.cos(q) if c.pos == 0 and eff_stab(st, c) <= 1)
-        out.append(act("ae", card, {}, fxd(knock=opp_k, lose=sum(eff_size(st, c) for c in mine if c.pos == 0 and eff_stab(st, c) <= 1))))
+    elif cid == "AE41":      # rev 1: only opponents' North COs, -1 Stability this turn, draw 1; always legal
+        hit = [c for q in ops for c in st.cos(q) if c.pos == 0 and eff_stab(st, c) <= 1 and can_reduce(c, i)]
+        out.append(act("ae", card, {}, fxd(knock=len(hit), osize=-sum(eff_size(st, c) for c in hit), draw=1, tgt=(hit[0].owner if hit else None))))
     elif cid == "AE42":
         for c in st.all_cos():
             for a in c.augs: out.append(act("ae", card, dict(aug=a), aug_removal_fx(st, i, a)))
-    elif cid == "AE43":
-        for c in st.all_cos():
-            if len(c.augs) >= 2 and choosable(st, i, c): out.append(act("ae", card, dict(co=c), aug_removal_fx(st, i, c.augs[0], all_=True)))
-    elif cid in ("AE44", "AE45", "AE46"):
+    elif cid == "AE43":      # rev 1: any opponent's CO: discard its Augmentations, -1 Size this turn
+        for q in ops:
+            for c in st.cos(q):
+                if choosable(st, i, c):
+                    sb, zb = eff_size(st, c), eff_stab(st, c); sv = list(c.augs); c.augs = []
+                    c.temps.append(dict(stab=0, size=-1, src=i, until="eot")); sa, za = eff_size(st, c), eff_stab(st, c); c.temps.pop(); c.augs = sv
+                    kn = int(sa == 0 or za == 0)
+                    out.append(act("ae", card, dict(co=c, tgt=q), fxd(tgt=q, knock=kn, osize=(-sb if kn else min(0, sa - sb)))))
+    elif cid == "AE45":      # rev 1: draw 1 first (always legal), then you may reclaim a CO with Size 3 or less
+        out.append(act("ae", card, dict(co=None, pos=None), fxd(draw=1)))
+        if p.entered < 1:
+            seenid = set()
+            for c in st.ooo:
+                if c["size"] <= 3 and c["id"] not in seenid:
+                    seenid.add(c["id"])
+                    for pos in co_places(st, i, c):
+                        f = place_fx(st, i, c, pos); f["draw"] = 1
+                        out.append(act("ae", card, dict(co=c, pos=pos), f))
+    elif cid in ("AE44", "AE46"):
         if cid == "AE46" and len(p.hand) < 2: return out
         if p.entered >= 1 and cid != "AE46": return out    # INTERP G10: reclaim counts against the cap
-        pool = [c for c in st.ooo if cid != "AE45" or c["size"] <= 3]
+        pool = list(st.ooo)
         seenid = set()
         for c in pool:
             if c["id"] in seenid: continue
             seenid.add(c["id"])
             for pos in co_places(st, i, c):
-                f = place_fx(st, i, c, pos); f["draw"] = 1 if cid == "AE45" else 0; f["cost"] = 1 if cid == "AE46" else 0
+                f = place_fx(st, i, c, pos); f["draw"] = 0; f["cost"] = 1 if cid == "AE46" else 0
                 out.append(act("ae", card, dict(co=c, pos=pos), f))
     elif cid == "AE47": out.append(act("ae", card, {}, fxd(draw=2)))
     elif cid == "AE48": out.append(act("ae", card, {}, fxd(draw=1)))
-    elif cid == "AE49":
-        seenid = set()
-        for c in st.discard:
-            if c["type"] == "CO" and c["id"] not in seenid:
-                seenid.add(c["id"]); out.append(act("ae", card, dict(co=c), fxd(draw=1)))
+    elif cid == "AE49":      # rev 1: look at top 4, may take a CO, rest to the bottom; always legal (deck + discard not both empty)
+        if st.deck or st.discard:
+            out.append(act("ae", card, {}, fxd(draw=0.8)))      # expected value: a CO is among 4 cards about 85% of the time
     elif cid == "AE50":
         for c in [c for q in ops for c in st.cos(q)]:
             for a in c.augs:
@@ -783,25 +861,59 @@ def gen_one(st, i, card):
                 if c["type"] == "CO" and c is not card:
                     for pos in co_places(st, i, c):
                         f = place_fx(st, i, c, pos); out.append(act("ae", card, dict(co=c, pos=pos), f))
-    elif cid == "AE55":
-        for c in mine: out.append(act("ae", card, dict(co=c), fxd(lose=eff_size(st, c), cost=0, tempo=-1)))
+    elif cid == "AE55":      # rev 1: bounce an opponent's North CO to its owner's hand
+        for q in ops:
+            c = st.P[q].orbit[0]
+            if c is not None and choosable(st, i, c): out.append(act("ae", card, dict(co=c, tgt=q), fxd(tgt=q, knock=1, osize=-eff_size(st, c))))
     elif cid == "AE56":
         if p.hp < p.maxhp: out.append(act("ae", card, {}, fxd(heal=min(2, p.maxhp - p.hp))))
-    elif cid == "AE57":
-        for c in mine:
-            for pos in range(4):
-                if pos != c.pos:
-                    out.append(act("ae", card, dict(co=c, pos=pos), self_move_fx(st, i, c, pos)))
+    elif cid == "AE57":      # rev 1: draw 1, then you may rotate your orbit one step either way; always legal
+        out.append(act("ae", card, dict(d=0), fxd(draw=1)))
+        base = eval_orbit(st, i)
+        for d_ in (1, -1):
+            out.append(act("ae", card, dict(d=d_), fxd(draw=1, stab=rot_value(st, i, d_, True, st.bots[i].w_north if hasattr(st.bots[i], "w_north") else 0) - base)))
     elif cid == "AE58":
         for q in ops: out.append(act("ae", card, dict(tgt=q), fxd(tgt=q, draw=1, knock=0, osize=-rotation_harm(st, q))))
     elif cid == "AE59":
         seenid = set()
         for c in st.ooo:
             if c["id"] not in seenid: seenid.add(c["id"]); out.append(act("ae", card, dict(co=c), fxd(draw=1)))
-    elif cid == "AE60":
-        h = sum(rotation_harm(st, q) for q in ops) - rotation_harm(st, i)
-        out.append(act("ae", card, {}, fxd(osize=-h)))
+    elif cid == "AE60":      # rev 1: choose an opponent with a North CO and a direction; the other COs shift, whoever lands on North collides with it
+        for q in ops:
+            if st.P[q].orbit[0] is None: continue
+            for d_ in (1, -1):
+                mv, occ, lo = ae60_plan(st, q, d_)
+                out.append(act("ae", card, dict(tgt=q, d=d_), fxd(tgt=q, knock=1 if lo is not None else 0, osize=-(eff_size(st, lo) if lo is not None else 0))))
     return out
+
+
+def ae60_apply(st, q, d, dry=True):
+    """AE60: every CO in q's orbit except the one in North moves one step in direction d; a CO moving into North collides with the North CO (mover = incoming).
+    Returns (mover, occupant, loser) or (None, occ, None) if nobody lands on North. With dry=False the move is carried out (orbit rebuilt; loser still to be removed by the caller)."""
+    p = st.P[q]; occ = p.orbit[0]; mover = None
+    saved = {c: c.pos for c in p.orbit if c}
+    newo = [None] * 4; newo[0] = occ
+    for c in list(saved):
+        if c is occ: continue
+        np_ = (c.pos + d) % 4
+        if np_ == 0: mover = c
+        else: newo[np_] = c
+    loser = None
+    for c in saved:
+        if c is not occ and c is not mover: c.pos = (saved[c] + d) % 4
+    if mover is not None:
+        mover.pos = 0
+        w = coll_winner(st, mover, occ)
+        loser = occ if w is mover else mover
+    if dry:
+        for c, ps in saved.items(): c.pos = ps
+    else:
+        p.orbit = newo
+        if mover is not None: mover.pos = 0
+    return mover, occ, loser
+
+
+def ae60_plan(st, q, d): return ae60_apply(st, q, d, True)
 
 
 def choosable(st, actor, co):
@@ -888,6 +1000,22 @@ def gen_free(st, i):
             seenid.add(c["id"])
             for pos in co_places(st, i, c):
                 out.append(act("free", None, dict(src="ST09", co=c, pos=pos), place_fx(st, i, c, pos), play=False, name="ST09"))
+    if sid == "ST11" and "ST11" not in p.used and p.entered == 0 and abil(st, i) and "st11" not in st.cfg.feat_off:
+        seenid = set()      # rev 1: Active, once per turn: reclaim a CO with Size 3 or less (uses the CO cap); every reclaim deals 1 damage (in reclaim())
+        for c in st.ooo:
+            if c["size"] > 3 or c["id"] in seenid: continue
+            seenid.add(c["id"])
+            for pos in co_places(st, i, c):
+                f = place_fx(st, i, c, pos); f["dmg"] = 1 if ops else 0
+                out.append(act("free", None, dict(src="ST11", co=c, pos=pos), f, play=False, name="ST11"))
+    if sid == "ST12" and "ST12" not in p.used and abil(st, i) and "st12" not in st.cfg.feat_off:
+        hold = {c["id"] for c in p.hand}
+        for q in ops:       # rev 1: Active, once per turn: an opponent's CO gets -1 Stability this turn; offered when it knocks the CO out, or sets up AE29/AE53/AE23
+            for c in st.cos(q):
+                if not choosable(st, i, c) or not can_reduce(c, i): continue
+                z = eff_stab(st, c)
+                if z <= 1: out.append(act("free", None, dict(src="ST12", tgt=q, co=c), fxd(tgt=q, knock=1, osize=-eff_size(st, c)), play=False, name="ST12"))
+                elif z <= 3 and eff_size(st, c) >= 4 and (hold & {"AE29", "AE53"}): out.append(act("free", None, dict(src="ST12", tgt=q, co=c), fxd(fut=0.6), play=False, name="ST12"))
     for c in st.cos(i):
         for a in c.augs:
             if a.id == "AE18" and a.src == i and ("AE18", id(a)) not in p.used:
@@ -912,9 +1040,19 @@ def execute(st, i, a):
         elif src in ("ST05", "ST07"): dmg(st, i, par["tgt"], 1)
         elif src == "ST09":
             reclaim(st, i, par["co"], par["pos"], via="ST09")
+        elif src == "ST11":
+            reclaim(st, i, par["co"], par["pos"], via="ST11")
+        elif src == "ST12":
+            par["co"].temps.append(dict(stab=-1, size=0, src=i, until="eot"))
         elif src == "AE18":
             move_in_orbit(st, i, par["co"], par["pos"])
-        st.actor = None; return
+        st.actor = i; settle(st); cm_check(st); st.actor = None; return
+    if a["kind"] == "recycle":
+        st.stats["plays"] += 1; p.plays -= 1; st.stats["recycles"] = st.stats.get("recycles", 0) + 1
+        bt = st.bots[i]
+        pool = p.hand if bt.name == "random" else ([c for c in p.hand if c["type"] == "AE" and not gen_one(st, i, c)] or p.hand)
+        c = bt.discard_pick(st, i, pool); p.hand.remove(c); st.discard.append(c); draw(st, i, 1)
+        st.say("P%d recycles %s" % (i, c["id"])); st.actor = None; return
     st.stats["plays"] += 1; p.plays -= 1
     st.pc.setdefault(i, set()).add(card["id"])
     fxt = a["fx"].get("tgt")
@@ -933,15 +1071,17 @@ def execute(st, i, a):
     # Direct Effect
     b = st.bots[i]; dx = extra_dmg(st, cid)
     def D(n, q): dmg(st, i, q, n + dx if n > 0 else n, "AE")
-    if cid == "AE23": D(1, par["tgt"])
+    if cid == "AE23":
+        if par.get("mode") == "stab": par["co"].temps.append(dict(stab=-1, size=0, src=i, until="eot"))
+        else: D(1, par["tgt"])
     elif cid == "AE24": D(2, par["tgt"])
-    elif cid == "AE25": dmg(st, i, i, 1, "AE"); D(3, par["tgt"]) if not st.over and p.alive else None
+    elif cid == "AE25": dmg(st, i, i, 2); D(3, par["tgt"]) if not st.over and p.alive else None
     elif cid == "AE26":
         for q in list(st.opps(i)):
             if not st.over: D(1, q)
     elif cid == "AE27": D(min(3, sum(1 for c in st.cos(i) if eff_size(st, c) >= 4)), par["tgt"])
     elif cid == "AE28":
-        c = par["co"]; remove_co(st, c, "ooo", None); D(3, par["tgt"])
+        c = par["co"]; dd = 3 if eff_size(st, c) >= 4 else 2; remove_co(st, c, "ooo", None); D(dd, par["tgt"])
     elif cid == "AE29":
         c = par["co"]; c.temps.append(dict(stab=-1, size=0, src=i, until="eot")); D(1, par["tgt"]);
     elif cid == "AE30": q = par["tgt"]; D(2 if len(st.cos(q)) > len(st.cos(i)) else 1, q)
@@ -957,18 +1097,22 @@ def execute(st, i, a):
     elif cid == "AE40":
         discard_from_hand(st, i, 2); remove_co(st, par["co"], "discard", i)
     elif cid == "AE41":
-        for c in st.all_cos():
-            if c.pos == 0: c.temps.append(dict(stab=-1, size=0, src=i, until="eot"))
+        for q in st.opps(i):
+            c = st.P[q].orbit[0]
+            if c is not None: c.temps.append(dict(stab=-1, size=0, src=i, until="eot"))
+        draw(st, i, 1)
     elif cid == "AE42":
         a_ = par["aug"]; a_.host.augs.remove(a_); st.discard.append(a_.card)
     elif cid == "AE43":
         c = par["co"]
         for a_ in c.augs: st.discard.append(a_.card)
-        c.augs = []
-    elif cid in ("AE44", "AE45", "AE46"):
+        c.augs = []; c.temps.append(dict(stab=0, size=-1, src=i, until="eot"))
+    elif cid == "AE45":
+        draw(st, i, 1)
+        if par.get("co") is not None and p.entered < 1: reclaim(st, i, par["co"], par["pos"], via=cid)
+    elif cid in ("AE44", "AE46"):
         if cid == "AE46": discard_from_hand(st, i, 1)
         reclaim(st, i, par["co"], par["pos"], via=cid)
-        if cid == "AE45": draw(st, i, 1)
     elif cid == "AE47": draw(st, i, 2)
     elif cid == "AE48":
         top = [st.deck.pop() for _ in range(min(3, len(st.deck)))]
@@ -976,7 +1120,16 @@ def execute(st, i, a):
             ch = b.pick(st, i, "keep", [(c, card_value(c)) for c in top], may=False)
             p.hand.append(ch); top.remove(ch)
             for c in top: st.deck.insert(0, c)
-    elif cid == "AE49": st.discard.remove(par["co"]); p.hand.append(par["co"])
+    elif cid == "AE49":
+        top = []
+        for _ in range(4):
+            if not st.deck and st.discard:
+                st.rng.shuffle(st.discard); st.deck, st.discard = st.discard, []
+            if st.deck: top.append(st.deck.pop())
+        cos_ = [(c, card_value(c)) for c in top if c["type"] == "CO"]
+        if cos_:
+            ch = b.pick(st, i, "keep", cos_, may=False); p.hand.append(ch); top.remove(ch)
+        for c in top: st.deck.insert(0, c)       # the rest to the bottom
     elif cid == "AE50":
         a_ = par["aug"]; a_.host.augs.remove(a_); a_.host = par["host"]; par["host"].augs.append(a_)  # INTERP G22: attach restrictions not re-checked on move
     elif cid == "AE51":
@@ -999,16 +1152,25 @@ def execute(st, i, a):
         if opts and not st.over:
             ch = b.pick(st, i, "attach", opts, may=True)
             if ch: p.hand.remove(ch[0]); attach(st, i, ch[0], ch[1], paid=True)
-    elif cid == "AE55": remove_co(st, par["co"], "hand", None)
+    elif cid == "AE55": remove_co(st, par["co"], "hand", None)      # bounce: not a knockout, no ST06 cause
     elif cid == "AE56": p.hp = min(p.maxhp, p.hp + 2)     # INTERP G36: capped at starting HP (card text)
-    elif cid == "AE57": move_in_orbit(st, i, par["co"], par["pos"])
-    elif cid == "AE58": rotate_orbit(st, par["tgt"], actor=i); draw(st, i, 1)
+    elif cid == "AE57":
+        draw(st, i, 1)
+        if par["d"]: rotate_orbit(st, i, actor=None, d=par["d"], plain=True)
+    elif cid == "AE58": rotate_orbit(st, par["tgt"], actor=i, d=b.rot_dir(st, i, par["tgt"]), plain=True); draw(st, i, 1)
     elif cid == "AE59": st.ooo.remove(par["co"]); st.discard.append(par["co"]); draw(st, i, 1)
     elif cid == "AE60":
-        for q in [x.i for x in st.alive()]:
-            if not st.over: rotate_orbit(st, q, actor=i)
+        q = par["tgt"]; mover, occ, loser = ae60_apply(st, q, par["d"], dry=False)
+        st.say("P%d AE60 on P%d dir %d" % (i, q, par["d"]))
+        if mover is not None:
+            st.stats["collisions"] += 1
+            if loser is occ:
+                # the mover takes North, the old North CO is knocked out
+                st.P[q].orbit[0] = mover; remove_co_loose(st, occ, q, i); win_triggers(st, mover)
+            else:
+                remove_co_loose(st, mover, q, i); win_triggers(st, occ)
     st.discard.append(card)
-    st.actor = i; settle(st); st.actor = None
+    st.actor = i; settle(st); cm_check(st); st.actor = None
 
 
 def extra_dmg(st, cid):
@@ -1016,11 +1178,19 @@ def extra_dmg(st, cid):
     return 0
 
 
+def remove_co_loose(st, co, q, cause):
+    """Knock out a CO that is no longer (or never was) in the orbit array at its position (already replaced)."""
+    for a in co.augs: st.discard.append(a.card)
+    co.augs = []; co.temps = []
+    st.ooo.append(co.card); co.owner = None; st.stats["knockouts"] += 1
+    leave_triggers(st, q, "ooo", cause)
+
+
 def reclaim(st, i, card, pos, via):
     st.ooo.remove(card); st.stats["reclaims"] += 1
     co = CO(card)
     p = st.P[i]
     ok = enter(st, i, co, pos)   # INTERP G20: ownership transfers; reclaim counts toward the CO cap (ST09/AE46/AE54-type cards override by their text)
-    if p.alive and p.sid == "ST11" and st.opps(i) and not st.over:
-        dmg(st, i, pick_opp(st, i), 1)
+    if p.alive and p.sid == "ST11" and st.opps(i) and not st.over and abil(st, i) and "st11" not in st.cfg.feat_off:
+        dmg(st, i, pick_opp(st, i), 1)     # rev 1: every reclaim by the ST11 player deals 1 damage
     p.entered = p.entered   # no change

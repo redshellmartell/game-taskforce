@@ -1,35 +1,41 @@
-Heavenly Bodies: casual bot (seat 1, first) vs story bot (seat 2), table 'worst' for casual. First 40 log lines. Result: P0 wins (star)
-R0 T1: P0 (ST06) starts with 7 cards
-R0 T1: P0 orbit rotates
-R0 T1: P0 plays CO23 {'pos': 1}
-R0 T1: P0: CO23 enters E
-R0 T1: P0 plays AE16 {'host': 'CO23'}
-R0 T1: P0 attaches AE16 to CO23 (P0)
-R0 T1: P1 (ST02) takes 1 (hp 7)
-R0 T2: P1 (ST02) starts with 7 cards
-R0 T2: P1 orbit rotates
-R0 T2: P1 plays CO29 {'pos': 1}
-R0 T2: P1: CO29 enters E
+Heavenly Bodies: casual bot (seat 1, first) vs competitor bot (seat 2), table 'worst' for casual. First 40 log lines. Result: P0 wins (star)
+R0 T1: P0 (ST06) starts with 5 cards
+R0 T1: P0 orbit rotates cw
+R0 T1: P0 plays CO23 {'pos': 2}
+R0 T1: P0: CO23 enters S
+R0 T1: P0 plays AE37 {'tgt': 1}
+R0 T1: P1 (ST02) takes 2 (hp 6)
+R0 T2: P1 (ST02) starts with 9 cards
+R0 T2: P1 orbit rotates cw
+R0 T2: P1 plays CO29 {'pos': 2}
+R0 T2: P1: CO29 enters S
 R0 T2: P1 plays AE53 {'tgt': 0, 'co': 'CO23'}
 R0 T2: CO23 leaves P0 orbit -> ooo
-R0 T2: P1 (ST02) takes 1 (hp 6)
-R1 T3: P0 (ST06) starts with 7 cards
-R1 T3: P0 orbit rotates
+R0 T2: P1 (ST02) takes 1 (hp 5)
+R1 T3: P0 (ST06) starts with 5 cards
+R1 T3: P0 orbit rotates cw
 R1 T3: P0 plays CO28 {'pos': 1}
 R1 T3: P0: CO28 enters E
-R1 T3: P0 plays AE37 {'tgt': 1}
-R1 T3: P1 (ST02) takes 2 (hp 4)
+R1 T3: P0 plays AE40 {'co': 'CO29'}
+R1 T3: CO29 leaves P1 orbit -> discard
 R1 T4: P1 (ST02) starts with 9 cards
-R1 T4: P1 orbit rotates
-R1 T4: P1 plays AE44 {'co': 'CO23', 'pos': 3}
-R1 T4: P1: CO23 enters W
-R1 T4: P1 plays AE24 {'tgt': 0}
-R1 T4: P0 (ST06) takes 2 (hp 5)
-R2 T5: P0 (ST06) starts with 7 cards
-R2 T5: P0 orbit rotates
-R2 T5: P0 plays AE28 {'tgt': 1, 'co': 'CO28'}
-R2 T5: CO28 leaves P0 orbit -> ooo
-R2 T5: P1 (ST02) takes 3 (hp 1)
-R2 T5: P0 plays AE34 {'tgt': 1}
-R2 T5: P1 (ST02) takes 1 (hp 0)
-R2 T5: P1 (ST02) ELIMINATED
+R1 T4: P1 orbit rotates ccw
+R1 T4: P1 plays AE44 {'co': 'CO23', 'pos': 2}
+R1 T4: P1: CO23 enters S
+R1 T4: P1 recycles AE24
+R2 T5: P0 (ST06) starts with 3 cards
+R2 T5: P0 orbit rotates cw
+R2 T5: P0 recycles AE55
+R2 T5: P0 recycles AE34
+R2 T6: P1 (ST02) starts with 9 cards
+R2 T6: P1 orbit rotates ccw
+R2 T6: P1 plays CO19 {'pos': 2}
+R2 T6: P1: CO19 enters S
+R2 T6: P1 recycles AE28
+R3 T7: P0 (ST06) starts with 5 cards
+R3 T7: P0 orbit rotates ccw
+R3 T7: P0 plays CO12 {'pos': 2}
+R3 T7: P0: CO12 enters S
+R3 T8: P1 (ST02) starts with 9 cards
+R3 T8: P1 orbit rotates cw
+R3 T8: P1 plays CO21 {'pos': 1}

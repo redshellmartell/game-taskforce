@@ -3,13 +3,13 @@
   "casual": {
    "raw": {
     "games": 2000,
-    "win_rate": 0.475,
-    "decisions_per_turn": 2.54306094618693,
-    "lead_changes": 2.943,
-    "comeback_rate": 0.3586459286367795,
-    "fell_behind_rate": 0.3505,
-    "interaction_rate": 0.7020874855764188,
-    "downtime": 2.5966642190286375
+    "win_rate": 0.4365,
+    "decisions_per_turn": 2.6790184290923427,
+    "lead_changes": 3.5975,
+    "comeback_rate": 0.3533697632058288,
+    "fell_behind_rate": 0.355,
+    "interaction_rate": 0.667093722282448,
+    "downtime": 2.710062087316448
    },
    "best_table": [
     "casual",
@@ -17,172 +17,172 @@
    ],
    "worst_table": [
     "casual",
-    "story"
+    "competitor"
    ],
    "bot": {
-    "win_rate": 0.475,
-    "fell_behind_rate": 0.35,
-    "decisions_per_turn": 2.54,
-    "downtime": 2.6,
+    "win_rate": 0.436,
+    "fell_behind_rate": 0.355,
+    "decisions_per_turn": 2.68,
+    "downtime": 2.71,
     "games": 2000,
     "seat_win_rates": {
-     "1": 0.528,
-     "2": 0.422
+     "1": 0.454,
+     "2": 0.419
     }
    }
   },
   "competitor": {
    "raw": {
     "games": 2000,
-    "win_rate": 0.531,
-    "decisions_per_turn": 2.5873931623931625,
-    "lead_changes": 3.06,
-    "comeback_rate": 0.3819691577698695,
-    "fell_behind_rate": 0.2605,
-    "interaction_rate": 0.7550213675213675,
-    "downtime": 2.549252136752137
+    "win_rate": 0.546,
+    "decisions_per_turn": 2.698282747603834,
+    "lead_changes": 3.7515,
+    "comeback_rate": 0.4311377245508982,
+    "fell_behind_rate": 0.2375,
+    "interaction_rate": 0.700479233226837,
+    "downtime": 2.661641373801917
    },
    "best_table": [
     "competitor",
-    "strategist"
+    "family"
    ],
    "worst_table": [
     "casual",
     "competitor"
    ],
    "bot": {
-    "win_rate": 0.531,
-    "fell_behind_rate": 0.261,
-    "decisions_per_turn": 2.59,
-    "downtime": 2.55,
+    "win_rate": 0.546,
+    "fell_behind_rate": 0.237,
+    "decisions_per_turn": 2.7,
+    "downtime": 2.66,
     "games": 2000,
     "seat_win_rates": {
-     "1": 0.578,
-     "2": 0.484
+     "1": 0.549,
+     "2": 0.543
     }
    }
   },
   "family": {
    "raw": {
     "games": 2000,
-    "win_rate": 0.436,
-    "decisions_per_turn": 2.6192069769800224,
-    "lead_changes": 3.2045,
-    "comeback_rate": 0.3264705882352941,
-    "fell_behind_rate": 0.3435,
-    "interaction_rate": 0.6601764526924248,
-    "downtime": 2.5954771321367
+    "win_rate": 0.4415,
+    "decisions_per_turn": 2.718183589943481,
+    "lead_changes": 3.759,
+    "comeback_rate": 0.34626576139670223,
+    "fell_behind_rate": 0.337,
+    "interaction_rate": 0.6297018125121808,
+    "downtime": 2.7113623075423896
    },
    "best_table": [
-    "barraiser",
-    "family"
-   ],
-   "worst_table": [
     "casual",
     "family"
    ],
+   "worst_table": [
+    "family",
+    "story"
+   ],
    "bot": {
-    "win_rate": 0.436,
-    "fell_behind_rate": 0.344,
-    "decisions_per_turn": 2.62,
-    "downtime": 2.6,
+    "win_rate": 0.442,
+    "fell_behind_rate": 0.337,
+    "decisions_per_turn": 2.72,
+    "downtime": 2.71,
     "games": 2000,
     "seat_win_rates": {
-     "1": 0.478,
-     "2": 0.394
+     "1": 0.446,
+     "2": 0.437
     }
    }
   },
   "story": {
    "raw": {
     "games": 2000,
-    "win_rate": 0.504,
-    "decisions_per_turn": 2.561589967052822,
-    "lead_changes": 3.0005,
-    "comeback_rate": 0.34291581108829566,
-    "fell_behind_rate": 0.32,
-    "interaction_rate": 0.7504516951854607,
-    "downtime": 2.5581889680093526
+    "win_rate": 0.4945,
+    "decisions_per_turn": 2.6712781954887217,
+    "lead_changes": 3.5845,
+    "comeback_rate": 0.37703141928494044,
+    "fell_behind_rate": 0.2875,
+    "interaction_rate": 0.6847117794486216,
+    "downtime": 2.679298245614035
    },
    "best_table": [
     "family",
     "story"
    ],
    "worst_table": [
-    "competitor",
+    "barraiser",
     "story"
    ],
    "bot": {
-    "win_rate": 0.504,
-    "fell_behind_rate": 0.32,
-    "decisions_per_turn": 2.56,
-    "downtime": 2.56,
+    "win_rate": 0.494,
+    "fell_behind_rate": 0.287,
+    "decisions_per_turn": 2.67,
+    "downtime": 2.68,
     "games": 2000,
     "seat_win_rates": {
-     "1": 0.596,
-     "2": 0.412
+     "1": 0.507,
+     "2": 0.482
     }
    }
   },
   "strategist": {
    "raw": {
     "games": 2000,
-    "win_rate": 0.5305,
-    "decisions_per_turn": 2.5562687205819428,
-    "lead_changes": 3.1475,
-    "comeback_rate": 0.4063876651982379,
-    "fell_behind_rate": 0.2695,
-    "interaction_rate": 0.7229353872486093,
-    "downtime": 2.5498502353444588
+    "win_rate": 0.551,
+    "decisions_per_turn": 2.654630926185237,
+    "lead_changes": 3.687,
+    "comeback_rate": 0.43537414965986393,
+    "fell_behind_rate": 0.249,
+    "interaction_rate": 0.6853370674134827,
+    "downtime": 2.6458291658331667
    },
    "best_table": [
     "family",
     "strategist"
    ],
    "worst_table": [
-    "story",
+    "casual",
     "strategist"
    ],
    "bot": {
-    "win_rate": 0.53,
-    "fell_behind_rate": 0.27,
-    "decisions_per_turn": 2.56,
-    "downtime": 2.55,
+    "win_rate": 0.551,
+    "fell_behind_rate": 0.249,
+    "decisions_per_turn": 2.65,
+    "downtime": 2.65,
     "games": 2000,
     "seat_win_rates": {
-     "1": 0.591,
-     "2": 0.47
+     "1": 0.549,
+     "2": 0.553
     }
    }
   },
   "barraiser": {
    "raw": {
     "games": 2000,
-    "win_rate": 0.5235,
-    "decisions_per_turn": 2.5558174416113135,
-    "lead_changes": 3.0965,
-    "comeback_rate": 0.38391845979614947,
-    "fell_behind_rate": 0.272,
-    "interaction_rate": 0.736233126205271,
-    "downtime": 2.574244696807371
+    "win_rate": 0.5305,
+    "decisions_per_turn": 2.655890301271144,
+    "lead_changes": 3.6415,
+    "comeback_rate": 0.41713641488162345,
+    "fell_behind_rate": 0.2585,
+    "interaction_rate": 0.69692723451106,
+    "downtime": 2.6689020118106295
    },
    "best_table": [
     "barraiser",
-    "family"
+    "casual"
    ],
    "worst_table": [
     "barraiser",
-    "competitor"
+    "strategist"
    ],
    "bot": {
-    "win_rate": 0.523,
-    "fell_behind_rate": 0.272,
-    "decisions_per_turn": 2.56,
-    "downtime": 2.57,
+    "win_rate": 0.53,
+    "fell_behind_rate": 0.259,
+    "decisions_per_turn": 2.66,
+    "downtime": 2.67,
     "games": 2000,
     "seat_win_rates": {
-     "1": 0.578,
-     "2": 0.469
+     "1": 0.544,
+     "2": 0.517
     }
    }
   }
@@ -192,247 +192,58 @@
    "a": "casual",
    "b": "competitor",
    "games": 400,
-   "a_win_rate": 0.445,
+   "a_win_rate": 0.41,
    "note": "",
    "a_raw": {
     "games": 400,
-    "win_rate": 0.445,
-    "decisions_per_turn": 2.554530656538253,
-    "lead_changes": 2.7125,
-    "comeback_rate": 0.341991341991342,
-    "fell_behind_rate": 0.38,
-    "interaction_rate": 0.6928920238741183,
-    "downtime": 2.6310363537710253
+    "win_rate": 0.41,
+    "decisions_per_turn": 2.685829551185073,
+    "lead_changes": 3.56,
+    "comeback_rate": 0.3360995850622407,
+    "fell_behind_rate": 0.4,
+    "interaction_rate": 0.6616238023197176,
+    "downtime": 2.734745335350479
    },
    "b_raw": {
     "games": 400,
-    "win_rate": 0.555,
-    "decisions_per_turn": 2.609795479009688,
-    "lead_changes": 2.7125,
-    "comeback_rate": 0.37583892617449666,
-    "fell_behind_rate": 0.2325,
-    "interaction_rate": 0.7744886975242196,
-    "downtime": 2.533907427341227
+    "win_rate": 0.59,
+    "decisions_per_turn": 2.6899801587301586,
+    "lead_changes": 3.56,
+    "comeback_rate": 0.4782608695652174,
+    "fell_behind_rate": 0.18,
+    "interaction_rate": 0.6944444444444444,
+    "downtime": 2.6418650793650795
    }
   },
   {
    "a": "casual",
    "b": "family",
    "games": 400,
-   "a_win_rate": 0.532,
+   "a_win_rate": 0.5,
    "note": "",
    "a_raw": {
     "games": 400,
-    "win_rate": 0.5325,
-    "decisions_per_turn": 2.514895729890765,
-    "lead_changes": 3.1475,
-    "comeback_rate": 0.39800995024875624,
-    "fell_behind_rate": 0.3025,
-    "interaction_rate": 0.7080436941410129,
-    "downtime": 2.6206554121151937
-   },
-   "b_raw": {
-    "games": 400,
-    "win_rate": 0.4675,
-    "decisions_per_turn": 2.6416416416416415,
-    "lead_changes": 3.1475,
-    "comeback_rate": 0.30601092896174864,
-    "fell_behind_rate": 0.3175,
-    "interaction_rate": 0.6666666666666666,
-    "downtime": 2.535035035035035
-   }
-  },
-  {
-   "a": "casual",
-   "b": "story",
-   "games": 400,
-   "a_win_rate": 0.475,
-   "note": "",
-   "a_raw": {
-    "games": 400,
-    "win_rate": 0.475,
-    "decisions_per_turn": 2.5029146793852677,
-    "lead_changes": 2.8525,
-    "comeback_rate": 0.3148148148148148,
-    "fell_behind_rate": 0.37,
-    "interaction_rate": 0.6772655007949125,
-    "downtime": 2.6020137784843667
-   },
-   "b_raw": {
-    "games": 400,
-    "win_rate": 0.525,
-    "decisions_per_turn": 2.5882973115445442,
-    "lead_changes": 2.8525,
-    "comeback_rate": 0.3372093023255814,
+    "win_rate": 0.5,
+    "decisions_per_turn": 2.6458036984352775,
+    "lead_changes": 3.6625,
+    "comeback_rate": 0.3968253968253968,
     "fell_behind_rate": 0.285,
-    "interaction_rate": 0.7527675276752768,
-    "downtime": 2.4897206114918293
+    "interaction_rate": 0.6661925082977714,
+    "downtime": 2.72972972972973
+   },
+   "b_raw": {
+    "games": 400,
+    "win_rate": 0.5,
+    "decisions_per_turn": 2.725852272727273,
+    "lead_changes": 3.6625,
+    "comeback_rate": 0.3695652173913043,
+    "fell_behind_rate": 0.29,
+    "interaction_rate": 0.6117424242424242,
+    "downtime": 2.6420454545454546
    }
   },
   {
    "a": "casual",
-   "b": "strategist",
-   "games": 400,
-   "a_win_rate": 0.497,
-   "note": "",
-   "a_raw": {
-    "games": 400,
-    "win_rate": 0.4975,
-    "decisions_per_turn": 2.532017075773746,
-    "lead_changes": 3.0875,
-    "comeback_rate": 0.3972602739726027,
-    "fell_behind_rate": 0.33,
-    "interaction_rate": 0.736392742796158,
-    "downtime": 2.5506937033084314
-   },
-   "b_raw": {
-    "games": 400,
-    "win_rate": 0.5025,
-    "decisions_per_turn": 2.5466169419286095,
-    "lead_changes": 3.0875,
-    "comeback_rate": 0.3772455089820359,
-    "fell_behind_rate": 0.26,
-    "interaction_rate": 0.6941928609483218,
-    "downtime": 2.5279701651571655
-   }
-  },
-  {
-   "a": "barraiser",
-   "b": "casual",
-   "games": 400,
-   "a_win_rate": 0.575,
-   "note": "",
-   "a_raw": {
-    "games": 400,
-    "win_rate": 0.575,
-    "decisions_per_turn": 2.5356959424756034,
-    "lead_changes": 2.915,
-    "comeback_rate": 0.4594594594594595,
-    "fell_behind_rate": 0.2,
-    "interaction_rate": 0.7498715973292245,
-    "downtime": 2.569080636877247
-   },
-   "b_raw": {
-    "games": 400,
-    "win_rate": 0.425,
-    "decisions_per_turn": 2.61201044386423,
-    "lead_changes": 2.915,
-    "comeback_rate": 0.34513274336283184,
-    "fell_behind_rate": 0.37,
-    "interaction_rate": 0.6955613577023498,
-    "downtime": 2.5780678851174934
-   }
-  },
-  {
-   "a": "competitor",
-   "b": "family",
-   "games": 400,
-   "a_win_rate": 0.58,
-   "note": "",
-   "a_raw": {
-    "games": 400,
-    "win_rate": 0.58,
-    "decisions_per_turn": 2.6162324649298596,
-    "lead_changes": 3.2425,
-    "comeback_rate": 0.4695121951219512,
-    "fell_behind_rate": 0.2175,
-    "interaction_rate": 0.7645290581162325,
-    "downtime": 2.5751503006012024
-   },
-   "b_raw": {
-    "games": 400,
-    "win_rate": 0.42,
-    "decisions_per_turn": 2.619775739041794,
-    "lead_changes": 3.2425,
-    "comeback_rate": 0.3394495412844037,
-    "fell_behind_rate": 0.36,
-    "interaction_rate": 0.6488277268093782,
-    "downtime": 2.6615698267074412
-   }
-  },
-  {
-   "a": "competitor",
-   "b": "story",
-   "games": 400,
-   "a_win_rate": 0.532,
-   "note": "",
-   "a_raw": {
-    "games": 400,
-    "win_rate": 0.5325,
-    "decisions_per_turn": 2.561413043478261,
-    "lead_changes": 2.98,
-    "comeback_rate": 0.3532608695652174,
-    "fell_behind_rate": 0.2975,
-    "interaction_rate": 0.7418478260869565,
-    "downtime": 2.5505434782608694
-   },
-   "b_raw": {
-    "games": 400,
-    "win_rate": 0.4675,
-    "decisions_per_turn": 2.5616812227074237,
-    "lead_changes": 2.98,
-    "comeback_rate": 0.297029702970297,
-    "fell_behind_rate": 0.355,
-    "interaction_rate": 0.7450873362445415,
-    "downtime": 2.572598253275109
-   }
-  },
-  {
-   "a": "competitor",
-   "b": "strategist",
-   "games": 400,
-   "a_win_rate": 0.46,
-   "note": "",
-   "a_raw": {
-    "games": 400,
-    "win_rate": 0.46,
-    "decisions_per_turn": 2.568341437061048,
-    "lead_changes": 3.24,
-    "comeback_rate": 0.3463687150837989,
-    "fell_behind_rate": 0.2925,
-    "interaction_rate": 0.7460831982712047,
-    "downtime": 2.561858454889249
-   },
-   "b_raw": {
-    "games": 400,
-    "win_rate": 0.54,
-    "decisions_per_turn": 2.542627345844504,
-    "lead_changes": 3.24,
-    "comeback_rate": 0.44019138755980863,
-    "fell_behind_rate": 0.2925,
-    "interaction_rate": 0.7281501340482573,
-    "downtime": 2.5490616621983913
-   }
-  },
-  {
-   "a": "barraiser",
-   "b": "competitor",
-   "games": 400,
-   "a_win_rate": 0.472,
-   "note": "",
-   "a_raw": {
-    "games": 400,
-    "win_rate": 0.4725,
-    "decisions_per_turn": 2.5376940133037693,
-    "lead_changes": 3.125,
-    "comeback_rate": 0.3463414634146341,
-    "fell_behind_rate": 0.335,
-    "interaction_rate": 0.7605321507760532,
-    "downtime": 2.5942350332594235
-   },
-   "b_raw": {
-    "games": 400,
-    "win_rate": 0.5275,
-    "decisions_per_turn": 2.5785123966942147,
-    "lead_changes": 3.125,
-    "comeback_rate": 0.3712574850299401,
-    "fell_behind_rate": 0.2625,
-    "interaction_rate": 0.7471074380165289,
-    "downtime": 2.522314049586777
-   }
-  },
-  {
-   "a": "family",
    "b": "story",
    "games": 400,
    "a_win_rate": 0.448,
@@ -440,157 +251,346 @@
    "a_raw": {
     "games": 400,
     "win_rate": 0.4475,
-    "decisions_per_turn": 2.6065491183879095,
-    "lead_changes": 3.0975,
-    "comeback_rate": 0.3259668508287293,
-    "fell_behind_rate": 0.305,
-    "interaction_rate": 0.6397984886649875,
-    "downtime": 2.5929471032745592
+    "decisions_per_turn": 2.594173782019086,
+    "lead_changes": 3.585,
+    "comeback_rate": 0.35648148148148145,
+    "fell_behind_rate": 0.3475,
+    "interaction_rate": 0.6474133601205424,
+    "downtime": 2.6926167754897037
    },
    "b_raw": {
     "games": 400,
     "win_rate": 0.5525,
-    "decisions_per_turn": 2.570929070929071,
-    "lead_changes": 3.0975,
-    "comeback_rate": 0.41624365482233505,
-    "fell_behind_rate": 0.2875,
-    "interaction_rate": 0.7492507492507493,
-    "downtime": 2.5844155844155843
+    "decisions_per_turn": 2.671150971599402,
+    "lead_changes": 3.585,
+    "comeback_rate": 0.41358024691358025,
+    "fell_behind_rate": 0.2375,
+    "interaction_rate": 0.6771300448430493,
+    "downtime": 2.573492775286497
+   }
+  },
+  {
+   "a": "casual",
+   "b": "strategist",
+   "games": 400,
+   "a_win_rate": 0.43,
+   "note": "",
+   "a_raw": {
+    "games": 400,
+    "win_rate": 0.43,
+    "decisions_per_turn": 2.7261492832427088,
+    "lead_changes": 3.3775,
+    "comeback_rate": 0.3542600896860987,
+    "fell_behind_rate": 0.36,
+    "interaction_rate": 0.6658428077113199,
+    "downtime": 2.6880869995056846
+   },
+   "b_raw": {
+    "games": 400,
+    "win_rate": 0.57,
+    "decisions_per_turn": 2.647517039922103,
+    "lead_changes": 3.3775,
+    "comeback_rate": 0.4585987261146497,
+    "fell_behind_rate": 0.2125,
+    "interaction_rate": 0.6786757546251218,
+    "downtime": 2.6850048685491723
+   }
+  },
+  {
+   "a": "barraiser",
+   "b": "casual",
+   "games": 400,
+   "a_win_rate": 0.605,
+   "note": "",
+   "a_raw": {
+    "games": 400,
+    "win_rate": 0.605,
+    "decisions_per_turn": 2.647482014388489,
+    "lead_changes": 3.8025,
+    "comeback_rate": 0.49333333333333335,
+    "fell_behind_rate": 0.19,
+    "interaction_rate": 0.6887290167865707,
+    "downtime": 2.6848920863309353
+   },
+   "b_raw": {
+    "games": 400,
+    "win_rate": 0.395,
+    "decisions_per_turn": 2.7427731504164625,
+    "lead_changes": 3.8025,
+    "comeback_rate": 0.3318777292576419,
+    "fell_behind_rate": 0.3825,
+    "interaction_rate": 0.6937775600195982,
+    "downtime": 2.7045565899069084
+   }
+  },
+  {
+   "a": "competitor",
+   "b": "family",
+   "games": 400,
+   "a_win_rate": 0.593,
+   "note": "",
+   "a_raw": {
+    "games": 400,
+    "win_rate": 0.5925,
+    "decisions_per_turn": 2.746954076850984,
+    "lead_changes": 4.1075,
+    "comeback_rate": 0.5098039215686274,
+    "fell_behind_rate": 0.1875,
+    "interaction_rate": 0.7061855670103093,
+    "downtime": 2.689784442361762
+   },
+   "b_raw": {
+    "games": 400,
+    "win_rate": 0.4075,
+    "decisions_per_turn": 2.73724368144969,
+    "lead_changes": 4.1075,
+    "comeback_rate": 0.33640552995391704,
+    "fell_behind_rate": 0.36,
+    "interaction_rate": 0.6585598474010491,
+    "downtime": 2.7954220314735334
+   }
+  },
+  {
+   "a": "competitor",
+   "b": "story",
+   "games": 400,
+   "a_win_rate": 0.52,
+   "note": "",
+   "a_raw": {
+    "games": 400,
+    "win_rate": 0.52,
+    "decisions_per_turn": 2.704312114989733,
+    "lead_changes": 3.595,
+    "comeback_rate": 0.3978494623655914,
+    "fell_behind_rate": 0.28,
+    "interaction_rate": 0.6950718685831622,
+    "downtime": 2.685318275154004
+   },
+   "b_raw": {
+    "games": 400,
+    "win_rate": 0.48,
+    "decisions_per_turn": 2.685318275154004,
+    "lead_changes": 3.595,
+    "comeback_rate": 0.3520408163265306,
+    "fell_behind_rate": 0.3175,
+    "interaction_rate": 0.7048254620123203,
+    "downtime": 2.704312114989733
+   }
+  },
+  {
+   "a": "competitor",
+   "b": "strategist",
+   "games": 400,
+   "a_win_rate": 0.495,
+   "note": "",
+   "a_raw": {
+    "games": 400,
+    "win_rate": 0.495,
+    "decisions_per_turn": 2.6709379805228086,
+    "lead_changes": 3.7275,
+    "comeback_rate": 0.3556701030927835,
+    "fell_behind_rate": 0.3125,
+    "interaction_rate": 0.7011788826242953,
+    "downtime": 2.6509482316760637
+   },
+   "b_raw": {
+    "games": 400,
+    "win_rate": 0.505,
+    "decisions_per_turn": 2.645524296675192,
+    "lead_changes": 3.7275,
+    "comeback_rate": 0.3717277486910995,
+    "fell_behind_rate": 0.3,
+    "interaction_rate": 0.7033248081841432,
+    "downtime": 2.665473145780051
+   }
+  },
+  {
+   "a": "barraiser",
+   "b": "competitor",
+   "games": 400,
+   "a_win_rate": 0.468,
+   "note": "",
+   "a_raw": {
+    "games": 400,
+    "win_rate": 0.4675,
+    "decisions_per_turn": 2.6533742331288344,
+    "lead_changes": 3.7675,
+    "comeback_rate": 0.3944954128440367,
+    "fell_behind_rate": 0.33,
+    "interaction_rate": 0.693762781186094,
+    "downtime": 2.6901840490797544
+   },
+   "b_raw": {
+    "games": 400,
+    "win_rate": 0.5325,
+    "decisions_per_turn": 2.6751398068124046,
+    "lead_changes": 3.7675,
+    "comeback_rate": 0.4451219512195122,
+    "fell_behind_rate": 0.2275,
+    "interaction_rate": 0.7051347229283172,
+    "downtime": 2.6385358413828164
+   }
+  },
+  {
+   "a": "family",
+   "b": "story",
+   "games": 400,
+   "a_win_rate": 0.425,
+   "note": "",
+   "a_raw": {
+    "games": 400,
+    "win_rate": 0.425,
+    "decisions_per_turn": 2.7314453125,
+    "lead_changes": 3.545,
+    "comeback_rate": 0.3285024154589372,
+    "fell_behind_rate": 0.3475,
+    "interaction_rate": 0.6298828125,
+    "downtime": 2.72265625
+   },
+   "b_raw": {
+    "games": 400,
+    "win_rate": 0.575,
+    "decisions_per_turn": 2.6872289156626508,
+    "lead_changes": 3.545,
+    "comeback_rate": 0.45294117647058824,
+    "fell_behind_rate": 0.2325,
+    "interaction_rate": 0.6713253012048193,
+    "downtime": 2.695903614457831
    }
   },
   {
    "a": "family",
    "b": "strategist",
    "games": 400,
-   "a_win_rate": 0.407,
+   "a_win_rate": 0.415,
    "note": "",
    "a_raw": {
     "games": 400,
-    "win_rate": 0.4075,
-    "decisions_per_turn": 2.634507401735579,
-    "lead_changes": 3.315,
-    "comeback_rate": 0.3031674208144796,
-    "fell_behind_rate": 0.385,
-    "interaction_rate": 0.6636038795303726,
-    "downtime": 2.5957120980091886
+    "win_rate": 0.415,
+    "decisions_per_turn": 2.722,
+    "lead_changes": 3.96,
+    "comeback_rate": 0.3333333333333333,
+    "fell_behind_rate": 0.355,
+    "interaction_rate": 0.6275,
+    "downtime": 2.695
    },
    "b_raw": {
     "games": 400,
-    "win_rate": 0.5925,
-    "decisions_per_turn": 2.545045045045045,
-    "lead_changes": 3.315,
-    "comeback_rate": 0.44805194805194803,
-    "fell_behind_rate": 0.2125,
-    "interaction_rate": 0.7247247247247247,
-    "downtime": 2.583083083083083
+    "win_rate": 0.585,
+    "decisions_per_turn": 2.6499508357915436,
+    "lead_changes": 3.96,
+    "comeback_rate": 0.5,
+    "fell_behind_rate": 0.2075,
+    "interaction_rate": 0.6858407079646017,
+    "downtime": 2.6764995083579155
    }
   },
   {
    "a": "barraiser",
    "b": "family",
    "games": 400,
-   "a_win_rate": 0.562,
+   "a_win_rate": 0.54,
    "note": "",
    "a_raw": {
     "games": 400,
-    "win_rate": 0.5625,
-    "decisions_per_turn": 2.5644264780192016,
-    "lead_changes": 3.22,
-    "comeback_rate": 0.43902439024390244,
-    "fell_behind_rate": 0.23,
-    "interaction_rate": 0.7241030823648307,
-    "downtime": 2.5644264780192016
+    "win_rate": 0.54,
+    "decisions_per_turn": 2.6798614547253834,
+    "lead_changes": 3.52,
+    "comeback_rate": 0.41818181818181815,
+    "fell_behind_rate": 0.24,
+    "interaction_rate": 0.6976744186046512,
+    "downtime": 2.651657595249876
    },
    "b_raw": {
     "games": 400,
-    "win_rate": 0.4375,
-    "decisions_per_turn": 2.5932549821154827,
-    "lead_changes": 3.22,
-    "comeback_rate": 0.3548387096774194,
-    "fell_behind_rate": 0.35,
-    "interaction_rate": 0.6821665815022995,
-    "downtime": 2.5932549821154827
+    "win_rate": 0.46,
+    "decisions_per_turn": 2.6728179551122193,
+    "lead_changes": 3.52,
+    "comeback_rate": 0.36666666666666664,
+    "fell_behind_rate": 0.3325,
+    "interaction_rate": 0.6204488778054863,
+    "downtime": 2.7012468827930176
    }
   },
   {
    "a": "story",
    "b": "strategist",
    "games": 400,
-   "a_win_rate": 0.482,
+   "a_win_rate": 0.435,
    "note": "",
    "a_raw": {
     "games": 400,
-    "win_rate": 0.4825,
-    "decisions_per_turn": 2.543726235741445,
-    "lead_changes": 2.9725,
-    "comeback_rate": 0.336734693877551,
+    "win_rate": 0.435,
+    "decisions_per_turn": 2.6496461071789685,
+    "lead_changes": 3.725,
+    "comeback_rate": 0.36585365853658536,
     "fell_behind_rate": 0.325,
-    "interaction_rate": 0.759369907658881,
-    "downtime": 2.5458989679522
+    "interaction_rate": 0.679474216380182,
+    "downtime": 2.6956521739130435
    },
    "b_raw": {
     "games": 400,
-    "win_rate": 0.5175,
-    "decisions_per_turn": 2.537628586897672,
-    "lead_changes": 2.9725,
-    "comeback_rate": 0.3723404255319149,
-    "fell_behind_rate": 0.295,
-    "interaction_rate": 0.7162966973470493,
-    "downtime": 2.5354629128316186
+    "win_rate": 0.565,
+    "decisions_per_turn": 2.6567015445939215,
+    "lead_changes": 3.725,
+    "comeback_rate": 0.4431137724550898,
+    "fell_behind_rate": 0.2325,
+    "interaction_rate": 0.6716492277030394,
+    "downtime": 2.61136023916293
    }
   },
   {
    "a": "barraiser",
    "b": "story",
    "games": 400,
-   "a_win_rate": 0.507,
+   "a_win_rate": 0.57,
    "note": "",
    "a_raw": {
     "games": 400,
-    "win_rate": 0.5075,
-    "decisions_per_turn": 2.5883947939262475,
-    "lead_changes": 3.1,
-    "comeback_rate": 0.32,
-    "fell_behind_rate": 0.2975,
-    "interaction_rate": 0.7218004338394793,
-    "downtime": 2.531995661605206
+    "win_rate": 0.57,
+    "decisions_per_turn": 2.6915747241725176,
+    "lead_changes": 3.4725,
+    "comeback_rate": 0.46153846153846156,
+    "fell_behind_rate": 0.245,
+    "interaction_rate": 0.6855566700100301,
+    "downtime": 2.6263791374122367
    },
    "b_raw": {
     "games": 400,
-    "win_rate": 0.4925,
-    "decisions_per_turn": 2.541643984757757,
-    "lead_changes": 3.1,
-    "comeback_rate": 0.3285024154589372,
-    "fell_behind_rate": 0.3475,
-    "interaction_rate": 0.7457811649428416,
-    "downtime": 2.598258029395754
+    "win_rate": 0.43,
+    "decisions_per_turn": 2.6624300965937975,
+    "lead_changes": 3.4725,
+    "comeback_rate": 0.3157894736842105,
+    "fell_behind_rate": 0.325,
+    "interaction_rate": 0.6919166243009659,
+    "downtime": 2.7285205897305542
    }
   },
   {
    "a": "barraiser",
    "b": "strategist",
    "games": 400,
-   "a_win_rate": 0.5,
+   "a_win_rate": 0.47,
    "note": "",
    "a_raw": {
     "games": 400,
-    "win_rate": 0.5,
-    "decisions_per_turn": 2.552840909090909,
-    "lead_changes": 3.1225,
-    "comeback_rate": 0.3769633507853403,
-    "fell_behind_rate": 0.2975,
-    "interaction_rate": 0.725,
-    "downtime": 2.6147727272727272
+    "win_rate": 0.47,
+    "decisions_per_turn": 2.6056847545219637,
+    "lead_changes": 3.645,
+    "comeback_rate": 0.3313953488372093,
+    "fell_behind_rate": 0.2875,
+    "interaction_rate": 0.7198966408268734,
+    "downtime": 2.6919896640826875
    },
    "b_raw": {
     "games": 400,
-    "win_rate": 0.5,
-    "decisions_per_turn": 2.6132879045996593,
-    "lead_changes": 3.1225,
-    "comeback_rate": 0.39473684210526316,
-    "fell_behind_rate": 0.2875,
-    "interaction_rate": 0.7529812606473595,
-    "downtime": 2.5513912549687676
+    "win_rate": 0.53,
+    "decisions_per_turn": 2.674024640657084,
+    "lead_changes": 3.645,
+    "comeback_rate": 0.417910447761194,
+    "fell_behind_rate": 0.2925,
+    "interaction_rate": 0.6878850102669405,
+    "downtime": 2.5882956878850103
    }
   }
  ],

@@ -13,3 +13,6 @@
 {"time": "2026-10-10T09:20:50Z", "agent": "manager", "game": "heavenly-bodies", "event": "step", "message": "Owner rulings recorded; review cap 5; revision 1 starting"}
 {"time":"2026-10-10T09:32:00Z","agent":"playtester","game":"heavenly-bodies","event":"start","message":"Revision 1 playtest"}
 {"time":"2026-10-10T09:32:06Z","agent":"game-designer","game":"heavenly-bodies","event":"done","message":"Cycle 1 revision written (rules.md, cards); playtest started"}
+{"time":"2026-10-10T09:34:55Z","agent":"playtester","game":"heavenly-bodies","event":"step","message":"Read rules/sim; recoding rev1 changes in sim/game.py"}
+{"time":"2026-10-10T09:38:56Z","agent":"playtester","game":"heavenly-bodies","event":"step","message":"Sim recoded and smoke-tested; running 2000-game head/abl/exp runs"}
+{"time":"2026-10-10T09:56:10Z","agent":"playtester","game":"heavenly-bodies","event":"done","message":"Rev 1 playtest NEEDS-FIXES; report, playtest.json, panel.json written"}
