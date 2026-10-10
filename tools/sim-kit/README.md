@@ -12,6 +12,7 @@ Standard library only. Tests: `python3 -m unittest discover tools/sim-kit`. Chec
 | Function | Use |
 |---|---|
 | `run_match(play, makers, n, seed)` | n games with seats rotated every game, so seat order cannot favour a bot |
+| `run_match_parallel(play, makers, n, seed, workers, post=...)` | same rows as `run_match`, spread over all CPU cores (fork). `post(result, order)` builds a small picklable row inside the worker so you can keep extra stats |
 | `summarize(rows, players)` | seat win rates, seat gap, ties, cap hits, length, lead changes, runaway leader rate |
 | `round_robin(play, makers, n)` | each bot's average win rate and the **spread** (best minus worst). Report the spread; never judge from one bot (L2) |
 | `ablation(play, full, ablated, n)` | margin in points, 95% interval, `passes` if the ablated bot loses by 5 or more (L1) |

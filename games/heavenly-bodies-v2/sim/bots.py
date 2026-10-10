@@ -1,6 +1,7 @@
 """Bots for Heavenly Bodies v2. Interface: setup(st,p)->[(hand_idx,slot)x2]; draw(st,p)->'deck'|'deep';
 turn(st,p,rebound)->(plan,(orbit,dir)); discard(st,p)->cards in discard order (last = new Deep Space top)."""
 import random
+import game
 from game import (beats, crash, spin_orbit, apply_launches, patterns, legal_launches, CLOCK, CCW)
 
 COLOURS = range(4)
@@ -9,18 +10,23 @@ COLOURS = range(4)
 def need(orbit, hand):
     """Estimated launches/draws to complete each pattern (lower is better). Returns list of T for crit, const, align."""
     sizes = [c[1] if c else 0 for c in orbit]; hs = sorted((c[1] for c in hand), reverse=True)
+    TH = game.CFG["mass_eff"]
     arr = sorted(sizes); total = sum(arr); T = 0.0; k = 0
-    while k < len(hs) and (total < 15 or arr[0] == 0) and hs[k] > arr[0]:
+    while k < len(hs) and (total < TH or arr[0] == 0) and hs[k] > arr[0]:
         total += hs[k] - arr[0]; arr[0] = hs[k]; arr.sort(); k += 1; T += 1
     empties = sum(1 for x in arr if x == 0)
     if empties: T += 1.5 * empties; total += 3 * empties
-    if total < 15: T += 1.5 * ((15 - total + 1) // 2)
+    if total < TH: T += 1.5 * ((TH - total + 1) // 2)
     out = [T]
     ocol = [0] * 4; hcol = [0] * 4
     for c in orbit:
         if c: ocol[c[0]] += 1
     for c in hand: hcol[c[0]] += 1
-    out.append(min((4 - ocol[c]) + 1.5 * max(0, 4 - ocol[c] - hcol[c]) for c in COLOURS))
+    cn = min((4 - ocol[c]) + 1.5 * max(0, 4 - ocol[c] - hcol[c]) for c in COLOURS)
+    if game.CFG["rainbow"]:
+        u = sum(1 for c in COLOURS if ocol[c]); m = 4 - u; h = sum(1 for c in COLOURS if not ocol[c] and hcol[c])
+        cn = min(cn, m + 1.5 * (m - h) + (0.0 if sum(ocol) == u else 1.0 * (sum(ocol) - u)))
+    out.append(cn)
     osz = {c[1] for c in orbit if c}; hsz = {c[1] for c in hand}
     best = 99
     for S in ({1, 2, 3, 4}, {2, 3, 4, 5}):
@@ -32,7 +38,7 @@ def need(orbit, hand):
 
 _vcache = {}
 def potential(orbit, hand):
-    key = (tuple(orbit), tuple(sorted(hand)))
+    key = (tuple(orbit), tuple(sorted(hand)), game.CFG["mass_eff"], game.CFG["rainbow"])
     v = _vcache.get(key)
     if v is None:
         T = sorted(need(orbit, hand))
@@ -46,21 +52,24 @@ def opp_potential(orbit):
     return potential(orbit, ())
 
 
-def sim_turn(st, p, plan, spin, comet=True):
-    """Return (orbits, hand_p, captured_by_p(list), lost_by_p(list), others_gain). Hands of others are not tracked."""
+def sim_turn(st, p, plan, spin, comet=True, shieldblind=False):
+    """Return (orbits, hand_p, captured_by_p, lost_by_p, shielded_set_after). Hands of others are not tracked."""
     n = st.n
     orbits = [list(o) for o in st.orbits]
     orb, hand, _ = apply_launches(orbits[p], st.hands[p], plan)
+    sh = set() if shieldblind else set(st.shielded)
+    if game.CFG["shield"] and not shieldblind:
+        for i, s_ in plan: sh.add(st.hands[p][i])
     orbits[p] = orb; hand = list(hand)
     gain = []; lost = []
     if spin:
         q, d = spin
         orbits[q] = spin_orbit(orbits[q], d)
-        for e in crash(orbits, q, n, comet, d if getattr(st, 'one', False) else None):
+        for e in crash(orbits, q, n, comet, sh):
             if e[0] == "cap":
                 if e[1] == p: gain.append(e[4])
                 if e[2] == p: lost.append(e[4])
-    return orbits, hand + gain, gain, lost
+    return orbits, hand + gain, gain, lost, sh
 
 
 class Heur:
@@ -69,7 +78,7 @@ class Heur:
     def __init__(self, seed, **kw):
         self.r = random.Random(seed)
         self.w = dict(threat=0.6, win_opp=3.0, win_me=2.0, expo=0.04, capt=0.0, noise=0.0, selfbias=0.0, deep_thr=0.04,
-                      selfonly=False, cometblind=False, norecall=False, deckonly=False, topk=6, greedy=False, hold_expo=1.0)
+                      selfonly=False, cometblind=False, norecall=False, deckonly=False, topk=6, greedy=False, hold_expo=1.0, shieldblind=False, defence=0.0)
         self.w.update(kw)
 
     # ---- setup
@@ -129,12 +138,13 @@ class Heur:
         v -= w["threat"] * thr
         for o in range(n):
             if o != p and patterns(orbits[o]): v -= w["win_opp"] / (1 + ((o - p) % n) - 1 + 0.01) if False else w["win_opp"]
+        if w["defence"]: v += w["defence"] * sum(orbits[p][k][1] for k in (1, 3) if orbits[p][k])
         if patterns(orbits[p]): v += w["win_me"]
         v += w["capt"] * len(gain)
         if expo is not None: v -= expo
         return v
 
-    def _expo(self, st, p, orbits):
+    def _expo(self, st, p, orbits, sh=frozenset()):
         """Public-info risk: average size I lose over all single spins an opponent could make (launch ignored)."""
         n = st.n; tot = 0; cnt = 0
         for q in range(n):
@@ -142,7 +152,7 @@ class Heur:
             for d in (CLOCK, CCW):
                 o2 = [list(o) for o in orbits]; o2[q] = spin_orbit(o2[q], d)
                 cnt += 1
-                for e in crash(o2, q, n, True, d if getattr(st, 'one', False) else None):
+                for e in crash(o2, q, n, True, sh):
                     if e[0] == "cap" and e[2] == p: tot += e[4][1]
         return self.w["expo"] * 10 * tot / max(1, cnt) * self.w["hold_expo"] if cnt else 0
 
@@ -161,16 +171,16 @@ class Heur:
                 if not any(c for c in apply_launches(st.orbits[p], hand, pl)[0]) and sp[0] == p and not any(
                         any(st.orbits[q]) for q in range(st.n) if q != p):
                     continue
-                orbits, h2, gain, lost = sim_turn(st, p, pl, sp, comet)
-                scored.append((self._score(st, p, orbits, h2, gain, lost), pl, sp, orbits, h2, gain))
+                orbits, h2, gain, lost, sh = sim_turn(st, p, pl, sp, comet, w["shieldblind"])
+                scored.append((self._score(st, p, orbits, h2, gain, lost), pl, sp, orbits, h2, gain, sh))
         if not scored:
             return [], (p, CLOCK)
         scored.sort(key=lambda x: -x[0])
         if not w["greedy"] and w["expo"]:
             top = scored[: w["topk"]]
             rescored = []
-            for sc, pl, sp, orbits, h2, gain in top:
-                e = self._expo(st, p, orbits)
+            for sc, pl, sp, orbits, h2, gain, sh in top:
+                e = self._expo(st, p, orbits, sh)
                 if patterns(orbits[p]): e *= 2.5   # a winning orbit must survive
                 rescored.append((sc - e, pl, sp))
             rescored.sort(key=lambda x: -x[0])
@@ -222,10 +232,12 @@ def mk(cls, **kw): return lambda seed: cls(seed, **kw)
 
 MAKERS = {"random": Random, "greedy": mk(Heur, greedy=True), "strategic": mk(Heur)}
 ABLATED = {
+    "shield-blind": mk(Heur, shieldblind=True),
+    "threat-blind": mk(Heur, threat=0.0, win_opp=0.0),
+    "defence-check": mk(Heur, defence=0.12, expo=0.08),
     "self-spin-only": mk(Heur, selfonly=True),
     "comet-blind": mk(Heur, cometblind=True),
     "no-recall": mk(Heur, norecall=True),
-    "deck-only": mk(Heur, deckonly=True),
 }
 # persona bots (panel). planner: careful + exposure-aware; instinct: noisy; optimiser: strongest (high exposure, wide search);
 # flavour: loves captures and spinning rivals; cautious: self-spinning and safety first.

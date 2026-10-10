@@ -8,6 +8,13 @@ import bots as B
 
 
 class Kit(unittest.TestCase):
+    def test_parallel_matches_serial(self):
+        mk = [B.MAKERS["strategic"], B.MAKERS["random"]]
+        a = simkit.run_match(play, mk, 60, seed=3)
+        b = simkit.run_match_parallel(play, mk, 60, seed=3, workers=3)
+        key = lambda rows: [(r["winner"], r["turns"], tuple(r["order"])) for r in rows]
+        self.assertEqual(key(a), key(b))
+
     def test_wilson_and_leaders(self):
         lo, hi = simkit.wilson(50, 100); self.assertTrue(lo < 0.5 < hi); self.assertAlmostEqual((lo + hi) / 2, 0.5, delta=0.02)
         self.assertEqual(simkit.wilson(0, 0), (0.0, 1.0))

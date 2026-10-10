@@ -1,64 +1,64 @@
 {
- "2": {
+ "2p": {
   "summary": {
-   "games": 2000,
+   "games": 1000,
    "seat_win_rates": [
-    0.497,
-    0.503
+    0.669,
+    0.331
    ],
-   "seat_gap": 0.3,
+   "seat_gap": 16.9,
    "maker_win_rates": [
-    0.499,
-    0.501
+    0.503,
+    0.497
    ],
-   "ties": 0.012,
+   "ties": 0.0,
    "turn_cap_hits": 0,
    "length": {
-    "mean_turns": 46.17,
-    "stdev": 7.04,
+    "mean_turns": 4.42,
+    "stdev": 1.96,
     "min": 3,
-    "max": 60
+    "max": 17
    },
    "length_histogram": [
     {
      "turns": 3,
-     "games": 3
+     "games": 516
     },
     {
      "turns": 4,
-     "games": 1
+     "games": 132
     },
     {
      "turns": 5,
-     "games": 5
+     "games": 76
     },
     {
      "turns": 6,
-     "games": 4
+     "games": 145
     },
     {
      "turns": 7,
-     "games": 9
+     "games": 54
     },
     {
      "turns": 8,
-     "games": 3
+     "games": 34
     },
     {
      "turns": 9,
-     "games": 7
+     "games": 16
     },
     {
      "turns": 10,
-     "games": 5
+     "games": 14
     },
     {
      "turns": 11,
-     "games": 3
+     "games": 5
     },
     {
      "turns": 12,
-     "games": 2
+     "games": 5
     },
     {
      "turns": 13,
@@ -66,59 +66,355 @@
     },
     {
      "turns": 14,
-     "games": 2
-    },
-    {
-     "turns": 15,
-     "games": 2
-    },
-    {
-     "turns": 16,
-     "games": 2
+     "games": 1
     },
     {
      "turns": 17,
-     "games": 3
+     "games": 1
+    }
+   ],
+   "lead_changes_mean": 0.64,
+   "runaway_leader_rate": 0.747
+  },
+  "n": 1000,
+  "long_night_rate": 0.0,
+  "pattern_share": {
+   "mass": 0.265,
+   "const": 0.461,
+   "align": 0.275
+  },
+  "pattern_combos": {
+   "mass+const": 139,
+   "const": 329,
+   "mass": 195,
+   "align": 213,
+   "const+align": 124
+  },
+  "captures_per_game": 1.8,
+  "ties_per_game": 0.11,
+  "cap_by_size": [
+   0.29,
+   0.63,
+   0.53,
+   0.26,
+   0.1
+  ],
+  "crash_spin_share": 0.363,
+  "other_spin_share": 0.449,
+  "formed_per_game": 1.0,
+  "formed_survival": 1.0,
+  "armed_per_game": 0.89,
+  "armed_attacked": 0.829,
+  "armed_survived": 1.0,
+  "armed_survived_if_attacked": 1.0,
+  "recall_per_game": 0.17,
+  "rebound_per_game": 0.0,
+  "winner_orbit_size_mean": [
+   0.24,
+   0.67,
+   0.92,
+   1.19,
+   0.98
+  ],
+  "mean_turns": 4.42,
+  "minutes": 1.8,
+  "secs": 2
+ },
+ "3p": {
+  "summary": {
+   "games": 1000,
+   "seat_win_rates": [
+    0.624,
+    0.23,
+    0.146
+   ],
+   "seat_gap": 29.07,
+   "maker_win_rates": [
+    0.338,
+    0.316,
+    0.346
+   ],
+   "ties": 0.0,
+   "turn_cap_hits": 0,
+   "length": {
+    "mean_turns": 7.17,
+    "stdev": 4.41,
+    "min": 4,
+    "max": 31
+   },
+   "length_histogram": [
+    {
+     "turns": 4,
+     "games": 424
+    },
+    {
+     "turns": 5,
+     "games": 115
+    },
+    {
+     "turns": 6,
+     "games": 46
+    },
+    {
+     "turns": 7,
+     "games": 90
+    },
+    {
+     "turns": 8,
+     "games": 56
+    },
+    {
+     "turns": 9,
+     "games": 40
+    },
+    {
+     "turns": 10,
+     "games": 56
+    },
+    {
+     "turns": 11,
+     "games": 29
+    },
+    {
+     "turns": 12,
+     "games": 27
+    },
+    {
+     "turns": 13,
+     "games": 23
+    },
+    {
+     "turns": 14,
+     "games": 15
+    },
+    {
+     "turns": 15,
+     "games": 17
+    },
+    {
+     "turns": 16,
+     "games": 14
+    },
+    {
+     "turns": 17,
+     "games": 7
     },
     {
      "turns": 18,
-     "games": 1
+     "games": 12
     },
     {
      "turns": 19,
-     "games": 1
+     "games": 8
     },
     {
      "turns": 20,
-     "games": 3
+     "games": 4
     },
     {
      "turns": 21,
-     "games": 2
-    },
-    {
-     "turns": 22,
-     "games": 3
-    },
-    {
-     "turns": 24,
      "games": 1
     },
     {
-     "turns": 26,
+     "turns": 22,
+     "games": 4
+    },
+    {
+     "turns": 23,
      "games": 2
+    },
+    {
+     "turns": 24,
+     "games": 2
+    },
+    {
+     "turns": 25,
+     "games": 2
+    },
+    {
+     "turns": 26,
+     "games": 1
     },
     {
      "turns": 27,
      "games": 1
     },
     {
+     "turns": 28,
+     "games": 2
+    },
+    {
      "turns": 29,
      "games": 1
     },
     {
+     "turns": 31,
+     "games": 1
+    }
+   ],
+   "lead_changes_mean": 1.76,
+   "runaway_leader_rate": 0.635
+  },
+  "n": 1000,
+  "long_night_rate": 0.0,
+  "pattern_share": {
+   "mass": 0.343,
+   "const": 0.445,
+   "align": 0.212
+  },
+  "pattern_combos": {
+   "const": 305,
+   "const+align": 95,
+   "mass+const": 184,
+   "align": 165,
+   "mass": 251
+  },
+  "captures_per_game": 2.25,
+  "ties_per_game": 0.94,
+  "cap_by_size": [
+   0.39,
+   0.72,
+   0.66,
+   0.36,
+   0.12
+  ],
+  "crash_spin_share": 0.392,
+  "other_spin_share": 0.686,
+  "formed_per_game": 1.0,
+  "formed_survival": 1.0,
+  "armed_per_game": 1.48,
+  "armed_attacked": 0.79,
+  "armed_survived": 0.614,
+  "armed_survived_if_attacked": 0.512,
+  "recall_per_game": 0.15,
+  "rebound_per_game": 0.0,
+  "winner_orbit_size_mean": [
+   0.29,
+   0.7,
+   0.95,
+   1.16,
+   0.9
+  ],
+  "mean_turns": 7.17,
+  "minutes": 2.9,
+  "secs": 5
+ },
+ "4p": {
+  "summary": {
+   "games": 1000,
+   "seat_win_rates": [
+    0.434,
+    0.255,
+    0.209,
+    0.102
+   ],
+   "seat_gap": 18.4,
+   "maker_win_rates": [
+    0.252,
+    0.294,
+    0.233,
+    0.221
+   ],
+   "ties": 0.0,
+   "turn_cap_hits": 0,
+   "length": {
+    "mean_turns": 8.03,
+    "stdev": 4.31,
+    "min": 5,
+    "max": 33
+   },
+   "length_histogram": [
+    {
+     "turns": 5,
+     "games": 340
+    },
+    {
+     "turns": 6,
+     "games": 185
+    },
+    {
+     "turns": 7,
+     "games": 132
+    },
+    {
+     "turns": 8,
+     "games": 53
+    },
+    {
+     "turns": 9,
+     "games": 59
+    },
+    {
+     "turns": 10,
+     "games": 42
+    },
+    {
+     "turns": 11,
+     "games": 33
+    },
+    {
+     "turns": 12,
+     "games": 26
+    },
+    {
+     "turns": 13,
+     "games": 20
+    },
+    {
+     "turns": 14,
+     "games": 15
+    },
+    {
+     "turns": 15,
+     "games": 27
+    },
+    {
+     "turns": 16,
+     "games": 12
+    },
+    {
+     "turns": 17,
+     "games": 11
+    },
+    {
+     "turns": 18,
+     "games": 6
+    },
+    {
+     "turns": 19,
+     "games": 10
+    },
+    {
+     "turns": 20,
+     "games": 4
+    },
+    {
+     "turns": 21,
+     "games": 4
+    },
+    {
+     "turns": 22,
+     "games": 5
+    },
+    {
+     "turns": 23,
+     "games": 5
+    },
+    {
+     "turns": 24,
+     "games": 3
+    },
+    {
+     "turns": 27,
+     "games": 1
+    },
+    {
+     "turns": 28,
+     "games": 3
+    },
+    {
      "turns": 30,
-     "games": 2
+     "games": 1
     },
     {
      "turns": 31,
@@ -126,498 +422,60 @@
     },
     {
      "turns": 32,
-     "games": 2
+     "games": 1
     },
     {
      "turns": 33,
      "games": 1
-    },
-    {
-     "turns": 34,
-     "games": 1
-    },
-    {
-     "turns": 35,
-     "games": 3
-    },
-    {
-     "turns": 36,
-     "games": 2
-    },
-    {
-     "turns": 37,
-     "games": 2
-    },
-    {
-     "turns": 38,
-     "games": 2
-    },
-    {
-     "turns": 39,
-     "games": 1
-    },
-    {
-     "turns": 41,
-     "games": 1
-    },
-    {
-     "turns": 42,
-     "games": 2
-    },
-    {
-     "turns": 43,
-     "games": 44
-    },
-    {
-     "turns": 44,
-     "games": 163
-    },
-    {
-     "turns": 45,
-     "games": 242
-    },
-    {
-     "turns": 46,
-     "games": 302
-    },
-    {
-     "turns": 47,
-     "games": 309
-    },
-    {
-     "turns": 48,
-     "games": 278
-    },
-    {
-     "turns": 49,
-     "games": 193
-    },
-    {
-     "turns": 50,
-     "games": 146
-    },
-    {
-     "turns": 51,
-     "games": 91
-    },
-    {
-     "turns": 52,
-     "games": 66
-    },
-    {
-     "turns": 53,
-     "games": 36
-    },
-    {
-     "turns": 54,
-     "games": 21
-    },
-    {
-     "turns": 55,
-     "games": 12
-    },
-    {
-     "turns": 56,
-     "games": 8
-    },
-    {
-     "turns": 57,
-     "games": 1
-    },
-    {
-     "turns": 60,
-     "games": 1
     }
    ],
-   "lead_changes_mean": 20.96,
-   "runaway_leader_rate": 0.513
+   "lead_changes_mean": 2.06,
+   "runaway_leader_rate": 0.41
   },
-  "n": 2000,
-  "long_night_rate": 0.9515,
-  "pattern_wins": {
-   "longnight": 1879,
-   "mass": 96,
-   "tie": 24,
-   "const": 1
+  "n": 1000,
+  "long_night_rate": 0.001,
+  "pattern_share": {
+   "mass": 0.398,
+   "const": 0.37,
+   "align": 0.232
   },
-  "pattern_wins_split": {
-   "mass": 96.0,
-   "const": 1.0,
-   "align": 0
+  "pattern_combos": {
+   "mass+const": 153,
+   "const": 251,
+   "mass+align": 220,
+   "mass": 191,
+   "align": 79,
+   "mass+const+align": 60,
+   "const+align": 45
   },
-  "captures_per_game": 58.74,
-  "ties_per_game": 6.37,
-  "crash_spin_share": 0.966,
-  "other_spin_share": 0.547,
-  "other_crash_share": 0.967,
-  "self_crash_share": 0.965,
-  "formed_per_game": 21.31,
-  "formed_survival": 0.0023,
-  "full_per_game": 23.84,
-  "full_survival": 0.0021,
-  "rebound_per_game": 31.85,
-  "recall_per_game": 5.22,
-  "deep_take_per_draw": 0.097,
-  "turns_exceed_deck_bound": 1869,
-  "mean_turns": 46.17,
-  "makers": [
-   "strategic",
-   "strategic"
+  "captures_per_game": 2.54,
+  "ties_per_game": 0.99,
+  "cap_by_size": [
+   0.34,
+   0.93,
+   0.74,
+   0.37,
+   0.17
   ],
-  "maker_rates": [
-   0.499,
-   0.501
-  ]
- },
- "3": {
-  "summary": {
-   "games": 2000,
-   "seat_win_rates": [
-    0.3232,
-    0.3552,
-    0.3217
-   ],
-   "seat_gap": 2.19,
-   "maker_win_rates": [
-    0.3332,
-    0.3147,
-    0.3522
-   ],
-   "ties": 0.047,
-   "turn_cap_hits": 0,
-   "length": {
-    "mean_turns": 46.72,
-    "stdev": 4.34,
-    "min": 20,
-    "max": 71
-   },
-   "length_histogram": [
-    {
-     "turns": 20,
-     "games": 1
-    },
-    {
-     "turns": 38,
-     "games": 7
-    },
-    {
-     "turns": 39,
-     "games": 25
-    },
-    {
-     "turns": 40,
-     "games": 55
-    },
-    {
-     "turns": 41,
-     "games": 105
-    },
-    {
-     "turns": 42,
-     "games": 106
-    },
-    {
-     "turns": 43,
-     "games": 168
-    },
-    {
-     "turns": 44,
-     "games": 184
-    },
-    {
-     "turns": 45,
-     "games": 204
-    },
-    {
-     "turns": 46,
-     "games": 181
-    },
-    {
-     "turns": 47,
-     "games": 198
-    },
-    {
-     "turns": 48,
-     "games": 164
-    },
-    {
-     "turns": 49,
-     "games": 145
-    },
-    {
-     "turns": 50,
-     "games": 115
-    },
-    {
-     "turns": 51,
-     "games": 98
-    },
-    {
-     "turns": 52,
-     "games": 70
-    },
-    {
-     "turns": 53,
-     "games": 50
-    },
-    {
-     "turns": 54,
-     "games": 26
-    },
-    {
-     "turns": 55,
-     "games": 19
-    },
-    {
-     "turns": 56,
-     "games": 29
-    },
-    {
-     "turns": 57,
-     "games": 13
-    },
-    {
-     "turns": 58,
-     "games": 11
-    },
-    {
-     "turns": 59,
-     "games": 8
-    },
-    {
-     "turns": 60,
-     "games": 3
-    },
-    {
-     "turns": 61,
-     "games": 4
-    },
-    {
-     "turns": 62,
-     "games": 3
-    },
-    {
-     "turns": 63,
-     "games": 1
-    },
-    {
-     "turns": 64,
-     "games": 1
-    },
-    {
-     "turns": 65,
-     "games": 2
-    },
-    {
-     "turns": 66,
-     "games": 1
-    },
-    {
-     "turns": 67,
-     "games": 1
-    },
-    {
-     "turns": 70,
-     "games": 1
-    },
-    {
-     "turns": 71,
-     "games": 1
-    }
-   ],
-   "lead_changes_mean": 28.61,
-   "runaway_leader_rate": 0.351
-  },
-  "n": 2000,
-  "long_night_rate": 0.9995,
-  "pattern_wins": {
-   "longnight": 1905,
-   "tie": 94,
-   "mass": 1
-  },
-  "pattern_wins_split": {
-   "mass": 1.0,
-   "const": 0,
-   "align": 0
-  },
-  "captures_per_game": 43.27,
-  "ties_per_game": 12.3,
-  "crash_spin_share": 0.937,
-  "other_spin_share": 0.823,
-  "other_crash_share": 0.952,
-  "self_crash_share": 0.866,
-  "formed_per_game": 5.7,
-  "formed_survival": 0.0001,
-  "full_per_game": 6.32,
-  "full_survival": 0.0005,
-  "rebound_per_game": 23.04,
-  "recall_per_game": 1.32,
-  "deep_take_per_draw": 0.191,
-  "turns_exceed_deck_bound": 1992,
-  "mean_turns": 46.72,
-  "makers": [
-   "strategic",
-   "strategic",
-   "strategic"
+  "crash_spin_share": 0.405,
+  "other_spin_share": 0.74,
+  "formed_per_game": 1.0,
+  "formed_survival": 1.0,
+  "armed_per_game": 1.94,
+  "armed_attacked": 0.767,
+  "armed_survived": 0.477,
+  "armed_survived_if_attacked": 0.318,
+  "recall_per_game": 0.09,
+  "rebound_per_game": 0.0,
+  "winner_orbit_size_mean": [
+   0.36,
+   0.8,
+   0.97,
+   1.08,
+   0.79
   ],
-  "maker_rates": [
-   0.3332,
-   0.3147,
-   0.3522
-  ]
- },
- "4": {
-  "summary": {
-   "games": 2000,
-   "seat_win_rates": [
-    0.2529,
-    0.2364,
-    0.2559,
-    0.2549
-   ],
-   "seat_gap": 0.59,
-   "maker_win_rates": [
-    0.2499,
-    0.2564,
-    0.2484,
-    0.2454
-   ],
-   "ties": 0.0775,
-   "turn_cap_hits": 0,
-   "length": {
-    "mean_turns": 39.6,
-    "stdev": 3.28,
-    "min": 33,
-    "max": 54
-   },
-   "length_histogram": [
-    {
-     "turns": 33,
-     "games": 15
-    },
-    {
-     "turns": 34,
-     "games": 50
-    },
-    {
-     "turns": 35,
-     "games": 111
-    },
-    {
-     "turns": 36,
-     "games": 179
-    },
-    {
-     "turns": 37,
-     "games": 204
-    },
-    {
-     "turns": 38,
-     "games": 237
-    },
-    {
-     "turns": 39,
-     "games": 256
-    },
-    {
-     "turns": 40,
-     "games": 238
-    },
-    {
-     "turns": 41,
-     "games": 218
-    },
-    {
-     "turns": 42,
-     "games": 144
-    },
-    {
-     "turns": 43,
-     "games": 107
-    },
-    {
-     "turns": 44,
-     "games": 72
-    },
-    {
-     "turns": 45,
-     "games": 70
-    },
-    {
-     "turns": 46,
-     "games": 29
-    },
-    {
-     "turns": 47,
-     "games": 31
-    },
-    {
-     "turns": 48,
-     "games": 18
-    },
-    {
-     "turns": 49,
-     "games": 7
-    },
-    {
-     "turns": 50,
-     "games": 8
-    },
-    {
-     "turns": 51,
-     "games": 3
-    },
-    {
-     "turns": 52,
-     "games": 2
-    },
-    {
-     "turns": 54,
-     "games": 1
-    }
-   ],
-   "lead_changes_mean": 22.92,
-   "runaway_leader_rate": 0.233
-  },
-  "n": 2000,
-  "long_night_rate": 1.0,
-  "pattern_wins": {
-   "longnight": 1845,
-   "tie": 155
-  },
-  "pattern_wins_split": {
-   "mass": 0,
-   "const": 0,
-   "align": 0
-  },
-  "captures_per_game": 29.75,
-  "ties_per_game": 10.47,
-  "crash_spin_share": 0.893,
-  "other_spin_share": 0.826,
-  "other_crash_share": 0.916,
-  "self_crash_share": 0.782,
-  "formed_per_game": 1.24,
-  "formed_survival": 0.0,
-  "full_per_game": 1.36,
-  "full_survival": 0.0022,
-  "rebound_per_game": 11.27,
-  "recall_per_game": 0.78,
-  "deep_take_per_draw": 0.171,
-  "turns_exceed_deck_bound": 1985,
-  "mean_turns": 39.6,
-  "makers": [
-   "strategic",
-   "strategic",
-   "strategic",
-   "strategic"
-  ],
-  "maker_rates": [
-   0.2499,
-   0.2564,
-   0.2484,
-   0.2454
-  ]
- },
- "_note": "all-strategic mirror",
- "_seconds": 1098
+  "mean_turns": 8.03,
+  "minutes": 3.2,
+  "secs": 7
+ }
 }

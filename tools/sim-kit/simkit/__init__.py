@@ -7,3 +7,5 @@ A game adapter is one function  play(bots, seed) -> result dict  with keys:
 See README.md. The numbers here follow the KPI targets in CLAUDE.md."""
 from .stats import (wilson, leaders_from_diff, lead_changes, summarize, run_match, round_robin, ablation, mean, stdev)
 from .kpis import TARGETS, evaluate, to_playtest_json
+
+from .parallel import run_match_parallel
