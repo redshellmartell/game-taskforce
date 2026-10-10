@@ -1,15 +1,15 @@
 # Studio scoreboard
 
-_Generated 2026-10-10T10:01:26Z by `tools/learning/scoreboard.py`. Bots are unvalidated until human playtests exist._
+_Generated 2026-10-10T11:31:59Z by `tools/learning/scoreboard.py`. Bots are unvalidated until human playtests exist._
 
 **First-pass playtest PASS: 0 of 10** (target: at least 2 of the next 6 games).
 
 | Metric | Value |
 |---|---|
-| Critic average, first critique / latest | 3.26 / 3.42 |
+| Critic average, first critique / latest | 3.25 / 3.38 |
 | Revisions per tested game | 1.5 |
 | Director recommendation matched owner | 26 of 29 |
-| Revision effectiveness (cycles that moved their target) | 5 of 7 |
+| Revision effectiveness (cycles that moved their target) | 5 of 8 |
 | Human fun / replay / clarity | no data |
 | Tokens not attributable to one game | 54,638,155 |
 
@@ -28,10 +28,10 @@ _Generated 2026-10-10T10:01:26Z by `tools/learning/scoreboard.py`. Bots are unva
 | five-six-simultaneous-auction | critique | NEEDS-FIXES | 3.0 / 3.33 | 2 | - |
 | solo-nine-card-roguelike | critique | NEEDS-FIXES | 3.33 / 3.33 | 0 | - |
 | two-player-hidden-movement-grid | critique | NEEDS-FIXES | 3.33 / 3.0 | 1 | - |
-| heavenly-bodies-v2 | playtest | - | - / - | 0 | - |
+| heavenly-bodies-v2 | critique | - | 3.17 / 3.0 | 1 | - |
 
 ## Owner decisions
 
-By gate (status counts): budget {'approved': 1}; free-api {'declined': 1}; greenlight {'approved': 9}; panel-research {'approved': 1}; panel-reviews {'approved': 1}; review-cap {'pending': 4}; revision {'approved': 13, 'declined': 1}; scan {'approved': 2}
+By gate (status counts): budget {'approved': 1}; free-api {'declined': 1}; greenlight {'approved': 9}; panel-research {'approved': 1}; panel-reviews {'approved': 1}; review-cap {'pending': 5}; revision {'approved': 13, 'declined': 1}; scan {'approved': 2}
 
-In `decisions.json` by kind: gate {'approve': 31, 'decline': 1, 'pitch': 1}; pitch {'send-back': 1}
+In `decisions.json` by kind: gate {'approve': 33, 'decline': 1, 'pitch': 1}; pitch {'send-back': 1}

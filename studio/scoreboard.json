@@ -1,11 +1,11 @@
 {
- "generated": "2026-10-10T10:01:26Z",
+ "generated": "2026-10-10T11:31:59Z",
  "games_total": 12,
  "games_tested": 10,
  "first_pass_playtest_pass": 0,
  "first_pass_rate": 0.0,
- "critic_avg_first": 3.26,
- "critic_avg_latest": 3.42,
+ "critic_avg_first": 3.25,
+ "critic_avg_latest": 3.38,
  "revisions_per_game": 1.5,
  "director_calibration": {
   "decided": 29,
@@ -36,12 +36,12 @@
    "approved": 1
   },
   "review-cap": {
-   "pending": 4
+   "pending": 5
   }
  },
  "decisions_by_kind": {
   "gate": {
-   "approve": 31,
+   "approve": 33,
    "decline": 1,
    "pitch": 1
   },
@@ -50,9 +50,9 @@
   }
  },
  "revision_effectiveness": {
-  "cycles": 7,
+  "cycles": 8,
   "moved_target": 5,
-  "rate": 0.71
+  "rate": 0.62
  },
  "human": {
   "sessions": 0,
@@ -334,13 +334,26 @@
   },
   {
    "slug": "heavenly-bodies-v2",
-   "stage": "playtest",
-   "revisions": 0,
+   "stage": "critique",
+   "revisions": 1,
    "first_playtest": null,
-   "first_critic_avg": null,
-   "latest_critic_avg": null,
-   "latest_critic": null,
-   "cycles": []
+   "first_critic_avg": 3.17,
+   "latest_critic_avg": 3.0,
+   "latest_critic": "REVISE-MAJOR",
+   "cycles": [
+    {
+     "cycle": 1,
+     "targeted": [
+      "pattern wins",
+      "length",
+      "captures churn"
+     ],
+     "before": 3.17,
+     "after": 3.0,
+     "moved": false,
+     "note": "Long Night 95-100% to 0% (met); turns 40-47 to 4-8, seat gap 0.3-2.2 to 17-29, captures 30-59 to ~2: overshoot. Critic avg fell 3.17 to 3.00, balance 1, market fit 2."
+    }
+   ]
   }
  ]
 }

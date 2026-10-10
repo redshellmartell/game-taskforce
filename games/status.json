@@ -787,6 +787,12 @@
           "time": "2026-10-10T10:53:37Z",
           "verdict": "BROKEN",
           "note": "cycle 1: Long Night fixed (0%) but games last 3-8 turns, first seat wins 62-67%; paused by owner for report"
+        },
+        {
+          "stage": "critique",
+          "time": "2026-10-10T11:31:59Z",
+          "verdict": "REVISE-MAJOR",
+          "note": "cycle 1 critic 3.00 (was 3.17): did not improve; waiting for approval: review-cap"
         }
       ],
       "verdicts": {

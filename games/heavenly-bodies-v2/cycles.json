@@ -8,9 +8,9 @@
         "captures churn"
       ],
       "before": 3.17,
-      "after": null,
+      "after": 3.0,
       "moved": false,
-      "note": "playtest only (critic not run, owner pause): Long Night 95-100% to 0%, but turns 40-47 to 4-8, seat gap 0.3-2.2 to 17-29, captures 30-59 to 2; overshoot. Best lead: no opening bodies (8-18 turns)."
+      "note": "Long Night 95-100% to 0% (met); turns 40-47 to 4-8, seat gap 0.3-2.2 to 17-29, captures 30-59 to ~2: overshoot. Critic avg fell 3.17 to 3.00, balance 1, market fit 2."
     }
   ]
 }

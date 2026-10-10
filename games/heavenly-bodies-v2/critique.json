@@ -1,16 +1,19 @@
-{ "verdict": "REVISE-MAJOR", "revision": 0,
-  "scores": { "originality": 4, "clarity": 3, "fun": 2, "balance": 2, "market_fit": 3, "production": 5 },
-  "average": 3.17,
-  "strength": "Spin-any-orbit is a real decision (self-spin-only ablation loses by 10-18 points in the base game, 26-34 in the win-at-end variant) and Comet beats Giant passes its ablation; the kinetic gearbox feel matches the owner's vision.",
-  "weakness": "The win patterns are dead: a formed orbit survives to its owner's turn 0-0.2% of the time, so 95-100% of games end in Long Night at 40-47 turns, with 30-59 captures per game of pure churn. Repeats L3, L1 (Rebound, Recall, Deep Space inert) and L8 (4p fails).",
+{ "verdict": "REVISE-MAJOR", "revision": 1,
+  "previous": { "revision": 0, "verdict": "REVISE-MAJOR",
+    "scores": { "originality": 4, "clarity": 3, "fun": 2, "balance": 2, "market_fit": 3, "production": 5 },
+    "average": 3.17 },
+  "scores": { "originality": 4, "clarity": 4, "fun": 2, "balance": 1, "market_fit": 2, "production": 5 },
+  "average": 3.0,
+  "strength": "Win-at-end-of-turn worked (Long Night 95-100% to 0%, all three patterns 21-46% of endings), the rules are small and clear (56 cards, 3 special rules), and opening 0 gave 8/15/18 turns, 2.4-6.5 lead changes and a 3p seat gap of 4.9 as a single-change direction.",
+  "weakness": "The shield couples the two things the owner wants: on, games are 3-8 turn tempo races (first seat 62-67%, about 2 captures per game, so cards no longer change owners); off, captures return (18-22) but Long Night returns (20/83/87%). Recall and Comet beats Giant are inert and strategic loses to greedy. Repeats L13, L14, L12/L1, L3, L8.",
   "closest_existing_game": { "name": "Orbita (25th Century Games)", "similarity": "low" },
   "required_changes": [
-    "Win check at the end of your own turn with a per-count Critical Mass knob (moves pattern wins from under 5% to 15-50% each, Long Night from 95-100% to 15% or less, turns to 14-34)",
-    "Shorten the Deck to about 32-36 cards or use 3 opening bodies (turns to 20-30, minutes to about 12), after change 1",
-    "Cut Rebound; try a one-turn shield on newly launched bodies (captures per game 59/43/30 toward 15-25, runaway at or below 65%, 4p greedy-vs-strategic gap)",
-    "Test captured bodies to Deep Space as an alternative arm (churn), noting it weakens cards changing owners",
-    "Re-run all ablations at every count; cut or sharpen Recall and Deep Space; add a keep-a-Giant defence bot; fix 3-4p Long Night tie rate",
-    "Per-count knobs: 2p threshold so games do not end in 5 turns; drop 4p if it cannot reach band"
+    "Sweep first (2/3/4p, two bots): shield full / none / Comet-Giant-only / until next spin of that orbit, crossed with opening bodies 0 and 1, best cells with Critical Mass +1; shield variants first with opening 0 held fixed",
+    "Opening bodies 0 (or 1 at 2p per the sweep): turns into 14-24 / 18-30 / 20-34 (now 8/15/18), 2p runaway at most 65% (now 0.80)",
+    "Weaker shield chosen by the sweep: captures at least 8 per game at every count (now 2-4), Long Night at most 10/10/15%",
+    "Last-seat compensation (draw 2 on first turn) as its own cell: seat gap at most 5 at 2/3/4p (opening 0 alone 11.6/4.9/10.0)",
+    "Cut Recall and rework or cut Comet beats Giant unless their ablations reach 5 points; drop inert switches (CM_BY_COUNT, DEEPSPACE_DRAW, DECK40, CAPTURE_TO_DS): zero dead twists at pitch",
+    "Re-run all ablations at every count plus strategic vs greedy: strategic at least equal to greedy (now -14/-8/-13)"
   ],
   "revision_worth_it": true,
-  "revision_reason": "The core passes its twist ablations, the diagnosis is clear (win timing), and one tested variant is near band at 3p; stop if cycle 1 does not bring 3p Long Night under 30%." }
+  "revision_reason": "Yes, one sweep-first cycle only: the diagnosis is clear and untested middle cells are cheap; if it misses (captures >= 8, turns and seat gap in band at 2 of 3 counts), stop and recommend a human playtest or park." }

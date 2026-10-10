@@ -15,4 +15,4 @@ heavenly-bodies | critique | NEEDS-FIXES / REVISE-MAJOR (3.17) | cycle 1 done (v
 | five-six-simultaneous-auction | critique | NEEDS-FIXES / REVISE-MINOR (3.33) | Last Bid Standing: cycle 2 fixed Hype share, crash lever now inert; critic wants a human table test; review-cap request waiting (recommend pitch for a human test) |
 | solo-nine-card-roguelike | 4. Critique | NEEDS-FIXES / REVISE-MINOR (3.33) | Whiskerdark (was Nine Lives Dungeon): Ghosts uneven, 3 dead tricks; revision request waiting (recommend approve) |
 | two-player-hidden-movement-grid | critique | NEEDS-FIXES / REVISE-MAJOR (3.00) | Dead Reckoning: cycle 1 left runaway at 0.83, structural; review-cap request waiting (recommend park) |
-| heavenly-bodies-v2 | playtest | BROKEN (overshoot) | Gearbox cycle 1: no more Long Night but 3-8 turns, first seat 62-67%; paused by owner, report sent |
+| heavenly-bodies-v2 | critique | BROKEN / REVISE-MAJOR (3.00) | Gearbox cycle 1 overshot (3-8 turns, ~2 captures); review-cap request waiting (recommend one more cycle, sweep first) |
