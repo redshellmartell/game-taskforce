@@ -16,3 +16,5 @@
 {"time":"2026-10-10T09:34:55Z","agent":"playtester","game":"heavenly-bodies","event":"step","message":"Read rules/sim; recoding rev1 changes in sim/game.py"}
 {"time":"2026-10-10T09:38:56Z","agent":"playtester","game":"heavenly-bodies","event":"step","message":"Sim recoded and smoke-tested; running 2000-game head/abl/exp runs"}
 {"time":"2026-10-10T09:56:10Z","agent":"playtester","game":"heavenly-bodies","event":"done","message":"Rev 1 playtest NEEDS-FIXES; report, playtest.json, panel.json written"}
+{"time": "2026-10-10T10:01:26Z", "agent": "game-designer", "game": "heavenly-bodies", "event": "done", "message": "Fix-before-critic pass F1-F11 written"}
+{"time": "2026-10-10T10:01:26Z", "agent": "critic", "game": "heavenly-bodies", "event": "done", "message": "REVISE-MAJOR avg 3.17 (was 2.83); cycle 2 should cut rotation direction choice, fix ST11"}

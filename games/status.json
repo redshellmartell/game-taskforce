@@ -438,7 +438,7 @@
       "title": "Heavenly Bodies",
       "source": "owner",
       "stage": "critique",
-      "revision": 0,
+      "revision": 1,
       "history": [
         {
           "stage": "design",
@@ -481,6 +481,12 @@
           "time": "2026-10-10T09:20:50Z",
           "verdict": null,
           "note": "owner rulings given (G4 skip, mulligan, open rules with change log); review cap 5; revision 1 starting"
+        },
+        {
+          "stage": "critique",
+          "time": "2026-10-10T10:01:26Z",
+          "verdict": "REVISE-MAJOR",
+          "note": "cycle 1 done: critic 3.17 (was 2.83), seat gap fixed, rotation inert; cycle 2 starting inside the owner's cap of 5"
         }
       ],
       "verdicts": {

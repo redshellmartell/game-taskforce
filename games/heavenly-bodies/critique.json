@@ -1,15 +1,18 @@
-{ "verdict": "REVISE-MAJOR", "revision": 0,
-  "scores": { "originality": 4, "clarity": 2, "fun": 3, "balance": 2, "market_fit": 3, "production": 3 },
-  "average": 2.83,
-  "strength": "The orbit-as-clock rotation is a fresh, skill-rich core: strategic bot beats random by 77.7 points and the game runs cleanly with no ties or stuck games.",
-  "weakness": "The two win conditions are not co-equal and the split flips with player count (2p 72/28 Star, 4p 39/61, 6p 25/75), together with HP-dominated Star strength and 40 open rule gaps; these are mostly owner decisions on the locked rules.",
+{ "verdict": "REVISE-MAJOR", "revision": 1,
+  "scores": { "originality": 4, "clarity": 3, "fun": 3, "balance": 3, "market_fit": 3, "production": 3 },
+  "average": 3.17,
+  "previous": { "revision": 0, "verdict": "REVISE-MAJOR", "scores": { "originality": 4, "clarity": 2, "fun": 3, "balance": 2, "market_fit": 3, "production": 3 }, "average": 2.83 },
+  "strength": "A fresh, skill-rich duel (strategic beats random by 88.7, greedy by 58.2%) now balanced at 2-4p on seat gap (0.1) and win-path split (50/48/51), running cleanly with no ties or stalls.",
+  "weakness": "The headline rotation-direction twist is inert (always-clockwise bot loses by 0.9 at 2p, 2.4 at 4p; L1), Star strength still follows HP (ST11 29.7%, 4p HP 5 Stars 3-8%; L8), and about 300 rule lines carry rules the sim says do nothing (L7).",
   "closest_existing_game": { "name": "Orbita (2025); nearest in feel is CCG duels", "similarity": "low" },
   "required_changes": [
-    "Re-cost or lower AE28 and AE25 (3-damage hard-cost cards); target winning link under 0.2",
-    "Add 4-6 cheap knockout/Size-reduction AEs including 1 Denial card; target CM cancel share 45-55% and a higher CM share at 2p",
-    "Give rotation-trick cards (AE41, AE43, AE45, AE55, AE57, AE60, CO14, CO24) clear payoffs; target each played in at least 5% of games",
-    "After the owner rules on G4, G7, G8, G10, G12/13, G27, G29, re-run on the locked readings; target seat gap 5 or less",
-    "Replace 2-3 always-dead AEs with cards playable on an empty board; target under 3 dead cards per 7-card hand"
+    "Rotation: cut direction choice (fixed clockwise) or give North real stakes; KPI always-clockwise ablation loses by 5+ at 2p and 4p, or rule lines drop 15+ with other KPIs held",
+    "ST11 HP 6 or reworked ability; KPI every Star 40-60 at 2p, HP 5 Stars 15%+ at 4p under two targeting bots",
+    "Re-simulate fix pass F1-F11: 6p path split at threshold 16 in 40-60, dead cards per hand under 3, six edited AEs played 5%+",
+    "Cut 6-8 low-use Augmentations (AE14, AE17, AE49, AE04, AE08) for host-free cards; KPI dead cards under 3.0",
+    "Remove or merge at least two inert rules (Recycle, mulligan, ST11 loop, anchor exceptions); KPI playable rules under 130 lines, zero ambiguities",
+    "Trim cheap CM answers so cancel share at 4p+ is 45-55% (now 58-68%)",
+    "Run 3p/6p ablations and a minimax rotation bot to rule out bot blindness"
   ],
   "revision_worth_it": true,
-  "revision_reason": "Yes, once the owner answers G4, win-path scaling and the key rule gaps; card fixes are cheap with a clear diagnosis, but without those answers a revision re-measures an unsettled rule set." }
+  "revision_reason": "Yes, one simplifying cycle (cut inert rules, fix ST11, re-sim the fix pass); if the rotation ablation and rule weight do not move, stop and park for a human playtest." }

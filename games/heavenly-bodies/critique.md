@@ -1,81 +1,67 @@
-# Heavenly Bodies: Critique (revision 0)
+# Heavenly Bodies: Critique (revision 1)
 
-**Verdict: REVISE-MAJOR** (owner-supplied game; Rules v2 is locked, so the studio can only revise the card set. Most of the big findings need owner decisions first.)
+**Verdict: REVISE-MAJOR.** Average **3.17** (was 2.83). Real progress on balance, but the headline mechanic is inert and the game is heavy. Cycle 2 should simplify, not add.
 
-Fun and Market fit are judged from `panel.json` (free bot-predicted scores) and the playtest only. There is no `panel-report.md` because the AI persona reviews were not approved. Bot-predicted fun is not human fun, and the bots are variants of one strategic bot, so treat those scores as weak evidence.
+Basis: `playtest.json` and report (bots only, unvalidated), `panel.json` (bot-predicted fun 4.16, veto inactive; bots, not people). No `panel-report.md` exists (no AI persona reviews). The fix-before-critic pass (F1-F11: six AE rewordings, 6p threshold 16, ambiguity rulings) was **not re-simulated**; I judge it on the text only. Originality was not re-searched (core mechanic unchanged except direction choice; previous result stands: low similarity, nearest Orbita 2025 and CCG duels).
 
-## Scores (1-5)
+## Scores (1-5), previous in brackets
 
 | Area | Score | Why |
 |---|---|---|
-| Originality | 4 | See below. No close match found. |
-| Rules clarity | 2 | Restatement is tidy, but 40 listed gaps mean the game cannot be played or taught from the text alone. |
-| Fun | 3 | Strong skill gap and a few real "aha" moments, but dead hands and no answer to a countdown. Unproven with humans. |
-| Balance | 2 | Fails seat gap, win-path parity, and Star parity. |
-| Market fit | 3 | No researcher brief, so there is no gap to check against. A 2-player-first card duel with a 12-minute game suits a crowded market; free-for-all identity is undermined by the path flip. |
-| Production | 3 | 108 cards, all unique text, 12 Stars needing names and art, HP and Critical Mass trackers. Not hard, but a text-heavy unique-card set is costly to proof and print. |
-| **Average** | **2.83** | Below the 3.5 pitch KPI. |
+| Originality | 4 (4) | Per-player rotating ring plus dual win path is still fresh. No copying found. |
+| Rules clarity | 3 (2) | All 40 gaps answered, 8 minor remain, fix pass reads clean. But about 300 lines, a 5-step Critical Mass cancel check, a LIFO stack, Collisions, anchors, retrograde: a heavy teach (L7). Never timed with a human. |
+| Fun | 3 (3) | Skill gap 88.7, lead changes 3.78, no stalls. But the designer's own annotated play says direction "did not register as a decision", and 3.3 dead cards in a 7-card hand. Unproven with people. |
+| Balance | 3 (2) | Seat gap 0.1, 2p/3p/4p path split 50/48/51, runaway 60.7. Still fails: 2 Stars outside 40-60, 4p HP 5 Stars win 3-8% (fair 25), 6p path split unverified at 16. |
+| Market fit | 3 (3) | Owner-supplied, no brief. A 12-minute duel with a free-for-all mode suits the owner's card focus, but 108 unique-text cards is heavy against the "few small components" focus. |
+| Production | 3 (3) | 108 unique cards, 12 Stars, HP dials, countdown markers. Unchanged; proofing 108 unique texts is the cost. |
+| **Average** | **3.17** | Below the 3.5 pitch KPI. |
 
-## Originality
+## Required changes from revision 0: met or not
 
-Searched BoardGameGeek and web sources (2 searches, as the game has no brief or idea-bank comparables). Nearest hits were Orbita (2025, 2p card game where planet markers move on an orbital track), ORBIT (planet-race game with reversible orbits) and Planetarium (1998, marble planets on a board). None combines a per-player rotating four-slot ring, Stability and Size collision resolution, and a dual Star Destruction / Critical Mass win. Closest in feel is a collectible-card-game duel (HP-based Star, creatures with stats, spells) with a rotating-board twist. Similarity: low to medium. No copied rules or text found. The search was shallow; the owner should do a BGG check before any public step.
+1. Re-cost AE28 and AE25 (winning link under 0.2): **not met.** Link went up (+0.43 / +0.51). The causal ablation says only 4.6 points at 2p and about 0 at 4p, so this is mostly selection bias, and the link KPI is the wrong test. Partly met by judgement: stop chasing the link, use the ablation (under 5 points).
+2. Cheap CM answers, one Denial card (cancel share 45-55%): **met at 2p** (46.6%); above band at 4p+ (58-68%). Overshoot at big tables.
+3. Rotation-trick cards played 5%+: **met** (all eight 6-18%). But see below: playing them did not make rotation matter.
+4. Rule rulings, re-run on locked readings, seat gap 5 or less: **met** (0.1; G29 shown not to move results).
+5. Fewer dead cards (under 3 per hand): **not met** (3.31; F11 predicts about 2.85, unverified).
 
-## Biggest strength
+New problem it created: Star balance is still HP-driven, now with a new tail (ST11 29.7%).
 
-The orbit-as-clock idea is genuinely fresh. Per-player rotation makes "where do I put this" a real puzzle, and skill expression is very high (strategic bot beats random 88.9%, gap 77.7 points). The game also runs cleanly: no ties, no stuck games, no turn-cap hits.
+## The things you asked about
 
-## Biggest weakness
+**Rotation direction is inert (headline mechanic).** Always-clockwise bot loses by 0.9 (2p) and 2.4 (4p); ignore-North loses by 0.3. Fails L1 and design rule 2 outright. The twist was the pitch ("a clock you steer") and a bad choice costs nothing measurable. The playtester's own read of the logs agrees. Bot blindness is possible, but the designer asked for more rotation, got +8 cards played, and still no effect. This is **structural**: adding payoffs is the old fix (cycle 1 did that and it did not work). The honest options are (a) raise stakes sharply (damage or a Size penalty for what sits in North, so the choice swings games) or (b) cut direction choice and fix clockwise, saving rule weight. I recommend (b) as default, because the game is already too heavy; do (a) only if the owner wants the clock identity at any cost.
 
-The two win conditions are not co-equal, and which one dominates depends on player count (2p 72/28 Star, 4p 39/61 CM, 6p 25/75). The owner's own stated aim was parity, and the "free-for-all is first-class" claim does not hold. This comes from the locked rules and cannot be fixed by cards alone.
+**HP-driven Stars (ST11, HP 5).** At 4p the HP 5 Stars win 3-8% against a fair 25. The playtester notes the strategic bot focus-fires lowest HP, so part of this is a bot rule (L2: one targeting bot). ST11's ability is inert (reclaim loop 30.3 vs 29.1; ability off +2.4 at 2p). The fix-before-critic pass deliberately left it. Fixable by cycle 2: HP 5 to 6 for ST11, or a real ST11 ability, plus a second targeting bot at 4p before touching other Stars. Note a flatter HP curve may be needed for free-for-all anyway.
 
-## Problems split by who can fix them
+**AE25/AE28.** Causal effect 4.6 points at 2p, about 0 at 4p. Under the 5-point ablation bar, so acceptable. Optional: AE25 to 2 damage. Not a priority; stop using the winning-link KPI.
 
-### Owner decisions (locked rules or the Star roster)
+**Hand clog from 22 Augmentations.** The designer admits F11 reduces the count but the felt clog comes from Augmentations needing a host, and bots do not feel clog. Never-Recycle bot wins 54.9% (Recycle is not helping, even hurts). Never-mulligan costs 1.3. Both of the clog patches are inert in the sim. Not provable by bots; this one is a human-test question. A cheap structural cut: remove 6 to 8 weakest Augmentations (AE14, AE17, AE04 are 1.5-4% played) and replace them with Direct Effects or COs.
 
-1. Seat advantage 7.4 points at 2p (KPI 5). Cause is the playtester's reading of gap G4. Skipping the first player's turn-1 draw gives 50.2%. This is the sole trigger of the Bar Raiser veto, so the veto is an artefact of one interpretation, not a design flaw. It still stands until the owner decides G4.
-2. Win-path split flips with player count; 2p and 4p+ cannot both be fixed by one card-count change (tested, see playtest). Needs a rule-level choice.
-3. HP outweighs ability: HP 9 Star wins 70.6%, HP 5 Stars 33% to 45%; ST01 beats HP 5 Stars 70% to 82%. In 4.6-own-turn games HP is the whole trade. The roster is the owner's; the studio can only recommend.
-4. 40 rule gaps. The playtester coded 41 interpretations. One matters for trust in every number: G29, where the locked rule says LIFO stack but the simulation resolves triggers immediately, so results reflect a different rule. G8, G10 and G27 are flagged as result-moving too.
+**Is a 100+ card, ~300-line game simple enough to be fun for humans?** Unproven, and I doubt it. Playable rules are about 160 lines with a 5-moment cancel check, LIFO stack, Collisions, anchors, retrograde, Out of Orbit zone, plus 108 unique-text cards that must be read. Each turn is only two plays, which helps. Drivers of weight that bots say do nothing: direction choice, Recycle, mulligan, anchor/retrograde exceptions, ST11 loop. Cutting inert rules is both a clarity and a balance win. A human teach test would settle this faster than more simulation.
 
-### Studio-fixable (card set and design)
+## Strength and weakness
 
-5. 3-damage hard-cost cards dominate: AE28 winning link +0.42, AE25 +0.26. Costs barely hurt.
-6. Thin answers to Critical Mass: about 12 of 60 AEs can knock out or shrink a CO, while 41% of announcements are cancelled. Holding no answer means a lost game (narrated play). Also leaves the Denial/control gap open.
-7. Dead early draws: 3.4 of a 7-card hand has no legal play, 3.4% of hands have no CO, and the narrated game had three CO-less turns. Mostly by design but the "zero dead cards" KPI is breached if read literally.
-8. Cards the bots never play (13 under 5%, AE55 and AE57 near 0%). Part of this is bot blindness. The headline rotation mechanic may be underused; rotation Collisions are only 0.48 per game against 0.76 from placement. Needs human check.
-9. Fun risks in the narrated play: clogged hands (9 cards by turn 4), runaway outcome (63.4% runaway leader, close to the 65% limit). Lead changes 3.1 pass.
+**Strength:** a fresh, skill-rich duel (strategic beats random by 88.7, greedy by 58.2%), now balanced at 2-4p on seat and win path, and runs cleanly.
 
-## KPI check
+**Weakness:** the advertised twist does nothing (L1), and the rules carry weight for rules the sim says are inert (L7); HP still decides Star strength (L8, repeating the "mechanical fixes move scores, structural do not" pattern of L9).
 
-| KPI | Result | Status |
-|---|---|---|
-| Seat gap <= 5 | 7.4 (50.2% if G4 skipped) | FAIL (owner decision) |
-| Strategic vs random >= 20 | 77.7 | pass |
-| Length within +-20% of target | 12 min vs owner's flexible 10-20; no locked target | not judged |
-| Runaway leader <= 65% | 63.4% | pass, narrowly |
-| Lead changes >= 2 | 3.1 | pass |
-| Dead cards, rule ambiguities zero | 47 AEs dead on turn 1; 40 gaps | FAIL |
-| Critic average >= 3.5 | 2.83 | FAIL |
+## Structural or fixable?
 
-Caution on the numbers: all rest on one family of heuristic bots, 5-6p used only 300 games, and strategic barely beats greedy (53.5%). Directions are credible, exact percentages are not.
+Mixed. Star balance, 6p threshold, dead cards, AE25 are fixable in cycle 2. Rotation inertness is a structural design question; cycle 1's card-payoff approach already failed once, so a third patch of the same kind would hit the "same failure two cycles running" stop rule. Cycle 2 must take a decisive step (cut or sharply raise stakes), not another tweak.
 
-## Required changes (studio side, for the revision)
+## Required changes for cycle 2
 
-1. Replace or re-cost AE28 and AE25 (for example 2 damage, or a cost that hurts) and re-run. Target: winning link under 0.2, 2p Star share closer to 60%.
-2. Add 4 to 6 cheap knockout or Size-reduction AEs in place of weak or dead cards; add at least 1 Denial-themed card. Target: CM cancel share 45-55%, fewer lost-without-an-answer games, CM share at 2p up from 28%.
-3. Rebalance weak cards the bots ignore (AE41, AE43, AE45, AE55, AE57, AE60, CO14, CO24) so rotation tricks have easy-to-see payoffs. Target: each played in at least 5% of games.
-4. After the owner answers the G-items, re-run with the locked rule readings (especially G29 LIFO and G4). Target: seat gap 5 or less, all KPIs re-measured on the real rules.
-5. Replace 2 or 3 always-dead AEs with cards that have a legal play on an empty board. Target: dead cards per 7-card hand under 3.
+1. Rotation: either cut direction choice (clockwise fixed) and move North exposure onto a few cards, or make North exposure carry real damage. KPI: always-clockwise ablation loses by 5 or more at 2p and 4p, OR the rule is removed and total rule lines drop by 15 or more with seat/path KPIs unchanged.
+2. ST11: HP 6 or a reworked ability; test ST05 down if needed. KPI: every Star 40-60 at 2p (1,100 games each); at 4p HP 5 Stars at 15% or more with two targeting bots (focus-lowest and leader-targeting).
+3. Re-run F1-F11 (not yet simulated): 6p path split at 16 (40-60), dead cards per hand under 3, the six edited AEs played 5%+.
+4. Cut 6 to 8 low-use Augmentations (AE14, AE17, AE49, AE04, AE08 first) for hosts-free cards. KPI: dead cards under 3.0, Augmentation count about 15.
+5. Rule weight: remove or merge at least two inert rules (Recycle, mulligan, ST11 loop, anchor exceptions). KPI: playable rules under 130 lines; ambiguities zero.
+6. Big-table cancel share: trim cheap answers so 4p+ falls to 45-55% (now 58-68%).
+7. Add an ablation run at 3p/6p (not yet run) and a minimax rotation bot to rule out bot blindness.
 
-## Decisions for the owner (rules-level, with my recommendation)
+## Rule changes for the owner to confirm or veto
 
-1. **G4, first-turn draw:** rule that the first player skips the turn-1 draw. Recommend yes; it fixes the seat gap at no cost and clears the veto.
-2. **Primary mode and win-path parity:** declare 2p the primary mode and tune for it, then add a player-count-scaled Critical Mass threshold for 4+ players. Note the playtester's untested idea looks reversed for 2p: Critical Mass is too rare at 2p (28%), so lower the threshold there, or raise it at 4-6p (for example 17) to cut CM's 61-75% share. Recommend testing the 4-6p raise first.
-3. **HP versus ability:** either flatten the curve (for example HP 9 down to 8, HP 5 up to 6) or strengthen ST08, ST10 and ST11. Recommend buffing the abilities first and keeping the HP curve, since the owner chose the curve for pacing.
-4. **Mulligan:** allow a free redraw of an opening hand with no CO. Recommend yes; it addresses dead starts without touching the card list.
-5. **The 40 gaps:** rule on the 8 that move results and block teaching (G1, G4, G7, G8, G10, G12/G13, G27, G29) and leave the rest as errata. Confirm G29: should the simulation use the LIFO stack the rules lock? Recommend yes.
-6. **Zero dead cards KPI:** decide whether a held Augmentation counts as dead. Recommend no (it is by design); the KPI wording should say "unplayable all game".
+R1 first player skips turn-1 draw; R2 free mulligan of a no-CO hand; R3 active player chooses rotation direction (recommend veto or cut: inert); R4/R12 threshold 12 + players, max 17, 6p 16; R5/F6 cancel checked at five listed moments only; R6 Recycle as a play (inert, recommend cut); R7 ST01 HP 9 to 8; R8 buffed ST08/10/11/12; R10 eliminated player's Augmentations discarded; R11 draft in reverse turn order; F2 anchors act only in the Rotation Phase; F11 "draw 1" option on six Direct Effects. PROVISIONAL readings: G1, G7, G8, G10, G12/13, G27, G29.
 
 ## Is another revision worth it?
 
-**Yes, conditional on the owner answering decisions 1, 2 and 5 first.** The card-set fixes are cheap, the diagnosis is clear (the same bots already measured each lever), and a revision without those answers would only re-measure a rule set the owner has not settled.
+**Yes, one more cycle, but only a simplifying one, then a human playtest.** Balance fixes are cheap and clear; the rotation decision needs the owner's choice (cut or raise stakes). If cycle 2 does not move the rotation ablation or rule weight, stop and park for a human test: more bot cycles cannot judge fun or teachability.

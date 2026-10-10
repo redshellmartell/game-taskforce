@@ -1,0 +1,19 @@
+{
+  "cycles": [
+    {
+      "cycle": 1,
+      "targeted": [
+        "seat gap",
+        "win-path split across player counts",
+        "rotation trick cards unused",
+        "Star/HP parity",
+        "cheap answers to Critical Mass",
+        "40 rule gaps"
+      ],
+      "before": 2.83,
+      "after": 3.17,
+      "moved": true,
+      "note": "critic avg 2.83 to 3.17; seat gap 7.4 to 0.1, CM share spread 28-75 to 38-51 (6p still off), ambiguities 41 to 8; rotation direction still inert, ST11 and HP5 Stars weak, AE25/28 link worse"
+    }
+  ]
+}

@@ -13,5 +13,6 @@ Every agent call in this project reads this file, `studio/lessons.md`, `studio/d
 ## Cycle table
 | Version | Cycle | Targeted | Result | Lesson |
 |---|---|---|---|---|
+| v1 | 1 | seat gap, path split, rotation cards, Star/HP, CM answers, 40 gaps | critic 2.83 to 3.17; seat gap 7.4 to 0.1; ambiguities 41 to 8; rotation direction still inert | L12, L13; bundled changes needed single-change ablations (worked) |
 
 ## Lessons

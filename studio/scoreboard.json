@@ -1,12 +1,12 @@
 {
- "generated": "2026-10-06T14:48:26Z",
- "games_total": 11,
+ "generated": "2026-10-10T10:01:26Z",
+ "games_total": 12,
  "games_tested": 10,
  "first_pass_playtest_pass": 0,
  "first_pass_rate": 0.0,
  "critic_avg_first": 3.26,
- "critic_avg_latest": 3.38,
- "revisions_per_game": 1.4,
+ "critic_avg_latest": 3.42,
+ "revisions_per_game": 1.5,
  "director_calibration": {
   "decided": 29,
   "agreed": 26,
@@ -41,7 +41,7 @@
  },
  "decisions_by_kind": {
   "gate": {
-   "approve": 28,
+   "approve": 31,
    "decline": 1,
    "pitch": 1
   },
@@ -50,9 +50,9 @@
   }
  },
  "revision_effectiveness": {
-  "cycles": 6,
-  "moved_target": 4,
-  "rate": 0.67
+  "cycles": 7,
+  "moved_target": 5,
+  "rate": 0.71
  },
  "human": {
   "sessions": 0,
@@ -64,7 +64,7 @@
   "per_game": {
    "three-player-trick-taker": 631920
   },
-  "unattributed": 44981474
+  "unattributed": 54638155
  },
  "games": [
   {
@@ -199,12 +199,28 @@
   {
    "slug": "heavenly-bodies",
    "stage": "critique",
-   "revisions": 0,
+   "revisions": 1,
    "first_playtest": "NEEDS-FIXES",
    "first_critic_avg": 2.83,
-   "latest_critic_avg": 2.83,
+   "latest_critic_avg": 3.17,
    "latest_critic": "REVISE-MAJOR",
-   "cycles": []
+   "cycles": [
+    {
+     "cycle": 1,
+     "targeted": [
+      "seat gap",
+      "win-path split across player counts",
+      "rotation trick cards unused",
+      "Star/HP parity",
+      "cheap answers to Critical Mass",
+      "40 rule gaps"
+     ],
+     "before": 2.83,
+     "after": 3.17,
+     "moved": true,
+     "note": "critic avg 2.83 to 3.17; seat gap 7.4 to 0.1, CM share spread 28-75 to 38-51 (6p still off), ambiguities 41 to 8; rotation direction still inert, ST11 and HP5 Stars weak, AE25/28 link worse"
+    }
+   ]
   },
   {
    "slug": "standard-deck-engine-workshop",
@@ -315,6 +331,16 @@
      "note": "Zoned deal, trailer-only 2-step ping and 12-round cap left runaway at 0.76-0.92 in every pairing; Sonar still dead; ambiguities closed by the fix pass. Critic: structural, park."
     }
    ]
+  },
+  {
+   "slug": "heavenly-bodies-v2",
+   "stage": "playtest",
+   "revisions": 0,
+   "first_playtest": null,
+   "first_critic_avg": null,
+   "latest_critic_avg": null,
+   "latest_critic": null,
+   "cycles": []
   }
  ]
 }

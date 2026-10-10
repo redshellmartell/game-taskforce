@@ -25,4 +25,8 @@ Append rule (Director): after each critique add at most 2 or 3 lessons or bump a
 - **L11 A rule that blocks cheating can force dead turns.** Tightening Offer legality ended the code attack but left 60% of Trims with no legal Offer, a waiting action. Check forced-move rates when adding legality rules.
   Evidence: silent-duo-deduction-coop cycle 1 `playtest.json` (Trim 30% of turns, 3+ Trim runs 61% of 2p games) and `critique.json`. | low | yes | 2026-10-06
 
+- **L12 Card payoffs do not make a mechanic matter.** Eight rotation cards were reworked and are now played, yet an always-one-direction bot still lost by under 1 point; the headline choice stayed inert. Test the mechanic itself with an ablation bot, not card play rates.
+  Evidence: heavenly-bodies cycle 1 `playtest.json` (clockwise-only bot -0.9 at 2p, -2.4 at 4p) and `critique.json`. | low | yes | 2026-10-10
+- **L13 Fixing one number can expose or worsen another.** Threshold scaling fixed the win-path split at 2-5p but overshot at 6p; a seat-gap fix (first-draw skip) cleared a veto. Re-measure every count after any scaling change and keep single-change ablations.
+  Evidence: heavenly-bodies cycle 1 `playtest.json` (CM share 38% at 6p with 17, 50.2% with 16). | low | yes | 2026-10-10
 Dropped after checking: "stalls and loops" (one game, a first-draft infinite-loop hole in standard-deck-engine-workshop; `turn_cap_hits` is 0 in all 10 current reports) and "length off target" (current lengths within 20% of target in all 10; the worst are five-six 16 vs 20 and heavenly-bodies 12 vs 15 minutes).
