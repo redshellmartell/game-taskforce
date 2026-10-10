@@ -737,7 +737,7 @@
       "slug": "heavenly-bodies-v2",
       "title": "Heavenly Bodies v2",
       "source": "owner",
-      "stage": "brief",
+      "stage": "playtest",
       "revision": 0,
       "history": [
         {
@@ -751,6 +751,12 @@
           "time": "2026-10-10T09:21:47Z",
           "verdict": "26/30",
           "note": "brief written; owner greenlit v2; design next"
+        },
+        {
+          "stage": "playtest",
+          "time": "2026-10-10T09:33:40Z",
+          "verdict": null,
+          "note": "Gearbox design written (56 cards); playtest started"
         }
       ],
       "verdicts": {
