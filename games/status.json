@@ -745,6 +745,12 @@
           "time": "2026-10-10T09:20:50Z",
           "verdict": null,
           "note": "owner idea (kinetic spin-off of Heavenly Bodies); focused comparables check running"
+        },
+        {
+          "stage": "brief",
+          "time": "2026-10-10T09:21:47Z",
+          "verdict": "26/30",
+          "note": "brief written; owner greenlit v2; design next"
         }
       ],
       "verdicts": {
