@@ -1,0 +1,14 @@
+[
+"Deck-bound claim wrong: rules 6 says the game lasts at most 43/38/33 turns, but Deep Space draws do not shrink the Deck, so 94%/99%/99% of games run longer (max 60/71/54 turns).",
+"Long Night triggers at Draw only when the Deck is empty, even if Deep Space still holds cards; the first player skips Draw on turn 1 so Draw counts differ from turn counts.",
+"Rebound: can the card recalled by the first Launch be launched again by the second? Sim: yes, into a different slot.",
+"Rebound: is a Recall allowed on the second Launch? Sim: yes.",
+"Two equal-size collisions in one spin (2 players): order of the two 'active player chooses which goes on top' choices is only implied (West first).",
+"Equal-size knock-out: the active player chooses the top card, but nothing says whether this is a hidden/public choice or what it is for. Sim: the colour the active player holds least goes on top.",
+"Long Night tie after total and body count: 'share the win' is a tie; it occurs in 5% of 3-4p games (1% at 2p).",
+"Hand limit: captures can push a hand to 8+ before Cool down; the rules do not say whether hand size is public or limited during other turns.",
+"Spinning an orbit with bodies only in North/South: legal, crashes nothing; allowed in sim.",
+"Win check uses Critical Mass 15+ on 'four bodies'; sim assumes a 4-body orbit of any colours also counts for Constellation and Alignment at once (multiple patterns possible; share counted evenly).",
+"Setup: players pick 2 of 5 cards for any two slots without seeing others; whether they may stay adjacent (e.g. West/North) is open. Sim: any two different slots (bots use N and S).",
+"Mid-turn draw: Deep Space top is public but does a player who just put two cards there (tie) get to see them? Not an issue; skipped."
+]

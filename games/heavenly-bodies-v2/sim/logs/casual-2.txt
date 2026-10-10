@@ -1,0 +1,41 @@
+Heavenly Bodies v2: seats casual, competitor, family, strategist, table 'worst' for casual. Cards: colour letter (E,F,V,S) + Size; [North East South West].
+setup [V4 -- V3 --] | [S3 -- S4 --] | [V3 -- V5 --] | [S1 -- S3 --]
+T0 P0 launch 1 -> [V4 V4 V3 --]
+T1 P1 launch 1 -> [S3 E5 S4 --]
+T1 P1 spin P0 -1: P1 E5 takes P0 V4
+T2 P2 launch 1 -> [V3 V2 V5 --]
+T3 P3 launch 1 -> [S1 E4 S3 --]
+T3 P3 spin P1 +1: P2 V5 takes P1 S4
+T4 P0 launch 1 -> [V3 -- V4 E5]
+T4 P0 spin P3 -1: V3 and S3 collide, knocked out
+T5 P1 launch 1 -> [-- S3 E5 F4]
+T6 P2 launch 1 -> [V2 V5 F4 --]
+T6 P2 spin P1 -1: E5 and E5 collide, knocked out
+T7 P3 launch 1 -> [S1 E4 -- V4]
+T7 P3 spin P0 +1: P3 V4 takes P0 V3
+T8 P0 launch 2 -> [F5 V2 -- V4]
+T8 P0 spin P2 +1: F4 and E4 collide, knocked out
+T9 P1 launch 1 -> [S3 V4 F4 --]
+T9 P1 spin P0 +1: P0 F5 takes P3 V4
+T10 P2 launch 1 -> [V3 V2 V5 --]
+T10 P2 spin P0 -1: V4 and V4 collide, knocked out
+T11 P3 launch 2 -> [S1 V4 V3 --]
+T11 P3 spin P2 -1: P3 V4 takes P2 V3
+T12 P0 launch 1 -> [F5 V2 -- V4]
+T12 P0 spin P3 -1: P0 V2 takes P3 S1
+T13 P1 launch 1 -> [S3 -- F4 E4]
+T13 P1 spin P2 +1: P1 E4 takes P2 V2
+T14 P2 launch 2 -> [E3 S4 V5 --]
+T14 P2 spin P1 -1: P2 S4 takes P1 S3
+T14 P2 spin P1 -1: V4 and F4 collide, knocked out
+T15 P3 launch 1 -> [V4 V3 -- V1]
+T15 P3 spin P1 +1: E4 and S4 collide, knocked out
+T16 P0 launch 1 -> [F5 V2 F4 --]
+T16 P0 spin P2 -1: E3 and V3 collide, knocked out
+T17 P1 launch 2 -> [V4 -- -- F3]
+T17 P1 spin P0 +1: P3 V1 takes P0 F5
+T18 P2 launch 2 -> [S4 V5 V2 --]
+T18 P2 spin P1 -1: P2 V5 takes P1 V4
+T19 P3 launch 1 -> [V4 E5 -- V1]
+T19 P3 spin P2 -1: P3 E5 takes P2 S4
+T20 P0 launch 1 -> [V5 -- V2 F4]

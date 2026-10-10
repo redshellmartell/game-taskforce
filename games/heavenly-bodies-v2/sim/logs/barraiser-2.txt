@@ -1,0 +1,41 @@
+Heavenly Bodies v2: seats barraiser, casual, competitor, story, table 'worst' for barraiser. Cards: colour letter (E,F,V,S) + Size; [North East South West].
+setup [V4 -- V3 --] | [S3 -- S4 --] | [V3 -- V5 --] | [S1 -- S3 --]
+T0 P0 launch 1 -> [V4 V4 V3 --]
+T1 P1 launch 1 -> [S3 E5 S4 --]
+T1 P1 spin P0 -1: P1 E5 takes P0 V4
+T2 P2 launch 1 -> [V3 E3 V5 --]
+T2 P2 spin P1 -1: S3 and E3 collide, knocked out
+T3 P3 launch 1 -> [S1 -- S3 E4]
+T3 P3 spin P0 +1: V4 and S4 collide, knocked out
+T3 P3 spin P0 +1: P3 E4 takes P0 V3
+T4 P0 launch 2 -> [F5 F4 -- --]
+T4 P0 spin P3 +1: P0 F4 takes P3 S3
+T5 P1 launch 2 -> [E5 F4 -- F3]
+T5 P1 spin P3 -1: E4 and F4 collide, knocked out
+T6 P2 launch 1 -> [V3 -- V5 V2]
+T6 P2 spin P0 -1: P0 F5 takes P1 F4
+T7 P3 launch 1 -> [S1 -- V3 --]
+T7 P3 spin P3 -1: P3 V3 takes P2 V2
+T8 P0 launch 2 -> [F4 S3 -- F5]
+T8 P0 spin P2 +1: P2 V5 takes P3 V3
+T8 P0 spin P2 +1: F3 and V3 collide, knocked out
+T9 P1 launch 1 -> [E5 -- F1 --]
+T9 P1 spin P1 -1: P1 F1 takes P0 F5
+T10 P2 launch 1 -> [V3 -- -- V5]
+T11 P3 launch 2 -> [F3 V4 -- S1]
+T11 P3 spin P2 -1: P3 V4 takes P2 V3
+T12 P0 launch 1 -> [F4 S3 F3 --]
+T12 P0 spin P2 +1: P2 V5 takes P3 V4
+T13 P1 launch 1 -> [E5 F5 F1 --]
+T13 P1 spin P0 -1: P1 F5 takes P0 F4
+T13 P1 spin P0 -1: P0 F3 takes P3 S1
+T14 P2 launch 1 -> [-- F1 -- V5]
+T14 P2 spin P1 -1: P2 F1 takes P1 E5
+T15 P3 launch 2 -> [F4 -- V1 --]
+T15 P3 spin P3 -1: P3 F4 takes P0 F3
+T15 P3 spin P3 -1: P3 V1 takes P2 V5
+T16 P0 launch 1 -> [E5 -- -- --]
+T16 P0 spin P0 +1: P0 E5 takes P3 F4
+T17 P1 launch 1 -> [F5 F1 F4 --]
+T18 P2 launch 1 -> [-- E4 F1 --]
+T18 P2 spin P1 +1: F4 and E4 collide, knocked out
