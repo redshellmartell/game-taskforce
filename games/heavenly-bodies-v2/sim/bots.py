@@ -59,7 +59,8 @@ def sim_turn(st, p, plan, spin, comet=True, shieldblind=False):
     orb, hand, _ = apply_launches(orbits[p], st.hands[p], plan)
     sh = set() if shieldblind else set(st.shielded)
     if game.CFG["shield"] and not shieldblind:
-        for i, s_ in plan: sh.add(st.hands[p][i])
+        for i, s_ in plan:
+            if game.shield_ok(st.hands[p][i]): sh.add(st.hands[p][i])
     orbits[p] = orb; hand = list(hand)
     gain = []; lost = []
     if spin:

@@ -9,9 +9,14 @@ CLOCK, CCW = 1, -1
 
 
 CFG_DEFAULT = dict(win_at_end=True, rebound=False, shield=True, cm_by_count=True, rainbow=True, deepspace_draw=False,
-                   deck40=False, capture_to_ds=False, opening_2p=2, mass=None, opening=None)  # opening: NEW test, bodies at setup for every count
+                   deck40=False, capture_to_ds=False, opening_2p=2, mass=None, opening=None,
+                   shield_mode='full', mass_plus=0, last_draw2=False)  # sweep switches: shield_mode full|big|spin, mass_plus, last_draw2  # opening: NEW test, bodies at setup for every count
 CFG = dict(CFG_DEFAULT, n=2, mass_eff=16)   # active config of the game being played in this process (bots read it)
 MASS_BY_COUNT = {2: 16, 3: 15, 4: 14}
+
+
+def shield_ok(c):
+    return bool(CFG['shield']) and (CFG['shield_mode'] != 'big' or c[1] in (1, 5))
 
 
 def make_deck(deck40=False):
@@ -133,7 +138,7 @@ def is_armed(st, p):
 def play(bots, seed, n=None, log=False, cap=200, **cfg):
     n = n or len(bots)
     CFG.clear(); CFG.update(CFG_DEFAULT); CFG.update(cfg); CFG["n"] = n
-    CFG["mass_eff"] = CFG["mass"] or (MASS_BY_COUNT[n] if CFG["cm_by_count"] else 15)
+    CFG["mass_eff"] = (CFG["mass"] or (MASS_BY_COUNT[n] if CFG["cm_by_count"] else 15)) + CFG["mass_plus"]
     opening = CFG["opening"] if CFG["opening"] is not None else (CFG["opening_2p"] if n == 2 else 2)
     st = State(n, seed, log=log)
     for p in range(n):
@@ -170,6 +175,7 @@ def play(bots, seed, n=None, log=False, cap=200, **cfg):
                 dec_draw = 1; src = bots[p].draw(st, p)
             if src == "deep" and st.deep: st.hands[p].append(st.deep.pop()); S["deep_takes"] += 1
             else: st.hands[p].append(st.deck.pop())
+            if CFG["last_draw2"] and st.turn == n - 1 and st.deck: st.hands[p].append(st.deck.pop())
             S["draws"] += 1
         first = False
         moved = 0; dec = 0
@@ -184,8 +190,8 @@ def play(bots, seed, n=None, log=False, cap=200, **cfg):
             launched = [st.hands[p][i] for i, s in plan]
             neworb, newhand, rec = apply_launches(st.orbits[p], st.hands[p], plan)
             st.orbits[p] = neworb; st.hands[p] = newhand; S["recalls"] += rec; S["launches"] += len(plan)
-            if CFG["shield"]:
-                for c in launched: st.shielded.add(c)
+            for c in launched:
+                if shield_ok(c): st.shielded.add(c)
             st.L("T%d P%d launch %s -> %s" % (st.turn, p, " ".join(cs(c) for c in launched), orb_str(neworb, st.shielded)))
         if is_armed(st, p) or patterns(st.orbits[p]): pass
         pf = patterns(st.orbits[p])
@@ -201,6 +207,8 @@ def play(bots, seed, n=None, log=False, cap=200, **cfg):
             if q == p: S["self_spins"] += 1
             else: S["other_spins"] += 1; st.attacked.add(q)
             ev = crash(st.orbits, q, n, True, st.shielded)
+            if CFG["shield_mode"] == "spin":
+                for c in st.orbits[q]: st.shielded.discard(c)
             if ev:
                 S["crash_spins"] += 1
                 if q == p: S["self_crash"] += 1

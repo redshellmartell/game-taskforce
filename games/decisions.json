@@ -223,6 +223,12 @@
       "time": "2026-10-10T11:34:30Z",
       "decision": "approve",
       "notes": "heavenly-bodies-v2-review-cap-1: continue (cycle 2: sweep first, then one coherent set)"
+    },
+    {
+      "slug": "heavenly-bodies-v2",
+      "time": "2026-10-10T11:41:35Z",
+      "decision": "approve",
+      "notes": "Owner 2026-10-10: pause after the cycle 2 sweep (next step); do not start the designer until told."
     }
   ]
 }
