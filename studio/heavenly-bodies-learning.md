@@ -1,0 +1,17 @@
+# Heavenly Bodies project: learning log (v1 and v2)
+
+Every agent call in this project reads this file, `studio/lessons.md`, `studio/design-rules.md`, `studio/mechanics.md` and `studio/checklists.md` first. The Manager appends a short entry after each cycle of either version. Keep it under about 60 lines; merge duplicates.
+
+## Standing method
+- **Designer, before each revision:** read the last critique, playtest and this log. Write 3 different candidate fixes for the main problem (at least one bold or unconventional), pick one, and say in `rules.md` changelog why the others lost. State the KPI each change should move.
+- **Designer, after each revision:** one line "what I would try next if this works" and one line "what I suspect is still wrong".
+- **Cross-pollination:** ideas that worked in one version are offered to the other (for example v2's kinetic card movement may fix v1's thin rotation play; v1's tested balance fixes apply to v2).
+- **Playtester, each cycle:** use `tools/sim-kit/`. Add at least one new test it did not run last cycle (new bot style, a stress case, a player count), and note any sim-kit improvement. Test the previous cycle's weakest point first. Stay inside the budget.
+- **Critic:** compare against the previous cycle's scores and say which required changes were met.
+- **Manager:** after each cycle, record in the table below what moved, and promote durable lessons to `studio/lessons.md`. Say when a lesson comes from simulation only.
+
+## Cycle table
+| Version | Cycle | Targeted | Result | Lesson |
+|---|---|---|---|---|
+
+## Lessons

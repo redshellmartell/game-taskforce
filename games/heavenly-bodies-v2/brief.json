@@ -1,0 +1,20 @@
+{ "slug": "heavenly-bodies-v2", "title": "Heavenly Bodies v2", "idea_id": "owner-heavenly-bodies-v2", "players": "2-4", "minutes": 12, "complexity": 1.5,
+  "mechanics": ["rotation", "orbit-in-out", "card-capture", "swap", "alternate-win-conditions"], "theme": "planets, moons and comets in a shared sky",
+  "opportunity_score": 26,
+  "rubric": { "demand": 4, "gap": 4, "originality": 4, "producibility": 5, "simulatability": 4, "owner_fit": 5 },
+  "candidates": [ { "idea": "Heavenly Bodies v2 (owner-supplied)", "score": 26, "chosen": true } ],
+  "comparables": [
+    { "name": "Orbita", "bgg_rating": null, "crowdfunding": null, "difference": "2p planet-track card game, margin scoring; v2 is multiplayer with direct capture and swapping" },
+    { "name": "dnup", "bgg_rating": null, "crowdfunding": null, "difference": "flip/rotate hand in a climbing game; v2 rotates a visible table orbit and changes owners by collision" },
+    { "name": "Love Letter", "bgg_rating": null, "crowdfunding": null, "difference": "take-that targeted effects; v2 steals through position and timing" }
+  ],
+  "sources": [
+    "https://25thcenturygames.com/products/orbita",
+    "https://tabletopping.games/2025/11/15/orbita/",
+    "https://boardmatch.app/en/game/452324",
+    "https://opinionatedgamers.com/2026/06/09/dale-yu-review-of-dnup/",
+    "https://www.geeksundergrace.com/tabletop/review-dnup/",
+    "https://tabletopping.games/2026/04/15/dnup/",
+    "https://opinionatedgamers.com/2025/12/11/josiahs-monthly-board-game-round-up-november-2025/",
+    "https://www.boardgameoracle.com/en-GB/boardgame/price/2ocYgGtwFt/the-fox-in-the-forest"
+  ] }
