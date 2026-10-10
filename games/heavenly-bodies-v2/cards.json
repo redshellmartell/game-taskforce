@@ -1,8 +1,8 @@
 {
   "game": "heavenly-bodies-v2",
-  "version": "cycle-0",
+  "version": "cycle-0-fixpass",
   "date": "2026-10-10",
-  "source": "games/heavenly-bodies-v2/rules.md (cycle 0)",
+  "source": "games/heavenly-bodies-v2/rules.md (cycle 0, fix-before-critic pass)",
   "summary": {
     "total_cards": 56,
     "bodies": 52,
@@ -20,7 +20,15 @@
       "grand_alignment": "4 bodies with Sizes exactly {1,2,3,4} or {2,3,4,5}"
     },
     "knobs": { "critical_mass_threshold": 15, "opening_bodies": 2, "hand_limit": 5, "rebound_launches": 2 },
-    "deck_after_deal": { "2": 42, "3": 37, "4": 32 }
+    "deck_after_deal": { "2": 42, "3": 37, "4": 32 },
+    "long_night": {
+      "trigger": "Draw step begins with the Deck empty (Deep Space contents do not matter)",
+      "min_completed_turns": { "2": 43, "3": 38, "4": 33 },
+      "extra_turn_per_deep_space_draw": true,
+      "backstop_rounds": 35,
+      "measured_mean_turns": { "2": 46.2, "3": 46.7, "4": 39.6 },
+      "measured_max_turns": { "2": 60, "3": 71, "4": 54 }
+    }
   },
   "stars": [
     { "id": "ST1", "name": "Ember Sun", "type": "Star", "text": "Reference card; no ability." },

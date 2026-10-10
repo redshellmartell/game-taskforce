@@ -1,4 +1,4 @@
-# Heavenly Bodies v2: Rules (cycle 0, first design pass)
+# Heavenly Bodies v2: Rules (cycle 0, first design pass + fix-before-critic pass)
 
 Working title: **Heavenly Bodies: Close Orbit**. Card list: `cards.md` (machine copy `cards.json`).
 
@@ -37,7 +37,7 @@ Body kinds by Size (name and icon only; the only printed rule text is on Size 1 
 | 4 | Ringed World | 3 | 12 | none |
 | 5 | Giant | 2 | 8 | "Captured by a Comet." |
 
-Zones: **Deck** (face down), **Deep Space** (one shared face-up discard pile; only its top card is available), **hands** (hidden; hand sizes are public), **orbits** (face up).
+Zones: **Deck** (face down), **Deep Space** (one shared face-up discard pile, kept squared; only its top card may be seen or taken, and nobody may look through it), **hands** (contents hidden; the number of cards in each hand is public at all times), **orbits** (face up).
 
 ---
 
@@ -45,7 +45,7 @@ Zones: **Deck** (face down), **Deep Space** (one shared face-up discard pile; on
 
 1. Each player puts a Star card in front of them. The four spaces around it are that player's **orbit slots**, named from the owner's seat: **North** (beyond the Star, toward the table centre), **East** (owner's right), **South** (between the Star and the owner), **West** (owner's left).
 2. Shuffle the 52 Body cards. Deal 5 to each player.
-3. Each player secretly chooses 2 of their 5 cards and places them face down in two different slots of their own orbit. When everyone has placed, turn them all face up at once. Each player keeps the other 3 cards as their hand.
+3. Each player secretly chooses 2 of their 5 cards and places them face down in any two different slots of their own orbit (adjacent slots and contact slots are allowed). When everyone has placed, turn them all face up at once. Bodies that face each other across a contact after the reveal do not crash; crashes happen only in step 4 of a turn. Each player keeps the other 3 cards as their hand.
 4. The rest of the Body cards form the Deck. Deep Space starts empty.
 5. Choose the first player at random. Play passes to the left (clockwise around the table).
 6. The first player skips the Draw step of their first turn only.
@@ -58,19 +58,19 @@ Zones: **Deck** (face down), **Deep Space** (one shared face-up discard pile; on
 
 **0. Check for a win.** If your orbit holds 4 bodies that form Critical Mass, Constellation or Grand Alignment (section 6), you win now. Otherwise continue.
 
-**1. Draw.** If the Deck is empty, the game ends now (Long Night, section 6). Otherwise take either the top card of the Deck or the top card of Deep Space into your hand. (First player, first turn: skip this step.)
+**1. Draw.** First check the Deck: if it is empty, the game ends now (Long Night, section 6), even if Deep Space still holds cards. Otherwise take either the top card of the Deck or the top card of Deep Space into your hand. (First player, first turn: skip this step entirely, including the check.)
 
 **2. Launch.** You may play 1 card from your hand into any slot of your own orbit.
 - **Recall:** if that slot already holds a body, take that body back into your hand. (You can use this to swap a card or rescue one from a contact.)
-- **Rebound:** if, at the start of this step, your orbit holds **fewer** bodies than every other player's orbit, you may Launch twice, into two different slots.
+- **Rebound:** if, at the start of this step, your orbit holds **fewer** bodies than every other player's orbit, you may Launch twice, into two different slots. The two Launches happen one after the other; each follows all the Launch rules, including Recall, and the second may use any card then in your hand, including a body the first Launch recalled. You may stop after the first.
 - Launching never causes a crash by itself.
 
-**3. Spin.** You must choose one orbit on the table that holds at least one body (yours or any other player's) and turn it one step, **clockwise** (North to East to South to West to North) or **counter-clockwise** (North to West to South to East to North). Every body in that orbit moves one slot at once. "Clockwise" is as seen from above the table. If no orbit holds a body, skip steps 3 and 4.
+**3. Spin.** You must choose one orbit on the table that holds at least one body (yours or any other player's) and turn it one step, **clockwise** (North to East to South to West to North) or **counter-clockwise** (North to West to South to East to North). Every body in that orbit moves one slot at once. "Clockwise" is as seen from above the table. Any orbit with at least one body may be spun, even if the spin causes no crash. If no orbit holds a body, skip steps 3 and 4.
 
-**4. Crash.** Check the two contacts of the orbit that was spun: its West contact first, then its East contact. At each contact where **both** touching slots hold a body, those two bodies collide:
+**4. Crash.** Check the two contacts of the orbit that was spun: its West contact first, then its East contact. Resolve the West contact completely (including any Deep Space placement) before checking the East contact. At each contact where **both** touching slots hold a body, those two bodies collide:
 - The **larger Size wins**, except that a **Comet (Size 1) beats a Giant (Size 5)**.
 - The winner stays where it is. The loser is **captured**: the owner of the winning body takes the losing body into their hand. (It does not matter whose turn it is.)
-- **Equal Size:** both bodies are knocked out to Deep Space. The active player chooses which of the two goes on top.
+- **Equal Size:** both bodies are knocked out to Deep Space, face up. The active player chooses, openly, which of the two goes on top (that card is the one the next player may take in their Draw). If both contacts are ties (possible with 2 players), the West pair is placed first, so one of the East pair ends on top.
 
 **5. Cool down.** If you have more than 5 cards in hand, discard down to 5. Discards go face up onto Deep Space one at a time, in the order you choose (the last one is the new top card). Play passes left.
 
@@ -83,13 +83,13 @@ Zones: **Deck** (face down), **Deep Space** (one shared face-up discard pile; on
 There are three special rules: **Comet beats Giant**, **Recall**, **Rebound**. Everything else is the core loop.
 
 - **When orbits change.** Your orbit gains bodies only during your own Launch. It loses bodies only in a Crash or by your own Recall. Spinning never changes which bodies are in an orbit, only where they sit. So a winning orbit at the start of your turn is one that survived every opponent's turn since you built it.
-- **Hand limit timing.** The 5-card limit applies only in your own Cool down step. Captures on other players' turns may take you above 5 until then.
+- **Hand limit timing.** The 5-card limit applies only in your own Cool down step. Captures on other players' turns may take you above 5, with no upper limit, until then. Hand sizes stay public throughout.
 - **Empty Deep Space.** If Deep Space is empty you must draw from the Deck.
 - **Empty hand.** If your hand is empty, skip Launch.
 - **Spin targets.** You may spin an orbit belonging to a player who is not next to you (only possible with 4 players). Its contacts with that player's own neighbours then crash; you can neither win nor lose cards in those crashes.
 - **Two-player contacts.** When either orbit spins, both of its contacts are with the other player, so up to two crashes happen between the same two orbits.
 - **One body per slot.** A slot holds at most one body. Spinning keeps this true, since every body moves together.
-- **Simultaneous win patterns.** Only the active player's orbit is checked, only in step 0, so two players can never win at the same moment.
+- **Simultaneous win patterns.** Only the active player's orbit is checked, only in step 0, so two players can never win at the same moment. If your orbit meets two or three patterns at once, you simply win; the patterns have no ranking. Each pattern is checked on its own (Constellation and Grand Alignment do not need a total of 15).
 - **Ties in Rebound.** "Fewer than every other player" is strict: if you are tied for the fewest, no Rebound.
 - **Setup reveal.** Players choose their 2 opening bodies without seeing anyone else's.
 
@@ -109,9 +109,11 @@ The game ends in one of two ways.
 
 You win immediately. Slot order does not matter for any pattern.
 
-**B. Long Night (fallback and turn cap).** If the Deck is empty at the start of any player's Draw step, the game ends at once. The player with the highest total Size in their orbit wins; if tied, the tied player with more bodies in orbit; if still tied, those players share the win.
+**B. Long Night (fallback).** If the Deck is empty at the start of any player's Draw step, the game ends at once (before that player draws, launches or spins). Long Night also happens at once if the game has not ended when the last player in turn order (the one to the right of the first player) finishes their 35th turn (backstop, see below). The player with the highest total Size in their orbit wins; if tied, the tied player with more bodies in orbit; if still tied, those players share the win.
 
-Turn cap: the Deck is the cap. It holds 42 / 37 / 32 cards at 2 / 3 / 4 players, so the game lasts at most 43 / 38 / 33 turns.
+**When Long Night comes.** The Deck shrinks only when someone draws from it; taking the Deep Space top card does not shrink it. After the deal the Deck holds 42 / 37 / 32 cards at 2 / 3 / 4 players, so Long Night ends the game after exactly 43 / 38 / 33 completed turns **plus one extra turn for every Deep Space draw** made during the game. These are minimums, not a cap. Measured in simulation (bots, 2,000 games per count): mean 46 / 47 / 40 completed turns, longest 60 / 71 / 54.
+
+**Backstop (stall guard).** Because Deep Space draws can in principle delay the Deck forever, the 35-round backstop above guarantees an end. It is set beyond every simulated game (longest about 30 / 24 / 14 rounds), so it does not change normal play.
 
 ---
 
@@ -177,13 +179,29 @@ What I would try next if this works: give each colour a one-icon Launch effect o
 
 ### 7.9 Known gaps
 - Teach time and fun are untested by humans (simulation cannot measure them).
-- The rules file is longer than one page because of these design notes; the player-facing rules (sections 2-6) are about 75 lines with 3 special rules, inside the brief's limit of 3.
+- The rules file is longer than one page because of these design notes; the player-facing rules (sections 2-6) are about 85 lines with 3 special rules, inside the brief's limit of 3.
+- **Length is out of band (from simulation):** 46 / 47 / 40 turns (about 16-19 minutes at an assumed 0.4 min per turn) against the 10-15 minutes in section 1 and the bands in 7.5; 95-100% of games end in Long Night and the win patterns almost never fire. This is structural and is left for cycle 1.
+- Long Night shared wins (1% / 5% / 8% at 2 / 3 / 4 players) are defined but frequent; a further tie-break is a rule change left for cycle 1.
 
 ---
 
 ## 8. Changelog
 
 - **Cycle 0:** first draft. No feedback yet.
+- **Fix pass (before critic; wording and rulings only, no mechanics changed).** Rulings for the 12 playtest ambiguities (`playtest.json`):
+  1. False turn cap (43/38/33): section 6B rewritten. Those figures are minimums; each Deep Space draw adds a turn; measured mean 46/47/40, longest 60/71/54.
+  2. Long Night with Deep Space cards left: still ends the game; the check opens step 1 and is skipped with the first player's first Draw.
+  3. Rebound, relaunching a recalled body: allowed, into a different slot.
+  4. Rebound, Recall on the second Launch: allowed; you may stop after one Launch.
+  5. Two equal-size crashes in one spin: West contact resolved completely first, so one of the East pair ends on top.
+  6. Equal-size top card: chosen openly, face up; its purpose is that it is the card the next player may take.
+  7. Long Night shared win: stands as written (defined, not ambiguous); frequency listed in Known gaps for cycle 1.
+  8. Hand size during others' turns: no upper limit before your Cool down; counts always public.
+  9. Spin causing no crash: legal; any non-empty orbit may be spun.
+  10. Several patterns at once: you win; patterns are checked separately and not ranked.
+  11. Setup slots: any two different slots, adjacent or in contacts; no crash at setup.
+  12. Deep Space visibility: squared pile, only the top card may be seen or taken.
+  Also added a 35-round Long Night backstop, because Deep Space draws made termination unbounded in principle (a stall guard set beyond every simulated game, so play is unchanged), corrected the player-facing rules length (about 85 lines), and listed the measured length and tie rate in Known gaps. `cards.json` gained a `long_night` block.
 
 ---
 
@@ -194,6 +212,6 @@ What I would try next if this works: give each colour a one-icon Launch effect o
 3. **Ablations:** self-spin-only, Comet-blind, no-Recall, Deck-only bots must each lose by >= 5 points at 2, 3 and 4 players; Rebound removed as a rule ablation on runaway and lead changes.
 4. **Self-check:** fixes made while drafting: (a) all three patterns now need a full orbit (three Giants would otherwise make Critical Mass with 3 cards); (b) the spin must target a non-empty orbit (spinning an empty orbit was a free pass); (c) tie order on Deep Space is chosen by the active player (top card matters); (d) Rebound is strict to make 2-player ties unambiguous; (e) Long Night triggers only at a Draw step, the only place cards are drawn; (f) captures on other players' turns may exceed the hand limit until your own Cool down; (g) 2-player contacts defined explicitly (two contacts with the same opponent); (h) Launch never crashes, only Spin does. Dead cards: none; every Size serves at least one pattern and Sizes 1 and 5 have the crash exception. Undefined cases covered: empty Deck, empty Deep Space, empty hand, no non-empty orbit, ties in crashes, Rebound ties, Long Night ties, simultaneous patterns.
 5. **Band and knob:** seat gap <= 5 at 2/3/4p; each pattern 15-50% of wins; Long Night <= 10% (2-3p) and <= 15% (4p). Knob: Critical Mass threshold (15); length knob: opening bodies (2).
-6. **Ends:** a win pattern checked at the start of a turn, or Long Night when the Deck runs out; cap 43/38/33 turns; expected 14-24 / 18-30 / 20-34 turns, about 9-15 minutes vs the brief's 10-15.
-7. **Budget:** player-facing rules (sections 2-6) about 75 lines; 3 special rules (Comet beats Giant, Recall, Rebound) vs the brief's limit of 3; card text at most 3 words on 16 cards, none on the rest.
+6. **Ends:** a win pattern checked at the start of a turn, or Long Night when a Draw step finds the Deck empty (at least 43/38/33 completed turns, plus one per Deep Space draw), with a hard backstop after round 35. Intended 14-24 / 18-30 / 20-34 turns; measured 46 / 47 / 40 (about 16-19 minutes vs the brief's 10-15): out of band, a known gap for cycle 1.
+7. **Budget:** player-facing rules (sections 2-6) about 85 lines; 3 special rules (Comet beats Giant, Recall, Rebound) vs the brief's limit of 3; card text at most 3 words on 16 cards, none on the rest.
 8. **Re-run list:** first pass, so run all ablations at every count. Any change to the Critical Mass threshold, the hand limit, Rebound or the Spin targets means re-running all of them.
