@@ -1,4 +1,6 @@
-# Heavenly Bodies v2: card list (cycle 0)
+# Heavenly Bodies v2: card list (cycle 1)
+
+Cycle 1: no Body card changed. Star card text updated (win at the end of your turn, Critical Mass by player count, rainbow Constellation, sideways shield, no Deep Space draw).
 
 56 cards: 52 Body cards and 4 Star cards. Machine-readable copy: `cards.json`. No tokens, no board.
 
@@ -23,7 +25,7 @@ Statistics: mean Size 3.0; per colour total 39; Sizes 2-4 are 36 of 52 cards.
 
 | Id | Name | Text (reference only, no ability) |
 |---|---|---|
-| ST1 | Ember Sun | Slots: North (away from you), East (your right), South (toward you), West (your left). Turn: Draw, Launch, Spin, Crash, Cool down (hand 5). Win at the start of your turn with 4 bodies: Critical Mass 15+, Constellation (one colour), Grand Alignment (1-2-3-4 or 2-3-4-5). |
+| ST1 | Ember Sun | Slots: North (away from you), East (your right), South (toward you), West (your left). Turn: Wake (stand your sideways card up), Draw, Launch sideways, Spin any orbit, Crash (sideways cards do not crash), End (hand 5, then check). Win at the end of your turn with 4 bodies: Critical Mass 16+ / 15+ / 14+ (2 / 3 / 4 players), Constellation (one colour, or one of each colour), Grand Alignment (1-2-3-4 or 2-3-4-5). |
 | ST2 | Frost Sun | Same as ST1. |
 | ST3 | Verdant Sun | Same as ST1. |
 | ST4 | Solar Sun | Same as ST1. |
@@ -31,7 +33,9 @@ Statistics: mean Size 3.0; per colour total 39; Sizes 2-4 are 36 of 52 cards.
 Star colour has no rules effect.
 
 ## 3. Dead-card check
-- Comets (1): beat Giants; complete 1-2-3-4 Alignments; cheap Constellation fillers.
+- Comets (1): beat Giants; complete 1-2-3-4 Alignments; cheap Constellation fillers (one colour or one of each colour).
+
+Switch `DECK40` (playtest only): remove copy `c` of Sizes 2, 3 and 4 in every colour (E2c, E3c, E4c, F2c, F3c, F4c, V2c, V3c, V4c, S2c, S3c, S4c), leaving 40 Bodies.
 - Moons (2): needed for both Alignments; Constellation fillers; beat Comets.
 - Worlds (3) and Ringed Worlds (4): needed for both Alignments; core of Critical Mass; mid-strength fighters.
 - Giants (5): Critical Mass; 2-3-4-5 Alignment; strongest fighters except against Comets.

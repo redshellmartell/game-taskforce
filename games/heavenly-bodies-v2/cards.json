@@ -1,8 +1,8 @@
 {
   "game": "heavenly-bodies-v2",
-  "version": "cycle-0-fixpass",
+  "version": "cycle-1",
   "date": "2026-10-10",
-  "source": "games/heavenly-bodies-v2/rules.md (cycle 0, fix-before-critic pass)",
+  "source": "games/heavenly-bodies-v2/rules.md (cycle 1, revision 1)",
   "summary": {
     "total_cards": 56,
     "bodies": 52,
@@ -14,24 +14,39 @@
     "kinds": { "1": "Comet", "2": "Moon", "3": "World", "4": "Ringed World", "5": "Giant" },
     "crash_exception": "Size 1 beats Size 5",
     "setup": { "deal": 5, "opening_bodies": 2, "hand_limit": 5, "first_player_skips_first_draw": true },
+    "turn_steps": ["wake", "draw", "launch", "spin", "crash", "end"],
+    "win_check": "end of the active player's own turn (step 6, after discarding to 5); active player only",
     "win_patterns": {
-      "critical_mass": "4 bodies, total Size >= 15",
-      "constellation": "4 bodies, one colour",
+      "critical_mass": "4 bodies, total Size >= threshold by player count",
+      "critical_mass_threshold": { "2": 16, "3": 15, "4": 14 },
+      "constellation": "4 bodies, all one colour OR one of each of the four colours",
       "grand_alignment": "4 bodies with Sizes exactly {1,2,3,4} or {2,3,4,5}"
     },
-    "knobs": { "critical_mass_threshold": 15, "opening_bodies": 2, "hand_limit": 5, "rebound_launches": 2 },
+    "shield": "Launched body is placed sideways; a contact where either body is sideways does not collide; owner turns it upright at the start of their next turn (Wake); counts for patterns and Long Night",
+    "crash": "larger Size captures smaller into the winning body's owner's hand; Comet (1) beats Giant (5); equal Size both to Deep Space",
+    "deep_space_draw": false,
+    "rebound": false,
+    "knobs": { "critical_mass_threshold": { "2": 16, "3": 15, "4": 14 }, "opening_bodies": 2, "hand_limit": 5 },
     "deck_after_deal": { "2": 42, "3": 37, "4": 32 },
     "long_night": {
-      "trigger": "Draw step begins with the Deck empty (Deep Space contents do not matter)",
-      "min_completed_turns": { "2": 43, "3": 38, "4": 33 },
-      "extra_turn_per_deep_space_draw": true,
-      "backstop_rounds": 35,
-      "measured_mean_turns": { "2": 46.2, "3": 46.7, "4": 39.6 },
-      "measured_max_turns": { "2": 60, "3": 71, "4": 54 }
+      "trigger": "Draw step begins with the Deck empty",
+      "exact_completed_turns": { "2": 43, "3": 38, "4": 33 },
+      "tiebreak": ["highest orbit total Size", "most bodies in orbit", "largest single body", "tied player who would take the next turn soonest, counting from the player whose Draw found the Deck empty"]
+    },
+    "playtest_switches": {
+      "WIN_AT_END": { "default": true, "off": "win checked at the start of own turn (cycle 0)" },
+      "REBOUND": { "default": false, "on": "player with strictly fewest bodies launches twice (cycle 0)" },
+      "SHIELD": { "default": true, "off": "launched bodies upright at once" },
+      "CM_BY_COUNT": { "default": { "2": 16, "3": 15, "4": 14 }, "off": 15 },
+      "RAINBOW": { "default": true, "off": "Constellation one colour only" },
+      "DEEPSPACE_DRAW": { "default": false, "on": "Draw may take the Deep Space top card; equal-size crash, active player picks the top card" },
+      "DECK40": { "default": false, "on_removes": ["E2c", "E3c", "E4c", "F2c", "F3c", "F4c", "V2c", "V3c", "V4c", "S2c", "S3c", "S4c"] },
+      "CAPTURE_TO_DS": { "default": false, "on": "captured bodies go to Deep Space instead of a hand" },
+      "OPENING_2P": { "default": 2, "alt": 1 }
     }
   },
   "stars": [
-    { "id": "ST1", "name": "Ember Sun", "type": "Star", "text": "Reference card; no ability." },
+    { "id": "ST1", "name": "Ember Sun", "type": "Star", "text": "Reference card; no ability. Prints slots, turn summary, patterns and the Critical Mass table (16/15/14)." },
     { "id": "ST2", "name": "Frost Sun", "type": "Star", "text": "Reference card; no ability." },
     { "id": "ST3", "name": "Verdant Sun", "type": "Star", "text": "Reference card; no ability." },
     { "id": "ST4", "name": "Solar Sun", "type": "Star", "text": "Reference card; no ability." }
