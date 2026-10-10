@@ -2,7 +2,7 @@
   "game": "heavenly-bodies-v2",
   "version": "cycle-1",
   "date": "2026-10-10",
-  "source": "games/heavenly-bodies-v2/rules.md (cycle 1, revision 1)",
+  "source": "games/heavenly-bodies-v2/rules.md (cycle 1, revision 1, fix-before-critic pass: wording only, no mechanic changes)",
   "summary": {
     "total_cards": 56,
     "bodies": 52,
@@ -31,7 +31,7 @@
     "long_night": {
       "trigger": "Draw step begins with the Deck empty",
       "exact_completed_turns": { "2": 43, "3": 38, "4": 33 },
-      "tiebreak": ["highest orbit total Size", "most bodies in orbit", "largest single body", "tied player who would take the next turn soonest, counting from the player whose Draw found the Deck empty"]
+      "tiebreak": ["highest orbit total Size", "most bodies in orbit", "largest single body", "tied player who would take the next turn soonest, counting from and including the player whose Draw found the Deck empty"]
     },
     "playtest_switches": {
       "WIN_AT_END": { "default": true, "off": "win checked at the start of own turn (cycle 0)" },

@@ -1,4 +1,4 @@
-# Heavenly Bodies v2: Rules (cycle 1, revision 1)
+# Heavenly Bodies v2: Rules (cycle 1, revision 1, fix-before-critic pass)
 
 Working title: **Heavenly Bodies: Gearbox**. Card list: `cards.md` (machine copy `cards.json`). Playtest switches for single-change tests: section 7.7.
 
@@ -8,7 +8,7 @@ Working title: **Heavenly Bodies: Gearbox**. Card list: `cards.md` (machine copy
 
 - **Hook:** Every player has a little 4-card orbit, and each orbit touches the orbits of the players next to them. On your turn you **spin any orbit on the table**: yours to line up your planets, or an opponent's to drag their weak moon into your path. Where two touching orbits meet, the bodies **crash**: the bigger one captures the smaller one into its owner's hand. Finish your turn with a full orbit that makes one of three patterns and you win, so everyone can see who is one card away and gang up to break them.
 - **Players:** 2-4 (2 and 3 are the core counts; 4 is provisional, see 7.5).
-- **Play time:** 10-15 minutes.
+- **Play time:** target 10-15 minutes (brief). **Measured in cycle 1 (bots): 4.4 / 7.2 / 8.0 turns at 2 / 3 / 4 players, about 2-3 minutes: far under band, to be fixed in cycle 2** (see 7.3).
 - **Age:** 8+. **Complexity:** 1.5/5. **Teach:** about 5 minutes (script in 7.4).
 - **Core loop:** Wake, Draw, Launch a card into your orbit, Spin an orbit, Crash, End (check for a win).
 - **Three ways to win** (all need 4 bodies in your orbit at the **end of your own turn**):
@@ -54,20 +54,20 @@ Zones: **Deck** (face down), **Deep Space** (face-up discard pile; cards there a
 
 ## 4. Turn structure
 
-**1. Wake.** If you have a sideways (shielded) body, turn it upright.
+**1. Wake.** If you have a sideways (shielded) body, turn it upright in whatever slot it now occupies (spins may have moved it since you launched it). Standing a body up never causes a crash; it can crash only when an orbit with that contact is spun later.
 
 **2. Draw.** If the Deck is empty, the game ends now (Long Night, section 6). Otherwise draw the top card of the Deck. (First player, first turn: skip this step, including the check.)
 
-**3. Launch.** You may play 1 card from your hand into any slot of your own orbit, placed **sideways**: it is **shielded** until the start of your next turn (see Crash). If the slot already holds a body, that body returns to your hand (**Recall**). Launching never causes a crash.
+**3. Launch.** You may play 1 card from your hand into any slot of your own orbit, placed **sideways**: it is **shielded** until the start of your next turn (see Crash). If the slot already holds a body, that body returns to your hand (**Recall**). A recalled body is always upright (your Wake has already stood up last turn's launch), so it goes to your hand like any card. Launching never causes a crash.
 
-**4. Spin.** Choose one orbit on the table that holds at least one body (yours or any other player's) and turn it one step, **clockwise** (North to East to South to West) or **counter-clockwise**, as seen from above. Every body in it moves one slot at once; sideways bodies stay sideways. You must spin if any orbit holds a body.
+**4. Spin.** Choose one orbit on the table that holds at least one body (yours or any other player's) and turn it one step, **clockwise** (North to East to South to West) or **counter-clockwise**, as seen from above. Every body in it moves one slot at once; sideways bodies stay sideways. You must spin if any orbit holds a body. A spin is legal even if it causes no crash or changes nothing that matters (for example spinning an orbit whose only body is sideways); that is allowed and works as a pass. You may spin even with an empty hand.
 
 **5. Crash.** Check the spun orbit's West contact, then its East contact. At each contact where both slots hold a body and **neither is sideways**, they collide:
 - The **larger Size wins**, except that a **Comet (1) beats a Giant (5)**.
 - The loser is **captured**: the owner of the winning body takes it into their hand. The winner stays where it is.
 - **Equal Size:** both go to Deep Space.
 
-**6. End.** If you have more than 5 cards in hand, discard down to 5 (to Deep Space). Then, if your orbit holds 4 bodies that form a pattern (section 6), **you win**. Otherwise play passes left.
+**6. End.** If you have more than 5 cards in hand, discard down to 5 (to Deep Space). Then (discarding never touches an orbit, so this order cannot change the result), if your orbit holds 4 bodies that form a pattern (section 6), **you win**. Otherwise play passes left.
 
 **Legal options in one line:** Wake -> Draw 1 -> Launch 0 or 1 card sideways (Recall allowed) -> Spin exactly one non-empty orbit one step either way -> Crash -> discard to 5, check your win.
 
@@ -77,7 +77,8 @@ Zones: **Deck** (face down), **Deep Space** (face-up discard pile; cards there a
 
 Three special rules: **Comet beats Giant**, **Recall**, **Shield** (sideways bodies do not crash).
 
-- **Shield.** A sideways body never collides: it cannot capture or be captured, and a contact where either body is sideways does nothing. It still counts for patterns and for Long Night. You have at most one sideways body: the one you launched on your most recent turn.
+- **Shield.** A sideways body never collides: it cannot capture or be captured, and a contact where either body is sideways does nothing. It still counts for patterns and for Long Night. You have at most one sideways body: the one you launched on your most recent turn. It moves with the spin like any body and stays sideways until your next Wake. Because sideways bodies never collide, a sideways body and an upright body of the same Size (or two bodies of any Sizes) may sit in a contact together; nothing happens until a later spin brings them into a contact with both bodies upright.
+- **Contact with a sideways body.** The whole contact does nothing: neither body is captured, whichever one would have won.
 - **Only your own win.** Only the active player's orbit is checked, only in step 6. Patterns formed in other orbits during your turn do nothing. If your orbit meets two or three patterns at once, you win; patterns are not ranked and each is checked on its own.
 - **Hand limit timing.** The 5-card limit applies only in your own End step. Captures on other turns may take you above 5 until then.
 - **Empty hand:** skip Launch. **No body anywhere:** skip Spin and Crash.
@@ -100,11 +101,11 @@ Three special rules: **Comet beats Giant**, **Recall**, **Shield** (sideways bod
 
 You win immediately. Slot order and sideways cards do not matter.
 
-**B. Long Night (fallback).** If the Deck is empty at the start of a Draw step, the game ends at once. The player with the highest total Size in their orbit wins. Ties: more bodies in orbit; then the largest single body; then the tied player who would have taken the next turn soonest, counting from the player whose Draw found the Deck empty.
+**B. Long Night (fallback).** If the Deck is empty at the start of a Draw step, the game ends at once. The player with the highest total Size in their orbit wins. Ties: more bodies in orbit; then the largest single body; then the tied player who would have taken the next turn soonest, counting from and **including** the player whose Draw found the Deck empty (so if that player is among the tied players, they win).
 
 **Turn cap.** Every turn but the first draws exactly 1 card, so Long Night comes after exactly **43 / 38 / 33** completed turns at 2 / 3 / 4 players. That is the hard cap; no backstop is needed.
 
-**Earliest win.** You start with 2 bodies and gain at most 1 per turn, so nobody can win in round 1; the earliest win is at the end of your second turn.
+**Earliest win.** You start with 2 bodies and gain at most 1 per turn, so nobody can win in round 1; the earliest win is at the end of your second turn (3 completed turns at 2 players). **Measured in cycle 1:** 52% of 2p games end at that minimum of 3 turns; mean 4.4 / 7.2 / 8.0 turns at 2 / 3 / 4 players; the Long Night cap is reached in 0 / 0 / 0.1% of games.
 
 ---
 
@@ -120,16 +121,16 @@ You win immediately. Slot order and sideways cards do not matter.
 ### 7.2 Comeback and pacing
 - **Comeback:** (1) the player closest to winning is visible and anyone can spin their orbit; (2) captured cards go to the attacker's hand, so the players breaking the leader gain cards to rebuild; (3) Comet beats Giant lets a weak hand topple the biggest body; (4) the shield protects a rebuilding player's newest body. KPI: runaway leader at most 65%, lead changes at least 2.
 - **Round 1 cannot decide the game:** nobody can hold 4 bodies before their second turn.
-- **Lead metric for the sim:** keep orbit total Size (continuity with cycle 0). Lead changes should fall from 21 to roughly 3-8 per game; that is intended, the old figure was noise from churn.
+- **Lead metric for the sim:** keep orbit total Size (continuity with cycle 0). I expected lead changes to fall from 21 to roughly 3-8 per game. **Measured in cycle 1: 0.64 / 1.76 / 2.06 (out of band at 2-3p); midpoint leader wins 74.7 / 63.5 / 41.0% (out of band at 2p).** Captures per game 1.8 / 2.3 / 2.5 against 15-25, so comebacks (1)-(3) barely fire in games this short.
 
 ### 7.3 Expected length
-Target 14-24 / 18-30 / 20-34 total turns at 2 / 3 / 4 players (about 10-14 minutes at 0.4 min per turn). Cycle 0's win-at-end variant (with Rebound still on) measured 4.9 / 20.2 / 30.8 turns; I expect cutting Rebound to lengthen 2p most (see 7.6), and the 4p threshold, the shield and the wider Constellation to shorten 4p.
+Target 14-24 / 18-30 / 20-34 total turns at 2 / 3 / 4 players (about 10-14 minutes at 0.4 min per turn). **Measured in cycle 1 (1,000 games per count, strategic mirror): 4.4 / 7.2 / 8.0 turns, about 1.8 / 2.9 / 3.2 minutes: out of band by a factor of 3-4.** Seat 1 wins 66.9% at 2p and 62.4% at 3p (seat gap 16.9 / 29.1 / 18.4 points, band 5). The playtester's switch test isolates the shield as the cause (SHIELD off: 22.6 / 33.7 / 30.4 turns). Left for cycle 2 after the critique; this fix pass changes no mechanics.
 
 ### 7.4 Five-minute teach script
 1. "Your orbit is 4 slots round your Star. West and East touch your neighbours."
 2. "Each turn: draw, put a card in your orbit sideways, then spin any one orbit one step."
 3. "Where spun cards touch, they crash: bigger takes smaller into its owner's hand. Same size, both are lost. A Comet takes a Giant. Sideways cards are new and do not crash; stand yours up at the start of your turn."
-4. "Finish your turn with 4 cards that make 15 or more, one colour or all four colours, or a run, and you win. Watch whoever is close."
+4. "Finish your turn with 4 cards that total 16 or more (15 with 3 players, 14 with 4), one colour or all four colours, or a run, and you win. Watch whoever is close."
 5. "Over 5 cards in hand at your end? Discard."
 
 ### 7.5 Bands and knobs
@@ -140,7 +141,7 @@ Target 14-24 / 18-30 / 20-34 total turns at 2 / 3 / 4 players (about 10-14 minut
 | 4 | <= 5 pts | 20-34 | <= 15% | same | 15-25 |
 
 - **Main knob: Critical Mass threshold per count** (16 / 15 / 14). Raise by 1 at a count where Critical Mass takes over 50% of pattern wins or games are under band; lower by 1 where it is under 15% or Long Night is over band.
-- **2p length knob:** if 2p is still under 14 turns with threshold 17, open with 1 body at 2p.
+- **2p length knob:** if 2p is still under 14 turns with threshold 17, open with 1 body at 2p. (Measured in cycle 1: threshold 17 gives 4.6 turns, 1 opening body 6.5, both 6.5; the knob does not reach band. CM 15 at every count is inert.)
 - **Constellation knob:** if Constellation is over 50%, return to "one colour only"; if under 15% with the rainbow, keep it and lower nothing else.
 - **4 players:** if Long Night stays over 15% or the seat gap over 5 after one threshold step (14 to 13), **drop 4 players** and print the game as 2-3.
 
@@ -155,14 +156,14 @@ Target 14-24 / 18-30 / 20-34 total turns at 2 / 3 / 4 players (about 10-14 minut
 | Switch | Default | Off / alt value = | KPI it tests |
 |---|---|---|---|
 | `WIN_AT_END` | on | win checked at the start of your turn (cycle 0) | Long Night rate, pattern wins, length |
-| `REBOUND` | off | on: fewest bodies (strict) launches twice (cycle 0) | 2p length, runaway, lead changes |
+| `REBOUND` | off | on: fewest bodies (strict) launches twice (cycle 0); with `SHIELD` on, both launched bodies are sideways until that player's next Wake | 2p length, runaway, lead changes |
 | `SHIELD` | on | off: launched bodies are upright at once | captures per game, runaway, length |
 | `CM_BY_COUNT` | 16/15/14 | 15 at every count | Critical Mass share per count, 2p length, 4p Long Night |
 | `RAINBOW` | on | off: Constellation is one colour only | Constellation share (cycle 0: 5%) |
 | `DEEPSPACE_DRAW` | off | on: Draw may take the Deep Space top card; equal-size crash, active player picks the top card | deck-only ablation, length |
 | `DECK40` | off | on: remove copy c of Sizes 2, 3 and 4 in every colour (12 cards; 40 bodies) | length, Long Night at 4p |
 | `CAPTURE_TO_DS` | off | on: captured bodies go to Deep Space, not a hand (alternative arm; weakens "cards change owners") | captures, runaway, length |
-| `OPENING_2P` | 2 | 1 opening body at 2p | 2p length only |
+| `OPENING_2P` | 2 | 1 opening body at 2p: each player places 1 of their 5 cards and keeps 4 in hand (the first player still skips their first Draw) | 2p length only |
 
 Suggested order: headline at defaults (2, 3, 4p); then `REBOUND` on, `SHIELD` off, `CM_BY_COUNT` off, `RAINBOW` off, one at a time; `DECK40` and `CAPTURE_TO_DS` only if length or captures miss band.
 
@@ -177,17 +178,38 @@ Suggested order: headline at defaults (2, 3, 4p); then `REBOUND` on, `SHIELD` of
 
 ### 7.9 Known gaps
 - Teach time and fun are untested by humans.
-- The win-at-end numbers at 2p and 4p have only been measured with Rebound on; the per-count thresholds are educated guesses until the headline run.
+- **Cycle 1 measurements out of band (bots only, unvalidated), held for cycle 2:** length 4.4 / 7.2 / 8.0 turns; seat gap 16.9 / 29.1 / 18.4; captures 1.8 / 2.3 / 2.5; lead changes 0.64 / 1.76 / 2.06; 2p runaway 74.7%; strategic bot loses to greedy by 14.0 / 8.0 / 13.1 points. In band: Long Night 0 / 0 / 0.1%, pattern shares 21-46%, strategic vs random +92 to +98.
+- **Inert twists (ablation under 5 points):** Recall (no-recall -1.8 / -1.9 / 0.0) and Comet beats Giant (comet-blind 3.4 / 0.1 / 0.9; Giants captured 0.1 times per game); shield-blind and threat-blind at 3-4p. Re-test after the length fix; cut Recall if still inert.
+- The per-count Critical Mass thresholds are measured as inert (CM 15 everywhere gives the same length and seat gap).
 - The 4p count is provisional (7.5).
 - Player-facing rules (sections 2-6) are about 80 lines with 3 special rules, inside the brief's limit of 3; the page count with design notes is over one page.
 
 ### 7.10 Next and suspicions
 - **What I would try next if this works:** time a human teach with the 5-line script and check whether the sideways shield reads clearly; if 4p holds, try `DECK40` to bring the box under 50 cards.
-- **What I suspect is still wrong:** 2p may still be too fast (every spin touches your own contacts, but a lucky hand can finish on turn 2 or 3), and Critical Mass may still crowd out the other patterns because captures feed big bodies to big hands.
+- **What I suspected (cycle 1 result):** 2p too fast: confirmed, at every count (4.4 / 7.2 / 8.0 turns). Critical Mass crowding out the others: false for the strategic bot (27-40% of pattern wins), true for the greedy bot (81-93%).
 
 ---
 
 ## 8. Changelog
+
+### Cycle 1 fix pass (before the critic), from `playtest-report.md` / `playtest.json` cycle 1 (11 ambiguities)
+Wording and stale numbers only; no mechanic, threshold, shield, opening-body or win-timing change. Each ruling matches what the sim already does.
+| # | Ambiguity (playtest.json) | Ruling, where |
+|---|---|---|
+| F1 | Long Night last tie-break: does the empty-Deck player count? | "counting from and **including**" that player; they win a full tie (6B) |
+| F2 | Sideways body spun into another slot before Wake | Wake stands it up wherever it now is; standing up never causes a crash (step 1) |
+| F3 | Rebound plus Shield | Switch-only: both launched bodies are sideways (7.7 `REBOUND`) |
+| F4 | Discard vs win-check order | Discard first; it never touches an orbit, so order cannot matter (step 6) |
+| F5 | Can Recall return a sideways card? | No: the recalled body is always upright after Wake (step 3) |
+| F6 | Shielded body in a contact, either side would win | Whole contact does nothing (section 5, new bullet) |
+| F7 | Equal Sizes resting in contact with a shield up | Allowed; nothing happens until a later spin with both upright (section 5, Shield) |
+| F8 | Spin with an empty hand / all orbits empty | Spin is allowed with an empty hand; skip only if no orbit holds a body (step 4; section 5 already) |
+| F9 | `OPENING_2P` = 1 hand size | Place 1 of 5, keep 4; first player still skips first Draw (7.7) |
+| F10 | Spinning an orbit whose only body is sideways | Legal, acts as a pass (step 4). Flagged: makes "must spin" soft; for the critic, not changed here |
+| F11 | Hand limit only in your End step | Already written (section 5); no change |
+- **Wrong number fixed:** teach script line 4 said "15 or more"; now 16 / 15 / 14 by player count (7.4), matching section 6.
+- **Stale text corrected to the cycle 1 measurements (flagged out of band):** play time (1), earliest win (6), lead changes and captures (7.2), expected length (7.3), 2p knob result (7.5), known gaps (7.9), suspicions (7.10), Playbook check line 6. The cycle 1 "Kept" line below predicted Recall would matter more; measured no-recall -1.8 / -1.9 / 0.0, so it is still inert (7.9).
+- `cards.json`: Long Night tie-break text updated to "including"; version note added. Still parses (no structural change).
 
 ### Cycle 1 (revision 1), from `critique.md` cycle 0 (REVISE-MAJOR, 3.17) and `playtest-report.md`
 | # | Change | Was | Feedback | KPI it should move |
@@ -213,8 +235,8 @@ First draft and fix-before-critic pass (12 rulings). Rulings 1, 2, 6 are obsolet
 1. **Family:** `studio/mechanics.md` "Race to a finite pile" and "All families" (the Deck is the clock). Trap: the early leader keeps the lead, and Long Night can still swallow the win patterns (L14); hence an exact Deck clock and an ending-share measurement.
 2. **Comeback:** visible threat that anyone can spin at, captures feed the attackers' hands, Comet beats Giant, shield for the newest body. KPI: runaway leader <= 65%, lead changes >= 2.
 3. **Ablations (each must lose by >= 5 points at 2, 3 and 4 players):** self-spin-only, comet-blind, no-Recall, shield-blind, threat-blind; plus a defence-check bot; rule switches in 7.7 one at a time.
-4. **Self-check:** fixed: (a) a false turn cap (Deep Space draw cut, cap now exact 43/38/33); (b) the equal-size top-card choice (gone); (c) Rebound's recall/relaunch timing (gone); (d) Long Night shared wins (tie-break to a single winner); (e) shield cases written out: sideways vs upright, sideways vs sideways, sideways during your own spin, sideways counts for patterns and Long Night, sideways moves with the spin, at most one per player; (f) win check only for the active player, only in step 6, after discarding; (g) setup reveal is upright, not shielded; (h) 3 opening bodies rejected because it allows a turn-1 win. Dead cards: none (every Size serves a pattern; Comets now also fill a rainbow). Undefined cases covered: empty Deck, empty hand, no body anywhere, crash ties, simultaneous patterns, Long Night ties.
+4. **Self-check:** fixed: (a) a false turn cap (Deep Space draw cut, cap now exact 43/38/33); (b) the equal-size top-card choice (gone); (c) Rebound's recall/relaunch timing (gone); (d) Long Night shared wins (tie-break to a single winner); (e) shield cases written out: sideways vs upright, sideways vs sideways, sideways during your own spin, sideways counts for patterns and Long Night, sideways moves with the spin, at most one per player; (f) win check only for the active player, only in step 6, after discarding; (g) setup reveal is upright, not shielded; (h) 3 opening bodies rejected because it allows a turn-1 win; (i) cycle 1 fix pass: 11 playtest ambiguities ruled (F1-F11, changelog), the main one the Long Night tie-break "including" the empty-Deck player. Inert rules measured, not yet cut: Recall, Comet beats Giant (7.9). Dead cards: none (every Size serves a pattern; Comets now also fill a rainbow). Undefined cases covered: empty Deck, empty hand, no body anywhere, crash ties, simultaneous patterns, Long Night ties.
 5. **Band and knob:** 7.5. Seat gap <= 5; turns 14-24 / 18-30 / 20-34; Long Night <= 10/10/15%; each pattern 15-50%; captures 15-25. Knob: Critical Mass per count; 2p fallback 1 opening body; drop 4p if it misses.
-6. **Ends:** a pattern at the end of your own turn, or Long Night after exactly 43 / 38 / 33 turns (hard cap). Expected about 10-14 minutes against the brief's 10-15.
+6. **Ends:** a pattern at the end of your own turn, or Long Night after exactly 43 / 38 / 33 turns (hard cap). Target 10-14 minutes against the brief's 10-15; **measured in cycle 1: 4.4 / 7.2 / 8.0 turns (about 2-3 minutes), out of band, held for cycle 2.**
 7. **Budget:** player-facing rules about 80 lines; 3 special rules (Comet beats Giant, Recall, Shield), on the brief's limit of 3; card text on 16 cards, at most 3 words.
 8. **Re-run list:** the win timing, a legality change (shield), a ceiling (thresholds) and a tie-break all changed, so re-run **all** ablations at every count, the seat gap, ending shares and pattern shares, captures per game, runaway and lead changes, with two or more reference bots.
