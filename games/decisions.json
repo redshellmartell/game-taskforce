@@ -217,6 +217,12 @@
       "time": "2026-10-10T10:46:01Z",
       "decision": "approve",
       "notes": "Owner 2026-10-10: pause v2 after the cycle 1 playtest and send the report. No fix pass or critic until told."
+    },
+    {
+      "slug": "heavenly-bodies-v2",
+      "time": "2026-10-10T11:34:30Z",
+      "decision": "approve",
+      "notes": "heavenly-bodies-v2-review-cap-1: continue (cycle 2: sweep first, then one coherent set)"
     }
   ]
 }

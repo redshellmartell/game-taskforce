@@ -1024,7 +1024,7 @@
       "gate": "review-cap",
       "game": "heavenly-bodies-v2",
       "time": "2026-10-10T11:31:59Z",
-      "status": "pending",
+      "status": "approved",
       "summary": "Cycle 1 fixed Long Night (95-100% to 0%) but overshot: games last 3-8 turns, first seat wins 62-67%, about 2 captures per game, critic average fell 3.17 to 3.00 (REVISE-MAJOR).",
       "why_needed": "You asked for further cycles only while each one improves the game. This one did not move the critic average, so I stopped. The critic and playtester agree the diagnosis is clear: the shield couples length and captures; opening bodies 0 gave 8/15/18 turns.",
       "expected_outcome": "Cycle 2: a sweep of shield variants x opening bodies 0/1 first (2/3/4p, two bots), then one coherent set. Targets: turns in band (14-24 / 18-30 / 20-34), captures at least 8 per game, Long Night at most 10/10/15%, seat gap at most 5, strategic beats greedy. Stop for a human playtest if captures stay under 8 or turns/seat gap are out of band at 2 of 3 counts.",
@@ -1048,9 +1048,9 @@
           "label": "Kill it and record why"
         }
       ],
-      "decision": null,
-      "decided_at": null,
-      "owner_notes": null
+      "decision": "continue",
+      "decided_at": "2026-10-10T11:34:30Z",
+      "owner_notes": "Owner replied in chat: continue heavenly-bodies-v2-review-cap-1"
     }
   ]
 }

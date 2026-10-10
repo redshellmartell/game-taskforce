@@ -13,3 +13,4 @@
 {"time":"2026-10-10T11:30:51Z","agent":"game-designer","game":"heavenly-bodies-v2","event":"done","message":"Cycle 1 fix pass: 11 rulings F1-F11, stale numbers corrected"}
 {"time": "2026-10-10T11:31:59Z", "agent": "critic", "game": "heavenly-bodies-v2", "event": "done", "message": "REVISE-MAJOR avg 3.00 (was 3.17); kinetic vision mostly gone; sweep first then one more cycle"}
 {"time": "2026-10-10T11:31:59Z", "agent": "manager", "game": "heavenly-bodies-v2", "event": "waiting", "message": "waiting for approval: review-cap (heavenly-bodies-v2-review-cap-1), cycle 1 did not improve the critic average"}
+{"time": "2026-10-10T11:34:30Z", "agent": "manager", "game": "heavenly-bodies-v2", "event": "step", "message": "review-cap continue approved; cycle 2 starting with a playtester sweep"}
