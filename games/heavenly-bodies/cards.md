@@ -168,7 +168,7 @@ Tags: **V** vanilla, **R** placement restriction, **A** wants an Augmentation, *
 | AE29 | Impact Event | Soft | 1 | Choose an opponent's CO with Size 4 or more. It gets -1 Stability this turn, and deal 1 damage to its owner's Star. |
 | AE30 | Stellar Wind | Free | 1-2 | Deal 1 damage to an opponent's Star. If that opponent has more COs in orbit than you, deal 2 instead. |
 | AE31 | Retaliation Pulse | Soft | 2 | Play only if your Star has taken damage since the end of your last turn. Deal 2 damage to an opponent's Star. |
-| AE32 | Tidal Disruption | Soft | 2 | Choose an opponent whose total Size in orbit is 12 or more. Deal 2 damage to their Star. |
+| AE32 (C1F) | Tidal Disruption | Soft | 2 | Choose one: choose an opponent whose total Size in orbit is 12 or more and deal 2 damage to their Star; or draw 1 card. |
 | AE33 | Pulsar Beam | Free | 1 | Deal 1 damage to an opponent's Star. Draw 1 card. |
 | AE34 | Kessler Cascade | Soft | 1-3 | Play only if the Out of Orbit zone has at least 1 CO. Deal 1 damage to an opponent's Star for each CO in the Out of Orbit zone (maximum 3). |
 | AE35 | Flare Star | Free | 1-2 | Deal 1 damage to an opponent's Star. If your Star has less HP than that Star, deal 2 instead. |
@@ -178,24 +178,24 @@ Tags: **V** vanilla, **R** placement restriction, **A** wants an Augmentation, *
 | AE39 | Asteroid Impact | Soft | - | Choose an opponent's CO with Stability 1. Knock it Out of Orbit. |
 | AE40 | Black Hole | **Hard** | - | Cost: discard 2 cards from your hand. Choose any CO in orbit and discard it (it does not go to the Out of Orbit zone). |
 | AE41 (C1) | Solar Wind Sweep | Free | - | Each opponent's CO in a North position gets -1 Stability this turn. Draw 1 card. |
-| AE42 | Strip Atmosphere | Soft | - | Choose an Augmentation attached to any CO and discard it. |
+| AE42 (C1F) | Strip Atmosphere | Soft | - | Choose one: choose an Augmentation attached to any CO and discard it; or draw 1 card. |
 | AE43 (C1) | Solar Storm | Free | - | Choose an opponent's CO. Discard all Augmentations attached to it. It gets -1 Size this turn. |
-| AE44 | Recapture | Soft | - | Reclaim a CO from the Out of Orbit zone into your orbit. |
+| AE44 (C1F) | Recapture | Soft | - | Choose one: choose a CO in the Out of Orbit zone and reclaim it into your orbit; or draw 1 card. |
 | AE45 (C1) | Comet Return | Free | - | Draw 1 card. Then you may reclaim a CO with Size 3 or less from the Out of Orbit zone into your orbit. |
 | AE46 | Lagrange Rescue | **Hard** | - | Cost: discard 1 card from your hand. Reclaim a CO from the Out of Orbit zone into your orbit, even if a CO has already entered your orbit this turn. |
 | AE47 | Stargazing | Free | - | Draw 2 cards. |
 | AE48 | Deep Field Survey | Free | - | Look at the top 3 cards of the draw deck. Put 1 into your hand and the other 2 on the bottom of the deck in any order. |
 | AE49 (C1) | Search the Skies | Free | - | Look at the top 4 cards of the draw deck. You may reveal a CO from among them and put it into your hand. Put the rest on the bottom of the deck in any order. |
-| AE50 | Mass Transfer | Soft | - | Move one Augmentation attached to an opponent's CO onto one of your COs. |
+| AE50 (C1F) | Mass Transfer | Soft | - | Choose one: choose an Augmentation attached to an opponent's CO and choose one of your COs, then move that Augmentation onto that CO; or draw 1 card. |
 | AE51 | Dark Matter Halo | Free | - | Until the start of your next turn, COs in your orbit have +1 Stability. |
-| AE52 | Event Horizon | Soft | - | Choose an opponent with an active Critical Mass countdown. Knock their CO with the highest Size Out of Orbit (if several are tied, you choose among them). |
+| AE52 (C1F) | Event Horizon | Soft | - | Choose one: choose an opponent with an active Critical Mass countdown and knock their CO with the highest Size Out of Orbit (if several are tied, you choose among them); or draw 1 card. |
 | AE53 | Roche Limit | Soft | - | Choose an opponent's CO with Size 4 or more. It gets -2 Stability this turn. |
 | AE54 | Orbital Insertion | Soft | - | Play only if no CO has entered your orbit this turn. Place a CO from your hand into your orbit, then you may attach an Augmentation from your hand to it. Neither of those cards counts as one of your 2 plays. |
 | AE55 (C1) | Free-Return Trajectory | Soft | - | Choose an opponent's CO in their North position. Return it to its owner's hand; its Augmentations are discarded. |
 | AE56 | Stellar Nursery | Soft | - | Play only if your Star has less HP than its starting HP. Your Star regains 2 HP, up to its starting HP. |
 | AE57 (C1) | Gravity Assist | Free | - | Draw 1 card. Then you may rotate your orbit one step in either direction. |
 | AE58 | Orbital Resonance | Free | - | Rotate one opponent's orbit one step. Draw 1 card. |
-| AE59 | Scavenge | Soft | - | Choose a CO in the Out of Orbit zone and discard it. Draw 1 card. |
+| AE59 (C1F) | Scavenge | Soft | - | Draw 1 card. Then you may discard a CO from the Out of Orbit zone. |
 | AE60 (C1) | Gravitational Wave | Soft | - | Choose an opponent who has a CO in their North position, and a direction. Every CO in their orbit except the one in North moves one step in that direction. A CO that moves into North causes a Collision; the moving CO is the incoming CO. (This chooses a player, not a CO.) |
 
 Old texts of the reworked AEs: AE16 "...It does not move during your Rotation Phase." AE23 "Deal 1 damage to an opponent's Star." AE25 cost was 1 self-damage. AE28 "Cost: put one of your COs from orbit into the Out of Orbit zone ... Deal 3 damage ..." AE41 "Every CO in a North position (in every orbit) gets -1 Stability this turn." AE43 "Choose a CO with 2 or more Augmentations attached. Discard all of them." AE45 "Reclaim a CO with Size 3 or less ... Draw 1 card." AE49 "Take a CO from the discard pile into your hand." AE55 "Return one of your COs from orbit to your hand ..." AE57 "Choose one of your COs and move it to another position ..." AE60 "Every player's orbit rotates one step."
@@ -273,14 +273,14 @@ No CO or AE copies a Star's exact effect. Closest neighbours, all deliberately c
 
 **Denial/control support:** the pool carries 19 denial/control cards: AE12, AE13, AE14, AE15, AE22, AE23 (mode 2), AE32, AE38, AE39, AE40, AE41, AE42, AE43, AE52, AE53, AE55, AE59, AE60, CO36. **Cheap answers to Critical Mass (cycle 1):** five Free or Soft cards now knock out or shrink a CO without a hard cost and with an easy target: AE23 (-1 Stability), AE41 (-1 Stability in North, cantrip), AE43 (strip Augmentations and -1 Size), AE55 (bounce the North CO, the Denial card), AE60 (forced Collision at North). ST12 is now a true Denial Star.
 
-**Playable on an empty board (cycle 1):** 15 of 38 Direct Effects are always legal (AE23, AE25, AE26, AE30, AE33, AE35, AE37, AE41, AE45, AE47, AE48, AE49, AE51, AE57, AE58); AE45, AE49 and AE57 are new to this list and AE41 is no longer self-harming. AE60 left the list (it now needs an opponent's North CO).
+**Playable on an empty board (cycle 1):** 15 of 38 Direct Effects are always legal (AE23, AE25, AE26, AE30, AE33, AE35, AE37, AE41, AE45, AE47, AE48, AE49, AE51, AE57, AE58); AE45, AE49 and AE57 are new to this list and AE41 is no longer self-harming. AE60 left the list (it now needs an opponent's North CO). **Fix-before-critic pass (C1F):** AE32, AE42, AE44, AE50, AE52 gained an "or draw 1 card" option (worth exactly a Recycle of that card) and AE59 draws first, so **21 of 38** Direct Effects are now always legal (dead on an empty board: 39 of 96 cards, about 2.85 per 7-card hand, was 45 / 3.3). Old texts: AE32 "Choose an opponent whose total Size in orbit is 12 or more. Deal 2 damage to their Star." AE42 "Choose an Augmentation attached to any CO and discard it." AE44 "Reclaim a CO from the Out of Orbit zone into your orbit." AE50 "Move one Augmentation attached to an opponent's CO onto one of your COs." AE52 "Choose an opponent with an active Critical Mass countdown. Knock their CO ..." AE59 "Choose a CO in the Out of Orbit zone and discard it. Draw 1 card."
 
 ---
 
 ## 6. Notes for the simulation (and the owner)
 
 - **Early dead draws.** See 5.3: 15 of 38 Direct Effects are always playable, and the rules now add a mulligan (no-CO opening hand) and a Recycle play (discard 1, draw 1, costs a play), so no turn is ever without a legal play while you hold a card. The simulation should still record how often a hand has no legal non-Recycle play.
-- **Cycle 1 re-coding list for `sim/game.py`:** ST01 HP, ST08, ST10, ST11, ST12, CO14, CO24, AE16, AE23, AE25, AE28, AE41, AE43, AE45, AE49, AE55, AE57, AE60, plus the rule changes in `rules.md` section 8 (rotation direction choice, threshold by player count, G4, mulligan, Recycle, G8 check timing, G29 stack, G31 discard).
+- **Cycle 1 re-coding list for `sim/game.py`:** ST01 HP, ST08, ST10, ST11, ST12, CO14, CO24, AE16, AE23, AE25, AE28, AE41, AE43, AE45, AE49, AE55, AE57, AE60, plus the rule changes in `rules.md` section 8 (rotation direction choice, threshold by player count, G4, mulligan, Recycle, G8 check timing, G29 stack, G31 discard). **Fix pass adds:** AE32, AE42, AE44, AE50, AE52, AE59; 6p threshold 16; G8 checks after Active abilities and Start of Turn triggers (`rules.md` change log F1-F11).
 - **Swingy pairs to watch:** AE08 + ST08 + CO13 (Augmentation stacking into a Collision-proof 7+ Size CO); AE54 Orbital Insertion + CO14 Shepherd Moon (several free Augmentations); AE28 + ST03 (sacrifice draws a card); ST08 + cheap Augmentations (+1 Size each, watch ST08's Critical Mass rate); ST12 + AE53 or AE23 (two Stability reductions in one turn knock out a Stability-3 CO); ST11 + AE60/AE41 (knock a small CO out, then reclaim it for 1 damage).
 - **Anti-Critical-Mass counterplay present:** AE32, AE52, AE53, AE13, AE39, AE40, AE38 (Collision forcing), AE14/AE15/AE22 (rotation sabotage).
 - **Rule gaps:** all of G1-G40 are now answered in `rules.md` (table in section 5.10); the result-moving ones are marked PROVISIONAL.
