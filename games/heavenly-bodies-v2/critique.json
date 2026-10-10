@@ -1,0 +1,16 @@
+{ "verdict": "REVISE-MAJOR", "revision": 0,
+  "scores": { "originality": 4, "clarity": 3, "fun": 2, "balance": 2, "market_fit": 3, "production": 5 },
+  "average": 3.17,
+  "strength": "Spin-any-orbit is a real decision (self-spin-only ablation loses by 10-18 points in the base game, 26-34 in the win-at-end variant) and Comet beats Giant passes its ablation; the kinetic gearbox feel matches the owner's vision.",
+  "weakness": "The win patterns are dead: a formed orbit survives to its owner's turn 0-0.2% of the time, so 95-100% of games end in Long Night at 40-47 turns, with 30-59 captures per game of pure churn. Repeats L3, L1 (Rebound, Recall, Deep Space inert) and L8 (4p fails).",
+  "closest_existing_game": { "name": "Orbita (25th Century Games)", "similarity": "low" },
+  "required_changes": [
+    "Win check at the end of your own turn with a per-count Critical Mass knob (moves pattern wins from under 5% to 15-50% each, Long Night from 95-100% to 15% or less, turns to 14-34)",
+    "Shorten the Deck to about 32-36 cards or use 3 opening bodies (turns to 20-30, minutes to about 12), after change 1",
+    "Cut Rebound; try a one-turn shield on newly launched bodies (captures per game 59/43/30 toward 15-25, runaway at or below 65%, 4p greedy-vs-strategic gap)",
+    "Test captured bodies to Deep Space as an alternative arm (churn), noting it weakens cards changing owners",
+    "Re-run all ablations at every count; cut or sharpen Recall and Deep Space; add a keep-a-Giant defence bot; fix 3-4p Long Night tie rate",
+    "Per-count knobs: 2p threshold so games do not end in 5 turns; drop 4p if it cannot reach band"
+  ],
+  "revision_worth_it": true,
+  "revision_reason": "The core passes its twist ablations, the diagnosis is clear (win timing), and one tested variant is near band at 3p; stop if cycle 1 does not bring 3p Long Night under 30%." }

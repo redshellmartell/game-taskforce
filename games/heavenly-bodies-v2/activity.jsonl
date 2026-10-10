@@ -4,3 +4,5 @@
 {"time":"2026-10-10T09:34:00Z","agent":"playtester","game":"heavenly-bodies-v2","event":"start","message":"First playtest, coding sim"}
 {"time":"2026-10-10T09:39:42Z","agent":"playtester","game":"heavenly-bodies-v2","event":"step","message":"Sim coded; probe shows pattern wins almost never survive a round (oracle 1% safe). Running headline 2000 + ablations/variants"}
 {"time":"2026-10-10T10:29:04Z","agent":"playtester","game":"heavenly-bodies-v2","event":"done","message":"Verdict NEEDS-FIXES (structural): patterns dead, Long Night 95-100%, 46 turns; seat gaps pass"}
+{"time": "2026-10-10T10:32:27Z", "agent": "game-designer", "game": "heavenly-bodies-v2", "event": "done", "message": "Fix pass: 12 ambiguity rulings, turn cap corrected, round-35 backstop added"}
+{"time": "2026-10-10T10:32:27Z", "agent": "critic", "game": "heavenly-bodies-v2", "event": "done", "message": "REVISE-MAJOR avg 3.17; patterns dead, Long Night 95-100%; fixable in cycles; cycle 1 starting"}

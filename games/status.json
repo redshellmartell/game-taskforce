@@ -755,7 +755,7 @@
       "slug": "heavenly-bodies-v2",
       "title": "Heavenly Bodies v2",
       "source": "owner",
-      "stage": "playtest",
+      "stage": "critique",
       "revision": 0,
       "history": [
         {
@@ -775,11 +775,17 @@
           "time": "2026-10-10T09:33:40Z",
           "verdict": null,
           "note": "Gearbox design written (56 cards); playtest started"
+        },
+        {
+          "stage": "critique",
+          "time": "2026-10-10T10:32:27Z",
+          "verdict": "REVISE-MAJOR",
+          "note": "first critique avg 3.17 (fun 2, balance 2); win patterns dead, fixable; cycle 1 starting inside the owner's cap of 5"
         }
       ],
       "verdicts": {
-        "playtest": null,
-        "critic": null
+        "playtest": "NEEDS-FIXES",
+        "critic": "REVISE-MAJOR"
       },
       "kill_reason": null
     }
