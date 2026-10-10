@@ -8,3 +8,5 @@
 {"time": "2026-10-10T10:32:27Z", "agent": "critic", "game": "heavenly-bodies-v2", "event": "done", "message": "REVISE-MAJOR avg 3.17; patterns dead, Long Night 95-100%; fixable in cycles; cycle 1 starting"}
 {"time":"2026-10-10T10:37:30Z","agent":"playtester","game":"heavenly-bodies-v2","event":"start","message":"Cycle 1 playtest: update sim to cycle-1 rules, parallel runner"}
 {"time":"2026-10-10T10:37:28Z","agent":"game-designer","game":"heavenly-bodies-v2","event":"done","message":"Cycle 1 revision written (win at end of turn, shield, CM by count, Rebound cut, Deep Space draw cut); playtest started"}
+{"time": "2026-10-10T10:53:15Z", "agent": "playtester", "game": "heavenly-bodies-v2", "event": "done", "message": "Cycle 1 playtest: BROKEN (3-8 turn race, seat gap 17-29, strategic < greedy); shield is the length lever; panel refreshed"}
+{"time": "2026-10-10T10:53:37Z", "agent": "manager", "game": "heavenly-bodies-v2", "event": "waiting", "message": "Cycle 1 playtest done (BROKEN: overshoot, 3-8 turns, seat gap 17-29); paused by owner, report sent; no fix pass or critic until told"}

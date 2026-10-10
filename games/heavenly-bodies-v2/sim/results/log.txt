@@ -45,3 +45,15 @@ switches cm15_everywhere_3p done 5 s
 switches cm15_everywhere_4p done 7 s
 switches rainbow_off_2p done 2 s
 switches rainbow_off_3p done 5 s
+switches rainbow_off_4p done 7 s
+switches deepspace_draw_on_2p done 2 s
+switches deepspace_draw_on_3p done 5 s
+switches deepspace_draw_on_4p done 6 s
+switches total 280 s
+arms deck40_2p done 2 s
+arms deck40_3p done 5 s
+arms deck40_4p done 6 s
+arms capture_to_ds_2p done 2 s
+arms capture_to_ds_3p done 5 s
+arms capture_to_ds_4p done 6 s
+arms total 26 s

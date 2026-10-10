@@ -93,6 +93,7 @@ def sections(name, N):
             c[f"strat_v_random_{k}p"] = (["strategic"] + ["random"] * (k - 1), {}, 100 + k)
             c[f"greedy_v_random_{k}p"] = (["greedy"] + ["random"] * (k - 1), {}, 200 + k)
             c[f"strat_v_greedy_{k}p"] = (["strategic"] + ["greedy"] * (k - 1), {}, 300 + k)
+            c[f"greedy_mirror_{k}p"] = (["greedy"] * k, {}, 500 + k)
     elif name == "ablate":
         for ab in ("self-spin-only", "shield-blind", "threat-blind", "defence-check", "no-recall", "comet-blind"):
             for k in (2, 3, 4): c[f"{ab}_{k}p"] = (mixed("strategic", ab, k), {}, 400 + k)

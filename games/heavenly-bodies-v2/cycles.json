@@ -1,0 +1,16 @@
+{
+  "cycles": [
+    {
+      "cycle": 1,
+      "targeted": [
+        "pattern wins",
+        "length",
+        "captures churn"
+      ],
+      "before": 3.17,
+      "after": null,
+      "moved": false,
+      "note": "playtest only (critic not run, owner pause): Long Night 95-100% to 0%, but turns 40-47 to 4-8, seat gap 0.3-2.2 to 17-29, captures 30-59 to 2; overshoot. Best lead: no opening bodies (8-18 turns)."
+    }
+  ]
+}

@@ -1,98 +1,98 @@
 {
- "verdict": "NEEDS-FIXES",
- "revision": 0,
- "games_simulated": 2000,
+ "verdict": "BROKEN",
+ "revision": 1,
+ "games_simulated": 1000,
  "seat_win_rates": {
-  "1": 0.497,
-  "2": 0.503
+  "1": 0.669,
+  "2": 0.331
  },
- "seat_balance_gap": 0.3,
+ "seat_balance_gap": 16.9,
  "seat_gap_by_players": {
-  "2": 0.3,
-  "3": 2.19,
-  "4": 0.59
+  "2": 16.9,
+  "3": 29.07,
+  "4": 18.4
  },
  "bot_win_rates": {
-  "random": 0.002,
-  "greedy": 0.317,
-  "strategic": 0.683
+  "random": 0.01,
+  "greedy": 0.57,
+  "strategic": 0.43
  },
- "bot_win_rates_note": "2p. strategic v greedy 0.683/0.303; both beat random >=99.6%",
- "skill_expression": 26.9,
+ "bot_win_rates_note": "2p strategic vs greedy 0.43/0.57; both beat random by 92-98 points. Greedy is the stronger bot under cycle 1 rules.",
+ "skill_expression": -11.0,
  "skill_gap_by_pairing": {
-  "strategic_v_random": {
-   "2": 99.6,
-   "3": 100.0,
-   "4": 99.3
+  "strat_v_random": {
+   "2": 98.0,
+   "3": 95.8,
+   "4": 92.3
   },
   "greedy_v_random": {
-   "2": 100.0,
-   "3": 100.0,
-   "4": 97.1
+   "2": 95.8,
+   "3": 93.0,
+   "4": 91.9
   },
-  "strategic_v_greedy": {
-   "2": 38.0,
-   "3": 15.7,
-   "4": -5.5
+  "strat_v_greedy": {
+   "2": -14.0,
+   "3": -8.0,
+   "4": -13.1
   }
  },
  "length": {
-  "mean_turns": 46.17,
-  "stdev": 7.04,
-  "estimated_minutes": 18.5,
+  "mean_turns": 4.42,
+  "stdev": 1.96,
+  "estimated_minutes": 1.8,
   "target_minutes": 12,
   "mean_turns_by_players": {
-   "2": 46.17,
-   "3": 46.72,
-   "4": 39.6
+   "2": 4.42,
+   "3": 7.17,
+   "4": 8.03
   },
   "estimated_minutes_by_players": {
-   "2": 18.5,
-   "3": 18.7,
-   "4": 15.8
+   "2": 1.8,
+   "3": 2.9,
+   "4": 3.2
   },
   "assumption": "0.4 min per player-turn, unmeasured"
  },
  "length_histogram": [
   {
    "turns": 3,
-   "games": 3
+   "games": 516
   },
   {
    "turns": 4,
-   "games": 1
+   "games": 132
   },
   {
    "turns": 5,
-   "games": 5
+   "games": 76
   },
   {
    "turns": 6,
-   "games": 4
+   "games": 145
   },
   {
    "turns": 7,
-   "games": 9
+   "games": 54
   },
   {
    "turns": 8,
-   "games": 3
+   "games": 34
   },
   {
    "turns": 9,
-   "games": 7
+   "games": 16
   },
   {
    "turns": 10,
-   "games": 5
+   "games": 14
   },
   {
    "turns": 11,
-   "games": 3
+   "games": 5
   },
   {
    "turns": 12,
-   "games": 2
+   "games": 5
   },
   {
    "turns": 13,
@@ -100,515 +100,732 @@
   },
   {
    "turns": 14,
-   "games": 2
-  },
-  {
-   "turns": 15,
-   "games": 2
-  },
-  {
-   "turns": 16,
-   "games": 2
+   "games": 1
   },
   {
    "turns": 17,
-   "games": 3
-  },
-  {
-   "turns": 18,
-   "games": 1
-  },
-  {
-   "turns": 19,
-   "games": 1
-  },
-  {
-   "turns": 20,
-   "games": 3
-  },
-  {
-   "turns": 21,
-   "games": 2
-  },
-  {
-   "turns": 22,
-   "games": 3
-  },
-  {
-   "turns": 24,
-   "games": 1
-  },
-  {
-   "turns": 26,
-   "games": 2
-  },
-  {
-   "turns": 27,
-   "games": 1
-  },
-  {
-   "turns": 29,
-   "games": 1
-  },
-  {
-   "turns": 30,
-   "games": 2
-  },
-  {
-   "turns": 31,
-   "games": 1
-  },
-  {
-   "turns": 32,
-   "games": 2
-  },
-  {
-   "turns": 33,
-   "games": 1
-  },
-  {
-   "turns": 34,
-   "games": 1
-  },
-  {
-   "turns": 35,
-   "games": 3
-  },
-  {
-   "turns": 36,
-   "games": 2
-  },
-  {
-   "turns": 37,
-   "games": 2
-  },
-  {
-   "turns": 38,
-   "games": 2
-  },
-  {
-   "turns": 39,
-   "games": 1
-  },
-  {
-   "turns": 41,
-   "games": 1
-  },
-  {
-   "turns": 42,
-   "games": 2
-  },
-  {
-   "turns": 43,
-   "games": 44
-  },
-  {
-   "turns": 44,
-   "games": 163
-  },
-  {
-   "turns": 45,
-   "games": 242
-  },
-  {
-   "turns": 46,
-   "games": 302
-  },
-  {
-   "turns": 47,
-   "games": 309
-  },
-  {
-   "turns": 48,
-   "games": 278
-  },
-  {
-   "turns": 49,
-   "games": 193
-  },
-  {
-   "turns": 50,
-   "games": 146
-  },
-  {
-   "turns": 51,
-   "games": 91
-  },
-  {
-   "turns": 52,
-   "games": 66
-  },
-  {
-   "turns": 53,
-   "games": 36
-  },
-  {
-   "turns": 54,
-   "games": 21
-  },
-  {
-   "turns": 55,
-   "games": 12
-  },
-  {
-   "turns": 56,
-   "games": 8
-  },
-  {
-   "turns": 57,
-   "games": 1
-  },
-  {
-   "turns": 60,
    "games": 1
   }
  ],
- "ties": 0.012,
+ "ties": 0.0,
  "turn_cap_hits": 0,
- "lead_changes_mean": 20.96,
- "runaway_leader_rate": 0.513,
+ "lead_changes_mean": 0.64,
+ "runaway_leader_rate": 0.747,
+ "by_players": {
+  "2": {
+   "turns": 4.42,
+   "minutes": 1.8,
+   "seat_gap": 16.9,
+   "long_night": 0.0,
+   "pattern_share": {
+    "mass": 0.265,
+    "const": 0.461,
+    "align": 0.275
+   },
+   "captures": 1.8,
+   "lead_changes": 0.64,
+   "runaway": 0.747
+  },
+  "3": {
+   "turns": 7.17,
+   "minutes": 2.9,
+   "seat_gap": 29.07,
+   "long_night": 0.0,
+   "pattern_share": {
+    "mass": 0.343,
+    "const": 0.445,
+    "align": 0.212
+   },
+   "captures": 2.25,
+   "lead_changes": 1.76,
+   "runaway": 0.635
+  },
+  "4": {
+   "turns": 8.03,
+   "minutes": 3.2,
+   "seat_gap": 18.4,
+   "long_night": 0.001,
+   "pattern_share": {
+    "mass": 0.398,
+    "const": 0.37,
+    "align": 0.232
+   },
+   "captures": 2.54,
+   "lead_changes": 2.06,
+   "runaway": 0.41
+  }
+ },
  "long_night_rate": {
-  "2": 0.9515,
-  "3": 0.9995,
-  "4": 1.0
+  "2": 0.0,
+  "3": 0.0,
+  "4": 0.001
  },
  "pattern_win_share": {
   "2": {
-   "longnight": 1879,
-   "mass": 96,
-   "tie": 24,
-   "const": 1
+   "mass": 0.265,
+   "const": 0.461,
+   "align": 0.275
   },
   "3": {
-   "longnight": 1905,
-   "tie": 94,
-   "mass": 1
+   "mass": 0.343,
+   "const": 0.445,
+   "align": 0.212
   },
   "4": {
-   "longnight": 1845,
-   "tie": 155
+   "mass": 0.398,
+   "const": 0.37,
+   "align": 0.232
   }
  },
- "full_orbit_survival": {
-  "2": 0.0021,
-  "3": 0.0005,
-  "4": 0.0022
+ "pattern_win_share_greedy_mirror": {
+  "2": {
+   "mass": 0.808,
+   "const": 0.13,
+   "align": 0.062
+  },
+  "3": {
+   "mass": 0.891,
+   "const": 0.085,
+   "align": 0.025
+  },
+  "4": {
+   "mass": 0.931,
+   "const": 0.063,
+   "align": 0.007
+  }
  },
- "pattern_formed_survival": {
-  "2": 0.0023,
-  "3": 0.0001,
-  "4": 0.0
+ "armed_positions": {
+  "2": {
+   "per_game": 0.89,
+   "attacked": 0.829,
+   "still_armed": 1.0
+  },
+  "3": {
+   "per_game": 1.48,
+   "attacked": 0.79,
+   "still_armed": 0.614
+  },
+  "4": {
+   "per_game": 1.94,
+   "attacked": 0.767,
+   "still_armed": 0.477
+  }
  },
  "captures_per_game": {
-  "2": 58.74,
-  "3": 43.27,
-  "4": 29.75
- },
- "board_changing_spin_share": {
-  "2": 0.966,
-  "3": 0.937,
-  "4": 0.893
+  "2": 1.8,
+  "3": 2.25,
+  "4": 2.54
  },
  "ablations": {
   "self-spin-only": {
-   "2": 10.5,
-   "3": 18.2,
-   "4": 10.0
+   "2": 2.2,
+   "3": 32.1,
+   "4": 11.4
+  },
+  "shield-blind": {
+   "2": 7.2,
+   "3": 1.1,
+   "4": 3.3
+  },
+  "threat-blind": {
+   "2": 8.0,
+   "3": 4.4,
+   "4": 1.2
+  },
+  "defence-check": {
+   "2": 30.2,
+   "3": 16.6,
+   "4": 7.9
+  },
+  "no-recall": {
+   "2": -1.8,
+   "3": -1.9,
+   "4": 0.0
   },
   "comet-blind": {
-   "2": 82.7,
-   "3": 19.1,
-   "4": 19.2
-  },
-  "no-recall": {
-   "2": 18.3,
-   "3": 2.0,
-   "4": -4.0
-  },
-  "deck-only": {
-   "2": -5.2,
-   "3": 8.0,
-   "4": -2.9
+   "2": 3.4,
+   "3": 0.1,
+   "4": 0.9
   }
  },
- "variants": {
-  "no_rebound": {
+ "switch_off_effects": {
+  "win_at_start": {
    "2": {
-    "turns": 49.76,
-    "long_night": 0.9625,
-    "patterns": {
-     "longnight": 361,
-     "tie": 34,
-     "mass": 5
+    "turns": 16.8,
+    "minutes": 6.7,
+    "seat_gap": 5.3,
+    "long_night": 0.052,
+    "pattern_share": {
+     "mass": 0.358,
+     "const": 0.401,
+     "align": 0.241
     },
-    "seat_gap": 0.25,
-    "lead_changes": 15.86,
-    "runaway": 0.525
+    "captures": 8.91,
+    "lead_changes": 3.47,
+    "runaway": 0.778
    },
    "3": {
-    "turns": 44.24,
-    "long_night": 1.0,
-    "patterns": {
-     "longnight": 354,
-     "tie": 46
+    "turns": 29.5,
+    "minutes": 11.8,
+    "seat_gap": 9.67,
+    "long_night": 0.503,
+    "pattern_share": {
+     "mass": 0.482,
+     "const": 0.407,
+     "align": 0.111
     },
-    "seat_gap": 4.0,
-    "lead_changes": 21.06,
-    "runaway": 0.389
+    "captures": 13.38,
+    "lead_changes": 8.77,
+    "runaway": 0.547
    },
    "4": {
-    "turns": 38.12,
-    "long_night": 1.0,
-    "patterns": {
-     "longnight": 349,
-     "tie": 51
+    "turns": 27.91,
+    "minutes": 11.2,
+    "seat_gap": 6.2,
+    "long_night": 0.562,
+    "pattern_share": {
+     "mass": 0.522,
+     "const": 0.32,
+     "align": 0.157
     },
-    "seat_gap": 2.19,
-    "lead_changes": 18.36,
-    "runaway": 0.222
+    "captures": 12.09,
+    "lead_changes": 9.53,
+    "runaway": 0.453
    }
   },
-  "win_at_end": {
+  "rebound_on": {
    "2": {
-    "turns": 4.89,
+    "turns": 2.34,
+    "minutes": 0.9,
+    "seat_gap": 40.2,
     "long_night": 0.0,
-    "patterns": {
-     "mass": 286,
-     "align": 86,
-     "const+align": 7,
-     "const": 13,
-     "mass+const": 8
+    "pattern_share": {
+     "mass": 0.228,
+     "const": 0.498,
+     "align": 0.274
     },
-    "seat_gap": 0.5,
-    "lead_changes": 2.04,
-    "runaway": 0.616
+    "captures": 0.76,
+    "lead_changes": 0.19,
+    "runaway": 0.218
    },
    "3": {
-    "turns": 20.16,
-    "long_night": 0.125,
-    "patterns": {
-     "longnight": 46,
-     "mass": 169,
-     "align": 155,
-     "const": 19,
-     "tie": 4,
-     "mass+const": 2,
-     "const+align": 5
+    "turns": 4.42,
+    "minutes": 1.8,
+    "seat_gap": 20.27,
+    "long_night": 0.0,
+    "pattern_share": {
+     "mass": 0.338,
+     "const": 0.415,
+     "align": 0.246
     },
-    "seat_gap": 2.5,
-    "lead_changes": 11.89,
-    "runaway": 0.339
+    "captures": 1.17,
+    "lead_changes": 0.96,
+    "runaway": 0.278
    },
    "4": {
-    "turns": 30.82,
-    "long_night": 0.5775,
-    "patterns": {
-     "mass": 101,
-     "longnight": 215,
-     "align": 55,
-     "const": 5,
-     "tie": 16,
-     "mass+const": 4,
-     "const+align": 4
+    "turns": 5.52,
+    "minutes": 2.2,
+    "seat_gap": 36.9,
+    "long_night": 0.0,
+    "pattern_share": {
+     "mass": 0.439,
+     "const": 0.337,
+     "align": 0.224
     },
-    "seat_gap": 3.0,
-    "lead_changes": 17.85,
-    "runaway": 0.296
+    "captures": 1.39,
+    "lead_changes": 1.22,
+    "runaway": 0.205
    }
   },
-  "one_contact": {
+  "shield_off": {
    "2": {
-    "turns": 41.59,
-    "long_night": 0.8675,
-    "patterns": {
-     "longnight": 343,
-     "mass": 50,
-     "mass+const": 2,
-     "tie": 5
+    "turns": 22.62,
+    "minutes": 9.0,
+    "seat_gap": 5.5,
+    "long_night": 0.195,
+    "pattern_share": {
+     "mass": 0.368,
+     "const": 0.49,
+     "align": 0.142
     },
-    "seat_gap": 5.63,
-    "lead_changes": 25.36,
-    "runaway": 0.481
+    "captures": 18.14,
+    "lead_changes": 7.38,
+    "runaway": 0.64
    },
    "3": {
-    "turns": 46.41,
-    "long_night": 0.9425,
-    "patterns": {
-     "longnight": 362,
-     "mass": 20,
-     "tie": 15,
-     "align": 3
+    "turns": 33.69,
+    "minutes": 13.5,
+    "seat_gap": 20.87,
+    "long_night": 0.833,
+    "pattern_share": {
+     "mass": 0.467,
+     "const": 0.401,
+     "align": 0.132
     },
-    "seat_gap": 1.42,
-    "lead_changes": 25.13,
+    "captures": 22.11,
+    "lead_changes": 15.98,
+    "runaway": 0.478
+   },
+   "4": {
+    "turns": 30.35,
+    "minutes": 12.1,
+    "seat_gap": 26.2,
+    "long_night": 0.872,
+    "pattern_share": {
+     "mass": 0.513,
+     "const": 0.318,
+     "align": 0.169
+    },
+    "captures": 19.58,
+    "lead_changes": 14.8,
+    "runaway": 0.431
+   }
+  },
+  "cm15_everywhere": {
+   "2": {
+    "turns": 4.13,
+    "minutes": 1.7,
+    "seat_gap": 19.5,
+    "long_night": 0.0,
+    "pattern_share": {
+     "mass": 0.368,
+     "const": 0.413,
+     "align": 0.218
+    },
+    "captures": 1.63,
+    "lead_changes": 0.62,
+    "runaway": 0.71
+   },
+   "3": {
+    "turns": 7.17,
+    "minutes": 2.9,
+    "seat_gap": 29.07,
+    "long_night": 0.0,
+    "pattern_share": {
+     "mass": 0.343,
+     "const": 0.445,
+     "align": 0.212
+    },
+    "captures": 2.25,
+    "lead_changes": 1.76,
+    "runaway": 0.635
+   },
+   "4": {
+    "turns": 8.1,
+    "minutes": 3.2,
+    "seat_gap": 16.7,
+    "long_night": 0.0,
+    "pattern_share": {
+     "mass": 0.288,
+     "const": 0.454,
+     "align": 0.258
+    },
+    "captures": 2.54,
+    "lead_changes": 2.03,
+    "runaway": 0.43
+   }
+  },
+  "rainbow_off": {
+   "2": {
+    "turns": 5.07,
+    "minutes": 2.0,
+    "seat_gap": 12.1,
+    "long_night": 0.0,
+    "pattern_share": {
+     "mass": 0.425,
+     "const": 0.065,
+     "align": 0.509
+    },
+    "captures": 2.19,
+    "lead_changes": 0.84,
+    "runaway": 0.781
+   },
+   "3": {
+    "turns": 7.44,
+    "minutes": 3.0,
+    "seat_gap": 21.07,
+    "long_night": 0.0,
+    "pattern_share": {
+     "mass": 0.54,
+     "const": 0.068,
+     "align": 0.392
+    },
+    "captures": 2.4,
+    "lead_changes": 1.82,
+    "runaway": 0.626
+   },
+   "4": {
+    "turns": 8.43,
+    "minutes": 3.4,
+    "seat_gap": 19.5,
+    "long_night": 0.001,
+    "pattern_share": {
+     "mass": 0.573,
+     "const": 0.07,
+     "align": 0.357
+    },
+    "captures": 2.78,
+    "lead_changes": 2.23,
+    "runaway": 0.456
+   }
+  },
+  "deepspace_draw_on": {
+   "2": {
+    "turns": 4.37,
+    "minutes": 1.7,
+    "seat_gap": 16.8,
+    "long_night": 0.0,
+    "pattern_share": {
+     "mass": 0.261,
+     "const": 0.465,
+     "align": 0.275
+    },
+    "captures": 1.76,
+    "lead_changes": 0.63,
+    "runaway": 0.749
+   },
+   "3": {
+    "turns": 6.93,
+    "minutes": 2.8,
+    "seat_gap": 28.77,
+    "long_night": 0.0,
+    "pattern_share": {
+     "mass": 0.363,
+     "const": 0.438,
+     "align": 0.199
+    },
+    "captures": 2.12,
+    "lead_changes": 1.63,
+    "runaway": 0.631
+   },
+   "4": {
+    "turns": 7.86,
+    "minutes": 3.1,
+    "seat_gap": 19.4,
+    "long_night": 0.0,
+    "pattern_share": {
+     "mass": 0.409,
+     "const": 0.356,
+     "align": 0.234
+    },
+    "captures": 2.47,
+    "lead_changes": 2.01,
+    "runaway": 0.417
+   }
+  }
+ },
+ "fallbacks_2p": {
+  "2p_mass17": {
+   "turns": 4.61,
+   "minutes": 1.8,
+   "seat_gap": 15.1,
+   "long_night": 0.0,
+   "pattern_share": {
+    "mass": 0.175,
+    "const": 0.518,
+    "align": 0.307
+   },
+   "captures": 1.94,
+   "lead_changes": 0.68,
+   "runaway": 0.753
+  },
+  "2p_open1": {
+   "turns": 6.45,
+   "minutes": 2.6,
+   "seat_gap": 11.3,
+   "long_night": 0.0,
+   "pattern_share": {
+    "mass": 0.237,
+    "const": 0.513,
+    "align": 0.25
+   },
+   "captures": 2.19,
+   "lead_changes": 1.38,
+   "runaway": 0.763
+  },
+  "2p_mass17_open1": {
+   "turns": 6.54,
+   "minutes": 2.6,
+   "seat_gap": 12.0,
+   "long_night": 0.0,
+   "pattern_share": {
+    "mass": 0.151,
+    "const": 0.558,
+    "align": 0.29
+   },
+   "captures": 2.25,
+   "lead_changes": 1.42,
+   "runaway": 0.765
+  }
+ },
+ "arms": {
+  "deck40": {
+   "2": {
+    "turns": 4.65,
+    "minutes": 1.9,
+    "seat_gap": 16.3,
+    "long_night": 0.0,
+    "pattern_share": {
+     "mass": 0.294,
+     "const": 0.481,
+     "align": 0.225
+    },
+    "captures": 2.07,
+    "lead_changes": 0.77,
+    "runaway": 0.722
+   },
+   "3": {
+    "turns": 7.29,
+    "minutes": 2.9,
+    "seat_gap": 25.07,
+    "long_night": 0.008,
+    "pattern_share": {
+     "mass": 0.395,
+     "const": 0.441,
+     "align": 0.164
+    },
+    "captures": 2.44,
+    "lead_changes": 1.8,
+    "runaway": 0.628
+   },
+   "4": {
+    "turns": 7.99,
+    "minutes": 3.2,
+    "seat_gap": 17.6,
+    "long_night": 0.015,
+    "pattern_share": {
+     "mass": 0.403,
+     "const": 0.395,
+     "align": 0.202
+    },
+    "captures": 2.61,
+    "lead_changes": 1.99,
+    "runaway": 0.38
+   }
+  },
+  "capture_to_ds": {
+   "2": {
+    "turns": 4.74,
+    "minutes": 1.9,
+    "seat_gap": 17.0,
+    "long_night": 0.0,
+    "pattern_share": {
+     "mass": 0.302,
+     "const": 0.44,
+     "align": 0.258
+    },
+    "captures": 1.97,
+    "lead_changes": 0.69,
+    "runaway": 0.747
+   },
+   "3": {
+    "turns": 7.31,
+    "minutes": 2.9,
+    "seat_gap": 27.87,
+    "long_night": 0.0,
+    "pattern_share": {
+     "mass": 0.385,
+     "const": 0.413,
+     "align": 0.202
+    },
+    "captures": 2.34,
+    "lead_changes": 1.74,
+    "runaway": 0.629
+   },
+   "4": {
+    "turns": 8.06,
+    "minutes": 3.2,
+    "seat_gap": 18.0,
+    "long_night": 0.001,
+    "pattern_share": {
+     "mass": 0.426,
+     "const": 0.363,
+     "align": 0.211
+    },
+    "captures": 2.59,
+    "lead_changes": 2.06,
+    "runaway": 0.427
+   }
+  }
+ },
+ "new_test_opening": {
+  "open0": {
+   "2": {
+    "turns": 8.27,
+    "minutes": 3.3,
+    "seat_gap": 11.6,
+    "long_night": 0.0,
+    "pattern_share": {
+     "mass": 0.248,
+     "const": 0.519,
+     "align": 0.232
+    },
+    "captures": 2.07,
+    "lead_changes": 2.41,
+    "runaway": 0.802
+   },
+   "3": {
+    "turns": 14.75,
+    "minutes": 5.9,
+    "seat_gap": 4.87,
+    "long_night": 0.0,
+    "pattern_share": {
+     "mass": 0.324,
+     "const": 0.495,
+     "align": 0.181
+    },
+    "captures": 3.52,
+    "lead_changes": 5.18,
+    "runaway": 0.502
+   },
+   "4": {
+    "turns": 18.27,
+    "minutes": 7.3,
+    "seat_gap": 10.0,
+    "long_night": 0.015,
+    "pattern_share": {
+     "mass": 0.369,
+     "const": 0.398,
+     "align": 0.232
+    },
+    "captures": 3.71,
+    "lead_changes": 6.46,
     "runaway": 0.328
-   },
-   "4": {
-    "turns": 38.94,
-    "long_night": 0.9775,
-    "patterns": {
-     "longnight": 363,
-     "tie": 28,
-     "mass": 7,
-     "align": 2
-    },
-    "seat_gap": 3.0,
-    "lead_changes": 20.38,
-    "runaway": 0.265
    }
   },
-  "win_at_end+one_contact": {
+  "open1": {
    "2": {
-    "turns": 3.07,
+    "turns": 6.45,
+    "minutes": 2.6,
+    "seat_gap": 11.3,
     "long_night": 0.0,
-    "patterns": {
-     "align": 130,
-     "mass": 248,
-     "const": 13,
-     "const+align": 6,
-     "mass+const": 3
+    "pattern_share": {
+     "mass": 0.237,
+     "const": 0.513,
+     "align": 0.25
     },
-    "seat_gap": 3.75,
-    "lead_changes": 0.7,
-    "runaway": 0.37
+    "captures": 2.19,
+    "lead_changes": 1.38,
+    "runaway": 0.763
    },
    "3": {
-    "turns": 6.83,
+    "turns": 11.45,
+    "minutes": 4.6,
+    "seat_gap": 6.07,
     "long_night": 0.0,
-    "patterns": {
-     "mass": 202,
-     "align": 165,
-     "const": 20,
-     "mass+const": 8,
-     "const+align": 5
+    "pattern_share": {
+     "mass": 0.306,
+     "const": 0.486,
+     "align": 0.207
     },
-    "seat_gap": 3.42,
-    "lead_changes": 2.83,
-    "runaway": 0.395
+    "captures": 3.25,
+    "lead_changes": 3.51,
+    "runaway": 0.545
    },
    "4": {
-    "turns": 11.13,
-    "long_night": 0.005,
-    "patterns": {
-     "align": 150,
-     "mass": 220,
-     "const": 14,
-     "mass+const": 9,
-     "const+align": 5,
-     "longnight": 2
+    "turns": 14.78,
+    "minutes": 5.9,
+    "seat_gap": 11.1,
+    "long_night": 0.009,
+    "pattern_share": {
+     "mass": 0.372,
+     "const": 0.393,
+     "align": 0.235
     },
-    "seat_gap": 8.25,
-    "lead_changes": 4.84,
-    "runaway": 0.346
+    "captures": 3.95,
+    "lead_changes": 4.88,
+    "runaway": 0.328
    }
-  }
- },
- "variant_ablations_win_at_end+one_contact": {
-  "self-spin-only": {
-   "2": 34.0,
-   "3": 32.5,
-   "4": 25.7
-  },
-  "deck-only": {
-   "2": -2.0,
-   "3": 2.0,
-   "4": 8.0
-  },
-  "no-recall": {
-   "2": 1.3,
-   "3": 5.0,
-   "4": 10.3
   }
  },
  "cards": [
   {
    "name": "Size 1",
    "played_rate": null,
-   "win_correlation": 0.0,
-   "flag": "Comet: no link to winning (rarely stays in orbit)"
+   "win_correlation": -0.61,
+   "flag": "Comet: in a winning orbit 61% less often than its deck share; Comet-vs-Giant never decides play (comet-blind margin 3.4 / 0.1 / 0.9)"
   },
   {
    "name": "Size 2",
    "played_rate": null,
-   "win_correlation": 0.06,
+   "win_correlation": -0.27,
    "flag": null
   },
   {
    "name": "Size 3",
    "played_rate": null,
-   "win_correlation": 0.18,
+   "win_correlation": -0.0,
    "flag": null
   },
   {
    "name": "Size 4",
    "played_rate": null,
-   "win_correlation": 0.66,
+   "win_correlation": 0.29,
    "flag": null
   },
   {
    "name": "Size 5",
    "played_rate": null,
-   "win_correlation": 0.69,
-   "flag": "Giant: strongest in Long Night; Comet counter rarely used"
+   "win_correlation": 0.59,
+   "flag": "Giant: 59% over-represented in winning orbits; captured only 0.1 times per game"
   }
  ],
  "validation": "bots only, unvalidated",
  "ambiguities": [
-  "Deck-bound claim wrong: rules 6 says the game lasts at most 43/38/33 turns, but Deep Space draws do not shrink the Deck, so 94%/99%/99% of games run longer (max 60/71/54 turns).",
-  "Long Night triggers at Draw only when the Deck is empty, even if Deep Space still holds cards; the first player skips Draw on turn 1 so Draw counts differ from turn counts.",
-  "Rebound: can the card recalled by the first Launch be launched again by the second? Sim: yes, into a different slot.",
-  "Rebound: is a Recall allowed on the second Launch? Sim: yes.",
-  "Two equal-size collisions in one spin (2 players): order of the two 'active player chooses which goes on top' choices is only implied (West first).",
-  "Equal-size knock-out: the active player chooses the top card, but nothing says whether this is a hidden/public choice or what it is for. Sim: the colour the active player holds least goes on top.",
-  "Long Night tie after total and body count: 'share the win' is a tie; it occurs in 5% of 3-4p games (1% at 2p).",
-  "Hand limit: captures can push a hand to 8+ before Cool down; the rules do not say whether hand size is public or limited during other turns.",
-  "Spinning an orbit with bodies only in North/South: legal, crashes nothing; allowed in sim.",
-  "Win check uses Critical Mass 15+ on 'four bodies'; sim assumes a 4-body orbit of any colours also counts for Constellation and Alignment at once (multiple patterns possible; share counted evenly).",
-  "Setup: players pick 2 of 5 cards for any two slots without seeing others; whether they may stay adjacent (e.g. West/North) is open. Sim: any two different slots (bots use N and S).",
-  "Mid-turn draw: Deep Space top is public but does a player who just put two cards there (tie) get to see them? Not an issue; skipped."
+  "Sideways bodies and the spin: the sim keeps the sideways mark on the card, so it moves with the spin (rules say so). Clear, but 'turn upright at Wake' must also cover a body that was spun into another slot meanwhile.",
+  "REBOUND on with SHIELD on: sim shields both launched bodies (rules say 'at most one sideways'; only an issue if Rebound returns).",
+  "Win check order at End: discard to 5 first, then pattern check; a discard never touches the orbit, so the order does not matter. Clear.",
+  "A body Recalled by a Launch was upright (Wake already stood it up), so a Recall never returns a sideways card. Clear.",
+  "Shielded body in a contact: the other body is also safe (contact does nothing). Also holds if the shielded body is the one that would have been captured by the opponent's winner of the other contact. Clear.",
+  "Long Night tie-break step 4 ('tied player who would take the next turn soonest, counting from the player whose Draw found the Deck empty'): sim counts the empty-Deck player as 0, so that player wins a full tie. Needs one word in the rules: 'including that player'.",
+  "'Equal Size: both go to Deep Space' - with a shielded body there is no crash, so two equal bodies can sit in contact; the sim allows it, no rule needed.",
+  "A player with no hand cards and an empty orbit slot can still spin; with every orbit empty the spin is skipped (unreachable after setup).",
+  "OPENING_2P=1: the first player's skipped Draw means 4 cards in hand, not 3 plus a draw; sim keeps the other 4 cards.",
+  "Spin of an orbit holding a single shielded body: legal, no effect. Strategic bots use this as a 'pass'. Not a rules problem, but 'must spin' is soft.",
+  "Hand limit 5 is checked in End only: a player may hold 8+ cards through opponents' turns. Clear."
  ],
  "problems": [
   {
    "severity": "high",
-   "problem": "The three win patterns are dead rules: games end by Long Night (deck runs out), not by a pattern.",
-   "evidence": "Strategic mirror, 2000 games per count: Long Night 95.2% / 99.9% / 100% at 2/3/4p. Pattern wins: 2p mass 96, constellation 1, alignment 0; 3p mass 1; 4p none. A pattern is formed ~21 times per 2p game but survives to the owner's next turn 0.2% of the time (0.0% at 3-4p). Oracle probe (perfect information about the next opponent's hand): a pattern-forming plan that the next opponent cannot break exists in 5 of 573 positions (2p), 5 of 547 (3p), 1 of 462 (4p).",
-   "fix": "The 'must survive a round' clause is the cause (every spin crashes, so a full orbit always loses a body). Tested: check the win at the END of your own turn (after Spin and Crash). 3p becomes 20 turns, Long Night 12.5%, shares mass 42 / alignment 39 / constellation 5%. It is not a clean fix: 2p drops to 4.9 turns (instant wins), 4p keeps 58% Long Night. Needs a per-count knob, for example a Critical Mass threshold of 17+ at 2p, or 5 slots/opening bodies of 1."
+   "problem": "The game is a 3-8 turn race, far under the 14-24 / 18-30 / 20-34 band (about 1.8 / 2.9 / 3.2 minutes at 0.4 per turn against the 12-minute target). Long Night fell from 95-100% to 0-0.1%, but the cure overshoots.",
+   "evidence": "headline 1,000 games per count: 4.4 / 7.2 / 8.0 mean turns; 2p minimum is the theoretical 3. Switch-off test: SHIELD off gives 22.6 / 33.7 / 30.4 turns; every other switch moves length by under 1 turn except WIN_AT_END (16.8 / 29.5 / 27.9 with 5-56% Long Night) and Rebound (2.3 / 4.4 / 5.5, worse).",
+   "fix": "The shield is the length lever: it lets a body build up untouched, so a 4-body pattern lands on a player's 2nd-3rd turn. Either drop the shield (then 2p fits at 22.6 turns, 3p/4p return to 83-87% Long Night, need a smaller Deck: untested) or keep it and start with 0 bodies (orbit empty; 8.3 / 14.8 / 18.3 turns, 2p still short). Best untested pair: opening 0 plus shield, plus +1 to every Critical Mass threshold."
   },
   {
    "severity": "high",
-   "problem": "Games are about 3x too long and the stated turn cap is false.",
-   "evidence": "Mean turns 46.2 / 46.7 / 39.6 (2/3/4p) vs the rules' bands 14-24 / 18-30 / 20-34. At 0.4 min per turn (assumption) that is 18.5 / 18.7 / 15.8 min vs 12 target (9.6-14.4). Rules 6 says at most 43/38/33 turns, but taking from Deep Space does not shrink the Deck: 94% / 99% / 99% of games exceed the stated cap (max 60 / 71 / 54).",
-   "fix": "Make the clock real: end Long Night when the Deck is empty OR after a fixed number of rounds, remove 12-16 cards from the Deck at setup, or count Deep Space draws toward the clock. Correct the stated cap."
+   "problem": "Seat 1 has a large tempo edge at every count.",
+   "evidence": "seat gap 16.9 / 29.1 / 18.4 points (seat 1 wins 66.9% at 2p, 62.4% at 3p, 43.4% at 4p) vs the 5-point target. Falls to 11.3 at 2p with 1 opening body, 4.9 at 3p and 10.0 at 4p with 0 opening bodies; shield off at 2p is 5.5.",
+   "fix": "Short races always favour the first mover. Lengthening the game (problem 1) is the main fix. Cheap extra: the last seat draws 2 cards on its first turn, or the first player also skips Launch on turn 1."
   },
   {
    "severity": "high",
-   "problem": "Churn: the board is rebuilt every turn and nothing is kept; the result is decided in the last rounds before the deck runs out.",
-   "evidence": "58.7 / 43.3 / 29.8 captures per game (about 1.3 per turn at 2p); 96.6% / 93.7% / 89.3% of spins cause at least one crash; 21.0 / 28.6 / 22.9 lead changes per game (leader by orbit total); midpoint leader wins 51.3% / 35.1% / 23.3% (fair: 50 / 33 / 25), so there is no runaway but also nothing that accumulates. Spins are very kinetic; the cost is that no plan survives.",
-   "fix": "Reduce captures per spin: tested one-contact crash (only the contact on the side you spin towards): captures fall 25-35% but formed patterns still never survive (survival 0.4%). Better untested ideas: captured cards go to Deep Space not the hand; a body that just arrived cannot be captured until its owner's next turn (shield marker); or crashes only happen on the contacts of the active player's own orbit."
+   "problem": "The strategic bot loses to the greedy bot; skill expression against a real rival is negative (the studio check for a dominant simple strategy).",
+   "evidence": "strategic vs greedy: -14.0 / -8.0 / -13.1 points at 2/3/4p (vs random: +98.0 / +95.8 / +92.3; greedy vs random +95.8 / +93.0 / +91.9). Greedy mirror: Critical Mass wins 81 / 89 / 93% of pattern endings vs 27 / 34 / 40% in the strategic mirror. 'Take the biggest bodies' is the dominant plan; the other two patterns only pay off for a bot that plans them. Last cycle strategic beat greedy by +38 / +16 / -6.",
+   "fix": "Either Critical Mass thresholds up (17 / 16 / 15 tested only for 2p, where share falls 27% to 17% but length stays 4.6) or give Constellation and Alignment a lower bar than Mass in tempo, not just share. Treat as a race-length problem first: in longer games captures can punish a pile of big bodies."
   },
   {
    "severity": "medium",
-   "problem": "The best bot play is 'maximise total Size at deck-out', not pattern building; the pattern-chasing strategic bot loses to greedy at 4 players.",
-   "evidence": "Strategic vs greedy win gap: +38.0 (2p), +15.7 (3p), -5.5 (4p). Both beat random by 97-100 points, which only shows that some play beats random. Bot-dependent skill reading (L2): skill in the intended direction is unproven at 3-4p.",
-   "fix": "Fix the win conditions first (problem 1), then re-measure with the same three bots."
+   "problem": "Several twists are inert or nearly so: Recall, Comet beats Giant, the shield (as a skill), threat-aware spinning at 3-4p, and spinning others at 2p.",
+   "evidence": "ablation margins at 2/3/4p (need 5 or more): no-recall -1.8 / -1.9 / 0.0; comet-blind 3.4 / 0.1 / 0.9; shield-blind 7.2 / 1.1 / 3.3; threat-blind 8.0 / 4.4 / 1.2; self-spin-only 2.2 / 32.1 / 11.4; defence-check (a worse bot) 30.2 / 16.6 / 7.9. Giants are captured 0.1 times per game; Comets sit in winning orbits 61% less often than their deck share.",
+   "fix": "Rules cannot matter if games end before captures start (1.8 / 2.3 / 2.5 captures per game against the 15-25 band). Re-test the ablations after the length fix; if Recall and Comet-beats-Giant are still inert, cut Recall (it is also a line of rules)."
   },
   {
    "severity": "medium",
-   "problem": "Rebound is not a comeback device; it is a permanent state that adds churn.",
-   "evidence": "Without Rebound the midpoint-leader rate is 52.5% / 38.9% / 22.2% vs 51.3% / 35.1% / 23.3% with it (no change); lead changes fall from 21.0 to 15.9 (2p). With it a player has Rebound on 32 of ~46 turns at 2p (about 70% of their turns), because captures keep emptying orbits.",
-   "fix": "Drop Rebound or limit it (once per game, or only when 2+ bodies behind). Measure after the clock fix; at present it fails the inert-twist test for comeback (L1)."
-  },
-  {
-   "severity": "medium",
-   "problem": "Deep Space and Recall are marginal at 3-4 players; only spin-any-orbit and the Comet rule clearly matter.",
-   "evidence": "Ablation margin vs full strategic bot (2p / 3p / 4p, 400 games each, +-5): self-spin-only +10.5 / +18.2 / +10.0 (pass); comet-blind +82.7 / +19.1 / +19.2 (pass); no-recall +18.3 / +2.0 / -4.0 (fails at 3-4p); deck-only -5.2 / +8.0 / -2.9 (fails at 2p and 4p: taking from Deep Space does not help). Under win_at_end+one_contact: self-spin +34.0 / +32.5 / +25.7, deck-only -2.0 / +2.0 / +8.0, no-recall +1.3 / +5.0 / +10.3.",
-   "fix": "Keep spin-any-orbit and Comet beats Giant. Cut or sharpen Deep Space (e.g. take both top cards, or only the last discard of a rival) and decide whether Recall earns its slot; re-run after the win-timing fix."
+   "problem": "Runaway leader and lead changes miss the KPIs at 2p; a 'threat' is almost impossible to break.",
+   "evidence": "orbit-total leader at the midpoint wins 74.7% at 2p (target 65%), 63.5% at 3p, 41% at 4p; lead changes 0.64 / 1.76 / 2.06 (target 2). Of positions one launch from a pattern, 83 / 79 / 77% are attacked, yet 100 / 61 / 48% are still one launch away at the owner's turn: at 2p a captured body is simply replaced by a hand card.",
+   "fix": "Lengthening the game (opening 0 gives 2.4 / 5.2 / 6.5 lead changes and runaway 0.80 / 0.50 / 0.33). A cheaper defence at 2p: captured bodies go to the attacker's hand AND the owner may not Launch into the slot just captured."
   },
   {
    "severity": "low",
-   "problem": "Long Night ties are common at 3-4 players and Comets never reach the end orbit.",
-   "evidence": "Shared wins 4.7% (3p) and 7.8% (4p). Size 1 average count in the final orbit is 0.14 for winners and 0.14 for losers (2p): no link to winning, while Sizes 4-5 average 1.1-1.3 in winners' orbits vs 0.45-0.63 for losers.",
-   "fix": "Add a second tie-break (fewest cards in hand, or largest single body)."
+   "problem": "Constellation (rainbow) is the most common ending at 2p; Alignment drops to 21-23% at 3-4p.",
+   "evidence": "strategic mirror shares mass / const / align: 27 / 46 / 28 (2p), 34 / 45 / 21 (3p), 40 / 37 / 23 (4p), all inside 15-50%. Rainbow off: const 7% (dead), so the rainbow is needed. CM_BY_COUNT is inert (CM 15 everywhere: shares 37 / 34 / 29, length unchanged).",
+   "fix": "Keep the rainbow. The per-count thresholds are not worth a rule while games are this short."
+  },
+  {
+   "severity": "low",
+   "problem": "Alternative arms do not help length.",
+   "evidence": "DECK40: 4.7 / 7.3 / 8.0 turns, Long Night 0 / 0.8 / 1.5%. CAPTURE_TO_DS: 4.7 / 7.3 / 8.1 turns, seat gap and runaway unchanged. DEEPSPACE_DRAW on: 4.4 / 6.9 / 7.9 turns (inert).",
+   "fix": "Drop both as length fixes; DECK40 only if the box size matters."
   }
  ]
 }

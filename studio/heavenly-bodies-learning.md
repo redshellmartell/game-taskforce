@@ -13,6 +13,7 @@ Every agent call in this project reads this file, `studio/lessons.md`, `studio/d
 ## Cycle table
 | Version | Cycle | Targeted | Result | Lesson |
 |---|---|---|---|---|
+| v2 | 1 | win timing, length, churn | playtest BROKEN (overshoot): Long Night 0%, but 3-8 turns and first seat wins 62-67%; win-at-end-of-turn was the real fix, shield was the length lever (too strong); no opening bodies is the best next arm | fixing one failure by a bundle overshoots; set the knob with a sweep before the designer commits |
 | v1 | 1 | seat gap, path split, rotation cards, Star/HP, CM answers, 40 gaps | critic 2.83 to 3.17; seat gap 7.4 to 0.1; ambiguities 41 to 8; rotation direction still inert | L12, L13; bundled changes needed single-change ablations (worked) |
 
 ## Lessons

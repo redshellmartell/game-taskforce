@@ -1,9 +1,44 @@
 [
-{"severity":"high","problem":"The three win patterns are dead rules: games end by Long Night (deck runs out), not by a pattern.","evidence":"Strategic mirror, 2000 games per count: Long Night 95.2% / 99.9% / 100% at 2/3/4p. Pattern wins: 2p mass 96, constellation 1, alignment 0; 3p mass 1; 4p none. A pattern is formed ~21 times per 2p game but survives to the owner's next turn 0.2% of the time (0.0% at 3-4p). Oracle probe (perfect information about the next opponent's hand): a pattern-forming plan that the next opponent cannot break exists in 5 of 573 positions (2p), 5 of 547 (3p), 1 of 462 (4p).","fix":"The 'must survive a round' clause is the cause (every spin crashes, so a full orbit always loses a body). Tested: check the win at the END of your own turn (after Spin and Crash). 3p becomes 20 turns, Long Night 12.5%, shares mass 42 / alignment 39 / constellation 5%. It is not a clean fix: 2p drops to 4.9 turns (instant wins), 4p keeps 58% Long Night. Needs a per-count knob, for example a Critical Mass threshold of 17+ at 2p, or 5 slots/opening bodies of 1."},
-{"severity":"high","problem":"Games are about 3x too long and the stated turn cap is false.","evidence":"Mean turns 46.2 / 46.7 / 39.6 (2/3/4p) vs the rules' bands 14-24 / 18-30 / 20-34. At 0.4 min per turn (assumption) that is 18.5 / 18.7 / 15.8 min vs 12 target (9.6-14.4). Rules 6 says at most 43/38/33 turns, but taking from Deep Space does not shrink the Deck: 94% / 99% / 99% of games exceed the stated cap (max 60 / 71 / 54).","fix":"Make the clock real: end Long Night when the Deck is empty OR after a fixed number of rounds, remove 12-16 cards from the Deck at setup, or count Deep Space draws toward the clock. Correct the stated cap."},
-{"severity":"high","problem":"Churn: the board is rebuilt every turn and nothing is kept; the result is decided in the last rounds before the deck runs out.","evidence":"58.7 / 43.3 / 29.8 captures per game (about 1.3 per turn at 2p); 96.6% / 93.7% / 89.3% of spins cause at least one crash; 21.0 / 28.6 / 22.9 lead changes per game (leader by orbit total); midpoint leader wins 51.3% / 35.1% / 23.3% (fair: 50 / 33 / 25), so there is no runaway but also nothing that accumulates. Spins are very kinetic; the cost is that no plan survives.","fix":"Reduce captures per spin: tested one-contact crash (only the contact on the side you spin towards): captures fall 25-35% but formed patterns still never survive (survival 0.4%). Better untested ideas: captured cards go to Deep Space not the hand; a body that just arrived cannot be captured until its owner's next turn (shield marker); or crashes only happen on the contacts of the active player's own orbit."},
-{"severity":"medium","problem":"The best bot play is 'maximise total Size at deck-out', not pattern building; the pattern-chasing strategic bot loses to greedy at 4 players.","evidence":"Strategic vs greedy win gap: +38.0 (2p), +15.7 (3p), -5.5 (4p). Both beat random by 97-100 points, which only shows that some play beats random. Bot-dependent skill reading (L2): skill in the intended direction is unproven at 3-4p.","fix":"Fix the win conditions first (problem 1), then re-measure with the same three bots."},
-{"severity":"medium","problem":"Rebound is not a comeback device; it is a permanent state that adds churn.","evidence":"Without Rebound the midpoint-leader rate is 52.5% / 38.9% / 22.2% vs 51.3% / 35.1% / 23.3% with it (no change); lead changes fall from 21.0 to 15.9 (2p). With it a player has Rebound on 32 of ~46 turns at 2p (about 70% of their turns), because captures keep emptying orbits.","fix":"Drop Rebound or limit it (once per game, or only when 2+ bodies behind). Measure after the clock fix; at present it fails the inert-twist test for comeback (L1)."},
-{"severity":"medium","problem":"Deep Space and Recall are marginal at 3-4 players; only spin-any-orbit and the Comet rule clearly matter.","evidence":"Ablation margin vs full strategic bot (2p / 3p / 4p, 400 games each, +-5): self-spin-only +10.5 / +18.2 / +10.0 (pass); comet-blind +82.7 / +19.1 / +19.2 (pass); no-recall +18.3 / +2.0 / -4.0 (fails at 3-4p); deck-only -5.2 / +8.0 / -2.9 (fails at 2p and 4p: taking from Deep Space does not help). Under win_at_end+one_contact: self-spin +34.0 / +32.5 / +25.7, deck-only -2.0 / +2.0 / +8.0, no-recall +1.3 / +5.0 / +10.3.","fix":"Keep spin-any-orbit and Comet beats Giant. Cut or sharpen Deep Space (e.g. take both top cards, or only the last discard of a rival) and decide whether Recall earns its slot; re-run after the win-timing fix."},
-{"severity":"low","problem":"Long Night ties are common at 3-4 players and Comets never reach the end orbit.","evidence":"Shared wins 4.7% (3p) and 7.8% (4p). Size 1 average count in the final orbit is 0.14 for winners and 0.14 for losers (2p): no link to winning, while Sizes 4-5 average 1.1-1.3 in winners' orbits vs 0.45-0.63 for losers.","fix":"Add a second tie-break (fewest cards in hand, or largest single body)."}
+ {
+  "severity": "high",
+  "problem": "The game is a 3-8 turn race, far under the 14-24 / 18-30 / 20-34 band (about 1.8 / 2.9 / 3.2 minutes at 0.4 per turn against the 12-minute target). Long Night fell from 95-100% to 0-0.1%, but the cure overshoots.",
+  "evidence": "headline 1,000 games per count: 4.4 / 7.2 / 8.0 mean turns; 2p minimum is the theoretical 3. Switch-off test: SHIELD off gives 22.6 / 33.7 / 30.4 turns; every other switch moves length by under 1 turn except WIN_AT_END (16.8 / 29.5 / 27.9 with 5-56% Long Night (50-56% at 3-4p)) and Rebound (2.3 / 4.4 / 5.5, worse).",
+  "fix": "The shield is the length lever: it lets a body build up untouched, so a 4-body pattern lands on a player's 2nd-3rd turn. Either drop the shield (then 2p fits at 22.6 turns, 3p/4p return to 83-87% Long Night, need a smaller Deck: untested) or keep it and start with 0 bodies (orbit empty; 8.3 / 14.8 / 18.3 turns, 2p still short). Best untested pair: opening 0 plus shield, plus +1 to every Critical Mass threshold."
+ },
+ {
+  "severity": "high",
+  "problem": "Seat 1 has a large tempo edge at every count.",
+  "evidence": "seat gap 16.9 / 29.1 / 18.4 points (seat 1 wins 66.9% at 2p, 62.4% at 3p, 43.4% at 4p) vs the 5-point target. Falls to 11.3 at 2p with 1 opening body, 4.9 at 3p and 10.0 at 4p with 0 opening bodies; shield off at 2p is 5.5.",
+  "fix": "Short races always favour the first mover. Lengthening the game (problem 1) is the main fix. Cheap extra: the last seat draws 2 cards on its first turn, or the first player also skips Launch on turn 1."
+ },
+ {
+  "severity": "high",
+  "problem": "The strategic bot loses to the greedy bot; skill expression against a real rival is negative (the studio check for a dominant simple strategy).",
+  "evidence": "strategic vs greedy: -14.0 / -8.0 / -13.1 points at 2/3/4p (vs random: +98.0 / +95.8 / +92.3; greedy vs random +95.8 / +93.0 / +91.9). Greedy mirror: Critical Mass wins 81 / 89 / 93% of pattern endings vs 27 / 34 / 40% in the strategic mirror. 'Take the biggest bodies' is the dominant plan; the other two patterns only pay off for a bot that plans them. Last cycle strategic beat greedy by +38 / +16 / -6.",
+  "fix": "Either Critical Mass thresholds up (17 / 16 / 15 tested only for 2p, where share falls 27% to 17% but length stays 4.6) or give Constellation and Alignment a lower bar than Mass in tempo, not just share. Treat as a race-length problem first: in longer games captures can punish a pile of big bodies."
+ },
+ {
+  "severity": "medium",
+  "problem": "Several twists are inert or nearly so: Recall, Comet beats Giant, the shield (as a skill), threat-aware spinning at 3-4p, and spinning others at 2p.",
+  "evidence": "ablation margins at 2/3/4p (need 5 or more): no-recall -1.8 / -1.9 / 0.0; comet-blind 3.4 / 0.1 / 0.9; shield-blind 7.2 / 1.1 / 3.3; threat-blind 8.0 / 4.4 / 1.2; self-spin-only 2.2 / 32.1 / 11.4; defence-check (a worse bot) 30.2 / 16.6 / 7.9. Giants are captured 0.1 times per game; Comets sit in winning orbits 61% less often than their deck share.",
+  "fix": "Rules cannot matter if games end before captures start (1.8 / 2.3 / 2.5 captures per game against the 15-25 band). Re-test the ablations after the length fix; if Recall and Comet-beats-Giant are still inert, cut Recall (it is also a line of rules)."
+ },
+ {
+  "severity": "medium",
+  "problem": "Runaway leader and lead changes miss the KPIs at 2p; a 'threat' is almost impossible to break.",
+  "evidence": "orbit-total leader at the midpoint wins 74.7% at 2p (target 65%), 63.5% at 3p, 41% at 4p; lead changes 0.64 / 1.76 / 2.06 (target 2). Of positions one launch from a pattern, 83 / 79 / 77% are attacked, yet 100 / 61 / 48% are still one launch away at the owner's turn: at 2p a captured body is simply replaced by a hand card.",
+  "fix": "Lengthening the game (opening 0 gives 2.4 / 5.2 / 6.5 lead changes and runaway 0.80 / 0.50 / 0.33). A cheaper defence at 2p: captured bodies go to the attacker's hand AND the owner may not Launch into the slot just captured."
+ },
+ {
+  "severity": "low",
+  "problem": "Constellation (rainbow) is the most common ending at 2p; Alignment drops to 21-23% at 3-4p.",
+  "evidence": "strategic mirror shares mass / const / align: 27 / 46 / 28 (2p), 34 / 45 / 21 (3p), 40 / 37 / 23 (4p), all inside 15-50%. Rainbow off: const 7% (dead), so the rainbow is needed. CM_BY_COUNT is inert (CM 15 everywhere: shares 37 / 34 / 29, length unchanged).",
+  "fix": "Keep the rainbow. The per-count thresholds are not worth a rule while games are this short."
+ },
+ {
+  "severity": "low",
+  "problem": "Alternative arms do not help length.",
+  "evidence": "DECK40: 4.7 / 7.3 / 8.0 turns, Long Night 0 / 0.8 / 1.5%. CAPTURE_TO_DS: 4.7 / 7.3 / 8.1 turns, seat gap and runaway unchanged. DEEPSPACE_DRAW on: 4.4 / 6.9 / 7.9 turns (inert).",
+  "fix": "Drop both as length fixes; DECK40 only if the box size matters."
+ }
 ]

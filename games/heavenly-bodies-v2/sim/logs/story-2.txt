@@ -1,41 +1,11 @@
-Heavenly Bodies v2: seats story, strategist, barraiser, competitor, table 'worst' for story. Cards: colour letter (E,F,V,S) + Size; [North East South West].
-setup [V4 -- V3 --] | [S3 -- S4 --] | [V3 -- V5 --] | [S1 -- S3 --]
-T0 P0 launch 1 -> [V4 V4 V3 --]
-T0 P0 spin P3 +1: P0 V4 takes P3 S3
-T1 P1 launch 1 -> [S3 E5 S4 --]
-T1 P1 spin P0 +1: P1 E5 takes P0 V3
-T2 P2 launch 1 -> [V3 V2 V5 --]
-T2 P2 spin P2 -1: P2 V3 takes P3 S1
-T3 P3 launch 2 -> [V4 V1 -- --]
-T3 P3 spin P1 +1: P2 V5 takes P1 S4
-T4 P0 launch 1 -> [E5 V4 V4 --]
-T4 P0 spin P0 -1: P0 E5 takes P1 S3
-T5 P1 launch 2 -> [-- F4 E5 F3]
-T5 P1 spin P3 -1: V4 and V4 collide, knocked out
-T6 P2 launch 1 -> [V2 V5 S4 V3]
-T6 P2 spin P1 -1: E5 and E5 collide, knocked out
-T7 P3 launch 1 -> [V1 -- E4 --]
-T7 P3 spin P3 -1: P3 E4 takes P2 V3
-T8 P0 launch 2 -> [V4 V3 F5 --]
-T8 P0 spin P0 +1: P0 V4 takes P3 V1
-T9 P1 launch 1 -> [F4 E5 F3 --]
-T9 P1 spin P0 +1: P1 E5 takes P0 V3
-T10 P2 launch 1 -> [V2 V5 S4 F4]
-T11 P3 launch 2 -> [V2 V3 E4 --]
-T11 P3 spin P2 -1: P3 V3 takes P2 V2
-T12 P0 launch 2 -> [F5 S2 V4 F4]
-T12 P0 spin P1 -1: F4 and S4 collide, knocked out
-T12 P0 spin P1 -1: P0 F4 takes P1 F3
-T13 P1 launch 2 -> [E5 F4 -- E3]
-T13 P1 spin P1 +1: P1 E5 takes P0 F4
-T14 P2 launch 2 -> [V5 S5 F4 F2]
-T14 P2 spin P0 -1: F5 and E5 collide, knocked out
-T15 P3 launch 1 -> [V2 S1 E4 --]
-T15 P3 spin P2 -1: P3 S1 takes P2 V5
-T16 P0 launch 1 -> [S2 V4 V1 --]
-T16 P0 spin P3 -1: P0 V4 takes P3 V2
-T17 P1 launch 1 -> [E3 -- F4 E5]
-T17 P1 spin P2 -1: P2 S5 takes P3 E4
-T17 P1 spin P2 -1: P1 E5 takes P2 F2
-T18 P2 launch 1 -> [F4 -- E1 S5]
-T18 P2 spin P2 -1: P2 E1 takes P1 E5
+Heavenly Bodies v2: seats story, barraiser, table 'worst' for story. Cards: colour letter (E,F,V,S) + Size; [North East South West].
+setup [V4 -- V3 --] | [E5 -- S3 --]
+T0 P0 launch V4 -> [V4 V4~ V3 --]
+T1 P1 launch F3 -> [E5 F3~ S3 --]
+T1 P1 spin P1 -1: P1 E5 takes P0 V4
+T1 P1 spin P1 -1: V3 and S3 collide, both lost
+T2 P0 launch E5 -> [E5~ -- V4 --]
+T3 P1 launch S4 -> [F3 S4~ -- E5]
+T4 P0 launch F2 -> [V4 -- E5 F2~]
+T5 P1 launch V4 -> [E5 F3 S4 V4~]
+T5 P1 WINS ['mass', 'const'] [V4 E5 F3 S4]

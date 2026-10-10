@@ -1,11 +1,7 @@
-Heavenly Bodies v2: seats family, casual, table 'best' for family. Cards: colour letter (E,F,V,S) + Size; [North East South West].
-setup [F4 -- E4 --] | [S2 -- S1 --]
-T0 P0 launch 1 -> [F4 F4 E4 --]
-T0 P0 spin P1 +1: P0 F4 takes P1 S1
-T1 P1 launch 2 -> [F3 S2 -- F1]
-T2 P0 launch 1 -> [F4 F4 E4 S4]
-T2 P0 spin P0 +1: P0 E4 takes P1 F3
-T3 P1 launch 2 -> [F1 V1 S2 V2]
-T3 P1 spin P1 +1: P0 F4 takes P1 S2
-T3 P1 spin P1 +1: P0 E4 takes P1 F1
-T4 P0 WINS ['mass'] [S4 F4 F4 E4]
+Heavenly Bodies v2: seats family, barraiser, casual, table 'best' for family. Cards: colour letter (E,F,V,S) + Size; [North East South West].
+setup [F4 -- E4 --] | [S2 -- F3 --] | [V2 -- E1 --]
+T0 P0 launch S4 -> [F4 S4~ E4 --]
+T1 P1 launch V1 -> [S2 V1~ F3 --]
+T2 P2 launch F4 -> [V2 F4~ E1 --]
+T3 P0 launch E3 -> [S4 E4 E3~ F4]
+T3 P0 WINS ['mass'] [F4 S4 E4 E3]
